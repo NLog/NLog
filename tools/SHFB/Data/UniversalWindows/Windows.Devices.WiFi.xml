@@ -1,0 +1,2219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.WiFi">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.WiFi" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.WiFi.WiFiNetworkKind" />
+        <element api="T:Windows.Devices.WiFi.WiFiPhyKind" />
+        <element api="T:Windows.Devices.WiFi.WiFiAccessStatus" />
+        <element api="T:Windows.Devices.WiFi.WiFiReconnectionKind" />
+        <element api="T:Windows.Devices.WiFi.WiFiConnectionStatus" />
+        <element api="T:Windows.Devices.WiFi.WiFiAdapter" />
+        <element api="T:Windows.Devices.WiFi.WiFiNetworkReport" />
+        <element api="T:Windows.Devices.WiFi.WiFiAvailableNetwork" />
+        <element api="T:Windows.Devices.WiFi.WiFiConnectionResult" />
+      </elements>
+      <file name="671906f6-8bcd-27aa-457d-131c403004ea" />
+    </api>
+    <api id="T:Windows.Devices.WiFi.WiFiAccessStatus">
+      <topicdata group="api" />
+      <apidata name="WiFiAccessStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.WiFi.WiFiAccessStatus.Unspecified" />
+        <element api="F:Windows.Devices.WiFi.WiFiAccessStatus.Allowed" />
+        <element api="F:Windows.Devices.WiFi.WiFiAccessStatus.DeniedByUser" />
+        <element api="F:Windows.Devices.WiFi.WiFiAccessStatus.DeniedBySystem" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="82b485cb-e21c-913f-afcc-85d823cbeb71" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiAccessStatus.Allowed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Allowed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiAccessStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAccessStatus" ref="false" />
+      </containers>
+      <file name="e6871d0b-fc14-7518-4b25-e6d264c73824" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiAccessStatus.DeniedBySystem">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeniedBySystem" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiAccessStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAccessStatus" ref="false" />
+      </containers>
+      <file name="5acde121-f276-b769-61af-c442475d55c6" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiAccessStatus.DeniedByUser">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeniedByUser" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiAccessStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAccessStatus" ref="false" />
+      </containers>
+      <file name="5b8c971a-6197-cab6-5d6d-9d0774952424" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiAccessStatus.Unspecified">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unspecified" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiAccessStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAccessStatus" ref="false" />
+      </containers>
+      <file name="3e05035c-7ea8-251b-cf74-04de18d56849" />
+    </api>
+    <api id="T:Windows.Devices.WiFi.WiFiAdapter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.WiFi.WiFiAdapter" />
+      <apidata name="WiFiAdapter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="338920e9-bec4-3961-0ecc-5e7862690e6b" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.WiFi.WiFiAdapter">
+      <topicdata name="WiFiAdapter" group="list" subgroup="members" typeTopicId="T:Windows.Devices.WiFi.WiFiAdapter" />
+      <apidata name="WiFiAdapter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="E:Windows.Devices.WiFi.WiFiAdapter.AvailableNetworksChanged" />
+        <element api="Overload:Windows.Devices.WiFi.WiFiAdapter.ConnectAsync">
+          <element api="M:Windows.Devices.WiFi.WiFiAdapter.ConnectAsync(Windows.Devices.WiFi.WiFiAvailableNetwork,Windows.Devices.WiFi.WiFiReconnectionKind)" />
+          <element api="M:Windows.Devices.WiFi.WiFiAdapter.ConnectAsync(Windows.Devices.WiFi.WiFiAvailableNetwork,Windows.Devices.WiFi.WiFiReconnectionKind,Windows.Security.Credentials.PasswordCredential)" />
+          <element api="M:Windows.Devices.WiFi.WiFiAdapter.ConnectAsync(Windows.Devices.WiFi.WiFiAvailableNetwork,Windows.Devices.WiFi.WiFiReconnectionKind,Windows.Security.Credentials.PasswordCredential,System.String)" />
+        </element>
+        <element api="M:Windows.Devices.WiFi.WiFiAdapter.Disconnect" />
+        <element api="M:Windows.Devices.WiFi.WiFiAdapter.FindAllAdaptersAsync" />
+        <element api="M:Windows.Devices.WiFi.WiFiAdapter.FromIdAsync(System.String)" />
+        <element api="M:Windows.Devices.WiFi.WiFiAdapter.GetDeviceSelector" />
+        <element api="P:Windows.Devices.WiFi.WiFiAdapter.NetworkAdapter" />
+        <element api="P:Windows.Devices.WiFi.WiFiAdapter.NetworkReport" />
+        <element api="M:Windows.Devices.WiFi.WiFiAdapter.RequestAccessAsync" />
+        <element api="M:Windows.Devices.WiFi.WiFiAdapter.ScanAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAdapter" />
+      </containers>
+      <file name="8456e2b9-570f-b157-a635-1970ae5127aa" />
+    </api>
+    <api id="Methods.T:Windows.Devices.WiFi.WiFiAdapter">
+      <topicdata name="WiFiAdapter" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.WiFi.WiFiAdapter" />
+      <apidata name="WiFiAdapter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:Windows.Devices.WiFi.WiFiAdapter.ConnectAsync">
+          <element api="M:Windows.Devices.WiFi.WiFiAdapter.ConnectAsync(Windows.Devices.WiFi.WiFiAvailableNetwork,Windows.Devices.WiFi.WiFiReconnectionKind)" />
+          <element api="M:Windows.Devices.WiFi.WiFiAdapter.ConnectAsync(Windows.Devices.WiFi.WiFiAvailableNetwork,Windows.Devices.WiFi.WiFiReconnectionKind,Windows.Security.Credentials.PasswordCredential)" />
+          <element api="M:Windows.Devices.WiFi.WiFiAdapter.ConnectAsync(Windows.Devices.WiFi.WiFiAvailableNetwork,Windows.Devices.WiFi.WiFiReconnectionKind,Windows.Security.Credentials.PasswordCredential,System.String)" />
+        </element>
+        <element api="M:Windows.Devices.WiFi.WiFiAdapter.Disconnect" />
+        <element api="M:Windows.Devices.WiFi.WiFiAdapter.FindAllAdaptersAsync" />
+        <element api="M:Windows.Devices.WiFi.WiFiAdapter.FromIdAsync(System.String)" />
+        <element api="M:Windows.Devices.WiFi.WiFiAdapter.GetDeviceSelector" />
+        <element api="M:Windows.Devices.WiFi.WiFiAdapter.RequestAccessAsync" />
+        <element api="M:Windows.Devices.WiFi.WiFiAdapter.ScanAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAdapter" />
+      </containers>
+      <file name="eca6df95-84f9-d139-c5b4-620625a65b72" />
+    </api>
+    <api id="Properties.T:Windows.Devices.WiFi.WiFiAdapter">
+      <topicdata name="WiFiAdapter" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.WiFi.WiFiAdapter" />
+      <apidata name="WiFiAdapter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.WiFi.WiFiAdapter.NetworkAdapter" />
+        <element api="P:Windows.Devices.WiFi.WiFiAdapter.NetworkReport" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAdapter" />
+      </containers>
+      <file name="7afe79af-c9e8-f6d4-d0c5-4b3c25c51d11" />
+    </api>
+    <api id="Events.T:Windows.Devices.WiFi.WiFiAdapter">
+      <topicdata name="WiFiAdapter" group="list" subgroup="Events" typeTopicId="T:Windows.Devices.WiFi.WiFiAdapter" />
+      <apidata name="WiFiAdapter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Devices.WiFi.WiFiAdapter.AvailableNetworksChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAdapter" />
+      </containers>
+      <file name="8a202b2d-a857-4ea7-7ef2-a5b40185d556" />
+    </api>
+    <api id="Overload:Windows.Devices.WiFi.WiFiAdapter.ConnectAsync">
+      <topicdata name="ConnectAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Devices.WiFi.WiFiAdapter" />
+      <apidata name="ConnectAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Devices.WiFi.WiFiAdapter.ConnectAsync(Windows.Devices.WiFi.WiFiAvailableNetwork,Windows.Devices.WiFi.WiFiReconnectionKind)" />
+        <element api="M:Windows.Devices.WiFi.WiFiAdapter.ConnectAsync(Windows.Devices.WiFi.WiFiAvailableNetwork,Windows.Devices.WiFi.WiFiReconnectionKind,Windows.Security.Credentials.PasswordCredential)" />
+        <element api="M:Windows.Devices.WiFi.WiFiAdapter.ConnectAsync(Windows.Devices.WiFi.WiFiAvailableNetwork,Windows.Devices.WiFi.WiFiReconnectionKind,Windows.Security.Credentials.PasswordCredential,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAdapter" ref="true" />
+      </containers>
+      <file name="dfceeef4-a24a-124b-fb6c-42fa6f92472e" />
+    </api>
+    <api id="E:Windows.Devices.WiFi.WiFiAdapter.AvailableNetworksChanged">
+      <topicdata group="api" />
+      <apidata name="AvailableNetworksChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_AvailableNetworksChanged" />
+      <remover name="remove_AvailableNetworksChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.WiFi.WiFiAdapter" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAdapter" ref="true" />
+      </containers>
+      <file name="6cd26f09-807d-29c4-e14a-6b049deecafe" />
+    </api>
+    <api id="M:Windows.Devices.WiFi.WiFiAdapter.ConnectAsync(Windows.Devices.WiFi.WiFiAvailableNetwork,Windows.Devices.WiFi.WiFiReconnectionKind)">
+      <topicdata group="api" />
+      <apidata name="ConnectAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Devices.WiFi.WiFiAdapter.ConnectAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="availableNetwork" in="true">
+          <type api="T:Windows.Devices.WiFi.WiFiAvailableNetwork" ref="true" />
+        </parameter>
+        <parameter name="reconnectionKind" in="true">
+          <type api="T:Windows.Devices.WiFi.WiFiReconnectionKind" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.WiFi.WiFiConnectionResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAdapter" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ConnectAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="24ad50f4-0dc5-96ae-0af5-f14d43a9002a" />
+    </api>
+    <api id="M:Windows.Devices.WiFi.WiFiAdapter.ConnectAsync(Windows.Devices.WiFi.WiFiAvailableNetwork,Windows.Devices.WiFi.WiFiReconnectionKind,Windows.Security.Credentials.PasswordCredential)">
+      <topicdata group="api" />
+      <apidata name="ConnectAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Devices.WiFi.WiFiAdapter.ConnectAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="availableNetwork" in="true">
+          <type api="T:Windows.Devices.WiFi.WiFiAvailableNetwork" ref="true" />
+        </parameter>
+        <parameter name="reconnectionKind" in="true">
+          <type api="T:Windows.Devices.WiFi.WiFiReconnectionKind" ref="false" />
+        </parameter>
+        <parameter name="passwordCredential" in="true">
+          <type api="T:Windows.Security.Credentials.PasswordCredential" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.WiFi.WiFiConnectionResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAdapter" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ConnectWithPasswordCredentialAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a0c24177-4434-ad26-0799-f1833bd48089" />
+    </api>
+    <api id="M:Windows.Devices.WiFi.WiFiAdapter.ConnectAsync(Windows.Devices.WiFi.WiFiAvailableNetwork,Windows.Devices.WiFi.WiFiReconnectionKind,Windows.Security.Credentials.PasswordCredential,System.String)">
+      <topicdata group="api" />
+      <apidata name="ConnectAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Devices.WiFi.WiFiAdapter.ConnectAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="availableNetwork" in="true">
+          <type api="T:Windows.Devices.WiFi.WiFiAvailableNetwork" ref="true" />
+        </parameter>
+        <parameter name="reconnectionKind" in="true">
+          <type api="T:Windows.Devices.WiFi.WiFiReconnectionKind" ref="false" />
+        </parameter>
+        <parameter name="passwordCredential" in="true">
+          <type api="T:Windows.Security.Credentials.PasswordCredential" ref="true" />
+        </parameter>
+        <parameter name="ssid" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.WiFi.WiFiConnectionResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAdapter" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ConnectWithPasswordCredentialAndSsidAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3f5b3dee-cb77-529d-f7f3-85a36a0a8feb" />
+    </api>
+    <api id="M:Windows.Devices.WiFi.WiFiAdapter.Disconnect">
+      <topicdata group="api" />
+      <apidata name="Disconnect" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAdapter" ref="true" />
+      </containers>
+      <file name="c4f4aa72-0f8e-3bf0-7740-cd95939cc7b1" />
+    </api>
+    <api id="M:Windows.Devices.WiFi.WiFiAdapter.FindAllAdaptersAsync">
+      <topicdata group="api" />
+      <apidata name="FindAllAdaptersAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.Devices.WiFi.WiFiAdapter" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAdapter" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d5fe4201-04ff-625b-70e6-d0ca212c0144" />
+    </api>
+    <api id="M:Windows.Devices.WiFi.WiFiAdapter.FromIdAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="FromIdAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.WiFi.WiFiAdapter" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAdapter" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FromIdAsync</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a54e3e97-caaf-f426-95d0-e455ac609ee6" />
+    </api>
+    <api id="M:Windows.Devices.WiFi.WiFiAdapter.GetDeviceSelector">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAdapter" ref="true" />
+      </containers>
+      <file name="90470bbd-aef5-8c48-1e3c-bf0414f332b5" />
+    </api>
+    <api id="P:Windows.Devices.WiFi.WiFiAdapter.NetworkAdapter">
+      <topicdata group="api" />
+      <apidata name="NetworkAdapter" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NetworkAdapter" />
+      <returns>
+        <type api="T:Windows.Networking.Connectivity.NetworkAdapter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAdapter" ref="true" />
+      </containers>
+      <file name="a74ef2d9-df32-50aa-1ab8-7bd80f27a777" />
+    </api>
+    <api id="P:Windows.Devices.WiFi.WiFiAdapter.NetworkReport">
+      <topicdata group="api" />
+      <apidata name="NetworkReport" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NetworkReport" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiNetworkReport" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAdapter" ref="true" />
+      </containers>
+      <file name="0bb61f96-d54e-5349-3bf0-c37aaae9aeb2" />
+    </api>
+    <api id="M:Windows.Devices.WiFi.WiFiAdapter.RequestAccessAsync">
+      <topicdata group="api" />
+      <apidata name="RequestAccessAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.WiFi.WiFiAccessStatus" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAdapter" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="395cd141-7677-11e7-11b6-ce0a17ae94e9" />
+    </api>
+    <api id="M:Windows.Devices.WiFi.WiFiAdapter.ScanAsync">
+      <topicdata group="api" />
+      <apidata name="ScanAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAdapter" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="bb896fc3-04ad-6241-c1ef-5114f6085aeb" />
+    </api>
+    <api id="T:Windows.Devices.WiFi.WiFiAvailableNetwork">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.WiFi.WiFiAvailableNetwork" />
+      <apidata name="WiFiAvailableNetwork" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9b0be369-61dd-d909-fc72-d7c396bce687" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.WiFi.WiFiAvailableNetwork">
+      <topicdata name="WiFiAvailableNetwork" group="list" subgroup="members" typeTopicId="T:Windows.Devices.WiFi.WiFiAvailableNetwork" />
+      <apidata name="WiFiAvailableNetwork" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.BeaconInterval" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.Bssid" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.ChannelCenterFrequencyInKilohertz" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.IsWiFiDirect" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.NetworkKind" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.NetworkRssiInDecibelMilliwatts" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.PhyKind" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.SecuritySettings" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.SignalBars" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.Ssid" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.Uptime" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAvailableNetwork" />
+      </containers>
+      <file name="ecc1bd34-fbb8-c414-f8bb-fdc270d43be5" />
+    </api>
+    <api id="Methods.T:Windows.Devices.WiFi.WiFiAvailableNetwork">
+      <topicdata name="WiFiAvailableNetwork" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.WiFi.WiFiAvailableNetwork" />
+      <apidata name="WiFiAvailableNetwork" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAvailableNetwork" />
+      </containers>
+      <file name="80da0c92-5085-325f-ec85-caa404cd7f54" />
+    </api>
+    <api id="Properties.T:Windows.Devices.WiFi.WiFiAvailableNetwork">
+      <topicdata name="WiFiAvailableNetwork" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.WiFi.WiFiAvailableNetwork" />
+      <apidata name="WiFiAvailableNetwork" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.BeaconInterval" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.Bssid" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.ChannelCenterFrequencyInKilohertz" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.IsWiFiDirect" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.NetworkKind" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.NetworkRssiInDecibelMilliwatts" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.PhyKind" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.SecuritySettings" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.SignalBars" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.Ssid" />
+        <element api="P:Windows.Devices.WiFi.WiFiAvailableNetwork.Uptime" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAvailableNetwork" />
+      </containers>
+      <file name="991d3be5-aa3e-805f-c7c9-1b9f9728593a" />
+    </api>
+    <api id="P:Windows.Devices.WiFi.WiFiAvailableNetwork.BeaconInterval">
+      <topicdata group="api" />
+      <apidata name="BeaconInterval" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_BeaconInterval" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAvailableNetwork" ref="true" />
+      </containers>
+      <file name="9183c499-4e82-f89f-5155-75130687bcc6" />
+    </api>
+    <api id="P:Windows.Devices.WiFi.WiFiAvailableNetwork.Bssid">
+      <topicdata group="api" />
+      <apidata name="Bssid" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Bssid" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAvailableNetwork" ref="true" />
+      </containers>
+      <file name="c45916ef-3be0-474a-13a5-d7d9a58e7ec5" />
+    </api>
+    <api id="P:Windows.Devices.WiFi.WiFiAvailableNetwork.ChannelCenterFrequencyInKilohertz">
+      <topicdata group="api" />
+      <apidata name="ChannelCenterFrequencyInKilohertz" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelCenterFrequencyInKilohertz" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAvailableNetwork" ref="true" />
+      </containers>
+      <file name="3aff16f2-77c3-2be5-e84f-ed58a1d6387d" />
+    </api>
+    <api id="P:Windows.Devices.WiFi.WiFiAvailableNetwork.IsWiFiDirect">
+      <topicdata group="api" />
+      <apidata name="IsWiFiDirect" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsWiFiDirect" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAvailableNetwork" ref="true" />
+      </containers>
+      <file name="cf26fb7e-3417-1b44-3dc8-bb84496a2a69" />
+    </api>
+    <api id="P:Windows.Devices.WiFi.WiFiAvailableNetwork.NetworkKind">
+      <topicdata group="api" />
+      <apidata name="NetworkKind" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NetworkKind" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiNetworkKind" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAvailableNetwork" ref="true" />
+      </containers>
+      <file name="c25bd8b7-cdb3-bbdc-ff5c-a393d3d3acc0" />
+    </api>
+    <api id="P:Windows.Devices.WiFi.WiFiAvailableNetwork.NetworkRssiInDecibelMilliwatts">
+      <topicdata group="api" />
+      <apidata name="NetworkRssiInDecibelMilliwatts" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NetworkRssiInDecibelMilliwatts" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAvailableNetwork" ref="true" />
+      </containers>
+      <file name="d2b14d6c-2a67-adb6-b410-ffc168fce3fc" />
+    </api>
+    <api id="P:Windows.Devices.WiFi.WiFiAvailableNetwork.PhyKind">
+      <topicdata group="api" />
+      <apidata name="PhyKind" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PhyKind" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiPhyKind" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAvailableNetwork" ref="true" />
+      </containers>
+      <file name="4c3d510c-73f9-2bc5-5edf-cad46577d47e" />
+    </api>
+    <api id="P:Windows.Devices.WiFi.WiFiAvailableNetwork.SecuritySettings">
+      <topicdata group="api" />
+      <apidata name="SecuritySettings" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SecuritySettings" />
+      <returns>
+        <type api="T:Windows.Networking.Connectivity.NetworkSecuritySettings" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAvailableNetwork" ref="true" />
+      </containers>
+      <file name="f56829fb-a010-c28a-76b6-d0e911a164a9" />
+    </api>
+    <api id="P:Windows.Devices.WiFi.WiFiAvailableNetwork.SignalBars">
+      <topicdata group="api" />
+      <apidata name="SignalBars" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SignalBars" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAvailableNetwork" ref="true" />
+      </containers>
+      <file name="86373ba8-59a7-429a-8472-e4e0103a6f9e" />
+    </api>
+    <api id="P:Windows.Devices.WiFi.WiFiAvailableNetwork.Ssid">
+      <topicdata group="api" />
+      <apidata name="Ssid" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Ssid" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAvailableNetwork" ref="true" />
+      </containers>
+      <file name="4d9d39f8-78f3-3f50-b626-990d2c805974" />
+    </api>
+    <api id="P:Windows.Devices.WiFi.WiFiAvailableNetwork.Uptime">
+      <topicdata group="api" />
+      <apidata name="Uptime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Uptime" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiAvailableNetwork" ref="true" />
+      </containers>
+      <file name="c2753225-8af6-4a0a-313b-5164b6c0aa81" />
+    </api>
+    <api id="T:Windows.Devices.WiFi.WiFiConnectionResult">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.WiFi.WiFiConnectionResult" />
+      <apidata name="WiFiConnectionResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="ee3e9510-e96b-8692-0d4d-9e6fe2a232bb" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.WiFi.WiFiConnectionResult">
+      <topicdata name="WiFiConnectionResult" group="list" subgroup="members" typeTopicId="T:Windows.Devices.WiFi.WiFiConnectionResult" />
+      <apidata name="WiFiConnectionResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.WiFi.WiFiConnectionResult.ConnectionStatus" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiConnectionResult" />
+      </containers>
+      <file name="73e9306a-cbe1-f05d-282f-2036c5216e5d" />
+    </api>
+    <api id="Methods.T:Windows.Devices.WiFi.WiFiConnectionResult">
+      <topicdata name="WiFiConnectionResult" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.WiFi.WiFiConnectionResult" />
+      <apidata name="WiFiConnectionResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiConnectionResult" />
+      </containers>
+      <file name="bc5fa947-263b-ee2e-e495-8e513626825e" />
+    </api>
+    <api id="Properties.T:Windows.Devices.WiFi.WiFiConnectionResult">
+      <topicdata name="WiFiConnectionResult" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.WiFi.WiFiConnectionResult" />
+      <apidata name="WiFiConnectionResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.WiFi.WiFiConnectionResult.ConnectionStatus" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiConnectionResult" />
+      </containers>
+      <file name="e1ba7ff3-45d6-9f74-dc9f-b4cbb8ce60b2" />
+    </api>
+    <api id="P:Windows.Devices.WiFi.WiFiConnectionResult.ConnectionStatus">
+      <topicdata group="api" />
+      <apidata name="ConnectionStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ConnectionStatus" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiConnectionStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiConnectionResult" ref="true" />
+      </containers>
+      <file name="5b45a8b7-428b-e4cf-ac87-992802965b10" />
+    </api>
+    <api id="T:Windows.Devices.WiFi.WiFiConnectionStatus">
+      <topicdata group="api" />
+      <apidata name="WiFiConnectionStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.WiFi.WiFiConnectionStatus.UnspecifiedFailure" />
+        <element api="F:Windows.Devices.WiFi.WiFiConnectionStatus.Success" />
+        <element api="F:Windows.Devices.WiFi.WiFiConnectionStatus.AccessRevoked" />
+        <element api="F:Windows.Devices.WiFi.WiFiConnectionStatus.InvalidCredential" />
+        <element api="F:Windows.Devices.WiFi.WiFiConnectionStatus.NetworkNotAvailable" />
+        <element api="F:Windows.Devices.WiFi.WiFiConnectionStatus.Timeout" />
+        <element api="F:Windows.Devices.WiFi.WiFiConnectionStatus.UnsupportedAuthenticationProtocol" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6e739d9f-e30c-17b4-e110-182bd98226a2" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiConnectionStatus.AccessRevoked">
+      <topicdata group="api" notopic="" />
+      <apidata name="AccessRevoked" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiConnectionStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiConnectionStatus" ref="false" />
+      </containers>
+      <file name="4856f3e1-54d6-f753-defa-9210bd298bda" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiConnectionStatus.InvalidCredential">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidCredential" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiConnectionStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiConnectionStatus" ref="false" />
+      </containers>
+      <file name="04048380-08d4-4cf4-4f1f-21b0d0c57298" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiConnectionStatus.NetworkNotAvailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="NetworkNotAvailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiConnectionStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiConnectionStatus" ref="false" />
+      </containers>
+      <file name="4ec1da45-1042-6db0-9500-3d752a181ccb" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiConnectionStatus.Success">
+      <topicdata group="api" notopic="" />
+      <apidata name="Success" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiConnectionStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiConnectionStatus" ref="false" />
+      </containers>
+      <file name="4d038fee-9ace-0b1a-9fae-5ca8eca931e0" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiConnectionStatus.Timeout">
+      <topicdata group="api" notopic="" />
+      <apidata name="Timeout" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiConnectionStatus" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiConnectionStatus" ref="false" />
+      </containers>
+      <file name="df3f3a5d-7c45-63bc-dd56-4c71de396694" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiConnectionStatus.UnspecifiedFailure">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnspecifiedFailure" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiConnectionStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiConnectionStatus" ref="false" />
+      </containers>
+      <file name="6faeb85f-37c8-b1f8-db47-1c2d3d433fb1" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiConnectionStatus.UnsupportedAuthenticationProtocol">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnsupportedAuthenticationProtocol" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiConnectionStatus" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiConnectionStatus" ref="false" />
+      </containers>
+      <file name="ba664b8f-6b80-4556-51dc-e5d25e8fecae" />
+    </api>
+    <api id="T:Windows.Devices.WiFi.WiFiNetworkKind">
+      <topicdata group="api" />
+      <apidata name="WiFiNetworkKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.WiFi.WiFiNetworkKind.Any" />
+        <element api="F:Windows.Devices.WiFi.WiFiNetworkKind.Infrastructure" />
+        <element api="F:Windows.Devices.WiFi.WiFiNetworkKind.Adhoc" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e1044abd-5ec6-f564-e8c6-f989f771377b" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiNetworkKind.Adhoc">
+      <topicdata group="api" notopic="" />
+      <apidata name="Adhoc" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiNetworkKind" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiNetworkKind" ref="false" />
+      </containers>
+      <file name="7ce9bb8a-cf3b-b097-26e0-79b04c5797ef" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiNetworkKind.Any">
+      <topicdata group="api" notopic="" />
+      <apidata name="Any" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiNetworkKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiNetworkKind" ref="false" />
+      </containers>
+      <file name="abeccf40-2ff5-1d6c-9c82-073439fba4a8" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiNetworkKind.Infrastructure">
+      <topicdata group="api" notopic="" />
+      <apidata name="Infrastructure" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiNetworkKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiNetworkKind" ref="false" />
+      </containers>
+      <file name="b37dfa8c-9607-1410-da23-862e0da8823c" />
+    </api>
+    <api id="T:Windows.Devices.WiFi.WiFiNetworkReport">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.WiFi.WiFiNetworkReport" />
+      <apidata name="WiFiNetworkReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8a911915-e2a4-add7-5b44-1837d801969e" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.WiFi.WiFiNetworkReport">
+      <topicdata name="WiFiNetworkReport" group="list" subgroup="members" typeTopicId="T:Windows.Devices.WiFi.WiFiNetworkReport" />
+      <apidata name="WiFiNetworkReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.WiFi.WiFiNetworkReport.AvailableNetworks" />
+        <element api="P:Windows.Devices.WiFi.WiFiNetworkReport.Timestamp" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiNetworkReport" />
+      </containers>
+      <file name="f563a65a-4e5e-54e3-80f8-df5168763dae" />
+    </api>
+    <api id="Methods.T:Windows.Devices.WiFi.WiFiNetworkReport">
+      <topicdata name="WiFiNetworkReport" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.WiFi.WiFiNetworkReport" />
+      <apidata name="WiFiNetworkReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiNetworkReport" />
+      </containers>
+      <file name="6fb5470b-4a45-b177-e57a-0cdec3af3d53" />
+    </api>
+    <api id="Properties.T:Windows.Devices.WiFi.WiFiNetworkReport">
+      <topicdata name="WiFiNetworkReport" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.WiFi.WiFiNetworkReport" />
+      <apidata name="WiFiNetworkReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.WiFi.WiFiNetworkReport.AvailableNetworks" />
+        <element api="P:Windows.Devices.WiFi.WiFiNetworkReport.Timestamp" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiNetworkReport" />
+      </containers>
+      <file name="72b99352-8ac0-477e-8a76-077e12771c99" />
+    </api>
+    <api id="P:Windows.Devices.WiFi.WiFiNetworkReport.AvailableNetworks">
+      <topicdata group="api" />
+      <apidata name="AvailableNetworks" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AvailableNetworks" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.WiFi.WiFiAvailableNetwork" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiNetworkReport" ref="true" />
+      </containers>
+      <file name="5dc28603-b3a5-2601-0368-7d54213c8b1c" />
+    </api>
+    <api id="P:Windows.Devices.WiFi.WiFiNetworkReport.Timestamp">
+      <topicdata group="api" />
+      <apidata name="Timestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Timestamp" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiNetworkReport" ref="true" />
+      </containers>
+      <file name="8f50dd20-f5be-c38b-91ec-5185ce22baa4" />
+    </api>
+    <api id="T:Windows.Devices.WiFi.WiFiPhyKind">
+      <topicdata group="api" />
+      <apidata name="WiFiPhyKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.WiFi.WiFiPhyKind.Unknown" />
+        <element api="F:Windows.Devices.WiFi.WiFiPhyKind.Fhss" />
+        <element api="F:Windows.Devices.WiFi.WiFiPhyKind.Dsss" />
+        <element api="F:Windows.Devices.WiFi.WiFiPhyKind.IRBaseband" />
+        <element api="F:Windows.Devices.WiFi.WiFiPhyKind.Ofdm" />
+        <element api="F:Windows.Devices.WiFi.WiFiPhyKind.Hrdsss" />
+        <element api="F:Windows.Devices.WiFi.WiFiPhyKind.Erp" />
+        <element api="F:Windows.Devices.WiFi.WiFiPhyKind.HT" />
+        <element api="F:Windows.Devices.WiFi.WiFiPhyKind.Vht" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5e1fc415-7142-639d-5ba5-bf49766aa442" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiPhyKind.Dsss">
+      <topicdata group="api" notopic="" />
+      <apidata name="Dsss" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiPhyKind" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiPhyKind" ref="false" />
+      </containers>
+      <file name="b5805234-3895-fe48-b3bf-c0a79c223746" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiPhyKind.Erp">
+      <topicdata group="api" notopic="" />
+      <apidata name="Erp" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiPhyKind" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiPhyKind" ref="false" />
+      </containers>
+      <file name="39e3dc31-7f5a-b77a-542c-b42a8e30f11d" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiPhyKind.Fhss">
+      <topicdata group="api" notopic="" />
+      <apidata name="Fhss" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiPhyKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiPhyKind" ref="false" />
+      </containers>
+      <file name="aa71bab1-1c19-75fa-9fad-57321e77604a" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiPhyKind.Hrdsss">
+      <topicdata group="api" notopic="" />
+      <apidata name="Hrdsss" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiPhyKind" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiPhyKind" ref="false" />
+      </containers>
+      <file name="0273807a-4dd8-2a65-ac66-b869cb9de1d6" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiPhyKind.HT">
+      <topicdata group="api" notopic="" />
+      <apidata name="HT" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiPhyKind" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiPhyKind" ref="false" />
+      </containers>
+      <file name="50d4ff08-12b7-33f9-a882-1d9d2e7393d6" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiPhyKind.IRBaseband">
+      <topicdata group="api" notopic="" />
+      <apidata name="IRBaseband" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiPhyKind" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiPhyKind" ref="false" />
+      </containers>
+      <file name="8847b883-96da-1f6f-ccc9-0e3a3e0cd9e4" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiPhyKind.Ofdm">
+      <topicdata group="api" notopic="" />
+      <apidata name="Ofdm" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiPhyKind" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiPhyKind" ref="false" />
+      </containers>
+      <file name="7a860c94-6568-6082-7f5f-135f2b90234b" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiPhyKind.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiPhyKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiPhyKind" ref="false" />
+      </containers>
+      <file name="bb2dcdc9-b784-bc9c-bcb4-e06e29c8592e" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiPhyKind.Vht">
+      <topicdata group="api" notopic="" />
+      <apidata name="Vht" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiPhyKind" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiPhyKind" ref="false" />
+      </containers>
+      <file name="17f4ad45-de78-06fa-86f5-1c93b5c5e83b" />
+    </api>
+    <api id="T:Windows.Devices.WiFi.WiFiReconnectionKind">
+      <topicdata group="api" />
+      <apidata name="WiFiReconnectionKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.WiFi.WiFiReconnectionKind.Automatic" />
+        <element api="F:Windows.Devices.WiFi.WiFiReconnectionKind.Manual" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0c58c512-d6ba-8c8c-8498-5ab1bac4caff" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiReconnectionKind.Automatic">
+      <topicdata group="api" notopic="" />
+      <apidata name="Automatic" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiReconnectionKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiReconnectionKind" ref="false" />
+      </containers>
+      <file name="74f82e8d-11d8-bfac-6166-de85f2439aaf" />
+    </api>
+    <api id="F:Windows.Devices.WiFi.WiFiReconnectionKind.Manual">
+      <topicdata group="api" notopic="" />
+      <apidata name="Manual" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFi.WiFiReconnectionKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFi" />
+        <type api="T:Windows.Devices.WiFi.WiFiReconnectionKind" ref="false" />
+      </containers>
+      <file name="0db1ab01-8aea-7f3e-0df7-fbb2646fd9c9" />
+    </api>
+  </apis>
+</reflection>

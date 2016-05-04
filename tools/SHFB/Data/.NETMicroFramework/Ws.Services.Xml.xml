@@ -1,0 +1,1397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="MFWsStack">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MFWsStack</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Ws.Services.Xml">
+      <topicdata group="api" />
+      <apidata name="Ws.Services.Xml" group="namespace" />
+      <elements>
+        <element api="T:Ws.Services.Xml.WsXmlNode" />
+        <element api="T:Ws.Services.Xml.WsXmlElement" />
+        <element api="T:Ws.Services.Xml.WsXmlNamespace" />
+        <element api="T:Ws.Services.Xml.WsXmlNamespaces" />
+        <element api="T:Ws.Services.Xml.WsXmlAttribute" />
+        <element api="T:Ws.Services.Xml.WsXmlAttributeCollection" />
+        <element api="T:Ws.Services.Xml.WsXmlNodeList" />
+      </elements>
+      <file name="9d86b36c-54af-65da-8daf-1e43c44792db" />
+    </api>
+    <api id="T:Ws.Services.Xml.WsXmlAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.Xml.WsXmlAttribute" />
+      <apidata name="WsXmlAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+      </containers>
+      <file name="200aa889-78eb-ab0b-a810-f9b48213e9a7" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.Xml.WsXmlAttribute">
+      <topicdata name="WsXmlAttribute" group="list" subgroup="members" typeTopicId="T:Ws.Services.Xml.WsXmlAttribute" />
+      <apidata name="WsXmlAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Xml.WsXmlAttribute.#ctor" />
+        <element api="F:Ws.Services.Xml.WsXmlAttribute.LocalName" />
+        <element api="F:Ws.Services.Xml.WsXmlAttribute.NamespaceURI" />
+        <element api="F:Ws.Services.Xml.WsXmlAttribute.Prefix" />
+        <element api="F:Ws.Services.Xml.WsXmlAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlAttribute" />
+      </containers>
+      <file name="51646c53-9e9c-eba6-f1ff-49a5890716af" />
+    </api>
+    <api id="Methods.T:Ws.Services.Xml.WsXmlAttribute">
+      <topicdata name="WsXmlAttribute" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.Xml.WsXmlAttribute" />
+      <apidata name="WsXmlAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlAttribute" />
+      </containers>
+      <file name="d2868c0d-cea1-090a-2de5-cf587f25333d" />
+    </api>
+    <api id="Fields.T:Ws.Services.Xml.WsXmlAttribute">
+      <topicdata name="WsXmlAttribute" group="list" subgroup="Fields" typeTopicId="T:Ws.Services.Xml.WsXmlAttribute" />
+      <apidata name="WsXmlAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlAttribute.#ctor" />
+      <elements>
+        <element api="F:Ws.Services.Xml.WsXmlAttribute.LocalName" />
+        <element api="F:Ws.Services.Xml.WsXmlAttribute.NamespaceURI" />
+        <element api="F:Ws.Services.Xml.WsXmlAttribute.Prefix" />
+        <element api="F:Ws.Services.Xml.WsXmlAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlAttribute" />
+      </containers>
+      <file name="9da86ce5-7cf6-9e8b-82bd-506da8df4679" />
+    </api>
+    <api id="M:Ws.Services.Xml.WsXmlAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlAttribute" ref="true" />
+      </containers>
+      <file name="0fb8c056-6741-6f50-982e-fedf3e1ae904" />
+    </api>
+    <api id="F:Ws.Services.Xml.WsXmlAttribute.LocalName">
+      <topicdata group="api" />
+      <apidata name="LocalName" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlAttribute" ref="true" />
+      </containers>
+      <file name="ca1f91cc-68c7-cda9-71cb-f63cb9e63c7f" />
+    </api>
+    <api id="F:Ws.Services.Xml.WsXmlAttribute.NamespaceURI">
+      <topicdata group="api" />
+      <apidata name="NamespaceURI" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlAttribute" ref="true" />
+      </containers>
+      <file name="5d4a466f-d456-410d-e9ac-2e9013fd023f" />
+    </api>
+    <api id="F:Ws.Services.Xml.WsXmlAttribute.Prefix">
+      <topicdata group="api" />
+      <apidata name="Prefix" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlAttribute" ref="true" />
+      </containers>
+      <file name="5984f7e0-4759-74a4-4f6a-79ba7fbd9e6a" />
+    </api>
+    <api id="F:Ws.Services.Xml.WsXmlAttribute.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlAttribute" ref="true" />
+      </containers>
+      <file name="f919f06a-9544-d4eb-c7c0-b1585081eef2" />
+    </api>
+    <api id="T:Ws.Services.Xml.WsXmlAttributeCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.Xml.WsXmlAttributeCollection" />
+      <apidata name="WsXmlAttributeCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlAttributeCollection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+      </containers>
+      <file name="f6f7011d-1609-7b88-a1fe-1d180b4e81a1" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.Xml.WsXmlAttributeCollection">
+      <topicdata name="WsXmlAttributeCollection" group="list" subgroup="members" typeTopicId="T:Ws.Services.Xml.WsXmlAttributeCollection" />
+      <apidata name="WsXmlAttributeCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlAttributeCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Xml.WsXmlAttributeCollection.#ctor" />
+        <element api="M:Ws.Services.Xml.WsXmlAttributeCollection.Append(Ws.Services.Xml.WsXmlAttribute)" />
+        <element api="P:Ws.Services.Xml.WsXmlAttributeCollection.Count" />
+        <element api="Overload:Ws.Services.Xml.WsXmlAttributeCollection.Item">
+          <element api="P:Ws.Services.Xml.WsXmlAttributeCollection.Item(System.Int32)" />
+          <element api="P:Ws.Services.Xml.WsXmlAttributeCollection.Item(System.String,System.String)" />
+        </element>
+        <element api="M:Ws.Services.Xml.WsXmlAttributeCollection.RemoveAll" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlAttributeCollection" />
+      </containers>
+      <file name="93cb0abb-35fe-569b-fe49-629652adaa2f" />
+    </api>
+    <api id="Methods.T:Ws.Services.Xml.WsXmlAttributeCollection">
+      <topicdata name="WsXmlAttributeCollection" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.Xml.WsXmlAttributeCollection" />
+      <apidata name="WsXmlAttributeCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlAttributeCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Xml.WsXmlAttributeCollection.Append(Ws.Services.Xml.WsXmlAttribute)" />
+        <element api="M:Ws.Services.Xml.WsXmlAttributeCollection.RemoveAll" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlAttributeCollection" />
+      </containers>
+      <file name="ab58c1f5-5e40-72e8-8349-f5b5092c77bd" />
+    </api>
+    <api id="Properties.T:Ws.Services.Xml.WsXmlAttributeCollection">
+      <topicdata name="WsXmlAttributeCollection" group="list" subgroup="Properties" typeTopicId="T:Ws.Services.Xml.WsXmlAttributeCollection" />
+      <apidata name="WsXmlAttributeCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlAttributeCollection.#ctor" />
+      <elements>
+        <element api="P:Ws.Services.Xml.WsXmlAttributeCollection.Count" />
+        <element api="Overload:Ws.Services.Xml.WsXmlAttributeCollection.Item">
+          <element api="P:Ws.Services.Xml.WsXmlAttributeCollection.Item(System.Int32)" />
+          <element api="P:Ws.Services.Xml.WsXmlAttributeCollection.Item(System.String,System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlAttributeCollection" />
+      </containers>
+      <file name="851a2b4c-da03-c7bb-0a1f-a6c94c48ec06" />
+    </api>
+    <api id="Overload:Ws.Services.Xml.WsXmlAttributeCollection.Item">
+      <topicdata name="Item" group="list" subgroup="overload" memberSubgroup="property" pseudo="true" allMembersTopicId="AllMembers.T:Ws.Services.Xml.WsXmlAttributeCollection" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <elements>
+        <element api="P:Ws.Services.Xml.WsXmlAttributeCollection.Item(System.Int32)" />
+        <element api="P:Ws.Services.Xml.WsXmlAttributeCollection.Item(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlAttributeCollection" ref="true" />
+      </containers>
+      <file name="27324294-4521-ba71-1d36-adb3dcc002f5" />
+    </api>
+    <api id="M:Ws.Services.Xml.WsXmlAttributeCollection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlAttributeCollection" ref="true" />
+      </containers>
+      <file name="25666605-6e3b-0f69-c226-8e60371e485c" />
+    </api>
+    <api id="M:Ws.Services.Xml.WsXmlAttributeCollection.Append(Ws.Services.Xml.WsXmlAttribute)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="node">
+          <type api="T:Ws.Services.Xml.WsXmlAttribute" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Xml.WsXmlAttribute" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlAttributeCollection" ref="true" />
+      </containers>
+      <file name="50e9665b-6340-4683-92f3-a14836ebab9a" />
+    </api>
+    <api id="P:Ws.Services.Xml.WsXmlAttributeCollection.Count">
+      <topicdata group="api" />
+      <apidata name="Count" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Count" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlAttributeCollection" ref="true" />
+      </containers>
+      <file name="885e3f0f-4c98-adad-252e-ed1d0891d56a" />
+    </api>
+    <api id="P:Ws.Services.Xml.WsXmlAttributeCollection.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:Ws.Services.Xml.WsXmlAttributeCollection.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="i">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Xml.WsXmlAttribute" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlAttributeCollection" ref="true" />
+      </containers>
+      <file name="b1e2ef31-75c7-5eb3-4f34-ee6d9f48d1a6" />
+    </api>
+    <api id="P:Ws.Services.Xml.WsXmlAttributeCollection.Item(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:Ws.Services.Xml.WsXmlAttributeCollection.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="localName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="namespaceURI">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Xml.WsXmlAttribute" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlAttributeCollection" ref="true" />
+      </containers>
+      <file name="5cefeaa6-bc8e-5876-1696-ba7d8efaa203" />
+    </api>
+    <api id="M:Ws.Services.Xml.WsXmlAttributeCollection.RemoveAll">
+      <topicdata group="api" />
+      <apidata name="RemoveAll" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlAttributeCollection" ref="true" />
+      </containers>
+      <file name="f7ff0146-3555-9b90-692b-be2c39fe3bc1" />
+    </api>
+    <api id="T:Ws.Services.Xml.WsXmlElement">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.Xml.WsXmlElement" />
+      <apidata name="WsXmlElement" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlElement.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Ws.Services.Xml.WsXmlNode" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+      </containers>
+      <file name="fc74aa76-f8c1-635c-67b8-f6cb2a0825f7" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.Xml.WsXmlElement">
+      <topicdata name="WsXmlElement" group="list" subgroup="members" typeTopicId="T:Ws.Services.Xml.WsXmlElement" />
+      <apidata name="WsXmlElement" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Xml.WsXmlElement.#ctor" />
+        <element api="M:Ws.Services.Xml.WsXmlNode.AppendChild(Ws.Services.Xml.WsXmlNode)" />
+        <element api="F:Ws.Services.Xml.WsXmlNode.Attributes" />
+        <element api="F:Ws.Services.Xml.WsXmlNode.ChildNodes" />
+        <element api="F:Ws.Services.Xml.WsXmlNode.LocalName" />
+        <element api="F:Ws.Services.Xml.WsXmlNode.NamespaceURI" />
+        <element api="F:Ws.Services.Xml.WsXmlNode.Prefix" />
+        <element api="P:Ws.Services.Xml.WsXmlNode.Value" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlElement" />
+      </containers>
+      <file name="47d6fbc5-3446-5b30-5483-09de7929566e" />
+    </api>
+    <api id="Methods.T:Ws.Services.Xml.WsXmlElement">
+      <topicdata name="WsXmlElement" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.Xml.WsXmlElement" />
+      <apidata name="WsXmlElement" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Xml.WsXmlNode.AppendChild(Ws.Services.Xml.WsXmlNode)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlElement" />
+      </containers>
+      <file name="4a0968da-420b-50b0-ea91-71e168092c0a" />
+    </api>
+    <api id="Properties.T:Ws.Services.Xml.WsXmlElement">
+      <topicdata name="WsXmlElement" group="list" subgroup="Properties" typeTopicId="T:Ws.Services.Xml.WsXmlElement" />
+      <apidata name="WsXmlElement" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlElement.#ctor" />
+      <elements>
+        <element api="P:Ws.Services.Xml.WsXmlNode.Value" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlElement" />
+      </containers>
+      <file name="dde2d2ee-ca30-9aa7-f2fd-8f1958da125d" />
+    </api>
+    <api id="Fields.T:Ws.Services.Xml.WsXmlElement">
+      <topicdata name="WsXmlElement" group="list" subgroup="Fields" typeTopicId="T:Ws.Services.Xml.WsXmlElement" />
+      <apidata name="WsXmlElement" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlElement.#ctor" />
+      <elements>
+        <element api="F:Ws.Services.Xml.WsXmlNode.Attributes" />
+        <element api="F:Ws.Services.Xml.WsXmlNode.ChildNodes" />
+        <element api="F:Ws.Services.Xml.WsXmlNode.LocalName" />
+        <element api="F:Ws.Services.Xml.WsXmlNode.NamespaceURI" />
+        <element api="F:Ws.Services.Xml.WsXmlNode.Prefix" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlElement" />
+      </containers>
+      <file name="80ca1700-839c-9672-a0fa-524a55bf4655" />
+    </api>
+    <api id="M:Ws.Services.Xml.WsXmlElement.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlElement" ref="true" />
+      </containers>
+      <file name="e3133385-9f60-575d-4e65-b810eff20567" />
+    </api>
+    <api id="T:Ws.Services.Xml.WsXmlNamespace">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.Xml.WsXmlNamespace" />
+      <apidata name="WsXmlNamespace" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+      </containers>
+      <file name="ae2db77c-c495-7bcf-c3ab-09113a069375" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.Xml.WsXmlNamespace">
+      <topicdata name="WsXmlNamespace" group="list" subgroup="members" typeTopicId="T:Ws.Services.Xml.WsXmlNamespace" />
+      <apidata name="WsXmlNamespace" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Xml.WsXmlNamespace.#ctor(System.String,System.String)" />
+        <element api="F:Ws.Services.Xml.WsXmlNamespace.NamespaceURI" />
+        <element api="F:Ws.Services.Xml.WsXmlNamespace.Prefix" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNamespace" />
+      </containers>
+      <file name="956e4792-e61a-8dd5-9997-f3b36716cc9b" />
+    </api>
+    <api id="Methods.T:Ws.Services.Xml.WsXmlNamespace">
+      <topicdata name="WsXmlNamespace" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.Xml.WsXmlNamespace" />
+      <apidata name="WsXmlNamespace" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNamespace" />
+      </containers>
+      <file name="b23597ff-8131-38ed-2c25-c40c8c8fa336" />
+    </api>
+    <api id="Fields.T:Ws.Services.Xml.WsXmlNamespace">
+      <topicdata name="WsXmlNamespace" group="list" subgroup="Fields" typeTopicId="T:Ws.Services.Xml.WsXmlNamespace" />
+      <apidata name="WsXmlNamespace" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Ws.Services.Xml.WsXmlNamespace.NamespaceURI" />
+        <element api="F:Ws.Services.Xml.WsXmlNamespace.Prefix" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNamespace" />
+      </containers>
+      <file name="5beae0f1-6080-66cc-13d3-c3180b415b10" />
+    </api>
+    <api id="M:Ws.Services.Xml.WsXmlNamespace.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="prefix">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="namespaceURI">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNamespace" ref="true" />
+      </containers>
+      <file name="c3bc0e80-dc73-9abb-fd6c-fcca43c56edf" />
+    </api>
+    <api id="F:Ws.Services.Xml.WsXmlNamespace.NamespaceURI">
+      <topicdata group="api" />
+      <apidata name="NamespaceURI" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNamespace" ref="true" />
+      </containers>
+      <file name="7640fae7-76a3-c153-7b54-085a529b3046" />
+    </api>
+    <api id="F:Ws.Services.Xml.WsXmlNamespace.Prefix">
+      <topicdata group="api" />
+      <apidata name="Prefix" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNamespace" ref="true" />
+      </containers>
+      <file name="2ab7df3b-0429-9bd7-91e6-77e37c67d207" />
+    </api>
+    <api id="T:Ws.Services.Xml.WsXmlNamespaces">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.Xml.WsXmlNamespaces" />
+      <apidata name="WsXmlNamespaces" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlNamespaces.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+      </containers>
+      <file name="a3dd5cd8-4183-dd63-3271-35edb4ae2d74" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.Xml.WsXmlNamespaces">
+      <topicdata name="WsXmlNamespaces" group="list" subgroup="members" typeTopicId="T:Ws.Services.Xml.WsXmlNamespaces" />
+      <apidata name="WsXmlNamespaces" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlNamespaces.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Xml.WsXmlNamespaces.#ctor" />
+        <element api="M:Ws.Services.Xml.WsXmlNamespaces.Add(Ws.Services.Xml.WsXmlNamespace)" />
+        <element api="P:Ws.Services.Xml.WsXmlNamespaces.Count" />
+        <element api="P:Ws.Services.Xml.WsXmlNamespaces.Item(System.Int32)" />
+        <element api="M:Ws.Services.Xml.WsXmlNamespaces.LookupPrefix(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNamespaces" />
+      </containers>
+      <file name="e5d9c2e7-9f13-cef3-705c-b15c1de5a8d3" />
+    </api>
+    <api id="Methods.T:Ws.Services.Xml.WsXmlNamespaces">
+      <topicdata name="WsXmlNamespaces" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.Xml.WsXmlNamespaces" />
+      <apidata name="WsXmlNamespaces" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlNamespaces.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Xml.WsXmlNamespaces.Add(Ws.Services.Xml.WsXmlNamespace)" />
+        <element api="M:Ws.Services.Xml.WsXmlNamespaces.LookupPrefix(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNamespaces" />
+      </containers>
+      <file name="4f0ee66a-3f83-955d-5bd0-4ce34b15cc6e" />
+    </api>
+    <api id="Properties.T:Ws.Services.Xml.WsXmlNamespaces">
+      <topicdata name="WsXmlNamespaces" group="list" subgroup="Properties" typeTopicId="T:Ws.Services.Xml.WsXmlNamespaces" />
+      <apidata name="WsXmlNamespaces" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlNamespaces.#ctor" />
+      <elements>
+        <element api="P:Ws.Services.Xml.WsXmlNamespaces.Count" />
+        <element api="P:Ws.Services.Xml.WsXmlNamespaces.Item(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNamespaces" />
+      </containers>
+      <file name="7a02a43d-4652-9e96-69dc-1bbac8d2efa4" />
+    </api>
+    <api id="M:Ws.Services.Xml.WsXmlNamespaces.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNamespaces" ref="true" />
+      </containers>
+      <file name="51bb7d22-7b7e-c783-5d5d-227a223f96a6" />
+    </api>
+    <api id="M:Ws.Services.Xml.WsXmlNamespaces.Add(Ws.Services.Xml.WsXmlNamespace)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:Ws.Services.Xml.WsXmlNamespace" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNamespaces" ref="true" />
+      </containers>
+      <file name="8ac030b4-c79d-9199-e2bc-1c366a62da29" />
+    </api>
+    <api id="P:Ws.Services.Xml.WsXmlNamespaces.Count">
+      <topicdata group="api" />
+      <apidata name="Count" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Count" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNamespaces" ref="true" />
+      </containers>
+      <file name="09e86637-69f5-cf49-d10f-ec3c1fe52634" />
+    </api>
+    <api id="P:Ws.Services.Xml.WsXmlNamespaces.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Xml.WsXmlNamespace" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNamespaces" ref="true" />
+      </containers>
+      <file name="5c22c176-3a55-99c4-3df7-b32e2bf7900c" />
+    </api>
+    <api id="M:Ws.Services.Xml.WsXmlNamespaces.LookupPrefix(System.String)">
+      <topicdata group="api" />
+      <apidata name="LookupPrefix" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="namespaceUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNamespaces" ref="true" />
+      </containers>
+      <file name="e1681153-2a75-ba60-32e5-e9afade85509" />
+    </api>
+    <api id="T:Ws.Services.Xml.WsXmlNode">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.Xml.WsXmlNode" />
+      <apidata name="WsXmlNode" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlNode.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Ws.Services.Xml.WsXmlElement" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+      </containers>
+      <file name="b9ac4746-c63d-803d-40aa-3a9722a798e5" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.Xml.WsXmlNode">
+      <topicdata name="WsXmlNode" group="list" subgroup="members" typeTopicId="T:Ws.Services.Xml.WsXmlNode" />
+      <apidata name="WsXmlNode" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlNode.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Ws.Services.Xml.WsXmlNode.#ctor">
+          <element api="M:Ws.Services.Xml.WsXmlNode.#ctor" />
+          <element api="M:Ws.Services.Xml.WsXmlNode.#ctor(System.String,System.String,System.String,System.String)" />
+        </element>
+        <element api="M:Ws.Services.Xml.WsXmlNode.AppendChild(Ws.Services.Xml.WsXmlNode)" />
+        <element api="F:Ws.Services.Xml.WsXmlNode.Attributes" />
+        <element api="F:Ws.Services.Xml.WsXmlNode.ChildNodes" />
+        <element api="F:Ws.Services.Xml.WsXmlNode.LocalName" />
+        <element api="F:Ws.Services.Xml.WsXmlNode.NamespaceURI" />
+        <element api="F:Ws.Services.Xml.WsXmlNode.Prefix" />
+        <element api="P:Ws.Services.Xml.WsXmlNode.Value" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNode" />
+      </containers>
+      <file name="59f4b894-ec2b-1d78-297b-a5f1007103a9" />
+    </api>
+    <api id="Methods.T:Ws.Services.Xml.WsXmlNode">
+      <topicdata name="WsXmlNode" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.Xml.WsXmlNode" />
+      <apidata name="WsXmlNode" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlNode.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Xml.WsXmlNode.AppendChild(Ws.Services.Xml.WsXmlNode)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNode" />
+      </containers>
+      <file name="9e50a452-893d-4391-cbf2-8488fcb09c8b" />
+    </api>
+    <api id="Properties.T:Ws.Services.Xml.WsXmlNode">
+      <topicdata name="WsXmlNode" group="list" subgroup="Properties" typeTopicId="T:Ws.Services.Xml.WsXmlNode" />
+      <apidata name="WsXmlNode" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlNode.#ctor" />
+      <elements>
+        <element api="P:Ws.Services.Xml.WsXmlNode.Value" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNode" />
+      </containers>
+      <file name="2ce992b0-71cd-923b-64af-a34112288f74" />
+    </api>
+    <api id="Fields.T:Ws.Services.Xml.WsXmlNode">
+      <topicdata name="WsXmlNode" group="list" subgroup="Fields" typeTopicId="T:Ws.Services.Xml.WsXmlNode" />
+      <apidata name="WsXmlNode" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlNode.#ctor" />
+      <elements>
+        <element api="F:Ws.Services.Xml.WsXmlNode.Attributes" />
+        <element api="F:Ws.Services.Xml.WsXmlNode.ChildNodes" />
+        <element api="F:Ws.Services.Xml.WsXmlNode.LocalName" />
+        <element api="F:Ws.Services.Xml.WsXmlNode.NamespaceURI" />
+        <element api="F:Ws.Services.Xml.WsXmlNode.Prefix" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNode" />
+      </containers>
+      <file name="4fc73063-2f73-52fb-9c69-07ba9cd12922" />
+    </api>
+    <api id="Overload:Ws.Services.Xml.WsXmlNode.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Ws.Services.Xml.WsXmlNode" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Ws.Services.Xml.WsXmlNode.#ctor" />
+        <element api="M:Ws.Services.Xml.WsXmlNode.#ctor(System.String,System.String,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNode" ref="true" />
+      </containers>
+      <file name="9acc090b-ccf0-cb87-59e3-15c434781870" />
+    </api>
+    <api id="M:Ws.Services.Xml.WsXmlNode.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Ws.Services.Xml.WsXmlNode.#ctor" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNode" ref="true" />
+      </containers>
+      <file name="6eb78b70-732e-733d-1953-db6a05b38bb6" />
+    </api>
+    <api id="M:Ws.Services.Xml.WsXmlNode.#ctor(System.String,System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Ws.Services.Xml.WsXmlNode.#ctor" />
+      <parameters>
+        <parameter name="prefix">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="localName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="namespaceUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNode" ref="true" />
+      </containers>
+      <file name="6b1c4039-a307-7547-7963-a541833c393e" />
+    </api>
+    <api id="M:Ws.Services.Xml.WsXmlNode.AppendChild(Ws.Services.Xml.WsXmlNode)">
+      <topicdata group="api" />
+      <apidata name="AppendChild" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="newNode">
+          <type api="T:Ws.Services.Xml.WsXmlNode" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Xml.WsXmlNode" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNode" ref="true" />
+      </containers>
+      <file name="960efbf7-4d71-3835-0542-24ded348f4b5" />
+    </api>
+    <api id="F:Ws.Services.Xml.WsXmlNode.Attributes">
+      <topicdata group="api" />
+      <apidata name="Attributes" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Xml.WsXmlAttributeCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNode" ref="true" />
+      </containers>
+      <file name="f056931a-9467-d5b5-d5f4-af7c7ff29d78" />
+    </api>
+    <api id="F:Ws.Services.Xml.WsXmlNode.ChildNodes">
+      <topicdata group="api" />
+      <apidata name="ChildNodes" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Xml.WsXmlNodeList" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNode" ref="true" />
+      </containers>
+      <file name="1db73bab-9daf-74d6-ee52-dff89ddaf1e7" />
+    </api>
+    <api id="F:Ws.Services.Xml.WsXmlNode.LocalName">
+      <topicdata group="api" />
+      <apidata name="LocalName" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNode" ref="true" />
+      </containers>
+      <file name="43fc51df-a878-6086-c67a-d234a1382343" />
+    </api>
+    <api id="F:Ws.Services.Xml.WsXmlNode.NamespaceURI">
+      <topicdata group="api" />
+      <apidata name="NamespaceURI" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNode" ref="true" />
+      </containers>
+      <file name="f63c3872-83bc-6bdb-2ef4-33806c089fa3" />
+    </api>
+    <api id="F:Ws.Services.Xml.WsXmlNode.Prefix">
+      <topicdata group="api" />
+      <apidata name="Prefix" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNode" ref="true" />
+      </containers>
+      <file name="411ee874-3b21-1320-07f1-03426f3658bc" />
+    </api>
+    <api id="P:Ws.Services.Xml.WsXmlNode.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Value" />
+      <setter name="set_Value" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNode" ref="true" />
+      </containers>
+      <file name="72a903bd-d455-1b41-6005-0aeb71ad83f4" />
+    </api>
+    <api id="T:Ws.Services.Xml.WsXmlNodeList">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.Xml.WsXmlNodeList" />
+      <apidata name="WsXmlNodeList" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlNodeList.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+      </containers>
+      <file name="b2f34123-9340-36fe-ade9-62388fcc30d0" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.Xml.WsXmlNodeList">
+      <topicdata name="WsXmlNodeList" group="list" subgroup="members" typeTopicId="T:Ws.Services.Xml.WsXmlNodeList" />
+      <apidata name="WsXmlNodeList" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlNodeList.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Xml.WsXmlNodeList.#ctor" />
+        <element api="M:Ws.Services.Xml.WsXmlNodeList.Add(Ws.Services.Xml.WsXmlNode)" />
+        <element api="P:Ws.Services.Xml.WsXmlNodeList.Count" />
+        <element api="P:Ws.Services.Xml.WsXmlNodeList.Item(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNodeList" />
+      </containers>
+      <file name="de5560ab-8aff-1322-deb9-b53aefb64db6" />
+    </api>
+    <api id="Methods.T:Ws.Services.Xml.WsXmlNodeList">
+      <topicdata name="WsXmlNodeList" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.Xml.WsXmlNodeList" />
+      <apidata name="WsXmlNodeList" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlNodeList.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Xml.WsXmlNodeList.Add(Ws.Services.Xml.WsXmlNode)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNodeList" />
+      </containers>
+      <file name="0e79d52d-98b8-0b7e-e34a-9f84ad9194a8" />
+    </api>
+    <api id="Properties.T:Ws.Services.Xml.WsXmlNodeList">
+      <topicdata name="WsXmlNodeList" group="list" subgroup="Properties" typeTopicId="T:Ws.Services.Xml.WsXmlNodeList" />
+      <apidata name="WsXmlNodeList" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Xml.WsXmlNodeList.#ctor" />
+      <elements>
+        <element api="P:Ws.Services.Xml.WsXmlNodeList.Count" />
+        <element api="P:Ws.Services.Xml.WsXmlNodeList.Item(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNodeList" />
+      </containers>
+      <file name="657b6a12-3851-de84-a7fd-5141e5106e59" />
+    </api>
+    <api id="M:Ws.Services.Xml.WsXmlNodeList.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNodeList" ref="true" />
+      </containers>
+      <file name="8bb53297-7392-6c7d-feea-2436d620ac1b" />
+    </api>
+    <api id="M:Ws.Services.Xml.WsXmlNodeList.Add(Ws.Services.Xml.WsXmlNode)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:Ws.Services.Xml.WsXmlNode" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNodeList" ref="true" />
+      </containers>
+      <file name="fe7f62cf-8b10-886c-9e3e-184eab96e653" />
+    </api>
+    <api id="P:Ws.Services.Xml.WsXmlNodeList.Count">
+      <topicdata group="api" />
+      <apidata name="Count" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Count" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNodeList" ref="true" />
+      </containers>
+      <file name="917dc13c-a572-e2e3-1ec4-72d42c0c3bc6" />
+    </api>
+    <api id="P:Ws.Services.Xml.WsXmlNodeList.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="i">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Xml.WsXmlNode" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Xml" />
+        <type api="T:Ws.Services.Xml.WsXmlNodeList" ref="true" />
+      </containers>
+      <file name="4fbe4d42-5418-7181-c590-3ee4e6bcab6d" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,1707 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Net.Primitives">
+      <assemblydata version="4.0.10.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.Primitives</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.Primitives</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.Primitives</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00 built by: PROJECTKREL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.Net.Security">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.Security</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.Security</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.Security</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00 built by: PROJECTKREL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Security.Authentication.ExtendedProtection">
+      <topicdata group="api" />
+      <apidata name="System.Security.Authentication.ExtendedProtection" group="namespace" />
+      <elements>
+        <element api="T:System.Security.Authentication.ExtendedProtection.ChannelBinding" />
+        <element api="T:System.Security.Authentication.ExtendedProtection.ChannelBindingKind" />
+        <element api="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" />
+        <element api="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" />
+        <element api="T:System.Security.Authentication.ExtendedProtection.ProtectionScenario" />
+        <element api="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" />
+      </elements>
+      <file name="dc6e461d-1d6d-95fd-a820-0fc7e788c1ef" />
+    </api>
+    <api id="T:System.Security.Authentication.ExtendedProtection.ChannelBinding">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Authentication.ExtendedProtection.ChannelBinding" />
+      <apidata name="ChannelBinding" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+      </containers>
+      <file name="627b2029-091e-60e3-1089-53e473f483cc" />
+    </api>
+    <api id="AllMembers.T:System.Security.Authentication.ExtendedProtection.ChannelBinding">
+      <topicdata name="ChannelBinding" group="list" subgroup="members" typeTopicId="T:System.Security.Authentication.ExtendedProtection.ChannelBinding" />
+      <apidata name="ChannelBinding" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="Overload:System.Security.Authentication.ExtendedProtection.ChannelBinding.Dispose">
+          <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+          <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Finalize" />
+        <element api="F:System.Runtime.InteropServices.SafeHandle.handle" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsInvalid" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.ReleaseHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandle(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+        <element api="Overload:System.Security.Authentication.ExtendedProtection.ChannelBinding.#ctor">
+          <element api="M:System.Security.Authentication.ExtendedProtection.ChannelBinding.#ctor" />
+          <element api="M:System.Security.Authentication.ExtendedProtection.ChannelBinding.#ctor(System.Boolean)" />
+        </element>
+        <element api="P:System.Security.Authentication.ExtendedProtection.ChannelBinding.Size" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBinding" />
+      </containers>
+      <file name="2dca10e1-c6c4-c8b6-02b7-7b3072ca1b09" />
+    </api>
+    <api id="Methods.T:System.Security.Authentication.ExtendedProtection.ChannelBinding">
+      <topicdata name="ChannelBinding" group="list" subgroup="Methods" typeTopicId="T:System.Security.Authentication.ExtendedProtection.ChannelBinding" />
+      <apidata name="ChannelBinding" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="Overload:System.Security.Authentication.ExtendedProtection.ChannelBinding.Dispose">
+          <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+          <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Finalize" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.ReleaseHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandle(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBinding" />
+      </containers>
+      <file name="e8523c09-1d4d-b70c-8286-d011dae5bd47" />
+    </api>
+    <api id="Properties.T:System.Security.Authentication.ExtendedProtection.ChannelBinding">
+      <topicdata name="ChannelBinding" group="list" subgroup="Properties" typeTopicId="T:System.Security.Authentication.ExtendedProtection.ChannelBinding" />
+      <apidata name="ChannelBinding" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsInvalid" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.ChannelBinding.Size" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBinding" />
+      </containers>
+      <file name="2e96cd0e-69a7-cea5-4f91-dbca9a6d1640" />
+    </api>
+    <api id="Fields.T:System.Security.Authentication.ExtendedProtection.ChannelBinding">
+      <topicdata name="ChannelBinding" group="list" subgroup="Fields" typeTopicId="T:System.Security.Authentication.ExtendedProtection.ChannelBinding" />
+      <apidata name="ChannelBinding" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="F:System.Runtime.InteropServices.SafeHandle.handle" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBinding" />
+      </containers>
+      <file name="0dc3575c-2b28-f49d-ebda-9eb6d8c8e707" />
+    </api>
+    <api id="Overload:System.Security.Authentication.ExtendedProtection.ChannelBinding.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Security.Authentication.ExtendedProtection.ChannelBinding" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Security.Authentication.ExtendedProtection.ChannelBinding.#ctor" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.ChannelBinding.#ctor(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBinding" ref="true" />
+      </containers>
+      <file name="0bd78fbc-aede-82f4-1cd8-f04a8093fb8b" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.ChannelBinding.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Security.Authentication.ExtendedProtection.ChannelBinding.#ctor" />
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBinding" ref="true" />
+      </containers>
+      <file name="59cb6ff8-b35f-a173-6013-8f4e4334c9bc" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.ChannelBinding.#ctor(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Security.Authentication.ExtendedProtection.ChannelBinding.#ctor" />
+      <parameters>
+        <parameter name="ownsHandle">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBinding" ref="true" />
+      </containers>
+      <file name="06119769-f51f-8018-4437-2a045c9e0453" />
+    </api>
+    <api id="P:System.Security.Authentication.ExtendedProtection.ChannelBinding.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Size" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBinding" ref="true" />
+      </containers>
+      <file name="78afd320-d734-7686-31b4-99cd3120170d" />
+    </api>
+    <api id="T:System.Security.Authentication.ExtendedProtection.ChannelBindingKind">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Authentication.ExtendedProtection.ChannelBindingKind" />
+      <apidata name="ChannelBindingKind" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+      </containers>
+      <file name="c7f708d7-f1e1-1cee-3350-9094bc0e39a4" />
+    </api>
+    <api id="AllMembers.T:System.Security.Authentication.ExtendedProtection.ChannelBindingKind">
+      <topicdata name="ChannelBindingKind" group="list" subgroup="members" typeTopicId="T:System.Security.Authentication.ExtendedProtection.ChannelBindingKind" />
+      <apidata name="ChannelBindingKind" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Security.Authentication.ExtendedProtection.ChannelBindingKind.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.Security.Authentication.ExtendedProtection.ChannelBindingKind.Endpoint" />
+        <element api="F:System.Security.Authentication.ExtendedProtection.ChannelBindingKind.Unique" />
+        <element api="F:System.Security.Authentication.ExtendedProtection.ChannelBindingKind.Unknown" />
+        <element api="F:System.Security.Authentication.ExtendedProtection.ChannelBindingKind.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBindingKind" />
+      </containers>
+      <file name="d63ff920-01bb-ec31-172a-aa91552737fa" />
+    </api>
+    <api id="Methods.T:System.Security.Authentication.ExtendedProtection.ChannelBindingKind">
+      <topicdata name="ChannelBindingKind" group="list" subgroup="Methods" typeTopicId="T:System.Security.Authentication.ExtendedProtection.ChannelBindingKind" />
+      <apidata name="ChannelBindingKind" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Security.Authentication.ExtendedProtection.ChannelBindingKind.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBindingKind" />
+      </containers>
+      <file name="4bc71de8-ba09-ab1c-e07e-bd16d7a99cb1" />
+    </api>
+    <api id="Fields.T:System.Security.Authentication.ExtendedProtection.ChannelBindingKind">
+      <topicdata name="ChannelBindingKind" group="list" subgroup="Fields" typeTopicId="T:System.Security.Authentication.ExtendedProtection.ChannelBindingKind" />
+      <apidata name="ChannelBindingKind" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Security.Authentication.ExtendedProtection.ChannelBindingKind.Endpoint" />
+        <element api="F:System.Security.Authentication.ExtendedProtection.ChannelBindingKind.Unique" />
+        <element api="F:System.Security.Authentication.ExtendedProtection.ChannelBindingKind.Unknown" />
+        <element api="F:System.Security.Authentication.ExtendedProtection.ChannelBindingKind.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBindingKind" />
+      </containers>
+      <file name="d2557402-fb9d-3404-46fc-ae13b9238e9d" />
+    </api>
+    <api id="F:System.Security.Authentication.ExtendedProtection.ChannelBindingKind.Endpoint">
+      <topicdata group="api" />
+      <apidata name="Endpoint" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBindingKind" ref="true" />
+      </returns>
+      <value>26</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBindingKind" ref="true" />
+      </containers>
+      <file name="cc2bfea5-914b-29f2-5ff3-ac7a51a2f3ab" />
+    </api>
+    <api id="F:System.Security.Authentication.ExtendedProtection.ChannelBindingKind.Unique">
+      <topicdata group="api" />
+      <apidata name="Unique" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBindingKind" ref="true" />
+      </returns>
+      <value>25</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBindingKind" ref="true" />
+      </containers>
+      <file name="d3e31eb0-7783-2509-9046-ee91229e7674" />
+    </api>
+    <api id="F:System.Security.Authentication.ExtendedProtection.ChannelBindingKind.Unknown">
+      <topicdata group="api" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBindingKind" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBindingKind" ref="true" />
+      </containers>
+      <file name="c2484c5c-8e5b-2623-b4b7-37e83a6b320f" />
+    </api>
+    <api id="F:System.Security.Authentication.ExtendedProtection.ChannelBindingKind.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBindingKind" ref="true" />
+      </containers>
+      <file name="ba52f617-0f0b-4f65-b4e4-f7a94f249ddd" />
+    </api>
+    <api id="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" />
+      <apidata name="ExtendedProtectionPolicy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+      </containers>
+      <file name="cd39acab-1e7b-dc2a-54fe-4097ecf9808d" />
+    </api>
+    <api id="AllMembers.T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy">
+      <topicdata name="ExtendedProtectionPolicy" group="list" subgroup="members" typeTopicId="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" />
+      <apidata name="ExtendedProtectionPolicy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.#ctor">
+          <element api="M:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.#ctor(System.Security.Authentication.ExtendedProtection.PolicyEnforcement)" />
+          <element api="M:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.#ctor(System.Security.Authentication.ExtendedProtection.PolicyEnforcement,System.Security.Authentication.ExtendedProtection.ChannelBinding)" />
+          <element api="M:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.#ctor(System.Security.Authentication.ExtendedProtection.PolicyEnforcement,System.Security.Authentication.ExtendedProtection.ProtectionScenario,System.Collections.ICollection)" />
+          <element api="M:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.#ctor(System.Security.Authentication.ExtendedProtection.PolicyEnforcement,System.Security.Authentication.ExtendedProtection.ProtectionScenario,System.Security.Authentication.ExtendedProtection.ServiceNameCollection)" />
+        </element>
+        <element api="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.CustomChannelBinding" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.CustomServiceNames" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.OSSupportsExtendedProtection" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.PolicyEnforcement" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.ProtectionScenario" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" />
+      </containers>
+      <file name="5f335d00-347d-8dca-f227-50ec6f2d72d0" />
+    </api>
+    <api id="Methods.T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy">
+      <topicdata name="ExtendedProtectionPolicy" group="list" subgroup="Methods" typeTopicId="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" />
+      <apidata name="ExtendedProtectionPolicy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" />
+      </containers>
+      <file name="cf4c2e79-81f8-4e51-0857-4c35222e8793" />
+    </api>
+    <api id="Properties.T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy">
+      <topicdata name="ExtendedProtectionPolicy" group="list" subgroup="Properties" typeTopicId="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" />
+      <apidata name="ExtendedProtectionPolicy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.CustomChannelBinding" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.CustomServiceNames" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.OSSupportsExtendedProtection" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.PolicyEnforcement" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.ProtectionScenario" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" />
+      </containers>
+      <file name="08205c8d-65eb-e328-3207-917f4a5b6ffb" />
+    </api>
+    <api id="Overload:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.#ctor(System.Security.Authentication.ExtendedProtection.PolicyEnforcement)" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.#ctor(System.Security.Authentication.ExtendedProtection.PolicyEnforcement,System.Security.Authentication.ExtendedProtection.ChannelBinding)" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.#ctor(System.Security.Authentication.ExtendedProtection.PolicyEnforcement,System.Security.Authentication.ExtendedProtection.ProtectionScenario,System.Collections.ICollection)" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.#ctor(System.Security.Authentication.ExtendedProtection.PolicyEnforcement,System.Security.Authentication.ExtendedProtection.ProtectionScenario,System.Security.Authentication.ExtendedProtection.ServiceNameCollection)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" ref="true" />
+      </containers>
+      <file name="cb1777eb-9450-0b93-b900-019d2f716a28" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.#ctor(System.Security.Authentication.ExtendedProtection.PolicyEnforcement)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.#ctor" />
+      <parameters>
+        <parameter name="policyEnforcement">
+          <type api="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" ref="true" />
+      </containers>
+      <file name="7e5c71ba-280d-c52e-27d8-4ab3662dcd19" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.#ctor(System.Security.Authentication.ExtendedProtection.PolicyEnforcement,System.Security.Authentication.ExtendedProtection.ChannelBinding)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.#ctor" />
+      <parameters>
+        <parameter name="policyEnforcement">
+          <type api="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" ref="true" />
+        </parameter>
+        <parameter name="customChannelBinding">
+          <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBinding" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" ref="true" />
+      </containers>
+      <file name="ed785413-5589-f0ed-55a8-21d7b41d38b6" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.#ctor(System.Security.Authentication.ExtendedProtection.PolicyEnforcement,System.Security.Authentication.ExtendedProtection.ProtectionScenario,System.Collections.ICollection)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.#ctor" />
+      <parameters>
+        <parameter name="policyEnforcement">
+          <type api="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" ref="true" />
+        </parameter>
+        <parameter name="protectionScenario">
+          <type api="T:System.Security.Authentication.ExtendedProtection.ProtectionScenario" ref="true" />
+        </parameter>
+        <parameter name="customServiceNames">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" ref="true" />
+      </containers>
+      <file name="6a98042f-4e40-00ad-3108-24ed2f65fd3d" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.#ctor(System.Security.Authentication.ExtendedProtection.PolicyEnforcement,System.Security.Authentication.ExtendedProtection.ProtectionScenario,System.Security.Authentication.ExtendedProtection.ServiceNameCollection)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.#ctor" />
+      <parameters>
+        <parameter name="policyEnforcement">
+          <type api="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" ref="true" />
+        </parameter>
+        <parameter name="protectionScenario">
+          <type api="T:System.Security.Authentication.ExtendedProtection.ProtectionScenario" ref="true" />
+        </parameter>
+        <parameter name="customServiceNames">
+          <type api="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" ref="true" />
+      </containers>
+      <file name="87ce1d66-d1b3-7ff5-709a-08b4baa12024" />
+    </api>
+    <api id="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.CustomChannelBinding">
+      <topicdata group="api" />
+      <apidata name="CustomChannelBinding" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CustomChannelBinding" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBinding" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" ref="true" />
+      </containers>
+      <file name="33688ffe-f11c-e02c-2bfc-7fbb9f7264f7" />
+    </api>
+    <api id="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.CustomServiceNames">
+      <topicdata group="api" />
+      <apidata name="CustomServiceNames" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CustomServiceNames" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" ref="true" />
+      </containers>
+      <file name="216fa0ac-f808-b6b8-d2dd-c7f62d599f82" />
+    </api>
+    <api id="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.OSSupportsExtendedProtection">
+      <topicdata group="api" />
+      <apidata name="OSSupportsExtendedProtection" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OSSupportsExtendedProtection" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" ref="true" />
+      </containers>
+      <file name="d3e217ee-d73d-54c5-80f7-f955fc035935" />
+    </api>
+    <api id="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.PolicyEnforcement">
+      <topicdata group="api" />
+      <apidata name="PolicyEnforcement" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PolicyEnforcement" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" ref="true" />
+      </containers>
+      <file name="ee7c0380-fd56-8f4a-529b-dade47a08474" />
+    </api>
+    <api id="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.ProtectionScenario">
+      <topicdata group="api" />
+      <apidata name="ProtectionScenario" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ProtectionScenario" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.ProtectionScenario" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" ref="true" />
+      </containers>
+      <file name="b06affae-78cf-7edc-ce02-34d229386fb3" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" ref="true" />
+      </containers>
+      <file name="aa3c2720-6c18-c862-1746-b09c70c82443" />
+    </api>
+    <api id="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" />
+      <apidata name="PolicyEnforcement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+      </containers>
+      <file name="13fb6991-f837-5bac-ca55-ffa8e9ed7eae" />
+    </api>
+    <api id="AllMembers.T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement">
+      <topicdata name="PolicyEnforcement" group="list" subgroup="members" typeTopicId="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" />
+      <apidata name="PolicyEnforcement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Security.Authentication.ExtendedProtection.PolicyEnforcement.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.Security.Authentication.ExtendedProtection.PolicyEnforcement.Always" />
+        <element api="F:System.Security.Authentication.ExtendedProtection.PolicyEnforcement.Never" />
+        <element api="F:System.Security.Authentication.ExtendedProtection.PolicyEnforcement.value__" />
+        <element api="F:System.Security.Authentication.ExtendedProtection.PolicyEnforcement.WhenSupported" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" />
+      </containers>
+      <file name="bfdd40fc-374a-96d2-062e-d2702a8154ee" />
+    </api>
+    <api id="Methods.T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement">
+      <topicdata name="PolicyEnforcement" group="list" subgroup="Methods" typeTopicId="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" />
+      <apidata name="PolicyEnforcement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Security.Authentication.ExtendedProtection.PolicyEnforcement.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" />
+      </containers>
+      <file name="ce5f19ab-94b1-0aea-65b0-de1abebafe96" />
+    </api>
+    <api id="Fields.T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement">
+      <topicdata name="PolicyEnforcement" group="list" subgroup="Fields" typeTopicId="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" />
+      <apidata name="PolicyEnforcement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Security.Authentication.ExtendedProtection.PolicyEnforcement.Always" />
+        <element api="F:System.Security.Authentication.ExtendedProtection.PolicyEnforcement.Never" />
+        <element api="F:System.Security.Authentication.ExtendedProtection.PolicyEnforcement.value__" />
+        <element api="F:System.Security.Authentication.ExtendedProtection.PolicyEnforcement.WhenSupported" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" />
+      </containers>
+      <file name="83746e2c-eeea-0346-de38-21b4e591c85a" />
+    </api>
+    <api id="F:System.Security.Authentication.ExtendedProtection.PolicyEnforcement.Always">
+      <topicdata group="api" />
+      <apidata name="Always" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" ref="true" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" ref="true" />
+      </containers>
+      <file name="dbe76a63-e890-bc22-2dfe-53425bffcbac" />
+    </api>
+    <api id="F:System.Security.Authentication.ExtendedProtection.PolicyEnforcement.Never">
+      <topicdata group="api" />
+      <apidata name="Never" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" ref="true" />
+      </containers>
+      <file name="9b69d44f-82d5-2c06-23c9-b817ce55befd" />
+    </api>
+    <api id="F:System.Security.Authentication.ExtendedProtection.PolicyEnforcement.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" ref="true" />
+      </containers>
+      <file name="6062b3d9-1d5e-363b-e3d2-e8eaf6a614ab" />
+    </api>
+    <api id="F:System.Security.Authentication.ExtendedProtection.PolicyEnforcement.WhenSupported">
+      <topicdata group="api" />
+      <apidata name="WhenSupported" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" ref="true" />
+      </containers>
+      <file name="65805480-e726-2373-b779-065ff2004c9c" />
+    </api>
+    <api id="T:System.Security.Authentication.ExtendedProtection.ProtectionScenario">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Authentication.ExtendedProtection.ProtectionScenario" />
+      <apidata name="ProtectionScenario" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+      </containers>
+      <file name="1b7b2e58-8af5-6c5b-81f7-1f84d518b107" />
+    </api>
+    <api id="AllMembers.T:System.Security.Authentication.ExtendedProtection.ProtectionScenario">
+      <topicdata name="ProtectionScenario" group="list" subgroup="members" typeTopicId="T:System.Security.Authentication.ExtendedProtection.ProtectionScenario" />
+      <apidata name="ProtectionScenario" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Security.Authentication.ExtendedProtection.ProtectionScenario.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.Security.Authentication.ExtendedProtection.ProtectionScenario.TransportSelected" />
+        <element api="F:System.Security.Authentication.ExtendedProtection.ProtectionScenario.TrustedProxy" />
+        <element api="F:System.Security.Authentication.ExtendedProtection.ProtectionScenario.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ProtectionScenario" />
+      </containers>
+      <file name="d77835ab-42df-9328-faad-0a271531d81a" />
+    </api>
+    <api id="Methods.T:System.Security.Authentication.ExtendedProtection.ProtectionScenario">
+      <topicdata name="ProtectionScenario" group="list" subgroup="Methods" typeTopicId="T:System.Security.Authentication.ExtendedProtection.ProtectionScenario" />
+      <apidata name="ProtectionScenario" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Security.Authentication.ExtendedProtection.ProtectionScenario.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ProtectionScenario" />
+      </containers>
+      <file name="6555b85d-1eef-180f-627e-41bf79db5c87" />
+    </api>
+    <api id="Fields.T:System.Security.Authentication.ExtendedProtection.ProtectionScenario">
+      <topicdata name="ProtectionScenario" group="list" subgroup="Fields" typeTopicId="T:System.Security.Authentication.ExtendedProtection.ProtectionScenario" />
+      <apidata name="ProtectionScenario" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Security.Authentication.ExtendedProtection.ProtectionScenario.TransportSelected" />
+        <element api="F:System.Security.Authentication.ExtendedProtection.ProtectionScenario.TrustedProxy" />
+        <element api="F:System.Security.Authentication.ExtendedProtection.ProtectionScenario.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ProtectionScenario" />
+      </containers>
+      <file name="20545616-8b3e-ee3a-e23a-fc127041de96" />
+    </api>
+    <api id="F:System.Security.Authentication.ExtendedProtection.ProtectionScenario.TransportSelected">
+      <topicdata group="api" />
+      <apidata name="TransportSelected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.ProtectionScenario" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ProtectionScenario" ref="true" />
+      </containers>
+      <file name="0672806e-39d9-d9e7-ecbf-4cf66daf354f" />
+    </api>
+    <api id="F:System.Security.Authentication.ExtendedProtection.ProtectionScenario.TrustedProxy">
+      <topicdata group="api" />
+      <apidata name="TrustedProxy" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.ProtectionScenario" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ProtectionScenario" ref="true" />
+      </containers>
+      <file name="f1c1f3a9-eaeb-b4fe-b46d-ade6ee15bbce" />
+    </api>
+    <api id="F:System.Security.Authentication.ExtendedProtection.ProtectionScenario.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ProtectionScenario" ref="true" />
+      </containers>
+      <file name="158eb778-5ed4-158c-6b03-52d2b21b8f67" />
+    </api>
+    <api id="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" />
+      <apidata name="ServiceNameCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Collections.ICollection" ref="true" />
+        <type api="T:System.Collections.IEnumerable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+      </containers>
+      <file name="78e90084-8dfd-faae-c78f-6a34e2c07cbb" />
+    </api>
+    <api id="AllMembers.T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection">
+      <topicdata name="ServiceNameCollection" group="list" subgroup="members" typeTopicId="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" />
+      <apidata name="ServiceNameCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Linq" module="System.Linq" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Linq" module="System.Linq" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.ParallelEnumerable.AsParallel(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsParallel" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.ParallelQuery" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Linq.Parallel" module="System.Linq.Parallel" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.ParallelEnumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Linq.Queryable" module="System.Linq.Queryable" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.#ctor(System.Collections.ICollection)" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.Contains(System.String)" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.Count" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.GetEnumerator" />
+        <element api="Overload:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.Merge">
+          <element api="M:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.Merge(System.Collections.IEnumerable)" />
+          <element api="M:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.Merge(System.String)" />
+        </element>
+        <element api="M:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.System#Collections#ICollection#IsSynchronized" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.System#Collections#ICollection#SyncRoot" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" />
+      </containers>
+      <file name="bb3c2493-563b-9e22-3582-377d5f61c09c" />
+    </api>
+    <api id="Methods.T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection">
+      <topicdata name="ServiceNameCollection" group="list" subgroup="Methods" typeTopicId="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" />
+      <apidata name="ServiceNameCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Linq" module="System.Linq" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Linq" module="System.Linq" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.ParallelEnumerable.AsParallel(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsParallel" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.ParallelQuery" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Linq.Parallel" module="System.Linq.Parallel" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.ParallelEnumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Linq.Queryable" module="System.Linq.Queryable" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.Contains(System.String)" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.GetEnumerator" />
+        <element api="Overload:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.Merge">
+          <element api="M:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.Merge(System.Collections.IEnumerable)" />
+          <element api="M:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.Merge(System.String)" />
+        </element>
+        <element api="M:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" />
+      </containers>
+      <file name="1a74edd1-2e5c-b425-0d9b-363b448da69d" />
+    </api>
+    <api id="Properties.T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection">
+      <topicdata name="ServiceNameCollection" group="list" subgroup="Properties" typeTopicId="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" />
+      <apidata name="ServiceNameCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.Count" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.System#Collections#ICollection#IsSynchronized" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.System#Collections#ICollection#SyncRoot" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" />
+      </containers>
+      <file name="cf1497e2-85ef-a8bf-935d-3620fdbeebda" />
+    </api>
+    <api id="Overload:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.Merge">
+      <topicdata name="Merge" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" />
+      <apidata name="Merge" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.Merge(System.Collections.IEnumerable)" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.Merge(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" ref="true" />
+      </containers>
+      <file name="7769655f-6ac8-6e05-010c-107fe9a764a5" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.#ctor(System.Collections.ICollection)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="items">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" ref="true" />
+      </containers>
+      <file name="f989339a-3ac4-09e0-29c0-9781e7a0e805" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.Contains(System.String)">
+      <topicdata group="api" />
+      <apidata name="Contains" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="searchServiceName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" ref="true" />
+      </containers>
+      <file name="764e166b-e2f1-7410-7436-3b36a78b650b" />
+    </api>
+    <api id="P:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.Count">
+      <topicdata group="api" />
+      <apidata name="Count" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Count" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.ICollection.Count">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" ref="true" />
+      </containers>
+      <file name="2ef4b64d-471b-8697-9262-d99782fa3cb7" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.GetEnumerator">
+      <topicdata group="api" />
+      <apidata name="GetEnumerator" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.IEnumerator" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Collections.IEnumerable.GetEnumerator">
+          <type api="T:System.Collections.IEnumerable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" ref="true" />
+      </containers>
+      <file name="f73f07a0-c543-8632-b781-d61ff37d6f04" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.Merge(System.Collections.IEnumerable)">
+      <topicdata group="api" />
+      <apidata name="Merge" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.Merge" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="serviceNames">
+          <type api="T:System.Collections.IEnumerable" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" ref="true" />
+      </containers>
+      <file name="eae3349b-ceea-6117-91ee-277d744d5ae7" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.Merge(System.String)">
+      <topicdata group="api" />
+      <apidata name="Merge" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.Merge" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="serviceName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" ref="true" />
+      </containers>
+      <file name="28b0618a-ead1-3bd3-b4cc-4ab73217edde" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+      <topicdata group="api" eiiName="ICollection.CopyTo" />
+      <apidata name="CopyTo" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="array">
+          <type api="T:System.Array" ref="true" />
+        </parameter>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" ref="true" />
+      </containers>
+      <file name="46bf9736-3410-a9e5-a728-a87d1b4104fb" />
+    </api>
+    <api id="P:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.System#Collections#ICollection#IsSynchronized">
+      <topicdata group="api" eiiName="ICollection.IsSynchronized" />
+      <apidata name="IsSynchronized" group="member" subgroup="property" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <propertydata get="true" />
+      <getter name="get_System.Collections.ICollection.IsSynchronized" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.ICollection.IsSynchronized">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" ref="true" />
+      </containers>
+      <file name="c174ea20-4d3f-c134-4256-33ef5a6821a7" />
+    </api>
+    <api id="P:System.Security.Authentication.ExtendedProtection.ServiceNameCollection.System#Collections#ICollection#SyncRoot">
+      <topicdata group="api" eiiName="ICollection.SyncRoot" />
+      <apidata name="SyncRoot" group="member" subgroup="property" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <propertydata get="true" />
+      <getter name="get_System.Collections.ICollection.SyncRoot" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.ICollection.SyncRoot">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" ref="true" />
+      </containers>
+      <file name="aa712486-a67d-43a6-7851-08adf2e45244" />
+    </api>
+  </apis>
+</reflection>

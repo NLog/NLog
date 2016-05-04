@@ -1,0 +1,2587 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Xna.Framework.Content">
+      <assemblydata version="1.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5edf43ac-e41f-4da5-8556-c0b06057d46f</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright © Microsoft 2011</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Xna.Framework.Content</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Xna.Framework.Content</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>1.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="Microsoft.Xna.Framework.Toolkit">
+      <assemblydata version="1.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010041E75A3E3B19253E235F794FBB5A8E7C6C9B41F3BFCD829B8EB2289E64436A428418440B08F398D2B067F39DD0905450E717FC9ABA4258484282FF38A2DB4BC11E984DFA89B83771FB79EF572F0CC65897558FC14D8E4A5A425959C90DBBB73921F30642067B6252E02F8875327BA093C3F4A259E20741894872EA80E125FEE3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>1.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Xna.Framework.Toolkit</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright © Microsoft 2011</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Xna.Framework.Toolkit</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>d13685b9-24a6-46cd-bbf4-e5bfa55b7950</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Xna.Framework.Content">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Xna.Framework.Content" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Xna.Framework.Content.ContentSerializerAttribute" />
+        <element api="T:Microsoft.Xna.Framework.Content.ContentSerializerIgnoreAttribute" />
+        <element api="T:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute" />
+        <element api="T:Microsoft.Xna.Framework.Content.ContentLoadException" />
+        <element api="T:Microsoft.Xna.Framework.Content.ContentManager" />
+        <element api="T:Microsoft.Xna.Framework.Content.ContentReader" />
+        <element api="T:Microsoft.Xna.Framework.Content.ContentTypeReaderManager" />
+        <element api="T:Microsoft.Xna.Framework.Content.ResourceContentManager" />
+        <element api="T:Microsoft.Xna.Framework.Content.ContentTypeReader" />
+        <element api="T:Microsoft.Xna.Framework.Content.ContentTypeReader`1" />
+        <element api="T:Microsoft.Xna.Framework.Content.SilverlightEffectReader" />
+      </elements>
+      <file name="5ef8a2c6-1723-bb6f-4655-7b197745b376" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Content.ContentLoadException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Content.ContentLoadException" />
+      <apidata name="ContentLoadException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Content.ContentLoadException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+      </containers>
+      <file name="50487aa8-fb5a-5ae5-69b7-f910143f73ab" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Content.ContentLoadException">
+      <topicdata name="ContentLoadException" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentLoadException" />
+      <apidata name="ContentLoadException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Content.ContentLoadException.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.Xna.Framework.Content.ContentLoadException.#ctor">
+          <element api="M:Microsoft.Xna.Framework.Content.ContentLoadException.#ctor" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentLoadException.#ctor(System.String)" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentLoadException.#ctor(System.String,System.Exception)" />
+        </element>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentLoadException" />
+      </containers>
+      <file name="66025bec-e430-7904-e527-1b30c68b4192" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Content.ContentLoadException">
+      <topicdata name="ContentLoadException" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentLoadException" />
+      <apidata name="ContentLoadException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Content.ContentLoadException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentLoadException" />
+      </containers>
+      <file name="88c11b3d-e5be-b8fc-324c-58d065234c1d" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Content.ContentLoadException">
+      <topicdata name="ContentLoadException" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentLoadException" />
+      <apidata name="ContentLoadException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Content.ContentLoadException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentLoadException" />
+      </containers>
+      <file name="08ec8d53-2572-1e36-e508-7067fbdf21d4" />
+    </api>
+    <api id="Overload:Microsoft.Xna.Framework.Content.ContentLoadException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Content.ContentLoadException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentLoadException.#ctor" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentLoadException.#ctor(System.String)" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentLoadException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentLoadException" ref="true" />
+      </containers>
+      <file name="3ecdd855-d75e-214e-c5b3-c3580e7899ff" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentLoadException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Xna.Framework.Content.ContentLoadException.#ctor" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentLoadException" ref="true" />
+      </containers>
+      <file name="9ff89a3e-db89-a1eb-cfb8-45f436bf9452" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentLoadException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Xna.Framework.Content.ContentLoadException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentLoadException" ref="true" />
+      </containers>
+      <file name="33565c5c-9afa-8c84-ac00-61415ff49ddb" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentLoadException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Xna.Framework.Content.ContentLoadException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentLoadException" ref="true" />
+      </containers>
+      <file name="85cb6510-1f8f-dc31-2d66-dfff3499f86b" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Content.ContentManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Content.ContentManager" />
+      <apidata name="ContentManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.Xna.Framework.Content.ResourceContentManager" ref="true" />
+        </descendents>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+      </containers>
+      <file name="db88075e-a0fc-7326-4171-acececdd2226" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Content.ContentManager">
+      <topicdata name="ContentManager" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentManager" />
+      <apidata name="ContentManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Xna.Framework.Content.ContentManager.#ctor">
+          <element api="M:Microsoft.Xna.Framework.Content.ContentManager.#ctor(System.IServiceProvider)" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentManager.#ctor(System.IServiceProvider,System.String)" />
+        </element>
+        <element api="Overload:Microsoft.Xna.Framework.Content.ContentManager.Dispose">
+          <element api="M:Microsoft.Xna.Framework.Content.ContentManager.Dispose" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentManager.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentManager.OpenStream(System.String)" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentManager.ReadAsset``1(System.String,System.Action{System.IDisposable})" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentManager.ServiceProvider" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentManager.Unload" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentManager" />
+      </containers>
+      <file name="3a7c34f0-2ed1-b150-04d2-5f001f59e279" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Content.ContentManager">
+      <topicdata name="ContentManager" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentManager" />
+      <apidata name="ContentManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Xna.Framework.Content.ContentManager.Dispose">
+          <element api="M:Microsoft.Xna.Framework.Content.ContentManager.Dispose" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentManager.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentManager.OpenStream(System.String)" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentManager.ReadAsset``1(System.String,System.Action{System.IDisposable})" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentManager.Unload" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentManager" />
+      </containers>
+      <file name="6564b7b1-8134-66ba-810e-7efe775f1c36" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Content.ContentManager">
+      <topicdata name="ContentManager" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentManager" />
+      <apidata name="ContentManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentManager.ServiceProvider" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentManager" />
+      </containers>
+      <file name="adc08a6b-3b3f-a0ed-addf-58ac94670193" />
+    </api>
+    <api id="Overload:Microsoft.Xna.Framework.Content.ContentManager.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Content.ContentManager" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentManager.#ctor(System.IServiceProvider)" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentManager.#ctor(System.IServiceProvider,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentManager" ref="true" />
+      </containers>
+      <file name="78642077-d1d0-e549-d718-b394b2a63c49" />
+    </api>
+    <api id="Overload:Microsoft.Xna.Framework.Content.ContentManager.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Content.ContentManager" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentManager.Dispose" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentManager.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentManager" ref="true" />
+      </containers>
+      <file name="5e347dd7-4175-440f-f242-1f66380b4554" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentManager.#ctor(System.IServiceProvider)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Xna.Framework.Content.ContentManager.#ctor" />
+      <parameters>
+        <parameter name="serviceProvider">
+          <type api="T:System.IServiceProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentManager" ref="true" />
+      </containers>
+      <file name="6b706fe6-60d0-999b-c96a-6231c91a456c" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentManager.#ctor(System.IServiceProvider,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Xna.Framework.Content.ContentManager.#ctor" />
+      <parameters>
+        <parameter name="serviceProvider">
+          <type api="T:System.IServiceProvider" ref="true" />
+        </parameter>
+        <parameter name="rootDirectory">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentManager" ref="true" />
+      </containers>
+      <file name="9a557e96-f9c3-cb4a-293c-fa66c56427f3" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentManager.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Content.ContentManager.Dispose" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentManager" ref="true" />
+      </containers>
+      <file name="d64c3e89-6e15-a550-9643-205ca0814908" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentManager.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:Microsoft.Xna.Framework.Content.ContentManager.Dispose" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentManager" ref="true" />
+      </containers>
+      <file name="56b805a9-49ba-0711-095e-d9a6a47c9199" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="assetName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="M:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentManager" ref="true" />
+      </containers>
+      <file name="5463fdf5-b11d-06c6-a393-7a50911df0fe" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentManager.OpenStream(System.String)">
+      <topicdata group="api" />
+      <apidata name="OpenStream" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="assetName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.Stream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentManager" ref="true" />
+      </containers>
+      <file name="c487d212-bc8e-5c02-c9f1-300a3d601f6e" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentManager.ReadAsset``1(System.String,System.Action{System.IDisposable})">
+      <topicdata group="api" />
+      <apidata name="ReadAsset" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="assetName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="recordDisposableObject">
+          <type api="T:System.Action`1" ref="true">
+            <specialization>
+              <type api="T:System.IDisposable" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="M:Microsoft.Xna.Framework.Content.ContentManager.ReadAsset``1(System.String,System.Action{System.IDisposable})" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentManager" ref="true" />
+      </containers>
+      <file name="2e85419c-f029-ffe1-ef2f-04115a0f5cf9" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory">
+      <topicdata group="api" />
+      <apidata name="RootDirectory" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RootDirectory" />
+      <setter name="set_RootDirectory" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentManager" ref="true" />
+      </containers>
+      <file name="9bc9a031-11bc-fa65-7ec7-a739e7b12e95" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Content.ContentManager.ServiceProvider">
+      <topicdata group="api" />
+      <apidata name="ServiceProvider" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ServiceProvider" />
+      <returns>
+        <type api="T:System.IServiceProvider" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentManager" ref="true" />
+      </containers>
+      <file name="5ac91edc-868b-6339-e152-46ea3476e879" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentManager.Unload">
+      <topicdata group="api" />
+      <apidata name="Unload" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentManager" ref="true" />
+      </containers>
+      <file name="7e0bd63e-069c-f304-c002-8614117a6f7d" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Content.ContentReader">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Content.ContentReader" />
+      <apidata name="ContentReader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.IO.BinaryReader" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+      </containers>
+      <file name="e9c8b667-cc97-5e86-f29a-c3634356af5b" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Content.ContentReader">
+      <topicdata name="ContentReader" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentReader" />
+      <apidata name="ContentReader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Content.ContentReader.AssetName" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentReader.ContentManager" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadColor" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadDouble" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadExternalReference``1" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadMatrix" />
+        <element api="Overload:Microsoft.Xna.Framework.Content.ContentReader.ReadObject">
+          <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1(``0)" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader)" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader,``0)" />
+        </element>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadQuaternion" />
+        <element api="Overload:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject">
+          <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1(``0)" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader)" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader,``0)" />
+        </element>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadSharedResource``1(System.Action{``0})" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadSingle" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadVector2" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadVector3" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadVector4" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.IO.BinaryReader.BaseStream" />
+        <element api="M:System.IO.BinaryReader.Close" />
+        <element api="M:System.IO.BinaryReader.Dispose" />
+        <element api="M:System.IO.BinaryReader.PeekChar" />
+        <element api="Overload:Microsoft.Xna.Framework.Content.ContentReader.Read">
+          <element api="M:System.IO.BinaryReader.Read" />
+          <element api="M:System.IO.BinaryReader.Read(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.BinaryReader.Read(System.Char[],System.Int32,System.Int32)" />
+        </element>
+        <element api="M:System.IO.BinaryReader.ReadBoolean" />
+        <element api="M:System.IO.BinaryReader.ReadByte" />
+        <element api="M:System.IO.BinaryReader.ReadBytes(System.Int32)" />
+        <element api="M:System.IO.BinaryReader.ReadChar" />
+        <element api="M:System.IO.BinaryReader.ReadChars(System.Int32)" />
+        <element api="M:System.IO.BinaryReader.ReadInt16" />
+        <element api="M:System.IO.BinaryReader.ReadInt32" />
+        <element api="M:System.IO.BinaryReader.ReadInt64" />
+        <element api="M:System.IO.BinaryReader.ReadSByte" />
+        <element api="M:System.IO.BinaryReader.ReadString" />
+        <element api="M:System.IO.BinaryReader.ReadUInt16" />
+        <element api="M:System.IO.BinaryReader.ReadUInt32" />
+        <element api="M:System.IO.BinaryReader.ReadUInt64" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" />
+      </containers>
+      <file name="3fe56950-e95f-8bb3-0e19-ba14ea3fc073" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Content.ContentReader">
+      <topicdata name="ContentReader" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentReader" />
+      <apidata name="ContentReader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadColor" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadDouble" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadExternalReference``1" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadMatrix" />
+        <element api="Overload:Microsoft.Xna.Framework.Content.ContentReader.ReadObject">
+          <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1(``0)" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader)" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader,``0)" />
+        </element>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadQuaternion" />
+        <element api="Overload:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject">
+          <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1(``0)" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader)" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader,``0)" />
+        </element>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadSharedResource``1(System.Action{``0})" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadSingle" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadVector2" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadVector3" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadVector4" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.IO.BinaryReader.Close" />
+        <element api="M:System.IO.BinaryReader.Dispose" />
+        <element api="M:System.IO.BinaryReader.PeekChar" />
+        <element api="Overload:Microsoft.Xna.Framework.Content.ContentReader.Read">
+          <element api="M:System.IO.BinaryReader.Read" />
+          <element api="M:System.IO.BinaryReader.Read(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.BinaryReader.Read(System.Char[],System.Int32,System.Int32)" />
+        </element>
+        <element api="M:System.IO.BinaryReader.ReadBoolean" />
+        <element api="M:System.IO.BinaryReader.ReadByte" />
+        <element api="M:System.IO.BinaryReader.ReadBytes(System.Int32)" />
+        <element api="M:System.IO.BinaryReader.ReadChar" />
+        <element api="M:System.IO.BinaryReader.ReadChars(System.Int32)" />
+        <element api="M:System.IO.BinaryReader.ReadInt16" />
+        <element api="M:System.IO.BinaryReader.ReadInt32" />
+        <element api="M:System.IO.BinaryReader.ReadInt64" />
+        <element api="M:System.IO.BinaryReader.ReadSByte" />
+        <element api="M:System.IO.BinaryReader.ReadString" />
+        <element api="M:System.IO.BinaryReader.ReadUInt16" />
+        <element api="M:System.IO.BinaryReader.ReadUInt32" />
+        <element api="M:System.IO.BinaryReader.ReadUInt64" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" />
+      </containers>
+      <file name="38992ea5-01b7-3e80-efbd-5bba6dae5418" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Content.ContentReader">
+      <topicdata name="ContentReader" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentReader" />
+      <apidata name="ContentReader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Content.ContentReader.AssetName" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentReader.ContentManager" />
+        <element api="P:System.IO.BinaryReader.BaseStream" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" />
+      </containers>
+      <file name="97bf85bf-b006-44da-ab20-27fcc2331694" />
+    </api>
+    <api id="Overload:Microsoft.Xna.Framework.Content.ContentReader.ReadObject">
+      <topicdata name="ReadObject" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Content.ContentReader" />
+      <apidata name="ReadObject" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1(``0)" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader)" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader,``0)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="236abe0c-e9f6-d10d-5a90-370f28ef5c0d" />
+    </api>
+    <api id="Overload:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject">
+      <topicdata name="ReadRawObject" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Content.ContentReader" />
+      <apidata name="ReadRawObject" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1(``0)" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader)" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader,``0)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="7fd3b29f-9b9f-508e-0bc1-300b3b0c0da0" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Content.ContentReader.AssetName">
+      <topicdata group="api" />
+      <apidata name="AssetName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AssetName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="32205c41-a5f7-67a1-47b3-7b1a8ac8be10" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Content.ContentReader.ContentManager">
+      <topicdata group="api" />
+      <apidata name="ContentManager" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ContentManager" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Content.ContentManager" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="e46f1fcd-3e99-d451-a122-fc3d03f2184d" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentReader.ReadColor">
+      <topicdata group="api" />
+      <apidata name="ReadColor" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="69efcef9-9114-5cf0-8bd8-fc12d000faa8" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentReader.ReadDouble">
+      <topicdata group="api" />
+      <apidata name="ReadDouble" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.BinaryReader.ReadDouble">
+          <type api="T:System.IO.BinaryReader" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="58e824bf-bbec-6b77-cdcb-7a6bdef52ba0" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentReader.ReadExternalReference``1">
+      <topicdata group="api" />
+      <apidata name="ReadExternalReference" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <returns>
+        <template name="T" index="0" api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadExternalReference``1" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="83b3a2f5-d4f4-19fe-87f9-c56081f0957d" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentReader.ReadMatrix">
+      <topicdata group="api" />
+      <apidata name="ReadMatrix" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Matrix" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="48218f2b-775e-9b93-cd7a-fd171ea17792" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1">
+      <topicdata group="api" />
+      <apidata name="ReadObject" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Content.ContentReader.ReadObject" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <returns>
+        <template name="T" index="0" api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="743e2fa9-305d-00c2-dcb5-b702f4196fc6" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader)">
+      <topicdata group="api" />
+      <apidata name="ReadObject" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Content.ContentReader.ReadObject" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="typeReader">
+          <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader)" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="5b77ab7e-0b54-afbb-73c1-acf4e6cb572f" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader,``0)">
+      <topicdata group="api" />
+      <apidata name="ReadObject" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Content.ContentReader.ReadObject" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="typeReader">
+          <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader" ref="true" />
+        </parameter>
+        <parameter name="existingInstance">
+          <template name="T" index="0" api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader,``0)" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader,``0)" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="e5eb20d1-97b0-ba5b-b70c-a893e9f92bd0" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1(``0)">
+      <topicdata group="api" />
+      <apidata name="ReadObject" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Content.ContentReader.ReadObject" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="existingInstance">
+          <template name="T" index="0" api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1(``0)" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadObject``1(``0)" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="39f87a08-85d8-7288-ce26-532178e7a13c" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentReader.ReadQuaternion">
+      <topicdata group="api" />
+      <apidata name="ReadQuaternion" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Quaternion" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="78ef40cb-de77-290e-2797-2178847c283c" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1">
+      <topicdata group="api" />
+      <apidata name="ReadRawObject" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <returns>
+        <template name="T" index="0" api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="4c754420-13ed-fb60-3b0d-c26187e2c20d" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader)">
+      <topicdata group="api" />
+      <apidata name="ReadRawObject" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="typeReader">
+          <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader)" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="73b1e465-1041-6593-8a68-3f40bd6c4e5f" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader,``0)">
+      <topicdata group="api" />
+      <apidata name="ReadRawObject" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="typeReader">
+          <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader" ref="true" />
+        </parameter>
+        <parameter name="existingInstance">
+          <template name="T" index="0" api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader,``0)" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1(Microsoft.Xna.Framework.Content.ContentTypeReader,``0)" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="8209a12d-e23c-fdaf-32df-d13321b0f0d9" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1(``0)">
+      <topicdata group="api" />
+      <apidata name="ReadRawObject" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="existingInstance">
+          <template name="T" index="0" api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1(``0)" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadRawObject``1(``0)" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="1c0c4e97-6741-500f-7cf6-7416743da7a2" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentReader.ReadSharedResource``1(System.Action{``0})">
+      <topicdata group="api" />
+      <apidata name="ReadSharedResource" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="fixup">
+          <type api="T:System.Action`1" ref="true">
+            <specialization>
+              <template name="T" index="0" api="M:Microsoft.Xna.Framework.Content.ContentReader.ReadSharedResource``1(System.Action{``0})" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="93882880-5f63-7773-9c34-43068b734bdc" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentReader.ReadSingle">
+      <topicdata group="api" />
+      <apidata name="ReadSingle" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.BinaryReader.ReadSingle">
+          <type api="T:System.IO.BinaryReader" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="921e0bef-2442-26b8-a476-cbf78c7ca64b" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentReader.ReadVector2">
+      <topicdata group="api" />
+      <apidata name="ReadVector2" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Vector2" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="f2ebdc6c-86ed-70b3-aca8-1647b13366d1" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentReader.ReadVector3">
+      <topicdata group="api" />
+      <apidata name="ReadVector3" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Vector3" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="f24ceb7b-558d-b544-05c0-78b967c1d55b" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentReader.ReadVector4">
+      <topicdata group="api" />
+      <apidata name="ReadVector4" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Vector4" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+      </containers>
+      <file name="54727b8c-2605-0af8-03c4-98fb07973f68" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Content.ContentSerializerAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Content.ContentSerializerAttribute" />
+      <apidata name="ContentSerializerAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Property" />
+              <field name="Field" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="076048e7-7169-bd60-a2e6-9c0b4d0380a9" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Content.ContentSerializerAttribute">
+      <topicdata name="ContentSerializerAttribute" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentSerializerAttribute" />
+      <apidata name="ContentSerializerAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.#ctor" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.AllowNull" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.CollectionItemName" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.ElementName" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.FlattenContent" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.Optional" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.SharedResource" />
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentSerializerAttribute" />
+      </containers>
+      <file name="9292f293-95a8-7f52-b3c2-747930d47031" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Content.ContentSerializerAttribute">
+      <topicdata name="ContentSerializerAttribute" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentSerializerAttribute" />
+      <apidata name="ContentSerializerAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentSerializerAttribute" />
+      </containers>
+      <file name="77a6fdb5-4c5a-337f-2e19-5532a7efb456" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Content.ContentSerializerAttribute">
+      <topicdata name="ContentSerializerAttribute" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentSerializerAttribute" />
+      <apidata name="ContentSerializerAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.AllowNull" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.CollectionItemName" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.ElementName" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.FlattenContent" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.Optional" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.SharedResource" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentSerializerAttribute" />
+      </containers>
+      <file name="15df959b-0932-dfce-c504-4e3bc8479dae" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentSerializerAttribute" ref="true" />
+      </containers>
+      <file name="6c4d630e-95c8-f86e-0b02-66296fa7e6ef" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.AllowNull">
+      <topicdata group="api" />
+      <apidata name="AllowNull" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AllowNull" />
+      <setter name="set_AllowNull" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentSerializerAttribute" ref="true" />
+      </containers>
+      <file name="cb654cb6-2e8a-164d-916c-5c9cdb37a33f" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.CollectionItemName">
+      <topicdata group="api" />
+      <apidata name="CollectionItemName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CollectionItemName" />
+      <setter name="set_CollectionItemName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentSerializerAttribute" ref="true" />
+      </containers>
+      <file name="042849d3-99a3-57f8-8183-5f84d5342c17" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.ElementName">
+      <topicdata group="api" />
+      <apidata name="ElementName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ElementName" />
+      <setter name="set_ElementName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentSerializerAttribute" ref="true" />
+      </containers>
+      <file name="212ea1b4-a3fb-c7d1-f9db-d76ac699e8f3" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.FlattenContent">
+      <topicdata group="api" />
+      <apidata name="FlattenContent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_FlattenContent" />
+      <setter name="set_FlattenContent" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentSerializerAttribute" ref="true" />
+      </containers>
+      <file name="2b8312c4-2995-f8c6-9053-2fc232600b6f" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.Optional">
+      <topicdata group="api" />
+      <apidata name="Optional" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Optional" />
+      <setter name="set_Optional" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentSerializerAttribute" ref="true" />
+      </containers>
+      <file name="e3bdc3a3-0726-bf8f-c509-25184233d283" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.SharedResource">
+      <topicdata group="api" />
+      <apidata name="SharedResource" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SharedResource" />
+      <setter name="set_SharedResource" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentSerializerAttribute" ref="true" />
+      </containers>
+      <file name="f42850f6-6f5e-c286-ade0-2d3f79cfb77d" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Content.ContentSerializerIgnoreAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Content.ContentSerializerIgnoreAttribute" />
+      <apidata name="ContentSerializerIgnoreAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Content.ContentSerializerIgnoreAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Property" />
+              <field name="Field" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fc27a070-568b-ffd5-8437-e22a339855c5" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Content.ContentSerializerIgnoreAttribute">
+      <topicdata name="ContentSerializerIgnoreAttribute" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentSerializerIgnoreAttribute" />
+      <apidata name="ContentSerializerIgnoreAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Content.ContentSerializerIgnoreAttribute.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentSerializerIgnoreAttribute.#ctor" />
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentSerializerIgnoreAttribute" />
+      </containers>
+      <file name="f3c28567-186a-c61d-4290-cc5cd12ce2c0" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Content.ContentSerializerIgnoreAttribute">
+      <topicdata name="ContentSerializerIgnoreAttribute" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentSerializerIgnoreAttribute" />
+      <apidata name="ContentSerializerIgnoreAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Content.ContentSerializerIgnoreAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentSerializerIgnoreAttribute" />
+      </containers>
+      <file name="6fb6e78a-90c9-84a3-ead8-4c6963278123" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentSerializerIgnoreAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentSerializerIgnoreAttribute" ref="true" />
+      </containers>
+      <file name="60366b7b-b4ca-42b0-2657-089c24280b82" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute" />
+      <apidata name="ContentSerializerTypeVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+              <field name="Struct" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8c8cf400-c316-b091-5ba3-377892bb3d7e" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute">
+      <topicdata name="ContentSerializerTypeVersionAttribute" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute" />
+      <apidata name="ContentSerializerTypeVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute.#ctor(System.Int32)" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute.TypeVersion" />
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute" />
+      </containers>
+      <file name="551dde98-4259-9d18-46d8-69da455a709e" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute">
+      <topicdata name="ContentSerializerTypeVersionAttribute" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute" />
+      <apidata name="ContentSerializerTypeVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute" />
+      </containers>
+      <file name="17398267-f163-74c2-d831-92cdd767b39a" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute">
+      <topicdata name="ContentSerializerTypeVersionAttribute" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute" />
+      <apidata name="ContentSerializerTypeVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute.TypeVersion" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute" />
+      </containers>
+      <file name="2ed025a8-7a34-ec2e-3904-9ef27f291b8b" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute.#ctor(System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="typeVersion">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute" ref="true" />
+      </containers>
+      <file name="5cebc0ac-f7f3-cf1e-d71a-c52486e3f91a" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute.TypeVersion">
+      <topicdata group="api" />
+      <apidata name="TypeVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TypeVersion" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute" ref="true" />
+      </containers>
+      <file name="e07ddf4d-0225-3e55-9d50-31576b9d0109" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Content.ContentTypeReader">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Content.ContentTypeReader" />
+      <apidata name="ContentTypeReader" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader`1" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+      </containers>
+      <file name="a2f74049-e0f8-41b7-ef7e-43a0347285bb" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Content.ContentTypeReader">
+      <topicdata name="ContentTypeReader" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentTypeReader" />
+      <apidata name="ContentTypeReader" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReader.#ctor(System.Type)" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentTypeReader.CanDeserializeIntoExistingObject" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReader.Initialize(Microsoft.Xna.Framework.Content.ContentTypeReaderManager)" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReader.Read(Microsoft.Xna.Framework.Content.ContentReader,System.Object)" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentTypeReader.TargetType" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentTypeReader.TypeVersion" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader" />
+      </containers>
+      <file name="7d738f19-2a81-850d-137b-f0fda57c6796" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Content.ContentTypeReader">
+      <topicdata name="ContentTypeReader" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentTypeReader" />
+      <apidata name="ContentTypeReader" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReader.Initialize(Microsoft.Xna.Framework.Content.ContentTypeReaderManager)" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReader.Read(Microsoft.Xna.Framework.Content.ContentReader,System.Object)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader" />
+      </containers>
+      <file name="08c9b97d-51cd-6683-38a4-45ed9edaeff6" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Content.ContentTypeReader">
+      <topicdata name="ContentTypeReader" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentTypeReader" />
+      <apidata name="ContentTypeReader" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Content.ContentTypeReader.CanDeserializeIntoExistingObject" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentTypeReader.TargetType" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentTypeReader.TypeVersion" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader" />
+      </containers>
+      <file name="db97fe01-50df-8659-cfe1-9b610982c6a9" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentTypeReader.#ctor(System.Type)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <parameters>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader" ref="true" />
+      </containers>
+      <file name="8f3e293b-7c63-1985-e974-924d9fb26ab4" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Content.ContentTypeReader.CanDeserializeIntoExistingObject">
+      <topicdata group="api" />
+      <apidata name="CanDeserializeIntoExistingObject" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_CanDeserializeIntoExistingObject" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader" ref="true" />
+      </containers>
+      <file name="20df490a-f522-de0f-8fcc-ecfcbea02a1b" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentTypeReader.Initialize(Microsoft.Xna.Framework.Content.ContentTypeReaderManager)">
+      <topicdata group="api" />
+      <apidata name="Initialize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="manager">
+          <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReaderManager" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader" ref="true" />
+      </containers>
+      <file name="63b384ac-1dc2-6d39-1c72-30a7965e18ef" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentTypeReader.Read(Microsoft.Xna.Framework.Content.ContentReader,System.Object)">
+      <topicdata group="api" />
+      <apidata name="Read" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+        </parameter>
+        <parameter name="existingInstance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader" ref="true" />
+      </containers>
+      <file name="c30264cc-6eb0-5681-d5c4-fa4e0ac7c76a" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Content.ContentTypeReader.TargetType">
+      <topicdata group="api" />
+      <apidata name="TargetType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TargetType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader" ref="true" />
+      </containers>
+      <file name="2c75b42c-a4d8-0646-bc0e-9b4cf9151cab" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Content.ContentTypeReader.TypeVersion">
+      <topicdata group="api" />
+      <apidata name="TypeVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_TypeVersion" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader" ref="true" />
+      </containers>
+      <file name="cc2f27b6-4655-e4ca-5ccc-53b1f7b50d35" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Content.ContentTypeReader`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Content.ContentTypeReader`1" />
+      <apidata name="ContentTypeReader" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.Xna.Framework.Content.SilverlightEffectReader" ref="true" />
+        </descendents>
+      </family>
+      <templates>
+        <template name="T" />
+      </templates>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+      </containers>
+      <file name="32a8146e-9b96-3015-02f5-2d0f71189b2e" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Content.ContentTypeReader`1">
+      <topicdata name="ContentTypeReader" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentTypeReader`1" />
+      <apidata name="ContentTypeReader" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Content.ContentTypeReader.CanDeserializeIntoExistingObject" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReader.Initialize(Microsoft.Xna.Framework.Content.ContentTypeReaderManager)" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentTypeReader.TargetType" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentTypeReader.TypeVersion" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReader`1.#ctor" />
+        <element api="Overload:Microsoft.Xna.Framework.Content.ContentTypeReader`1.Read">
+          <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReader`1.Read(Microsoft.Xna.Framework.Content.ContentReader,System.Object)" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReader`1.Read(Microsoft.Xna.Framework.Content.ContentReader,`0)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader`1" />
+      </containers>
+      <file name="e0ec9a2d-c604-a624-71a3-948c1ea94751" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Content.ContentTypeReader`1">
+      <topicdata name="ContentTypeReader" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentTypeReader`1" />
+      <apidata name="ContentTypeReader" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReader.Initialize(Microsoft.Xna.Framework.Content.ContentTypeReaderManager)" />
+        <element api="Overload:Microsoft.Xna.Framework.Content.ContentTypeReader`1.Read">
+          <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReader`1.Read(Microsoft.Xna.Framework.Content.ContentReader,System.Object)" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReader`1.Read(Microsoft.Xna.Framework.Content.ContentReader,`0)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader`1" />
+      </containers>
+      <file name="80586587-7e00-2956-8d80-6bc5b164736d" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Content.ContentTypeReader`1">
+      <topicdata name="ContentTypeReader" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentTypeReader`1" />
+      <apidata name="ContentTypeReader" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Content.ContentTypeReader.CanDeserializeIntoExistingObject" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentTypeReader.TargetType" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentTypeReader.TypeVersion" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader`1" />
+      </containers>
+      <file name="eb93a6a9-6e80-b649-78da-dec4f05d460b" />
+    </api>
+    <api id="Overload:Microsoft.Xna.Framework.Content.ContentTypeReader`1.Read">
+      <topicdata name="Read" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Content.ContentTypeReader`1" />
+      <apidata name="Read" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReader`1.Read(Microsoft.Xna.Framework.Content.ContentReader,System.Object)" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReader`1.Read(Microsoft.Xna.Framework.Content.ContentReader,`0)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader`1" ref="true" />
+      </containers>
+      <file name="6faf88c9-6d6c-ffbc-71f3-211c9dda8c95" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentTypeReader`1.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader`1" ref="true" />
+      </containers>
+      <file name="37a3aeca-a9d7-4cd8-6e7a-766f0a01685e" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentTypeReader`1.Read(Microsoft.Xna.Framework.Content.ContentReader,System.Object)">
+      <topicdata group="api" />
+      <apidata name="Read" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:Microsoft.Xna.Framework.Content.ContentTypeReader`1.Read" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Microsoft.Xna.Framework.Content.ContentTypeReader.Read(Microsoft.Xna.Framework.Content.ContentReader,System.Object)">
+          <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="input">
+          <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+        </parameter>
+        <parameter name="existingInstance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader`1" ref="true" />
+      </containers>
+      <file name="0b18e452-4262-2546-5100-89b2543e7b49" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentTypeReader`1.Read(Microsoft.Xna.Framework.Content.ContentReader,`0)">
+      <topicdata group="api" />
+      <apidata name="Read" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:Microsoft.Xna.Framework.Content.ContentTypeReader`1.Read" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+        </parameter>
+        <parameter name="existingInstance">
+          <template name="T" index="0" api="T:Microsoft.Xna.Framework.Content.ContentTypeReader`1" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="T:Microsoft.Xna.Framework.Content.ContentTypeReader`1" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader`1" ref="true" />
+      </containers>
+      <file name="9c2e046b-caf3-ac1f-1e08-6ed494b94f0a" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Content.ContentTypeReaderManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Content.ContentTypeReaderManager" />
+      <apidata name="ContentTypeReaderManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+      </containers>
+      <file name="6710371b-2d74-d029-a3b8-553c6736c33a" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Content.ContentTypeReaderManager">
+      <topicdata name="ContentTypeReaderManager" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentTypeReaderManager" />
+      <apidata name="ContentTypeReaderManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReaderManager.GetTypeReader(System.Type)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReaderManager" />
+      </containers>
+      <file name="c5d07d6b-b0b9-2173-2bb5-74625ad85240" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Content.ContentTypeReaderManager">
+      <topicdata name="ContentTypeReaderManager" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Content.ContentTypeReaderManager" />
+      <apidata name="ContentTypeReaderManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReaderManager.GetTypeReader(System.Type)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReaderManager" />
+      </containers>
+      <file name="a48cd007-b40f-df40-543c-4a41deccf74d" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ContentTypeReaderManager.GetTypeReader(System.Type)">
+      <topicdata group="api" />
+      <apidata name="GetTypeReader" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReaderManager" ref="true" />
+      </containers>
+      <file name="9cdcd5d7-c6d3-c947-acb9-d7ebe045b110" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Content.ResourceContentManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Content.ResourceContentManager" />
+      <apidata name="ResourceContentManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Xna.Framework.Content.ContentManager" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+      </containers>
+      <file name="fda24e2e-df64-2282-ca84-ccb9989b3b5b" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Content.ResourceContentManager">
+      <topicdata name="ResourceContentManager" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Content.ResourceContentManager" />
+      <apidata name="ResourceContentManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Xna.Framework.Content.ResourceContentManager.Dispose">
+          <element api="M:Microsoft.Xna.Framework.Content.ContentManager.Dispose" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentManager.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentManager.ReadAsset``1(System.String,System.Action{System.IDisposable})" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentManager.ServiceProvider" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentManager.Unload" />
+        <element api="M:Microsoft.Xna.Framework.Content.ResourceContentManager.#ctor(System.IServiceProvider,System.Resources.ResourceManager)" />
+        <element api="M:Microsoft.Xna.Framework.Content.ResourceContentManager.OpenStream(System.String)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ResourceContentManager" />
+      </containers>
+      <file name="02fbb44d-927d-7f3a-2fd9-408e1cf46ae9" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Content.ResourceContentManager">
+      <topicdata name="ResourceContentManager" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Content.ResourceContentManager" />
+      <apidata name="ResourceContentManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Xna.Framework.Content.ResourceContentManager.Dispose">
+          <element api="M:Microsoft.Xna.Framework.Content.ContentManager.Dispose" />
+          <element api="M:Microsoft.Xna.Framework.Content.ContentManager.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentManager.ReadAsset``1(System.String,System.Action{System.IDisposable})" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentManager.Unload" />
+        <element api="M:Microsoft.Xna.Framework.Content.ResourceContentManager.OpenStream(System.String)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ResourceContentManager" />
+      </containers>
+      <file name="564ee5cb-6c4e-774a-844d-90a244977a96" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Content.ResourceContentManager">
+      <topicdata name="ResourceContentManager" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Content.ResourceContentManager" />
+      <apidata name="ResourceContentManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentManager.ServiceProvider" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ResourceContentManager" />
+      </containers>
+      <file name="67fa62bb-e9a5-6180-a214-46f524ebbdad" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ResourceContentManager.#ctor(System.IServiceProvider,System.Resources.ResourceManager)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="serviceProvider">
+          <type api="T:System.IServiceProvider" ref="true" />
+        </parameter>
+        <parameter name="resourceManager">
+          <type api="T:System.Resources.ResourceManager" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ResourceContentManager" ref="true" />
+      </containers>
+      <file name="17076361-eb27-e4f3-c1ed-b785759d883c" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.ResourceContentManager.OpenStream(System.String)">
+      <topicdata group="api" />
+      <apidata name="OpenStream" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Microsoft.Xna.Framework.Content.ContentManager.OpenStream(System.String)">
+          <type api="T:Microsoft.Xna.Framework.Content.ContentManager" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="assetName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.Stream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Content" module="Microsoft.Xna.Framework.Content" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.ResourceContentManager" ref="true" />
+      </containers>
+      <file name="4dfb4555-361b-003e-9140-8973eea08314" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Content.SilverlightEffectReader">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Content.SilverlightEffectReader" />
+      <apidata name="SilverlightEffectReader" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Content.SilverlightEffectReader.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader`1" ref="true">
+            <specialization>
+              <type api="T:Microsoft.Xna.Framework.Graphics.SilverlightEffect" ref="true" />
+            </specialization>
+          </type>
+          <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+      </containers>
+      <file name="7c544277-a40e-d198-3ab0-669c0c05f167" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Content.SilverlightEffectReader">
+      <topicdata name="SilverlightEffectReader" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Content.SilverlightEffectReader" />
+      <apidata name="SilverlightEffectReader" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Content.SilverlightEffectReader.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Content.ContentTypeReader.CanDeserializeIntoExistingObject" />
+        <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReader.Initialize(Microsoft.Xna.Framework.Content.ContentTypeReaderManager)" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentTypeReader.TargetType" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentTypeReader.TypeVersion" />
+        <element api="Overload:Microsoft.Xna.Framework.Content.SilverlightEffectReader.Read">
+          <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReader`1.Read(Microsoft.Xna.Framework.Content.ContentReader,System.Object)" />
+          <element api="M:Microsoft.Xna.Framework.Content.SilverlightEffectReader.Read(Microsoft.Xna.Framework.Content.ContentReader,Microsoft.Xna.Framework.Graphics.SilverlightEffect)" />
+        </element>
+        <element api="M:Microsoft.Xna.Framework.Content.SilverlightEffectReader.#ctor" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.SilverlightEffectReader" />
+      </containers>
+      <file name="b3b819fa-4ff3-e8f8-f23d-60762989cb45" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Content.SilverlightEffectReader">
+      <topicdata name="SilverlightEffectReader" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Content.SilverlightEffectReader" />
+      <apidata name="SilverlightEffectReader" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Content.SilverlightEffectReader.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReader.Initialize(Microsoft.Xna.Framework.Content.ContentTypeReaderManager)" />
+        <element api="Overload:Microsoft.Xna.Framework.Content.SilverlightEffectReader.Read">
+          <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReader`1.Read(Microsoft.Xna.Framework.Content.ContentReader,System.Object)" />
+          <element api="M:Microsoft.Xna.Framework.Content.SilverlightEffectReader.Read(Microsoft.Xna.Framework.Content.ContentReader,Microsoft.Xna.Framework.Graphics.SilverlightEffect)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.SilverlightEffectReader" />
+      </containers>
+      <file name="47e9a79a-2192-2c11-3f73-d053cb7349f6" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Content.SilverlightEffectReader">
+      <topicdata name="SilverlightEffectReader" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Content.SilverlightEffectReader" />
+      <apidata name="SilverlightEffectReader" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Content.SilverlightEffectReader.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Content.ContentTypeReader.CanDeserializeIntoExistingObject" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentTypeReader.TargetType" />
+        <element api="P:Microsoft.Xna.Framework.Content.ContentTypeReader.TypeVersion" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.SilverlightEffectReader" />
+      </containers>
+      <file name="7234f1a1-8287-56e0-ab63-6cb87f006692" />
+    </api>
+    <api id="Overload:Microsoft.Xna.Framework.Content.SilverlightEffectReader.Read">
+      <topicdata name="Read" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Content.SilverlightEffectReader" />
+      <apidata name="Read" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Content.ContentTypeReader`1.Read(Microsoft.Xna.Framework.Content.ContentReader,System.Object)" />
+        <element api="M:Microsoft.Xna.Framework.Content.SilverlightEffectReader.Read(Microsoft.Xna.Framework.Content.ContentReader,Microsoft.Xna.Framework.Graphics.SilverlightEffect)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.SilverlightEffectReader" ref="true" />
+      </containers>
+      <file name="409bfee2-07d4-5d3f-7a69-325d302dde71" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.SilverlightEffectReader.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.SilverlightEffectReader" ref="true" />
+      </containers>
+      <file name="d005a4b2-a21a-0839-a6fc-c8786e190cc1" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Content.SilverlightEffectReader.Read(Microsoft.Xna.Framework.Content.ContentReader,Microsoft.Xna.Framework.Graphics.SilverlightEffect)">
+      <topicdata group="api" />
+      <apidata name="Read" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:Microsoft.Xna.Framework.Content.SilverlightEffectReader.Read" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Microsoft.Xna.Framework.Content.ContentTypeReader`1.Read(Microsoft.Xna.Framework.Content.ContentReader,`0)">
+          <type api="T:Microsoft.Xna.Framework.Content.ContentTypeReader`1" ref="true">
+            <specialization>
+              <type api="T:Microsoft.Xna.Framework.Graphics.SilverlightEffect" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="input">
+          <type api="T:Microsoft.Xna.Framework.Content.ContentReader" ref="true" />
+        </parameter>
+        <parameter name="existingInstance">
+          <type api="T:Microsoft.Xna.Framework.Graphics.SilverlightEffect" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Graphics.SilverlightEffect" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Content" />
+        <type api="T:Microsoft.Xna.Framework.Content.SilverlightEffectReader" ref="true" />
+      </containers>
+      <file name="f06ec9bd-a6a2-b5bc-f09e-e2bd42bb9d66" />
+    </api>
+  </apis>
+</reflection>

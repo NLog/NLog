@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
+using System.Linq;
+
 namespace NLog.Layouts
 {
     using System;
@@ -51,7 +54,7 @@ namespace NLog.Layouts
     [Layout("SimpleLayout")]
     [ThreadAgnostic]
     [AppDomainFixedOutput]
-    public class SimpleLayout : Layout
+    public class SimpleLayout : Layout, IUsesStackTrace
     {
         private const int MaxInitialRenderBufferLength = 16384;
         private int maxRenderedLength;
@@ -146,6 +149,13 @@ namespace NLog.Layouts
         /// </summary>
         public ReadOnlyCollection<LayoutRenderer> Renderers { get; private set; }
 
+
+        /// <summary>
+        /// Gets the level of stack trace information required for rendering.
+        /// </summary>
+        /// <remarks>Calculated when setting <see cref="Renderers"/>.</remarks>
+        public StackTraceUsage StackTraceUsage { get; private set; }
+
         /// <summary>
         /// Converts a text to a simple layout.
         /// </summary>
@@ -212,16 +222,57 @@ namespace NLog.Layouts
         internal void SetRenderers(LayoutRenderer[] renderers, string text)
         {
             this.Renderers = new ReadOnlyCollection<LayoutRenderer>(renderers);
-            if (this.Renderers.Count == 1 && this.Renderers[0] is LiteralLayoutRenderer)
+
+            if (this.Renderers.Count == 0)
+            {
+                //todo fixedText = null is also used if the text is fixed, but is a empty renderers not fixed?
+                this.fixedText = null;
+                this.StackTraceUsage = StackTraceUsage.None;
+            }
+            else if (this.Renderers.Count == 1 && this.Renderers[0] is LiteralLayoutRenderer)
             {
                 this.fixedText = ((LiteralLayoutRenderer)this.Renderers[0]).Text;
+                this.StackTraceUsage = StackTraceUsage.None;
             }
             else
             {
                 this.fixedText = null;
+                this.StackTraceUsage = this.Renderers.OfType<IUsesStackTrace>().DefaultIfEmpty().Max(usage => usage == null ? StackTraceUsage.None : usage.StackTraceUsage);
             }
 
             this.layoutText = text;
+        }
+
+        /// <summary>
+        /// Initializes the layout.
+        /// </summary>
+        protected override void InitializeLayout()
+        {
+            for (int i = 0; i < this.Renderers.Count; i++)
+            {
+                LayoutRenderer renderer = this.Renderers[i];
+                try
+                {
+                    renderer.Initialize(LoggingConfiguration);
+                }
+                catch (Exception exception)
+                {
+                    //also check IsErrorEnabled, otherwise 'MustBeRethrown' writes it to Error
+
+                    //check for performance
+                    if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
+                    {
+                        InternalLogger.Warn(exception, "Exception in '{0}.InitializeLayout()'", renderer.GetType().FullName);
+                    }
+
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+                }
+            }
+
+            base.InitializeLayout();
         }
 
         /// <summary>
@@ -287,5 +338,7 @@ namespace NLog.Layouts
             logEvent.AddCachedLayoutValue(this, value);
             return value;
         }
+
+
     }
 }

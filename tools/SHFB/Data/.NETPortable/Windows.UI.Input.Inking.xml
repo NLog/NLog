@@ -1,0 +1,3735 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.UI.Input.Inking">
+      <topicdata group="api" />
+      <apidata name="Windows.UI.Input.Inking" group="namespace" />
+      <elements>
+        <element api="T:Windows.UI.Input.Inking.InkManipulationMode" />
+        <element api="T:Windows.UI.Input.Inking.InkRecognitionTarget" />
+        <element api="T:Windows.UI.Input.Inking.PenTipShape" />
+        <element api="T:Windows.UI.Input.Inking.InkDrawingAttributes" />
+        <element api="T:Windows.UI.Input.Inking.InkStrokeRenderingSegment" />
+        <element api="T:Windows.UI.Input.Inking.InkStroke" />
+        <element api="T:Windows.UI.Input.Inking.InkStrokeBuilder" />
+        <element api="T:Windows.UI.Input.Inking.InkRecognitionResult" />
+        <element api="T:Windows.UI.Input.Inking.IInkStrokeContainer" />
+        <element api="T:Windows.UI.Input.Inking.InkStrokeContainer" />
+        <element api="T:Windows.UI.Input.Inking.InkRecognizer" />
+        <element api="T:Windows.UI.Input.Inking.IInkRecognizerContainer" />
+        <element api="T:Windows.UI.Input.Inking.InkRecognizerContainer" />
+        <element api="T:Windows.UI.Input.Inking.InkManager" />
+      </elements>
+      <file name="835b0c99-9220-720e-024f-2a850e54a725" />
+    </api>
+    <api id="T:Windows.UI.Input.Inking.IInkRecognizerContainer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Input.Inking.IInkRecognizerContainer" />
+      <apidata name="IInkRecognizerContainer" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.UI.Input.Inking.InkRecognizerContainer" ref="true" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2806880817</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>32839</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18072</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>169</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>18</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>248</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>42</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>80</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>133</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>1</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>47</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c330aa7f-db23-a657-5044-aac8a182d9db" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Input.Inking.IInkRecognizerContainer">
+      <topicdata name="IInkRecognizerContainer" group="list" subgroup="members" typeTopicId="T:Windows.UI.Input.Inking.IInkRecognizerContainer" />
+      <apidata name="IInkRecognizerContainer" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Input.Inking.IInkRecognizerContainer.GetRecognizers" />
+        <element api="M:Windows.UI.Input.Inking.IInkRecognizerContainer.RecognizeAsync(Windows.UI.Input.Inking.InkStrokeContainer,Windows.UI.Input.Inking.InkRecognitionTarget)" />
+        <element api="M:Windows.UI.Input.Inking.IInkRecognizerContainer.SetDefaultRecognizer(Windows.UI.Input.Inking.InkRecognizer)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkRecognizerContainer" />
+      </containers>
+      <file name="66402798-aa1b-63c6-5a64-d626b00b2bcb" />
+    </api>
+    <api id="Methods.T:Windows.UI.Input.Inking.IInkRecognizerContainer">
+      <topicdata name="IInkRecognizerContainer" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Input.Inking.IInkRecognizerContainer" />
+      <apidata name="IInkRecognizerContainer" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Input.Inking.IInkRecognizerContainer.GetRecognizers" />
+        <element api="M:Windows.UI.Input.Inking.IInkRecognizerContainer.RecognizeAsync(Windows.UI.Input.Inking.InkStrokeContainer,Windows.UI.Input.Inking.InkRecognitionTarget)" />
+        <element api="M:Windows.UI.Input.Inking.IInkRecognizerContainer.SetDefaultRecognizer(Windows.UI.Input.Inking.InkRecognizer)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkRecognizerContainer" />
+      </containers>
+      <file name="b12769c1-fc6d-3bc2-a62c-3fced57f0524" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.IInkRecognizerContainer.GetRecognizers">
+      <topicdata group="api" />
+      <apidata name="GetRecognizers" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Input.Inking.InkRecognizer" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkRecognizerContainer" ref="true" />
+      </containers>
+      <file name="5967c5f9-9632-de15-3dd3-d1c54b416f3c" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.IInkRecognizerContainer.RecognizeAsync(Windows.UI.Input.Inking.InkStrokeContainer,Windows.UI.Input.Inking.InkRecognitionTarget)">
+      <topicdata group="api" />
+      <apidata name="RecognizeAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="strokeCollection" in="true">
+          <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" ref="true" />
+        </parameter>
+        <parameter name="recognitionTarget" in="true">
+          <type api="T:Windows.UI.Input.Inking.InkRecognitionTarget" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.UI.Input.Inking.InkRecognitionResult" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkRecognizerContainer" ref="true" />
+      </containers>
+      <file name="ecf034c6-da1e-7581-f17b-f8f3000c2645" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.IInkRecognizerContainer.SetDefaultRecognizer(Windows.UI.Input.Inking.InkRecognizer)">
+      <topicdata group="api" />
+      <apidata name="SetDefaultRecognizer" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="recognizer" in="true">
+          <type api="T:Windows.UI.Input.Inking.InkRecognizer" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkRecognizerContainer" ref="true" />
+      </containers>
+      <file name="52cdbcdb-01d5-975b-87d2-13964ebf26ea" />
+    </api>
+    <api id="T:Windows.UI.Input.Inking.IInkStrokeContainer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Input.Inking.IInkStrokeContainer" />
+      <apidata name="IInkStrokeContainer" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" ref="true" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>581749702</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>64169</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>20244</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>182</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>140</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>246</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>206</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>230</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>112</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>174</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>22</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="926e6bce-78fd-05ea-1543-724da72de58a" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Input.Inking.IInkStrokeContainer">
+      <topicdata name="IInkStrokeContainer" group="list" subgroup="members" typeTopicId="T:Windows.UI.Input.Inking.IInkStrokeContainer" />
+      <apidata name="IInkStrokeContainer" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.AddStroke(Windows.UI.Input.Inking.InkStroke)" />
+        <element api="P:Windows.UI.Input.Inking.IInkStrokeContainer.BoundingRect" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.CanPasteFromClipboard" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.CopySelectedToClipboard" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.DeleteSelected" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.GetRecognitionResults" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.GetStrokes" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.LoadAsync(Windows.Storage.Streams.IInputStream)" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.MoveSelected(Windows.Foundation.Point)" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.PasteFromClipboard(Windows.Foundation.Point)" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.SaveAsync(Windows.Storage.Streams.IOutputStream)" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.SelectWithLine(Windows.Foundation.Point,Windows.Foundation.Point)" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.SelectWithPolyLine(Windows.Foundation.Collections.IIterable{Windows.Foundation.Point})" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.UpdateRecognitionResults(Windows.Foundation.Collections.IVectorView{Windows.UI.Input.Inking.InkRecognitionResult})" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" />
+      </containers>
+      <file name="bacf7c32-4afa-ae80-2dcc-0390478aaf3a" />
+    </api>
+    <api id="Methods.T:Windows.UI.Input.Inking.IInkStrokeContainer">
+      <topicdata name="IInkStrokeContainer" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Input.Inking.IInkStrokeContainer" />
+      <apidata name="IInkStrokeContainer" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.AddStroke(Windows.UI.Input.Inking.InkStroke)" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.CanPasteFromClipboard" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.CopySelectedToClipboard" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.DeleteSelected" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.GetRecognitionResults" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.GetStrokes" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.LoadAsync(Windows.Storage.Streams.IInputStream)" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.MoveSelected(Windows.Foundation.Point)" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.PasteFromClipboard(Windows.Foundation.Point)" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.SaveAsync(Windows.Storage.Streams.IOutputStream)" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.SelectWithLine(Windows.Foundation.Point,Windows.Foundation.Point)" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.SelectWithPolyLine(Windows.Foundation.Collections.IIterable{Windows.Foundation.Point})" />
+        <element api="M:Windows.UI.Input.Inking.IInkStrokeContainer.UpdateRecognitionResults(Windows.Foundation.Collections.IVectorView{Windows.UI.Input.Inking.InkRecognitionResult})" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" />
+      </containers>
+      <file name="6242dd9f-78f1-9217-0084-1df32c60ca0f" />
+    </api>
+    <api id="Properties.T:Windows.UI.Input.Inking.IInkStrokeContainer">
+      <topicdata name="IInkStrokeContainer" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Input.Inking.IInkStrokeContainer" />
+      <apidata name="IInkStrokeContainer" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Input.Inking.IInkStrokeContainer.BoundingRect" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" />
+      </containers>
+      <file name="6b777d5a-e972-f671-dc55-b5f2b8c4b744" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.IInkStrokeContainer.AddStroke(Windows.UI.Input.Inking.InkStroke)">
+      <topicdata group="api" />
+      <apidata name="AddStroke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="stroke" in="true">
+          <type api="T:Windows.UI.Input.Inking.InkStroke" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+      </containers>
+      <file name="dd64c195-25b0-e10a-cf25-64bea4d3e451" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.IInkStrokeContainer.BoundingRect">
+      <topicdata group="api" />
+      <apidata name="BoundingRect" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_BoundingRect" />
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+      </containers>
+      <file name="69fcced9-6859-7caf-6a36-d7678057ebe9" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.IInkStrokeContainer.CanPasteFromClipboard">
+      <topicdata group="api" />
+      <apidata name="CanPasteFromClipboard" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+      </containers>
+      <file name="e8049c13-80f5-c96e-6421-f7524b56ec58" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.IInkStrokeContainer.CopySelectedToClipboard">
+      <topicdata group="api" />
+      <apidata name="CopySelectedToClipboard" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+      </containers>
+      <file name="14a9cae3-5df4-27bd-cc48-81b4af935877" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.IInkStrokeContainer.DeleteSelected">
+      <topicdata group="api" />
+      <apidata name="DeleteSelected" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+      </containers>
+      <file name="4d063388-95d1-a9f4-1ca6-8eea0d8eb21f" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.IInkStrokeContainer.GetRecognitionResults">
+      <topicdata group="api" />
+      <apidata name="GetRecognitionResults" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Input.Inking.InkRecognitionResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+      </containers>
+      <file name="d815f852-ac95-a32c-550e-9faef2ed49e8" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.IInkStrokeContainer.GetStrokes">
+      <topicdata group="api" />
+      <apidata name="GetStrokes" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Input.Inking.InkStroke" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+      </containers>
+      <file name="461268d4-9e3c-f3f7-1ba1-4601333ff930" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.IInkStrokeContainer.LoadAsync(Windows.Storage.Streams.IInputStream)">
+      <topicdata group="api" />
+      <apidata name="LoadAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="inputStream" in="true">
+          <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncActionWithProgress`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt64" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+      </containers>
+      <file name="98e21086-6568-dfe1-0e83-8ea9084a7190" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.IInkStrokeContainer.MoveSelected(Windows.Foundation.Point)">
+      <topicdata group="api" />
+      <apidata name="MoveSelected" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="translation" in="true">
+          <type api="T:Windows.Foundation.Point" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+      </containers>
+      <file name="3eb64911-d10c-9aa3-3e63-2562a660e9eb" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.IInkStrokeContainer.PasteFromClipboard(Windows.Foundation.Point)">
+      <topicdata group="api" />
+      <apidata name="PasteFromClipboard" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="position" in="true">
+          <type api="T:Windows.Foundation.Point" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+      </containers>
+      <file name="8c43001e-8c7d-e78a-7cc2-433c0dc61f8c" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.IInkStrokeContainer.SaveAsync(Windows.Storage.Streams.IOutputStream)">
+      <topicdata group="api" />
+      <apidata name="SaveAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="outputStream" in="true">
+          <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+      </containers>
+      <file name="f4625084-f799-db50-2a8f-cbf4fb90d35b" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.IInkStrokeContainer.SelectWithLine(Windows.Foundation.Point,Windows.Foundation.Point)">
+      <topicdata group="api" />
+      <apidata name="SelectWithLine" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="from" in="true">
+          <type api="T:Windows.Foundation.Point" ref="false" />
+        </parameter>
+        <parameter name="to" in="true">
+          <type api="T:Windows.Foundation.Point" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+      </containers>
+      <file name="268d4dc6-2932-8e08-eae7-2bfd814d96a6" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.IInkStrokeContainer.SelectWithPolyLine(Windows.Foundation.Collections.IIterable{Windows.Foundation.Point})">
+      <topicdata group="api" />
+      <apidata name="SelectWithPolyLine" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="polyline" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Foundation.Point" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+      </containers>
+      <file name="1563595f-0d33-91be-ffcd-b1fa5892ab4c" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.IInkStrokeContainer.UpdateRecognitionResults(Windows.Foundation.Collections.IVectorView{Windows.UI.Input.Inking.InkRecognitionResult})">
+      <topicdata group="api" />
+      <apidata name="UpdateRecognitionResults" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="recognitionResults" in="true">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.UI.Input.Inking.InkRecognitionResult" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+      </containers>
+      <file name="e48ec697-5a78-3914-1094-a9179205f0c5" />
+    </api>
+    <api id="T:Windows.UI.Input.Inking.InkDrawingAttributes">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Input.Inking.InkDrawingAttributes" />
+      <apidata name="InkDrawingAttributes" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Input.Inking.InkDrawingAttributes.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Input.Inking.IInkDrawingAttributes" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="None" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fd8b58b7-4a21-23d2-aad9-361a400f30bb" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Input.Inking.InkDrawingAttributes">
+      <topicdata name="InkDrawingAttributes" group="list" subgroup="members" typeTopicId="T:Windows.UI.Input.Inking.InkDrawingAttributes" />
+      <apidata name="InkDrawingAttributes" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Input.Inking.InkDrawingAttributes.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Input.Inking.InkDrawingAttributes.#ctor" />
+        <element api="P:Windows.UI.Input.Inking.InkDrawingAttributes.Color" />
+        <element api="P:Windows.UI.Input.Inking.InkDrawingAttributes.FitToCurve" />
+        <element api="P:Windows.UI.Input.Inking.InkDrawingAttributes.IgnorePressure" />
+        <element api="P:Windows.UI.Input.Inking.InkDrawingAttributes.PenTip" />
+        <element api="P:Windows.UI.Input.Inking.InkDrawingAttributes.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkDrawingAttributes" />
+      </containers>
+      <file name="7bafca13-670b-1aea-26c1-437b9b2f33a7" />
+    </api>
+    <api id="Methods.T:Windows.UI.Input.Inking.InkDrawingAttributes">
+      <topicdata name="InkDrawingAttributes" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Input.Inking.InkDrawingAttributes" />
+      <apidata name="InkDrawingAttributes" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Input.Inking.InkDrawingAttributes.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkDrawingAttributes" />
+      </containers>
+      <file name="8509b0cb-3de4-64e1-72ab-39dd6e7a5905" />
+    </api>
+    <api id="Properties.T:Windows.UI.Input.Inking.InkDrawingAttributes">
+      <topicdata name="InkDrawingAttributes" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Input.Inking.InkDrawingAttributes" />
+      <apidata name="InkDrawingAttributes" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Input.Inking.InkDrawingAttributes.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.Input.Inking.InkDrawingAttributes.Color" />
+        <element api="P:Windows.UI.Input.Inking.InkDrawingAttributes.FitToCurve" />
+        <element api="P:Windows.UI.Input.Inking.InkDrawingAttributes.IgnorePressure" />
+        <element api="P:Windows.UI.Input.Inking.InkDrawingAttributes.PenTip" />
+        <element api="P:Windows.UI.Input.Inking.InkDrawingAttributes.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkDrawingAttributes" />
+      </containers>
+      <file name="ab241f76-4b88-a896-7d23-e873f90f8037" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkDrawingAttributes.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkDrawingAttributes" ref="true" />
+      </containers>
+      <file name="110c0506-b4e2-bab2-f307-6b58f9e49e85" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkDrawingAttributes.Color">
+      <topicdata group="api" />
+      <apidata name="Color" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Color" />
+      <setter name="set_Color" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkDrawingAttributes" ref="true" />
+      </containers>
+      <file name="7186436d-1f29-9c9e-63c1-e0ce42099e4e" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkDrawingAttributes.FitToCurve">
+      <topicdata group="api" />
+      <apidata name="FitToCurve" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_FitToCurve" />
+      <setter name="set_FitToCurve" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkDrawingAttributes" ref="true" />
+      </containers>
+      <file name="81dc7f1c-21b5-5a87-b770-19163a3a9204" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkDrawingAttributes.IgnorePressure">
+      <topicdata group="api" />
+      <apidata name="IgnorePressure" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IgnorePressure" />
+      <setter name="set_IgnorePressure" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkDrawingAttributes" ref="true" />
+      </containers>
+      <file name="502b1f02-1be1-9dec-821a-1fd59e6c48fb" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkDrawingAttributes.PenTip">
+      <topicdata group="api" />
+      <apidata name="PenTip" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PenTip" />
+      <setter name="set_PenTip" />
+      <returns>
+        <type api="T:Windows.UI.Input.Inking.PenTipShape" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkDrawingAttributes" ref="true" />
+      </containers>
+      <file name="47d0fdb5-94fe-b2e7-1e35-b638571f3b81" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkDrawingAttributes.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Size" />
+      <setter name="set_Size" />
+      <returns>
+        <type api="T:Windows.Foundation.Size" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkDrawingAttributes" ref="true" />
+      </containers>
+      <file name="fbdbda01-15b9-97fe-7769-43571787bd10" />
+    </api>
+    <api id="T:Windows.UI.Input.Inking.InkManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Input.Inking.InkManager" />
+      <apidata name="InkManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Input.Inking.InkManager.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Input.Inking.IInkManager" ref="true" />
+        <type api="T:Windows.UI.Input.Inking.IInkRecognizerContainer" ref="true" />
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="None" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6912d65a-2735-332c-3591-2570d8ae3f48" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Input.Inking.InkManager">
+      <topicdata name="InkManager" group="list" subgroup="members" typeTopicId="T:Windows.UI.Input.Inking.InkManager" />
+      <apidata name="InkManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Input.Inking.InkManager.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.#ctor" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.AddStroke(Windows.UI.Input.Inking.InkStroke)" />
+        <element api="P:Windows.UI.Input.Inking.InkManager.BoundingRect" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.CanPasteFromClipboard" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.CopySelectedToClipboard" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.DeleteSelected" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.GetRecognitionResults" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.GetRecognizers" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.GetStrokes" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.LoadAsync(Windows.Storage.Streams.IInputStream)" />
+        <element api="P:Windows.UI.Input.Inking.InkManager.Mode" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.MoveSelected(Windows.Foundation.Point)" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.PasteFromClipboard(Windows.Foundation.Point)" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.ProcessPointerDown(Windows.UI.Input.PointerPoint)" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.ProcessPointerUp(Windows.UI.Input.PointerPoint)" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.ProcessPointerUpdate(Windows.UI.Input.PointerPoint)" />
+        <element api="Overload:Windows.UI.Input.Inking.InkManager.RecognizeAsync">
+          <element api="M:Windows.UI.Input.Inking.InkManager.RecognizeAsync(Windows.UI.Input.Inking.InkRecognitionTarget)" />
+          <element api="M:Windows.UI.Input.Inking.InkManager.RecognizeAsync(Windows.UI.Input.Inking.InkStrokeContainer,Windows.UI.Input.Inking.InkRecognitionTarget)" />
+        </element>
+        <element api="M:Windows.UI.Input.Inking.InkManager.SaveAsync(Windows.Storage.Streams.IOutputStream)" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.SelectWithLine(Windows.Foundation.Point,Windows.Foundation.Point)" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.SelectWithPolyLine(Windows.Foundation.Collections.IIterable{Windows.Foundation.Point})" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.SetDefaultDrawingAttributes(Windows.UI.Input.Inking.InkDrawingAttributes)" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.SetDefaultRecognizer(Windows.UI.Input.Inking.InkRecognizer)" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.UpdateRecognitionResults(Windows.Foundation.Collections.IVectorView{Windows.UI.Input.Inking.InkRecognitionResult})" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" />
+      </containers>
+      <file name="a1073c25-2d71-480a-92ec-deef2cac0615" />
+    </api>
+    <api id="Methods.T:Windows.UI.Input.Inking.InkManager">
+      <topicdata name="InkManager" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Input.Inking.InkManager" />
+      <apidata name="InkManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Input.Inking.InkManager.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.AddStroke(Windows.UI.Input.Inking.InkStroke)" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.CanPasteFromClipboard" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.CopySelectedToClipboard" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.DeleteSelected" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.GetRecognitionResults" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.GetRecognizers" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.GetStrokes" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.LoadAsync(Windows.Storage.Streams.IInputStream)" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.MoveSelected(Windows.Foundation.Point)" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.PasteFromClipboard(Windows.Foundation.Point)" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.ProcessPointerDown(Windows.UI.Input.PointerPoint)" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.ProcessPointerUp(Windows.UI.Input.PointerPoint)" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.ProcessPointerUpdate(Windows.UI.Input.PointerPoint)" />
+        <element api="Overload:Windows.UI.Input.Inking.InkManager.RecognizeAsync">
+          <element api="M:Windows.UI.Input.Inking.InkManager.RecognizeAsync(Windows.UI.Input.Inking.InkRecognitionTarget)" />
+          <element api="M:Windows.UI.Input.Inking.InkManager.RecognizeAsync(Windows.UI.Input.Inking.InkStrokeContainer,Windows.UI.Input.Inking.InkRecognitionTarget)" />
+        </element>
+        <element api="M:Windows.UI.Input.Inking.InkManager.SaveAsync(Windows.Storage.Streams.IOutputStream)" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.SelectWithLine(Windows.Foundation.Point,Windows.Foundation.Point)" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.SelectWithPolyLine(Windows.Foundation.Collections.IIterable{Windows.Foundation.Point})" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.SetDefaultDrawingAttributes(Windows.UI.Input.Inking.InkDrawingAttributes)" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.SetDefaultRecognizer(Windows.UI.Input.Inking.InkRecognizer)" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.UpdateRecognitionResults(Windows.Foundation.Collections.IVectorView{Windows.UI.Input.Inking.InkRecognitionResult})" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" />
+      </containers>
+      <file name="1cb40da4-929f-af1f-37f5-dd5fe0cde7c4" />
+    </api>
+    <api id="Properties.T:Windows.UI.Input.Inking.InkManager">
+      <topicdata name="InkManager" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Input.Inking.InkManager" />
+      <apidata name="InkManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Input.Inking.InkManager.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.Input.Inking.InkManager.BoundingRect" />
+        <element api="P:Windows.UI.Input.Inking.InkManager.Mode" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" />
+      </containers>
+      <file name="29a4a08e-6f9a-17ad-19e0-e8845a0d88a5" />
+    </api>
+    <api id="Overload:Windows.UI.Input.Inking.InkManager.RecognizeAsync">
+      <topicdata name="RecognizeAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.UI.Input.Inking.InkManager" />
+      <apidata name="RecognizeAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.UI.Input.Inking.InkManager.RecognizeAsync(Windows.UI.Input.Inking.InkRecognitionTarget)" />
+        <element api="M:Windows.UI.Input.Inking.InkManager.RecognizeAsync(Windows.UI.Input.Inking.InkStrokeContainer,Windows.UI.Input.Inking.InkRecognitionTarget)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="fce935a3-adff-5573-6959-c9a5740b5d35" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="4023ffec-8efa-890f-326c-b0b4d82aa1ab" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.AddStroke(Windows.UI.Input.Inking.InkStroke)">
+      <topicdata group="api" />
+      <apidata name="AddStroke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="stroke" in="true">
+          <type api="T:Windows.UI.Input.Inking.InkStroke" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.AddStroke(Windows.UI.Input.Inking.InkStroke)">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="e680c222-c2d7-910e-2674-4994df54d05b" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkManager.BoundingRect">
+      <topicdata group="api" />
+      <apidata name="BoundingRect" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_BoundingRect" />
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Input.Inking.IInkStrokeContainer.BoundingRect">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="553da70a-7fed-008e-2dcd-9e4a8a1b9165" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.CanPasteFromClipboard">
+      <topicdata group="api" />
+      <apidata name="CanPasteFromClipboard" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.CanPasteFromClipboard">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="0b670d1a-e703-b92a-9291-0bed82064272" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.CopySelectedToClipboard">
+      <topicdata group="api" />
+      <apidata name="CopySelectedToClipboard" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.CopySelectedToClipboard">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="61a2f3c8-ac38-970d-e64b-7ca8e0175462" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.DeleteSelected">
+      <topicdata group="api" />
+      <apidata name="DeleteSelected" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.DeleteSelected">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="9f3b6990-79e1-dc37-57b2-c16ac6a8714c" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.GetRecognitionResults">
+      <topicdata group="api" />
+      <apidata name="GetRecognitionResults" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Input.Inking.InkRecognitionResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.GetRecognitionResults">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="2da54b26-55f0-96b0-26b4-236f1ce82119" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.GetRecognizers">
+      <topicdata group="api" />
+      <apidata name="GetRecognizers" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Input.Inking.InkRecognizer" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkRecognizerContainer.GetRecognizers">
+          <type api="T:Windows.UI.Input.Inking.IInkRecognizerContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="e3f0d840-7f14-27fd-eae1-a9239d1d1243" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.GetStrokes">
+      <topicdata group="api" />
+      <apidata name="GetStrokes" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Input.Inking.InkStroke" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.GetStrokes">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="012935eb-15ef-2971-3bcc-a04496d89153" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.LoadAsync(Windows.Storage.Streams.IInputStream)">
+      <topicdata group="api" />
+      <apidata name="LoadAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="inputStream" in="true">
+          <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncActionWithProgress`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt64" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.LoadAsync(Windows.Storage.Streams.IInputStream)">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="51d10cab-7d77-55e8-5c8b-e5db84063caa" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkManager.Mode">
+      <topicdata group="api" />
+      <apidata name="Mode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Mode" />
+      <setter name="set_Mode" />
+      <returns>
+        <type api="T:Windows.UI.Input.Inking.InkManipulationMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="f43dc473-a4a5-ff53-d840-f4141705ab58" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.MoveSelected(Windows.Foundation.Point)">
+      <topicdata group="api" />
+      <apidata name="MoveSelected" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="translation" in="true">
+          <type api="T:Windows.Foundation.Point" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.MoveSelected(Windows.Foundation.Point)">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="0f85f70a-589e-9cdf-cdb6-7773f7702ba2" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.PasteFromClipboard(Windows.Foundation.Point)">
+      <topicdata group="api" />
+      <apidata name="PasteFromClipboard" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="position" in="true">
+          <type api="T:Windows.Foundation.Point" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.PasteFromClipboard(Windows.Foundation.Point)">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="feb86918-81e5-5645-ee32-64fb5c16fa12" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.ProcessPointerDown(Windows.UI.Input.PointerPoint)">
+      <topicdata group="api" />
+      <apidata name="ProcessPointerDown" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="pointerPoint" in="true">
+          <type api="T:Windows.UI.Input.PointerPoint" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="67e1311f-d993-658c-3140-8627021ace94" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.ProcessPointerUp(Windows.UI.Input.PointerPoint)">
+      <topicdata group="api" />
+      <apidata name="ProcessPointerUp" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="pointerPoint" in="true">
+          <type api="T:Windows.UI.Input.PointerPoint" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="021adabd-6471-ba4c-eb02-32ed98ff7d54" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.ProcessPointerUpdate(Windows.UI.Input.PointerPoint)">
+      <topicdata group="api" />
+      <apidata name="ProcessPointerUpdate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="pointerPoint" in="true">
+          <type api="T:Windows.UI.Input.PointerPoint" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="6beafcd3-ca7e-05b2-ed6e-2b14edd57abc" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.RecognizeAsync(Windows.UI.Input.Inking.InkRecognitionTarget)">
+      <topicdata group="api" />
+      <apidata name="RecognizeAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.UI.Input.Inking.InkManager.RecognizeAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="recognitionTarget" in="true">
+          <type api="T:Windows.UI.Input.Inking.InkRecognitionTarget" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.UI.Input.Inking.InkRecognitionResult" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RecognizeAsync2</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="82b9b416-73f7-77e6-d188-59c33f2f0f26" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.RecognizeAsync(Windows.UI.Input.Inking.InkStrokeContainer,Windows.UI.Input.Inking.InkRecognitionTarget)">
+      <topicdata group="api" />
+      <apidata name="RecognizeAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.UI.Input.Inking.InkManager.RecognizeAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="strokeCollection" in="true">
+          <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" ref="true" />
+        </parameter>
+        <parameter name="recognitionTarget" in="true">
+          <type api="T:Windows.UI.Input.Inking.InkRecognitionTarget" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.UI.Input.Inking.InkRecognitionResult" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkRecognizerContainer.RecognizeAsync(Windows.UI.Input.Inking.InkStrokeContainer,Windows.UI.Input.Inking.InkRecognitionTarget)">
+          <type api="T:Windows.UI.Input.Inking.IInkRecognizerContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="e47aac44-ab1b-1fe4-11ba-6c09710a5c03" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.SaveAsync(Windows.Storage.Streams.IOutputStream)">
+      <topicdata group="api" />
+      <apidata name="SaveAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="outputStream" in="true">
+          <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.SaveAsync(Windows.Storage.Streams.IOutputStream)">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="30b869ec-3b25-84d4-4ceb-1e93c6da23c3" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.SelectWithLine(Windows.Foundation.Point,Windows.Foundation.Point)">
+      <topicdata group="api" />
+      <apidata name="SelectWithLine" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="from" in="true">
+          <type api="T:Windows.Foundation.Point" ref="false" />
+        </parameter>
+        <parameter name="to" in="true">
+          <type api="T:Windows.Foundation.Point" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.SelectWithLine(Windows.Foundation.Point,Windows.Foundation.Point)">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="ff8f77de-324d-7784-eef9-eeb0aa5e3b30" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.SelectWithPolyLine(Windows.Foundation.Collections.IIterable{Windows.Foundation.Point})">
+      <topicdata group="api" />
+      <apidata name="SelectWithPolyLine" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="polyline" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Foundation.Point" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.SelectWithPolyLine(Windows.Foundation.Collections.IIterable{Windows.Foundation.Point})">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="8441fec7-b79a-4d18-a96f-2dc4242cc656" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.SetDefaultDrawingAttributes(Windows.UI.Input.Inking.InkDrawingAttributes)">
+      <topicdata group="api" />
+      <apidata name="SetDefaultDrawingAttributes" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="drawingAttributes" in="true">
+          <type api="T:Windows.UI.Input.Inking.InkDrawingAttributes" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="1bf00e25-f620-0daa-9647-4827230187cc" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.SetDefaultRecognizer(Windows.UI.Input.Inking.InkRecognizer)">
+      <topicdata group="api" />
+      <apidata name="SetDefaultRecognizer" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="recognizer" in="true">
+          <type api="T:Windows.UI.Input.Inking.InkRecognizer" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkRecognizerContainer.SetDefaultRecognizer(Windows.UI.Input.Inking.InkRecognizer)">
+          <type api="T:Windows.UI.Input.Inking.IInkRecognizerContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="8d5424a5-ea08-7e42-0cd3-b9720afe6cfc" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkManager.UpdateRecognitionResults(Windows.Foundation.Collections.IVectorView{Windows.UI.Input.Inking.InkRecognitionResult})">
+      <topicdata group="api" />
+      <apidata name="UpdateRecognitionResults" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="recognitionResults" in="true">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.UI.Input.Inking.InkRecognitionResult" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.UpdateRecognitionResults(Windows.Foundation.Collections.IVectorView{Windows.UI.Input.Inking.InkRecognitionResult})">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManager" ref="true" />
+      </containers>
+      <file name="d00c1da3-52cc-e317-04f6-a9ee50aeff52" />
+    </api>
+    <api id="T:Windows.UI.Input.Inking.InkManipulationMode">
+      <topicdata group="api" />
+      <apidata name="InkManipulationMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.Input.Inking.InkManipulationMode.Inking" />
+        <element api="F:Windows.UI.Input.Inking.InkManipulationMode.Erasing" />
+        <element api="F:Windows.UI.Input.Inking.InkManipulationMode.Selecting" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9b3ac2fe-a130-c4d4-06f3-6694f8a702f0" />
+    </api>
+    <api id="F:Windows.UI.Input.Inking.InkManipulationMode.Erasing">
+      <topicdata group="api" notopic="" />
+      <apidata name="Erasing" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Input.Inking.InkManipulationMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManipulationMode" ref="false" />
+      </containers>
+      <file name="e5c2cecf-4082-8edc-3877-117d9ec626c8" />
+    </api>
+    <api id="F:Windows.UI.Input.Inking.InkManipulationMode.Inking">
+      <topicdata group="api" notopic="" />
+      <apidata name="Inking" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Input.Inking.InkManipulationMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManipulationMode" ref="false" />
+      </containers>
+      <file name="263035b2-0e8c-60a6-6b9f-bff2ba80104f" />
+    </api>
+    <api id="F:Windows.UI.Input.Inking.InkManipulationMode.Selecting">
+      <topicdata group="api" notopic="" />
+      <apidata name="Selecting" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Input.Inking.InkManipulationMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkManipulationMode" ref="false" />
+      </containers>
+      <file name="f97c417a-13fe-1845-1c43-bff6d250d9eb" />
+    </api>
+    <api id="T:Windows.UI.Input.Inking.InkRecognitionResult">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Input.Inking.InkRecognitionResult" />
+      <apidata name="InkRecognitionResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Input.Inking.IInkRecognitionResult" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="None" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f7539638-edcd-d405-86af-950545c08988" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Input.Inking.InkRecognitionResult">
+      <topicdata name="InkRecognitionResult" group="list" subgroup="members" typeTopicId="T:Windows.UI.Input.Inking.InkRecognitionResult" />
+      <apidata name="InkRecognitionResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.UI.Input.Inking.InkRecognitionResult.BoundingRect" />
+        <element api="M:Windows.UI.Input.Inking.InkRecognitionResult.GetStrokes" />
+        <element api="M:Windows.UI.Input.Inking.InkRecognitionResult.GetTextCandidates" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkRecognitionResult" />
+      </containers>
+      <file name="4955441a-a753-59c9-72f8-a72d4e3454d0" />
+    </api>
+    <api id="Methods.T:Windows.UI.Input.Inking.InkRecognitionResult">
+      <topicdata name="InkRecognitionResult" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Input.Inking.InkRecognitionResult" />
+      <apidata name="InkRecognitionResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Input.Inking.InkRecognitionResult.GetStrokes" />
+        <element api="M:Windows.UI.Input.Inking.InkRecognitionResult.GetTextCandidates" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkRecognitionResult" />
+      </containers>
+      <file name="fd627b77-cdd5-b4d0-78d9-fa280bfec69c" />
+    </api>
+    <api id="Properties.T:Windows.UI.Input.Inking.InkRecognitionResult">
+      <topicdata name="InkRecognitionResult" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Input.Inking.InkRecognitionResult" />
+      <apidata name="InkRecognitionResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Input.Inking.InkRecognitionResult.BoundingRect" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkRecognitionResult" />
+      </containers>
+      <file name="2c8110bd-50e3-c24a-df21-6bdf3044b5b3" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkRecognitionResult.BoundingRect">
+      <topicdata group="api" />
+      <apidata name="BoundingRect" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_BoundingRect" />
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkRecognitionResult" ref="true" />
+      </containers>
+      <file name="66ae2961-5781-7e51-c605-92c8ce3964cd" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkRecognitionResult.GetStrokes">
+      <topicdata group="api" />
+      <apidata name="GetStrokes" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Input.Inking.InkStroke" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkRecognitionResult" ref="true" />
+      </containers>
+      <file name="c60f2419-f9ba-5615-6d46-e2513f54a8da" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkRecognitionResult.GetTextCandidates">
+      <topicdata group="api" />
+      <apidata name="GetTextCandidates" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkRecognitionResult" ref="true" />
+      </containers>
+      <file name="545972d3-ee48-1883-3974-788450b985bd" />
+    </api>
+    <api id="T:Windows.UI.Input.Inking.InkRecognitionTarget">
+      <topicdata group="api" />
+      <apidata name="InkRecognitionTarget" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.Input.Inking.InkRecognitionTarget.All" />
+        <element api="F:Windows.UI.Input.Inking.InkRecognitionTarget.Selected" />
+        <element api="F:Windows.UI.Input.Inking.InkRecognitionTarget.Recent" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fb91e264-6c4f-7b3b-15f5-0f23d3aa17b3" />
+    </api>
+    <api id="F:Windows.UI.Input.Inking.InkRecognitionTarget.All">
+      <topicdata group="api" notopic="" />
+      <apidata name="All" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Input.Inking.InkRecognitionTarget" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkRecognitionTarget" ref="false" />
+      </containers>
+      <file name="d61f0884-2b1c-46ff-c83b-8722a801f2c6" />
+    </api>
+    <api id="F:Windows.UI.Input.Inking.InkRecognitionTarget.Recent">
+      <topicdata group="api" notopic="" />
+      <apidata name="Recent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Input.Inking.InkRecognitionTarget" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkRecognitionTarget" ref="false" />
+      </containers>
+      <file name="6656f7e1-7e4c-b137-9958-fe2c568c46a9" />
+    </api>
+    <api id="F:Windows.UI.Input.Inking.InkRecognitionTarget.Selected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Selected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Input.Inking.InkRecognitionTarget" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkRecognitionTarget" ref="false" />
+      </containers>
+      <file name="a065915f-677c-0033-3f6f-0ba068b4753e" />
+    </api>
+    <api id="T:Windows.UI.Input.Inking.InkRecognizer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Input.Inking.InkRecognizer" />
+      <apidata name="InkRecognizer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Input.Inking.IInkRecognizer" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="None" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="6fc1bbbf-aec0-3215-2079-4915f7e78d7b" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Input.Inking.InkRecognizer">
+      <topicdata name="InkRecognizer" group="list" subgroup="members" typeTopicId="T:Windows.UI.Input.Inking.InkRecognizer" />
+      <apidata name="InkRecognizer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.UI.Input.Inking.InkRecognizer.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkRecognizer" />
+      </containers>
+      <file name="cce3292f-a793-9e55-4fb5-a2debb7d4dbb" />
+    </api>
+    <api id="Methods.T:Windows.UI.Input.Inking.InkRecognizer">
+      <topicdata name="InkRecognizer" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Input.Inking.InkRecognizer" />
+      <apidata name="InkRecognizer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkRecognizer" />
+      </containers>
+      <file name="d4573066-77cd-ce8e-bbf2-7036a601fba7" />
+    </api>
+    <api id="Properties.T:Windows.UI.Input.Inking.InkRecognizer">
+      <topicdata name="InkRecognizer" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Input.Inking.InkRecognizer" />
+      <apidata name="InkRecognizer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Input.Inking.InkRecognizer.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkRecognizer" />
+      </containers>
+      <file name="a09924ba-2b19-c33c-b6e4-bd647736fd60" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkRecognizer.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkRecognizer" ref="true" />
+      </containers>
+      <file name="fc382e40-1db8-11d8-1a47-7825ab178416" />
+    </api>
+    <api id="T:Windows.UI.Input.Inking.InkRecognizerContainer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Input.Inking.InkRecognizerContainer" />
+      <apidata name="InkRecognizerContainer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Input.Inking.InkRecognizerContainer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Input.Inking.IInkRecognizerContainer" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="None" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="703dd06e-5894-f837-69b2-bfac77965666" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Input.Inking.InkRecognizerContainer">
+      <topicdata name="InkRecognizerContainer" group="list" subgroup="members" typeTopicId="T:Windows.UI.Input.Inking.InkRecognizerContainer" />
+      <apidata name="InkRecognizerContainer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Input.Inking.InkRecognizerContainer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Input.Inking.InkRecognizerContainer.#ctor" />
+        <element api="M:Windows.UI.Input.Inking.InkRecognizerContainer.GetRecognizers" />
+        <element api="M:Windows.UI.Input.Inking.InkRecognizerContainer.RecognizeAsync(Windows.UI.Input.Inking.InkStrokeContainer,Windows.UI.Input.Inking.InkRecognitionTarget)" />
+        <element api="M:Windows.UI.Input.Inking.InkRecognizerContainer.SetDefaultRecognizer(Windows.UI.Input.Inking.InkRecognizer)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkRecognizerContainer" />
+      </containers>
+      <file name="07b87ed5-961c-0cdd-5628-baff2fc8ebfb" />
+    </api>
+    <api id="Methods.T:Windows.UI.Input.Inking.InkRecognizerContainer">
+      <topicdata name="InkRecognizerContainer" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Input.Inking.InkRecognizerContainer" />
+      <apidata name="InkRecognizerContainer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Input.Inking.InkRecognizerContainer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Input.Inking.InkRecognizerContainer.GetRecognizers" />
+        <element api="M:Windows.UI.Input.Inking.InkRecognizerContainer.RecognizeAsync(Windows.UI.Input.Inking.InkStrokeContainer,Windows.UI.Input.Inking.InkRecognitionTarget)" />
+        <element api="M:Windows.UI.Input.Inking.InkRecognizerContainer.SetDefaultRecognizer(Windows.UI.Input.Inking.InkRecognizer)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkRecognizerContainer" />
+      </containers>
+      <file name="9677bbf5-d62c-3d12-590a-84d257c70925" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkRecognizerContainer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkRecognizerContainer" ref="true" />
+      </containers>
+      <file name="e25b80e7-0b5f-7432-fc12-07a62b9eab6f" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkRecognizerContainer.GetRecognizers">
+      <topicdata group="api" />
+      <apidata name="GetRecognizers" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Input.Inking.InkRecognizer" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkRecognizerContainer.GetRecognizers">
+          <type api="T:Windows.UI.Input.Inking.IInkRecognizerContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkRecognizerContainer" ref="true" />
+      </containers>
+      <file name="4cb4587c-6a00-12af-b9ad-1cfccbd19c6c" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkRecognizerContainer.RecognizeAsync(Windows.UI.Input.Inking.InkStrokeContainer,Windows.UI.Input.Inking.InkRecognitionTarget)">
+      <topicdata group="api" />
+      <apidata name="RecognizeAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="strokeCollection" in="true">
+          <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" ref="true" />
+        </parameter>
+        <parameter name="recognitionTarget" in="true">
+          <type api="T:Windows.UI.Input.Inking.InkRecognitionTarget" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.UI.Input.Inking.InkRecognitionResult" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkRecognizerContainer.RecognizeAsync(Windows.UI.Input.Inking.InkStrokeContainer,Windows.UI.Input.Inking.InkRecognitionTarget)">
+          <type api="T:Windows.UI.Input.Inking.IInkRecognizerContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkRecognizerContainer" ref="true" />
+      </containers>
+      <file name="a9c17639-c3aa-d542-19b6-a26bb584bf3c" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkRecognizerContainer.SetDefaultRecognizer(Windows.UI.Input.Inking.InkRecognizer)">
+      <topicdata group="api" />
+      <apidata name="SetDefaultRecognizer" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="recognizer" in="true">
+          <type api="T:Windows.UI.Input.Inking.InkRecognizer" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkRecognizerContainer.SetDefaultRecognizer(Windows.UI.Input.Inking.InkRecognizer)">
+          <type api="T:Windows.UI.Input.Inking.IInkRecognizerContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkRecognizerContainer" ref="true" />
+      </containers>
+      <file name="37e367fb-a24f-5373-5ce7-776df60cfb93" />
+    </api>
+    <api id="T:Windows.UI.Input.Inking.InkStroke">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Input.Inking.InkStroke" />
+      <apidata name="InkStroke" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Input.Inking.IInkStroke" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="None" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="14721c8f-946c-561a-a9f9-c6a1cd569beb" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Input.Inking.InkStroke">
+      <topicdata name="InkStroke" group="list" subgroup="members" typeTopicId="T:Windows.UI.Input.Inking.InkStroke" />
+      <apidata name="InkStroke" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.UI.Input.Inking.InkStroke.BoundingRect" />
+        <element api="M:Windows.UI.Input.Inking.InkStroke.Clone" />
+        <element api="P:Windows.UI.Input.Inking.InkStroke.DrawingAttributes" />
+        <element api="M:Windows.UI.Input.Inking.InkStroke.GetRenderingSegments" />
+        <element api="P:Windows.UI.Input.Inking.InkStroke.Recognized" />
+        <element api="P:Windows.UI.Input.Inking.InkStroke.Selected" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStroke" />
+      </containers>
+      <file name="eb0bbdf3-c43d-0d64-baa3-aa9509d09963" />
+    </api>
+    <api id="Methods.T:Windows.UI.Input.Inking.InkStroke">
+      <topicdata name="InkStroke" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Input.Inking.InkStroke" />
+      <apidata name="InkStroke" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Input.Inking.InkStroke.Clone" />
+        <element api="M:Windows.UI.Input.Inking.InkStroke.GetRenderingSegments" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStroke" />
+      </containers>
+      <file name="f878445d-09e3-3a16-dc48-ca21c3c85b29" />
+    </api>
+    <api id="Properties.T:Windows.UI.Input.Inking.InkStroke">
+      <topicdata name="InkStroke" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Input.Inking.InkStroke" />
+      <apidata name="InkStroke" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Input.Inking.InkStroke.BoundingRect" />
+        <element api="P:Windows.UI.Input.Inking.InkStroke.DrawingAttributes" />
+        <element api="P:Windows.UI.Input.Inking.InkStroke.Recognized" />
+        <element api="P:Windows.UI.Input.Inking.InkStroke.Selected" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStroke" />
+      </containers>
+      <file name="5cf0cbb8-e657-b471-55b5-92495c26ec9a" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkStroke.BoundingRect">
+      <topicdata group="api" />
+      <apidata name="BoundingRect" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_BoundingRect" />
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStroke" ref="true" />
+      </containers>
+      <file name="422a3df6-19c7-6451-6d12-866dc4125a10" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStroke.Clone">
+      <topicdata group="api" />
+      <apidata name="Clone" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.UI.Input.Inking.InkStroke" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStroke" ref="true" />
+      </containers>
+      <file name="f4c38de1-fc8d-1256-5cf4-28f22a58f6d6" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkStroke.DrawingAttributes">
+      <topicdata group="api" />
+      <apidata name="DrawingAttributes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DrawingAttributes" />
+      <setter name="set_DrawingAttributes" />
+      <returns>
+        <type api="T:Windows.UI.Input.Inking.InkDrawingAttributes" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStroke" ref="true" />
+      </containers>
+      <file name="db89d9b5-4f70-2967-f038-b35a75f37330" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStroke.GetRenderingSegments">
+      <topicdata group="api" />
+      <apidata name="GetRenderingSegments" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Input.Inking.InkStrokeRenderingSegment" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStroke" ref="true" />
+      </containers>
+      <file name="a8333718-8f6b-eb0b-f61e-fd944dfdefc0" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkStroke.Recognized">
+      <topicdata group="api" />
+      <apidata name="Recognized" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Recognized" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStroke" ref="true" />
+      </containers>
+      <file name="fe4fcaab-c6fb-ba1b-ed24-b02611ac2137" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkStroke.Selected">
+      <topicdata group="api" />
+      <apidata name="Selected" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Selected" />
+      <setter name="set_Selected" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStroke" ref="true" />
+      </containers>
+      <file name="343f905b-b77a-7fad-282f-75d5f9cf40cb" />
+    </api>
+    <api id="T:Windows.UI.Input.Inking.InkStrokeBuilder">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Input.Inking.InkStrokeBuilder" />
+      <apidata name="InkStrokeBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Input.Inking.InkStrokeBuilder.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeBuilder" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="None" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d8f7d382-304a-baf1-6198-34f64c6ee928" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Input.Inking.InkStrokeBuilder">
+      <topicdata name="InkStrokeBuilder" group="list" subgroup="members" typeTopicId="T:Windows.UI.Input.Inking.InkStrokeBuilder" />
+      <apidata name="InkStrokeBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Input.Inking.InkStrokeBuilder.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeBuilder.#ctor" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeBuilder.AppendToStroke(Windows.UI.Input.PointerPoint)" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeBuilder.BeginStroke(Windows.UI.Input.PointerPoint)" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeBuilder.CreateStroke(Windows.Foundation.Collections.IIterable{Windows.Foundation.Point})" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeBuilder.EndStroke(Windows.UI.Input.PointerPoint)" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeBuilder.SetDefaultDrawingAttributes(Windows.UI.Input.Inking.InkDrawingAttributes)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeBuilder" />
+      </containers>
+      <file name="e40852c1-4fc6-f565-306b-5bbf07e3f400" />
+    </api>
+    <api id="Methods.T:Windows.UI.Input.Inking.InkStrokeBuilder">
+      <topicdata name="InkStrokeBuilder" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Input.Inking.InkStrokeBuilder" />
+      <apidata name="InkStrokeBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Input.Inking.InkStrokeBuilder.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeBuilder.AppendToStroke(Windows.UI.Input.PointerPoint)" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeBuilder.BeginStroke(Windows.UI.Input.PointerPoint)" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeBuilder.CreateStroke(Windows.Foundation.Collections.IIterable{Windows.Foundation.Point})" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeBuilder.EndStroke(Windows.UI.Input.PointerPoint)" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeBuilder.SetDefaultDrawingAttributes(Windows.UI.Input.Inking.InkDrawingAttributes)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeBuilder" />
+      </containers>
+      <file name="9b79f307-0c27-0ac4-238a-b7ff474322d6" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeBuilder.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeBuilder" ref="true" />
+      </containers>
+      <file name="fa695375-c96d-c1b2-5255-f21e64a085a3" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeBuilder.AppendToStroke(Windows.UI.Input.PointerPoint)">
+      <topicdata group="api" />
+      <apidata name="AppendToStroke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="pointerPoint" in="true">
+          <type api="T:Windows.UI.Input.PointerPoint" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.UI.Input.PointerPoint" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeBuilder" ref="true" />
+      </containers>
+      <file name="4c104503-04e6-7578-14ef-a411f26f42c9" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeBuilder.BeginStroke(Windows.UI.Input.PointerPoint)">
+      <topicdata group="api" />
+      <apidata name="BeginStroke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="pointerPoint" in="true">
+          <type api="T:Windows.UI.Input.PointerPoint" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeBuilder" ref="true" />
+      </containers>
+      <file name="07ecf518-c6a2-5520-99b7-53a75f4d0f71" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeBuilder.CreateStroke(Windows.Foundation.Collections.IIterable{Windows.Foundation.Point})">
+      <topicdata group="api" />
+      <apidata name="CreateStroke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="points" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Foundation.Point" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.UI.Input.Inking.InkStroke" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeBuilder" ref="true" />
+      </containers>
+      <file name="9ecc3185-9127-e35b-cbbc-7657047e2fb7" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeBuilder.EndStroke(Windows.UI.Input.PointerPoint)">
+      <topicdata group="api" />
+      <apidata name="EndStroke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="pointerPoint" in="true">
+          <type api="T:Windows.UI.Input.PointerPoint" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.UI.Input.Inking.InkStroke" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeBuilder" ref="true" />
+      </containers>
+      <file name="f1f8dc74-f3b5-964c-7b45-13fcb8e52868" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeBuilder.SetDefaultDrawingAttributes(Windows.UI.Input.Inking.InkDrawingAttributes)">
+      <topicdata group="api" />
+      <apidata name="SetDefaultDrawingAttributes" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="drawingAttributes" in="true">
+          <type api="T:Windows.UI.Input.Inking.InkDrawingAttributes" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeBuilder" ref="true" />
+      </containers>
+      <file name="004b6ac9-bf32-742b-a08a-e9fdf7113f3e" />
+    </api>
+    <api id="T:Windows.UI.Input.Inking.InkStrokeContainer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Input.Inking.InkStrokeContainer" />
+      <apidata name="InkStrokeContainer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Input.Inking.InkStrokeContainer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="None" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7d86411d-f733-6d9e-d39e-4e74a210317c" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Input.Inking.InkStrokeContainer">
+      <topicdata name="InkStrokeContainer" group="list" subgroup="members" typeTopicId="T:Windows.UI.Input.Inking.InkStrokeContainer" />
+      <apidata name="InkStrokeContainer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Input.Inking.InkStrokeContainer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.#ctor" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.AddStroke(Windows.UI.Input.Inking.InkStroke)" />
+        <element api="P:Windows.UI.Input.Inking.InkStrokeContainer.BoundingRect" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.CanPasteFromClipboard" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.CopySelectedToClipboard" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.DeleteSelected" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.GetRecognitionResults" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.GetStrokes" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.LoadAsync(Windows.Storage.Streams.IInputStream)" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.MoveSelected(Windows.Foundation.Point)" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.PasteFromClipboard(Windows.Foundation.Point)" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.SaveAsync(Windows.Storage.Streams.IOutputStream)" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.SelectWithLine(Windows.Foundation.Point,Windows.Foundation.Point)" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.SelectWithPolyLine(Windows.Foundation.Collections.IIterable{Windows.Foundation.Point})" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.UpdateRecognitionResults(Windows.Foundation.Collections.IVectorView{Windows.UI.Input.Inking.InkRecognitionResult})" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" />
+      </containers>
+      <file name="f78bea2d-0bdb-c610-c6af-84d4928e95b3" />
+    </api>
+    <api id="Methods.T:Windows.UI.Input.Inking.InkStrokeContainer">
+      <topicdata name="InkStrokeContainer" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Input.Inking.InkStrokeContainer" />
+      <apidata name="InkStrokeContainer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Input.Inking.InkStrokeContainer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.AddStroke(Windows.UI.Input.Inking.InkStroke)" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.CanPasteFromClipboard" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.CopySelectedToClipboard" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.DeleteSelected" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.GetRecognitionResults" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.GetStrokes" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.LoadAsync(Windows.Storage.Streams.IInputStream)" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.MoveSelected(Windows.Foundation.Point)" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.PasteFromClipboard(Windows.Foundation.Point)" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.SaveAsync(Windows.Storage.Streams.IOutputStream)" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.SelectWithLine(Windows.Foundation.Point,Windows.Foundation.Point)" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.SelectWithPolyLine(Windows.Foundation.Collections.IIterable{Windows.Foundation.Point})" />
+        <element api="M:Windows.UI.Input.Inking.InkStrokeContainer.UpdateRecognitionResults(Windows.Foundation.Collections.IVectorView{Windows.UI.Input.Inking.InkRecognitionResult})" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" />
+      </containers>
+      <file name="de2a8f99-aa9f-7f3f-1f37-41729ce8a836" />
+    </api>
+    <api id="Properties.T:Windows.UI.Input.Inking.InkStrokeContainer">
+      <topicdata name="InkStrokeContainer" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Input.Inking.InkStrokeContainer" />
+      <apidata name="InkStrokeContainer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Input.Inking.InkStrokeContainer.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.Input.Inking.InkStrokeContainer.BoundingRect" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" />
+      </containers>
+      <file name="38710c4f-154e-034d-4864-9cfcacd1f8cc" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeContainer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" ref="true" />
+      </containers>
+      <file name="0eb4a2d1-299d-fd0d-7b58-71a859f1a786" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeContainer.AddStroke(Windows.UI.Input.Inking.InkStroke)">
+      <topicdata group="api" />
+      <apidata name="AddStroke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="stroke" in="true">
+          <type api="T:Windows.UI.Input.Inking.InkStroke" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.AddStroke(Windows.UI.Input.Inking.InkStroke)">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" ref="true" />
+      </containers>
+      <file name="7a6d572c-1f9c-0bf3-a82e-ee5cf1767ac7" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkStrokeContainer.BoundingRect">
+      <topicdata group="api" />
+      <apidata name="BoundingRect" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_BoundingRect" />
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Input.Inking.IInkStrokeContainer.BoundingRect">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" ref="true" />
+      </containers>
+      <file name="dca5afae-0dab-f3bd-a727-5507c7b707ef" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeContainer.CanPasteFromClipboard">
+      <topicdata group="api" />
+      <apidata name="CanPasteFromClipboard" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.CanPasteFromClipboard">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" ref="true" />
+      </containers>
+      <file name="d3e14c65-db5c-42ec-6418-e7951836ca5c" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeContainer.CopySelectedToClipboard">
+      <topicdata group="api" />
+      <apidata name="CopySelectedToClipboard" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.CopySelectedToClipboard">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" ref="true" />
+      </containers>
+      <file name="68eb68f1-069c-5421-1f8a-c0d78c30f774" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeContainer.DeleteSelected">
+      <topicdata group="api" />
+      <apidata name="DeleteSelected" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.DeleteSelected">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" ref="true" />
+      </containers>
+      <file name="c07f721a-98aa-d235-e956-9243a014b29f" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeContainer.GetRecognitionResults">
+      <topicdata group="api" />
+      <apidata name="GetRecognitionResults" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Input.Inking.InkRecognitionResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.GetRecognitionResults">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" ref="true" />
+      </containers>
+      <file name="6985ca9e-32ad-5db2-8f37-163784217a3c" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeContainer.GetStrokes">
+      <topicdata group="api" />
+      <apidata name="GetStrokes" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Input.Inking.InkStroke" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.GetStrokes">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" ref="true" />
+      </containers>
+      <file name="abd933bb-5d62-ca2d-166d-2c4db634db59" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeContainer.LoadAsync(Windows.Storage.Streams.IInputStream)">
+      <topicdata group="api" />
+      <apidata name="LoadAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="inputStream" in="true">
+          <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncActionWithProgress`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt64" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.LoadAsync(Windows.Storage.Streams.IInputStream)">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" ref="true" />
+      </containers>
+      <file name="51d0a2e6-220c-9c38-6fb8-40b8b2e628e5" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeContainer.MoveSelected(Windows.Foundation.Point)">
+      <topicdata group="api" />
+      <apidata name="MoveSelected" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="translation" in="true">
+          <type api="T:Windows.Foundation.Point" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.MoveSelected(Windows.Foundation.Point)">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" ref="true" />
+      </containers>
+      <file name="aa60a6df-84d6-d7f1-8f75-28f5f81dd79f" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeContainer.PasteFromClipboard(Windows.Foundation.Point)">
+      <topicdata group="api" />
+      <apidata name="PasteFromClipboard" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="position" in="true">
+          <type api="T:Windows.Foundation.Point" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.PasteFromClipboard(Windows.Foundation.Point)">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" ref="true" />
+      </containers>
+      <file name="dd2ec4e7-a43f-c683-28cb-4550d6791421" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeContainer.SaveAsync(Windows.Storage.Streams.IOutputStream)">
+      <topicdata group="api" />
+      <apidata name="SaveAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="outputStream" in="true">
+          <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.SaveAsync(Windows.Storage.Streams.IOutputStream)">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" ref="true" />
+      </containers>
+      <file name="d7f92dd8-cdc7-5460-f2ab-2529cfdc9d01" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeContainer.SelectWithLine(Windows.Foundation.Point,Windows.Foundation.Point)">
+      <topicdata group="api" />
+      <apidata name="SelectWithLine" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="from" in="true">
+          <type api="T:Windows.Foundation.Point" ref="false" />
+        </parameter>
+        <parameter name="to" in="true">
+          <type api="T:Windows.Foundation.Point" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.SelectWithLine(Windows.Foundation.Point,Windows.Foundation.Point)">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" ref="true" />
+      </containers>
+      <file name="914ffbc2-3fb2-6ace-312e-88d764711469" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeContainer.SelectWithPolyLine(Windows.Foundation.Collections.IIterable{Windows.Foundation.Point})">
+      <topicdata group="api" />
+      <apidata name="SelectWithPolyLine" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="polyline" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Foundation.Point" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.SelectWithPolyLine(Windows.Foundation.Collections.IIterable{Windows.Foundation.Point})">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" ref="true" />
+      </containers>
+      <file name="468c3c19-263e-e846-c65a-f499305e4b4b" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.InkStrokeContainer.UpdateRecognitionResults(Windows.Foundation.Collections.IVectorView{Windows.UI.Input.Inking.InkRecognitionResult})">
+      <topicdata group="api" />
+      <apidata name="UpdateRecognitionResults" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="recognitionResults" in="true">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.UI.Input.Inking.InkRecognitionResult" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.UI.Input.Inking.IInkStrokeContainer.UpdateRecognitionResults(Windows.Foundation.Collections.IVectorView{Windows.UI.Input.Inking.InkRecognitionResult})">
+          <type api="T:Windows.UI.Input.Inking.IInkStrokeContainer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeContainer" ref="true" />
+      </containers>
+      <file name="e3226697-2df0-9b35-a02b-fbd86fd8a9be" />
+    </api>
+    <api id="T:Windows.UI.Input.Inking.InkStrokeRenderingSegment">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Input.Inking.InkStrokeRenderingSegment" />
+      <apidata name="InkStrokeRenderingSegment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Input.Inking.IInkStrokeRenderingSegment" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="None" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8a7667ca-e3c0-9b6e-b6f5-3e7d458b9b0d" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Input.Inking.InkStrokeRenderingSegment">
+      <topicdata name="InkStrokeRenderingSegment" group="list" subgroup="members" typeTopicId="T:Windows.UI.Input.Inking.InkStrokeRenderingSegment" />
+      <apidata name="InkStrokeRenderingSegment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.BezierControlPoint1" />
+        <element api="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.BezierControlPoint2" />
+        <element api="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.Position" />
+        <element api="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.Pressure" />
+        <element api="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.TiltX" />
+        <element api="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.TiltY" />
+        <element api="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.Twist" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeRenderingSegment" />
+      </containers>
+      <file name="90026658-d18b-8b51-dc08-0f5fe3c464a4" />
+    </api>
+    <api id="Methods.T:Windows.UI.Input.Inking.InkStrokeRenderingSegment">
+      <topicdata name="InkStrokeRenderingSegment" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Input.Inking.InkStrokeRenderingSegment" />
+      <apidata name="InkStrokeRenderingSegment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeRenderingSegment" />
+      </containers>
+      <file name="dbae4f1c-a469-3a64-6aad-860bb8e5e4a7" />
+    </api>
+    <api id="Properties.T:Windows.UI.Input.Inking.InkStrokeRenderingSegment">
+      <topicdata name="InkStrokeRenderingSegment" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Input.Inking.InkStrokeRenderingSegment" />
+      <apidata name="InkStrokeRenderingSegment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.BezierControlPoint1" />
+        <element api="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.BezierControlPoint2" />
+        <element api="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.Position" />
+        <element api="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.Pressure" />
+        <element api="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.TiltX" />
+        <element api="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.TiltY" />
+        <element api="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.Twist" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeRenderingSegment" />
+      </containers>
+      <file name="c71b6af2-a164-9909-4b14-707decceebca" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.BezierControlPoint1">
+      <topicdata group="api" />
+      <apidata name="BezierControlPoint1" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_BezierControlPoint1" />
+      <returns>
+        <type api="T:Windows.Foundation.Point" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeRenderingSegment" ref="true" />
+      </containers>
+      <file name="a474503c-04d8-8b3f-0a97-60a54c2e723d" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.BezierControlPoint2">
+      <topicdata group="api" />
+      <apidata name="BezierControlPoint2" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_BezierControlPoint2" />
+      <returns>
+        <type api="T:Windows.Foundation.Point" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeRenderingSegment" ref="true" />
+      </containers>
+      <file name="8b367673-5ca4-da9f-8214-6880f4bb1d1c" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.Position">
+      <topicdata group="api" />
+      <apidata name="Position" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Position" />
+      <returns>
+        <type api="T:Windows.Foundation.Point" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeRenderingSegment" ref="true" />
+      </containers>
+      <file name="25415479-1536-f829-3849-772e4b38e948" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.Pressure">
+      <topicdata group="api" />
+      <apidata name="Pressure" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Pressure" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeRenderingSegment" ref="true" />
+      </containers>
+      <file name="f6a044e2-825b-8671-2217-0394e9aa6cb8" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.TiltX">
+      <topicdata group="api" />
+      <apidata name="TiltX" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_TiltX" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeRenderingSegment" ref="true" />
+      </containers>
+      <file name="dd12529b-fa45-7542-8e89-c6c11c3ce158" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.TiltY">
+      <topicdata group="api" />
+      <apidata name="TiltY" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_TiltY" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeRenderingSegment" ref="true" />
+      </containers>
+      <file name="6fca66df-7585-f599-13e6-e1fe1d3f2c04" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.InkStrokeRenderingSegment.Twist">
+      <topicdata group="api" />
+      <apidata name="Twist" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Twist" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.InkStrokeRenderingSegment" ref="true" />
+      </containers>
+      <file name="293d39e5-1eda-beef-ce5e-bd44b664a14c" />
+    </api>
+    <api id="T:Windows.UI.Input.Inking.PenTipShape">
+      <topicdata group="api" />
+      <apidata name="PenTipShape" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.Input.Inking.PenTipShape.Circle" />
+        <element api="F:Windows.UI.Input.Inking.PenTipShape.Rectangle" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="760feed7-fe2e-b793-538d-2bc0d00914e2" />
+    </api>
+    <api id="F:Windows.UI.Input.Inking.PenTipShape.Circle">
+      <topicdata group="api" notopic="" />
+      <apidata name="Circle" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Input.Inking.PenTipShape" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.PenTipShape" ref="false" />
+      </containers>
+      <file name="cb73e022-267a-8c5a-8b38-9376e958f58a" />
+    </api>
+    <api id="F:Windows.UI.Input.Inking.PenTipShape.Rectangle">
+      <topicdata group="api" notopic="" />
+      <apidata name="Rectangle" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Input.Inking.PenTipShape" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking" />
+        <type api="T:Windows.UI.Input.Inking.PenTipShape" ref="false" />
+      </containers>
+      <file name="48818aa0-6981-d667-3424-9799ed446fd6" />
+    </api>
+  </apis>
+</reflection>

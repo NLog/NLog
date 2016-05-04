@@ -1,0 +1,811 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="2.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\silverlightplatformpublickey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30508.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30508.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.InteropServices.ComTypes">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.InteropServices.ComTypes" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.InteropServices.ComTypes.FILETIME" />
+        <element api="T:System.Runtime.InteropServices.ComTypes.IStream" />
+        <element api="T:System.Runtime.InteropServices.ComTypes.STATSTG" />
+      </elements>
+      <file name="ab6ef637-aed8-f614-0313-e9007810418e" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.ComTypes.FILETIME">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.ComTypes.FILETIME" />
+      <apidata name="FILETIME" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+      </containers>
+      <file name="768e6d1a-2cae-a194-8de3-4829fe6e1236" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.ComTypes.FILETIME">
+      <topicdata name="FILETIME" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.ComTypes.FILETIME" />
+      <apidata name="FILETIME" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.FILETIME.dwHighDateTime" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.FILETIME.dwLowDateTime" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.FILETIME" />
+      </containers>
+      <file name="2798e698-54b3-d267-25b1-4737a9aafb7f" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.ComTypes.FILETIME">
+      <topicdata name="FILETIME" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.ComTypes.FILETIME" />
+      <apidata name="FILETIME" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.FILETIME" />
+      </containers>
+      <file name="cfdaea73-315a-4fa9-b917-338297679d52" />
+    </api>
+    <api id="Fields.T:System.Runtime.InteropServices.ComTypes.FILETIME">
+      <topicdata name="FILETIME" group="list" subgroup="Fields" typeTopicId="T:System.Runtime.InteropServices.ComTypes.FILETIME" />
+      <apidata name="FILETIME" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="F:System.Runtime.InteropServices.ComTypes.FILETIME.dwHighDateTime" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.FILETIME.dwLowDateTime" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.FILETIME" />
+      </containers>
+      <file name="2cecccac-894a-ebe2-48b6-9976e6b44f7d" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.ComTypes.FILETIME.dwHighDateTime">
+      <topicdata group="api" />
+      <apidata name="dwHighDateTime" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.FILETIME" ref="false" />
+      </containers>
+      <file name="f3f761f1-e7fe-9061-7bb7-b8de08c770ec" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.ComTypes.FILETIME.dwLowDateTime">
+      <topicdata group="api" />
+      <apidata name="dwLowDateTime" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.FILETIME" ref="false" />
+      </containers>
+      <file name="3965ba35-c748-5b4d-bd44-c7065e24e723" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.ComTypes.IStream">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.ComTypes.IStream" />
+      <apidata name="IStream" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.InterfaceTypeAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Runtime.InteropServices.ComInterfaceType" ref="false" />
+            <enumValue>
+              <field name="InterfaceIsIUnknown" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d1dc7a04-f625-cd08-4b24-ec46ae53f394" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.ComTypes.IStream">
+      <topicdata name="IStream" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.ComTypes.IStream" />
+      <apidata name="IStream" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.Clone(System.Runtime.InteropServices.ComTypes.IStream@)" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.Commit(System.Int32)" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.CopyTo(System.Runtime.InteropServices.ComTypes.IStream,System.Int64,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.LockRegion(System.Int64,System.Int64,System.Int32)" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.Read(System.Byte[],System.Int32,System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.Revert" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.Seek(System.Int64,System.Int32,System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.SetSize(System.Int64)" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.Stat(System.Runtime.InteropServices.ComTypes.STATSTG@,System.Int32)" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.UnlockRegion(System.Int64,System.Int64,System.Int32)" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.Write(System.Byte[],System.Int32,System.IntPtr)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.IStream" />
+      </containers>
+      <file name="25b1bd9d-434e-7b54-84e6-089985b5d92f" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.ComTypes.IStream">
+      <topicdata name="IStream" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.ComTypes.IStream" />
+      <apidata name="IStream" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.Clone(System.Runtime.InteropServices.ComTypes.IStream@)" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.Commit(System.Int32)" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.CopyTo(System.Runtime.InteropServices.ComTypes.IStream,System.Int64,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.LockRegion(System.Int64,System.Int64,System.Int32)" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.Read(System.Byte[],System.Int32,System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.Revert" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.Seek(System.Int64,System.Int32,System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.SetSize(System.Int64)" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.Stat(System.Runtime.InteropServices.ComTypes.STATSTG@,System.Int32)" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.UnlockRegion(System.Int64,System.Int64,System.Int32)" />
+        <element api="M:System.Runtime.InteropServices.ComTypes.IStream.Write(System.Byte[],System.Int32,System.IntPtr)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.IStream" />
+      </containers>
+      <file name="1b6e9ab5-ba0e-f528-0fca-a7c223cc7e3a" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.ComTypes.IStream.Clone(System.Runtime.InteropServices.ComTypes.IStream@)">
+      <topicdata group="api" />
+      <apidata name="Clone" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="ppstm" out="true">
+          <referenceTo>
+            <type api="T:System.Runtime.InteropServices.ComTypes.IStream" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.IStream" ref="true" />
+      </containers>
+      <file name="a1e0f3aa-e5fd-b5fb-1447-2fd18bff81e1" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.ComTypes.IStream.Commit(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Commit" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="grfCommitFlags">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.IStream" ref="true" />
+      </containers>
+      <file name="36426ff9-0744-f69e-4008-5b0da5328e41" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.ComTypes.IStream.CopyTo(System.Runtime.InteropServices.ComTypes.IStream,System.Int64,System.IntPtr,System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="CopyTo" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="pstm">
+          <type api="T:System.Runtime.InteropServices.ComTypes.IStream" ref="true" />
+        </parameter>
+        <parameter name="cb">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="pcbRead">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+        <parameter name="pcbWritten">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.IStream" ref="true" />
+      </containers>
+      <file name="edb391e2-9b8a-b69d-f305-992036e7055d" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.ComTypes.IStream.LockRegion(System.Int64,System.Int64,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="LockRegion" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="libOffset">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="cb">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="dwLockType">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.IStream" ref="true" />
+      </containers>
+      <file name="1c3af0f5-dbd2-d889-bb23-f640c6ddc3f7" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.ComTypes.IStream.Read(System.Byte[],System.Int32,System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="Read" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="pv">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="cb">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="pcbRead">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.IStream" ref="true" />
+      </containers>
+      <file name="db488702-8edc-e3e1-abea-54268dcce1b1" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.ComTypes.IStream.Revert">
+      <topicdata group="api" />
+      <apidata name="Revert" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.IStream" ref="true" />
+      </containers>
+      <file name="142001eb-fa8c-50d2-1c75-330a654441a5" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.ComTypes.IStream.Seek(System.Int64,System.Int32,System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="Seek" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="dlibMove">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="dwOrigin">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="plibNewPosition">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.IStream" ref="true" />
+      </containers>
+      <file name="85ccbc59-059b-af56-cbb6-d354aad73949" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.ComTypes.IStream.SetSize(System.Int64)">
+      <topicdata group="api" />
+      <apidata name="SetSize" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="libNewSize">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.IStream" ref="true" />
+      </containers>
+      <file name="6f64b863-e81b-20f3-c8cc-17d72bb8ba4f" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.ComTypes.IStream.Stat(System.Runtime.InteropServices.ComTypes.STATSTG@,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Stat" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="pstatstg" out="true">
+          <referenceTo>
+            <type api="T:System.Runtime.InteropServices.ComTypes.STATSTG" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="grfStatFlag">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.IStream" ref="true" />
+      </containers>
+      <file name="e144f5a5-6318-b456-5cb2-c007e13b14ab" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.ComTypes.IStream.UnlockRegion(System.Int64,System.Int64,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="UnlockRegion" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="libOffset">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="cb">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="dwLockType">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.IStream" ref="true" />
+      </containers>
+      <file name="dbc3cbdb-85c8-6168-22c2-6faff161cff6" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.ComTypes.IStream.Write(System.Byte[],System.Int32,System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="pv">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="cb">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="pcbWritten">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.IStream" ref="true" />
+      </containers>
+      <file name="3826a222-adcf-ca20-8acf-7ae609a21b6d" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.ComTypes.STATSTG">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.ComTypes.STATSTG" />
+      <apidata name="STATSTG" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+      </containers>
+      <file name="467c3b0c-fbaa-3377-4da0-5884c4ea2bc3" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.ComTypes.STATSTG">
+      <topicdata name="STATSTG" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.ComTypes.STATSTG" />
+      <apidata name="STATSTG" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.atime" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.cbSize" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.clsid" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.ctime" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.grfLocksSupported" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.grfMode" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.grfStateBits" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.mtime" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.pwcsName" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.reserved" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.type" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.STATSTG" />
+      </containers>
+      <file name="ca476ff1-eaf4-3f8a-f47c-3319d567ae2f" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.ComTypes.STATSTG">
+      <topicdata name="STATSTG" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.ComTypes.STATSTG" />
+      <apidata name="STATSTG" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.STATSTG" />
+      </containers>
+      <file name="ddd18df8-917e-20c4-c89a-d2e81c2c8799" />
+    </api>
+    <api id="Fields.T:System.Runtime.InteropServices.ComTypes.STATSTG">
+      <topicdata name="STATSTG" group="list" subgroup="Fields" typeTopicId="T:System.Runtime.InteropServices.ComTypes.STATSTG" />
+      <apidata name="STATSTG" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.atime" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.cbSize" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.clsid" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.ctime" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.grfLocksSupported" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.grfMode" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.grfStateBits" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.mtime" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.pwcsName" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.reserved" />
+        <element api="F:System.Runtime.InteropServices.ComTypes.STATSTG.type" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.STATSTG" />
+      </containers>
+      <file name="5f1f606a-4677-fe76-4a1a-0ef18b9bd3fd" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.ComTypes.STATSTG.atime">
+      <topicdata group="api" />
+      <apidata name="atime" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.InteropServices.ComTypes.FILETIME" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.STATSTG" ref="false" />
+      </containers>
+      <file name="695fc8d3-040a-5e3a-9c58-5a7e95783734" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.ComTypes.STATSTG.cbSize">
+      <topicdata group="api" />
+      <apidata name="cbSize" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.STATSTG" ref="false" />
+      </containers>
+      <file name="84e2309b-846b-2b47-f3f2-5bcbeb89b5d6" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.ComTypes.STATSTG.clsid">
+      <topicdata group="api" />
+      <apidata name="clsid" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.STATSTG" ref="false" />
+      </containers>
+      <file name="32d138c7-d3f7-9d53-35a2-30386211717f" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.ComTypes.STATSTG.ctime">
+      <topicdata group="api" />
+      <apidata name="ctime" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.InteropServices.ComTypes.FILETIME" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.STATSTG" ref="false" />
+      </containers>
+      <file name="e658f0d1-7e25-2e46-32af-bc90a96a7112" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.ComTypes.STATSTG.grfLocksSupported">
+      <topicdata group="api" />
+      <apidata name="grfLocksSupported" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.STATSTG" ref="false" />
+      </containers>
+      <file name="a4deee65-607a-5959-6574-5860f380f960" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.ComTypes.STATSTG.grfMode">
+      <topicdata group="api" />
+      <apidata name="grfMode" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.STATSTG" ref="false" />
+      </containers>
+      <file name="2281229e-b23d-1354-2b8b-8cb23db7a425" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.ComTypes.STATSTG.grfStateBits">
+      <topicdata group="api" />
+      <apidata name="grfStateBits" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.STATSTG" ref="false" />
+      </containers>
+      <file name="4179beec-f20d-0ede-944a-80b6842bb1b5" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.ComTypes.STATSTG.mtime">
+      <topicdata group="api" />
+      <apidata name="mtime" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.InteropServices.ComTypes.FILETIME" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.STATSTG" ref="false" />
+      </containers>
+      <file name="191cd9b9-a147-e736-50fd-ad8f86375261" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.ComTypes.STATSTG.pwcsName">
+      <topicdata group="api" />
+      <apidata name="pwcsName" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.STATSTG" ref="false" />
+      </containers>
+      <file name="8d1170f2-932d-ba96-3042-32f7fed92b85" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.ComTypes.STATSTG.reserved">
+      <topicdata group="api" />
+      <apidata name="reserved" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.STATSTG" ref="false" />
+      </containers>
+      <file name="cdc520c2-fbce-53bf-398a-32e1d5c4c1d8" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.ComTypes.STATSTG.type">
+      <topicdata group="api" />
+      <apidata name="type" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.ComTypes" />
+        <type api="T:System.Runtime.InteropServices.ComTypes.STATSTG" ref="false" />
+      </containers>
+      <file name="271ef714-e568-87bd-d30a-a565e7fccb45" />
+    </api>
+  </apis>
+</reflection>

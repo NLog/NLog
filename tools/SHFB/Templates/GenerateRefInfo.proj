@@ -1,65 +1,65 @@
-﻿<Project DefaultTargets="Generate" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
-  <!-- Sandcastle Help File Builder Tasks.  http://SHFB.CodePlex.com -->
-  <UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.MRefBuilder"
-    AssemblyFile="$(SHFBROOT)\SandcastleBuilder.Utils.dll" />
-  <UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.XslTransform"
-    AssemblyFile="$(SHFBROOT)\SandcastleBuilder.Utils.dll" />
+﻿<Project ToolsVersion="12.0" DefaultTargets="Generate" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<!-- Sandcastle Tools MSBuild Tasks.  https://GitHub.com/EWSoftware/SHFB -->
+	<UsingTask TaskName="Microsoft.Ddue.Tools.MSBuild.MRefBuilder"
+    AssemblyFile="{@SHFBFolder}\MRefBuilder.exe" />
+	<UsingTask TaskName="Microsoft.Ddue.Tools.MSBuild.XslTransform"
+    AssemblyFile="{@SHFBFolder}\XslTransform.exe" />
 
-  <!-- Task properties -->
-  <PropertyGroup>
-    <TargetFrameworkVersion>v{@FrameworkVersionShort}</TargetFrameworkVersion>
-    <DocInternals>{@DocInternals}</DocInternals>
-    <SandcastlePath>{@SandcastlePath}</SandcastlePath>
-    <WorkingFolder>{@HtmlEncWorkingFolder}</WorkingFolder>
-  </PropertyGroup>
+	<!-- Task properties -->
+	<PropertyGroup>
+		<TargetFrameworkIdentifier>{@TargetFrameworkIdentifier}</TargetFrameworkIdentifier>
+		<TargetFrameworkVersion>v{@FrameworkVersionShort}</TargetFrameworkVersion>
+		<AddXamlSyntaxData>{@AddXamlSyntaxData}</AddXamlSyntaxData>
+		<WorkingFolder>{@HtmlEncWorkingFolder}</WorkingFolder>
+		<ReferencePath Condition=" '$(ReferencePath)' == '' ">{@ReferencePath}</ReferencePath>
+		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+		<UseTargetPlatformAsNuGetTargetMoniker>false</UseTargetPlatformAsNuGetTargetMoniker>
+	</PropertyGroup>
 
-  <!-- The common targets require OutputPath to be valid -->
-  <PropertyGroup>
-    <OutputPath>.\</OutputPath>
-  </PropertyGroup>
+	<!-- The common targets require OutputPath to be valid -->
+	<PropertyGroup>
+		<OutputPath>.\</OutputPath>
+	</PropertyGroup>
 
-  <!-- Import the common targets -->
-  <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
+	<!-- Import the common targets -->
+	<Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
 
-  <!-- This defines the dependencies for the Generate target -->
-  <PropertyGroup>
-    <GenerateDependsOn>
-      ResolveReferences;
-      BeforeGenerateRefInfo;
-      GenerateRefInfo;
-      AfterGenerateRefInfo
-    </GenerateDependsOn>
-  </PropertyGroup>
+	<!-- This defines the dependencies for the Generate target -->
+	<PropertyGroup>
+		<GenerateDependsOn>
+			ResolveReferences;
+			BeforeGenerateRefInfo;
+			GenerateRefInfo;
+			AfterGenerateRefInfo
+		</GenerateDependsOn>
+	</PropertyGroup>
 
-  <Target Name="Generate" DependsOnTargets="$(GenerateDependsOn)" />
+	<Target Name="Generate" DependsOnTargets="$(GenerateDependsOn)" />
 
-  <!-- The Generate Ref Info target -->
-  <Target Name="GenerateRefInfo">
-    <!-- Run MRefBuilder.  Reference build items are added to this template by
-         the build process.  The ResolveReferences dependency target will
-         resolve them to absolute paths that can be passed to MRefBuilder
-         using the /dep command line option.  Assembly build items are added
-         by the build process to define the assemblies to reflect. -->
-    <MRefBuilder
-      DocumentInternals="$(DocInternals)"
-      SandcastlePath="$(SandcastlePath)"
+	<!-- The Generate Ref Info target -->
+	<Target Name="GenerateRefInfo">
+		<!-- Run MRefBuilder.  Reference build items are added to this template by the build process.  The
+				 ResolveReferences dependency target will resolve them to absolute paths that can be passed to
+				 MRefBuilder using the /dep command line option.  Assembly build items are added by the build
+				 process to define the assemblies to reflect. -->
+		<Microsoft.Ddue.Tools.MSBuild.MRefBuilder
       WorkingFolder="$(WorkingFolder)"
+			ConfigurationFile="MRefBuilder.config"
+			ReflectionFilename="reflection.org"
       Assemblies="@(Assembly)"
       References="@(ReferencePath)" />
 
-    <!-- Merge duplicate topics (if any) -->
-    <Copy SourceFiles="reflection.org" DestinationFiles="reflection.all" />
+		<!-- Merge duplicate topics (if any) and add XAML syntax data if needed -->
+		<Copy SourceFiles="reflection.org" DestinationFiles="reflection.all" />
 
-    <XslTransform
-      SandcastlePath="$(SandcastlePath)"
+		<Microsoft.Ddue.Tools.MSBuild.XslTransform
       WorkingFolder="$(WorkingFolder)"
-      Transformations="ProductionTransforms\MergeDuplicates.xsl"
+      Transformations="~\ProductionTransforms\MergeDuplicates.xsl$(AddXamlSyntaxData)"
       InputFile="reflection.all"
       OutputFile="reflection.org" />
-  </Target>
+	</Target>
 
-  <!-- The following targets may be overridden or replaced to perform
-       additional processing. -->
-  <Target Name="BeforeGenerateRefInfo" />
-  <Target Name="AfterGenerateRefInfo" />
+	<!-- The following targets may be overridden or replaced to perform additional processing. -->
+	<Target Name="BeforeGenerateRefInfo" />
+	<Target Name="AfterGenerateRefInfo" />
 </Project>

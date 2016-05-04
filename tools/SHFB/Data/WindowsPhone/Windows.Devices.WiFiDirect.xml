@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.WiFiDirect">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.WiFiDirect" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.WiFiDirect.WiFiDirectConnectionStatus" />
+        <element api="T:Windows.Devices.WiFiDirect.WiFiDirectDevice" />
+      </elements>
+      <file name="1470fcc5-6518-41f3-d194-b69d4afa38b5" />
+    </api>
+    <api id="T:Windows.Devices.WiFiDirect.WiFiDirectConnectionStatus">
+      <topicdata group="api" />
+      <apidata name="WiFiDirectConnectionStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.WiFiDirect.WiFiDirectConnectionStatus.Disconnected" />
+        <element api="F:Windows.Devices.WiFiDirect.WiFiDirectConnectionStatus.Connected" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFiDirect" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2ab38f3f-6be4-e6d4-5ded-9428aef8d944" />
+    </api>
+    <api id="F:Windows.Devices.WiFiDirect.WiFiDirectConnectionStatus.Connected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Connected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFiDirect.WiFiDirectConnectionStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFiDirect" />
+        <type api="T:Windows.Devices.WiFiDirect.WiFiDirectConnectionStatus" ref="false" />
+      </containers>
+      <file name="4939aa50-6d25-afa1-9bfe-eeb9a7d4f893" />
+    </api>
+    <api id="F:Windows.Devices.WiFiDirect.WiFiDirectConnectionStatus.Disconnected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disconnected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.WiFiDirect.WiFiDirectConnectionStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFiDirect" />
+        <type api="T:Windows.Devices.WiFiDirect.WiFiDirectConnectionStatus" ref="false" />
+      </containers>
+      <file name="d35eeb06-160f-6199-e1f5-1682d06b9ba7" />
+    </api>
+    <api id="T:Windows.Devices.WiFiDirect.WiFiDirectDevice">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.WiFiDirect.WiFiDirectDevice" />
+      <apidata name="WiFiDirectDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.WiFiDirect.IWiFiDirectDevice" ref="true" />
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFiDirect" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="698c4be2-71d6-e754-45e2-548155486032" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.WiFiDirect.WiFiDirectDevice">
+      <topicdata name="WiFiDirectDevice" group="list" subgroup="members" typeTopicId="T:Windows.Devices.WiFiDirect.WiFiDirectDevice" />
+      <apidata name="WiFiDirectDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.WiFiDirect.WiFiDirectDevice.Close" />
+        <element api="P:Windows.Devices.WiFiDirect.WiFiDirectDevice.ConnectionStatus" />
+        <element api="E:Windows.Devices.WiFiDirect.WiFiDirectDevice.ConnectionStatusChanged" />
+        <element api="P:Windows.Devices.WiFiDirect.WiFiDirectDevice.DeviceId" />
+        <element api="M:Windows.Devices.WiFiDirect.WiFiDirectDevice.FromIdAsync(System.String)" />
+        <element api="M:Windows.Devices.WiFiDirect.WiFiDirectDevice.GetConnectionEndpointPairs" />
+        <element api="M:Windows.Devices.WiFiDirect.WiFiDirectDevice.GetDeviceSelector" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFiDirect" />
+        <type api="T:Windows.Devices.WiFiDirect.WiFiDirectDevice" />
+      </containers>
+      <file name="343e124f-2974-a636-4d0c-76fc44e8554b" />
+    </api>
+    <api id="Methods.T:Windows.Devices.WiFiDirect.WiFiDirectDevice">
+      <topicdata name="WiFiDirectDevice" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.WiFiDirect.WiFiDirectDevice" />
+      <apidata name="WiFiDirectDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.WiFiDirect.WiFiDirectDevice.Close" />
+        <element api="M:Windows.Devices.WiFiDirect.WiFiDirectDevice.FromIdAsync(System.String)" />
+        <element api="M:Windows.Devices.WiFiDirect.WiFiDirectDevice.GetConnectionEndpointPairs" />
+        <element api="M:Windows.Devices.WiFiDirect.WiFiDirectDevice.GetDeviceSelector" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFiDirect" />
+        <type api="T:Windows.Devices.WiFiDirect.WiFiDirectDevice" />
+      </containers>
+      <file name="29a4a688-bfb3-84a2-b9e6-36b90edf1b45" />
+    </api>
+    <api id="Properties.T:Windows.Devices.WiFiDirect.WiFiDirectDevice">
+      <topicdata name="WiFiDirectDevice" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.WiFiDirect.WiFiDirectDevice" />
+      <apidata name="WiFiDirectDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.WiFiDirect.WiFiDirectDevice.ConnectionStatus" />
+        <element api="P:Windows.Devices.WiFiDirect.WiFiDirectDevice.DeviceId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFiDirect" />
+        <type api="T:Windows.Devices.WiFiDirect.WiFiDirectDevice" />
+      </containers>
+      <file name="1f3e60aa-2bbf-aa2f-b3e9-2adb8c846269" />
+    </api>
+    <api id="Events.T:Windows.Devices.WiFiDirect.WiFiDirectDevice">
+      <topicdata name="WiFiDirectDevice" group="list" subgroup="Events" typeTopicId="T:Windows.Devices.WiFiDirect.WiFiDirectDevice" />
+      <apidata name="WiFiDirectDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Devices.WiFiDirect.WiFiDirectDevice.ConnectionStatusChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.WiFiDirect" />
+        <type api="T:Windows.Devices.WiFiDirect.WiFiDirectDevice" />
+      </containers>
+      <file name="59d71309-e524-a608-e1fc-8e33c8478468" />
+    </api>
+    <api id="M:Windows.Devices.WiFiDirect.WiFiDirectDevice.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFiDirect" />
+        <type api="T:Windows.Devices.WiFiDirect.WiFiDirectDevice" ref="true" />
+      </containers>
+      <file name="e8238873-5626-58ea-e0c1-34c300045b06" />
+    </api>
+    <api id="P:Windows.Devices.WiFiDirect.WiFiDirectDevice.ConnectionStatus">
+      <topicdata group="api" />
+      <apidata name="ConnectionStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ConnectionStatus" />
+      <returns>
+        <type api="T:Windows.Devices.WiFiDirect.WiFiDirectConnectionStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFiDirect" />
+        <type api="T:Windows.Devices.WiFiDirect.WiFiDirectDevice" ref="true" />
+      </containers>
+      <file name="329a5de9-6140-4dfb-dbdd-6b121997acb3" />
+    </api>
+    <api id="E:Windows.Devices.WiFiDirect.WiFiDirectDevice.ConnectionStatusChanged">
+      <topicdata group="api" />
+      <apidata name="ConnectionStatusChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ConnectionStatusChanged" />
+      <remover name="remove_ConnectionStatusChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.WiFiDirect.WiFiDirectDevice" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFiDirect" />
+        <type api="T:Windows.Devices.WiFiDirect.WiFiDirectDevice" ref="true" />
+      </containers>
+      <file name="81cffc04-a0bf-4217-8b6f-79fcb3fe7e97" />
+    </api>
+    <api id="P:Windows.Devices.WiFiDirect.WiFiDirectDevice.DeviceId">
+      <topicdata group="api" />
+      <apidata name="DeviceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DeviceId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFiDirect" />
+        <type api="T:Windows.Devices.WiFiDirect.WiFiDirectDevice" ref="true" />
+      </containers>
+      <file name="7500ab91-4d2e-1227-599e-9c580639f4c6" />
+    </api>
+    <api id="M:Windows.Devices.WiFiDirect.WiFiDirectDevice.FromIdAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="FromIdAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.WiFiDirect.WiFiDirectDevice" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFiDirect" />
+        <type api="T:Windows.Devices.WiFiDirect.WiFiDirectDevice" ref="true" />
+      </containers>
+      <file name="8afcf77f-a20a-e6c7-a697-2d5eb4f5e9d4" />
+    </api>
+    <api id="M:Windows.Devices.WiFiDirect.WiFiDirectDevice.GetConnectionEndpointPairs">
+      <topicdata group="api" />
+      <apidata name="GetConnectionEndpointPairs" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.EndpointPair" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFiDirect" />
+        <type api="T:Windows.Devices.WiFiDirect.WiFiDirectDevice" ref="true" />
+      </containers>
+      <file name="233b92a1-12e8-ce95-063f-f2999da03475" />
+    </api>
+    <api id="M:Windows.Devices.WiFiDirect.WiFiDirectDevice.GetDeviceSelector">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.WiFiDirect" />
+        <type api="T:Windows.Devices.WiFiDirect.WiFiDirectDevice" ref="true" />
+      </containers>
+      <file name="d7da74c2-f26b-0003-0a20-dc30f6694e33" />
+    </api>
+  </apis>
+</reflection>

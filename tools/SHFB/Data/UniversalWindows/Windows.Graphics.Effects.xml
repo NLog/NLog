@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Graphics.Effects">
+      <topicdata group="api" />
+      <apidata name="Windows.Graphics.Effects" group="namespace" />
+      <elements>
+        <element api="T:Windows.Graphics.Effects.IGraphicsEffectSource" />
+        <element api="T:Windows.Graphics.Effects.IGraphicsEffect" />
+      </elements>
+      <file name="71399992-6291-f430-15b7-970d83f977ce" />
+    </api>
+    <api id="T:Windows.Graphics.Effects.IGraphicsEffect">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Graphics.Effects.IGraphicsEffect" />
+      <apidata name="IGraphicsEffect" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:Windows.Graphics.Effects.IGraphicsEffectSource" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.Effects" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>3411132622</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>36838</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17974</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>178</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>2</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>134</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>31</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>170</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>7</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>216</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>243</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="64e1cb8b-22ae-cd64-7329-582b294fcd20" />
+    </api>
+    <api id="AllMembers.T:Windows.Graphics.Effects.IGraphicsEffect">
+      <topicdata name="IGraphicsEffect" group="list" subgroup="members" typeTopicId="T:Windows.Graphics.Effects.IGraphicsEffect" />
+      <apidata name="IGraphicsEffect" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Graphics.Effects.IGraphicsEffect.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.Effects" />
+        <type api="T:Windows.Graphics.Effects.IGraphicsEffect" />
+      </containers>
+      <file name="8c222cf7-0190-53fb-5d27-7ed45107f7f6" />
+    </api>
+    <api id="Properties.T:Windows.Graphics.Effects.IGraphicsEffect">
+      <topicdata name="IGraphicsEffect" group="list" subgroup="Properties" typeTopicId="T:Windows.Graphics.Effects.IGraphicsEffect" />
+      <apidata name="IGraphicsEffect" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Graphics.Effects.IGraphicsEffect.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.Effects" />
+        <type api="T:Windows.Graphics.Effects.IGraphicsEffect" />
+      </containers>
+      <file name="7e6146de-bbdd-7f2f-aabf-33dbc3e01dbd" />
+    </api>
+    <api id="P:Windows.Graphics.Effects.IGraphicsEffect.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Effects" />
+        <type api="T:Windows.Graphics.Effects.IGraphicsEffect" ref="true" />
+      </containers>
+      <file name="0a0eac5a-549a-b228-91c0-e07f1f77ec3e" />
+    </api>
+    <api id="T:Windows.Graphics.Effects.IGraphicsEffectSource">
+      <topicdata group="api" />
+      <apidata name="IGraphicsEffectSource" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.Graphics.Effects.IGraphicsEffect" ref="true" />
+        <type api="T:Windows.UI.Composition.CompositionEffectSourceParameter" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.Effects" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>764386780</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17209</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>20153</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>146</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>22</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>249</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>222</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>183</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>86</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>88</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>162</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2af1ec7a-3c68-23fe-9cb1-68ae1f8ac792" />
+    </api>
+  </apis>
+</reflection>

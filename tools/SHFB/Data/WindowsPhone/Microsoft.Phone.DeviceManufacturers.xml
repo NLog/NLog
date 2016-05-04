@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Phone">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Phone Core Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Phone</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>969e33fe-1289-4bc2-863a-c848bb476cc0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Phone.DeviceManufacturers">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Phone.DeviceManufacturers" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Phone.DeviceManufacturers.ServiceAgent" />
+        <element api="T:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager" />
+      </elements>
+      <file name="91fa5834-1644-8d17-ebf0-616ff39457a8" />
+    </api>
+    <api id="T:Microsoft.Phone.DeviceManufacturers.ServiceAgent">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.DeviceManufacturers.ServiceAgent" />
+      <apidata name="ServiceAgent" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.BackgroundAgent" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.DeviceManufacturers" />
+      </containers>
+      <file name="f1c8d9c0-b215-eee7-593e-e9b2325d240f" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.DeviceManufacturers.ServiceAgent">
+      <topicdata name="ServiceAgent" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.DeviceManufacturers.ServiceAgent" />
+      <apidata name="ServiceAgent" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAgent.Abort" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyComplete" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyCompleteWithResult(System.Int32)" />
+        <element api="M:Microsoft.Phone.DeviceManufacturers.ServiceAgent.#ctor" />
+        <element api="M:Microsoft.Phone.DeviceManufacturers.ServiceAgent.OnBoot" />
+        <element api="M:Microsoft.Phone.DeviceManufacturers.ServiceAgent.OnCancel" />
+        <element api="M:Microsoft.Phone.DeviceManufacturers.ServiceAgent.OnRestartAfterUnexpectedTermination" />
+        <element api="M:Microsoft.Phone.DeviceManufacturers.ServiceAgent.OnRestartAfterUpdate" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.DeviceManufacturers" />
+        <type api="T:Microsoft.Phone.DeviceManufacturers.ServiceAgent" />
+      </containers>
+      <file name="a8a218c1-d4bf-21f7-b668-65a89acfb7d6" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.DeviceManufacturers.ServiceAgent">
+      <topicdata name="ServiceAgent" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.DeviceManufacturers.ServiceAgent" />
+      <apidata name="ServiceAgent" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAgent.Abort" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyComplete" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyCompleteWithResult(System.Int32)" />
+        <element api="M:Microsoft.Phone.DeviceManufacturers.ServiceAgent.OnBoot" />
+        <element api="M:Microsoft.Phone.DeviceManufacturers.ServiceAgent.OnCancel" />
+        <element api="M:Microsoft.Phone.DeviceManufacturers.ServiceAgent.OnRestartAfterUnexpectedTermination" />
+        <element api="M:Microsoft.Phone.DeviceManufacturers.ServiceAgent.OnRestartAfterUpdate" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.DeviceManufacturers" />
+        <type api="T:Microsoft.Phone.DeviceManufacturers.ServiceAgent" />
+      </containers>
+      <file name="4133ef18-db80-dacc-78fb-fb849beb5a08" />
+    </api>
+    <api id="M:Microsoft.Phone.DeviceManufacturers.ServiceAgent.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.DeviceManufacturers" />
+        <type api="T:Microsoft.Phone.DeviceManufacturers.ServiceAgent" ref="true" />
+      </containers>
+      <file name="fdc6e7bb-58f6-3187-efe9-7ae01b162043" />
+    </api>
+    <api id="M:Microsoft.Phone.DeviceManufacturers.ServiceAgent.OnBoot">
+      <topicdata group="api" />
+      <apidata name="OnBoot" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.DeviceManufacturers" />
+        <type api="T:Microsoft.Phone.DeviceManufacturers.ServiceAgent" ref="true" />
+      </containers>
+      <file name="726d9ecb-7268-49c1-86b4-1ddc4641f75a" />
+    </api>
+    <api id="M:Microsoft.Phone.DeviceManufacturers.ServiceAgent.OnCancel">
+      <topicdata group="api" />
+      <apidata name="OnCancel" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" final="true" />
+      <overrides>
+        <member api="M:Microsoft.Phone.BackgroundAgent.OnCancel">
+          <type api="T:Microsoft.Phone.BackgroundAgent" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.DeviceManufacturers" />
+        <type api="T:Microsoft.Phone.DeviceManufacturers.ServiceAgent" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="416d7454-7f0b-79ee-0fc4-b7fec075499a" />
+    </api>
+    <api id="M:Microsoft.Phone.DeviceManufacturers.ServiceAgent.OnRestartAfterUnexpectedTermination">
+      <topicdata group="api" />
+      <apidata name="OnRestartAfterUnexpectedTermination" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.DeviceManufacturers" />
+        <type api="T:Microsoft.Phone.DeviceManufacturers.ServiceAgent" ref="true" />
+      </containers>
+      <file name="c1b1f5f0-5f60-546d-df3c-7cb39d4505c0" />
+    </api>
+    <api id="M:Microsoft.Phone.DeviceManufacturers.ServiceAgent.OnRestartAfterUpdate">
+      <topicdata group="api" />
+      <apidata name="OnRestartAfterUpdate" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.DeviceManufacturers" />
+        <type api="T:Microsoft.Phone.DeviceManufacturers.ServiceAgent" ref="true" />
+      </containers>
+      <file name="63eb57ec-b0e2-73d5-27de-6abee9c77620" />
+    </api>
+    <api id="T:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager" />
+      <apidata name="ServiceAgentManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.DeviceManufacturers" />
+      </containers>
+      <file name="480b3f79-b41f-cc15-8f52-4e46ab4dc3ab" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager">
+      <topicdata name="ServiceAgentManager" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager" />
+      <apidata name="ServiceAgentManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager.LaunchOnBootForTest" />
+        <element api="M:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager.LaunchOnRestartAfterUnexpectedTerminationForTest" />
+        <element api="M:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager.LaunchOnRestartAfterUpdateForTest" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.DeviceManufacturers" />
+        <type api="T:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager" />
+      </containers>
+      <file name="ac8cd47f-cc6b-6199-0495-408e1afff869" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager">
+      <topicdata name="ServiceAgentManager" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager" />
+      <apidata name="ServiceAgentManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager.LaunchOnBootForTest" />
+        <element api="M:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager.LaunchOnRestartAfterUnexpectedTerminationForTest" />
+        <element api="M:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager.LaunchOnRestartAfterUpdateForTest" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.DeviceManufacturers" />
+        <type api="T:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager" />
+      </containers>
+      <file name="2a11a9aa-f813-5d79-aa62-1a77900571fd" />
+    </api>
+    <api id="M:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager.LaunchOnBootForTest">
+      <topicdata group="api" />
+      <apidata name="LaunchOnBootForTest" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.DeviceManufacturers" />
+        <type api="T:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager" ref="true" />
+      </containers>
+      <file name="a737907f-7248-d5a4-a526-26d7509ff31d" />
+    </api>
+    <api id="M:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager.LaunchOnRestartAfterUnexpectedTerminationForTest">
+      <topicdata group="api" />
+      <apidata name="LaunchOnRestartAfterUnexpectedTerminationForTest" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.DeviceManufacturers" />
+        <type api="T:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager" ref="true" />
+      </containers>
+      <file name="d229c412-1f13-fdae-e74e-05aa5feeb806" />
+    </api>
+    <api id="M:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager.LaunchOnRestartAfterUpdateForTest">
+      <topicdata group="api" />
+      <apidata name="LaunchOnRestartAfterUpdateForTest" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.DeviceManufacturers" />
+        <type api="T:Microsoft.Phone.DeviceManufacturers.ServiceAgentManager" ref="true" />
+      </containers>
+      <file name="f14e4e25-0283-b82d-d681-464ec2b264d1" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,2949 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Networking.Proximity">
+      <topicdata group="api" />
+      <apidata name="Windows.Networking.Proximity" group="namespace" />
+      <elements>
+        <element api="T:Windows.Networking.Proximity.ProximityMessage" />
+        <element api="T:Windows.Networking.Proximity.MessageReceivedHandler" />
+        <element api="T:Windows.Networking.Proximity.ProximityDevice" />
+        <element api="T:Windows.Networking.Proximity.MessageTransmittedHandler" />
+        <element api="T:Windows.Networking.Proximity.DeviceArrivedEventHandler" />
+        <element api="T:Windows.Networking.Proximity.DeviceDepartedEventHandler" />
+        <element api="T:Windows.Networking.Proximity.TriggeredConnectState" />
+        <element api="T:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs" />
+        <element api="T:Windows.Networking.Proximity.PeerInformation" />
+        <element api="T:Windows.Networking.Proximity.ConnectionRequestedEventArgs" />
+        <element api="T:Windows.Networking.Proximity.PeerWatcherStatus" />
+        <element api="T:Windows.Networking.Proximity.PeerWatcher" />
+        <element api="T:Windows.Networking.Proximity.PeerDiscoveryTypes" />
+        <element api="T:Windows.Networking.Proximity.PeerRole" />
+        <element api="T:Windows.Networking.Proximity.PeerFinder" />
+      </elements>
+      <file name="2d36e980-178d-feb3-4d19-fd644ab2f197" />
+    </api>
+    <api id="T:Windows.Networking.Proximity.ConnectionRequestedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.Proximity.ConnectionRequestedEventArgs" />
+      <apidata name="ConnectionRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Networking.Proximity.IConnectionRequestedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6ed1fccb-8d29-6d9c-59f7-d0b39cf9fd60" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.Proximity.ConnectionRequestedEventArgs">
+      <topicdata name="ConnectionRequestedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Networking.Proximity.ConnectionRequestedEventArgs" />
+      <apidata name="ConnectionRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Networking.Proximity.ConnectionRequestedEventArgs.PeerInformation" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ConnectionRequestedEventArgs" />
+      </containers>
+      <file name="54bd8289-1119-7e19-1b14-cd3fb831615b" />
+    </api>
+    <api id="Methods.T:Windows.Networking.Proximity.ConnectionRequestedEventArgs">
+      <topicdata name="ConnectionRequestedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.Proximity.ConnectionRequestedEventArgs" />
+      <apidata name="ConnectionRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ConnectionRequestedEventArgs" />
+      </containers>
+      <file name="874ede32-5cdd-51f3-691c-02a648c149ef" />
+    </api>
+    <api id="Properties.T:Windows.Networking.Proximity.ConnectionRequestedEventArgs">
+      <topicdata name="ConnectionRequestedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Networking.Proximity.ConnectionRequestedEventArgs" />
+      <apidata name="ConnectionRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Networking.Proximity.ConnectionRequestedEventArgs.PeerInformation" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ConnectionRequestedEventArgs" />
+      </containers>
+      <file name="79513f1a-8346-fe63-62c9-51762356da20" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.ConnectionRequestedEventArgs.PeerInformation">
+      <topicdata group="api" />
+      <apidata name="PeerInformation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PeerInformation" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.PeerInformation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ConnectionRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="f4610a95-b64d-30ec-c3a4-2a89d82c9de2" />
+    </api>
+    <api id="T:Windows.Networking.Proximity.DeviceArrivedEventHandler">
+      <topicdata group="api" />
+      <apidata name="DeviceArrivedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>4020886121</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>63201</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18889</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>164</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>158</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>142</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>15</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>197</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>143</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>185</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>17</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4092fb6a-a33a-c534-f619-68b93d97d8ed" />
+    </api>
+    <api id="T:Windows.Networking.Proximity.DeviceDepartedEventHandler">
+      <topicdata group="api" />
+      <apidata name="DeviceDepartedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>4020886121</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>63202</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18889</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>164</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>158</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>142</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>15</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>197</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>143</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>185</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>17</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="799e2b35-f951-a61f-0436-4f1c9ff4b0b2" />
+    </api>
+    <api id="T:Windows.Networking.Proximity.MessageReceivedHandler">
+      <topicdata group="api" />
+      <apidata name="MessageReceivedHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+        </parameter>
+        <parameter name="message" in="true">
+          <type api="T:Windows.Networking.Proximity.ProximityMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>4020963202</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>63202</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18037</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>160</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>69</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>216</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>227</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>32</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>194</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>72</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>8</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5bb6acd6-6381-9de5-9f0a-2570eca8e925" />
+    </api>
+    <api id="T:Windows.Networking.Proximity.MessageTransmittedHandler">
+      <topicdata group="api" />
+      <apidata name="MessageTransmittedHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+        </parameter>
+        <parameter name="messageId" in="true">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>4020898634</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>63202</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19837</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>133</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>108</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>120</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>252</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>142</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>252</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>2</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>30</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="47074288-eaab-d16b-ac3c-5ec477087329" />
+    </api>
+    <api id="T:Windows.Networking.Proximity.PeerDiscoveryTypes">
+      <topicdata group="api" />
+      <apidata name="PeerDiscoveryTypes" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.Networking.Proximity.PeerDiscoveryTypes.None" />
+        <element api="F:Windows.Networking.Proximity.PeerDiscoveryTypes.Browse" />
+        <element api="F:Windows.Networking.Proximity.PeerDiscoveryTypes.Triggered" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1ae9d316-b364-fefb-5fc8-7bd0fb9efa64" />
+    </api>
+    <api id="F:Windows.Networking.Proximity.PeerDiscoveryTypes.Browse">
+      <topicdata group="api" notopic="" />
+      <apidata name="Browse" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.PeerDiscoveryTypes" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerDiscoveryTypes" ref="false" />
+      </containers>
+      <file name="a0aef87f-c5ae-cc88-9e44-c1cbd93dedd3" />
+    </api>
+    <api id="F:Windows.Networking.Proximity.PeerDiscoveryTypes.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.PeerDiscoveryTypes" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerDiscoveryTypes" ref="false" />
+      </containers>
+      <file name="12d2fc90-bd55-3419-0ab7-42a893d79039" />
+    </api>
+    <api id="F:Windows.Networking.Proximity.PeerDiscoveryTypes.Triggered">
+      <topicdata group="api" notopic="" />
+      <apidata name="Triggered" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.PeerDiscoveryTypes" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerDiscoveryTypes" ref="false" />
+      </containers>
+      <file name="d338c164-6d09-91be-edad-1ba8d9ba82f1" />
+    </api>
+    <api id="T:Windows.Networking.Proximity.PeerFinder">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.Proximity.PeerFinder" />
+      <apidata name="PeerFinder" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="58642e54-cf16-55e9-75bd-dced50ccb977" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.Proximity.PeerFinder">
+      <topicdata name="PeerFinder" group="list" subgroup="members" typeTopicId="T:Windows.Networking.Proximity.PeerFinder" />
+      <apidata name="PeerFinder" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Networking.Proximity.PeerFinder.AllowBluetooth" />
+        <element api="P:Windows.Networking.Proximity.PeerFinder.AllowInfrastructure" />
+        <element api="P:Windows.Networking.Proximity.PeerFinder.AllowWiFiDirect" />
+        <element api="P:Windows.Networking.Proximity.PeerFinder.AlternateIdentities" />
+        <element api="M:Windows.Networking.Proximity.PeerFinder.ConnectAsync(Windows.Networking.Proximity.PeerInformation)" />
+        <element api="E:Windows.Networking.Proximity.PeerFinder.ConnectionRequested" />
+        <element api="M:Windows.Networking.Proximity.PeerFinder.CreateWatcher" />
+        <element api="P:Windows.Networking.Proximity.PeerFinder.DiscoveryData" />
+        <element api="P:Windows.Networking.Proximity.PeerFinder.DisplayName" />
+        <element api="M:Windows.Networking.Proximity.PeerFinder.FindAllPeersAsync" />
+        <element api="P:Windows.Networking.Proximity.PeerFinder.Role" />
+        <element api="Overload:Windows.Networking.Proximity.PeerFinder.Start">
+          <element api="M:Windows.Networking.Proximity.PeerFinder.Start" />
+          <element api="M:Windows.Networking.Proximity.PeerFinder.Start(System.String)" />
+        </element>
+        <element api="M:Windows.Networking.Proximity.PeerFinder.Stop" />
+        <element api="P:Windows.Networking.Proximity.PeerFinder.SupportedDiscoveryTypes" />
+        <element api="E:Windows.Networking.Proximity.PeerFinder.TriggeredConnectionStateChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" />
+      </containers>
+      <file name="34677254-b146-8e67-a283-53900bfedc00" />
+    </api>
+    <api id="Methods.T:Windows.Networking.Proximity.PeerFinder">
+      <topicdata name="PeerFinder" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.Proximity.PeerFinder" />
+      <apidata name="PeerFinder" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Networking.Proximity.PeerFinder.ConnectAsync(Windows.Networking.Proximity.PeerInformation)" />
+        <element api="M:Windows.Networking.Proximity.PeerFinder.CreateWatcher" />
+        <element api="M:Windows.Networking.Proximity.PeerFinder.FindAllPeersAsync" />
+        <element api="Overload:Windows.Networking.Proximity.PeerFinder.Start">
+          <element api="M:Windows.Networking.Proximity.PeerFinder.Start" />
+          <element api="M:Windows.Networking.Proximity.PeerFinder.Start(System.String)" />
+        </element>
+        <element api="M:Windows.Networking.Proximity.PeerFinder.Stop" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" />
+      </containers>
+      <file name="06ddf1aa-d47a-8221-c473-e4535748d35e" />
+    </api>
+    <api id="Properties.T:Windows.Networking.Proximity.PeerFinder">
+      <topicdata name="PeerFinder" group="list" subgroup="Properties" typeTopicId="T:Windows.Networking.Proximity.PeerFinder" />
+      <apidata name="PeerFinder" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Networking.Proximity.PeerFinder.AllowBluetooth" />
+        <element api="P:Windows.Networking.Proximity.PeerFinder.AllowInfrastructure" />
+        <element api="P:Windows.Networking.Proximity.PeerFinder.AllowWiFiDirect" />
+        <element api="P:Windows.Networking.Proximity.PeerFinder.AlternateIdentities" />
+        <element api="P:Windows.Networking.Proximity.PeerFinder.DiscoveryData" />
+        <element api="P:Windows.Networking.Proximity.PeerFinder.DisplayName" />
+        <element api="P:Windows.Networking.Proximity.PeerFinder.Role" />
+        <element api="P:Windows.Networking.Proximity.PeerFinder.SupportedDiscoveryTypes" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" />
+      </containers>
+      <file name="078fb318-3da4-d51b-e2cd-6e350119725e" />
+    </api>
+    <api id="Events.T:Windows.Networking.Proximity.PeerFinder">
+      <topicdata name="PeerFinder" group="list" subgroup="Events" typeTopicId="T:Windows.Networking.Proximity.PeerFinder" />
+      <apidata name="PeerFinder" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Networking.Proximity.PeerFinder.ConnectionRequested" />
+        <element api="E:Windows.Networking.Proximity.PeerFinder.TriggeredConnectionStateChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" />
+      </containers>
+      <file name="6188b764-4ab3-488c-fa14-9f6c014d3ff2" />
+    </api>
+    <api id="Overload:Windows.Networking.Proximity.PeerFinder.Start">
+      <topicdata name="Start" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Networking.Proximity.PeerFinder" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Networking.Proximity.PeerFinder.Start" />
+        <element api="M:Windows.Networking.Proximity.PeerFinder.Start(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" ref="true" />
+      </containers>
+      <file name="c09832ca-a3e5-0214-531a-c0ef06a906a3" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.PeerFinder.AllowBluetooth">
+      <topicdata group="api" />
+      <apidata name="AllowBluetooth" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AllowBluetooth" />
+      <setter name="set_AllowBluetooth" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" ref="true" />
+      </containers>
+      <file name="a19e318c-8d26-48eb-658e-d1f40941ff43" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.PeerFinder.AllowInfrastructure">
+      <topicdata group="api" />
+      <apidata name="AllowInfrastructure" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AllowInfrastructure" />
+      <setter name="set_AllowInfrastructure" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" ref="true" />
+      </containers>
+      <file name="51e9cd73-8fff-1fd7-036a-8b6fd4d08de4" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.PeerFinder.AllowWiFiDirect">
+      <topicdata group="api" />
+      <apidata name="AllowWiFiDirect" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AllowWiFiDirect" />
+      <setter name="set_AllowWiFiDirect" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" ref="true" />
+      </containers>
+      <file name="2a6889cc-5b55-8b1e-2c37-4cc593459c6c" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.PeerFinder.AlternateIdentities">
+      <topicdata group="api" />
+      <apidata name="AlternateIdentities" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AlternateIdentities" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" ref="true" />
+      </containers>
+      <file name="bca49188-3da8-e9cf-1bb9-3f9c73eb3131" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.PeerFinder.ConnectAsync(Windows.Networking.Proximity.PeerInformation)">
+      <topicdata group="api" />
+      <apidata name="ConnectAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="peerInformation" in="true">
+          <type api="T:Windows.Networking.Proximity.PeerInformation" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.Sockets.StreamSocket" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" ref="true" />
+      </containers>
+      <file name="e8f5ccc5-f4c7-61c1-6d5f-1c605b7d050a" />
+    </api>
+    <api id="E:Windows.Networking.Proximity.PeerFinder.ConnectionRequested">
+      <topicdata group="api" />
+      <apidata name="ConnectionRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ConnectionRequested" />
+      <remover name="remove_ConnectionRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+            <type api="T:Windows.Networking.Proximity.ConnectionRequestedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Windows.Networking.Proximity.ConnectionRequestedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" ref="true" />
+      </containers>
+      <file name="a521165e-db2c-8dd0-3829-e6947ee8211f" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.PeerFinder.CreateWatcher">
+      <topicdata group="api" />
+      <apidata name="CreateWatcher" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.PeerWatcher" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" ref="true" />
+      </containers>
+      <file name="38ba6a19-26e9-5b30-97d2-f6df07b559cf" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.PeerFinder.DiscoveryData">
+      <topicdata group="api" />
+      <apidata name="DiscoveryData" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DiscoveryData" />
+      <setter name="set_DiscoveryData" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" ref="true" />
+      </containers>
+      <file name="233f9a68-c0bf-6aef-d08d-225095e80cec" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.PeerFinder.DisplayName">
+      <topicdata group="api" />
+      <apidata name="DisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DisplayName" />
+      <setter name="set_DisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" ref="true" />
+      </containers>
+      <file name="4c46488f-ff18-2dce-20f9-6551c4e8e363" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.PeerFinder.FindAllPeersAsync">
+      <topicdata group="api" />
+      <apidata name="FindAllPeersAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.Networking.Proximity.PeerInformation" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" ref="true" />
+      </containers>
+      <file name="2568ab36-efb3-ef6c-b508-5c1a5de5ef3a" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.PeerFinder.Role">
+      <topicdata group="api" />
+      <apidata name="Role" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Role" />
+      <setter name="set_Role" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.PeerRole" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" ref="true" />
+      </containers>
+      <file name="5664b47b-36fb-eba6-06b5-39538b2f7950" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.PeerFinder.Start">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Networking.Proximity.PeerFinder.Start" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Start</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="38d0489f-7f4c-ce2f-d75f-1efdcb94a07b" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.PeerFinder.Start(System.String)">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Networking.Proximity.PeerFinder.Start" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="peerMessage" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>StartWithMessage</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5c5dc1a5-5d45-b5a3-5947-411bef5517cb" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.PeerFinder.Stop">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" ref="true" />
+      </containers>
+      <file name="4e9bebae-1a48-d9b0-05f1-94728d25a7f2" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.PeerFinder.SupportedDiscoveryTypes">
+      <topicdata group="api" />
+      <apidata name="SupportedDiscoveryTypes" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SupportedDiscoveryTypes" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.PeerDiscoveryTypes" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" ref="true" />
+      </containers>
+      <file name="8c78bd40-85dc-5e3a-35ea-278e2e7bda42" />
+    </api>
+    <api id="E:Windows.Networking.Proximity.PeerFinder.TriggeredConnectionStateChanged">
+      <topicdata group="api" />
+      <apidata name="TriggeredConnectionStateChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_TriggeredConnectionStateChanged" />
+      <remover name="remove_TriggeredConnectionStateChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+            <type api="T:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerFinder" ref="true" />
+      </containers>
+      <file name="1f22e537-090d-c316-4bca-8edb3aa1c817" />
+    </api>
+    <api id="T:Windows.Networking.Proximity.PeerInformation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.Proximity.PeerInformation" />
+      <apidata name="PeerInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Networking.Proximity.IPeerInformation" ref="true" />
+        <type api="T:Windows.Networking.Proximity.IPeerInformation3" ref="true" />
+        <type api="T:Windows.Networking.Proximity.IPeerInformationWithHostAndService" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9041b54c-7a38-cd01-981c-e527c1c7491e" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.Proximity.PeerInformation">
+      <topicdata name="PeerInformation" group="list" subgroup="members" typeTopicId="T:Windows.Networking.Proximity.PeerInformation" />
+      <apidata name="PeerInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Networking.Proximity.PeerInformation.DiscoveryData" />
+        <element api="P:Windows.Networking.Proximity.PeerInformation.DisplayName" />
+        <element api="P:Windows.Networking.Proximity.PeerInformation.HostName" />
+        <element api="P:Windows.Networking.Proximity.PeerInformation.Id" />
+        <element api="P:Windows.Networking.Proximity.PeerInformation.ServiceName" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerInformation" />
+      </containers>
+      <file name="faff3962-e0aa-4463-eeb0-03ff5677857c" />
+    </api>
+    <api id="Methods.T:Windows.Networking.Proximity.PeerInformation">
+      <topicdata name="PeerInformation" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.Proximity.PeerInformation" />
+      <apidata name="PeerInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerInformation" />
+      </containers>
+      <file name="860a9acb-8c18-47b5-72bd-c0923195efb7" />
+    </api>
+    <api id="Properties.T:Windows.Networking.Proximity.PeerInformation">
+      <topicdata name="PeerInformation" group="list" subgroup="Properties" typeTopicId="T:Windows.Networking.Proximity.PeerInformation" />
+      <apidata name="PeerInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Networking.Proximity.PeerInformation.DiscoveryData" />
+        <element api="P:Windows.Networking.Proximity.PeerInformation.DisplayName" />
+        <element api="P:Windows.Networking.Proximity.PeerInformation.HostName" />
+        <element api="P:Windows.Networking.Proximity.PeerInformation.Id" />
+        <element api="P:Windows.Networking.Proximity.PeerInformation.ServiceName" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerInformation" />
+      </containers>
+      <file name="54fa0674-25a2-ed98-26e1-09f1f0b4da55" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.PeerInformation.DiscoveryData">
+      <topicdata group="api" />
+      <apidata name="DiscoveryData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DiscoveryData" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerInformation" ref="true" />
+      </containers>
+      <file name="2dd80a1b-0f30-7cfc-ebce-262439972237" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.PeerInformation.DisplayName">
+      <topicdata group="api" />
+      <apidata name="DisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerInformation" ref="true" />
+      </containers>
+      <file name="d3df3e70-7321-6722-6e76-cb7fbb95c945" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.PeerInformation.HostName">
+      <topicdata group="api" />
+      <apidata name="HostName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_HostName" />
+      <returns>
+        <type api="T:Windows.Networking.HostName" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerInformation" ref="true" />
+      </containers>
+      <file name="35e80483-35b6-ffaa-261a-2173c980a082" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.PeerInformation.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerInformation" ref="true" />
+      </containers>
+      <file name="597ab00c-87a3-8527-0ee2-21e4a3e97f43" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.PeerInformation.ServiceName">
+      <topicdata group="api" />
+      <apidata name="ServiceName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ServiceName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerInformation" ref="true" />
+      </containers>
+      <file name="d40acfca-a797-d00d-3390-654eab351a5a" />
+    </api>
+    <api id="T:Windows.Networking.Proximity.PeerRole">
+      <topicdata group="api" />
+      <apidata name="PeerRole" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Networking.Proximity.PeerRole.Peer" />
+        <element api="F:Windows.Networking.Proximity.PeerRole.Host" />
+        <element api="F:Windows.Networking.Proximity.PeerRole.Client" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="27dba837-55f3-d6f5-acd5-951011e7ce51" />
+    </api>
+    <api id="F:Windows.Networking.Proximity.PeerRole.Client">
+      <topicdata group="api" notopic="" />
+      <apidata name="Client" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.PeerRole" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerRole" ref="false" />
+      </containers>
+      <file name="07a2061f-7588-eec2-a0a6-f64f761bf634" />
+    </api>
+    <api id="F:Windows.Networking.Proximity.PeerRole.Host">
+      <topicdata group="api" notopic="" />
+      <apidata name="Host" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.PeerRole" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerRole" ref="false" />
+      </containers>
+      <file name="aed661ee-dfe4-649c-4f5c-a7a252002665" />
+    </api>
+    <api id="F:Windows.Networking.Proximity.PeerRole.Peer">
+      <topicdata group="api" notopic="" />
+      <apidata name="Peer" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.PeerRole" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerRole" ref="false" />
+      </containers>
+      <file name="a7f3f284-9293-745f-b15f-74e2b353c061" />
+    </api>
+    <api id="T:Windows.Networking.Proximity.PeerWatcher">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.Proximity.PeerWatcher" />
+      <apidata name="PeerWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Networking.Proximity.IPeerWatcher" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="dd37e3a9-756c-597c-d043-2306dc1c6212" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.Proximity.PeerWatcher">
+      <topicdata name="PeerWatcher" group="list" subgroup="members" typeTopicId="T:Windows.Networking.Proximity.PeerWatcher" />
+      <apidata name="PeerWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="E:Windows.Networking.Proximity.PeerWatcher.Added" />
+        <element api="E:Windows.Networking.Proximity.PeerWatcher.EnumerationCompleted" />
+        <element api="E:Windows.Networking.Proximity.PeerWatcher.Removed" />
+        <element api="M:Windows.Networking.Proximity.PeerWatcher.Start" />
+        <element api="P:Windows.Networking.Proximity.PeerWatcher.Status" />
+        <element api="M:Windows.Networking.Proximity.PeerWatcher.Stop" />
+        <element api="E:Windows.Networking.Proximity.PeerWatcher.Stopped" />
+        <element api="E:Windows.Networking.Proximity.PeerWatcher.Updated" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerWatcher" />
+      </containers>
+      <file name="cd2f55cc-260a-ebae-e583-4906cb406367" />
+    </api>
+    <api id="Methods.T:Windows.Networking.Proximity.PeerWatcher">
+      <topicdata name="PeerWatcher" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.Proximity.PeerWatcher" />
+      <apidata name="PeerWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Networking.Proximity.PeerWatcher.Start" />
+        <element api="M:Windows.Networking.Proximity.PeerWatcher.Stop" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerWatcher" />
+      </containers>
+      <file name="dda0111a-9070-a1ac-e40f-7f44e3fce774" />
+    </api>
+    <api id="Properties.T:Windows.Networking.Proximity.PeerWatcher">
+      <topicdata name="PeerWatcher" group="list" subgroup="Properties" typeTopicId="T:Windows.Networking.Proximity.PeerWatcher" />
+      <apidata name="PeerWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Networking.Proximity.PeerWatcher.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerWatcher" />
+      </containers>
+      <file name="6b005fe5-953b-a84e-378d-e439034b10ae" />
+    </api>
+    <api id="Events.T:Windows.Networking.Proximity.PeerWatcher">
+      <topicdata name="PeerWatcher" group="list" subgroup="Events" typeTopicId="T:Windows.Networking.Proximity.PeerWatcher" />
+      <apidata name="PeerWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Networking.Proximity.PeerWatcher.Added" />
+        <element api="E:Windows.Networking.Proximity.PeerWatcher.EnumerationCompleted" />
+        <element api="E:Windows.Networking.Proximity.PeerWatcher.Removed" />
+        <element api="E:Windows.Networking.Proximity.PeerWatcher.Stopped" />
+        <element api="E:Windows.Networking.Proximity.PeerWatcher.Updated" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerWatcher" />
+      </containers>
+      <file name="ed8cc5a3-8fea-69cd-8fa3-76c058fadad3" />
+    </api>
+    <api id="E:Windows.Networking.Proximity.PeerWatcher.Added">
+      <topicdata group="api" />
+      <apidata name="Added" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Added" />
+      <remover name="remove_Added" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.Proximity.PeerWatcher" ref="true" />
+            <type api="T:Windows.Networking.Proximity.PeerInformation" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerWatcher" ref="true" />
+      </containers>
+      <file name="bc37aeac-0351-9068-c794-8f3a400c7e16" />
+    </api>
+    <api id="E:Windows.Networking.Proximity.PeerWatcher.EnumerationCompleted">
+      <topicdata group="api" />
+      <apidata name="EnumerationCompleted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_EnumerationCompleted" />
+      <remover name="remove_EnumerationCompleted" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.Proximity.PeerWatcher" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerWatcher" ref="true" />
+      </containers>
+      <file name="34537c2f-3af0-3bc3-a6cb-5ede2e4df31e" />
+    </api>
+    <api id="E:Windows.Networking.Proximity.PeerWatcher.Removed">
+      <topicdata group="api" />
+      <apidata name="Removed" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Removed" />
+      <remover name="remove_Removed" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.Proximity.PeerWatcher" ref="true" />
+            <type api="T:Windows.Networking.Proximity.PeerInformation" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerWatcher" ref="true" />
+      </containers>
+      <file name="c1596c92-9f11-80ac-226a-430f779257de" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.PeerWatcher.Start">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerWatcher" ref="true" />
+      </containers>
+      <file name="de7bab22-7ec3-b124-dc1b-4355b25d8d6c" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.PeerWatcher.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Status" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.PeerWatcherStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerWatcher" ref="true" />
+      </containers>
+      <file name="f8030afe-4b45-020d-10f0-b1ee36486d90" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.PeerWatcher.Stop">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerWatcher" ref="true" />
+      </containers>
+      <file name="d3f28a41-4599-2429-5169-73ff448a4d69" />
+    </api>
+    <api id="E:Windows.Networking.Proximity.PeerWatcher.Stopped">
+      <topicdata group="api" />
+      <apidata name="Stopped" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Stopped" />
+      <remover name="remove_Stopped" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.Proximity.PeerWatcher" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerWatcher" ref="true" />
+      </containers>
+      <file name="feba2e52-a3c1-587f-910a-173027611d71" />
+    </api>
+    <api id="E:Windows.Networking.Proximity.PeerWatcher.Updated">
+      <topicdata group="api" />
+      <apidata name="Updated" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Updated" />
+      <remover name="remove_Updated" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.Proximity.PeerWatcher" ref="true" />
+            <type api="T:Windows.Networking.Proximity.PeerInformation" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerWatcher" ref="true" />
+      </containers>
+      <file name="709f7b0d-6aa4-c528-a272-7d1ab28b0c81" />
+    </api>
+    <api id="T:Windows.Networking.Proximity.PeerWatcherStatus">
+      <topicdata group="api" />
+      <apidata name="PeerWatcherStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Networking.Proximity.PeerWatcherStatus.Created" />
+        <element api="F:Windows.Networking.Proximity.PeerWatcherStatus.Started" />
+        <element api="F:Windows.Networking.Proximity.PeerWatcherStatus.EnumerationCompleted" />
+        <element api="F:Windows.Networking.Proximity.PeerWatcherStatus.Stopping" />
+        <element api="F:Windows.Networking.Proximity.PeerWatcherStatus.Stopped" />
+        <element api="F:Windows.Networking.Proximity.PeerWatcherStatus.Aborted" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8143afe4-6c92-4cba-8dbb-cc903f2aa299" />
+    </api>
+    <api id="F:Windows.Networking.Proximity.PeerWatcherStatus.Aborted">
+      <topicdata group="api" notopic="" />
+      <apidata name="Aborted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.PeerWatcherStatus" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerWatcherStatus" ref="false" />
+      </containers>
+      <file name="8c0fcc9e-372b-1c1c-946f-a94f5890c35c" />
+    </api>
+    <api id="F:Windows.Networking.Proximity.PeerWatcherStatus.Created">
+      <topicdata group="api" notopic="" />
+      <apidata name="Created" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.PeerWatcherStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerWatcherStatus" ref="false" />
+      </containers>
+      <file name="3f69b791-0e90-01cd-37ce-cd73b5d95c8a" />
+    </api>
+    <api id="F:Windows.Networking.Proximity.PeerWatcherStatus.EnumerationCompleted">
+      <topicdata group="api" notopic="" />
+      <apidata name="EnumerationCompleted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.PeerWatcherStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerWatcherStatus" ref="false" />
+      </containers>
+      <file name="0cfdc84b-75c8-a3a1-cfbd-9d7e48ea14b0" />
+    </api>
+    <api id="F:Windows.Networking.Proximity.PeerWatcherStatus.Started">
+      <topicdata group="api" notopic="" />
+      <apidata name="Started" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.PeerWatcherStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerWatcherStatus" ref="false" />
+      </containers>
+      <file name="d95aae94-5e38-e6fe-2f9f-ab297ba8d563" />
+    </api>
+    <api id="F:Windows.Networking.Proximity.PeerWatcherStatus.Stopped">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stopped" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.PeerWatcherStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerWatcherStatus" ref="false" />
+      </containers>
+      <file name="778183ec-46fb-66d6-a7cb-6f8ea0e7291a" />
+    </api>
+    <api id="F:Windows.Networking.Proximity.PeerWatcherStatus.Stopping">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stopping" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.PeerWatcherStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.PeerWatcherStatus" ref="false" />
+      </containers>
+      <file name="8bacb43e-d75d-aeb1-bfc8-c2a93cb8a545" />
+    </api>
+    <api id="T:Windows.Networking.Proximity.ProximityDevice">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.Proximity.ProximityDevice" />
+      <apidata name="ProximityDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Networking.Proximity.IProximityDevice" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9ec982a3-4063-dc4c-6b0d-7c386f5a89d2" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.Proximity.ProximityDevice">
+      <topicdata name="ProximityDevice" group="list" subgroup="members" typeTopicId="T:Windows.Networking.Proximity.ProximityDevice" />
+      <apidata name="ProximityDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Networking.Proximity.ProximityDevice.BitsPerSecond" />
+        <element api="E:Windows.Networking.Proximity.ProximityDevice.DeviceArrived" />
+        <element api="E:Windows.Networking.Proximity.ProximityDevice.DeviceDeparted" />
+        <element api="P:Windows.Networking.Proximity.ProximityDevice.DeviceId" />
+        <element api="M:Windows.Networking.Proximity.ProximityDevice.FromId(System.String)" />
+        <element api="M:Windows.Networking.Proximity.ProximityDevice.GetDefault" />
+        <element api="M:Windows.Networking.Proximity.ProximityDevice.GetDeviceSelector" />
+        <element api="P:Windows.Networking.Proximity.ProximityDevice.MaxMessageBytes" />
+        <element api="Overload:Windows.Networking.Proximity.ProximityDevice.PublishBinaryMessage">
+          <element api="M:Windows.Networking.Proximity.ProximityDevice.PublishBinaryMessage(System.String,Windows.Storage.Streams.IBuffer)" />
+          <element api="M:Windows.Networking.Proximity.ProximityDevice.PublishBinaryMessage(System.String,Windows.Storage.Streams.IBuffer,Windows.Networking.Proximity.MessageTransmittedHandler)" />
+        </element>
+        <element api="Overload:Windows.Networking.Proximity.ProximityDevice.PublishMessage">
+          <element api="M:Windows.Networking.Proximity.ProximityDevice.PublishMessage(System.String,System.String)" />
+          <element api="M:Windows.Networking.Proximity.ProximityDevice.PublishMessage(System.String,System.String,Windows.Networking.Proximity.MessageTransmittedHandler)" />
+        </element>
+        <element api="Overload:Windows.Networking.Proximity.ProximityDevice.PublishUriMessage">
+          <element api="M:Windows.Networking.Proximity.ProximityDevice.PublishUriMessage(Windows.Foundation.Uri)" />
+          <element api="M:Windows.Networking.Proximity.ProximityDevice.PublishUriMessage(Windows.Foundation.Uri,Windows.Networking.Proximity.MessageTransmittedHandler)" />
+        </element>
+        <element api="M:Windows.Networking.Proximity.ProximityDevice.StopPublishingMessage(System.Int64)" />
+        <element api="M:Windows.Networking.Proximity.ProximityDevice.StopSubscribingForMessage(System.Int64)" />
+        <element api="M:Windows.Networking.Proximity.ProximityDevice.SubscribeForMessage(System.String,Windows.Networking.Proximity.MessageReceivedHandler)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" />
+      </containers>
+      <file name="f37415c0-a04e-9218-9d16-e6e84e7bb5eb" />
+    </api>
+    <api id="Methods.T:Windows.Networking.Proximity.ProximityDevice">
+      <topicdata name="ProximityDevice" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.Proximity.ProximityDevice" />
+      <apidata name="ProximityDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Networking.Proximity.ProximityDevice.FromId(System.String)" />
+        <element api="M:Windows.Networking.Proximity.ProximityDevice.GetDefault" />
+        <element api="M:Windows.Networking.Proximity.ProximityDevice.GetDeviceSelector" />
+        <element api="Overload:Windows.Networking.Proximity.ProximityDevice.PublishBinaryMessage">
+          <element api="M:Windows.Networking.Proximity.ProximityDevice.PublishBinaryMessage(System.String,Windows.Storage.Streams.IBuffer)" />
+          <element api="M:Windows.Networking.Proximity.ProximityDevice.PublishBinaryMessage(System.String,Windows.Storage.Streams.IBuffer,Windows.Networking.Proximity.MessageTransmittedHandler)" />
+        </element>
+        <element api="Overload:Windows.Networking.Proximity.ProximityDevice.PublishMessage">
+          <element api="M:Windows.Networking.Proximity.ProximityDevice.PublishMessage(System.String,System.String)" />
+          <element api="M:Windows.Networking.Proximity.ProximityDevice.PublishMessage(System.String,System.String,Windows.Networking.Proximity.MessageTransmittedHandler)" />
+        </element>
+        <element api="Overload:Windows.Networking.Proximity.ProximityDevice.PublishUriMessage">
+          <element api="M:Windows.Networking.Proximity.ProximityDevice.PublishUriMessage(Windows.Foundation.Uri)" />
+          <element api="M:Windows.Networking.Proximity.ProximityDevice.PublishUriMessage(Windows.Foundation.Uri,Windows.Networking.Proximity.MessageTransmittedHandler)" />
+        </element>
+        <element api="M:Windows.Networking.Proximity.ProximityDevice.StopPublishingMessage(System.Int64)" />
+        <element api="M:Windows.Networking.Proximity.ProximityDevice.StopSubscribingForMessage(System.Int64)" />
+        <element api="M:Windows.Networking.Proximity.ProximityDevice.SubscribeForMessage(System.String,Windows.Networking.Proximity.MessageReceivedHandler)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" />
+      </containers>
+      <file name="4040a3c5-1eb1-c449-ef8e-11e77d5d0a70" />
+    </api>
+    <api id="Properties.T:Windows.Networking.Proximity.ProximityDevice">
+      <topicdata name="ProximityDevice" group="list" subgroup="Properties" typeTopicId="T:Windows.Networking.Proximity.ProximityDevice" />
+      <apidata name="ProximityDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Networking.Proximity.ProximityDevice.BitsPerSecond" />
+        <element api="P:Windows.Networking.Proximity.ProximityDevice.DeviceId" />
+        <element api="P:Windows.Networking.Proximity.ProximityDevice.MaxMessageBytes" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" />
+      </containers>
+      <file name="5f74d3e5-b5c0-3615-1b44-6df034e08da4" />
+    </api>
+    <api id="Events.T:Windows.Networking.Proximity.ProximityDevice">
+      <topicdata name="ProximityDevice" group="list" subgroup="Events" typeTopicId="T:Windows.Networking.Proximity.ProximityDevice" />
+      <apidata name="ProximityDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Networking.Proximity.ProximityDevice.DeviceArrived" />
+        <element api="E:Windows.Networking.Proximity.ProximityDevice.DeviceDeparted" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" />
+      </containers>
+      <file name="d90ec141-531d-43f6-8266-27a2488391bd" />
+    </api>
+    <api id="Overload:Windows.Networking.Proximity.ProximityDevice.PublishBinaryMessage">
+      <topicdata name="PublishBinaryMessage" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Networking.Proximity.ProximityDevice" />
+      <apidata name="PublishBinaryMessage" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Networking.Proximity.ProximityDevice.PublishBinaryMessage(System.String,Windows.Storage.Streams.IBuffer)" />
+        <element api="M:Windows.Networking.Proximity.ProximityDevice.PublishBinaryMessage(System.String,Windows.Storage.Streams.IBuffer,Windows.Networking.Proximity.MessageTransmittedHandler)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <file name="27847f08-e5df-e86a-1156-435d21501d7f" />
+    </api>
+    <api id="Overload:Windows.Networking.Proximity.ProximityDevice.PublishMessage">
+      <topicdata name="PublishMessage" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Networking.Proximity.ProximityDevice" />
+      <apidata name="PublishMessage" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Networking.Proximity.ProximityDevice.PublishMessage(System.String,System.String)" />
+        <element api="M:Windows.Networking.Proximity.ProximityDevice.PublishMessage(System.String,System.String,Windows.Networking.Proximity.MessageTransmittedHandler)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <file name="17af905e-d75c-8cef-4640-57c1a81ed003" />
+    </api>
+    <api id="Overload:Windows.Networking.Proximity.ProximityDevice.PublishUriMessage">
+      <topicdata name="PublishUriMessage" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Networking.Proximity.ProximityDevice" />
+      <apidata name="PublishUriMessage" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Networking.Proximity.ProximityDevice.PublishUriMessage(Windows.Foundation.Uri)" />
+        <element api="M:Windows.Networking.Proximity.ProximityDevice.PublishUriMessage(Windows.Foundation.Uri,Windows.Networking.Proximity.MessageTransmittedHandler)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <file name="fa08ba46-95a6-409d-ac84-8d4f48920f4d" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.ProximityDevice.BitsPerSecond">
+      <topicdata group="api" />
+      <apidata name="BitsPerSecond" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_BitsPerSecond" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <file name="fd24ae34-5178-fcd5-2114-65b482663678" />
+    </api>
+    <api id="E:Windows.Networking.Proximity.ProximityDevice.DeviceArrived">
+      <topicdata group="api" />
+      <apidata name="DeviceArrived" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_DeviceArrived" />
+      <remover name="remove_DeviceArrived" />
+      <eventhandler>
+        <type api="T:Windows.Networking.Proximity.DeviceArrivedEventHandler" ref="true" />
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <file name="5d1f0b8b-6906-690b-7d67-ace25720d5fc" />
+    </api>
+    <api id="E:Windows.Networking.Proximity.ProximityDevice.DeviceDeparted">
+      <topicdata group="api" />
+      <apidata name="DeviceDeparted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_DeviceDeparted" />
+      <remover name="remove_DeviceDeparted" />
+      <eventhandler>
+        <type api="T:Windows.Networking.Proximity.DeviceDepartedEventHandler" ref="true" />
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <file name="6f1ab650-e6d9-3eb9-70a9-17e8bfa98202" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.ProximityDevice.DeviceId">
+      <topicdata group="api" />
+      <apidata name="DeviceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DeviceId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <file name="ddaf72fb-1e91-9343-afe3-36b74d5a8856" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.ProximityDevice.FromId(System.String)">
+      <topicdata group="api" />
+      <apidata name="FromId" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <file name="f438c6e7-7962-1b7d-84f2-493fdd96c8ed" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.ProximityDevice.GetDefault">
+      <topicdata group="api" />
+      <apidata name="GetDefault" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <file name="df702fe8-3dfd-5ad9-c32e-087636e263f4" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.ProximityDevice.GetDeviceSelector">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <file name="90a07598-27c3-6bad-b1aa-24c106dd2509" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.ProximityDevice.MaxMessageBytes">
+      <topicdata group="api" />
+      <apidata name="MaxMessageBytes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MaxMessageBytes" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <file name="3ed2ce9d-e6a9-6102-40bb-af7ce74d358e" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.ProximityDevice.PublishBinaryMessage(System.String,Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="PublishBinaryMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Networking.Proximity.ProximityDevice.PublishBinaryMessage" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="messageType" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="message" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PublishBinaryMessage</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ddb90e02-c9ed-b42c-3a6b-1fb008b7a5cc" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.ProximityDevice.PublishBinaryMessage(System.String,Windows.Storage.Streams.IBuffer,Windows.Networking.Proximity.MessageTransmittedHandler)">
+      <topicdata group="api" />
+      <apidata name="PublishBinaryMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Networking.Proximity.ProximityDevice.PublishBinaryMessage" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="messageType" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="message" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="messageTransmittedHandler" in="true">
+          <type api="T:Windows.Networking.Proximity.MessageTransmittedHandler" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PublishBinaryMessageWithCallback</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="23a04494-6be4-0b32-599e-b786a1c4d313" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.ProximityDevice.PublishMessage(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="PublishMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Networking.Proximity.ProximityDevice.PublishMessage" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="messageType" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="message" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PublishMessage</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f8bf5d5e-f89a-b51f-4881-248412fe93de" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.ProximityDevice.PublishMessage(System.String,System.String,Windows.Networking.Proximity.MessageTransmittedHandler)">
+      <topicdata group="api" />
+      <apidata name="PublishMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Networking.Proximity.ProximityDevice.PublishMessage" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="messageType" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="message" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="messageTransmittedHandler" in="true">
+          <type api="T:Windows.Networking.Proximity.MessageTransmittedHandler" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PublishMessageWithCallback</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="dc7d013a-59f0-9649-695b-519a021e29c1" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.ProximityDevice.PublishUriMessage(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="PublishUriMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Networking.Proximity.ProximityDevice.PublishUriMessage" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="message" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PublishUriMessage</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e84be0bd-8787-a277-0176-83bfc7d9f727" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.ProximityDevice.PublishUriMessage(Windows.Foundation.Uri,Windows.Networking.Proximity.MessageTransmittedHandler)">
+      <topicdata group="api" />
+      <apidata name="PublishUriMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Networking.Proximity.ProximityDevice.PublishUriMessage" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="message" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="messageTransmittedHandler" in="true">
+          <type api="T:Windows.Networking.Proximity.MessageTransmittedHandler" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PublishUriMessageWithCallback</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d0ae2980-8c9e-fb24-18b4-52482fa2152f" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.ProximityDevice.StopPublishingMessage(System.Int64)">
+      <topicdata group="api" />
+      <apidata name="StopPublishingMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="messageId" in="true">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <file name="af3cb833-7772-094f-b9c9-dd714c19c519" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.ProximityDevice.StopSubscribingForMessage(System.Int64)">
+      <topicdata group="api" />
+      <apidata name="StopSubscribingForMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="subscriptionId" in="true">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <file name="4cd848e0-b0c2-da5c-7807-68357ff9e91f" />
+    </api>
+    <api id="M:Windows.Networking.Proximity.ProximityDevice.SubscribeForMessage(System.String,Windows.Networking.Proximity.MessageReceivedHandler)">
+      <topicdata group="api" />
+      <apidata name="SubscribeForMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="messageType" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="messageReceivedHandler" in="true">
+          <type api="T:Windows.Networking.Proximity.MessageReceivedHandler" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityDevice" ref="true" />
+      </containers>
+      <file name="16bc8c5e-4ab3-0c18-90c8-d18537e9f0dc" />
+    </api>
+    <api id="T:Windows.Networking.Proximity.ProximityMessage">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.Proximity.ProximityMessage" />
+      <apidata name="ProximityMessage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Networking.Proximity.IProximityMessage" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="b07e5c94-b0ff-9a5e-463c-afc3ba5d7d1c" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.Proximity.ProximityMessage">
+      <topicdata name="ProximityMessage" group="list" subgroup="members" typeTopicId="T:Windows.Networking.Proximity.ProximityMessage" />
+      <apidata name="ProximityMessage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Networking.Proximity.ProximityMessage.Data" />
+        <element api="P:Windows.Networking.Proximity.ProximityMessage.DataAsString" />
+        <element api="P:Windows.Networking.Proximity.ProximityMessage.MessageType" />
+        <element api="P:Windows.Networking.Proximity.ProximityMessage.SubscriptionId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityMessage" />
+      </containers>
+      <file name="edd07a4e-11e5-cb04-653c-ce862c702abd" />
+    </api>
+    <api id="Methods.T:Windows.Networking.Proximity.ProximityMessage">
+      <topicdata name="ProximityMessage" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.Proximity.ProximityMessage" />
+      <apidata name="ProximityMessage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityMessage" />
+      </containers>
+      <file name="a73b78b4-38b5-cef1-71cc-299b2ae8e004" />
+    </api>
+    <api id="Properties.T:Windows.Networking.Proximity.ProximityMessage">
+      <topicdata name="ProximityMessage" group="list" subgroup="Properties" typeTopicId="T:Windows.Networking.Proximity.ProximityMessage" />
+      <apidata name="ProximityMessage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Networking.Proximity.ProximityMessage.Data" />
+        <element api="P:Windows.Networking.Proximity.ProximityMessage.DataAsString" />
+        <element api="P:Windows.Networking.Proximity.ProximityMessage.MessageType" />
+        <element api="P:Windows.Networking.Proximity.ProximityMessage.SubscriptionId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityMessage" />
+      </containers>
+      <file name="ac0f578b-41a9-ab74-3fa7-39cf42078244" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.ProximityMessage.Data">
+      <topicdata group="api" />
+      <apidata name="Data" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Data" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityMessage" ref="true" />
+      </containers>
+      <file name="7f70a584-2537-16b1-5d4b-6cbf5c211270" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.ProximityMessage.DataAsString">
+      <topicdata group="api" />
+      <apidata name="DataAsString" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DataAsString" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityMessage" ref="true" />
+      </containers>
+      <file name="e54e708a-b9b8-8d0c-3fa5-f2555fe65d38" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.ProximityMessage.MessageType">
+      <topicdata group="api" />
+      <apidata name="MessageType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MessageType" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityMessage" ref="true" />
+      </containers>
+      <file name="99cdb421-475e-c67f-56c5-9a9e6225e294" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.ProximityMessage.SubscriptionId">
+      <topicdata group="api" />
+      <apidata name="SubscriptionId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SubscriptionId" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.ProximityMessage" ref="true" />
+      </containers>
+      <file name="6a7913e9-9c63-d99e-8d40-c4cb9d6f1db9" />
+    </api>
+    <api id="T:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs" />
+      <apidata name="TriggeredConnectionStateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Networking.Proximity.ITriggeredConnectionStateChangedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4916cd15-a202-0aa5-3e8a-86f940e9a856" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs">
+      <topicdata name="TriggeredConnectionStateChangedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs" />
+      <apidata name="TriggeredConnectionStateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs.Id" />
+        <element api="P:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs.Socket" />
+        <element api="P:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs.State" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs" />
+      </containers>
+      <file name="cbf94247-41cc-0ef8-d95b-ac3e92e4fb8e" />
+    </api>
+    <api id="Methods.T:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs">
+      <topicdata name="TriggeredConnectionStateChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs" />
+      <apidata name="TriggeredConnectionStateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs" />
+      </containers>
+      <file name="99eefd19-64a8-e54f-93e3-51069da7e2d0" />
+    </api>
+    <api id="Properties.T:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs">
+      <topicdata name="TriggeredConnectionStateChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs" />
+      <apidata name="TriggeredConnectionStateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs.Id" />
+        <element api="P:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs.Socket" />
+        <element api="P:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs.State" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs" />
+      </containers>
+      <file name="a0d22108-a23c-0a07-0229-ebc8affb39cd" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs" ref="true" />
+      </containers>
+      <file name="840c27ac-831c-f9ee-a226-5af135017366" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs.Socket">
+      <topicdata group="api" />
+      <apidata name="Socket" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Socket" />
+      <returns>
+        <type api="T:Windows.Networking.Sockets.StreamSocket" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs" ref="true" />
+      </containers>
+      <file name="259172fd-c90d-bfc1-06b9-5f74da0b8a21" />
+    </api>
+    <api id="P:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs.State">
+      <topicdata group="api" />
+      <apidata name="State" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_State" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs" ref="true" />
+      </containers>
+      <file name="b9ae55fe-1035-8f6d-4e60-282bb14043d3" />
+    </api>
+    <api id="T:Windows.Networking.Proximity.TriggeredConnectState">
+      <topicdata group="api" />
+      <apidata name="TriggeredConnectState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Networking.Proximity.TriggeredConnectState.PeerFound" />
+        <element api="F:Windows.Networking.Proximity.TriggeredConnectState.Listening" />
+        <element api="F:Windows.Networking.Proximity.TriggeredConnectState.Connecting" />
+        <element api="F:Windows.Networking.Proximity.TriggeredConnectState.Completed" />
+        <element api="F:Windows.Networking.Proximity.TriggeredConnectState.Canceled" />
+        <element api="F:Windows.Networking.Proximity.TriggeredConnectState.Failed" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4d46d1d2-cc0d-9f94-d750-6121c030908b" />
+    </api>
+    <api id="F:Windows.Networking.Proximity.TriggeredConnectState.Canceled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Canceled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectState" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectState" ref="false" />
+      </containers>
+      <file name="50fe28b7-6796-c5c9-9067-5a4265a5fce5" />
+    </api>
+    <api id="F:Windows.Networking.Proximity.TriggeredConnectState.Completed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Completed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectState" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectState" ref="false" />
+      </containers>
+      <file name="45f805fb-135d-3e0c-6237-f8796f456883" />
+    </api>
+    <api id="F:Windows.Networking.Proximity.TriggeredConnectState.Connecting">
+      <topicdata group="api" notopic="" />
+      <apidata name="Connecting" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectState" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectState" ref="false" />
+      </containers>
+      <file name="96ae1870-7992-ad01-57ef-2d5061c9244e" />
+    </api>
+    <api id="F:Windows.Networking.Proximity.TriggeredConnectState.Failed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Failed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectState" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectState" ref="false" />
+      </containers>
+      <file name="3690f445-fcdb-e989-9420-646276fc101e" />
+    </api>
+    <api id="F:Windows.Networking.Proximity.TriggeredConnectState.Listening">
+      <topicdata group="api" notopic="" />
+      <apidata name="Listening" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectState" ref="false" />
+      </containers>
+      <file name="7a1bdcd6-17b4-84e6-e37e-5dac8326cf5e" />
+    </api>
+    <api id="F:Windows.Networking.Proximity.TriggeredConnectState.PeerFound">
+      <topicdata group="api" notopic="" />
+      <apidata name="PeerFound" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.Proximity" />
+        <type api="T:Windows.Networking.Proximity.TriggeredConnectState" ref="false" />
+      </containers>
+      <file name="f4f2c190-95b2-204f-8221-a91271a61d6f" />
+    </api>
+  </apis>
+</reflection>

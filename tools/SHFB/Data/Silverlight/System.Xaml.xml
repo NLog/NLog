@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Xaml">
+      <topicdata group="api" />
+      <apidata name="System.Xaml" group="namespace" />
+      <elements>
+        <element api="T:System.Xaml.IMarkupExtension`1" />
+        <element api="T:System.Xaml.IRootObjectProvider" />
+      </elements>
+      <file name="d51f4ddb-b4b2-a182-c485-b2bf139564e3" />
+    </api>
+    <api id="T:System.Xaml.IMarkupExtension`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xaml.IMarkupExtension`1" />
+      <apidata name="IMarkupExtension" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T">
+          <constrained ref="true" />
+          <variance covariant="true" />
+        </template>
+      </templates>
+      <implementors>
+        <type api="T:System.Windows.Markup.MarkupExtension" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Xaml" />
+      </containers>
+      <file name="1f846649-3485-774a-2ecc-ea733bb68abf" />
+    </api>
+    <api id="AllMembers.T:System.Xaml.IMarkupExtension`1">
+      <topicdata name="IMarkupExtension" group="list" subgroup="members" typeTopicId="T:System.Xaml.IMarkupExtension`1" />
+      <apidata name="IMarkupExtension" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T">
+          <constrained ref="true" />
+          <variance covariant="true" />
+        </template>
+      </templates>
+      <elements>
+        <element api="M:System.Xaml.IMarkupExtension`1.ProvideValue(System.IServiceProvider)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Xaml" />
+        <type api="T:System.Xaml.IMarkupExtension`1" />
+      </containers>
+      <file name="2db7dcd5-844c-3890-5ed7-44f0077bd60c" />
+    </api>
+    <api id="Methods.T:System.Xaml.IMarkupExtension`1">
+      <topicdata name="IMarkupExtension" group="list" subgroup="Methods" typeTopicId="T:System.Xaml.IMarkupExtension`1" />
+      <apidata name="IMarkupExtension" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T">
+          <constrained ref="true" />
+          <variance covariant="true" />
+        </template>
+      </templates>
+      <elements>
+        <element api="M:System.Xaml.IMarkupExtension`1.ProvideValue(System.IServiceProvider)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Xaml" />
+        <type api="T:System.Xaml.IMarkupExtension`1" />
+      </containers>
+      <file name="92a6dc22-98bc-2afe-7605-c91794459528" />
+    </api>
+    <api id="M:System.Xaml.IMarkupExtension`1.ProvideValue(System.IServiceProvider)">
+      <topicdata group="api" />
+      <apidata name="ProvideValue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="serviceProvider">
+          <type api="T:System.IServiceProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="T:System.Xaml.IMarkupExtension`1" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Xaml" />
+        <type api="T:System.Xaml.IMarkupExtension`1" ref="true" />
+      </containers>
+      <file name="35cfd7ef-3d87-e8e9-fe9f-e38086e7f0a8" />
+    </api>
+    <api id="T:System.Xaml.IRootObjectProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xaml.IRootObjectProvider" />
+      <apidata name="IRootObjectProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Xaml" />
+      </containers>
+      <file name="b8637274-7d45-9a82-2d5a-d8063a5a23d7" />
+    </api>
+    <api id="AllMembers.T:System.Xaml.IRootObjectProvider">
+      <topicdata name="IRootObjectProvider" group="list" subgroup="members" typeTopicId="T:System.Xaml.IRootObjectProvider" />
+      <apidata name="IRootObjectProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Xaml.IRootObjectProvider.RootObject" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Xaml" />
+        <type api="T:System.Xaml.IRootObjectProvider" />
+      </containers>
+      <file name="b234a371-5cf0-4f7a-2df7-9a4b0e893fa3" />
+    </api>
+    <api id="Properties.T:System.Xaml.IRootObjectProvider">
+      <topicdata name="IRootObjectProvider" group="list" subgroup="Properties" typeTopicId="T:System.Xaml.IRootObjectProvider" />
+      <apidata name="IRootObjectProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Xaml.IRootObjectProvider.RootObject" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Xaml" />
+        <type api="T:System.Xaml.IRootObjectProvider" />
+      </containers>
+      <file name="51492b13-5305-12a5-e8c0-09cfd3118e60" />
+    </api>
+    <api id="P:System.Xaml.IRootObjectProvider.RootObject">
+      <topicdata group="api" />
+      <apidata name="RootObject" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_RootObject" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Xaml" />
+        <type api="T:System.Xaml.IRootObjectProvider" ref="true" />
+      </containers>
+      <file name="674f5e21-8380-7c5d-6238-37f4f3ebc84b" />
+    </api>
+  </apis>
+</reflection>

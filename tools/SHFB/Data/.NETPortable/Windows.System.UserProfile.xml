@@ -1,0 +1,1334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.System.UserProfile">
+      <topicdata group="api" />
+      <apidata name="Windows.System.UserProfile" group="namespace" />
+      <elements>
+        <element api="T:Windows.System.UserProfile.AdvertisingManager" />
+        <element api="T:Windows.System.UserProfile.AccountPictureKind" />
+        <element api="T:Windows.System.UserProfile.SetAccountPictureResult" />
+        <element api="T:Windows.System.UserProfile.SetImageFeedResult" />
+        <element api="T:Windows.System.UserProfile.UserInformation" />
+        <element api="T:Windows.System.UserProfile.LockScreen" />
+        <element api="T:Windows.System.UserProfile.GlobalizationPreferences" />
+      </elements>
+      <file name="f8fc3dbb-620a-f76e-1d03-56e9a14aede9" />
+    </api>
+    <api id="T:Windows.System.UserProfile.AccountPictureKind">
+      <topicdata group="api" />
+      <apidata name="AccountPictureKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.System.UserProfile.AccountPictureKind.SmallImage" />
+        <element api="F:Windows.System.UserProfile.AccountPictureKind.LargeImage" />
+        <element api="F:Windows.System.UserProfile.AccountPictureKind.Video" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="adc75868-2000-b457-eb8a-232eedca8740" />
+    </api>
+    <api id="F:Windows.System.UserProfile.AccountPictureKind.LargeImage">
+      <topicdata group="api" notopic="" />
+      <apidata name="LargeImage" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.UserProfile.AccountPictureKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.AccountPictureKind" ref="false" />
+      </containers>
+      <file name="8bc05b7e-7bae-d79d-51af-d5d3f5d24403" />
+    </api>
+    <api id="F:Windows.System.UserProfile.AccountPictureKind.SmallImage">
+      <topicdata group="api" notopic="" />
+      <apidata name="SmallImage" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.UserProfile.AccountPictureKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.AccountPictureKind" ref="false" />
+      </containers>
+      <file name="41e5f91e-e7e2-8e19-a367-5e98f808599b" />
+    </api>
+    <api id="F:Windows.System.UserProfile.AccountPictureKind.Video">
+      <topicdata group="api" notopic="" />
+      <apidata name="Video" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.UserProfile.AccountPictureKind" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.AccountPictureKind" ref="false" />
+      </containers>
+      <file name="db289875-fffb-2759-86e0-2973a4aeb366" />
+    </api>
+    <api id="T:Windows.System.UserProfile.AdvertisingManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.UserProfile.AdvertisingManager" />
+      <apidata name="AdvertisingManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="44558a1b-8555-99b7-8fa3-5c799d21456f" />
+    </api>
+    <api id="AllMembers.T:Windows.System.UserProfile.AdvertisingManager">
+      <topicdata name="AdvertisingManager" group="list" subgroup="members" typeTopicId="T:Windows.System.UserProfile.AdvertisingManager" />
+      <apidata name="AdvertisingManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.UserProfile.AdvertisingManager.AdvertisingId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.AdvertisingManager" />
+      </containers>
+      <file name="54acb8b3-468e-fdbb-e024-79d6a86cafc3" />
+    </api>
+    <api id="Properties.T:Windows.System.UserProfile.AdvertisingManager">
+      <topicdata name="AdvertisingManager" group="list" subgroup="Properties" typeTopicId="T:Windows.System.UserProfile.AdvertisingManager" />
+      <apidata name="AdvertisingManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.UserProfile.AdvertisingManager.AdvertisingId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.AdvertisingManager" />
+      </containers>
+      <file name="51c404a1-c2a3-3246-c42d-e9d23fe02fd1" />
+    </api>
+    <api id="P:Windows.System.UserProfile.AdvertisingManager.AdvertisingId">
+      <topicdata group="api" />
+      <apidata name="AdvertisingId" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AdvertisingId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.AdvertisingManager" ref="true" />
+      </containers>
+      <file name="b8349cc1-819e-2566-6954-1239c40b9bf2" />
+    </api>
+    <api id="T:Windows.System.UserProfile.GlobalizationPreferences">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.UserProfile.GlobalizationPreferences" />
+      <apidata name="GlobalizationPreferences" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="8e0d3306-34b1-b088-9354-7ac3cff5fa86" />
+    </api>
+    <api id="AllMembers.T:Windows.System.UserProfile.GlobalizationPreferences">
+      <topicdata name="GlobalizationPreferences" group="list" subgroup="members" typeTopicId="T:Windows.System.UserProfile.GlobalizationPreferences" />
+      <apidata name="GlobalizationPreferences" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.UserProfile.GlobalizationPreferences.Calendars" />
+        <element api="P:Windows.System.UserProfile.GlobalizationPreferences.Clocks" />
+        <element api="P:Windows.System.UserProfile.GlobalizationPreferences.Currencies" />
+        <element api="P:Windows.System.UserProfile.GlobalizationPreferences.HomeGeographicRegion" />
+        <element api="P:Windows.System.UserProfile.GlobalizationPreferences.Languages" />
+        <element api="P:Windows.System.UserProfile.GlobalizationPreferences.WeekStartsOn" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.GlobalizationPreferences" />
+      </containers>
+      <file name="9f96ef65-1225-656a-8372-4d83abf653d1" />
+    </api>
+    <api id="Properties.T:Windows.System.UserProfile.GlobalizationPreferences">
+      <topicdata name="GlobalizationPreferences" group="list" subgroup="Properties" typeTopicId="T:Windows.System.UserProfile.GlobalizationPreferences" />
+      <apidata name="GlobalizationPreferences" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.UserProfile.GlobalizationPreferences.Calendars" />
+        <element api="P:Windows.System.UserProfile.GlobalizationPreferences.Clocks" />
+        <element api="P:Windows.System.UserProfile.GlobalizationPreferences.Currencies" />
+        <element api="P:Windows.System.UserProfile.GlobalizationPreferences.HomeGeographicRegion" />
+        <element api="P:Windows.System.UserProfile.GlobalizationPreferences.Languages" />
+        <element api="P:Windows.System.UserProfile.GlobalizationPreferences.WeekStartsOn" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.GlobalizationPreferences" />
+      </containers>
+      <file name="606e552d-3eb9-ea0a-7004-05c4642b17a8" />
+    </api>
+    <api id="P:Windows.System.UserProfile.GlobalizationPreferences.Calendars">
+      <topicdata group="api" />
+      <apidata name="Calendars" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Calendars" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.GlobalizationPreferences" ref="true" />
+      </containers>
+      <file name="1b3520d6-9a59-0786-c7c8-9ef496a97565" />
+    </api>
+    <api id="P:Windows.System.UserProfile.GlobalizationPreferences.Clocks">
+      <topicdata group="api" />
+      <apidata name="Clocks" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Clocks" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.GlobalizationPreferences" ref="true" />
+      </containers>
+      <file name="c2e83b3c-6db4-dbb2-82c0-fab0edca0fb0" />
+    </api>
+    <api id="P:Windows.System.UserProfile.GlobalizationPreferences.Currencies">
+      <topicdata group="api" />
+      <apidata name="Currencies" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Currencies" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.GlobalizationPreferences" ref="true" />
+      </containers>
+      <file name="cc6af1e5-1de8-d553-5c16-68bd2ba65e89" />
+    </api>
+    <api id="P:Windows.System.UserProfile.GlobalizationPreferences.HomeGeographicRegion">
+      <topicdata group="api" />
+      <apidata name="HomeGeographicRegion" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_HomeGeographicRegion" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.GlobalizationPreferences" ref="true" />
+      </containers>
+      <file name="aed59291-5000-b283-6a24-a68a49096897" />
+    </api>
+    <api id="P:Windows.System.UserProfile.GlobalizationPreferences.Languages">
+      <topicdata group="api" />
+      <apidata name="Languages" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Languages" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.GlobalizationPreferences" ref="true" />
+      </containers>
+      <file name="9d3611d6-645f-9bcc-0831-667b9e1cff2d" />
+    </api>
+    <api id="P:Windows.System.UserProfile.GlobalizationPreferences.WeekStartsOn">
+      <topicdata group="api" />
+      <apidata name="WeekStartsOn" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_WeekStartsOn" />
+      <returns>
+        <type api="T:Windows.Globalization.DayOfWeek" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.GlobalizationPreferences" ref="true" />
+      </containers>
+      <file name="745f6650-77a1-03f8-0e00-e79effcca632" />
+    </api>
+    <api id="T:Windows.System.UserProfile.LockScreen">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.UserProfile.LockScreen" />
+      <apidata name="LockScreen" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f9465ffb-9ce7-32ab-50dd-e6425bbb0cf5" />
+    </api>
+    <api id="AllMembers.T:Windows.System.UserProfile.LockScreen">
+      <topicdata name="LockScreen" group="list" subgroup="members" typeTopicId="T:Windows.System.UserProfile.LockScreen" />
+      <apidata name="LockScreen" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.System.UserProfile.LockScreen.GetImageStream" />
+        <element api="P:Windows.System.UserProfile.LockScreen.OriginalImageFile" />
+        <element api="M:Windows.System.UserProfile.LockScreen.RequestSetImageFeedAsync(Windows.Foundation.Uri)" />
+        <element api="M:Windows.System.UserProfile.LockScreen.SetImageFileAsync(Windows.Storage.IStorageFile)" />
+        <element api="M:Windows.System.UserProfile.LockScreen.SetImageStreamAsync(Windows.Storage.Streams.IRandomAccessStream)" />
+        <element api="M:Windows.System.UserProfile.LockScreen.TryRemoveImageFeed" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.LockScreen" />
+      </containers>
+      <file name="39560ef2-d43a-4503-01e5-43684fa627fc" />
+    </api>
+    <api id="Methods.T:Windows.System.UserProfile.LockScreen">
+      <topicdata name="LockScreen" group="list" subgroup="Methods" typeTopicId="T:Windows.System.UserProfile.LockScreen" />
+      <apidata name="LockScreen" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.System.UserProfile.LockScreen.GetImageStream" />
+        <element api="M:Windows.System.UserProfile.LockScreen.RequestSetImageFeedAsync(Windows.Foundation.Uri)" />
+        <element api="M:Windows.System.UserProfile.LockScreen.SetImageFileAsync(Windows.Storage.IStorageFile)" />
+        <element api="M:Windows.System.UserProfile.LockScreen.SetImageStreamAsync(Windows.Storage.Streams.IRandomAccessStream)" />
+        <element api="M:Windows.System.UserProfile.LockScreen.TryRemoveImageFeed" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.LockScreen" />
+      </containers>
+      <file name="d05389b7-c193-6656-8e61-91095054cb76" />
+    </api>
+    <api id="Properties.T:Windows.System.UserProfile.LockScreen">
+      <topicdata name="LockScreen" group="list" subgroup="Properties" typeTopicId="T:Windows.System.UserProfile.LockScreen" />
+      <apidata name="LockScreen" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.UserProfile.LockScreen.OriginalImageFile" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.LockScreen" />
+      </containers>
+      <file name="54cad35b-63ab-e768-adbf-ac49659a6b53" />
+    </api>
+    <api id="M:Windows.System.UserProfile.LockScreen.GetImageStream">
+      <topicdata group="api" />
+      <apidata name="GetImageStream" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.LockScreen" ref="true" />
+      </containers>
+      <file name="0e4c0620-8fb2-939a-0a38-7f5f19510835" />
+    </api>
+    <api id="P:Windows.System.UserProfile.LockScreen.OriginalImageFile">
+      <topicdata group="api" />
+      <apidata name="OriginalImageFile" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OriginalImageFile" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.LockScreen" ref="true" />
+      </containers>
+      <file name="3e71d6c4-3993-3287-8acc-899600cdee4f" />
+    </api>
+    <api id="M:Windows.System.UserProfile.LockScreen.RequestSetImageFeedAsync(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="RequestSetImageFeedAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="syndicationFeedUri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.System.UserProfile.SetImageFeedResult" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.LockScreen" ref="true" />
+      </containers>
+      <file name="f3b0cd86-4cc0-b119-3c2e-5068d8ab5618" />
+    </api>
+    <api id="M:Windows.System.UserProfile.LockScreen.SetImageFileAsync(Windows.Storage.IStorageFile)">
+      <topicdata group="api" />
+      <apidata name="SetImageFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.LockScreen" ref="true" />
+      </containers>
+      <file name="4071fd85-2f40-2ea3-d1f4-51e9a2e142ff" />
+    </api>
+    <api id="M:Windows.System.UserProfile.LockScreen.SetImageStreamAsync(Windows.Storage.Streams.IRandomAccessStream)">
+      <topicdata group="api" />
+      <apidata name="SetImageStreamAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.LockScreen" ref="true" />
+      </containers>
+      <file name="7ced6a3f-39d0-e314-8e27-ad7c22b85b73" />
+    </api>
+    <api id="M:Windows.System.UserProfile.LockScreen.TryRemoveImageFeed">
+      <topicdata group="api" />
+      <apidata name="TryRemoveImageFeed" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.LockScreen" ref="true" />
+      </containers>
+      <file name="ded4950a-0730-60ff-69ed-155dce108772" />
+    </api>
+    <api id="T:Windows.System.UserProfile.SetAccountPictureResult">
+      <topicdata group="api" />
+      <apidata name="SetAccountPictureResult" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.System.UserProfile.SetAccountPictureResult.Success" />
+        <element api="F:Windows.System.UserProfile.SetAccountPictureResult.ChangeDisabled" />
+        <element api="F:Windows.System.UserProfile.SetAccountPictureResult.LargeOrDynamicError" />
+        <element api="F:Windows.System.UserProfile.SetAccountPictureResult.VideoFrameSizeError" />
+        <element api="F:Windows.System.UserProfile.SetAccountPictureResult.FileSizeError" />
+        <element api="F:Windows.System.UserProfile.SetAccountPictureResult.Failure" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="29a30e9f-7da2-54e5-6972-23953abc56f6" />
+    </api>
+    <api id="F:Windows.System.UserProfile.SetAccountPictureResult.ChangeDisabled">
+      <topicdata group="api" notopic="" />
+      <apidata name="ChangeDisabled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.UserProfile.SetAccountPictureResult" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.SetAccountPictureResult" ref="false" />
+      </containers>
+      <file name="04927485-2f3b-c0b7-48e2-0ea76065c712" />
+    </api>
+    <api id="F:Windows.System.UserProfile.SetAccountPictureResult.Failure">
+      <topicdata group="api" notopic="" />
+      <apidata name="Failure" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.UserProfile.SetAccountPictureResult" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.SetAccountPictureResult" ref="false" />
+      </containers>
+      <file name="d629be33-bcf0-33c4-637d-a797571b75c7" />
+    </api>
+    <api id="F:Windows.System.UserProfile.SetAccountPictureResult.FileSizeError">
+      <topicdata group="api" notopic="" />
+      <apidata name="FileSizeError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.UserProfile.SetAccountPictureResult" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.SetAccountPictureResult" ref="false" />
+      </containers>
+      <file name="dfaeb30f-32ab-f446-c333-08060c96ae70" />
+    </api>
+    <api id="F:Windows.System.UserProfile.SetAccountPictureResult.LargeOrDynamicError">
+      <topicdata group="api" notopic="" />
+      <apidata name="LargeOrDynamicError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.UserProfile.SetAccountPictureResult" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.SetAccountPictureResult" ref="false" />
+      </containers>
+      <file name="cd3e5fba-b2b0-f9ab-8426-8c2ea0da50e1" />
+    </api>
+    <api id="F:Windows.System.UserProfile.SetAccountPictureResult.Success">
+      <topicdata group="api" notopic="" />
+      <apidata name="Success" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.UserProfile.SetAccountPictureResult" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.SetAccountPictureResult" ref="false" />
+      </containers>
+      <file name="34b24abd-c836-2c2c-afc6-a101e21fc0c2" />
+    </api>
+    <api id="F:Windows.System.UserProfile.SetAccountPictureResult.VideoFrameSizeError">
+      <topicdata group="api" notopic="" />
+      <apidata name="VideoFrameSizeError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.UserProfile.SetAccountPictureResult" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.SetAccountPictureResult" ref="false" />
+      </containers>
+      <file name="28debed0-8230-938c-51b3-fcd9580069b9" />
+    </api>
+    <api id="T:Windows.System.UserProfile.SetImageFeedResult">
+      <topicdata group="api" />
+      <apidata name="SetImageFeedResult" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.System.UserProfile.SetImageFeedResult.Success" />
+        <element api="F:Windows.System.UserProfile.SetImageFeedResult.ChangeDisabled" />
+        <element api="F:Windows.System.UserProfile.SetImageFeedResult.UserCanceled" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="76c43a6e-d138-dc88-a186-96380ec47632" />
+    </api>
+    <api id="F:Windows.System.UserProfile.SetImageFeedResult.ChangeDisabled">
+      <topicdata group="api" notopic="" />
+      <apidata name="ChangeDisabled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.UserProfile.SetImageFeedResult" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.SetImageFeedResult" ref="false" />
+      </containers>
+      <file name="b00f457d-d1ce-0056-3f8c-b7744b878b06" />
+    </api>
+    <api id="F:Windows.System.UserProfile.SetImageFeedResult.Success">
+      <topicdata group="api" notopic="" />
+      <apidata name="Success" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.UserProfile.SetImageFeedResult" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.SetImageFeedResult" ref="false" />
+      </containers>
+      <file name="d1d810fd-f6b5-c2aa-fd00-8ccfbf4edcc2" />
+    </api>
+    <api id="F:Windows.System.UserProfile.SetImageFeedResult.UserCanceled">
+      <topicdata group="api" notopic="" />
+      <apidata name="UserCanceled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.UserProfile.SetImageFeedResult" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.SetImageFeedResult" ref="false" />
+      </containers>
+      <file name="c969753f-c4f9-8753-9900-7dfe42b4808a" />
+    </api>
+    <api id="T:Windows.System.UserProfile.UserInformation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.UserProfile.UserInformation" />
+      <apidata name="UserInformation" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="d5107f4f-9770-a160-39bc-18be7cacfd30" />
+    </api>
+    <api id="AllMembers.T:Windows.System.UserProfile.UserInformation">
+      <topicdata name="UserInformation" group="list" subgroup="members" typeTopicId="T:Windows.System.UserProfile.UserInformation" />
+      <apidata name="UserInformation" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.System.UserProfile.UserInformation.AccountPictureChanged" />
+        <element api="P:Windows.System.UserProfile.UserInformation.AccountPictureChangeEnabled" />
+        <element api="M:Windows.System.UserProfile.UserInformation.GetAccountPicture(Windows.System.UserProfile.AccountPictureKind)" />
+        <element api="M:Windows.System.UserProfile.UserInformation.GetDisplayNameAsync" />
+        <element api="M:Windows.System.UserProfile.UserInformation.GetDomainNameAsync" />
+        <element api="M:Windows.System.UserProfile.UserInformation.GetFirstNameAsync" />
+        <element api="M:Windows.System.UserProfile.UserInformation.GetLastNameAsync" />
+        <element api="M:Windows.System.UserProfile.UserInformation.GetPrincipalNameAsync" />
+        <element api="M:Windows.System.UserProfile.UserInformation.GetSessionInitiationProtocolUriAsync" />
+        <element api="P:Windows.System.UserProfile.UserInformation.NameAccessAllowed" />
+        <element api="M:Windows.System.UserProfile.UserInformation.SetAccountPictureAsync(Windows.Storage.IStorageFile)" />
+        <element api="M:Windows.System.UserProfile.UserInformation.SetAccountPictureFromStreamAsync(Windows.Storage.Streams.IRandomAccessStream)" />
+        <element api="M:Windows.System.UserProfile.UserInformation.SetAccountPicturesAsync(Windows.Storage.IStorageFile,Windows.Storage.IStorageFile,Windows.Storage.IStorageFile)" />
+        <element api="M:Windows.System.UserProfile.UserInformation.SetAccountPicturesFromStreamsAsync(Windows.Storage.Streams.IRandomAccessStream,Windows.Storage.Streams.IRandomAccessStream,Windows.Storage.Streams.IRandomAccessStream)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.UserInformation" />
+      </containers>
+      <file name="e5c03f7e-a3c5-f522-e5b9-00ed259b45ec" />
+    </api>
+    <api id="Methods.T:Windows.System.UserProfile.UserInformation">
+      <topicdata name="UserInformation" group="list" subgroup="Methods" typeTopicId="T:Windows.System.UserProfile.UserInformation" />
+      <apidata name="UserInformation" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.System.UserProfile.UserInformation.GetAccountPicture(Windows.System.UserProfile.AccountPictureKind)" />
+        <element api="M:Windows.System.UserProfile.UserInformation.GetDisplayNameAsync" />
+        <element api="M:Windows.System.UserProfile.UserInformation.GetDomainNameAsync" />
+        <element api="M:Windows.System.UserProfile.UserInformation.GetFirstNameAsync" />
+        <element api="M:Windows.System.UserProfile.UserInformation.GetLastNameAsync" />
+        <element api="M:Windows.System.UserProfile.UserInformation.GetPrincipalNameAsync" />
+        <element api="M:Windows.System.UserProfile.UserInformation.GetSessionInitiationProtocolUriAsync" />
+        <element api="M:Windows.System.UserProfile.UserInformation.SetAccountPictureAsync(Windows.Storage.IStorageFile)" />
+        <element api="M:Windows.System.UserProfile.UserInformation.SetAccountPictureFromStreamAsync(Windows.Storage.Streams.IRandomAccessStream)" />
+        <element api="M:Windows.System.UserProfile.UserInformation.SetAccountPicturesAsync(Windows.Storage.IStorageFile,Windows.Storage.IStorageFile,Windows.Storage.IStorageFile)" />
+        <element api="M:Windows.System.UserProfile.UserInformation.SetAccountPicturesFromStreamsAsync(Windows.Storage.Streams.IRandomAccessStream,Windows.Storage.Streams.IRandomAccessStream,Windows.Storage.Streams.IRandomAccessStream)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.UserInformation" />
+      </containers>
+      <file name="858c1540-30aa-11ad-e5c9-65095a124924" />
+    </api>
+    <api id="Properties.T:Windows.System.UserProfile.UserInformation">
+      <topicdata name="UserInformation" group="list" subgroup="Properties" typeTopicId="T:Windows.System.UserProfile.UserInformation" />
+      <apidata name="UserInformation" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.UserProfile.UserInformation.AccountPictureChangeEnabled" />
+        <element api="P:Windows.System.UserProfile.UserInformation.NameAccessAllowed" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.UserInformation" />
+      </containers>
+      <file name="34ff543a-dd5a-52ac-a0d3-4f17738cf71a" />
+    </api>
+    <api id="Events.T:Windows.System.UserProfile.UserInformation">
+      <topicdata name="UserInformation" group="list" subgroup="Events" typeTopicId="T:Windows.System.UserProfile.UserInformation" />
+      <apidata name="UserInformation" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.System.UserProfile.UserInformation.AccountPictureChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.UserInformation" />
+      </containers>
+      <file name="d78430ff-0572-8b58-4b3e-82bb6927f4a8" />
+    </api>
+    <api id="E:Windows.System.UserProfile.UserInformation.AccountPictureChanged">
+      <topicdata group="api" />
+      <apidata name="AccountPictureChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_AccountPictureChanged" />
+      <remover name="remove_AccountPictureChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Object" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.UserInformation" ref="true" />
+      </containers>
+      <file name="c89f308c-4df0-dd60-7fd3-90eff36d3896" />
+    </api>
+    <api id="P:Windows.System.UserProfile.UserInformation.AccountPictureChangeEnabled">
+      <topicdata group="api" />
+      <apidata name="AccountPictureChangeEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AccountPictureChangeEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.UserInformation" ref="true" />
+      </containers>
+      <file name="5347144f-5755-3b4a-2220-76cb69430389" />
+    </api>
+    <api id="M:Windows.System.UserProfile.UserInformation.GetAccountPicture(Windows.System.UserProfile.AccountPictureKind)">
+      <topicdata group="api" />
+      <apidata name="GetAccountPicture" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="kind" in="true">
+          <type api="T:Windows.System.UserProfile.AccountPictureKind" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.IStorageFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.UserInformation" ref="true" />
+      </containers>
+      <file name="bb9bf14e-429e-6a10-7372-f6ec53c9be33" />
+    </api>
+    <api id="M:Windows.System.UserProfile.UserInformation.GetDisplayNameAsync">
+      <topicdata group="api" />
+      <apidata name="GetDisplayNameAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.UserInformation" ref="true" />
+      </containers>
+      <file name="c77f1a7b-0513-2861-edad-cc21e4440787" />
+    </api>
+    <api id="M:Windows.System.UserProfile.UserInformation.GetDomainNameAsync">
+      <topicdata group="api" />
+      <apidata name="GetDomainNameAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.UserInformation" ref="true" />
+      </containers>
+      <file name="9c88a911-d7ed-a71a-3e4e-adaca93f8c7c" />
+    </api>
+    <api id="M:Windows.System.UserProfile.UserInformation.GetFirstNameAsync">
+      <topicdata group="api" />
+      <apidata name="GetFirstNameAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.UserInformation" ref="true" />
+      </containers>
+      <file name="c2513b0f-9a25-c1c3-1365-38706dab9e40" />
+    </api>
+    <api id="M:Windows.System.UserProfile.UserInformation.GetLastNameAsync">
+      <topicdata group="api" />
+      <apidata name="GetLastNameAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.UserInformation" ref="true" />
+      </containers>
+      <file name="55062419-42f5-5b95-7436-2f99ab227fac" />
+    </api>
+    <api id="M:Windows.System.UserProfile.UserInformation.GetPrincipalNameAsync">
+      <topicdata group="api" />
+      <apidata name="GetPrincipalNameAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.UserInformation" ref="true" />
+      </containers>
+      <file name="15cd42ff-c200-58e4-103d-787cc83cdc7a" />
+    </api>
+    <api id="M:Windows.System.UserProfile.UserInformation.GetSessionInitiationProtocolUriAsync">
+      <topicdata group="api" />
+      <apidata name="GetSessionInitiationProtocolUriAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Uri" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.UserInformation" ref="true" />
+      </containers>
+      <file name="138f0265-2fbf-5edd-e61d-0ced6931ad01" />
+    </api>
+    <api id="P:Windows.System.UserProfile.UserInformation.NameAccessAllowed">
+      <topicdata group="api" />
+      <apidata name="NameAccessAllowed" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NameAccessAllowed" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.UserInformation" ref="true" />
+      </containers>
+      <file name="1f4a3e77-fe78-2139-cd18-5ff1fb5c9d0f" />
+    </api>
+    <api id="M:Windows.System.UserProfile.UserInformation.SetAccountPictureAsync(Windows.Storage.IStorageFile)">
+      <topicdata group="api" />
+      <apidata name="SetAccountPictureAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="image" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.System.UserProfile.SetAccountPictureResult" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.UserInformation" ref="true" />
+      </containers>
+      <file name="54174be5-06df-8b55-f735-3b9b0a365f27" />
+    </api>
+    <api id="M:Windows.System.UserProfile.UserInformation.SetAccountPictureFromStreamAsync(Windows.Storage.Streams.IRandomAccessStream)">
+      <topicdata group="api" />
+      <apidata name="SetAccountPictureFromStreamAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="image" in="true">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.System.UserProfile.SetAccountPictureResult" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.UserInformation" ref="true" />
+      </containers>
+      <file name="7eae4cd0-36d1-7225-dd7d-107912105954" />
+    </api>
+    <api id="M:Windows.System.UserProfile.UserInformation.SetAccountPicturesAsync(Windows.Storage.IStorageFile,Windows.Storage.IStorageFile,Windows.Storage.IStorageFile)">
+      <topicdata group="api" />
+      <apidata name="SetAccountPicturesAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="smallImage" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+        <parameter name="largeImage" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+        <parameter name="video" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.System.UserProfile.SetAccountPictureResult" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.UserInformation" ref="true" />
+      </containers>
+      <file name="c487ae22-cd47-beb4-add4-0d811d013027" />
+    </api>
+    <api id="M:Windows.System.UserProfile.UserInformation.SetAccountPicturesFromStreamsAsync(Windows.Storage.Streams.IRandomAccessStream,Windows.Storage.Streams.IRandomAccessStream,Windows.Storage.Streams.IRandomAccessStream)">
+      <topicdata group="api" />
+      <apidata name="SetAccountPicturesFromStreamsAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="smallImage" in="true">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </parameter>
+        <parameter name="largeImage" in="true">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </parameter>
+        <parameter name="video" in="true">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.System.UserProfile.SetAccountPictureResult" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.UserProfile" />
+        <type api="T:Windows.System.UserProfile.UserInformation" ref="true" />
+      </containers>
+      <file name="f5ef2b08-d358-1702-e61e-5538c17c6491" />
+    </api>
+  </apis>
+</reflection>

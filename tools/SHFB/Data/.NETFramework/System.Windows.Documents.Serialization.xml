@@ -1,0 +1,2929 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="PresentationFramework">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Windows.ThemeInfoAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="ExternalAssembly" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="None" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationFramework.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationFramework.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationFramework.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\wpf\src\windows.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Documents.Serialization">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Documents.Serialization" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Documents.Serialization.SerializerProvider" />
+        <element api="T:System.Windows.Documents.Serialization.SerializerDescriptor" />
+        <element api="T:System.Windows.Documents.Serialization.SerializerWriter" />
+        <element api="T:System.Windows.Documents.Serialization.WritingProgressChangeLevel" />
+        <element api="T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs" />
+        <element api="T:System.Windows.Documents.Serialization.WritingCompletedEventArgs" />
+        <element api="T:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs" />
+        <element api="T:System.Windows.Documents.Serialization.WritingCancelledEventArgs" />
+        <element api="T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventHandler" />
+        <element api="T:System.Windows.Documents.Serialization.WritingProgressChangedEventHandler" />
+        <element api="T:System.Windows.Documents.Serialization.WritingCompletedEventHandler" />
+        <element api="T:System.Windows.Documents.Serialization.WritingCancelledEventHandler" />
+        <element api="T:System.Windows.Documents.Serialization.SerializerWriterCollator" />
+        <element api="T:System.Windows.Documents.Serialization.ISerializerFactory" />
+      </elements>
+      <file name="21e6bdc5-c78f-3517-3778-b256281f03d7" />
+    </api>
+    <api id="T:System.Windows.Documents.Serialization.ISerializerFactory">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Documents.Serialization.ISerializerFactory" />
+      <apidata name="ISerializerFactory" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Windows.Xps.Serialization.XpsSerializerFactory" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+      </containers>
+      <file name="db2cef2b-5e2e-8f71-8d06-dbd9b7e67529" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Documents.Serialization.ISerializerFactory">
+      <topicdata name="ISerializerFactory" group="list" subgroup="members" typeTopicId="T:System.Windows.Documents.Serialization.ISerializerFactory" />
+      <apidata name="ISerializerFactory" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Documents.Serialization.ISerializerFactory.CreateSerializerWriter(System.IO.Stream)" />
+        <element api="P:System.Windows.Documents.Serialization.ISerializerFactory.DefaultFileExtension" />
+        <element api="P:System.Windows.Documents.Serialization.ISerializerFactory.DisplayName" />
+        <element api="P:System.Windows.Documents.Serialization.ISerializerFactory.ManufacturerName" />
+        <element api="P:System.Windows.Documents.Serialization.ISerializerFactory.ManufacturerWebsite" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.ISerializerFactory" />
+      </containers>
+      <file name="69e15e44-2a8f-48bf-d8ad-c19a2c23ae02" />
+    </api>
+    <api id="Methods.T:System.Windows.Documents.Serialization.ISerializerFactory">
+      <topicdata name="ISerializerFactory" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Documents.Serialization.ISerializerFactory" />
+      <apidata name="ISerializerFactory" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Documents.Serialization.ISerializerFactory.CreateSerializerWriter(System.IO.Stream)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.ISerializerFactory" />
+      </containers>
+      <file name="9b6d09d2-515b-5d83-89be-4814882c8ef8" />
+    </api>
+    <api id="Properties.T:System.Windows.Documents.Serialization.ISerializerFactory">
+      <topicdata name="ISerializerFactory" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Documents.Serialization.ISerializerFactory" />
+      <apidata name="ISerializerFactory" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Documents.Serialization.ISerializerFactory.DefaultFileExtension" />
+        <element api="P:System.Windows.Documents.Serialization.ISerializerFactory.DisplayName" />
+        <element api="P:System.Windows.Documents.Serialization.ISerializerFactory.ManufacturerName" />
+        <element api="P:System.Windows.Documents.Serialization.ISerializerFactory.ManufacturerWebsite" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.ISerializerFactory" />
+      </containers>
+      <file name="83042bc1-3208-4e4a-8ef4-c8a45c06696f" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.ISerializerFactory.CreateSerializerWriter(System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="CreateSerializerWriter" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.ISerializerFactory" ref="true" />
+      </containers>
+      <file name="4ace8fb1-ddc1-203f-3340-3f6206e48688" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.ISerializerFactory.DefaultFileExtension">
+      <topicdata group="api" />
+      <apidata name="DefaultFileExtension" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_DefaultFileExtension" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.ISerializerFactory" ref="true" />
+      </containers>
+      <file name="172c4a6e-e046-4bec-302d-88ac1f320cba" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.ISerializerFactory.DisplayName">
+      <topicdata group="api" />
+      <apidata name="DisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_DisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.ISerializerFactory" ref="true" />
+      </containers>
+      <file name="080b9492-3c20-5cf4-136b-f48d7cca119b" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.ISerializerFactory.ManufacturerName">
+      <topicdata group="api" />
+      <apidata name="ManufacturerName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ManufacturerName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.ISerializerFactory" ref="true" />
+      </containers>
+      <file name="53a7c0c1-a5bb-2eab-a7d8-07f9b03e8d83" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.ISerializerFactory.ManufacturerWebsite">
+      <topicdata group="api" />
+      <apidata name="ManufacturerWebsite" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ManufacturerWebsite" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.ISerializerFactory" ref="true" />
+      </containers>
+      <file name="ea824f6b-fbd9-f0a7-63a0-93ca72f9f84d" />
+    </api>
+    <api id="T:System.Windows.Documents.Serialization.SerializerDescriptor">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Documents.Serialization.SerializerDescriptor" />
+      <apidata name="SerializerDescriptor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+      </containers>
+      <file name="1ce428a1-0f72-6211-38e6-d20a056a78b8" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Documents.Serialization.SerializerDescriptor">
+      <topicdata name="SerializerDescriptor" group="list" subgroup="members" typeTopicId="T:System.Windows.Documents.Serialization.SerializerDescriptor" />
+      <apidata name="SerializerDescriptor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.AssemblyName" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.AssemblyPath" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.AssemblyVersion" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerDescriptor.CreateFromFactoryInstance(System.Windows.Documents.Serialization.ISerializerFactory)" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.DefaultFileExtension" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.DisplayName" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerDescriptor.Equals(System.Object)" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.FactoryInterfaceName" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerDescriptor.GetHashCode" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.IsLoadable" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.ManufacturerName" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.ManufacturerWebsite" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.WinFXVersion" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" />
+      </containers>
+      <file name="b4784d65-d09d-f52b-df03-83c207b5a579" />
+    </api>
+    <api id="Methods.T:System.Windows.Documents.Serialization.SerializerDescriptor">
+      <topicdata name="SerializerDescriptor" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Documents.Serialization.SerializerDescriptor" />
+      <apidata name="SerializerDescriptor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerDescriptor.CreateFromFactoryInstance(System.Windows.Documents.Serialization.ISerializerFactory)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerDescriptor.Equals(System.Object)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerDescriptor.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" />
+      </containers>
+      <file name="42400ba7-f16a-62ef-c717-db874565f245" />
+    </api>
+    <api id="Properties.T:System.Windows.Documents.Serialization.SerializerDescriptor">
+      <topicdata name="SerializerDescriptor" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Documents.Serialization.SerializerDescriptor" />
+      <apidata name="SerializerDescriptor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.AssemblyName" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.AssemblyPath" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.AssemblyVersion" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.DefaultFileExtension" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.DisplayName" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.FactoryInterfaceName" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.IsLoadable" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.ManufacturerName" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.ManufacturerWebsite" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerDescriptor.WinFXVersion" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" />
+      </containers>
+      <file name="a31e86f7-8881-b4fc-ad11-f1e0da859615" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.SerializerDescriptor.AssemblyName">
+      <topicdata group="api" />
+      <apidata name="AssemblyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AssemblyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" ref="true" />
+      </containers>
+      <file name="63210bef-b3a2-d578-7911-e210e5cd573d" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.SerializerDescriptor.AssemblyPath">
+      <topicdata group="api" />
+      <apidata name="AssemblyPath" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AssemblyPath" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" ref="true" />
+      </containers>
+      <file name="90b876b5-c977-5047-0555-78043826885d" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.SerializerDescriptor.AssemblyVersion">
+      <topicdata group="api" />
+      <apidata name="AssemblyVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AssemblyVersion" />
+      <returns>
+        <type api="T:System.Version" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" ref="true" />
+      </containers>
+      <file name="64be435d-412f-295c-3236-ed950249869d" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerDescriptor.CreateFromFactoryInstance(System.Windows.Documents.Serialization.ISerializerFactory)">
+      <topicdata group="api" />
+      <apidata name="CreateFromFactoryInstance" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="factoryInstance">
+          <type api="T:System.Windows.Documents.Serialization.ISerializerFactory" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" ref="true" />
+      </containers>
+      <file name="1dfc8f63-a2d8-bdd3-f1b9-04850c05e554" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.SerializerDescriptor.DefaultFileExtension">
+      <topicdata group="api" />
+      <apidata name="DefaultFileExtension" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DefaultFileExtension" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" ref="true" />
+      </containers>
+      <file name="a710fb30-17e4-b350-eb5c-b7a9c5e56182" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.SerializerDescriptor.DisplayName">
+      <topicdata group="api" />
+      <apidata name="DisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" ref="true" />
+      </containers>
+      <file name="480da4a6-c6b1-5438-c3c1-57c9507f3a70" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerDescriptor.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Equals(System.Object)">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" ref="true" />
+      </containers>
+      <file name="0b9acdbc-3f08-c519-c2d9-dad053832fec" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.SerializerDescriptor.FactoryInterfaceName">
+      <topicdata group="api" />
+      <apidata name="FactoryInterfaceName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FactoryInterfaceName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" ref="true" />
+      </containers>
+      <file name="7154ad1e-d5fa-b5cb-a1a1-82d69101000f" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerDescriptor.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.GetHashCode">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" ref="true" />
+      </containers>
+      <file name="7915234b-9199-8f67-1607-fca92fa68944" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.SerializerDescriptor.IsLoadable">
+      <topicdata group="api" />
+      <apidata name="IsLoadable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsLoadable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" ref="true" />
+      </containers>
+      <file name="7944e33a-019e-1531-6d55-830e2a0b09ab" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.SerializerDescriptor.ManufacturerName">
+      <topicdata group="api" />
+      <apidata name="ManufacturerName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ManufacturerName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" ref="true" />
+      </containers>
+      <file name="f9c9dd03-cf95-442b-f109-9843fee2fed8" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.SerializerDescriptor.ManufacturerWebsite">
+      <topicdata group="api" />
+      <apidata name="ManufacturerWebsite" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ManufacturerWebsite" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" ref="true" />
+      </containers>
+      <file name="276e0769-df7a-db54-c646-823ec96f15c9" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.SerializerDescriptor.WinFXVersion">
+      <topicdata group="api" />
+      <apidata name="WinFXVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_WinFXVersion" />
+      <returns>
+        <type api="T:System.Version" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" ref="true" />
+      </containers>
+      <file name="6ff31c56-8f59-960b-6be4-b3d163a64f61" />
+    </api>
+    <api id="T:System.Windows.Documents.Serialization.SerializerProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Documents.Serialization.SerializerProvider" />
+      <apidata name="SerializerProvider" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Documents.Serialization.SerializerProvider.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+      </containers>
+      <file name="ab165619-2bfb-e164-3bf3-18056b6cf13f" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Documents.Serialization.SerializerProvider">
+      <topicdata name="SerializerProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Documents.Serialization.SerializerProvider" />
+      <apidata name="SerializerProvider" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Documents.Serialization.SerializerProvider.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerProvider.#ctor" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerProvider.CreateSerializerWriter(System.Windows.Documents.Serialization.SerializerDescriptor,System.IO.Stream)" />
+        <element api="P:System.Windows.Documents.Serialization.SerializerProvider.InstalledSerializers" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerProvider.RegisterSerializer(System.Windows.Documents.Serialization.SerializerDescriptor,System.Boolean)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerProvider.UnregisterSerializer(System.Windows.Documents.Serialization.SerializerDescriptor)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerProvider" />
+      </containers>
+      <file name="5ce09562-4cb0-0c97-1cb1-7e8414392c51" />
+    </api>
+    <api id="Methods.T:System.Windows.Documents.Serialization.SerializerProvider">
+      <topicdata name="SerializerProvider" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Documents.Serialization.SerializerProvider" />
+      <apidata name="SerializerProvider" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Documents.Serialization.SerializerProvider.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerProvider.CreateSerializerWriter(System.Windows.Documents.Serialization.SerializerDescriptor,System.IO.Stream)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerProvider.RegisterSerializer(System.Windows.Documents.Serialization.SerializerDescriptor,System.Boolean)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerProvider.UnregisterSerializer(System.Windows.Documents.Serialization.SerializerDescriptor)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerProvider" />
+      </containers>
+      <file name="cf3e477d-12e1-9945-62d8-1a1a9096e28b" />
+    </api>
+    <api id="Properties.T:System.Windows.Documents.Serialization.SerializerProvider">
+      <topicdata name="SerializerProvider" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Documents.Serialization.SerializerProvider" />
+      <apidata name="SerializerProvider" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Documents.Serialization.SerializerProvider.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Documents.Serialization.SerializerProvider.InstalledSerializers" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerProvider" />
+      </containers>
+      <file name="ba7aa73f-90be-a659-85c6-a374922f7e13" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerProvider.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerProvider" ref="true" />
+      </containers>
+      <file name="d32b108b-672c-a9d4-4bc4-d0c05ff7f62b" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerProvider.CreateSerializerWriter(System.Windows.Documents.Serialization.SerializerDescriptor,System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="CreateSerializerWriter" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="serializerDescriptor">
+          <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" ref="true" />
+        </parameter>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerProvider" ref="true" />
+      </containers>
+      <file name="c08c8627-903b-1644-3428-4a5d4f4cc874" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.SerializerProvider.InstalledSerializers">
+      <topicdata group="api" />
+      <apidata name="InstalledSerializers" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InstalledSerializers" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerProvider" ref="true" />
+      </containers>
+      <file name="d01608e3-2772-b7b2-c473-407c5e0b36eb" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerProvider.RegisterSerializer(System.Windows.Documents.Serialization.SerializerDescriptor,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="RegisterSerializer" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="serializerDescriptor">
+          <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" ref="true" />
+        </parameter>
+        <parameter name="overwrite">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerProvider" ref="true" />
+      </containers>
+      <file name="a3e0201f-ddcb-0c8a-64e7-4f821ff5f4ed" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerProvider.UnregisterSerializer(System.Windows.Documents.Serialization.SerializerDescriptor)">
+      <topicdata group="api" />
+      <apidata name="UnregisterSerializer" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="serializerDescriptor">
+          <type api="T:System.Windows.Documents.Serialization.SerializerDescriptor" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerProvider" ref="true" />
+      </containers>
+      <file name="f278fe7a-f3a8-44cc-a51f-5bf09edd8f42" />
+    </api>
+    <api id="T:System.Windows.Documents.Serialization.SerializerWriter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Documents.Serialization.SerializerWriter" />
+      <apidata name="SerializerWriter" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Windows.Xps.XpsDocumentWriter" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+      </containers>
+      <file name="51fa4efb-0c65-7d71-8d6c-0e194fca5f71" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Documents.Serialization.SerializerWriter">
+      <topicdata name="SerializerWriter" group="list" subgroup="members" typeTopicId="T:System.Windows.Documents.Serialization.SerializerWriter" />
+      <apidata name="SerializerWriter" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.#ctor" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.CancelAsync" />
+        <element api="Overload:System.Windows.Documents.Serialization.SerializerWriter.CreateVisualsCollator">
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.CreateVisualsCollator" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.CreateVisualsCollator(System.Printing.PrintTicket,System.Printing.PrintTicket)" />
+        </element>
+        <element api="Overload:System.Windows.Documents.Serialization.SerializerWriter.Write">
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.DocumentPaginator)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedDocument)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedDocumentSequence)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedPage)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Media.Visual)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.DocumentPaginator,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedDocument,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedDocumentSequence,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedPage,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Media.Visual,System.Printing.PrintTicket)" />
+        </element>
+        <element api="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync">
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.DocumentPaginator)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocument)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocumentSequence)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedPage)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Media.Visual)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.DocumentPaginator,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.DocumentPaginator,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocument,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocument,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocumentSequence,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocumentSequence,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedPage,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedPage,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Media.Visual,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Media.Visual,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.DocumentPaginator,System.Printing.PrintTicket,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocument,System.Printing.PrintTicket,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocumentSequence,System.Printing.PrintTicket,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedPage,System.Printing.PrintTicket,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Media.Visual,System.Printing.PrintTicket,System.Object)" />
+        </element>
+        <element api="E:System.Windows.Documents.Serialization.SerializerWriter.WritingCancelled" />
+        <element api="E:System.Windows.Documents.Serialization.SerializerWriter.WritingCompleted" />
+        <element api="E:System.Windows.Documents.Serialization.SerializerWriter.WritingPrintTicketRequired" />
+        <element api="E:System.Windows.Documents.Serialization.SerializerWriter.WritingProgressChanged" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" />
+      </containers>
+      <file name="7b88cee8-08e8-405b-cf42-ddb78db9e509" />
+    </api>
+    <api id="Methods.T:System.Windows.Documents.Serialization.SerializerWriter">
+      <topicdata name="SerializerWriter" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Documents.Serialization.SerializerWriter" />
+      <apidata name="SerializerWriter" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.CancelAsync" />
+        <element api="Overload:System.Windows.Documents.Serialization.SerializerWriter.CreateVisualsCollator">
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.CreateVisualsCollator" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.CreateVisualsCollator(System.Printing.PrintTicket,System.Printing.PrintTicket)" />
+        </element>
+        <element api="Overload:System.Windows.Documents.Serialization.SerializerWriter.Write">
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.DocumentPaginator)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedDocument)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedDocumentSequence)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedPage)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Media.Visual)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.DocumentPaginator,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedDocument,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedDocumentSequence,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedPage,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Media.Visual,System.Printing.PrintTicket)" />
+        </element>
+        <element api="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync">
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.DocumentPaginator)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocument)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocumentSequence)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedPage)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Media.Visual)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.DocumentPaginator,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.DocumentPaginator,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocument,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocument,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocumentSequence,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocumentSequence,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedPage,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedPage,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Media.Visual,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Media.Visual,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.DocumentPaginator,System.Printing.PrintTicket,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocument,System.Printing.PrintTicket,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocumentSequence,System.Printing.PrintTicket,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedPage,System.Printing.PrintTicket,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Media.Visual,System.Printing.PrintTicket,System.Object)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" />
+      </containers>
+      <file name="44f89777-cf8e-2764-c08b-ec04825433d8" />
+    </api>
+    <api id="Events.T:System.Windows.Documents.Serialization.SerializerWriter">
+      <topicdata name="SerializerWriter" group="list" subgroup="Events" typeTopicId="T:System.Windows.Documents.Serialization.SerializerWriter" />
+      <apidata name="SerializerWriter" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:System.Windows.Documents.Serialization.SerializerWriter.WritingCancelled" />
+        <element api="E:System.Windows.Documents.Serialization.SerializerWriter.WritingCompleted" />
+        <element api="E:System.Windows.Documents.Serialization.SerializerWriter.WritingPrintTicketRequired" />
+        <element api="E:System.Windows.Documents.Serialization.SerializerWriter.WritingProgressChanged" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" />
+      </containers>
+      <file name="8e7c8b7f-fdf6-2f4a-ecd8-f176da767b04" />
+    </api>
+    <api id="Overload:System.Windows.Documents.Serialization.SerializerWriter.CreateVisualsCollator">
+      <topicdata name="CreateVisualsCollator" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Documents.Serialization.SerializerWriter" />
+      <apidata name="CreateVisualsCollator" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.CreateVisualsCollator" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.CreateVisualsCollator(System.Printing.PrintTicket,System.Printing.PrintTicket)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="57c2fb2c-f063-bbd5-f13e-3e9e4a8a73ec" />
+    </api>
+    <api id="Overload:System.Windows.Documents.Serialization.SerializerWriter.Write">
+      <topicdata name="Write" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Documents.Serialization.SerializerWriter" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.DocumentPaginator)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedDocument)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedDocumentSequence)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedPage)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Media.Visual)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.DocumentPaginator,System.Printing.PrintTicket)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedDocument,System.Printing.PrintTicket)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedDocumentSequence,System.Printing.PrintTicket)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedPage,System.Printing.PrintTicket)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Media.Visual,System.Printing.PrintTicket)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="82f100eb-809e-f859-f5f9-4dc60808934c" />
+    </api>
+    <api id="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync">
+      <topicdata name="WriteAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Documents.Serialization.SerializerWriter" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.DocumentPaginator)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocument)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocumentSequence)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedPage)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Media.Visual)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.DocumentPaginator,System.Object)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.DocumentPaginator,System.Printing.PrintTicket)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocument,System.Object)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocument,System.Printing.PrintTicket)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocumentSequence,System.Object)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocumentSequence,System.Printing.PrintTicket)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedPage,System.Object)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedPage,System.Printing.PrintTicket)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Media.Visual,System.Object)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Media.Visual,System.Printing.PrintTicket)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.DocumentPaginator,System.Printing.PrintTicket,System.Object)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocument,System.Printing.PrintTicket,System.Object)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocumentSequence,System.Printing.PrintTicket,System.Object)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedPage,System.Printing.PrintTicket,System.Object)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Media.Visual,System.Printing.PrintTicket,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="43fdcae2-b5e5-83c7-a503-016d3c919a42" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="5408e9a7-4372-fd80-42ec-fed74f68fc46" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.CancelAsync">
+      <topicdata group="api" />
+      <apidata name="CancelAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="51ba4507-e042-265c-9298-e5deb950547b" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.CreateVisualsCollator">
+      <topicdata group="api" />
+      <apidata name="CreateVisualsCollator" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.CreateVisualsCollator" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriterCollator" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="e24ff33a-59b9-34d5-8bb4-de0c42ccc182" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.CreateVisualsCollator(System.Printing.PrintTicket,System.Printing.PrintTicket)">
+      <topicdata group="api" />
+      <apidata name="CreateVisualsCollator" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.CreateVisualsCollator" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="documentSequencePT">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+        <parameter name="documentPT">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriterCollator" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="34ccdee0-bdc0-bd5d-7a0f-94003627450e" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.DocumentPaginator)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.Write" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="documentPaginator">
+          <type api="T:System.Windows.Documents.DocumentPaginator" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="55777047-9be0-575a-2025-7a5c4c3fc356" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.DocumentPaginator,System.Printing.PrintTicket)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.Write" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="documentPaginator">
+          <type api="T:System.Windows.Documents.DocumentPaginator" ref="true" />
+        </parameter>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="6f90a541-d7e5-b874-cb6f-43ee69e5f10e" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedDocument)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.Write" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fixedDocument">
+          <type api="T:System.Windows.Documents.FixedDocument" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="ea36a1f4-3b46-66a8-2d70-65d8b587b058" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedDocument,System.Printing.PrintTicket)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.Write" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fixedDocument">
+          <type api="T:System.Windows.Documents.FixedDocument" ref="true" />
+        </parameter>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="734d71d4-09e2-ea9b-76e4-a51b3a6b84f1" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedDocumentSequence)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.Write" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fixedDocumentSequence">
+          <type api="T:System.Windows.Documents.FixedDocumentSequence" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="473b5e98-9f38-4230-962c-b490789393a9" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedDocumentSequence,System.Printing.PrintTicket)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.Write" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fixedDocumentSequence">
+          <type api="T:System.Windows.Documents.FixedDocumentSequence" ref="true" />
+        </parameter>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="7a1d94d7-10cf-cdb2-595d-a15d386f4416" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedPage)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.Write" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fixedPage">
+          <type api="T:System.Windows.Documents.FixedPage" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="fb52c197-9dfe-1fda-638a-7cfc3cf303a6" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Documents.FixedPage,System.Printing.PrintTicket)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.Write" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fixedPage">
+          <type api="T:System.Windows.Documents.FixedPage" ref="true" />
+        </parameter>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="833495b6-6361-6dd6-a6cf-475ffb2265c4" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Media.Visual)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.Write" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="visual">
+          <type api="T:System.Windows.Media.Visual" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="eacbd163-1e01-525d-c7d7-78666fd6313d" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.Write(System.Windows.Media.Visual,System.Printing.PrintTicket)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.Write" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="visual">
+          <type api="T:System.Windows.Media.Visual" ref="true" />
+        </parameter>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="83ebe8cb-8921-441d-85f6-2c2c6da8dd35" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.DocumentPaginator)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="documentPaginator">
+          <type api="T:System.Windows.Documents.DocumentPaginator" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="d85d7564-05ed-e049-55e4-d25ece9faa56" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.DocumentPaginator,System.Object)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="documentPaginator">
+          <type api="T:System.Windows.Documents.DocumentPaginator" ref="true" />
+        </parameter>
+        <parameter name="userState">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="e063b583-5802-1644-8d9d-82e57e963569" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.DocumentPaginator,System.Printing.PrintTicket)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="documentPaginator">
+          <type api="T:System.Windows.Documents.DocumentPaginator" ref="true" />
+        </parameter>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="02d3f6b8-bd35-0389-56c8-d71accf26bd6" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.DocumentPaginator,System.Printing.PrintTicket,System.Object)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="documentPaginator">
+          <type api="T:System.Windows.Documents.DocumentPaginator" ref="true" />
+        </parameter>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+        <parameter name="userState">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="0aa8b86d-aa17-c15a-9a0a-740486fd8867" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocument)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fixedDocument">
+          <type api="T:System.Windows.Documents.FixedDocument" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="b28f0a98-f695-9873-2d7e-5ae4038840ec" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocument,System.Object)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fixedDocument">
+          <type api="T:System.Windows.Documents.FixedDocument" ref="true" />
+        </parameter>
+        <parameter name="userState">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="6434c7c1-c280-b6af-5d15-a21470d1b180" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocument,System.Printing.PrintTicket)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fixedDocument">
+          <type api="T:System.Windows.Documents.FixedDocument" ref="true" />
+        </parameter>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="09fa6801-4da4-95c1-4fd5-751fccfdd9cd" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocument,System.Printing.PrintTicket,System.Object)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fixedDocument">
+          <type api="T:System.Windows.Documents.FixedDocument" ref="true" />
+        </parameter>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+        <parameter name="userState">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="39577d96-3188-fbd9-c625-234f98161674" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocumentSequence)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fixedDocumentSequence">
+          <type api="T:System.Windows.Documents.FixedDocumentSequence" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="cf7360d0-c0da-8e20-ae75-8d0ec4d8cd06" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocumentSequence,System.Object)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fixedDocumentSequence">
+          <type api="T:System.Windows.Documents.FixedDocumentSequence" ref="true" />
+        </parameter>
+        <parameter name="userState">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="46609f9a-a49f-d2a1-f007-7b98f85d4896" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocumentSequence,System.Printing.PrintTicket)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fixedDocumentSequence">
+          <type api="T:System.Windows.Documents.FixedDocumentSequence" ref="true" />
+        </parameter>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="4a7bdefd-b2f2-5e17-ea8b-d7986168c374" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedDocumentSequence,System.Printing.PrintTicket,System.Object)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fixedDocumentSequence">
+          <type api="T:System.Windows.Documents.FixedDocumentSequence" ref="true" />
+        </parameter>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+        <parameter name="userState">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="72e600ce-27e8-ba1b-924a-54e11b65a5e7" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedPage)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fixedPage">
+          <type api="T:System.Windows.Documents.FixedPage" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="9e4b5f00-6f71-c6ab-6519-ac6aef5dff4d" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedPage,System.Object)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fixedPage">
+          <type api="T:System.Windows.Documents.FixedPage" ref="true" />
+        </parameter>
+        <parameter name="userState">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="15d81105-af59-ef05-34fe-81638d5d6980" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedPage,System.Printing.PrintTicket)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fixedPage">
+          <type api="T:System.Windows.Documents.FixedPage" ref="true" />
+        </parameter>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="84b33ae4-e3e1-690b-d439-481920f41fc4" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Documents.FixedPage,System.Printing.PrintTicket,System.Object)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fixedPage">
+          <type api="T:System.Windows.Documents.FixedPage" ref="true" />
+        </parameter>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+        <parameter name="userState">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="c0b2b52f-1285-b06f-d573-761a80b78a3b" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Media.Visual)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="visual">
+          <type api="T:System.Windows.Media.Visual" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="e2cc1ad3-0f48-2906-a7a5-2cbdfd867a0c" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Media.Visual,System.Object)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="visual">
+          <type api="T:System.Windows.Media.Visual" ref="true" />
+        </parameter>
+        <parameter name="userState">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="18c78806-e1dd-1cfa-4b4d-ae2ef0b0f6b7" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Media.Visual,System.Printing.PrintTicket)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="visual">
+          <type api="T:System.Windows.Media.Visual" ref="true" />
+        </parameter>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="a98f2103-fa38-5790-bd36-01dff8c51e31" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync(System.Windows.Media.Visual,System.Printing.PrintTicket,System.Object)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriter.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="visual">
+          <type api="T:System.Windows.Media.Visual" ref="true" />
+        </parameter>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+        <parameter name="userState">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="6934c6bf-add2-674b-81e4-ad6d2bbd68c4" />
+    </api>
+    <api id="E:System.Windows.Documents.Serialization.SerializerWriter.WritingCancelled">
+      <topicdata group="api" />
+      <apidata name="WritingCancelled" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_WritingCancelled" />
+      <remover name="remove_WritingCancelled" />
+      <eventhandler>
+        <type api="T:System.Windows.Documents.Serialization.WritingCancelledEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Documents.Serialization.WritingCancelledEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="8867bb49-2a8e-66c9-e380-51d256e506d2" />
+    </api>
+    <api id="E:System.Windows.Documents.Serialization.SerializerWriter.WritingCompleted">
+      <topicdata group="api" />
+      <apidata name="WritingCompleted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_WritingCompleted" />
+      <remover name="remove_WritingCompleted" />
+      <eventhandler>
+        <type api="T:System.Windows.Documents.Serialization.WritingCompletedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Documents.Serialization.WritingCompletedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="204944e4-0eb2-24d5-3daa-b9a9a1058511" />
+    </api>
+    <api id="E:System.Windows.Documents.Serialization.SerializerWriter.WritingPrintTicketRequired">
+      <topicdata group="api" />
+      <apidata name="WritingPrintTicketRequired" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_WritingPrintTicketRequired" />
+      <remover name="remove_WritingPrintTicketRequired" />
+      <eventhandler>
+        <type api="T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="9643b223-2136-5466-c86e-98800fa20060" />
+    </api>
+    <api id="E:System.Windows.Documents.Serialization.SerializerWriter.WritingProgressChanged">
+      <topicdata group="api" />
+      <apidata name="WritingProgressChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_WritingProgressChanged" />
+      <remover name="remove_WritingProgressChanged" />
+      <eventhandler>
+        <type api="T:System.Windows.Documents.Serialization.WritingProgressChangedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriter" ref="true" />
+      </containers>
+      <file name="f5527bcc-1b99-c7c1-f944-856a7e00c592" />
+    </api>
+    <api id="T:System.Windows.Documents.Serialization.SerializerWriterCollator">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Documents.Serialization.SerializerWriterCollator" />
+      <apidata name="SerializerWriterCollator" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Windows.Xps.VisualsToXpsDocument" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+      </containers>
+      <file name="c322dac1-2d9e-4159-4e82-7752c6de7962" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Documents.Serialization.SerializerWriterCollator">
+      <topicdata name="SerializerWriterCollator" group="list" subgroup="members" typeTopicId="T:System.Windows.Documents.Serialization.SerializerWriterCollator" />
+      <apidata name="SerializerWriterCollator" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.#ctor" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.BeginBatchWrite" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.Cancel" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.CancelAsync" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.EndBatchWrite" />
+        <element api="Overload:System.Windows.Documents.Serialization.SerializerWriterCollator.Write">
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.Write(System.Windows.Media.Visual)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.Write(System.Windows.Media.Visual,System.Printing.PrintTicket)" />
+        </element>
+        <element api="Overload:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync">
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync(System.Windows.Media.Visual)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync(System.Windows.Media.Visual,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync(System.Windows.Media.Visual,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync(System.Windows.Media.Visual,System.Printing.PrintTicket,System.Object)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriterCollator" />
+      </containers>
+      <file name="bdf7deb2-7a5a-831d-d029-d7d90a481078" />
+    </api>
+    <api id="Methods.T:System.Windows.Documents.Serialization.SerializerWriterCollator">
+      <topicdata name="SerializerWriterCollator" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Documents.Serialization.SerializerWriterCollator" />
+      <apidata name="SerializerWriterCollator" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.BeginBatchWrite" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.Cancel" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.CancelAsync" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.EndBatchWrite" />
+        <element api="Overload:System.Windows.Documents.Serialization.SerializerWriterCollator.Write">
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.Write(System.Windows.Media.Visual)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.Write(System.Windows.Media.Visual,System.Printing.PrintTicket)" />
+        </element>
+        <element api="Overload:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync">
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync(System.Windows.Media.Visual)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync(System.Windows.Media.Visual,System.Object)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync(System.Windows.Media.Visual,System.Printing.PrintTicket)" />
+          <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync(System.Windows.Media.Visual,System.Printing.PrintTicket,System.Object)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriterCollator" />
+      </containers>
+      <file name="e5000f4a-75fa-ea37-88e2-234cdb75548e" />
+    </api>
+    <api id="Overload:System.Windows.Documents.Serialization.SerializerWriterCollator.Write">
+      <topicdata name="Write" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Documents.Serialization.SerializerWriterCollator" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.Write(System.Windows.Media.Visual)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.Write(System.Windows.Media.Visual,System.Printing.PrintTicket)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriterCollator" ref="true" />
+      </containers>
+      <file name="0482849c-42b2-431e-481f-05f0d68e83f4" />
+    </api>
+    <api id="Overload:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync">
+      <topicdata name="WriteAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Documents.Serialization.SerializerWriterCollator" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync(System.Windows.Media.Visual)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync(System.Windows.Media.Visual,System.Object)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync(System.Windows.Media.Visual,System.Printing.PrintTicket)" />
+        <element api="M:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync(System.Windows.Media.Visual,System.Printing.PrintTicket,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriterCollator" ref="true" />
+      </containers>
+      <file name="c47a14d5-fc6c-f640-7398-026eb8582874" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriterCollator.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriterCollator" ref="true" />
+      </containers>
+      <file name="c9aa1130-cdf2-b7c8-170f-d9e5af6d9af0" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriterCollator.BeginBatchWrite">
+      <topicdata group="api" />
+      <apidata name="BeginBatchWrite" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriterCollator" ref="true" />
+      </containers>
+      <file name="6902c649-80d0-c56c-f769-70fae61fafba" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriterCollator.Cancel">
+      <topicdata group="api" />
+      <apidata name="Cancel" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriterCollator" ref="true" />
+      </containers>
+      <file name="9f1b6230-8a2c-cde9-6276-eb070eb3fcc4" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriterCollator.CancelAsync">
+      <topicdata group="api" />
+      <apidata name="CancelAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriterCollator" ref="true" />
+      </containers>
+      <file name="1ba2700a-b126-e6b9-b6d3-afb680592b24" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriterCollator.EndBatchWrite">
+      <topicdata group="api" />
+      <apidata name="EndBatchWrite" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriterCollator" ref="true" />
+      </containers>
+      <file name="c75a6a55-be24-1cb9-ed25-2a47451619f8" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriterCollator.Write(System.Windows.Media.Visual)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriterCollator.Write" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="visual">
+          <type api="T:System.Windows.Media.Visual" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriterCollator" ref="true" />
+      </containers>
+      <file name="6b88f17c-4c5b-af85-b77e-7235d2d4e207" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriterCollator.Write(System.Windows.Media.Visual,System.Printing.PrintTicket)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriterCollator.Write" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="visual">
+          <type api="T:System.Windows.Media.Visual" ref="true" />
+        </parameter>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriterCollator" ref="true" />
+      </containers>
+      <file name="74adfaae-99a4-f358-0581-4fbd28aaf055" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync(System.Windows.Media.Visual)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="visual">
+          <type api="T:System.Windows.Media.Visual" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriterCollator" ref="true" />
+      </containers>
+      <file name="7cbdadc3-c8fc-17ad-9b02-b7639b5adbc8" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync(System.Windows.Media.Visual,System.Object)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="visual">
+          <type api="T:System.Windows.Media.Visual" ref="true" />
+        </parameter>
+        <parameter name="userState">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriterCollator" ref="true" />
+      </containers>
+      <file name="a5909ad6-bfd0-b132-6d4b-a721c1f88aae" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync(System.Windows.Media.Visual,System.Printing.PrintTicket)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="visual">
+          <type api="T:System.Windows.Media.Visual" ref="true" />
+        </parameter>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriterCollator" ref="true" />
+      </containers>
+      <file name="65222bfa-df6a-a00b-dcb4-731b37e3e5a4" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync(System.Windows.Media.Visual,System.Printing.PrintTicket,System.Object)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Documents.Serialization.SerializerWriterCollator.WriteAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="visual">
+          <type api="T:System.Windows.Media.Visual" ref="true" />
+        </parameter>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+        <parameter name="userState">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.SerializerWriterCollator" ref="true" />
+      </containers>
+      <file name="1b07b493-c301-535d-ee51-01920085a732" />
+    </api>
+    <api id="T:System.Windows.Documents.Serialization.WritingCancelledEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Documents.Serialization.WritingCancelledEventArgs" />
+      <apidata name="WritingCancelledEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+      </containers>
+      <file name="36dce8d6-5981-7f7e-946b-3de062ecdb69" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Documents.Serialization.WritingCancelledEventArgs">
+      <topicdata name="WritingCancelledEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Documents.Serialization.WritingCancelledEventArgs" />
+      <apidata name="WritingCancelledEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Documents.Serialization.WritingCancelledEventArgs.#ctor(System.Exception)" />
+        <element api="P:System.Windows.Documents.Serialization.WritingCancelledEventArgs.Error" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingCancelledEventArgs" />
+      </containers>
+      <file name="424b4a8a-ed05-9db7-803a-63087d702000" />
+    </api>
+    <api id="Methods.T:System.Windows.Documents.Serialization.WritingCancelledEventArgs">
+      <topicdata name="WritingCancelledEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Documents.Serialization.WritingCancelledEventArgs" />
+      <apidata name="WritingCancelledEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingCancelledEventArgs" />
+      </containers>
+      <file name="50b1f829-0b1c-bed7-7ef4-3f0d27c87405" />
+    </api>
+    <api id="Properties.T:System.Windows.Documents.Serialization.WritingCancelledEventArgs">
+      <topicdata name="WritingCancelledEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Documents.Serialization.WritingCancelledEventArgs" />
+      <apidata name="WritingCancelledEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Documents.Serialization.WritingCancelledEventArgs.Error" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingCancelledEventArgs" />
+      </containers>
+      <file name="4029ea88-79cb-56d8-f095-2b36236360c6" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.WritingCancelledEventArgs.#ctor(System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="exception">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingCancelledEventArgs" ref="true" />
+      </containers>
+      <file name="2f813188-9cea-ef66-909b-f75c6af5ab3b" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.WritingCancelledEventArgs.Error">
+      <topicdata group="api" />
+      <apidata name="Error" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Error" />
+      <returns>
+        <type api="T:System.Exception" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingCancelledEventArgs" ref="true" />
+      </containers>
+      <file name="25059461-2503-89e3-f9b6-008f57da5f8f" />
+    </api>
+    <api id="T:System.Windows.Documents.Serialization.WritingCancelledEventHandler">
+      <topicdata group="api" />
+      <apidata name="WritingCancelledEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Windows.Documents.Serialization.WritingCancelledEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+      </containers>
+      <file name="9ea06b2e-7949-1725-240f-964c966e988c" />
+    </api>
+    <api id="T:System.Windows.Documents.Serialization.WritingCompletedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Documents.Serialization.WritingCompletedEventArgs" />
+      <apidata name="WritingCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.AsyncCompletedEventArgs" ref="true" />
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+      </containers>
+      <file name="e1af627b-321e-8856-b081-bb2dd7864be9" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Documents.Serialization.WritingCompletedEventArgs">
+      <topicdata name="WritingCompletedEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Documents.Serialization.WritingCompletedEventArgs" />
+      <apidata name="WritingCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.Cancelled" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.Error" />
+        <element api="M:System.ComponentModel.AsyncCompletedEventArgs.RaiseExceptionIfNecessary" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.UserState" />
+        <element api="M:System.Windows.Documents.Serialization.WritingCompletedEventArgs.#ctor(System.Boolean,System.Object,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingCompletedEventArgs" />
+      </containers>
+      <file name="bb639082-b8b0-b2f0-abc0-5a21eab10f00" />
+    </api>
+    <api id="Methods.T:System.Windows.Documents.Serialization.WritingCompletedEventArgs">
+      <topicdata name="WritingCompletedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Documents.Serialization.WritingCompletedEventArgs" />
+      <apidata name="WritingCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.AsyncCompletedEventArgs.RaiseExceptionIfNecessary" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingCompletedEventArgs" />
+      </containers>
+      <file name="4a9b5ff4-ea11-c514-102a-2664bbf5c2a6" />
+    </api>
+    <api id="Properties.T:System.Windows.Documents.Serialization.WritingCompletedEventArgs">
+      <topicdata name="WritingCompletedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Documents.Serialization.WritingCompletedEventArgs" />
+      <apidata name="WritingCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.Cancelled" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.Error" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.UserState" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingCompletedEventArgs" />
+      </containers>
+      <file name="e9982255-369f-82b8-a867-edb428373c47" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.WritingCompletedEventArgs.#ctor(System.Boolean,System.Object,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="cancelled">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="exception">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="66e4a1e9-16a6-03e9-73d4-67e14c7db94e" />
+    </api>
+    <api id="T:System.Windows.Documents.Serialization.WritingCompletedEventHandler">
+      <topicdata group="api" />
+      <apidata name="WritingCompletedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Windows.Documents.Serialization.WritingCompletedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+      </containers>
+      <file name="a8ee9c35-ebf4-d8a6-8f56-bba134fd9121" />
+    </api>
+    <api id="T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs" />
+      <apidata name="WritingPrintTicketRequiredEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+      </containers>
+      <file name="be18499d-0933-afba-ad29-945c794b1ec1" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs">
+      <topicdata name="WritingPrintTicketRequiredEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs" />
+      <apidata name="WritingPrintTicketRequiredEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs.#ctor(System.Windows.Xps.Serialization.PrintTicketLevel,System.Int32)" />
+        <element api="P:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs.CurrentPrintTicket" />
+        <element api="P:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs.CurrentPrintTicketLevel" />
+        <element api="P:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs.Sequence" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs" />
+      </containers>
+      <file name="75380cd4-6673-e40a-0166-507b154e6568" />
+    </api>
+    <api id="Methods.T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs">
+      <topicdata name="WritingPrintTicketRequiredEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs" />
+      <apidata name="WritingPrintTicketRequiredEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs" />
+      </containers>
+      <file name="135fb60e-bba5-c6e2-4f05-082293686643" />
+    </api>
+    <api id="Properties.T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs">
+      <topicdata name="WritingPrintTicketRequiredEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs" />
+      <apidata name="WritingPrintTicketRequiredEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs.CurrentPrintTicket" />
+        <element api="P:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs.CurrentPrintTicketLevel" />
+        <element api="P:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs.Sequence" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs" />
+      </containers>
+      <file name="e2c1b540-ac95-8338-f1e6-370d45963f06" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs.#ctor(System.Windows.Xps.Serialization.PrintTicketLevel,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="printTicketLevel">
+          <type api="T:System.Windows.Xps.Serialization.PrintTicketLevel" ref="false" />
+        </parameter>
+        <parameter name="sequence">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs" ref="true" />
+      </containers>
+      <file name="68c3ba9f-2fa9-36bf-a871-da3d4849fc39" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs.CurrentPrintTicket">
+      <topicdata group="api" />
+      <apidata name="CurrentPrintTicket" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CurrentPrintTicket" />
+      <setter name="set_CurrentPrintTicket" />
+      <returns>
+        <type api="T:System.Printing.PrintTicket" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs" ref="true" />
+      </containers>
+      <file name="e378acbd-e53a-702e-9154-d4db99778a4b" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs.CurrentPrintTicketLevel">
+      <topicdata group="api" />
+      <apidata name="CurrentPrintTicketLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CurrentPrintTicketLevel" />
+      <returns>
+        <type api="T:System.Windows.Xps.Serialization.PrintTicketLevel" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs" ref="true" />
+      </containers>
+      <file name="f32bf580-3c27-18b9-1a30-e482cbc68d4a" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs.Sequence">
+      <topicdata group="api" />
+      <apidata name="Sequence" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Sequence" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs" ref="true" />
+      </containers>
+      <file name="554276b1-cf0b-5cbb-a266-d2d95c02d347" />
+    </api>
+    <api id="T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventHandler">
+      <topicdata group="api" />
+      <apidata name="WritingPrintTicketRequiredEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Windows.Documents.Serialization.WritingPrintTicketRequiredEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+      </containers>
+      <file name="558c7797-d2f5-b70c-fe96-ce78aba02dfd" />
+    </api>
+    <api id="T:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs" />
+      <apidata name="WritingProgressChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.ProgressChangedEventArgs" ref="true" />
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+      </containers>
+      <file name="88699865-6e37-05f8-502f-18555d9bc706" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs">
+      <topicdata name="WritingProgressChangedEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs" />
+      <apidata name="WritingProgressChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage" />
+        <element api="P:System.ComponentModel.ProgressChangedEventArgs.UserState" />
+        <element api="M:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs.#ctor(System.Windows.Documents.Serialization.WritingProgressChangeLevel,System.Int32,System.Int32,System.Object)" />
+        <element api="P:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs.Number" />
+        <element api="P:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs.WritingLevel" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs" />
+      </containers>
+      <file name="0695afeb-fdf6-bc35-c0d4-0dbd5a85d42b" />
+    </api>
+    <api id="Methods.T:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs">
+      <topicdata name="WritingProgressChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs" />
+      <apidata name="WritingProgressChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs" />
+      </containers>
+      <file name="5935291f-d049-84bc-2da9-9cf458a48b2b" />
+    </api>
+    <api id="Properties.T:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs">
+      <topicdata name="WritingProgressChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs" />
+      <apidata name="WritingProgressChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage" />
+        <element api="P:System.ComponentModel.ProgressChangedEventArgs.UserState" />
+        <element api="P:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs.Number" />
+        <element api="P:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs.WritingLevel" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs" />
+      </containers>
+      <file name="a6570982-1e21-357b-b3a6-058170192fb3" />
+    </api>
+    <api id="M:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs.#ctor(System.Windows.Documents.Serialization.WritingProgressChangeLevel,System.Int32,System.Int32,System.Object)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="writingLevel">
+          <type api="T:System.Windows.Documents.Serialization.WritingProgressChangeLevel" ref="false" />
+        </parameter>
+        <parameter name="number">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="progressPercentage">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs" ref="true" />
+      </containers>
+      <file name="7d42a13b-605c-58d5-7870-11ea5ae48e73" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs.Number">
+      <topicdata group="api" />
+      <apidata name="Number" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Number" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs" ref="true" />
+      </containers>
+      <file name="563827e5-40b1-40a7-d769-f24a9d8185f2" />
+    </api>
+    <api id="P:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs.WritingLevel">
+      <topicdata group="api" />
+      <apidata name="WritingLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_WritingLevel" />
+      <returns>
+        <type api="T:System.Windows.Documents.Serialization.WritingProgressChangeLevel" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs" ref="true" />
+      </containers>
+      <file name="a22501ea-af1f-e47d-c2cd-1f07c66e5c25" />
+    </api>
+    <api id="T:System.Windows.Documents.Serialization.WritingProgressChangedEventHandler">
+      <topicdata group="api" />
+      <apidata name="WritingProgressChangedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Windows.Documents.Serialization.WritingProgressChangedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+      </containers>
+      <file name="38641f98-bbda-fb16-efa6-b7ec3daab4a8" />
+    </api>
+    <api id="T:System.Windows.Documents.Serialization.WritingProgressChangeLevel">
+      <topicdata group="api" />
+      <apidata name="WritingProgressChangeLevel" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Documents.Serialization.WritingProgressChangeLevel.None" />
+        <element api="F:System.Windows.Documents.Serialization.WritingProgressChangeLevel.FixedDocumentSequenceWritingProgress" />
+        <element api="F:System.Windows.Documents.Serialization.WritingProgressChangeLevel.FixedDocumentWritingProgress" />
+        <element api="F:System.Windows.Documents.Serialization.WritingProgressChangeLevel.FixedPageWritingProgress" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+      </containers>
+      <file name="3d92e94e-2c9f-46b2-9501-33941aa27b54" />
+    </api>
+    <api id="F:System.Windows.Documents.Serialization.WritingProgressChangeLevel.FixedDocumentSequenceWritingProgress">
+      <topicdata group="api" notopic="" />
+      <apidata name="FixedDocumentSequenceWritingProgress" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Documents.Serialization.WritingProgressChangeLevel" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingProgressChangeLevel" ref="false" />
+      </containers>
+      <file name="9f2e01fa-0f79-bf1a-6cd9-0c84edc974a5" />
+    </api>
+    <api id="F:System.Windows.Documents.Serialization.WritingProgressChangeLevel.FixedDocumentWritingProgress">
+      <topicdata group="api" notopic="" />
+      <apidata name="FixedDocumentWritingProgress" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Documents.Serialization.WritingProgressChangeLevel" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingProgressChangeLevel" ref="false" />
+      </containers>
+      <file name="a3c62c53-48cd-8326-c0e7-6ca67f8d59d3" />
+    </api>
+    <api id="F:System.Windows.Documents.Serialization.WritingProgressChangeLevel.FixedPageWritingProgress">
+      <topicdata group="api" notopic="" />
+      <apidata name="FixedPageWritingProgress" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Documents.Serialization.WritingProgressChangeLevel" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingProgressChangeLevel" ref="false" />
+      </containers>
+      <file name="291cbaa1-292b-83f8-34e5-99f617af0d1e" />
+    </api>
+    <api id="F:System.Windows.Documents.Serialization.WritingProgressChangeLevel.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Documents.Serialization.WritingProgressChangeLevel" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Documents.Serialization" />
+        <type api="T:System.Windows.Documents.Serialization.WritingProgressChangeLevel" ref="false" />
+      </containers>
+      <file name="85963ddf-16f6-4667-1eab-1f342e2607fc" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,503 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Workflow.Activities">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Workflow.ComponentModel.Serialization.XmlnsDefinitionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/winfx/2006/xaml/workflow</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Workflow.Activities</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Workflow.ComponentModel.Serialization.XmlnsDefinitionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/winfx/2006/xaml/workflow</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Workflow.Activities.Rules</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Workflow.ComponentModel.Serialization.XmlnsDefinitionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/winfx/2006/xaml/workflow</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Workflow.Activities.Rules.Design</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Workflow.ComponentModel.Serialization.XmlnsPrefixAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/winfx/2006/xaml/workflow</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>wf</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Workflow.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Workflow.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Workflow.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Workflow.Activities.Configuration">
+      <topicdata group="api" />
+      <apidata name="System.Workflow.Activities.Configuration" group="namespace" />
+      <elements>
+        <element api="T:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration" />
+      </elements>
+      <file name="4b4c193f-19dd-22db-a71d-616596520bb4" />
+    </api>
+    <api id="T:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration" />
+      <apidata name="ActiveDirectoryRoleFactoryConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Workflow.Activities" module="System.Workflow.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Workflow.Activities.Configuration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The System.Workflow.* types are deprecated.  Instead, please use the new types from System.Activities.*</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0a36680b-7dc2-2f4e-85b4-0273e37d3aba" />
+    </api>
+    <api id="AllMembers.T:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration">
+      <topicdata name="ActiveDirectoryRoleFactoryConfiguration" group="list" subgroup="members" typeTopicId="T:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration" />
+      <apidata name="ActiveDirectoryRoleFactoryConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="M:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.#ctor" />
+        <element api="P:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.DirectReports" />
+        <element api="P:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.DistinguishedName" />
+        <element api="P:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.Group" />
+        <element api="P:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.Manager" />
+        <element api="P:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.Member" />
+        <element api="P:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.RootPath" />
+      </elements>
+      <containers>
+        <library assembly="System.Workflow.Activities" module="System.Workflow.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Workflow.Activities.Configuration" />
+        <type api="T:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration" />
+      </containers>
+      <file name="8597d4cd-4205-aa64-e153-f948ac9bee1b" />
+    </api>
+    <api id="Methods.T:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration">
+      <topicdata name="ActiveDirectoryRoleFactoryConfiguration" group="list" subgroup="Methods" typeTopicId="T:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration" />
+      <apidata name="ActiveDirectoryRoleFactoryConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.Workflow.Activities" module="System.Workflow.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Workflow.Activities.Configuration" />
+        <type api="T:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration" />
+      </containers>
+      <file name="dbce65d7-9721-221e-f65b-315aba3d19ab" />
+    </api>
+    <api id="Properties.T:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration">
+      <topicdata name="ActiveDirectoryRoleFactoryConfiguration" group="list" subgroup="Properties" typeTopicId="T:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration" />
+      <apidata name="ActiveDirectoryRoleFactoryConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="P:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.DirectReports" />
+        <element api="P:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.DistinguishedName" />
+        <element api="P:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.Group" />
+        <element api="P:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.Manager" />
+        <element api="P:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.Member" />
+        <element api="P:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.RootPath" />
+      </elements>
+      <containers>
+        <library assembly="System.Workflow.Activities" module="System.Workflow.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Workflow.Activities.Configuration" />
+        <type api="T:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration" />
+      </containers>
+      <file name="cbe95d27-f9b4-7ffe-14eb-42283866eb6d" />
+    </api>
+    <api id="M:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Workflow.Activities" module="System.Workflow.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Activities.Configuration" />
+        <type api="T:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration" ref="true" />
+      </containers>
+      <file name="7bb47781-a0cc-7c3a-0a3e-c3c9dac146c8" />
+    </api>
+    <api id="P:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.DirectReports">
+      <topicdata group="api" />
+      <apidata name="DirectReports" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DirectReports" />
+      <setter name="set_DirectReports" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Workflow.Activities" module="System.Workflow.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Activities.Configuration" />
+        <type api="T:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DirectReports</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <value>directReports</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="532e854e-6599-4aaa-a9a9-51611929bfea" />
+    </api>
+    <api id="P:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.DistinguishedName">
+      <topicdata group="api" />
+      <apidata name="DistinguishedName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DistinguishedName" />
+      <setter name="set_DistinguishedName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Workflow.Activities" module="System.Workflow.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Activities.Configuration" />
+        <type api="T:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DistiguishedName</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <value>distinguishedName</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="f6000134-fb72-ccff-5463-06ef4daf2e02" />
+    </api>
+    <api id="P:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.Group">
+      <topicdata group="api" />
+      <apidata name="Group" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Group" />
+      <setter name="set_Group" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Workflow.Activities" module="System.Workflow.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Activities.Configuration" />
+        <type api="T:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Group</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <value>group</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="3c444935-d0e2-55ac-60be-057313abfa69" />
+    </api>
+    <api id="P:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.Manager">
+      <topicdata group="api" />
+      <apidata name="Manager" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Manager" />
+      <setter name="set_Manager" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Workflow.Activities" module="System.Workflow.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Activities.Configuration" />
+        <type api="T:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Manager</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <value>manager</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="96040834-03c8-e10d-ff29-405223cf5140" />
+    </api>
+    <api id="P:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.Member">
+      <topicdata group="api" />
+      <apidata name="Member" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Member" />
+      <setter name="set_Member" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Workflow.Activities" module="System.Workflow.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Activities.Configuration" />
+        <type api="T:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Member</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <value>member</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="a5ae09aa-d737-2159-4f83-80c77edbc9b4" />
+    </api>
+    <api id="P:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration.RootPath">
+      <topicdata group="api" />
+      <apidata name="RootPath" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RootPath" />
+      <setter name="set_RootPath" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Workflow.Activities" module="System.Workflow.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Activities.Configuration" />
+        <type api="T:System.Workflow.Activities.Configuration.ActiveDirectoryRoleFactoryConfiguration" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RootPath</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <value />
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="05785008-bd81-88f3-ed08-f2a1ef44d4c1" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,2004 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.DataTransfer.DragDrop.Core" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode" />
+        <element api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget" />
+        <element api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo" />
+        <element api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride" />
+        <element api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager" />
+        <element api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDropOperationTargetRequestedEventArgs" />
+        <element api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation" />
+      </elements>
+      <file name="0aea3ed8-a1aa-997b-b55b-61ffd36eaeaf" />
+    </api>
+    <api id="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager" />
+      <apidata name="CoreDragDropManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="501f31d8-4e04-26ed-9a7e-2a82ba036135" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager">
+      <topicdata name="CoreDragDropManager" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager" />
+      <apidata name="CoreDragDropManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager.AreConcurrentOperationsEnabled" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager.GetForCurrentView" />
+        <element api="E:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager.TargetRequested" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager" />
+      </containers>
+      <file name="d454bbe2-1d59-fbf9-bc45-1d1cacd00a22" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager">
+      <topicdata name="CoreDragDropManager" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager" />
+      <apidata name="CoreDragDropManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager.GetForCurrentView" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager" />
+      </containers>
+      <file name="c9d2bf2b-e6d1-b4ca-8bb3-22fba5dd664f" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager">
+      <topicdata name="CoreDragDropManager" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager" />
+      <apidata name="CoreDragDropManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager.AreConcurrentOperationsEnabled" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager" />
+      </containers>
+      <file name="b1e4dc6d-19e8-8bf3-62fe-a8720da0173a" />
+    </api>
+    <api id="Events.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager">
+      <topicdata name="CoreDragDropManager" group="list" subgroup="Events" typeTopicId="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager" />
+      <apidata name="CoreDragDropManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager.TargetRequested" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager" />
+      </containers>
+      <file name="6a225cc1-c68a-4629-0c81-89eb5f2886ea" />
+    </api>
+    <api id="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager.AreConcurrentOperationsEnabled">
+      <topicdata group="api" />
+      <apidata name="AreConcurrentOperationsEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AreConcurrentOperationsEnabled" />
+      <setter name="set_AreConcurrentOperationsEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager" ref="true" />
+      </containers>
+      <file name="1d459c2e-2248-b42b-c360-482ef8f8ac10" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager.GetForCurrentView">
+      <topicdata group="api" />
+      <apidata name="GetForCurrentView" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager" ref="true" />
+      </containers>
+      <file name="f9b13cc8-05b4-9b66-bf5c-8be1d933b115" />
+    </api>
+    <api id="E:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager.TargetRequested">
+      <topicdata group="api" />
+      <apidata name="TargetRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_TargetRequested" />
+      <remover name="remove_TargetRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager" ref="true" />
+            <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDropOperationTargetRequestedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager" ref="true" />
+      </containers>
+      <file name="feb353bc-412f-b1ae-690a-9d49083f5a7b" />
+    </api>
+    <api id="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo" />
+      <apidata name="CoreDragInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="083c6491-246a-9090-d232-394f6864cfbc" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo">
+      <topicdata name="CoreDragInfo" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo" />
+      <apidata name="CoreDragInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo.Data" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo.Modifiers" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo.Position" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo" />
+      </containers>
+      <file name="cf05ec37-bfc7-0f7d-a6f3-f152ad1f449c" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo">
+      <topicdata name="CoreDragInfo" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo" />
+      <apidata name="CoreDragInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo" />
+      </containers>
+      <file name="4c4f28ca-9fe6-a554-8732-3912eb92442b" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo">
+      <topicdata name="CoreDragInfo" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo" />
+      <apidata name="CoreDragInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo.Data" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo.Modifiers" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo.Position" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo" />
+      </containers>
+      <file name="fe1e2b96-e6a6-67c5-f3fe-b91fed7c0c90" />
+    </api>
+    <api id="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo.Data">
+      <topicdata group="api" />
+      <apidata name="Data" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Data" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.DataTransfer.DataPackageView" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo" ref="true" />
+      </containers>
+      <file name="b1fcaf8c-4275-2bfa-4c32-4095b187d48e" />
+    </api>
+    <api id="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo.Modifiers">
+      <topicdata group="api" />
+      <apidata name="Modifiers" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Modifiers" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo" ref="true" />
+      </containers>
+      <file name="0daf948d-65a6-c02a-1367-eb31dae34892" />
+    </api>
+    <api id="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo.Position">
+      <topicdata group="api" />
+      <apidata name="Position" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Position" />
+      <returns>
+        <type api="T:Windows.Foundation.Point" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo" ref="true" />
+      </containers>
+      <file name="515d9b83-725b-2876-2fa4-b7b1b00ec6e5" />
+    </api>
+    <api id="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation" />
+      <apidata name="CoreDragOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="80107eb5-ab16-709a-3ed1-74bf4fb6fd1a" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation">
+      <topicdata name="CoreDragOperation" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation" />
+      <apidata name="CoreDragOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.#ctor" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.Data" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.DragUIContentMode" />
+        <element api="Overload:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.SetDragUIContentFromSoftwareBitmap">
+          <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.SetDragUIContentFromSoftwareBitmap(Windows.Graphics.Imaging.SoftwareBitmap)" />
+          <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.SetDragUIContentFromSoftwareBitmap(Windows.Graphics.Imaging.SoftwareBitmap,Windows.Foundation.Point)" />
+        </element>
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.SetPointerId(System.UInt32)" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.StartAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation" />
+      </containers>
+      <file name="eec00cc2-fe83-627c-6749-a5d5fd84315e" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation">
+      <topicdata name="CoreDragOperation" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation" />
+      <apidata name="CoreDragOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.SetDragUIContentFromSoftwareBitmap">
+          <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.SetDragUIContentFromSoftwareBitmap(Windows.Graphics.Imaging.SoftwareBitmap)" />
+          <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.SetDragUIContentFromSoftwareBitmap(Windows.Graphics.Imaging.SoftwareBitmap,Windows.Foundation.Point)" />
+        </element>
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.SetPointerId(System.UInt32)" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.StartAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation" />
+      </containers>
+      <file name="f989edb3-349b-8691-f0df-409998bdefa7" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation">
+      <topicdata name="CoreDragOperation" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation" />
+      <apidata name="CoreDragOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.#ctor" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.Data" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.DragUIContentMode" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation" />
+      </containers>
+      <file name="a6a6e6c6-48f8-8235-7da1-bfe869b6e09f" />
+    </api>
+    <api id="Overload:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.SetDragUIContentFromSoftwareBitmap">
+      <topicdata name="SetDragUIContentFromSoftwareBitmap" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation" />
+      <apidata name="SetDragUIContentFromSoftwareBitmap" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.SetDragUIContentFromSoftwareBitmap(Windows.Graphics.Imaging.SoftwareBitmap)" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.SetDragUIContentFromSoftwareBitmap(Windows.Graphics.Imaging.SoftwareBitmap,Windows.Foundation.Point)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation" ref="true" />
+      </containers>
+      <file name="c89f0009-410f-7786-3779-43594a00de28" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation" ref="true" />
+      </containers>
+      <file name="7b477f7c-1530-a1f2-0890-1fe3969ab523" />
+    </api>
+    <api id="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.Data">
+      <topicdata group="api" />
+      <apidata name="Data" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Data" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.DataTransfer.DataPackage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation" ref="true" />
+      </containers>
+      <file name="072cd50c-0934-698f-39e2-4d44d6d8b86d" />
+    </api>
+    <api id="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.DragUIContentMode">
+      <topicdata group="api" />
+      <apidata name="DragUIContentMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DragUIContentMode" />
+      <setter name="set_DragUIContentMode" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation" ref="true" />
+      </containers>
+      <file name="0c7d3204-6fc5-1797-8bbb-94a5384546ea" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.SetDragUIContentFromSoftwareBitmap(Windows.Graphics.Imaging.SoftwareBitmap)">
+      <topicdata group="api" />
+      <apidata name="SetDragUIContentFromSoftwareBitmap" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.SetDragUIContentFromSoftwareBitmap" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="softwareBitmap" in="true">
+          <type api="T:Windows.Graphics.Imaging.SoftwareBitmap" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SetDragUIContentFromSoftwareBitmap</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e2f09593-ca99-5fae-0f18-84f061a6f532" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.SetDragUIContentFromSoftwareBitmap(Windows.Graphics.Imaging.SoftwareBitmap,Windows.Foundation.Point)">
+      <topicdata group="api" />
+      <apidata name="SetDragUIContentFromSoftwareBitmap" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.SetDragUIContentFromSoftwareBitmap" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="softwareBitmap" in="true">
+          <type api="T:Windows.Graphics.Imaging.SoftwareBitmap" ref="true" />
+        </parameter>
+        <parameter name="anchorPoint" in="true">
+          <type api="T:Windows.Foundation.Point" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SetDragUIContentFromSoftwareBitmapWithAnchorPoint</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="44924ea3-dd52-0941-bd52-b7dbf3fa9166" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.SetPointerId(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="SetPointerId" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="pointerId" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation" ref="true" />
+      </containers>
+      <file name="b94f9267-6a93-c416-a4bd-f73c87e07cbe" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation.StartAsync">
+      <topicdata group="api" />
+      <apidata name="StartAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.DataTransfer.DataPackageOperation" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="b3c802bf-1a17-5793-6252-5f15be4752f5" />
+    </api>
+    <api id="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode">
+      <topicdata group="api" />
+      <apidata name="CoreDragUIContentMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode.Auto" />
+        <element api="F:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode.Deferred" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="52d9b74a-4ad1-0ba2-c915-1c2c5fcf6896" />
+    </api>
+    <api id="F:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode.Auto">
+      <topicdata group="api" notopic="" />
+      <apidata name="Auto" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode" ref="false" />
+      </containers>
+      <file name="5edda1b0-6d40-be02-a930-49c879139e30" />
+    </api>
+    <api id="F:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode.Deferred">
+      <topicdata group="api" notopic="" />
+      <apidata name="Deferred" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode" ref="false" />
+      </containers>
+      <file name="6989a050-2814-b123-37c1-5e4823d3a2d9" />
+    </api>
+    <api id="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride" />
+      <apidata name="CoreDragUIOverride" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1db8979c-75e7-b8f0-3cd0-2727e8884aa1" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride">
+      <topicdata name="CoreDragUIOverride" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride" />
+      <apidata name="CoreDragUIOverride" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.Caption" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.Clear" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.IsCaptionVisible" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.IsContentVisible" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.IsGlyphVisible" />
+        <element api="Overload:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.SetContentFromSoftwareBitmap">
+          <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.SetContentFromSoftwareBitmap(Windows.Graphics.Imaging.SoftwareBitmap)" />
+          <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.SetContentFromSoftwareBitmap(Windows.Graphics.Imaging.SoftwareBitmap,Windows.Foundation.Point)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride" />
+      </containers>
+      <file name="b5306e99-257f-850a-7d1a-f09bcbc2d86a" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride">
+      <topicdata name="CoreDragUIOverride" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride" />
+      <apidata name="CoreDragUIOverride" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.Clear" />
+        <element api="Overload:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.SetContentFromSoftwareBitmap">
+          <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.SetContentFromSoftwareBitmap(Windows.Graphics.Imaging.SoftwareBitmap)" />
+          <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.SetContentFromSoftwareBitmap(Windows.Graphics.Imaging.SoftwareBitmap,Windows.Foundation.Point)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride" />
+      </containers>
+      <file name="fd8b430a-f8ab-1cc5-b9ae-6ddd27abab4a" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride">
+      <topicdata name="CoreDragUIOverride" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride" />
+      <apidata name="CoreDragUIOverride" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.Caption" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.IsCaptionVisible" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.IsContentVisible" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.IsGlyphVisible" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride" />
+      </containers>
+      <file name="59cf34cc-ecef-8b32-571f-c216fafdb3d6" />
+    </api>
+    <api id="Overload:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.SetContentFromSoftwareBitmap">
+      <topicdata name="SetContentFromSoftwareBitmap" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride" />
+      <apidata name="SetContentFromSoftwareBitmap" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.SetContentFromSoftwareBitmap(Windows.Graphics.Imaging.SoftwareBitmap)" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.SetContentFromSoftwareBitmap(Windows.Graphics.Imaging.SoftwareBitmap,Windows.Foundation.Point)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride" ref="true" />
+      </containers>
+      <file name="36ae3b62-b78b-5678-b22b-c704f17fb0c4" />
+    </api>
+    <api id="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.Caption">
+      <topicdata group="api" />
+      <apidata name="Caption" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Caption" />
+      <setter name="set_Caption" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride" ref="true" />
+      </containers>
+      <file name="379d24ef-9a04-ca2f-69c4-45a6b64dc9a2" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride" ref="true" />
+      </containers>
+      <file name="e275b84a-e8d4-868c-0904-11b1c9312617" />
+    </api>
+    <api id="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.IsCaptionVisible">
+      <topicdata group="api" />
+      <apidata name="IsCaptionVisible" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsCaptionVisible" />
+      <setter name="set_IsCaptionVisible" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride" ref="true" />
+      </containers>
+      <file name="936b7b0c-caaf-8c6f-05be-fd941ab9ade9" />
+    </api>
+    <api id="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.IsContentVisible">
+      <topicdata group="api" />
+      <apidata name="IsContentVisible" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsContentVisible" />
+      <setter name="set_IsContentVisible" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride" ref="true" />
+      </containers>
+      <file name="762e24e5-7f44-7fa6-4785-8ed0f9219a72" />
+    </api>
+    <api id="P:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.IsGlyphVisible">
+      <topicdata group="api" />
+      <apidata name="IsGlyphVisible" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsGlyphVisible" />
+      <setter name="set_IsGlyphVisible" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride" ref="true" />
+      </containers>
+      <file name="0a1396f4-eb23-b10d-adad-4fc051a9ad42" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.SetContentFromSoftwareBitmap(Windows.Graphics.Imaging.SoftwareBitmap)">
+      <topicdata group="api" />
+      <apidata name="SetContentFromSoftwareBitmap" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.SetContentFromSoftwareBitmap" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="softwareBitmap" in="true">
+          <type api="T:Windows.Graphics.Imaging.SoftwareBitmap" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SetContentFromSoftwareBitmap</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c962ba96-ed9a-91f8-bd44-5f7c7c8cdd0d" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.SetContentFromSoftwareBitmap(Windows.Graphics.Imaging.SoftwareBitmap,Windows.Foundation.Point)">
+      <topicdata group="api" />
+      <apidata name="SetContentFromSoftwareBitmap" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride.SetContentFromSoftwareBitmap" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="softwareBitmap" in="true">
+          <type api="T:Windows.Graphics.Imaging.SoftwareBitmap" ref="true" />
+        </parameter>
+        <parameter name="anchorPoint" in="true">
+          <type api="T:Windows.Foundation.Point" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SetContentFromSoftwareBitmapWithAnchorPoint</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5b479485-395c-ba2d-768c-79778244e951" />
+    </api>
+    <api id="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDropOperationTargetRequestedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDropOperationTargetRequestedEventArgs" />
+      <apidata name="CoreDropOperationTargetRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0cc4f285-805d-3ea8-d2fc-7257e24829c0" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDropOperationTargetRequestedEventArgs">
+      <topicdata name="CoreDropOperationTargetRequestedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDropOperationTargetRequestedEventArgs" />
+      <apidata name="CoreDropOperationTargetRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDropOperationTargetRequestedEventArgs.SetTarget(Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDropOperationTargetRequestedEventArgs" />
+      </containers>
+      <file name="33900bec-218e-b18c-a22b-9330d32e6257" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDropOperationTargetRequestedEventArgs">
+      <topicdata name="CoreDropOperationTargetRequestedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDropOperationTargetRequestedEventArgs" />
+      <apidata name="CoreDropOperationTargetRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDropOperationTargetRequestedEventArgs.SetTarget(Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDropOperationTargetRequestedEventArgs" />
+      </containers>
+      <file name="a25e5fd8-3ac6-543a-8952-81fb2be5d5a8" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDropOperationTargetRequestedEventArgs.SetTarget(Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget)">
+      <topicdata group="api" />
+      <apidata name="SetTarget" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="target" in="true">
+          <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDropOperationTargetRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="a5df3f32-7a0c-48b9-7a14-91dccb966f84" />
+    </api>
+    <api id="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget" />
+      <apidata name="ICoreDropOperationTarget" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>3641860502</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19547</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>16765</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>187</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>55</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>118</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>56</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>29</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>239</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>141</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>180</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="00fffc74-0bcd-933c-3b08-489019e04561" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget">
+      <topicdata name="ICoreDropOperationTarget" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget" />
+      <apidata name="ICoreDropOperationTarget" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget.DropAsync(Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo)" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget.EnterAsync(Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo,Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride)" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget.LeaveAsync(Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo)" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget.OverAsync(Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo,Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget" />
+      </containers>
+      <file name="cb06fc60-b604-0aed-75cc-19eae1f20ad2" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget">
+      <topicdata name="ICoreDropOperationTarget" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget" />
+      <apidata name="ICoreDropOperationTarget" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget.DropAsync(Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo)" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget.EnterAsync(Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo,Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride)" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget.LeaveAsync(Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo)" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget.OverAsync(Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo,Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget" />
+      </containers>
+      <file name="d57c597b-a35e-d7f5-c042-fb540f086f1b" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget.DropAsync(Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo)">
+      <topicdata group="api" />
+      <apidata name="DropAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="dragInfo" in="true">
+          <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.DataTransfer.DataPackageOperation" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="52df3538-820e-8c59-7cf0-6d95e5d3a6df" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget.EnterAsync(Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo,Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride)">
+      <topicdata group="api" />
+      <apidata name="EnterAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="dragInfo" in="true">
+          <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo" ref="true" />
+        </parameter>
+        <parameter name="dragUIOverride" in="true">
+          <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.DataTransfer.DataPackageOperation" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="7177f708-40e9-a33c-1675-dc9d8f08e5f4" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget.LeaveAsync(Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo)">
+      <topicdata group="api" />
+      <apidata name="LeaveAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="dragInfo" in="true">
+          <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="23369aad-b073-5b55-3c95-50ca7b351b9d" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget.OverAsync(Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo,Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride)">
+      <topicdata group="api" />
+      <apidata name="OverAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="dragInfo" in="true">
+          <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo" ref="true" />
+        </parameter>
+        <parameter name="dragUIOverride" in="true">
+          <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.DataTransfer.DataPackageOperation" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop.Core" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="99a1c47e-5c30-2d88-1a1c-c86c67f90058" />
+    </api>
+  </apis>
+</reflection>

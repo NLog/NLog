@@ -1,0 +1,1579 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows">
+      <assemblydata version="2.0.6.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.7.50915.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>2.0.6.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="Microsoft.Phone">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Phone Core Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Phone</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>969e33fe-1289-4bc2-863a-c848bb476cc0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Media.Imaging">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Media.Imaging" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Media.Imaging.Extensions" />
+        <element api="T:System.Windows.Media.Imaging.DownloadProgressEventArgs" />
+        <element api="T:System.Windows.Media.Imaging.BitmapSource" />
+        <element api="T:System.Windows.Media.Imaging.BitmapImage" />
+        <element api="T:System.Windows.Media.Imaging.WriteableBitmap" />
+        <element api="T:System.Windows.Media.Imaging.BitmapCreateOptions" />
+        <element api="T:System.Windows.Media.Imaging.DecodePixelType" />
+      </elements>
+      <file name="cd18f219-ac9f-3467-bc6b-bfc45100ce61" />
+    </api>
+    <api id="T:System.Windows.Media.Imaging.BitmapCreateOptions">
+      <topicdata group="api" />
+      <apidata name="BitmapCreateOptions" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Media.Imaging.BitmapCreateOptions.None" />
+        <element api="F:System.Windows.Media.Imaging.BitmapCreateOptions.DelayCreation" />
+        <element api="F:System.Windows.Media.Imaging.BitmapCreateOptions.IgnoreImageCache" />
+        <element api="F:System.Windows.Media.Imaging.BitmapCreateOptions.BackgroundCreation" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="36e66ef1-0339-1cc3-7a64-d9c85f37e318" />
+    </api>
+    <api id="F:System.Windows.Media.Imaging.BitmapCreateOptions.BackgroundCreation">
+      <topicdata group="api" notopic="" />
+      <apidata name="BackgroundCreation" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Media.Imaging.BitmapCreateOptions" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapCreateOptions" ref="false" />
+      </containers>
+      <file name="6e77dc40-ea2c-6428-b5ee-c32aced6eb5e" />
+    </api>
+    <api id="F:System.Windows.Media.Imaging.BitmapCreateOptions.DelayCreation">
+      <topicdata group="api" notopic="" />
+      <apidata name="DelayCreation" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Media.Imaging.BitmapCreateOptions" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapCreateOptions" ref="false" />
+      </containers>
+      <file name="433fbd4e-6de5-1d1a-c82f-a3c903d67070" />
+    </api>
+    <api id="F:System.Windows.Media.Imaging.BitmapCreateOptions.IgnoreImageCache">
+      <topicdata group="api" notopic="" />
+      <apidata name="IgnoreImageCache" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Media.Imaging.BitmapCreateOptions" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapCreateOptions" ref="false" />
+      </containers>
+      <file name="2452124f-88c8-ec58-b777-4c5a278b2710" />
+    </api>
+    <api id="F:System.Windows.Media.Imaging.BitmapCreateOptions.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Media.Imaging.BitmapCreateOptions" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapCreateOptions" ref="false" />
+      </containers>
+      <file name="153ea52d-7dfa-f1e8-0873-f35a45c42fde" />
+    </api>
+    <api id="T:System.Windows.Media.Imaging.BitmapImage">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Imaging.BitmapImage" />
+      <apidata name="BitmapImage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Imaging.BitmapImage.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Media.Imaging.BitmapSource" ref="true" />
+          <type api="T:System.Windows.Media.ImageSource" ref="true" />
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+      </containers>
+      <file name="ea0d8dee-e2b0-b763-a40c-64fb304b5176" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Imaging.BitmapImage">
+      <topicdata name="BitmapImage" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Imaging.BitmapImage" />
+      <apidata name="BitmapImage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Imaging.BitmapImage.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="Overload:System.Windows.Media.Imaging.BitmapImage.#ctor">
+          <element api="M:System.Windows.Media.Imaging.BitmapImage.#ctor" />
+          <element api="M:System.Windows.Media.Imaging.BitmapImage.#ctor(System.Uri)" />
+        </element>
+        <element api="P:System.Windows.Media.Imaging.BitmapImage.CreateOptions" />
+        <element api="F:System.Windows.Media.Imaging.BitmapImage.CreateOptionsProperty" />
+        <element api="P:System.Windows.Media.Imaging.BitmapImage.DecodePixelHeight" />
+        <element api="F:System.Windows.Media.Imaging.BitmapImage.DecodePixelHeightProperty" />
+        <element api="P:System.Windows.Media.Imaging.BitmapImage.DecodePixelType" />
+        <element api="F:System.Windows.Media.Imaging.BitmapImage.DecodePixelTypeProperty" />
+        <element api="P:System.Windows.Media.Imaging.BitmapImage.DecodePixelWidth" />
+        <element api="F:System.Windows.Media.Imaging.BitmapImage.DecodePixelWidthProperty" />
+        <element api="E:System.Windows.Media.Imaging.BitmapImage.DownloadProgress" />
+        <element api="E:System.Windows.Media.Imaging.BitmapImage.ImageFailed" />
+        <element api="E:System.Windows.Media.Imaging.BitmapImage.ImageOpened" />
+        <element api="P:System.Windows.Media.Imaging.BitmapImage.UriSource" />
+        <element api="F:System.Windows.Media.Imaging.BitmapImage.UriSourceProperty" />
+        <element api="P:System.Windows.Media.Imaging.BitmapSource.PixelHeight" />
+        <element api="P:System.Windows.Media.Imaging.BitmapSource.PixelWidth" />
+        <element api="M:System.Windows.Media.Imaging.BitmapSource.SetSource(System.IO.Stream)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" />
+      </containers>
+      <file name="4fa0c4a1-0f28-cd68-8c55-576b8807a57a" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Imaging.BitmapImage">
+      <topicdata name="BitmapImage" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Imaging.BitmapImage" />
+      <apidata name="BitmapImage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Imaging.BitmapImage.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Media.Imaging.BitmapSource.SetSource(System.IO.Stream)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" />
+      </containers>
+      <file name="3447e7de-de46-9764-0d3a-55e76ddd8f14" />
+    </api>
+    <api id="Properties.T:System.Windows.Media.Imaging.BitmapImage">
+      <topicdata name="BitmapImage" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Media.Imaging.BitmapImage" />
+      <apidata name="BitmapImage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Imaging.BitmapImage.#ctor" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.Media.Imaging.BitmapImage.CreateOptions" />
+        <element api="P:System.Windows.Media.Imaging.BitmapImage.DecodePixelHeight" />
+        <element api="P:System.Windows.Media.Imaging.BitmapImage.DecodePixelType" />
+        <element api="P:System.Windows.Media.Imaging.BitmapImage.DecodePixelWidth" />
+        <element api="P:System.Windows.Media.Imaging.BitmapImage.UriSource" />
+        <element api="P:System.Windows.Media.Imaging.BitmapSource.PixelHeight" />
+        <element api="P:System.Windows.Media.Imaging.BitmapSource.PixelWidth" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" />
+      </containers>
+      <file name="d0736b42-ed74-a618-2ba5-025bda0437bb" />
+    </api>
+    <api id="Events.T:System.Windows.Media.Imaging.BitmapImage">
+      <topicdata name="BitmapImage" group="list" subgroup="Events" typeTopicId="T:System.Windows.Media.Imaging.BitmapImage" />
+      <apidata name="BitmapImage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Imaging.BitmapImage.#ctor" />
+      <elements>
+        <element api="E:System.Windows.Media.Imaging.BitmapImage.DownloadProgress" />
+        <element api="E:System.Windows.Media.Imaging.BitmapImage.ImageFailed" />
+        <element api="E:System.Windows.Media.Imaging.BitmapImage.ImageOpened" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" />
+      </containers>
+      <file name="9cc9dc1b-1022-4209-0a40-af9a32fbd9b4" />
+    </api>
+    <api id="Fields.T:System.Windows.Media.Imaging.BitmapImage">
+      <topicdata name="BitmapImage" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Media.Imaging.BitmapImage" />
+      <apidata name="BitmapImage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Imaging.BitmapImage.#ctor" />
+      <elements>
+        <element api="F:System.Windows.Media.Imaging.BitmapImage.CreateOptionsProperty" />
+        <element api="F:System.Windows.Media.Imaging.BitmapImage.DecodePixelHeightProperty" />
+        <element api="F:System.Windows.Media.Imaging.BitmapImage.DecodePixelTypeProperty" />
+        <element api="F:System.Windows.Media.Imaging.BitmapImage.DecodePixelWidthProperty" />
+        <element api="F:System.Windows.Media.Imaging.BitmapImage.UriSourceProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" />
+      </containers>
+      <file name="53796c71-ee4c-50fd-3446-a85e361b5950" />
+    </api>
+    <api id="Overload:System.Windows.Media.Imaging.BitmapImage.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Media.Imaging.BitmapImage" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Windows.Media.Imaging.BitmapImage.#ctor" />
+        <element api="M:System.Windows.Media.Imaging.BitmapImage.#ctor(System.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" ref="true" />
+      </containers>
+      <file name="8fa5cbf7-78d9-f431-1ca2-e732d1979f08" />
+    </api>
+    <api id="M:System.Windows.Media.Imaging.BitmapImage.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Media.Imaging.BitmapImage.#ctor" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" ref="true" />
+      </containers>
+      <file name="c9623663-3320-b91c-62db-aff7003d582c" />
+    </api>
+    <api id="M:System.Windows.Media.Imaging.BitmapImage.#ctor(System.Uri)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Media.Imaging.BitmapImage.#ctor" />
+      <parameters>
+        <parameter name="uriSource">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" ref="true" />
+      </containers>
+      <file name="079e5211-e033-7cd3-e895-15aa45b51dbf" />
+    </api>
+    <api id="P:System.Windows.Media.Imaging.BitmapImage.CreateOptions">
+      <topicdata group="api" />
+      <apidata name="CreateOptions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CreateOptions" />
+      <setter name="set_CreateOptions" />
+      <returns>
+        <type api="T:System.Windows.Media.Imaging.BitmapCreateOptions" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" ref="true" />
+      </containers>
+      <file name="2816178c-7c23-e951-2ead-71434ffd6f7d" />
+    </api>
+    <api id="F:System.Windows.Media.Imaging.BitmapImage.CreateOptionsProperty">
+      <topicdata group="api" />
+      <apidata name="CreateOptionsProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" ref="true" />
+      </containers>
+      <file name="a358235b-0508-c4fb-eac8-ca3726164932" />
+    </api>
+    <api id="P:System.Windows.Media.Imaging.BitmapImage.DecodePixelHeight">
+      <topicdata group="api" />
+      <apidata name="DecodePixelHeight" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DecodePixelHeight" />
+      <setter name="set_DecodePixelHeight" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" ref="true" />
+      </containers>
+      <file name="c3a72a95-89b3-a43e-6f7f-013c7a6ff39d" />
+    </api>
+    <api id="F:System.Windows.Media.Imaging.BitmapImage.DecodePixelHeightProperty">
+      <topicdata group="api" />
+      <apidata name="DecodePixelHeightProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" ref="true" />
+      </containers>
+      <file name="dd8f5597-b914-0db3-bb4e-3b4d9f3a1169" />
+    </api>
+    <api id="P:System.Windows.Media.Imaging.BitmapImage.DecodePixelType">
+      <topicdata group="api" />
+      <apidata name="DecodePixelType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DecodePixelType" />
+      <setter name="set_DecodePixelType" />
+      <returns>
+        <type api="T:System.Windows.Media.Imaging.DecodePixelType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" ref="true" />
+      </containers>
+      <file name="f210b3b8-0c60-89ba-f000-57183615e475" />
+    </api>
+    <api id="F:System.Windows.Media.Imaging.BitmapImage.DecodePixelTypeProperty">
+      <topicdata group="api" />
+      <apidata name="DecodePixelTypeProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" ref="true" />
+      </containers>
+      <file name="cf12a5b2-233e-92c6-0ff1-2e0fa54f12df" />
+    </api>
+    <api id="P:System.Windows.Media.Imaging.BitmapImage.DecodePixelWidth">
+      <topicdata group="api" />
+      <apidata name="DecodePixelWidth" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DecodePixelWidth" />
+      <setter name="set_DecodePixelWidth" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" ref="true" />
+      </containers>
+      <file name="0633c33c-0667-17bd-7a56-e04f4f53d0d2" />
+    </api>
+    <api id="F:System.Windows.Media.Imaging.BitmapImage.DecodePixelWidthProperty">
+      <topicdata group="api" />
+      <apidata name="DecodePixelWidthProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" ref="true" />
+      </containers>
+      <file name="55e3cce2-5cd9-4e61-4f75-fa01eb398fde" />
+    </api>
+    <api id="E:System.Windows.Media.Imaging.BitmapImage.DownloadProgress">
+      <topicdata group="api" />
+      <apidata name="DownloadProgress" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_DownloadProgress" />
+      <remover name="remove_DownloadProgress" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Media.Imaging.DownloadProgressEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Media.Imaging.DownloadProgressEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" ref="true" />
+      </containers>
+      <file name="9e0d8778-3d6b-08a3-3fef-62bdca3d97d6" />
+    </api>
+    <api id="E:System.Windows.Media.Imaging.BitmapImage.ImageFailed">
+      <topicdata group="api" />
+      <apidata name="ImageFailed" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ImageFailed" />
+      <remover name="remove_ImageFailed" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.ExceptionRoutedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.ExceptionRoutedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" ref="true" />
+      </containers>
+      <file name="3deff650-8bb5-967a-2f09-3d906ab5ec29" />
+    </api>
+    <api id="E:System.Windows.Media.Imaging.BitmapImage.ImageOpened">
+      <topicdata group="api" />
+      <apidata name="ImageOpened" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ImageOpened" />
+      <remover name="remove_ImageOpened" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.RoutedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.RoutedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" ref="true" />
+      </containers>
+      <file name="c1c7d7cf-6c13-8daf-73db-b3c6688ce12a" />
+    </api>
+    <api id="P:System.Windows.Media.Imaging.BitmapImage.UriSource">
+      <topicdata group="api" />
+      <apidata name="UriSource" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UriSource" />
+      <setter name="set_UriSource" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" ref="true" />
+      </containers>
+      <file name="013dd254-765e-1420-95ae-e2d343946fff" />
+    </api>
+    <api id="F:System.Windows.Media.Imaging.BitmapImage.UriSourceProperty">
+      <topicdata group="api" />
+      <apidata name="UriSourceProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapImage" ref="true" />
+      </containers>
+      <file name="d10621c9-d199-8009-e44e-19cbdf852dc2" />
+    </api>
+    <api id="T:System.Windows.Media.Imaging.BitmapSource">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Imaging.BitmapSource" />
+      <apidata name="BitmapSource" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Media.ImageSource" ref="true" />
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Windows.Media.Imaging.BitmapImage" ref="true" />
+          <type api="T:System.Windows.Media.Imaging.WriteableBitmap" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+      </containers>
+      <file name="36ed2304-953f-6029-1510-799a92e6f6bd" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Imaging.BitmapSource">
+      <topicdata name="BitmapSource" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Imaging.BitmapSource" />
+      <apidata name="BitmapSource" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Media.Imaging.BitmapSource.#ctor" />
+        <element api="P:System.Windows.Media.Imaging.BitmapSource.PixelHeight" />
+        <element api="F:System.Windows.Media.Imaging.BitmapSource.PixelHeightProperty" />
+        <element api="P:System.Windows.Media.Imaging.BitmapSource.PixelWidth" />
+        <element api="F:System.Windows.Media.Imaging.BitmapSource.PixelWidthProperty" />
+        <element api="M:System.Windows.Media.Imaging.BitmapSource.SetSource(System.IO.Stream)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapSource" />
+      </containers>
+      <file name="15c0a9fc-f881-bbae-14f2-342e72f91dd3" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Imaging.BitmapSource">
+      <topicdata name="BitmapSource" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Imaging.BitmapSource" />
+      <apidata name="BitmapSource" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Media.Imaging.BitmapSource.SetSource(System.IO.Stream)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapSource" />
+      </containers>
+      <file name="2cc863f1-3d15-062c-31be-ae10fd6a1a21" />
+    </api>
+    <api id="Properties.T:System.Windows.Media.Imaging.BitmapSource">
+      <topicdata name="BitmapSource" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Media.Imaging.BitmapSource" />
+      <apidata name="BitmapSource" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.Media.Imaging.BitmapSource.PixelHeight" />
+        <element api="P:System.Windows.Media.Imaging.BitmapSource.PixelWidth" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapSource" />
+      </containers>
+      <file name="6f241b99-7979-8325-c5d2-170522231e41" />
+    </api>
+    <api id="Fields.T:System.Windows.Media.Imaging.BitmapSource">
+      <topicdata name="BitmapSource" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Media.Imaging.BitmapSource" />
+      <apidata name="BitmapSource" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Media.Imaging.BitmapSource.PixelHeightProperty" />
+        <element api="F:System.Windows.Media.Imaging.BitmapSource.PixelWidthProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapSource" />
+      </containers>
+      <file name="99f80c89-6fb8-c824-00d9-848f94c26996" />
+    </api>
+    <api id="M:System.Windows.Media.Imaging.BitmapSource.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapSource" ref="true" />
+      </containers>
+      <file name="c64de182-5214-bf34-322b-389d33049c03" />
+    </api>
+    <api id="P:System.Windows.Media.Imaging.BitmapSource.PixelHeight">
+      <topicdata group="api" />
+      <apidata name="PixelHeight" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PixelHeight" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapSource" ref="true" />
+      </containers>
+      <file name="1fbe0708-d718-efae-fac7-a563337be9c1" />
+    </api>
+    <api id="F:System.Windows.Media.Imaging.BitmapSource.PixelHeightProperty">
+      <topicdata group="api" />
+      <apidata name="PixelHeightProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapSource" ref="true" />
+      </containers>
+      <file name="a8e822a9-59bf-6b67-16b0-a20ff92f46a0" />
+    </api>
+    <api id="P:System.Windows.Media.Imaging.BitmapSource.PixelWidth">
+      <topicdata group="api" />
+      <apidata name="PixelWidth" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PixelWidth" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapSource" ref="true" />
+      </containers>
+      <file name="b8ae8ee8-1722-b6ca-a5cf-18a427de77cf" />
+    </api>
+    <api id="F:System.Windows.Media.Imaging.BitmapSource.PixelWidthProperty">
+      <topicdata group="api" />
+      <apidata name="PixelWidthProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapSource" ref="true" />
+      </containers>
+      <file name="d8fe33e0-a286-4827-2947-2ea2e5960864" />
+    </api>
+    <api id="M:System.Windows.Media.Imaging.BitmapSource.SetSource(System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="SetSource" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="streamSource">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.BitmapSource" ref="true" />
+      </containers>
+      <file name="05587b2e-a978-2e61-5879-6c41b73240eb" />
+    </api>
+    <api id="T:System.Windows.Media.Imaging.DecodePixelType">
+      <topicdata group="api" />
+      <apidata name="DecodePixelType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Media.Imaging.DecodePixelType.Physical" />
+        <element api="F:System.Windows.Media.Imaging.DecodePixelType.Logical" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+      </containers>
+      <file name="030ce733-53e8-1c63-1b70-cdf1ef9993c1" />
+    </api>
+    <api id="F:System.Windows.Media.Imaging.DecodePixelType.Logical">
+      <topicdata group="api" notopic="" />
+      <apidata name="Logical" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Media.Imaging.DecodePixelType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.DecodePixelType" ref="false" />
+      </containers>
+      <file name="1b81986c-ed1b-7ad8-a590-4954509f8661" />
+    </api>
+    <api id="F:System.Windows.Media.Imaging.DecodePixelType.Physical">
+      <topicdata group="api" notopic="" />
+      <apidata name="Physical" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Media.Imaging.DecodePixelType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.DecodePixelType" ref="false" />
+      </containers>
+      <file name="4f3801cd-26c6-f1de-f045-7c5c90dfd6d1" />
+    </api>
+    <api id="T:System.Windows.Media.Imaging.DownloadProgressEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Imaging.DownloadProgressEventArgs" />
+      <apidata name="DownloadProgressEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+      </containers>
+      <file name="afc846f4-64df-b160-1700-dbe24ae22fb4" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Imaging.DownloadProgressEventArgs">
+      <topicdata name="DownloadProgressEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Imaging.DownloadProgressEventArgs" />
+      <apidata name="DownloadProgressEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Media.Imaging.DownloadProgressEventArgs.Progress" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.DownloadProgressEventArgs" />
+      </containers>
+      <file name="8fce0997-cd8f-1ed8-89f8-3f0571fac4ac" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Imaging.DownloadProgressEventArgs">
+      <topicdata name="DownloadProgressEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Imaging.DownloadProgressEventArgs" />
+      <apidata name="DownloadProgressEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.DownloadProgressEventArgs" />
+      </containers>
+      <file name="466e0a4c-31bf-11b5-9b44-a10cc2b02f20" />
+    </api>
+    <api id="Properties.T:System.Windows.Media.Imaging.DownloadProgressEventArgs">
+      <topicdata name="DownloadProgressEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Media.Imaging.DownloadProgressEventArgs" />
+      <apidata name="DownloadProgressEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Media.Imaging.DownloadProgressEventArgs.Progress" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.DownloadProgressEventArgs" />
+      </containers>
+      <file name="5dfc22d2-1913-845f-35fa-f436d7cb7c80" />
+    </api>
+    <api id="P:System.Windows.Media.Imaging.DownloadProgressEventArgs.Progress">
+      <topicdata group="api" />
+      <apidata name="Progress" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Progress" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.DownloadProgressEventArgs" ref="true" />
+      </containers>
+      <file name="200474c0-1b3c-40d0-78b8-d437cb670398" />
+    </api>
+    <api id="T:System.Windows.Media.Imaging.Extensions">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Imaging.Extensions" />
+      <apidata name="Extensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="448848c5-f476-dee1-10d6-3c768b2ccaa4" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Imaging.Extensions">
+      <topicdata name="Extensions" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Imaging.Extensions" />
+      <apidata name="Extensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Media.Imaging.Extensions.LoadJpeg(System.Windows.Media.Imaging.WriteableBitmap,System.IO.Stream)" />
+        <element api="M:System.Windows.Media.Imaging.Extensions.SaveJpeg(System.Windows.Media.Imaging.WriteableBitmap,System.IO.Stream,System.Int32,System.Int32,System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.Extensions" />
+      </containers>
+      <file name="3cd7d336-f22a-0240-f584-d19e58ada9f9" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Imaging.Extensions">
+      <topicdata name="Extensions" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Imaging.Extensions" />
+      <apidata name="Extensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Media.Imaging.Extensions.LoadJpeg(System.Windows.Media.Imaging.WriteableBitmap,System.IO.Stream)" />
+        <element api="M:System.Windows.Media.Imaging.Extensions.SaveJpeg(System.Windows.Media.Imaging.WriteableBitmap,System.IO.Stream,System.Int32,System.Int32,System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.Extensions" />
+      </containers>
+      <file name="162a83a0-bb96-cf07-c67e-fcbb83d4b353" />
+    </api>
+    <api id="M:System.Windows.Media.Imaging.Extensions.LoadJpeg(System.Windows.Media.Imaging.WriteableBitmap,System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="LoadJpeg" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="bitmap">
+          <type api="T:System.Windows.Media.Imaging.WriteableBitmap" ref="true" />
+        </parameter>
+        <parameter name="sourceStream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.Extensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="0d76380f-2e40-2b0d-be09-201f553313fd" />
+    </api>
+    <api id="M:System.Windows.Media.Imaging.Extensions.SaveJpeg(System.Windows.Media.Imaging.WriteableBitmap,System.IO.Stream,System.Int32,System.Int32,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="SaveJpeg" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="bitmap">
+          <type api="T:System.Windows.Media.Imaging.WriteableBitmap" ref="true" />
+        </parameter>
+        <parameter name="targetStream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="targetWidth">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="targetHeight">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="orientation">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="quality">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.Extensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="7cb46c49-9f29-d8cc-2653-0430921846eb" />
+    </api>
+    <api id="T:System.Windows.Media.Imaging.WriteableBitmap">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Imaging.WriteableBitmap" />
+      <apidata name="WriteableBitmap" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Media.Imaging.BitmapSource" ref="true" />
+          <type api="T:System.Windows.Media.ImageSource" ref="true" />
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+      </containers>
+      <file name="0e67e6d8-6061-4330-1bc0-5fb248994e3d" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Imaging.WriteableBitmap">
+      <topicdata name="WriteableBitmap" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Imaging.WriteableBitmap" />
+      <apidata name="WriteableBitmap" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="P:System.Windows.Media.Imaging.BitmapSource.PixelHeight" />
+        <element api="P:System.Windows.Media.Imaging.BitmapSource.PixelWidth" />
+        <element api="M:System.Windows.Media.Imaging.BitmapSource.SetSource(System.IO.Stream)" />
+        <element api="M:System.Windows.Media.Imaging.Extensions.LoadJpeg(System.Windows.Media.Imaging.WriteableBitmap,System.IO.Stream)" source="extension">
+          <apidata name="LoadJpeg" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="sourceStream">
+              <type api="T:System.IO.Stream" ref="true" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Media.Imaging" />
+            <type api="T:System.Windows.Media.Imaging.Extensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Media.Imaging.Extensions.SaveJpeg(System.Windows.Media.Imaging.WriteableBitmap,System.IO.Stream,System.Int32,System.Int32,System.Int32,System.Int32)" source="extension">
+          <apidata name="SaveJpeg" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="targetStream">
+              <type api="T:System.IO.Stream" ref="true" />
+            </parameter>
+            <parameter name="targetWidth">
+              <type api="T:System.Int32" ref="false" />
+            </parameter>
+            <parameter name="targetHeight">
+              <type api="T:System.Int32" ref="false" />
+            </parameter>
+            <parameter name="orientation">
+              <type api="T:System.Int32" ref="false" />
+            </parameter>
+            <parameter name="quality">
+              <type api="T:System.Int32" ref="false" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Media.Imaging" />
+            <type api="T:System.Windows.Media.Imaging.Extensions" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:System.Windows.Media.Imaging.WriteableBitmap.#ctor">
+          <element api="M:System.Windows.Media.Imaging.WriteableBitmap.#ctor(System.Windows.Media.Imaging.BitmapSource)" />
+          <element api="M:System.Windows.Media.Imaging.WriteableBitmap.#ctor(System.Int32,System.Int32)" />
+          <element api="M:System.Windows.Media.Imaging.WriteableBitmap.#ctor(System.Windows.UIElement,System.Windows.Media.Transform)" />
+        </element>
+        <element api="M:System.Windows.Media.Imaging.WriteableBitmap.Invalidate" />
+        <element api="P:System.Windows.Media.Imaging.WriteableBitmap.Pixels" />
+        <element api="M:System.Windows.Media.Imaging.WriteableBitmap.Render(System.Windows.UIElement,System.Windows.Media.Transform)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.WriteableBitmap" />
+      </containers>
+      <file name="560b7333-3274-a010-4629-6c1b786183e9" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Imaging.WriteableBitmap">
+      <topicdata name="WriteableBitmap" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Imaging.WriteableBitmap" />
+      <apidata name="WriteableBitmap" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Media.Imaging.BitmapSource.SetSource(System.IO.Stream)" />
+        <element api="M:System.Windows.Media.Imaging.Extensions.LoadJpeg(System.Windows.Media.Imaging.WriteableBitmap,System.IO.Stream)" source="extension">
+          <apidata name="LoadJpeg" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="sourceStream">
+              <type api="T:System.IO.Stream" ref="true" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Media.Imaging" />
+            <type api="T:System.Windows.Media.Imaging.Extensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Media.Imaging.Extensions.SaveJpeg(System.Windows.Media.Imaging.WriteableBitmap,System.IO.Stream,System.Int32,System.Int32,System.Int32,System.Int32)" source="extension">
+          <apidata name="SaveJpeg" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="targetStream">
+              <type api="T:System.IO.Stream" ref="true" />
+            </parameter>
+            <parameter name="targetWidth">
+              <type api="T:System.Int32" ref="false" />
+            </parameter>
+            <parameter name="targetHeight">
+              <type api="T:System.Int32" ref="false" />
+            </parameter>
+            <parameter name="orientation">
+              <type api="T:System.Int32" ref="false" />
+            </parameter>
+            <parameter name="quality">
+              <type api="T:System.Int32" ref="false" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Media.Imaging" />
+            <type api="T:System.Windows.Media.Imaging.Extensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Media.Imaging.WriteableBitmap.Invalidate" />
+        <element api="M:System.Windows.Media.Imaging.WriteableBitmap.Render(System.Windows.UIElement,System.Windows.Media.Transform)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.WriteableBitmap" />
+      </containers>
+      <file name="a8c9adf2-d06c-6fd9-39af-c919aafd079f" />
+    </api>
+    <api id="Properties.T:System.Windows.Media.Imaging.WriteableBitmap">
+      <topicdata name="WriteableBitmap" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Media.Imaging.WriteableBitmap" />
+      <apidata name="WriteableBitmap" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.Media.Imaging.BitmapSource.PixelHeight" />
+        <element api="P:System.Windows.Media.Imaging.BitmapSource.PixelWidth" />
+        <element api="P:System.Windows.Media.Imaging.WriteableBitmap.Pixels" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.WriteableBitmap" />
+      </containers>
+      <file name="2be35734-0d6c-1b67-1399-f304f92ef7cc" />
+    </api>
+    <api id="Overload:System.Windows.Media.Imaging.WriteableBitmap.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Media.Imaging.WriteableBitmap" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Windows.Media.Imaging.WriteableBitmap.#ctor(System.Windows.Media.Imaging.BitmapSource)" />
+        <element api="M:System.Windows.Media.Imaging.WriteableBitmap.#ctor(System.Int32,System.Int32)" />
+        <element api="M:System.Windows.Media.Imaging.WriteableBitmap.#ctor(System.Windows.UIElement,System.Windows.Media.Transform)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.WriteableBitmap" ref="true" />
+      </containers>
+      <file name="e2047309-c5b3-bcd5-8348-0c0da0121271" />
+    </api>
+    <api id="M:System.Windows.Media.Imaging.WriteableBitmap.#ctor(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Media.Imaging.WriteableBitmap.#ctor" />
+      <parameters>
+        <parameter name="pixelWidth">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="pixelHeight">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.WriteableBitmap" ref="true" />
+      </containers>
+      <file name="921e17b8-ef17-2b49-8e1f-f919eca8bcbb" />
+    </api>
+    <api id="M:System.Windows.Media.Imaging.WriteableBitmap.#ctor(System.Windows.Media.Imaging.BitmapSource)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Media.Imaging.WriteableBitmap.#ctor" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.Windows.Media.Imaging.BitmapSource" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.WriteableBitmap" ref="true" />
+      </containers>
+      <file name="9d539294-f2db-8d9f-861d-1a656508fbcb" />
+    </api>
+    <api id="M:System.Windows.Media.Imaging.WriteableBitmap.#ctor(System.Windows.UIElement,System.Windows.Media.Transform)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Media.Imaging.WriteableBitmap.#ctor" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Windows.UIElement" ref="true" />
+        </parameter>
+        <parameter name="transform">
+          <type api="T:System.Windows.Media.Transform" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.WriteableBitmap" ref="true" />
+      </containers>
+      <file name="361e8eee-e0ea-7548-8ac9-672ca4ba4cef" />
+    </api>
+    <api id="M:System.Windows.Media.Imaging.WriteableBitmap.Invalidate">
+      <topicdata group="api" />
+      <apidata name="Invalidate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.WriteableBitmap" ref="true" />
+      </containers>
+      <file name="e6e0ed13-dbda-1c47-dffa-e6bfb12817b9" />
+    </api>
+    <api id="P:System.Windows.Media.Imaging.WriteableBitmap.Pixels">
+      <topicdata group="api" />
+      <apidata name="Pixels" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Pixels" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Int32" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.WriteableBitmap" ref="true" />
+      </containers>
+      <file name="d1ffa048-303b-20c8-9d93-437b1b17b7fe" />
+    </api>
+    <api id="M:System.Windows.Media.Imaging.WriteableBitmap.Render(System.Windows.UIElement,System.Windows.Media.Transform)">
+      <topicdata group="api" />
+      <apidata name="Render" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Windows.UIElement" ref="true" />
+        </parameter>
+        <parameter name="transform">
+          <type api="T:System.Windows.Media.Transform" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Imaging" />
+        <type api="T:System.Windows.Media.Imaging.WriteableBitmap" ref="true" />
+      </containers>
+      <file name="230365fd-7b11-4c7a-e713-512b2d88f1d8" />
+    </api>
+  </apis>
+</reflection>

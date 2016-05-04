@@ -1,0 +1,2849 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Media.Casting">
+      <topicdata group="api" />
+      <apidata name="Windows.Media.Casting" group="namespace" />
+      <elements>
+        <element api="T:Windows.Media.Casting.CastingPlaybackTypes" />
+        <element api="T:Windows.Media.Casting.CastingConnectionErrorStatus" />
+        <element api="T:Windows.Media.Casting.CastingConnectionState" />
+        <element api="T:Windows.Media.Casting.CastingSource" />
+        <element api="T:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs" />
+        <element api="T:Windows.Media.Casting.CastingDevice" />
+        <element api="T:Windows.Media.Casting.CastingConnection" />
+        <element api="T:Windows.Media.Casting.CastingDeviceSelectedEventArgs" />
+        <element api="T:Windows.Media.Casting.CastingDevicePickerFilter" />
+        <element api="T:Windows.Media.Casting.CastingDevicePicker" />
+      </elements>
+      <file name="633e5698-e143-9633-3832-c147f8bb94ad" />
+    </api>
+    <api id="T:Windows.Media.Casting.CastingConnection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Casting.CastingConnection" />
+      <apidata name="CastingConnection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="d3a056f2-d500-abb7-31da-dd79c4914369" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Casting.CastingConnection">
+      <topicdata name="CastingConnection" group="list" subgroup="members" typeTopicId="T:Windows.Media.Casting.CastingConnection" />
+      <apidata name="CastingConnection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.Casting.CastingConnection.Close" />
+        <element api="P:Windows.Media.Casting.CastingConnection.Device" />
+        <element api="M:Windows.Media.Casting.CastingConnection.DisconnectAsync" />
+        <element api="E:Windows.Media.Casting.CastingConnection.ErrorOccurred" />
+        <element api="M:Windows.Media.Casting.CastingConnection.RequestStartCastingAsync(Windows.Media.Casting.CastingSource)" />
+        <element api="P:Windows.Media.Casting.CastingConnection.Source" />
+        <element api="P:Windows.Media.Casting.CastingConnection.State" />
+        <element api="E:Windows.Media.Casting.CastingConnection.StateChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnection" />
+      </containers>
+      <file name="99a54847-c723-78f6-facb-8d32a0a79445" />
+    </api>
+    <api id="Methods.T:Windows.Media.Casting.CastingConnection">
+      <topicdata name="CastingConnection" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Casting.CastingConnection" />
+      <apidata name="CastingConnection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.Casting.CastingConnection.Close" />
+        <element api="M:Windows.Media.Casting.CastingConnection.DisconnectAsync" />
+        <element api="M:Windows.Media.Casting.CastingConnection.RequestStartCastingAsync(Windows.Media.Casting.CastingSource)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnection" />
+      </containers>
+      <file name="d5a34d2e-f465-53f9-2970-19babb9bff19" />
+    </api>
+    <api id="Properties.T:Windows.Media.Casting.CastingConnection">
+      <topicdata name="CastingConnection" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Casting.CastingConnection" />
+      <apidata name="CastingConnection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Casting.CastingConnection.Device" />
+        <element api="P:Windows.Media.Casting.CastingConnection.Source" />
+        <element api="P:Windows.Media.Casting.CastingConnection.State" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnection" />
+      </containers>
+      <file name="69303f94-b7d3-6930-3ae1-ac2e900cc629" />
+    </api>
+    <api id="Events.T:Windows.Media.Casting.CastingConnection">
+      <topicdata name="CastingConnection" group="list" subgroup="Events" typeTopicId="T:Windows.Media.Casting.CastingConnection" />
+      <apidata name="CastingConnection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Media.Casting.CastingConnection.ErrorOccurred" />
+        <element api="E:Windows.Media.Casting.CastingConnection.StateChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnection" />
+      </containers>
+      <file name="11c2a500-e7ac-a046-8944-0bbcb78f133b" />
+    </api>
+    <api id="M:Windows.Media.Casting.CastingConnection.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnection" ref="true" />
+      </containers>
+      <file name="115e44a7-d2a0-e9e5-c53f-03b0e51fcf29" />
+    </api>
+    <api id="P:Windows.Media.Casting.CastingConnection.Device">
+      <topicdata group="api" />
+      <apidata name="Device" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Device" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingDevice" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnection" ref="true" />
+      </containers>
+      <file name="01985670-388b-3e23-7908-4d189f9a18ba" />
+    </api>
+    <api id="M:Windows.Media.Casting.CastingConnection.DisconnectAsync">
+      <topicdata group="api" />
+      <apidata name="DisconnectAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Casting.CastingConnectionErrorStatus" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="26c59659-3f5a-94bd-3a45-951b67514af1" />
+    </api>
+    <api id="E:Windows.Media.Casting.CastingConnection.ErrorOccurred">
+      <topicdata group="api" />
+      <apidata name="ErrorOccurred" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ErrorOccurred" />
+      <remover name="remove_ErrorOccurred" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Casting.CastingConnection" ref="true" />
+            <type api="T:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnection" ref="true" />
+      </containers>
+      <file name="89e407a2-4e5f-2d17-4391-ffc1e05620ee" />
+    </api>
+    <api id="M:Windows.Media.Casting.CastingConnection.RequestStartCastingAsync(Windows.Media.Casting.CastingSource)">
+      <topicdata group="api" />
+      <apidata name="RequestStartCastingAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Media.Casting.CastingSource" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Casting.CastingConnectionErrorStatus" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="364cefc5-eedb-f0d8-c9c9-670325ddb776" />
+    </api>
+    <api id="P:Windows.Media.Casting.CastingConnection.Source">
+      <topicdata group="api" />
+      <apidata name="Source" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Source" />
+      <setter name="set_Source" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingSource" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnection" ref="true" />
+      </containers>
+      <file name="46916a4a-20a7-c4c9-0f51-fc9b32500aa8" />
+    </api>
+    <api id="P:Windows.Media.Casting.CastingConnection.State">
+      <topicdata group="api" />
+      <apidata name="State" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_State" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingConnectionState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnection" ref="true" />
+      </containers>
+      <file name="add8bf59-82b9-77ac-4694-a185cda07ab8" />
+    </api>
+    <api id="E:Windows.Media.Casting.CastingConnection.StateChanged">
+      <topicdata group="api" />
+      <apidata name="StateChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_StateChanged" />
+      <remover name="remove_StateChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Casting.CastingConnection" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnection" ref="true" />
+      </containers>
+      <file name="fe0adfc3-f847-b9ec-2dc3-1bc0ecbf318a" />
+    </api>
+    <api id="T:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs" />
+      <apidata name="CastingConnectionErrorOccurredEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="b255465a-3f0d-4150-c6df-a3f924cab72a" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs">
+      <topicdata name="CastingConnectionErrorOccurredEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs" />
+      <apidata name="CastingConnectionErrorOccurredEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs.ErrorStatus" />
+        <element api="P:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs.Message" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs" />
+      </containers>
+      <file name="5c5ddb14-fdb4-89f8-ae68-7a5850f7c472" />
+    </api>
+    <api id="Methods.T:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs">
+      <topicdata name="CastingConnectionErrorOccurredEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs" />
+      <apidata name="CastingConnectionErrorOccurredEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs" />
+      </containers>
+      <file name="b5b4317f-a652-507c-a020-456768ce2888" />
+    </api>
+    <api id="Properties.T:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs">
+      <topicdata name="CastingConnectionErrorOccurredEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs" />
+      <apidata name="CastingConnectionErrorOccurredEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs.ErrorStatus" />
+        <element api="P:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs.Message" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs" />
+      </containers>
+      <file name="4767e3ea-a6b1-f0da-2f08-6790d23dbefd" />
+    </api>
+    <api id="P:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs.ErrorStatus">
+      <topicdata group="api" />
+      <apidata name="ErrorStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ErrorStatus" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs" ref="true" />
+      </containers>
+      <file name="d4178add-4d53-7a13-8b24-9641b4208e2c" />
+    </api>
+    <api id="P:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs.Message">
+      <topicdata group="api" />
+      <apidata name="Message" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Message" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorOccurredEventArgs" ref="true" />
+      </containers>
+      <file name="5ab4747c-0db8-2a62-17b6-6cc49544ca61" />
+    </api>
+    <api id="T:Windows.Media.Casting.CastingConnectionErrorStatus">
+      <topicdata group="api" />
+      <apidata name="CastingConnectionErrorStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.Casting.CastingConnectionErrorStatus.Succeeded" />
+        <element api="F:Windows.Media.Casting.CastingConnectionErrorStatus.DeviceDidNotRespond" />
+        <element api="F:Windows.Media.Casting.CastingConnectionErrorStatus.DeviceError" />
+        <element api="F:Windows.Media.Casting.CastingConnectionErrorStatus.DeviceLocked" />
+        <element api="F:Windows.Media.Casting.CastingConnectionErrorStatus.ProtectedPlaybackFailed" />
+        <element api="F:Windows.Media.Casting.CastingConnectionErrorStatus.InvalidCastingSource" />
+        <element api="F:Windows.Media.Casting.CastingConnectionErrorStatus.Unknown" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3ac55ce0-0d68-e336-6cc6-4d3bbd069f83" />
+    </api>
+    <api id="F:Windows.Media.Casting.CastingConnectionErrorStatus.DeviceDidNotRespond">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeviceDidNotRespond" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorStatus" ref="false" />
+      </containers>
+      <file name="263b8ab9-4123-b7a8-e19a-34c37fc18e63" />
+    </api>
+    <api id="F:Windows.Media.Casting.CastingConnectionErrorStatus.DeviceError">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeviceError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorStatus" ref="false" />
+      </containers>
+      <file name="e4b09b65-d98b-e3d5-41ec-72174fa43b21" />
+    </api>
+    <api id="F:Windows.Media.Casting.CastingConnectionErrorStatus.DeviceLocked">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeviceLocked" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorStatus" ref="false" />
+      </containers>
+      <file name="193263e2-4958-90a2-8d63-fb8a7d7c581a" />
+    </api>
+    <api id="F:Windows.Media.Casting.CastingConnectionErrorStatus.InvalidCastingSource">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidCastingSource" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorStatus" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorStatus" ref="false" />
+      </containers>
+      <file name="d94fe888-bf70-c1e5-f8e3-4ea80a6aaf2a" />
+    </api>
+    <api id="F:Windows.Media.Casting.CastingConnectionErrorStatus.ProtectedPlaybackFailed">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProtectedPlaybackFailed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorStatus" ref="false" />
+      </containers>
+      <file name="f3c1b1b3-f973-b724-482c-4fa1ab6abeb5" />
+    </api>
+    <api id="F:Windows.Media.Casting.CastingConnectionErrorStatus.Succeeded">
+      <topicdata group="api" notopic="" />
+      <apidata name="Succeeded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorStatus" ref="false" />
+      </containers>
+      <file name="b0448e36-7bc1-7948-c559-11f92e186ab5" />
+    </api>
+    <api id="F:Windows.Media.Casting.CastingConnectionErrorStatus.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorStatus" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnectionErrorStatus" ref="false" />
+      </containers>
+      <file name="5ab08222-60d7-fcf0-3c11-84930261f52c" />
+    </api>
+    <api id="T:Windows.Media.Casting.CastingConnectionState">
+      <topicdata group="api" />
+      <apidata name="CastingConnectionState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.Casting.CastingConnectionState.Disconnected" />
+        <element api="F:Windows.Media.Casting.CastingConnectionState.Connected" />
+        <element api="F:Windows.Media.Casting.CastingConnectionState.Rendering" />
+        <element api="F:Windows.Media.Casting.CastingConnectionState.Disconnecting" />
+        <element api="F:Windows.Media.Casting.CastingConnectionState.Connecting" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ca904007-0aed-e65f-6311-eebc6f93765f" />
+    </api>
+    <api id="F:Windows.Media.Casting.CastingConnectionState.Connected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Connected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingConnectionState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnectionState" ref="false" />
+      </containers>
+      <file name="97a9ba27-61fd-e21c-4cf1-88b7e7bb76f2" />
+    </api>
+    <api id="F:Windows.Media.Casting.CastingConnectionState.Connecting">
+      <topicdata group="api" notopic="" />
+      <apidata name="Connecting" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingConnectionState" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnectionState" ref="false" />
+      </containers>
+      <file name="166a6925-c6da-33c8-a5d0-0425a9d0ccfc" />
+    </api>
+    <api id="F:Windows.Media.Casting.CastingConnectionState.Disconnected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disconnected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingConnectionState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnectionState" ref="false" />
+      </containers>
+      <file name="8cdbc91c-65e2-4116-f281-df9f6951f984" />
+    </api>
+    <api id="F:Windows.Media.Casting.CastingConnectionState.Disconnecting">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disconnecting" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingConnectionState" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnectionState" ref="false" />
+      </containers>
+      <file name="941d211d-f4a4-4fa9-4e19-d27012707a95" />
+    </api>
+    <api id="F:Windows.Media.Casting.CastingConnectionState.Rendering">
+      <topicdata group="api" notopic="" />
+      <apidata name="Rendering" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingConnectionState" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingConnectionState" ref="false" />
+      </containers>
+      <file name="38048534-17f2-8b6a-bf0f-5bc32ab63b6a" />
+    </api>
+    <api id="T:Windows.Media.Casting.CastingDevice">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Casting.CastingDevice" />
+      <apidata name="CastingDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7c7342a4-3779-021c-587b-f9236407f685" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Casting.CastingDevice">
+      <topicdata name="CastingDevice" group="list" subgroup="members" typeTopicId="T:Windows.Media.Casting.CastingDevice" />
+      <apidata name="CastingDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.Casting.CastingDevice.CreateCastingConnection" />
+        <element api="M:Windows.Media.Casting.CastingDevice.DeviceInfoSupportsCastingAsync(Windows.Devices.Enumeration.DeviceInformation)" />
+        <element api="P:Windows.Media.Casting.CastingDevice.FriendlyName" />
+        <element api="M:Windows.Media.Casting.CastingDevice.FromIdAsync(System.String)" />
+        <element api="M:Windows.Media.Casting.CastingDevice.GetDeviceSelector(Windows.Media.Casting.CastingPlaybackTypes)" />
+        <element api="M:Windows.Media.Casting.CastingDevice.GetDeviceSelectorFromCastingSourceAsync(Windows.Media.Casting.CastingSource)" />
+        <element api="M:Windows.Media.Casting.CastingDevice.GetSupportedCastingPlaybackTypesAsync" />
+        <element api="P:Windows.Media.Casting.CastingDevice.Icon" />
+        <element api="P:Windows.Media.Casting.CastingDevice.Id" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevice" />
+      </containers>
+      <file name="10fc5ba8-dc51-8c70-e7c8-46eadca74b64" />
+    </api>
+    <api id="Methods.T:Windows.Media.Casting.CastingDevice">
+      <topicdata name="CastingDevice" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Casting.CastingDevice" />
+      <apidata name="CastingDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.Casting.CastingDevice.CreateCastingConnection" />
+        <element api="M:Windows.Media.Casting.CastingDevice.DeviceInfoSupportsCastingAsync(Windows.Devices.Enumeration.DeviceInformation)" />
+        <element api="M:Windows.Media.Casting.CastingDevice.FromIdAsync(System.String)" />
+        <element api="M:Windows.Media.Casting.CastingDevice.GetDeviceSelector(Windows.Media.Casting.CastingPlaybackTypes)" />
+        <element api="M:Windows.Media.Casting.CastingDevice.GetDeviceSelectorFromCastingSourceAsync(Windows.Media.Casting.CastingSource)" />
+        <element api="M:Windows.Media.Casting.CastingDevice.GetSupportedCastingPlaybackTypesAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevice" />
+      </containers>
+      <file name="525d07cf-f9c6-df5b-9941-44205c55c7dd" />
+    </api>
+    <api id="Properties.T:Windows.Media.Casting.CastingDevice">
+      <topicdata name="CastingDevice" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Casting.CastingDevice" />
+      <apidata name="CastingDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Casting.CastingDevice.FriendlyName" />
+        <element api="P:Windows.Media.Casting.CastingDevice.Icon" />
+        <element api="P:Windows.Media.Casting.CastingDevice.Id" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevice" />
+      </containers>
+      <file name="853458f4-24ae-caea-f93d-fde68432292e" />
+    </api>
+    <api id="M:Windows.Media.Casting.CastingDevice.CreateCastingConnection">
+      <topicdata group="api" />
+      <apidata name="CreateCastingConnection" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingConnection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevice" ref="true" />
+      </containers>
+      <file name="f399dbb2-3293-b488-46d6-572d22b65911" />
+    </api>
+    <api id="M:Windows.Media.Casting.CastingDevice.DeviceInfoSupportsCastingAsync(Windows.Devices.Enumeration.DeviceInformation)">
+      <topicdata group="api" />
+      <apidata name="DeviceInfoSupportsCastingAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="device" in="true">
+          <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4e13b735-4dab-14cf-f606-cfa9a29d174e" />
+    </api>
+    <api id="P:Windows.Media.Casting.CastingDevice.FriendlyName">
+      <topicdata group="api" />
+      <apidata name="FriendlyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FriendlyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevice" ref="true" />
+      </containers>
+      <file name="75f57e3e-7ce8-0f5a-a06e-438ce63a4822" />
+    </api>
+    <api id="M:Windows.Media.Casting.CastingDevice.FromIdAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="FromIdAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Casting.CastingDevice" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="1283c0f8-a1d1-4626-cf35-777d6eb8aadf" />
+    </api>
+    <api id="M:Windows.Media.Casting.CastingDevice.GetDeviceSelector(Windows.Media.Casting.CastingPlaybackTypes)">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="type" in="true">
+          <type api="T:Windows.Media.Casting.CastingPlaybackTypes" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevice" ref="true" />
+      </containers>
+      <file name="a56ed7b6-9e64-b121-1749-3f52234bc52c" />
+    </api>
+    <api id="M:Windows.Media.Casting.CastingDevice.GetDeviceSelectorFromCastingSourceAsync(Windows.Media.Casting.CastingSource)">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelectorFromCastingSourceAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="castingSource" in="true">
+          <type api="T:Windows.Media.Casting.CastingSource" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="3bd68a8c-2d4b-9259-1334-1a3e66ce1676" />
+    </api>
+    <api id="M:Windows.Media.Casting.CastingDevice.GetSupportedCastingPlaybackTypesAsync">
+      <topicdata group="api" />
+      <apidata name="GetSupportedCastingPlaybackTypesAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Casting.CastingPlaybackTypes" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a5498c42-29c4-ccf3-5b2a-3ade18cf9d8e" />
+    </api>
+    <api id="P:Windows.Media.Casting.CastingDevice.Icon">
+      <topicdata group="api" />
+      <apidata name="Icon" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Icon" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IRandomAccessStreamWithContentType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevice" ref="true" />
+      </containers>
+      <file name="976d4a37-c417-9972-38ca-ba7e2f0659a6" />
+    </api>
+    <api id="P:Windows.Media.Casting.CastingDevice.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevice" ref="true" />
+      </containers>
+      <file name="c55b7390-205f-66c6-e957-74a6f03e8b89" />
+    </api>
+    <api id="T:Windows.Media.Casting.CastingDevicePicker">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Casting.CastingDevicePicker" />
+      <apidata name="CastingDevicePicker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Casting.CastingDevicePicker.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5f2c8f69-5d30-4ac9-5a5d-42e8451b9b0e" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Casting.CastingDevicePicker">
+      <topicdata name="CastingDevicePicker" group="list" subgroup="members" typeTopicId="T:Windows.Media.Casting.CastingDevicePicker" />
+      <apidata name="CastingDevicePicker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Casting.CastingDevicePicker.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.Casting.CastingDevicePicker.#ctor" />
+        <element api="P:Windows.Media.Casting.CastingDevicePicker.Appearance" />
+        <element api="E:Windows.Media.Casting.CastingDevicePicker.CastingDevicePickerDismissed" />
+        <element api="E:Windows.Media.Casting.CastingDevicePicker.CastingDeviceSelected" />
+        <element api="P:Windows.Media.Casting.CastingDevicePicker.Filter" />
+        <element api="M:Windows.Media.Casting.CastingDevicePicker.Hide" />
+        <element api="Overload:Windows.Media.Casting.CastingDevicePicker.Show">
+          <element api="M:Windows.Media.Casting.CastingDevicePicker.Show(Windows.Foundation.Rect)" />
+          <element api="M:Windows.Media.Casting.CastingDevicePicker.Show(Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePicker" />
+      </containers>
+      <file name="4cb323c7-4c95-18ba-206c-1192c4ab35eb" />
+    </api>
+    <api id="Methods.T:Windows.Media.Casting.CastingDevicePicker">
+      <topicdata name="CastingDevicePicker" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Casting.CastingDevicePicker" />
+      <apidata name="CastingDevicePicker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Casting.CastingDevicePicker.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.Casting.CastingDevicePicker.Hide" />
+        <element api="Overload:Windows.Media.Casting.CastingDevicePicker.Show">
+          <element api="M:Windows.Media.Casting.CastingDevicePicker.Show(Windows.Foundation.Rect)" />
+          <element api="M:Windows.Media.Casting.CastingDevicePicker.Show(Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePicker" />
+      </containers>
+      <file name="c5024d7a-bb71-4e57-fbc7-773a8e067398" />
+    </api>
+    <api id="Properties.T:Windows.Media.Casting.CastingDevicePicker">
+      <topicdata name="CastingDevicePicker" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Casting.CastingDevicePicker" />
+      <apidata name="CastingDevicePicker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Casting.CastingDevicePicker.#ctor" />
+      <elements>
+        <element api="P:Windows.Media.Casting.CastingDevicePicker.Appearance" />
+        <element api="P:Windows.Media.Casting.CastingDevicePicker.Filter" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePicker" />
+      </containers>
+      <file name="646cabb6-0206-2892-3788-afaf3add61ee" />
+    </api>
+    <api id="Events.T:Windows.Media.Casting.CastingDevicePicker">
+      <topicdata name="CastingDevicePicker" group="list" subgroup="Events" typeTopicId="T:Windows.Media.Casting.CastingDevicePicker" />
+      <apidata name="CastingDevicePicker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Casting.CastingDevicePicker.#ctor" />
+      <elements>
+        <element api="E:Windows.Media.Casting.CastingDevicePicker.CastingDevicePickerDismissed" />
+        <element api="E:Windows.Media.Casting.CastingDevicePicker.CastingDeviceSelected" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePicker" />
+      </containers>
+      <file name="f6535efe-4490-d490-477a-d02c8e1ab56f" />
+    </api>
+    <api id="Overload:Windows.Media.Casting.CastingDevicePicker.Show">
+      <topicdata name="Show" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.Casting.CastingDevicePicker" />
+      <apidata name="Show" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Media.Casting.CastingDevicePicker.Show(Windows.Foundation.Rect)" />
+        <element api="M:Windows.Media.Casting.CastingDevicePicker.Show(Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePicker" ref="true" />
+      </containers>
+      <file name="30985f16-a3dc-5d99-14a5-6ddd4d769e20" />
+    </api>
+    <api id="M:Windows.Media.Casting.CastingDevicePicker.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePicker" ref="true" />
+      </containers>
+      <file name="cf3502f1-ed10-3cea-7d79-66b0a895f217" />
+    </api>
+    <api id="P:Windows.Media.Casting.CastingDevicePicker.Appearance">
+      <topicdata group="api" />
+      <apidata name="Appearance" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Appearance" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DevicePickerAppearance" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePicker" ref="true" />
+      </containers>
+      <file name="f9152d9b-2432-d365-9201-5bd3940326af" />
+    </api>
+    <api id="E:Windows.Media.Casting.CastingDevicePicker.CastingDevicePickerDismissed">
+      <topicdata group="api" />
+      <apidata name="CastingDevicePickerDismissed" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_CastingDevicePickerDismissed" />
+      <remover name="remove_CastingDevicePickerDismissed" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Casting.CastingDevicePicker" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePicker" ref="true" />
+      </containers>
+      <file name="7cbd0837-f83e-c304-096e-37da303f19e5" />
+    </api>
+    <api id="E:Windows.Media.Casting.CastingDevicePicker.CastingDeviceSelected">
+      <topicdata group="api" />
+      <apidata name="CastingDeviceSelected" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_CastingDeviceSelected" />
+      <remover name="remove_CastingDeviceSelected" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Casting.CastingDevicePicker" ref="true" />
+            <type api="T:Windows.Media.Casting.CastingDeviceSelectedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePicker" ref="true" />
+      </containers>
+      <file name="7da74d81-8ce5-8d8e-8aec-182dd51d919c" />
+    </api>
+    <api id="P:Windows.Media.Casting.CastingDevicePicker.Filter">
+      <topicdata group="api" />
+      <apidata name="Filter" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Filter" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingDevicePickerFilter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePicker" ref="true" />
+      </containers>
+      <file name="3a4ce353-8e44-7c46-8ca9-6adf61298389" />
+    </api>
+    <api id="M:Windows.Media.Casting.CastingDevicePicker.Hide">
+      <topicdata group="api" />
+      <apidata name="Hide" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePicker" ref="true" />
+      </containers>
+      <file name="fb36eb8a-7489-a327-d6d9-876c5df2db60" />
+    </api>
+    <api id="M:Windows.Media.Casting.CastingDevicePicker.Show(Windows.Foundation.Rect)">
+      <topicdata group="api" />
+      <apidata name="Show" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.Casting.CastingDevicePicker.Show" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePicker" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Show</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="90bbf60b-ca5b-74c9-4637-fdf38a0880c0" />
+    </api>
+    <api id="M:Windows.Media.Casting.CastingDevicePicker.Show(Windows.Foundation.Rect,Windows.UI.Popups.Placement)">
+      <topicdata group="api" />
+      <apidata name="Show" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.Casting.CastingDevicePicker.Show" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+        <parameter name="preferredPlacement" in="true">
+          <type api="T:Windows.UI.Popups.Placement" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePicker" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ShowWithPlacement</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ab530ae7-d69e-6a29-7c63-e0d2089d882a" />
+    </api>
+    <api id="T:Windows.Media.Casting.CastingDevicePickerFilter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Casting.CastingDevicePickerFilter" />
+      <apidata name="CastingDevicePickerFilter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0caf69fa-1ae0-6d45-3894-ed817fbe495e" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Casting.CastingDevicePickerFilter">
+      <topicdata name="CastingDevicePickerFilter" group="list" subgroup="members" typeTopicId="T:Windows.Media.Casting.CastingDevicePickerFilter" />
+      <apidata name="CastingDevicePickerFilter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.Casting.CastingDevicePickerFilter.SupportedCastingSources" />
+        <element api="P:Windows.Media.Casting.CastingDevicePickerFilter.SupportsAudio" />
+        <element api="P:Windows.Media.Casting.CastingDevicePickerFilter.SupportsPictures" />
+        <element api="P:Windows.Media.Casting.CastingDevicePickerFilter.SupportsVideo" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePickerFilter" />
+      </containers>
+      <file name="8e98b475-ae5f-bad0-481e-3dcee47d0a36" />
+    </api>
+    <api id="Methods.T:Windows.Media.Casting.CastingDevicePickerFilter">
+      <topicdata name="CastingDevicePickerFilter" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Casting.CastingDevicePickerFilter" />
+      <apidata name="CastingDevicePickerFilter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePickerFilter" />
+      </containers>
+      <file name="26d0be1e-5cb6-fbef-08a2-e5bfb26e7467" />
+    </api>
+    <api id="Properties.T:Windows.Media.Casting.CastingDevicePickerFilter">
+      <topicdata name="CastingDevicePickerFilter" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Casting.CastingDevicePickerFilter" />
+      <apidata name="CastingDevicePickerFilter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Casting.CastingDevicePickerFilter.SupportedCastingSources" />
+        <element api="P:Windows.Media.Casting.CastingDevicePickerFilter.SupportsAudio" />
+        <element api="P:Windows.Media.Casting.CastingDevicePickerFilter.SupportsPictures" />
+        <element api="P:Windows.Media.Casting.CastingDevicePickerFilter.SupportsVideo" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePickerFilter" />
+      </containers>
+      <file name="486beef7-c1c4-88ff-299f-b5923fca46fb" />
+    </api>
+    <api id="P:Windows.Media.Casting.CastingDevicePickerFilter.SupportedCastingSources">
+      <topicdata group="api" />
+      <apidata name="SupportedCastingSources" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SupportedCastingSources" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Casting.CastingSource" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePickerFilter" ref="true" />
+      </containers>
+      <file name="97e32218-241c-a404-e64c-9b7974a36567" />
+    </api>
+    <api id="P:Windows.Media.Casting.CastingDevicePickerFilter.SupportsAudio">
+      <topicdata group="api" />
+      <apidata name="SupportsAudio" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SupportsAudio" />
+      <setter name="set_SupportsAudio" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePickerFilter" ref="true" />
+      </containers>
+      <file name="f38a6487-bc4f-56d8-6a0c-f4bbe474aaab" />
+    </api>
+    <api id="P:Windows.Media.Casting.CastingDevicePickerFilter.SupportsPictures">
+      <topicdata group="api" />
+      <apidata name="SupportsPictures" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SupportsPictures" />
+      <setter name="set_SupportsPictures" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePickerFilter" ref="true" />
+      </containers>
+      <file name="29aeed56-6655-9b56-ec0a-6834feb77b68" />
+    </api>
+    <api id="P:Windows.Media.Casting.CastingDevicePickerFilter.SupportsVideo">
+      <topicdata group="api" />
+      <apidata name="SupportsVideo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SupportsVideo" />
+      <setter name="set_SupportsVideo" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDevicePickerFilter" ref="true" />
+      </containers>
+      <file name="bf3c664a-479b-b2b7-619d-c05644418248" />
+    </api>
+    <api id="T:Windows.Media.Casting.CastingDeviceSelectedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Casting.CastingDeviceSelectedEventArgs" />
+      <apidata name="CastingDeviceSelectedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="087fb327-90a0-e8c2-666b-a0ddd4aac525" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Casting.CastingDeviceSelectedEventArgs">
+      <topicdata name="CastingDeviceSelectedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.Casting.CastingDeviceSelectedEventArgs" />
+      <apidata name="CastingDeviceSelectedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.Casting.CastingDeviceSelectedEventArgs.SelectedCastingDevice" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDeviceSelectedEventArgs" />
+      </containers>
+      <file name="0ea48a4a-130f-6b57-9ec6-68c958b7af3b" />
+    </api>
+    <api id="Methods.T:Windows.Media.Casting.CastingDeviceSelectedEventArgs">
+      <topicdata name="CastingDeviceSelectedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Casting.CastingDeviceSelectedEventArgs" />
+      <apidata name="CastingDeviceSelectedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDeviceSelectedEventArgs" />
+      </containers>
+      <file name="45478f0c-fed0-a954-4ab7-3e911227befa" />
+    </api>
+    <api id="Properties.T:Windows.Media.Casting.CastingDeviceSelectedEventArgs">
+      <topicdata name="CastingDeviceSelectedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Casting.CastingDeviceSelectedEventArgs" />
+      <apidata name="CastingDeviceSelectedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Casting.CastingDeviceSelectedEventArgs.SelectedCastingDevice" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDeviceSelectedEventArgs" />
+      </containers>
+      <file name="922b2884-eea7-cbbe-f70b-8e1f16f693ef" />
+    </api>
+    <api id="P:Windows.Media.Casting.CastingDeviceSelectedEventArgs.SelectedCastingDevice">
+      <topicdata group="api" />
+      <apidata name="SelectedCastingDevice" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SelectedCastingDevice" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingDevice" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingDeviceSelectedEventArgs" ref="true" />
+      </containers>
+      <file name="5f24adf7-990f-20af-6fc9-eabd73640eed" />
+    </api>
+    <api id="T:Windows.Media.Casting.CastingPlaybackTypes">
+      <topicdata group="api" />
+      <apidata name="CastingPlaybackTypes" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.Media.Casting.CastingPlaybackTypes.None" />
+        <element api="F:Windows.Media.Casting.CastingPlaybackTypes.Audio" />
+        <element api="F:Windows.Media.Casting.CastingPlaybackTypes.Video" />
+        <element api="F:Windows.Media.Casting.CastingPlaybackTypes.Picture" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8f5b22b5-4e7f-6558-5a60-e6323e54ef78" />
+    </api>
+    <api id="F:Windows.Media.Casting.CastingPlaybackTypes.Audio">
+      <topicdata group="api" notopic="" />
+      <apidata name="Audio" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingPlaybackTypes" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingPlaybackTypes" ref="false" />
+      </containers>
+      <file name="508dff13-7963-06fd-4312-1d9b4e089707" />
+    </api>
+    <api id="F:Windows.Media.Casting.CastingPlaybackTypes.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingPlaybackTypes" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingPlaybackTypes" ref="false" />
+      </containers>
+      <file name="6007e56b-e51e-a414-4279-08e219efa13c" />
+    </api>
+    <api id="F:Windows.Media.Casting.CastingPlaybackTypes.Picture">
+      <topicdata group="api" notopic="" />
+      <apidata name="Picture" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingPlaybackTypes" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingPlaybackTypes" ref="false" />
+      </containers>
+      <file name="83352a07-e008-2e4a-e270-28d8815f68e0" />
+    </api>
+    <api id="F:Windows.Media.Casting.CastingPlaybackTypes.Video">
+      <topicdata group="api" notopic="" />
+      <apidata name="Video" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Casting.CastingPlaybackTypes" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingPlaybackTypes" ref="false" />
+      </containers>
+      <file name="65a9dd3e-4e23-1a8b-a6b6-26c1dc93a24a" />
+    </api>
+    <api id="T:Windows.Media.Casting.CastingSource">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Casting.CastingSource" />
+      <apidata name="CastingSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="94cb08a2-c821-c1e0-859c-e84d61e9ee31" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Casting.CastingSource">
+      <topicdata name="CastingSource" group="list" subgroup="members" typeTopicId="T:Windows.Media.Casting.CastingSource" />
+      <apidata name="CastingSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.Casting.CastingSource.PreferredSourceUri" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingSource" />
+      </containers>
+      <file name="45988402-d483-cfec-0ee9-f3606136dbee" />
+    </api>
+    <api id="Methods.T:Windows.Media.Casting.CastingSource">
+      <topicdata name="CastingSource" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Casting.CastingSource" />
+      <apidata name="CastingSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingSource" />
+      </containers>
+      <file name="3ef3c837-378e-8815-7ad4-34ac11f0ab48" />
+    </api>
+    <api id="Properties.T:Windows.Media.Casting.CastingSource">
+      <topicdata name="CastingSource" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Casting.CastingSource" />
+      <apidata name="CastingSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Casting.CastingSource.PreferredSourceUri" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingSource" />
+      </containers>
+      <file name="2f48580c-cc0f-a804-e002-2b93d8eca512" />
+    </api>
+    <api id="P:Windows.Media.Casting.CastingSource.PreferredSourceUri">
+      <topicdata group="api" />
+      <apidata name="PreferredSourceUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PreferredSourceUri" />
+      <setter name="set_PreferredSourceUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Casting" />
+        <type api="T:Windows.Media.Casting.CastingSource" ref="true" />
+      </containers>
+      <file name="f9aea66d-27ad-a7e6-d93b-6334a1db3d3f" />
+    </api>
+  </apis>
+</reflection>

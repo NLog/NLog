@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+
 namespace NLog.Internal
 {
     using System.Collections.Generic;
@@ -43,9 +45,12 @@ namespace NLog.Internal
     /// whether logging should happen.
     /// </summary>
     [NLogConfigurationItem]
-	internal class TargetWithFilterChain
-	{
-        private StackTraceUsage stackTraceUsage = StackTraceUsage.None;
+    internal class TargetWithFilterChain
+    {
+        /// <summary>
+        /// cached result as calculating is expensive.
+        /// </summary>
+        private StackTraceUsage? _stackTraceUsage;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TargetWithFilterChain" /> class.
@@ -56,7 +61,6 @@ namespace NLog.Internal
         {
             this.Target = target;
             this.FilterChain = filterChain;
-            this.stackTraceUsage = StackTraceUsage.None;
         }
 
         /// <summary>
@@ -75,6 +79,7 @@ namespace NLog.Internal
         /// Gets or sets the next <see cref="TargetWithFilterChain"/> item in the chain.
         /// </summary>
         /// <value>The next item in the chain.</value>
+        /// <example>This is for example the 'target2' logger in writeTo='target1,target2'  </example>
         public TargetWithFilterChain NextInChain { get; set; }
 
         /// <summary>
@@ -83,29 +88,31 @@ namespace NLog.Internal
         /// <returns>A <see cref="StackTraceUsage" /> value that determines stack trace handling.</returns>
         public StackTraceUsage GetStackTraceUsage()
         {
-            return this.stackTraceUsage;
+            return _stackTraceUsage ?? StackTraceUsage.None;
         }
 
-        internal void PrecalculateStackTraceUsage()
+        internal StackTraceUsage PrecalculateStackTraceUsage()
         {
-            this.stackTraceUsage = StackTraceUsage.None;
+            var stackTraceUsage = StackTraceUsage.None;
 
             // find all objects which may need stack trace
             // and determine maximum
-            foreach (var item in ObjectGraphScanner.FindReachableObjects<IUsesStackTrace>(this))
+            // only the target can have IUsesStackTrace
+            if (Target != null)
             {
-                var stu = item.StackTraceUsage;
-
-                if (stu > this.stackTraceUsage)
-                {
-                    this.stackTraceUsage = stu;
-
-                    if (this.stackTraceUsage >= StackTraceUsage.Max)
-                    {
-                        break;
-                    }
-                }
+                stackTraceUsage = Target.GetAllLayouts().OfType<IUsesStackTrace>().DefaultIfEmpty().Max(usage => usage == null ? StackTraceUsage.None : usage.StackTraceUsage);
             }
+
+            //recurse into chain if not max
+            if (NextInChain != null && stackTraceUsage != StackTraceUsage.Max)
+            {
+                var stackTraceUsageForChain = NextInChain.PrecalculateStackTraceUsage();
+                if (stackTraceUsageForChain > stackTraceUsage)
+                    stackTraceUsage = stackTraceUsageForChain;
+            }
+
+            _stackTraceUsage = stackTraceUsage;
+            return stackTraceUsage;
         }
     }
 }

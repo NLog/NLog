@@ -1,0 +1,740 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="MFWsStack">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MFWsStack</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Ws.Services.Faults">
+      <topicdata group="api" />
+      <apidata name="Ws.Services.Faults" group="namespace" />
+      <elements>
+        <element api="T:Ws.Services.Faults.WsFaultException" />
+        <element api="T:Ws.Services.Faults.WsFaultType" />
+      </elements>
+      <file name="d7009ac7-4694-8279-9f70-b0623bb287a1" />
+    </api>
+    <api id="T:Ws.Services.Faults.WsFaultException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.Faults.WsFaultException" />
+      <apidata name="WsFaultException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+      </containers>
+      <file name="09bcd4cd-9e33-0583-5850-893276831122" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.Faults.WsFaultException">
+      <topicdata name="WsFaultException" group="list" subgroup="members" typeTopicId="T:Ws.Services.Faults.WsFaultException" />
+      <apidata name="WsFaultException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Exception.InnerException" />
+        <element api="F:System.Exception.m_HResult" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:Ws.Services.Faults.WsFaultException.#ctor">
+          <element api="M:Ws.Services.Faults.WsFaultException.#ctor(Ws.Services.WsaAddressing.WsWsaHeader,Ws.Services.Faults.WsFaultType)" />
+          <element api="M:Ws.Services.Faults.WsFaultException.#ctor(Ws.Services.WsaAddressing.WsWsaHeader,Ws.Services.Faults.WsFaultType,System.String)" />
+          <element api="M:Ws.Services.Faults.WsFaultException.#ctor(Ws.Services.WsaAddressing.WsWsaHeader,Ws.Services.Faults.WsFaultType,System.String,System.String)" />
+        </element>
+        <element api="P:Ws.Services.Faults.WsFaultException.Detail" />
+        <element api="F:Ws.Services.Faults.WsFaultException.FaultType" />
+        <element api="F:Ws.Services.Faults.WsFaultException.Header" />
+        <element api="P:Ws.Services.Faults.WsFaultException.Message" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultException" />
+      </containers>
+      <file name="df18ea29-fda1-8e6f-e124-310cbf5303b4" />
+    </api>
+    <api id="Methods.T:Ws.Services.Faults.WsFaultException">
+      <topicdata name="WsFaultException" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.Faults.WsFaultException" />
+      <apidata name="WsFaultException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultException" />
+      </containers>
+      <file name="7cb4ce39-902d-faf5-4040-2823098bed52" />
+    </api>
+    <api id="Properties.T:Ws.Services.Faults.WsFaultException">
+      <topicdata name="WsFaultException" group="list" subgroup="Properties" typeTopicId="T:Ws.Services.Faults.WsFaultException" />
+      <apidata name="WsFaultException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:Ws.Services.Faults.WsFaultException.Detail" />
+        <element api="P:Ws.Services.Faults.WsFaultException.Message" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultException" />
+      </containers>
+      <file name="fff71edd-c228-fec4-d225-1a8d1786a4ff" />
+    </api>
+    <api id="Fields.T:Ws.Services.Faults.WsFaultException">
+      <topicdata name="WsFaultException" group="list" subgroup="Fields" typeTopicId="T:Ws.Services.Faults.WsFaultException" />
+      <apidata name="WsFaultException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:System.Exception.m_HResult" />
+        <element api="F:Ws.Services.Faults.WsFaultException.FaultType" />
+        <element api="F:Ws.Services.Faults.WsFaultException.Header" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultException" />
+      </containers>
+      <file name="fb4cec80-f31a-5f6d-7ce0-017d92050af0" />
+    </api>
+    <api id="Overload:Ws.Services.Faults.WsFaultException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Ws.Services.Faults.WsFaultException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Ws.Services.Faults.WsFaultException.#ctor(Ws.Services.WsaAddressing.WsWsaHeader,Ws.Services.Faults.WsFaultType)" />
+        <element api="M:Ws.Services.Faults.WsFaultException.#ctor(Ws.Services.WsaAddressing.WsWsaHeader,Ws.Services.Faults.WsFaultType,System.String)" />
+        <element api="M:Ws.Services.Faults.WsFaultException.#ctor(Ws.Services.WsaAddressing.WsWsaHeader,Ws.Services.Faults.WsFaultType,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultException" ref="true" />
+      </containers>
+      <file name="78ef2639-d2c8-f8d0-337d-effdbcea1de8" />
+    </api>
+    <api id="M:Ws.Services.Faults.WsFaultException.#ctor(Ws.Services.WsaAddressing.WsWsaHeader,Ws.Services.Faults.WsFaultType)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Ws.Services.Faults.WsFaultException.#ctor" />
+      <parameters>
+        <parameter name="header">
+          <type api="T:Ws.Services.WsaAddressing.WsWsaHeader" ref="true" />
+        </parameter>
+        <parameter name="faultType">
+          <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultException" ref="true" />
+      </containers>
+      <file name="554be86c-872d-22dd-b041-798cbae7efce" />
+    </api>
+    <api id="M:Ws.Services.Faults.WsFaultException.#ctor(Ws.Services.WsaAddressing.WsWsaHeader,Ws.Services.Faults.WsFaultType,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Ws.Services.Faults.WsFaultException.#ctor" />
+      <parameters>
+        <parameter name="header">
+          <type api="T:Ws.Services.WsaAddressing.WsWsaHeader" ref="true" />
+        </parameter>
+        <parameter name="faultType">
+          <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+        </parameter>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultException" ref="true" />
+      </containers>
+      <file name="4335eacb-f9b9-0add-6e10-4495192f5ba5" />
+    </api>
+    <api id="M:Ws.Services.Faults.WsFaultException.#ctor(Ws.Services.WsaAddressing.WsWsaHeader,Ws.Services.Faults.WsFaultType,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Ws.Services.Faults.WsFaultException.#ctor" />
+      <parameters>
+        <parameter name="header">
+          <type api="T:Ws.Services.WsaAddressing.WsWsaHeader" ref="true" />
+        </parameter>
+        <parameter name="faultType">
+          <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+        </parameter>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="detail">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultException" ref="true" />
+      </containers>
+      <file name="b906c8ca-95dd-3897-19d1-bf005e50c4c5" />
+    </api>
+    <api id="P:Ws.Services.Faults.WsFaultException.Detail">
+      <topicdata group="api" />
+      <apidata name="Detail" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Detail" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultException" ref="true" />
+      </containers>
+      <file name="badc31cb-74c3-0094-e2a8-61fef733ca31" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultException.FaultType">
+      <topicdata group="api" />
+      <apidata name="FaultType" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultException" ref="true" />
+      </containers>
+      <file name="fe04df14-68ee-f390-7117-636cb0302f78" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultException.Header">
+      <topicdata group="api" />
+      <apidata name="Header" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.WsaAddressing.WsWsaHeader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultException" ref="true" />
+      </containers>
+      <file name="34ca7c2b-3a0b-52bd-0bc0-e93efc3dbc34" />
+    </api>
+    <api id="P:Ws.Services.Faults.WsFaultException.Message">
+      <topicdata group="api" />
+      <apidata name="Message" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Exception.Message">
+          <type api="T:System.Exception" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Message" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultException" ref="true" />
+      </containers>
+      <file name="a68056e0-d4bc-edfb-4058-f2df798f0a68" />
+    </api>
+    <api id="T:Ws.Services.Faults.WsFaultType">
+      <topicdata group="api" />
+      <apidata name="WsFaultType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Ws.Services.Faults.WsFaultType.Exception" />
+        <element api="F:Ws.Services.Faults.WsFaultType.ArgumentException" />
+        <element api="F:Ws.Services.Faults.WsFaultType.ArgumentNullException" />
+        <element api="F:Ws.Services.Faults.WsFaultType.InvalidOperationException" />
+        <element api="F:Ws.Services.Faults.WsFaultType.XmlException" />
+        <element api="F:Ws.Services.Faults.WsFaultType.WsaInvalidMessageInformationHeader" />
+        <element api="F:Ws.Services.Faults.WsFaultType.WsaMessageInformationHeaderRequired" />
+        <element api="F:Ws.Services.Faults.WsFaultType.WsaDestinationUnreachable" />
+        <element api="F:Ws.Services.Faults.WsFaultType.WsaActionNotSupported" />
+        <element api="F:Ws.Services.Faults.WsFaultType.WsaEndpointUnavailable" />
+        <element api="F:Ws.Services.Faults.WsFaultType.WseDeliverModeRequestedUnavailable" />
+        <element api="F:Ws.Services.Faults.WsFaultType.WseInvalidExpirationTime" />
+        <element api="F:Ws.Services.Faults.WsFaultType.WseUnsupportedExpirationType" />
+        <element api="F:Ws.Services.Faults.WsFaultType.WseFilteringNotSupported" />
+        <element api="F:Ws.Services.Faults.WsFaultType.WseFilteringRequestedUnavailable" />
+        <element api="F:Ws.Services.Faults.WsFaultType.WseEventSourceUnableToProcess" />
+        <element api="F:Ws.Services.Faults.WsFaultType.WseUnableToRenew" />
+        <element api="F:Ws.Services.Faults.WsFaultType.WseInvalidMessage" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+      </containers>
+      <file name="05e73d06-331b-dfa9-50d2-87c73d2feb9d" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultType.ArgumentException">
+      <topicdata group="api" notopic="" />
+      <apidata name="ArgumentException" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </containers>
+      <file name="7f6e2140-5089-194f-1e0d-fa38b737a369" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultType.ArgumentNullException">
+      <topicdata group="api" notopic="" />
+      <apidata name="ArgumentNullException" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </containers>
+      <file name="734fb549-7706-1869-22b5-90d47d057244" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultType.Exception">
+      <topicdata group="api" notopic="" />
+      <apidata name="Exception" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </containers>
+      <file name="da846432-6304-6fc7-735e-d981b176fb6d" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultType.InvalidOperationException">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidOperationException" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </containers>
+      <file name="02e41e7e-b6ff-1a68-da3e-819dfaaa0c86" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultType.WsaActionNotSupported">
+      <topicdata group="api" notopic="" />
+      <apidata name="WsaActionNotSupported" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </containers>
+      <file name="f24897d7-6a1c-81d3-6d96-907d68a97137" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultType.WsaDestinationUnreachable">
+      <topicdata group="api" notopic="" />
+      <apidata name="WsaDestinationUnreachable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </containers>
+      <file name="49677201-f802-6f4d-53e2-afea13deafff" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultType.WsaEndpointUnavailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="WsaEndpointUnavailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </containers>
+      <file name="ef2de670-ff35-e1f4-1dd5-90e256afeabe" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultType.WsaInvalidMessageInformationHeader">
+      <topicdata group="api" notopic="" />
+      <apidata name="WsaInvalidMessageInformationHeader" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </containers>
+      <file name="20a027c4-0a74-6d96-c61a-b419128e4e5a" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultType.WsaMessageInformationHeaderRequired">
+      <topicdata group="api" notopic="" />
+      <apidata name="WsaMessageInformationHeaderRequired" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </containers>
+      <file name="49e7041e-109d-8aba-951b-0d53ba022501" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultType.WseDeliverModeRequestedUnavailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="WseDeliverModeRequestedUnavailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </containers>
+      <file name="c61ecb66-d9f8-1a87-f8de-4f6e8238e5cf" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultType.WseEventSourceUnableToProcess">
+      <topicdata group="api" notopic="" />
+      <apidata name="WseEventSourceUnableToProcess" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </returns>
+      <value>15</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </containers>
+      <file name="7da97440-0a61-9251-80ff-7684701fc86f" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultType.WseFilteringNotSupported">
+      <topicdata group="api" notopic="" />
+      <apidata name="WseFilteringNotSupported" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </returns>
+      <value>13</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </containers>
+      <file name="d5091eab-acad-4edc-3a4f-4fb891507fde" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultType.WseFilteringRequestedUnavailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="WseFilteringRequestedUnavailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </returns>
+      <value>14</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </containers>
+      <file name="55193198-21f5-5f6a-f5ff-3111167b0ff7" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultType.WseInvalidExpirationTime">
+      <topicdata group="api" notopic="" />
+      <apidata name="WseInvalidExpirationTime" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </containers>
+      <file name="224e092a-a985-6272-58a1-5aa0abb0195b" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultType.WseInvalidMessage">
+      <topicdata group="api" notopic="" />
+      <apidata name="WseInvalidMessage" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </returns>
+      <value>17</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </containers>
+      <file name="dc84f412-1c8e-3aba-dcf3-d65b81cd88d4" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultType.WseUnableToRenew">
+      <topicdata group="api" notopic="" />
+      <apidata name="WseUnableToRenew" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </containers>
+      <file name="b8b5553a-3734-2164-a88f-c7b4862388a4" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultType.WseUnsupportedExpirationType">
+      <topicdata group="api" notopic="" />
+      <apidata name="WseUnsupportedExpirationType" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </containers>
+      <file name="7b24dfc1-633c-61ee-d68b-2402a6770437" />
+    </api>
+    <api id="F:Ws.Services.Faults.WsFaultType.XmlException">
+      <topicdata group="api" notopic="" />
+      <apidata name="XmlException" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Faults" />
+        <type api="T:Ws.Services.Faults.WsFaultType" ref="false" />
+      </containers>
+      <file name="b9c5c098-53b6-a067-b2af-3748e09cac39" />
+    </api>
+  </apis>
+</reflection>

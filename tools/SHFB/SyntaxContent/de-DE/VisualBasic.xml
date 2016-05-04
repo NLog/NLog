@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- Translations provided by Michael Buchner -->
+
+	<!-- Syntax section and code example title.  Add one for the primary ID and one for each alternate ID. -->
+  <item id="devlang_Visual Basic">VB</item>
+  <item id="devlang_VisualBasic">VB</item>
+  <item id="devlang_vb">VB</item>
+  <item id="devlang_vb#">VB</item>
+  <item id="devlang_vbnet">VB</item>
+  <item id="devlang_vb.net">VB</item>
+  <item id="devlang_kblangvb">VB</item>
+  <item id="devlang_VisualBasicDeclaration">VB</item>
+
+	<!-- Development language metadata values.  Add one for the primary ID and one for each alternate ID.  -->
+  <item id="metaLang_Visual Basic">VB</item>
+  <item id="metaLang_VisualBasic">VB</item>
+  <item id="metaLang_vb">VB</item>
+  <item id="metaLang_vb#">VB</item>
+  <item id="metaLang_vbnet">VB</item>
+  <item id="metaLang_vb.net">VB</item>
+  <item id="metaLang_kblangvb">VB</item>
+  <item id="metaLang_VisualBasicDeclaration">VB</item>
+
+	<!-- VB syntax section messages -->
+	<item id="UnsupportedUnsafe_VisualBasic">Visual Basic unterstützt keine APIs, die unsichere Typen akzeptieren oder zurückgeben.</item>
+	<item id="UnsupportedOperator_VisualBasic">Visual Basic unterstützt diesen Operator nicht.</item>
+	<item id="UnsupportedStaticClass_VisualBasic">Visual Basic unterstützt keine Deklaration von statischen Klassen.</item>
+	<item id="UnsupportedVarargs_VisualBasic">Visual Basic unterstützt keine Methoden mit variabler Argumentanzahl
+(<span class="code">varargs</span>).  Der Compiler löst automatisch alle Aufrufe dieser Methode zur selben
+Methode mit Parameter-Array auf.</item>
+
+</content>

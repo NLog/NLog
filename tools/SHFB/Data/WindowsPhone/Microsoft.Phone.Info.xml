@@ -1,0 +1,794 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Phone">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Phone Core Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Phone</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>969e33fe-1289-4bc2-863a-c848bb476cc0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Phone.Info">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Phone.Info" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Phone.Info.PowerSource" />
+        <element api="T:Microsoft.Phone.Info.DeviceStatus" />
+        <element api="T:Microsoft.Phone.Info.MediaCapabilities" />
+        <element api="T:Microsoft.Phone.Info.UserExtendedProperties" />
+        <element api="T:Microsoft.Phone.Info.DeviceExtendedProperties" />
+      </elements>
+      <file name="f618b57c-ab2c-fca2-96d6-ede4435cbb4d" />
+    </api>
+    <api id="T:Microsoft.Phone.Info.DeviceExtendedProperties">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Info.DeviceExtendedProperties" />
+      <apidata name="DeviceExtendedProperties" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+      </containers>
+      <file name="489b126f-1e6f-5ad7-d715-aff65535c3e4" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Info.DeviceExtendedProperties">
+      <topicdata name="DeviceExtendedProperties" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Info.DeviceExtendedProperties" />
+      <apidata name="DeviceExtendedProperties" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Info.DeviceExtendedProperties.GetValue(System.String)" />
+        <element api="M:Microsoft.Phone.Info.DeviceExtendedProperties.TryGetValue(System.String,System.Object@)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceExtendedProperties" />
+      </containers>
+      <file name="f0a40803-b237-efbb-99ed-f721940c5c08" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Info.DeviceExtendedProperties">
+      <topicdata name="DeviceExtendedProperties" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Info.DeviceExtendedProperties" />
+      <apidata name="DeviceExtendedProperties" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Info.DeviceExtendedProperties.GetValue(System.String)" />
+        <element api="M:Microsoft.Phone.Info.DeviceExtendedProperties.TryGetValue(System.String,System.Object@)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceExtendedProperties" />
+      </containers>
+      <file name="adcb0d85-6853-a856-867a-e4b83a89f8ee" />
+    </api>
+    <api id="M:Microsoft.Phone.Info.DeviceExtendedProperties.GetValue(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="propertyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceExtendedProperties" ref="true" />
+      </containers>
+      <file name="f6a57559-05df-a3f9-6b9b-8825ece25c1d" />
+    </api>
+    <api id="M:Microsoft.Phone.Info.DeviceExtendedProperties.TryGetValue(System.String,System.Object@)">
+      <topicdata group="api" />
+      <apidata name="TryGetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="propertyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="propertyValue" out="true">
+          <referenceTo>
+            <type api="T:System.Object" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceExtendedProperties" ref="true" />
+      </containers>
+      <file name="227d125c-c058-488b-e512-3f7290420725" />
+    </api>
+    <api id="T:Microsoft.Phone.Info.DeviceStatus">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Info.DeviceStatus" />
+      <apidata name="DeviceStatus" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+      </containers>
+      <file name="10741473-dd54-b8a4-3db5-fae0b684878e" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Info.DeviceStatus">
+      <topicdata name="DeviceStatus" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Info.DeviceStatus" />
+      <apidata name="DeviceStatus" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.ApplicationCurrentMemoryUsage" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.ApplicationMemoryUsageLimit" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.ApplicationPeakMemoryUsage" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.DeviceFirmwareVersion" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.DeviceHardwareVersion" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.DeviceManufacturer" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.DeviceName" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.DeviceTotalMemory" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.IsKeyboardDeployed" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.IsKeyboardPresent" />
+        <element api="E:Microsoft.Phone.Info.DeviceStatus.KeyboardDeployedChanged" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.PowerSource" />
+        <element api="E:Microsoft.Phone.Info.DeviceStatus.PowerSourceChanged" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceStatus" />
+      </containers>
+      <file name="8490ac3d-ac78-5c51-da85-f7a8d9bc6fc4" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Info.DeviceStatus">
+      <topicdata name="DeviceStatus" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Info.DeviceStatus" />
+      <apidata name="DeviceStatus" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.ApplicationCurrentMemoryUsage" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.ApplicationMemoryUsageLimit" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.ApplicationPeakMemoryUsage" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.DeviceFirmwareVersion" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.DeviceHardwareVersion" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.DeviceManufacturer" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.DeviceName" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.DeviceTotalMemory" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.IsKeyboardDeployed" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.IsKeyboardPresent" />
+        <element api="P:Microsoft.Phone.Info.DeviceStatus.PowerSource" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceStatus" />
+      </containers>
+      <file name="e44ce122-46b7-16c1-5a1e-57f35c44afef" />
+    </api>
+    <api id="Events.T:Microsoft.Phone.Info.DeviceStatus">
+      <topicdata name="DeviceStatus" group="list" subgroup="Events" typeTopicId="T:Microsoft.Phone.Info.DeviceStatus" />
+      <apidata name="DeviceStatus" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.Phone.Info.DeviceStatus.KeyboardDeployedChanged" />
+        <element api="E:Microsoft.Phone.Info.DeviceStatus.PowerSourceChanged" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceStatus" />
+      </containers>
+      <file name="e4da6313-222a-c0d5-d044-4ceb01f2235b" />
+    </api>
+    <api id="P:Microsoft.Phone.Info.DeviceStatus.ApplicationCurrentMemoryUsage">
+      <topicdata group="api" />
+      <apidata name="ApplicationCurrentMemoryUsage" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ApplicationCurrentMemoryUsage" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceStatus" ref="true" />
+      </containers>
+      <file name="4c092db4-cf3a-2bd5-c82e-c7c3626652e6" />
+    </api>
+    <api id="P:Microsoft.Phone.Info.DeviceStatus.ApplicationMemoryUsageLimit">
+      <topicdata group="api" />
+      <apidata name="ApplicationMemoryUsageLimit" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ApplicationMemoryUsageLimit" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceStatus" ref="true" />
+      </containers>
+      <file name="90ed47cb-dba5-f43f-44d7-496eda997b55" />
+    </api>
+    <api id="P:Microsoft.Phone.Info.DeviceStatus.ApplicationPeakMemoryUsage">
+      <topicdata group="api" />
+      <apidata name="ApplicationPeakMemoryUsage" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ApplicationPeakMemoryUsage" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceStatus" ref="true" />
+      </containers>
+      <file name="dba054a2-5218-0059-f1bf-a9309d3f68cf" />
+    </api>
+    <api id="P:Microsoft.Phone.Info.DeviceStatus.DeviceFirmwareVersion">
+      <topicdata group="api" />
+      <apidata name="DeviceFirmwareVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DeviceFirmwareVersion" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceStatus" ref="true" />
+      </containers>
+      <file name="7caa1915-2f67-32c5-d07c-e273986b5ee6" />
+    </api>
+    <api id="P:Microsoft.Phone.Info.DeviceStatus.DeviceHardwareVersion">
+      <topicdata group="api" />
+      <apidata name="DeviceHardwareVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DeviceHardwareVersion" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceStatus" ref="true" />
+      </containers>
+      <file name="14b04b14-3c74-4d74-2f77-427366d132ab" />
+    </api>
+    <api id="P:Microsoft.Phone.Info.DeviceStatus.DeviceManufacturer">
+      <topicdata group="api" />
+      <apidata name="DeviceManufacturer" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DeviceManufacturer" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceStatus" ref="true" />
+      </containers>
+      <file name="b12e7c37-1a59-abd8-cd06-91aa72e152c7" />
+    </api>
+    <api id="P:Microsoft.Phone.Info.DeviceStatus.DeviceName">
+      <topicdata group="api" />
+      <apidata name="DeviceName" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DeviceName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceStatus" ref="true" />
+      </containers>
+      <file name="92fb3eee-f764-7ca3-4c8c-48d2c9ad0f13" />
+    </api>
+    <api id="P:Microsoft.Phone.Info.DeviceStatus.DeviceTotalMemory">
+      <topicdata group="api" />
+      <apidata name="DeviceTotalMemory" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DeviceTotalMemory" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceStatus" ref="true" />
+      </containers>
+      <file name="d050ec45-fee5-3d29-145f-e93ada160788" />
+    </api>
+    <api id="P:Microsoft.Phone.Info.DeviceStatus.IsKeyboardDeployed">
+      <topicdata group="api" />
+      <apidata name="IsKeyboardDeployed" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsKeyboardDeployed" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceStatus" ref="true" />
+      </containers>
+      <file name="73e6d668-3cba-66fb-2d99-4aa02e6b5236" />
+    </api>
+    <api id="P:Microsoft.Phone.Info.DeviceStatus.IsKeyboardPresent">
+      <topicdata group="api" />
+      <apidata name="IsKeyboardPresent" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsKeyboardPresent" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceStatus" ref="true" />
+      </containers>
+      <file name="69cb4686-f4ba-17d0-4502-6e5aa531bc8e" />
+    </api>
+    <api id="E:Microsoft.Phone.Info.DeviceStatus.KeyboardDeployedChanged">
+      <topicdata group="api" />
+      <apidata name="KeyboardDeployedChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_KeyboardDeployedChanged" />
+      <remover name="remove_KeyboardDeployedChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.EventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceStatus" ref="true" />
+      </containers>
+      <file name="1a62f462-67e4-9095-7495-d3388eaf34a8" />
+    </api>
+    <api id="P:Microsoft.Phone.Info.DeviceStatus.PowerSource">
+      <topicdata group="api" />
+      <apidata name="PowerSource" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PowerSource" />
+      <returns>
+        <type api="T:Microsoft.Phone.Info.PowerSource" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceStatus" ref="true" />
+      </containers>
+      <file name="6b7985a7-3772-178f-1bbf-9d9697a766dc" />
+    </api>
+    <api id="E:Microsoft.Phone.Info.DeviceStatus.PowerSourceChanged">
+      <topicdata group="api" />
+      <apidata name="PowerSourceChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PowerSourceChanged" />
+      <remover name="remove_PowerSourceChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.EventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.DeviceStatus" ref="true" />
+      </containers>
+      <file name="dfe9a435-6cb9-9ecf-43b9-b0d9c398d9f7" />
+    </api>
+    <api id="T:Microsoft.Phone.Info.MediaCapabilities">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Info.MediaCapabilities" />
+      <apidata name="MediaCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+      </containers>
+      <file name="f5b0cace-940b-e22c-ca5b-49cab77c3e14" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Info.MediaCapabilities">
+      <topicdata name="MediaCapabilities" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Info.MediaCapabilities" />
+      <apidata name="MediaCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Info.MediaCapabilities.IsMultiResolutionVideoSupported" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.MediaCapabilities" />
+      </containers>
+      <file name="4de81c5b-6194-c621-f026-5943f3c9ac1b" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Info.MediaCapabilities">
+      <topicdata name="MediaCapabilities" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Info.MediaCapabilities" />
+      <apidata name="MediaCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Info.MediaCapabilities.IsMultiResolutionVideoSupported" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.MediaCapabilities" />
+      </containers>
+      <file name="435f0fe3-294c-fe3c-02e5-3968e97b43af" />
+    </api>
+    <api id="P:Microsoft.Phone.Info.MediaCapabilities.IsMultiResolutionVideoSupported">
+      <topicdata group="api" />
+      <apidata name="IsMultiResolutionVideoSupported" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsMultiResolutionVideoSupported" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.MediaCapabilities" ref="true" />
+      </containers>
+      <file name="45c7df5a-a4c3-1706-b283-396a27db41b8" />
+    </api>
+    <api id="T:Microsoft.Phone.Info.PowerSource">
+      <topicdata group="api" />
+      <apidata name="PowerSource" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.Info.PowerSource.Battery" />
+        <element api="F:Microsoft.Phone.Info.PowerSource.External" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+      </containers>
+      <file name="8234197d-8826-2c2e-6350-a0536c7152c7" />
+    </api>
+    <api id="F:Microsoft.Phone.Info.PowerSource.Battery">
+      <topicdata group="api" notopic="" />
+      <apidata name="Battery" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Info.PowerSource" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.PowerSource" ref="false" />
+      </containers>
+      <file name="d48b4d54-324b-eaaa-a974-cb6eef8938d9" />
+    </api>
+    <api id="F:Microsoft.Phone.Info.PowerSource.External">
+      <topicdata group="api" notopic="" />
+      <apidata name="External" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Info.PowerSource" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.PowerSource" ref="false" />
+      </containers>
+      <file name="dced0a39-9583-5f10-2f22-b2bbf35bfe54" />
+    </api>
+    <api id="T:Microsoft.Phone.Info.UserExtendedProperties">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Info.UserExtendedProperties" />
+      <apidata name="UserExtendedProperties" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+      </containers>
+      <file name="ab77775f-92c8-cd32-e867-4a91b6f4d20b" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Info.UserExtendedProperties">
+      <topicdata name="UserExtendedProperties" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Info.UserExtendedProperties" />
+      <apidata name="UserExtendedProperties" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Info.UserExtendedProperties.GetValue(System.String)" />
+        <element api="M:Microsoft.Phone.Info.UserExtendedProperties.TryGetValue(System.String,System.Object@)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.UserExtendedProperties" />
+      </containers>
+      <file name="73fbcd74-349d-9b40-3bb5-fb440c2e41fe" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Info.UserExtendedProperties">
+      <topicdata name="UserExtendedProperties" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Info.UserExtendedProperties" />
+      <apidata name="UserExtendedProperties" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Info.UserExtendedProperties.GetValue(System.String)" />
+        <element api="M:Microsoft.Phone.Info.UserExtendedProperties.TryGetValue(System.String,System.Object@)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.UserExtendedProperties" />
+      </containers>
+      <file name="1f05a4f6-0d4b-bc73-625f-c70525e536f9" />
+    </api>
+    <api id="M:Microsoft.Phone.Info.UserExtendedProperties.GetValue(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="propertyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.UserExtendedProperties" ref="true" />
+      </containers>
+      <file name="7962193d-6f29-b5d1-e9e1-ff76e0b5f236" />
+    </api>
+    <api id="M:Microsoft.Phone.Info.UserExtendedProperties.TryGetValue(System.String,System.Object@)">
+      <topicdata group="api" />
+      <apidata name="TryGetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="propertyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="propertyValue" out="true">
+          <referenceTo>
+            <type api="T:System.Object" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Info" />
+        <type api="T:Microsoft.Phone.Info.UserExtendedProperties" ref="true" />
+      </containers>
+      <file name="746df9e9-6172-c251-8509-1a7f3527ccba" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.System.Profile">
+      <topicdata group="api" />
+      <apidata name="Windows.System.Profile" group="namespace" />
+      <elements>
+        <element api="T:Windows.System.Profile.HardwareToken" />
+        <element api="T:Windows.System.Profile.HardwareIdentification" />
+      </elements>
+      <file name="6cc2a07e-288b-0a2f-1cd7-e91b29f64e4b" />
+    </api>
+    <api id="T:Windows.System.Profile.HardwareIdentification">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Profile.HardwareIdentification" />
+      <apidata name="HardwareIdentification" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b3818d61-9223-ed8f-81a2-69576ab32e34" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Profile.HardwareIdentification">
+      <topicdata name="HardwareIdentification" group="list" subgroup="members" typeTopicId="T:Windows.System.Profile.HardwareIdentification" />
+      <apidata name="HardwareIdentification" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.System.Profile.HardwareIdentification.GetPackageSpecificToken(Windows.Storage.Streams.IBuffer)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.HardwareIdentification" />
+      </containers>
+      <file name="c94daacb-4a99-63cf-b188-6b347434c787" />
+    </api>
+    <api id="Methods.T:Windows.System.Profile.HardwareIdentification">
+      <topicdata name="HardwareIdentification" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Profile.HardwareIdentification" />
+      <apidata name="HardwareIdentification" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.System.Profile.HardwareIdentification.GetPackageSpecificToken(Windows.Storage.Streams.IBuffer)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.HardwareIdentification" />
+      </containers>
+      <file name="1db5fdc1-b0d4-10b1-a4ed-8611e6878ec0" />
+    </api>
+    <api id="M:Windows.System.Profile.HardwareIdentification.GetPackageSpecificToken(Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="GetPackageSpecificToken" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="nonce" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.System.Profile.HardwareToken" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.HardwareIdentification" ref="true" />
+      </containers>
+      <file name="d6fb6fa7-10ee-1a23-609c-9ddac04367c7" />
+    </api>
+    <api id="T:Windows.System.Profile.HardwareToken">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Profile.HardwareToken" />
+      <apidata name="HardwareToken" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.System.Profile.IHardwareToken" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bb73ed5d-6032-28f3-8002-890b5292beac" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Profile.HardwareToken">
+      <topicdata name="HardwareToken" group="list" subgroup="members" typeTopicId="T:Windows.System.Profile.HardwareToken" />
+      <apidata name="HardwareToken" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.System.Profile.HardwareToken.Certificate" />
+        <element api="P:Windows.System.Profile.HardwareToken.Id" />
+        <element api="P:Windows.System.Profile.HardwareToken.Signature" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.HardwareToken" />
+      </containers>
+      <file name="48d46322-3e1a-b8fa-41bc-8be1cfa29a40" />
+    </api>
+    <api id="Methods.T:Windows.System.Profile.HardwareToken">
+      <topicdata name="HardwareToken" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Profile.HardwareToken" />
+      <apidata name="HardwareToken" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.HardwareToken" />
+      </containers>
+      <file name="0ef05170-6293-afc7-18f2-b68d5228cde5" />
+    </api>
+    <api id="Properties.T:Windows.System.Profile.HardwareToken">
+      <topicdata name="HardwareToken" group="list" subgroup="Properties" typeTopicId="T:Windows.System.Profile.HardwareToken" />
+      <apidata name="HardwareToken" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Profile.HardwareToken.Certificate" />
+        <element api="P:Windows.System.Profile.HardwareToken.Id" />
+        <element api="P:Windows.System.Profile.HardwareToken.Signature" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.HardwareToken" />
+      </containers>
+      <file name="b10b0e40-4838-5c72-c303-fbfe067917f8" />
+    </api>
+    <api id="P:Windows.System.Profile.HardwareToken.Certificate">
+      <topicdata group="api" />
+      <apidata name="Certificate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Certificate" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.HardwareToken" ref="true" />
+      </containers>
+      <file name="92edebc1-4c98-0d3b-d9c6-f01e2a32d8cc" />
+    </api>
+    <api id="P:Windows.System.Profile.HardwareToken.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.HardwareToken" ref="true" />
+      </containers>
+      <file name="96000a05-11c2-e98f-2da1-6f1813cd7ed8" />
+    </api>
+    <api id="P:Windows.System.Profile.HardwareToken.Signature">
+      <topicdata group="api" />
+      <apidata name="Signature" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Signature" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.HardwareToken" ref="true" />
+      </containers>
+      <file name="104ad378-297c-06b3-441b-7d6f6b8d59bf" />
+    </api>
+  </apis>
+</reflection>

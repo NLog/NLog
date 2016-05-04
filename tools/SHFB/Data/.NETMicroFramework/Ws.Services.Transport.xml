@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="MFWsStack">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MFWsStack</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Ws.Services.Transport">
+      <topicdata group="api" />
+      <apidata name="Ws.Services.Transport" group="namespace" />
+      <elements>
+        <element api="T:Ws.Services.Transport.WsMessageCheck" />
+      </elements>
+      <file name="64fc6a74-726e-8e36-1e76-59150e31a671" />
+    </api>
+    <api id="T:Ws.Services.Transport.WsMessageCheck">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.Transport.WsMessageCheck" />
+      <apidata name="WsMessageCheck" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Transport.WsMessageCheck.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Transport" />
+      </containers>
+      <file name="8f3ea752-7cc8-40df-ede3-4a0a12f924cf" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.Transport.WsMessageCheck">
+      <topicdata name="WsMessageCheck" group="list" subgroup="members" typeTopicId="T:Ws.Services.Transport.WsMessageCheck" />
+      <apidata name="WsMessageCheck" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Transport.WsMessageCheck.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Ws.Services.Transport.WsMessageCheck.#ctor">
+          <element api="M:Ws.Services.Transport.WsMessageCheck.#ctor" />
+          <element api="M:Ws.Services.Transport.WsMessageCheck.#ctor(System.Int32)" />
+        </element>
+        <element api="M:Ws.Services.Transport.WsMessageCheck.IsDuplicate(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Transport" />
+        <type api="T:Ws.Services.Transport.WsMessageCheck" />
+      </containers>
+      <file name="b0186c39-757d-d3e6-f369-49d580d9d8aa" />
+    </api>
+    <api id="Methods.T:Ws.Services.Transport.WsMessageCheck">
+      <topicdata name="WsMessageCheck" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.Transport.WsMessageCheck" />
+      <apidata name="WsMessageCheck" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Transport.WsMessageCheck.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Transport.WsMessageCheck.IsDuplicate(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Transport" />
+        <type api="T:Ws.Services.Transport.WsMessageCheck" />
+      </containers>
+      <file name="695c9fbc-9271-98ff-cb58-49258e2448b3" />
+    </api>
+    <api id="Overload:Ws.Services.Transport.WsMessageCheck.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Ws.Services.Transport.WsMessageCheck" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Ws.Services.Transport.WsMessageCheck.#ctor" />
+        <element api="M:Ws.Services.Transport.WsMessageCheck.#ctor(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Transport" />
+        <type api="T:Ws.Services.Transport.WsMessageCheck" ref="true" />
+      </containers>
+      <file name="ca06be4b-7ea6-4032-2c08-3c1fae5bb940" />
+    </api>
+    <api id="M:Ws.Services.Transport.WsMessageCheck.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Ws.Services.Transport.WsMessageCheck.#ctor" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Transport" />
+        <type api="T:Ws.Services.Transport.WsMessageCheck" ref="true" />
+      </containers>
+      <file name="481d96a2-db6a-e919-750c-267eb6f78396" />
+    </api>
+    <api id="M:Ws.Services.Transport.WsMessageCheck.#ctor(System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Ws.Services.Transport.WsMessageCheck.#ctor" />
+      <parameters>
+        <parameter name="maxQSize">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Transport" />
+        <type api="T:Ws.Services.Transport.WsMessageCheck" ref="true" />
+      </containers>
+      <file name="46af773a-dc92-0d40-5a22-78b4bfbb0a20" />
+    </api>
+    <api id="M:Ws.Services.Transport.WsMessageCheck.IsDuplicate(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="IsDuplicate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="messageID">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="remoteEndpoint">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Transport" />
+        <type api="T:Ws.Services.Transport.WsMessageCheck" ref="true" />
+      </containers>
+      <file name="2c22c3e6-6046-9bf8-af40-ce842d9bcadc" />
+    </api>
+  </apis>
+</reflection>

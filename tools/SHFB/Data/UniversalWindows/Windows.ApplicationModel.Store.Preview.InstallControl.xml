@@ -1,0 +1,2185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.Store.Preview.InstallControl">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.Store.Preview.InstallControl" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" />
+        <element api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus" />
+        <element api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallType" />
+        <element api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" />
+        <element api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManagerItemEventArgs" />
+        <element api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting" />
+        <element api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" />
+      </elements>
+      <file name="72caa0cd-eab9-f3df-5e5e-b3ec5daaa07b" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" />
+      <apidata name="AppInstallItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d6ebfc32-e036-990a-847c-2e50dede5c69" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem">
+      <topicdata name="AppInstallItem" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" />
+      <apidata name="AppInstallItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.Cancel" />
+        <element api="E:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.Completed" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.GetCurrentStatus" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.InstallType" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.IsUserInitiated" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.PackageFamilyName" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.Pause" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.ProductId" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.Restart" />
+        <element api="E:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.StatusChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" />
+      </containers>
+      <file name="819e2f09-b84d-5522-214f-b7775e491ee0" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem">
+      <topicdata name="AppInstallItem" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" />
+      <apidata name="AppInstallItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.Cancel" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.GetCurrentStatus" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.Pause" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.Restart" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" />
+      </containers>
+      <file name="c2b7c8cc-94ca-9537-93c6-98d074a6413b" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem">
+      <topicdata name="AppInstallItem" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" />
+      <apidata name="AppInstallItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.InstallType" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.IsUserInitiated" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.PackageFamilyName" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.ProductId" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" />
+      </containers>
+      <file name="9cb4f99e-a297-56ed-0aa4-7a0dc8775dc1" />
+    </api>
+    <api id="Events.T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem">
+      <topicdata name="AppInstallItem" group="list" subgroup="Events" typeTopicId="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" />
+      <apidata name="AppInstallItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.Completed" />
+        <element api="E:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.StatusChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" />
+      </containers>
+      <file name="c1d76771-6c82-2db4-d3b0-2273040d8e63" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.Cancel">
+      <topicdata group="api" />
+      <apidata name="Cancel" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" ref="true" />
+      </containers>
+      <file name="8eb36a96-faaf-55e5-c173-bcf10d8a1125" />
+    </api>
+    <api id="E:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.Completed">
+      <topicdata group="api" />
+      <apidata name="Completed" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Completed" />
+      <remover name="remove_Completed" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" ref="true" />
+      </containers>
+      <file name="019e24f9-28fc-d9a3-db82-55f191f6bf58" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.GetCurrentStatus">
+      <topicdata group="api" />
+      <apidata name="GetCurrentStatus" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" ref="true" />
+      </containers>
+      <file name="77645c5e-331d-1132-cb74-85fa357c3ec7" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.InstallType">
+      <topicdata group="api" />
+      <apidata name="InstallType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_InstallType" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" ref="true" />
+      </containers>
+      <file name="f087b550-10a8-76d1-7d07-e3b2feb9cd12" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.IsUserInitiated">
+      <topicdata group="api" />
+      <apidata name="IsUserInitiated" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsUserInitiated" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" ref="true" />
+      </containers>
+      <file name="f45fb1cf-a1cc-eb15-df8b-0e3d0bb07bfc" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.PackageFamilyName">
+      <topicdata group="api" />
+      <apidata name="PackageFamilyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PackageFamilyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" ref="true" />
+      </containers>
+      <file name="5f7af08f-9f2b-9b1b-17ce-d0016f41c5ff" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.Pause">
+      <topicdata group="api" />
+      <apidata name="Pause" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" ref="true" />
+      </containers>
+      <file name="b741b994-6657-68a9-799e-8e25e4edd3e2" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.ProductId">
+      <topicdata group="api" />
+      <apidata name="ProductId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ProductId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" ref="true" />
+      </containers>
+      <file name="98d9be8f-47e0-b7c6-799f-84a7aed26b8d" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.Restart">
+      <topicdata group="api" />
+      <apidata name="Restart" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" ref="true" />
+      </containers>
+      <file name="81ce0113-b237-751a-8f60-c0c115d5a7b7" />
+    </api>
+    <api id="E:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem.StatusChanged">
+      <topicdata group="api" />
+      <apidata name="StatusChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_StatusChanged" />
+      <remover name="remove_StatusChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" ref="true" />
+      </containers>
+      <file name="590f93c7-9959-8727-66b1-b6ece212eaa8" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" />
+      <apidata name="AppInstallManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9f6b1a54-540a-2cc8-0b2d-fb03b518d48c" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager">
+      <topicdata name="AppInstallManager" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" />
+      <apidata name="AppInstallManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.#ctor" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.AcquisitionIdentity" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.AppInstallItems" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.AutoUpdateSetting" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.Cancel(System.String)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.GetIsAppAllowedToInstallAsync(System.String)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.GetIsApplicableAsync(System.String,System.String)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.IsStoreBlockedByPolicyAsync(System.String,System.String)" />
+        <element api="E:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.ItemCompleted" />
+        <element api="E:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.ItemStatusChanged" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.Pause(System.String)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.Restart(System.String)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.SearchForAllUpdatesAsync" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.SearchForUpdatesAsync(System.String,System.String)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.StartAppInstallAsync(System.String,System.String,System.Boolean,System.Boolean)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.UpdateAppByPackageFamilyNameAsync(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" />
+      </containers>
+      <file name="ab64c742-3efc-219a-dae8-9948d32654f0" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager">
+      <topicdata name="AppInstallManager" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" />
+      <apidata name="AppInstallManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.Cancel(System.String)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.GetIsAppAllowedToInstallAsync(System.String)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.GetIsApplicableAsync(System.String,System.String)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.IsStoreBlockedByPolicyAsync(System.String,System.String)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.Pause(System.String)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.Restart(System.String)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.SearchForAllUpdatesAsync" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.SearchForUpdatesAsync(System.String,System.String)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.StartAppInstallAsync(System.String,System.String,System.Boolean,System.Boolean)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.UpdateAppByPackageFamilyNameAsync(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" />
+      </containers>
+      <file name="531a22e5-724a-baa5-37a9-464e94d2a07a" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager">
+      <topicdata name="AppInstallManager" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" />
+      <apidata name="AppInstallManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.#ctor" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.AcquisitionIdentity" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.AppInstallItems" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.AutoUpdateSetting" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" />
+      </containers>
+      <file name="e77d4e08-4197-b156-02fe-7a2fa874c970" />
+    </api>
+    <api id="Events.T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager">
+      <topicdata name="AppInstallManager" group="list" subgroup="Events" typeTopicId="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" />
+      <apidata name="AppInstallManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.#ctor" />
+      <elements>
+        <element api="E:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.ItemCompleted" />
+        <element api="E:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.ItemStatusChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" />
+      </containers>
+      <file name="8d2904f8-2e4c-04a1-9019-39f9a4fb45c3" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" ref="true" />
+      </containers>
+      <file name="c5510003-be68-6e18-9719-3e138c2e09e9" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.AcquisitionIdentity">
+      <topicdata group="api" />
+      <apidata name="AcquisitionIdentity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AcquisitionIdentity" />
+      <setter name="set_AcquisitionIdentity" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" ref="true" />
+      </containers>
+      <file name="66d4c169-a1e4-09fe-509e-17d71deb49c0" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.AppInstallItems">
+      <topicdata group="api" />
+      <apidata name="AppInstallItems" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AppInstallItems" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" ref="true" />
+      </containers>
+      <file name="9112f63e-1513-9eef-2795-1fd2d66007d4" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.AutoUpdateSetting">
+      <topicdata group="api" />
+      <apidata name="AutoUpdateSetting" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AutoUpdateSetting" />
+      <setter name="set_AutoUpdateSetting" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" ref="true" />
+      </containers>
+      <file name="807b3413-2e54-0fe7-4c60-a414b4f36959" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.Cancel(System.String)">
+      <topicdata group="api" />
+      <apidata name="Cancel" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="productId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" ref="true" />
+      </containers>
+      <file name="2a97f01c-91ff-8646-ac8e-9273c7291d26" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.GetIsAppAllowedToInstallAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetIsAppAllowedToInstallAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="productId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a6102bee-0bb8-21fe-d046-a3276fbd3a37" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.GetIsApplicableAsync(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="GetIsApplicableAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="productId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="skuId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="7ba6a462-1075-25b0-dae1-a295827b3978" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.IsStoreBlockedByPolicyAsync(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="IsStoreBlockedByPolicyAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="storeClientName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="storeClientPublisher" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="283e3298-8bf8-a801-8827-8a3af81323b1" />
+    </api>
+    <api id="E:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.ItemCompleted">
+      <topicdata group="api" />
+      <apidata name="ItemCompleted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ItemCompleted" />
+      <remover name="remove_ItemCompleted" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" ref="true" />
+            <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManagerItemEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" ref="true" />
+      </containers>
+      <file name="385f5b8d-b9a5-20f3-0575-7c694f211487" />
+    </api>
+    <api id="E:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.ItemStatusChanged">
+      <topicdata group="api" />
+      <apidata name="ItemStatusChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ItemStatusChanged" />
+      <remover name="remove_ItemStatusChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" ref="true" />
+            <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManagerItemEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" ref="true" />
+      </containers>
+      <file name="1069e5a3-6fa1-6c3f-7691-ccb21902f721" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.Pause(System.String)">
+      <topicdata group="api" />
+      <apidata name="Pause" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="productId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" ref="true" />
+      </containers>
+      <file name="8ecae453-a821-c0f9-d9ea-b90c379f5f8d" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.Restart(System.String)">
+      <topicdata group="api" />
+      <apidata name="Restart" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="productId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" ref="true" />
+      </containers>
+      <file name="b963f933-4e1e-9ddf-ab24-9a39717851e8" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.SearchForAllUpdatesAsync">
+      <topicdata group="api" />
+      <apidata name="SearchForAllUpdatesAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="1ab1661e-fe83-af9b-d0ba-51b8f43bc58d" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.SearchForUpdatesAsync(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="SearchForUpdatesAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="productId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="skuId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="6523cbaf-ca1b-54cb-9419-ad02bd89015f" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.StartAppInstallAsync(System.String,System.String,System.Boolean,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="StartAppInstallAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="productId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="skuId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="repair" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="forceUseOfNonRemovableStorage" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="2f7085eb-cdbf-6868-3f68-f86f1d30c30b" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager.UpdateAppByPackageFamilyNameAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="UpdateAppByPackageFamilyNameAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="packageFamilyName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="2ae686e2-2ba9-ee79-c4d3-272fcf564e58" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManagerItemEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManagerItemEventArgs" />
+      <apidata name="AppInstallManagerItemEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4588709b-d6cf-a9e6-c8bf-d85e08ecb791" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManagerItemEventArgs">
+      <topicdata name="AppInstallManagerItemEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManagerItemEventArgs" />
+      <apidata name="AppInstallManagerItemEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManagerItemEventArgs.Item" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManagerItemEventArgs" />
+      </containers>
+      <file name="921cff13-7f63-ef3f-6a46-bb44a2d3efba" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManagerItemEventArgs">
+      <topicdata name="AppInstallManagerItemEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManagerItemEventArgs" />
+      <apidata name="AppInstallManagerItemEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManagerItemEventArgs" />
+      </containers>
+      <file name="cf982812-d2ca-8029-2d59-e712d8be8ebc" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManagerItemEventArgs">
+      <topicdata name="AppInstallManagerItemEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManagerItemEventArgs" />
+      <apidata name="AppInstallManagerItemEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManagerItemEventArgs.Item" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManagerItemEventArgs" />
+      </containers>
+      <file name="403bf543-040d-2b30-f558-dc2d4acea1ba" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManagerItemEventArgs.Item">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManagerItemEventArgs" ref="true" />
+      </containers>
+      <file name="f160d315-c741-f92f-d339-6b32996ecaad" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState">
+      <topicdata group="api" />
+      <apidata name="AppInstallState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.Pending" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.Starting" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.AcquiringLicense" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.Downloading" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.RestoringData" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.Installing" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.Completed" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.Canceled" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.Paused" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.Error" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.PausedLowBattery" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.PausedWiFiRecommended" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.PausedWiFiRequired" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.ReadyToDownload" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1d70a00b-cb78-edd3-d4f9-34a23bf950eb" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.AcquiringLicense">
+      <topicdata group="api" notopic="" />
+      <apidata name="AcquiringLicense" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </containers>
+      <file name="6b176013-cf75-89f4-89b6-c05ebed1da0e" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.Canceled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Canceled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </containers>
+      <file name="7ac87044-cc3c-cfa1-1220-e6c8fcf4f1ac" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.Completed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Completed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </containers>
+      <file name="d17d2f82-b80c-f7bf-5f6e-2f6a880c7d38" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.Downloading">
+      <topicdata group="api" notopic="" />
+      <apidata name="Downloading" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </containers>
+      <file name="bd8cca04-c538-2fdb-0d9e-20e588ff18bc" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.Error">
+      <topicdata group="api" notopic="" />
+      <apidata name="Error" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </containers>
+      <file name="32554384-78f7-994c-13fe-36e21a8fcf2d" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.Installing">
+      <topicdata group="api" notopic="" />
+      <apidata name="Installing" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </containers>
+      <file name="3f5a224a-0082-0222-7b00-add81cdb3403" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.Paused">
+      <topicdata group="api" notopic="" />
+      <apidata name="Paused" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </containers>
+      <file name="cdcbc562-8006-3de1-1953-dd77a0574f61" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.PausedLowBattery">
+      <topicdata group="api" notopic="" />
+      <apidata name="PausedLowBattery" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </containers>
+      <file name="cb3c480d-c284-4132-0b24-abcb1273fe16" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.PausedWiFiRecommended">
+      <topicdata group="api" notopic="" />
+      <apidata name="PausedWiFiRecommended" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </containers>
+      <file name="9c446294-a126-5eab-66fa-58c6011eccb9" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.PausedWiFiRequired">
+      <topicdata group="api" notopic="" />
+      <apidata name="PausedWiFiRequired" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </containers>
+      <file name="08011ce1-4868-9675-f72e-d059576a198d" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.Pending">
+      <topicdata group="api" notopic="" />
+      <apidata name="Pending" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </containers>
+      <file name="9050a706-a73f-f589-1dea-2e9b07d6431f" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.ReadyToDownload">
+      <topicdata group="api" notopic="" />
+      <apidata name="ReadyToDownload" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </returns>
+      <value>13</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </containers>
+      <file name="409a69fc-5a03-8462-dd12-958d7ecaf86c" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.RestoringData">
+      <topicdata group="api" notopic="" />
+      <apidata name="RestoringData" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </containers>
+      <file name="c66e1e78-d5e6-089f-3b37-53764fb01968" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState.Starting">
+      <topicdata group="api" notopic="" />
+      <apidata name="Starting" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </containers>
+      <file name="58316837-ee51-c38a-be80-1f0a2b931e98" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus" />
+      <apidata name="AppInstallStatus" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="96546911-e280-3c6b-e87c-c1c9c3822c2e" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus">
+      <topicdata name="AppInstallStatus" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus" />
+      <apidata name="AppInstallStatus" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus.BytesDownloaded" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus.DownloadSizeInBytes" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus.ErrorCode" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus.InstallState" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus.PercentComplete" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus" />
+      </containers>
+      <file name="034cf248-b57c-53ca-aa69-b4fa45236c3f" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus">
+      <topicdata name="AppInstallStatus" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus" />
+      <apidata name="AppInstallStatus" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus" />
+      </containers>
+      <file name="5489169b-2542-67f3-baec-7424521ac6a4" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus">
+      <topicdata name="AppInstallStatus" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus" />
+      <apidata name="AppInstallStatus" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus.BytesDownloaded" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus.DownloadSizeInBytes" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus.ErrorCode" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus.InstallState" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus.PercentComplete" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus" />
+      </containers>
+      <file name="95bc5e04-94b0-06c4-96b7-fe70cefda5f3" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus.BytesDownloaded">
+      <topicdata group="api" />
+      <apidata name="BytesDownloaded" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_BytesDownloaded" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus" ref="true" />
+      </containers>
+      <file name="7cefe8df-e447-7be1-2f8f-23d9eecbc9ee" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus.DownloadSizeInBytes">
+      <topicdata group="api" />
+      <apidata name="DownloadSizeInBytes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DownloadSizeInBytes" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus" ref="true" />
+      </containers>
+      <file name="33c6538f-3cd9-69b3-527f-ca4112a0155c" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus.ErrorCode">
+      <topicdata group="api" />
+      <apidata name="ErrorCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ErrorCode" />
+      <returns>
+        <type api="T:Windows.Foundation.HResult" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus" ref="true" />
+      </containers>
+      <file name="55762c9f-b980-4930-1f12-f75f3f4d5365" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus.InstallState">
+      <topicdata group="api" />
+      <apidata name="InstallState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_InstallState" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus" ref="true" />
+      </containers>
+      <file name="a819ec4a-e0bd-6dfe-a0c3-2778802c6cb1" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus.PercentComplete">
+      <topicdata group="api" />
+      <apidata name="PercentComplete" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PercentComplete" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus" ref="true" />
+      </containers>
+      <file name="7c073ed8-9358-cdd8-21d0-848da171893a" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallType">
+      <topicdata group="api" />
+      <apidata name="AppInstallType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallType.Install" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallType.Update" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallType.Repair" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9dc1840c-7eaf-2124-55f2-ef8ac037821f" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallType.Install">
+      <topicdata group="api" notopic="" />
+      <apidata name="Install" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallType" ref="false" />
+      </containers>
+      <file name="0b865487-507b-ce51-dadf-acba0135b295" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallType.Repair">
+      <topicdata group="api" notopic="" />
+      <apidata name="Repair" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallType" ref="false" />
+      </containers>
+      <file name="448e8769-7cac-2f4b-25c1-906db2cc1b94" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallType.Update">
+      <topicdata group="api" notopic="" />
+      <apidata name="Update" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallType" ref="false" />
+      </containers>
+      <file name="f52511e4-3196-c828-137a-749e07838a58" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting">
+      <topicdata group="api" />
+      <apidata name="AutoUpdateSetting" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting.Disabled" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting.Enabled" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting.DisabledByPolicy" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting.EnabledByPolicy" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f5f175ef-de2d-aafb-cbb0-0282713b5295" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting.Disabled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disabled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting" ref="false" />
+      </containers>
+      <file name="36f46f54-db05-3644-1743-307ebd9920c3" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting.DisabledByPolicy">
+      <topicdata group="api" notopic="" />
+      <apidata name="DisabledByPolicy" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting" ref="false" />
+      </containers>
+      <file name="e77ddc41-7210-77fd-cdb4-6bebbbc05749" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting.Enabled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Enabled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting" ref="false" />
+      </containers>
+      <file name="668d0dcb-15ab-e7a1-20af-c92e7b0f626f" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting.EnabledByPolicy">
+      <topicdata group="api" notopic="" />
+      <apidata name="EnabledByPolicy" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview.InstallControl" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting" ref="false" />
+      </containers>
+      <file name="2b947588-cd7a-cdfe-4a75-6b1639c6405e" />
+    </api>
+  </apis>
+</reflection>

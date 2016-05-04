@@ -1,0 +1,846 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Networking.PushNotifications">
+      <topicdata group="api" />
+      <apidata name="Windows.Networking.PushNotifications" group="namespace" />
+      <elements>
+        <element api="T:Windows.Networking.PushNotifications.PushNotificationType" />
+        <element api="T:Windows.Networking.PushNotifications.PushNotificationChannel" />
+        <element api="T:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs" />
+        <element api="T:Windows.Networking.PushNotifications.RawNotification" />
+        <element api="T:Windows.Networking.PushNotifications.PushNotificationChannelManager" />
+      </elements>
+      <file name="a6b61616-cd2a-a0a9-5bfd-0a27c0fcf23f" />
+    </api>
+    <api id="T:Windows.Networking.PushNotifications.PushNotificationChannel">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.PushNotifications.PushNotificationChannel" />
+      <apidata name="PushNotificationChannel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Networking.PushNotifications.IPushNotificationChannel" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="cf6aac01-4196-e5aa-60e1-90887c129404" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.PushNotifications.PushNotificationChannel">
+      <topicdata name="PushNotificationChannel" group="list" subgroup="members" typeTopicId="T:Windows.Networking.PushNotifications.PushNotificationChannel" />
+      <apidata name="PushNotificationChannel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Networking.PushNotifications.PushNotificationChannel.Close" />
+        <element api="P:Windows.Networking.PushNotifications.PushNotificationChannel.ExpirationTime" />
+        <element api="E:Windows.Networking.PushNotifications.PushNotificationChannel.PushNotificationReceived" />
+        <element api="P:Windows.Networking.PushNotifications.PushNotificationChannel.Uri" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationChannel" />
+      </containers>
+      <file name="bc704a18-c18a-46b3-411c-5cc18e4d9211" />
+    </api>
+    <api id="Methods.T:Windows.Networking.PushNotifications.PushNotificationChannel">
+      <topicdata name="PushNotificationChannel" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.PushNotifications.PushNotificationChannel" />
+      <apidata name="PushNotificationChannel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Networking.PushNotifications.PushNotificationChannel.Close" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationChannel" />
+      </containers>
+      <file name="c34ad06a-9139-fc1b-9827-aa4bc88e0356" />
+    </api>
+    <api id="Properties.T:Windows.Networking.PushNotifications.PushNotificationChannel">
+      <topicdata name="PushNotificationChannel" group="list" subgroup="Properties" typeTopicId="T:Windows.Networking.PushNotifications.PushNotificationChannel" />
+      <apidata name="PushNotificationChannel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Networking.PushNotifications.PushNotificationChannel.ExpirationTime" />
+        <element api="P:Windows.Networking.PushNotifications.PushNotificationChannel.Uri" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationChannel" />
+      </containers>
+      <file name="356a99ba-415c-f051-89a3-d0072dcdae4b" />
+    </api>
+    <api id="Events.T:Windows.Networking.PushNotifications.PushNotificationChannel">
+      <topicdata name="PushNotificationChannel" group="list" subgroup="Events" typeTopicId="T:Windows.Networking.PushNotifications.PushNotificationChannel" />
+      <apidata name="PushNotificationChannel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Networking.PushNotifications.PushNotificationChannel.PushNotificationReceived" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationChannel" />
+      </containers>
+      <file name="588063d8-9dcf-17f0-d41d-29bfb471be6d" />
+    </api>
+    <api id="M:Windows.Networking.PushNotifications.PushNotificationChannel.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationChannel" ref="true" />
+      </containers>
+      <file name="bb86655f-b388-7d88-415e-2918d1da909b" />
+    </api>
+    <api id="P:Windows.Networking.PushNotifications.PushNotificationChannel.ExpirationTime">
+      <topicdata group="api" />
+      <apidata name="ExpirationTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ExpirationTime" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationChannel" ref="true" />
+      </containers>
+      <file name="65e63b68-8a68-b45c-a61d-eb6cc2912306" />
+    </api>
+    <api id="E:Windows.Networking.PushNotifications.PushNotificationChannel.PushNotificationReceived">
+      <topicdata group="api" />
+      <apidata name="PushNotificationReceived" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PushNotificationReceived" />
+      <remover name="remove_PushNotificationReceived" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.PushNotifications.PushNotificationChannel" ref="true" />
+            <type api="T:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationChannel" ref="true" />
+      </containers>
+      <file name="31fc1c62-80cb-6ed4-2603-9ded69451023" />
+    </api>
+    <api id="P:Windows.Networking.PushNotifications.PushNotificationChannel.Uri">
+      <topicdata group="api" />
+      <apidata name="Uri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Uri" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationChannel" ref="true" />
+      </containers>
+      <file name="429c4b07-9603-138b-822c-91ae9364bdb8" />
+    </api>
+    <api id="T:Windows.Networking.PushNotifications.PushNotificationChannelManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.PushNotifications.PushNotificationChannelManager" />
+      <apidata name="PushNotificationChannelManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="MTA" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="38a73676-46d8-0962-2559-6a1211c8dee5" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.PushNotifications.PushNotificationChannelManager">
+      <topicdata name="PushNotificationChannelManager" group="list" subgroup="members" typeTopicId="T:Windows.Networking.PushNotifications.PushNotificationChannelManager" />
+      <apidata name="PushNotificationChannelManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.Networking.PushNotifications.PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync">
+          <element api="M:Windows.Networking.PushNotifications.PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync" />
+          <element api="M:Windows.Networking.PushNotifications.PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync(System.String)" />
+        </element>
+        <element api="M:Windows.Networking.PushNotifications.PushNotificationChannelManager.CreatePushNotificationChannelForSecondaryTileAsync(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationChannelManager" />
+      </containers>
+      <file name="5d661568-0103-c80a-b72e-a8f0c81e7d6d" />
+    </api>
+    <api id="Methods.T:Windows.Networking.PushNotifications.PushNotificationChannelManager">
+      <topicdata name="PushNotificationChannelManager" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.PushNotifications.PushNotificationChannelManager" />
+      <apidata name="PushNotificationChannelManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.Networking.PushNotifications.PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync">
+          <element api="M:Windows.Networking.PushNotifications.PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync" />
+          <element api="M:Windows.Networking.PushNotifications.PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync(System.String)" />
+        </element>
+        <element api="M:Windows.Networking.PushNotifications.PushNotificationChannelManager.CreatePushNotificationChannelForSecondaryTileAsync(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationChannelManager" />
+      </containers>
+      <file name="3c4095b0-0592-dea4-d8d0-431b9407461d" />
+    </api>
+    <api id="Overload:Windows.Networking.PushNotifications.PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync">
+      <topicdata name="CreatePushNotificationChannelForApplicationAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Networking.PushNotifications.PushNotificationChannelManager" />
+      <apidata name="CreatePushNotificationChannelForApplicationAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Networking.PushNotifications.PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync" />
+        <element api="M:Windows.Networking.PushNotifications.PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationChannelManager" ref="true" />
+      </containers>
+      <file name="d0f9ef1c-be13-ecb9-cc90-c94b88660bfd" />
+    </api>
+    <api id="M:Windows.Networking.PushNotifications.PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync">
+      <topicdata group="api" />
+      <apidata name="CreatePushNotificationChannelForApplicationAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Networking.PushNotifications.PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.PushNotifications.PushNotificationChannel" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationChannelManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreatePushNotificationChannelForApplicationAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="45479b93-4af5-a919-e672-0e139ba5dac8" />
+    </api>
+    <api id="M:Windows.Networking.PushNotifications.PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="CreatePushNotificationChannelForApplicationAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Networking.PushNotifications.PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="applicationId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.PushNotifications.PushNotificationChannel" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationChannelManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreatePushNotificationChannelForApplicationAsyncWithId</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="263fdb32-29e9-6379-a491-116e7150ac00" />
+    </api>
+    <api id="M:Windows.Networking.PushNotifications.PushNotificationChannelManager.CreatePushNotificationChannelForSecondaryTileAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="CreatePushNotificationChannelForSecondaryTileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="tileId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.PushNotifications.PushNotificationChannel" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationChannelManager" ref="true" />
+      </containers>
+      <file name="899916fc-87a7-a5d9-dc9b-d61326c03fd1" />
+    </api>
+    <api id="T:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs" />
+      <apidata name="PushNotificationReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Networking.PushNotifications.IPushNotificationReceivedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="66c72504-3071-6579-7fda-4aea6b184ede" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs">
+      <topicdata name="PushNotificationReceivedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs" />
+      <apidata name="PushNotificationReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs.BadgeNotification" />
+        <element api="P:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs.Cancel" />
+        <element api="P:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs.NotificationType" />
+        <element api="P:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs.RawNotification" />
+        <element api="P:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs.TileNotification" />
+        <element api="P:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs.ToastNotification" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs" />
+      </containers>
+      <file name="88a24e67-acbd-d81c-3cf1-9a78ba376048" />
+    </api>
+    <api id="Methods.T:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs">
+      <topicdata name="PushNotificationReceivedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs" />
+      <apidata name="PushNotificationReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs" />
+      </containers>
+      <file name="672f2b4e-29aa-bf05-3458-31255fdc5457" />
+    </api>
+    <api id="Properties.T:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs">
+      <topicdata name="PushNotificationReceivedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs" />
+      <apidata name="PushNotificationReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs.BadgeNotification" />
+        <element api="P:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs.Cancel" />
+        <element api="P:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs.NotificationType" />
+        <element api="P:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs.RawNotification" />
+        <element api="P:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs.TileNotification" />
+        <element api="P:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs.ToastNotification" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs" />
+      </containers>
+      <file name="4b99dd4e-8456-2ee4-2f88-c0ceadfa7f0a" />
+    </api>
+    <api id="P:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs.BadgeNotification">
+      <topicdata group="api" />
+      <apidata name="BadgeNotification" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_BadgeNotification" />
+      <returns>
+        <type api="T:Windows.UI.Notifications.BadgeNotification" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="fe4a7097-5203-9063-4f7e-73acdd262e4c" />
+    </api>
+    <api id="P:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs.Cancel">
+      <topicdata group="api" />
+      <apidata name="Cancel" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Cancel" />
+      <setter name="set_Cancel" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="e87c2638-8d48-93a5-a614-e8728204b45d" />
+    </api>
+    <api id="P:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs.NotificationType">
+      <topicdata group="api" />
+      <apidata name="NotificationType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NotificationType" />
+      <returns>
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="7a500492-6440-8701-49b9-aea4b68d2927" />
+    </api>
+    <api id="P:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs.RawNotification">
+      <topicdata group="api" />
+      <apidata name="RawNotification" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RawNotification" />
+      <returns>
+        <type api="T:Windows.Networking.PushNotifications.RawNotification" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="46c62056-ddde-c9a8-d822-8f3adeddc57b" />
+    </api>
+    <api id="P:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs.TileNotification">
+      <topicdata group="api" />
+      <apidata name="TileNotification" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_TileNotification" />
+      <returns>
+        <type api="T:Windows.UI.Notifications.TileNotification" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="23d1f6e3-78ef-6088-0ca7-f016c764bbd2" />
+    </api>
+    <api id="P:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs.ToastNotification">
+      <topicdata group="api" />
+      <apidata name="ToastNotification" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ToastNotification" />
+      <returns>
+        <type api="T:Windows.UI.Notifications.ToastNotification" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="c06ad2e2-446d-82eb-8cd9-efe26cebfe97" />
+    </api>
+    <api id="T:Windows.Networking.PushNotifications.PushNotificationType">
+      <topicdata group="api" />
+      <apidata name="PushNotificationType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Networking.PushNotifications.PushNotificationType.Toast" />
+        <element api="F:Windows.Networking.PushNotifications.PushNotificationType.Tile" />
+        <element api="F:Windows.Networking.PushNotifications.PushNotificationType.Badge" />
+        <element api="F:Windows.Networking.PushNotifications.PushNotificationType.Raw" />
+        <element api="F:Windows.Networking.PushNotifications.PushNotificationType.TileFlyout" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="89ef871f-6ed1-5f65-be1d-10fe8a713275" />
+    </api>
+    <api id="F:Windows.Networking.PushNotifications.PushNotificationType.Badge">
+      <topicdata group="api" notopic="" />
+      <apidata name="Badge" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationType" ref="false" />
+      </containers>
+      <file name="39f9697b-ad5c-b925-1fbc-1a0d83685713" />
+    </api>
+    <api id="F:Windows.Networking.PushNotifications.PushNotificationType.Raw">
+      <topicdata group="api" notopic="" />
+      <apidata name="Raw" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationType" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationType" ref="false" />
+      </containers>
+      <file name="aa4d8c49-ac12-5dfb-9733-ff4050dc23b0" />
+    </api>
+    <api id="F:Windows.Networking.PushNotifications.PushNotificationType.Tile">
+      <topicdata group="api" notopic="" />
+      <apidata name="Tile" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationType" ref="false" />
+      </containers>
+      <file name="08df1515-0155-44e8-6c36-40f9d49cde03" />
+    </api>
+    <api id="F:Windows.Networking.PushNotifications.PushNotificationType.TileFlyout">
+      <topicdata group="api" notopic="" />
+      <apidata name="TileFlyout" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationType" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationType" ref="false" />
+      </containers>
+      <file name="9a5dc6f1-3f8d-6e1a-9eb4-aba6c24fd10c" />
+    </api>
+    <api id="F:Windows.Networking.PushNotifications.PushNotificationType.Toast">
+      <topicdata group="api" notopic="" />
+      <apidata name="Toast" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.PushNotificationType" ref="false" />
+      </containers>
+      <file name="5bd00ab9-95c6-bc25-f85e-2938f86a231d" />
+    </api>
+    <api id="T:Windows.Networking.PushNotifications.RawNotification">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.PushNotifications.RawNotification" />
+      <apidata name="RawNotification" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Networking.PushNotifications.IRawNotification" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a8fc25c5-7255-9dbf-ae88-341f524203fb" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.PushNotifications.RawNotification">
+      <topicdata name="RawNotification" group="list" subgroup="members" typeTopicId="T:Windows.Networking.PushNotifications.RawNotification" />
+      <apidata name="RawNotification" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Networking.PushNotifications.RawNotification.Content" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.RawNotification" />
+      </containers>
+      <file name="8aa81080-1a92-95a1-dafc-a1e358e6fdd2" />
+    </api>
+    <api id="Methods.T:Windows.Networking.PushNotifications.RawNotification">
+      <topicdata name="RawNotification" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.PushNotifications.RawNotification" />
+      <apidata name="RawNotification" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.RawNotification" />
+      </containers>
+      <file name="561c3cc6-be52-cd09-26af-733fe856e3bd" />
+    </api>
+    <api id="Properties.T:Windows.Networking.PushNotifications.RawNotification">
+      <topicdata name="RawNotification" group="list" subgroup="Properties" typeTopicId="T:Windows.Networking.PushNotifications.RawNotification" />
+      <apidata name="RawNotification" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Networking.PushNotifications.RawNotification.Content" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.RawNotification" />
+      </containers>
+      <file name="8b90e9f6-5934-f888-bd16-dd45b743a142" />
+    </api>
+    <api id="P:Windows.Networking.PushNotifications.RawNotification.Content">
+      <topicdata group="api" />
+      <apidata name="Content" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Content" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.PushNotifications" />
+        <type api="T:Windows.Networking.PushNotifications.RawNotification" ref="true" />
+      </containers>
+      <file name="e16981c4-a517-970f-0191-22c9028a6974" />
+    </api>
+  </apis>
+</reflection>

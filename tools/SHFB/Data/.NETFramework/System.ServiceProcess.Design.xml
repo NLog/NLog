@@ -1,0 +1,1771 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Design">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Drawing.BitmapSuffixInSatelliteAssemblyAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Design.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Design.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Design.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.ServiceProcess">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceProcess.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceProcess.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceProcess.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ServiceProcess.Design">
+      <topicdata group="api" />
+      <apidata name="System.ServiceProcess.Design" group="namespace" />
+      <elements>
+        <element api="T:System.ServiceProcess.Design.ServiceControllerDesigner" />
+        <element api="T:System.ServiceProcess.Design.ServiceInstallerDialogResult" />
+        <element api="T:System.ServiceProcess.Design.ServiceInstallerDialog" />
+      </elements>
+      <file name="94582859-db7a-7d15-d7be-bf81fdae8acc" />
+    </api>
+    <api id="T:System.ServiceProcess.Design.ServiceControllerDesigner">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceProcess.Design.ServiceControllerDesigner" />
+      <apidata name="ServiceControllerDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceProcess.Design.ServiceControllerDesigner.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.Design.ComponentDesigner" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+      </containers>
+      <file name="4410b8de-462f-e6fd-1361-9eb0ce9dcb68" />
+    </api>
+    <api id="AllMembers.T:System.ServiceProcess.Design.ServiceControllerDesigner">
+      <topicdata name="ServiceControllerDesigner" group="list" subgroup="members" typeTopicId="T:System.ServiceProcess.Design.ServiceControllerDesigner" />
+      <apidata name="ServiceControllerDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceProcess.Design.ServiceControllerDesigner.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ActionLists" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.AssociatedComponents" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Component" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceControllerDesigner.Dispose">
+          <element api="M:System.ComponentModel.Design.ComponentDesigner.Dispose" />
+          <element api="M:System.ComponentModel.Design.ComponentDesigner.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.DoDefaultAction" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.Finalize" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.GetService(System.Type)" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.InheritanceAttribute" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Inherited" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.Initialize(System.ComponentModel.IComponent)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeExistingComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNewComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNonDefault" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InvokeGetInheritanceAttribute(System.ComponentModel.Design.ComponentDesigner)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.OnSetComponentDefaults" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ParentComponent" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanged(System.ComponentModel.MemberDescriptor,System.Object,System.Object)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanging(System.ComponentModel.MemberDescriptor)" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ShadowProperties" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterProperties(System.Collections.IDictionary)" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Children" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Parent" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Verbs" />
+        <element api="M:System.ServiceProcess.Design.ServiceControllerDesigner.#ctor" />
+        <element api="M:System.ServiceProcess.Design.ServiceControllerDesigner.PreFilterProperties(System.Collections.IDictionary)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+        <type api="T:System.ServiceProcess.Design.ServiceControllerDesigner" />
+      </containers>
+      <file name="b9a30766-cdc4-ec43-56aa-709fce84cc30" />
+    </api>
+    <api id="Methods.T:System.ServiceProcess.Design.ServiceControllerDesigner">
+      <topicdata name="ServiceControllerDesigner" group="list" subgroup="Methods" typeTopicId="T:System.ServiceProcess.Design.ServiceControllerDesigner" />
+      <apidata name="ServiceControllerDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceProcess.Design.ServiceControllerDesigner.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceControllerDesigner.Dispose">
+          <element api="M:System.ComponentModel.Design.ComponentDesigner.Dispose" />
+          <element api="M:System.ComponentModel.Design.ComponentDesigner.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.DoDefaultAction" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.Finalize" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.GetService(System.Type)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.Initialize(System.ComponentModel.IComponent)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeExistingComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNewComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNonDefault" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InvokeGetInheritanceAttribute(System.ComponentModel.Design.ComponentDesigner)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.OnSetComponentDefaults" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanged(System.ComponentModel.MemberDescriptor,System.Object,System.Object)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanging(System.ComponentModel.MemberDescriptor)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ServiceProcess.Design.ServiceControllerDesigner.PreFilterProperties(System.Collections.IDictionary)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+        <type api="T:System.ServiceProcess.Design.ServiceControllerDesigner" />
+      </containers>
+      <file name="001bc060-5ff2-0909-0f47-6d2302aa9fbb" />
+    </api>
+    <api id="Properties.T:System.ServiceProcess.Design.ServiceControllerDesigner">
+      <topicdata name="ServiceControllerDesigner" group="list" subgroup="Properties" typeTopicId="T:System.ServiceProcess.Design.ServiceControllerDesigner" />
+      <apidata name="ServiceControllerDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceProcess.Design.ServiceControllerDesigner.#ctor" />
+      <elements>
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ActionLists" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.AssociatedComponents" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Component" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.InheritanceAttribute" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Inherited" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ParentComponent" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ShadowProperties" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Children" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Parent" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Verbs" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+        <type api="T:System.ServiceProcess.Design.ServiceControllerDesigner" />
+      </containers>
+      <file name="922cf54e-b668-be04-e269-936c57e9234a" />
+    </api>
+    <api id="M:System.ServiceProcess.Design.ServiceControllerDesigner.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+        <type api="T:System.ServiceProcess.Design.ServiceControllerDesigner" ref="true" />
+      </containers>
+      <file name="501d4bd0-b993-e5ca-6b48-c428ed99f73d" />
+    </api>
+    <api id="M:System.ServiceProcess.Design.ServiceControllerDesigner.PreFilterProperties(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="PreFilterProperties" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterProperties(System.Collections.IDictionary)">
+          <type api="T:System.ComponentModel.Design.ComponentDesigner" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="properties">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+        <type api="T:System.ServiceProcess.Design.ServiceControllerDesigner" ref="true" />
+      </containers>
+      <file name="d7d46cf1-ddd7-b6dc-5a18-4cff82c95c79" />
+    </api>
+    <api id="T:System.ServiceProcess.Design.ServiceInstallerDialog">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceProcess.Design.ServiceInstallerDialog" />
+      <apidata name="ServiceInstallerDialog" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceProcess.Design.ServiceInstallerDialog.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Forms.Form" ref="true" />
+          <type api="T:System.Windows.Forms.ContainerControl" ref="true" />
+          <type api="T:System.Windows.Forms.ScrollableControl" ref="true" />
+          <type api="T:System.Windows.Forms.Control" ref="true" />
+          <type api="T:System.ComponentModel.Component" ref="true" />
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceProcess" module="System.ServiceProcess" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+      </containers>
+      <file name="5a7c1fac-46aa-2f1a-2895-b576b5dda437" />
+    </api>
+    <api id="AllMembers.T:System.ServiceProcess.Design.ServiceInstallerDialog">
+      <topicdata name="ServiceInstallerDialog" group="list" subgroup="members" typeTopicId="T:System.ServiceProcess.Design.ServiceInstallerDialog" />
+      <apidata name="ServiceInstallerDialog" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceProcess.Design.ServiceInstallerDialog.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.Windows.Forms.Form.Dispose(System.Boolean)" />
+        </element>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="M:System.ServiceProcess.Design.ServiceInstallerDialog.#ctor" />
+        <element api="M:System.ServiceProcess.Design.ServiceInstallerDialog.Main" />
+        <element api="P:System.ServiceProcess.Design.ServiceInstallerDialog.Password" />
+        <element api="P:System.ServiceProcess.Design.ServiceInstallerDialog.Result" />
+        <element api="P:System.ServiceProcess.Design.ServiceInstallerDialog.Username" />
+        <element api="P:System.Windows.Forms.ContainerControl.ActiveControl" />
+        <element api="P:System.Windows.Forms.ContainerControl.AutoScaleDimensions" />
+        <element api="P:System.Windows.Forms.ContainerControl.AutoScaleFactor" />
+        <element api="P:System.Windows.Forms.ContainerControl.AutoScaleMode" />
+        <element api="P:System.Windows.Forms.ContainerControl.BindingContext" />
+        <element api="P:System.Windows.Forms.ContainerControl.CanEnableIme" />
+        <element api="P:System.Windows.Forms.ContainerControl.CurrentAutoScaleDimensions" />
+        <element api="M:System.Windows.Forms.ContainerControl.OnAutoValidateChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.ContainerControl.OnParentChanged(System.EventArgs)" />
+        <element api="P:System.Windows.Forms.ContainerControl.ParentForm" />
+        <element api="M:System.Windows.Forms.ContainerControl.PerformAutoScale" />
+        <element api="M:System.Windows.Forms.ContainerControl.System#Windows#Forms#IContainerControl#ActivateControl(System.Windows.Forms.Control)" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.Validate">
+          <element api="M:System.Windows.Forms.ContainerControl.Validate" />
+          <element api="M:System.Windows.Forms.ContainerControl.Validate(System.Boolean)" />
+        </element>
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.AccessibilityNotifyClients">
+          <element api="M:System.Windows.Forms.Control.AccessibilityNotifyClients(System.Windows.Forms.AccessibleEvents,System.Int32)" />
+          <element api="M:System.Windows.Forms.Control.AccessibilityNotifyClients(System.Windows.Forms.AccessibleEvents,System.Int32,System.Int32)" />
+        </element>
+        <element api="P:System.Windows.Forms.Control.AccessibilityObject" />
+        <element api="P:System.Windows.Forms.Control.AccessibleDefaultActionDescription" />
+        <element api="P:System.Windows.Forms.Control.AccessibleDescription" />
+        <element api="P:System.Windows.Forms.Control.AccessibleName" />
+        <element api="P:System.Windows.Forms.Control.AccessibleRole" />
+        <element api="P:System.Windows.Forms.Control.AllowDrop" />
+        <element api="P:System.Windows.Forms.Control.Anchor" />
+        <element api="P:System.Windows.Forms.Control.AutoScrollOffset" />
+        <element api="E:System.Windows.Forms.Control.BackColorChanged" />
+        <element api="P:System.Windows.Forms.Control.BackgroundImage" />
+        <element api="E:System.Windows.Forms.Control.BackgroundImageChanged" />
+        <element api="P:System.Windows.Forms.Control.BackgroundImageLayout" />
+        <element api="E:System.Windows.Forms.Control.BackgroundImageLayoutChanged" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.BeginInvoke">
+          <element api="M:System.Windows.Forms.Control.BeginInvoke(System.Delegate)" />
+          <element api="M:System.Windows.Forms.Control.BeginInvoke(System.Delegate,System.Object[])" />
+        </element>
+        <element api="E:System.Windows.Forms.Control.BindingContextChanged" />
+        <element api="P:System.Windows.Forms.Control.Bottom" />
+        <element api="P:System.Windows.Forms.Control.Bounds" />
+        <element api="M:System.Windows.Forms.Control.BringToFront" />
+        <element api="P:System.Windows.Forms.Control.CanFocus" />
+        <element api="P:System.Windows.Forms.Control.CanRaiseEvents" />
+        <element api="P:System.Windows.Forms.Control.CanSelect" />
+        <element api="P:System.Windows.Forms.Control.Capture" />
+        <element api="P:System.Windows.Forms.Control.CausesValidation" />
+        <element api="E:System.Windows.Forms.Control.CausesValidationChanged" />
+        <element api="E:System.Windows.Forms.Control.ChangeUICues" />
+        <element api="E:System.Windows.Forms.Control.Click" />
+        <element api="P:System.Windows.Forms.Control.ClientRectangle" />
+        <element api="E:System.Windows.Forms.Control.ClientSizeChanged" />
+        <element api="P:System.Windows.Forms.Control.CompanyName" />
+        <element api="M:System.Windows.Forms.Control.Contains(System.Windows.Forms.Control)" />
+        <element api="P:System.Windows.Forms.Control.ContainsFocus" />
+        <element api="P:System.Windows.Forms.Control.ContextMenu" />
+        <element api="E:System.Windows.Forms.Control.ContextMenuChanged" />
+        <element api="P:System.Windows.Forms.Control.ContextMenuStrip" />
+        <element api="E:System.Windows.Forms.Control.ContextMenuStripChanged" />
+        <element api="E:System.Windows.Forms.Control.ControlAdded" />
+        <element api="E:System.Windows.Forms.Control.ControlRemoved" />
+        <element api="P:System.Windows.Forms.Control.Controls" />
+        <element api="M:System.Windows.Forms.Control.CreateAccessibilityInstance" />
+        <element api="M:System.Windows.Forms.Control.CreateControl" />
+        <element api="P:System.Windows.Forms.Control.Created" />
+        <element api="M:System.Windows.Forms.Control.CreateGraphics" />
+        <element api="P:System.Windows.Forms.Control.Cursor" />
+        <element api="E:System.Windows.Forms.Control.CursorChanged" />
+        <element api="P:System.Windows.Forms.Control.DataBindings" />
+        <element api="P:System.Windows.Forms.Control.DefaultCursor" />
+        <element api="P:System.Windows.Forms.Control.DefaultMargin" />
+        <element api="P:System.Windows.Forms.Control.DefaultMaximumSize" />
+        <element api="P:System.Windows.Forms.Control.DefaultMinimumSize" />
+        <element api="P:System.Windows.Forms.Control.DefaultPadding" />
+        <element api="M:System.Windows.Forms.Control.DestroyHandle" />
+        <element api="P:System.Windows.Forms.Control.Disposing" />
+        <element api="P:System.Windows.Forms.Control.Dock" />
+        <element api="E:System.Windows.Forms.Control.DockChanged" />
+        <element api="M:System.Windows.Forms.Control.DoDragDrop(System.Object,System.Windows.Forms.DragDropEffects)" />
+        <element api="P:System.Windows.Forms.Control.DoubleBuffered" />
+        <element api="E:System.Windows.Forms.Control.DoubleClick" />
+        <element api="E:System.Windows.Forms.Control.DragDrop" />
+        <element api="E:System.Windows.Forms.Control.DragEnter" />
+        <element api="E:System.Windows.Forms.Control.DragLeave" />
+        <element api="E:System.Windows.Forms.Control.DragOver" />
+        <element api="M:System.Windows.Forms.Control.DrawToBitmap(System.Drawing.Bitmap,System.Drawing.Rectangle)" />
+        <element api="P:System.Windows.Forms.Control.Enabled" />
+        <element api="E:System.Windows.Forms.Control.EnabledChanged" />
+        <element api="M:System.Windows.Forms.Control.EndInvoke(System.IAsyncResult)" />
+        <element api="E:System.Windows.Forms.Control.Enter" />
+        <element api="M:System.Windows.Forms.Control.FindForm" />
+        <element api="M:System.Windows.Forms.Control.Focus" />
+        <element api="P:System.Windows.Forms.Control.Focused" />
+        <element api="P:System.Windows.Forms.Control.Font" />
+        <element api="E:System.Windows.Forms.Control.FontChanged" />
+        <element api="P:System.Windows.Forms.Control.FontHeight" />
+        <element api="P:System.Windows.Forms.Control.ForeColor" />
+        <element api="E:System.Windows.Forms.Control.ForeColorChanged" />
+        <element api="M:System.Windows.Forms.Control.GetAccessibilityObjectById(System.Int32)" />
+        <element api="M:System.Windows.Forms.Control.GetAutoSizeMode" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.GetChildAtPoint">
+          <element api="M:System.Windows.Forms.Control.GetChildAtPoint(System.Drawing.Point)" />
+          <element api="M:System.Windows.Forms.Control.GetChildAtPoint(System.Drawing.Point,System.Windows.Forms.GetChildAtPointSkip)" />
+        </element>
+        <element api="M:System.Windows.Forms.Control.GetContainerControl" />
+        <element api="M:System.Windows.Forms.Control.GetNextControl(System.Windows.Forms.Control,System.Boolean)" />
+        <element api="M:System.Windows.Forms.Control.GetPreferredSize(System.Drawing.Size)" />
+        <element api="M:System.Windows.Forms.Control.GetStyle(System.Windows.Forms.ControlStyles)" />
+        <element api="M:System.Windows.Forms.Control.GetTopLevel" />
+        <element api="E:System.Windows.Forms.Control.GiveFeedback" />
+        <element api="E:System.Windows.Forms.Control.GotFocus" />
+        <element api="P:System.Windows.Forms.Control.Handle" />
+        <element api="E:System.Windows.Forms.Control.HandleCreated" />
+        <element api="E:System.Windows.Forms.Control.HandleDestroyed" />
+        <element api="P:System.Windows.Forms.Control.HasChildren" />
+        <element api="P:System.Windows.Forms.Control.Height" />
+        <element api="E:System.Windows.Forms.Control.HelpRequested" />
+        <element api="M:System.Windows.Forms.Control.Hide" />
+        <element api="P:System.Windows.Forms.Control.ImeMode" />
+        <element api="P:System.Windows.Forms.Control.ImeModeBase" />
+        <element api="E:System.Windows.Forms.Control.ImeModeChanged" />
+        <element api="M:System.Windows.Forms.Control.InitLayout" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.Invalidate">
+          <element api="M:System.Windows.Forms.Control.Invalidate" />
+          <element api="M:System.Windows.Forms.Control.Invalidate(System.Boolean)" />
+          <element api="M:System.Windows.Forms.Control.Invalidate(System.Drawing.Rectangle)" />
+          <element api="M:System.Windows.Forms.Control.Invalidate(System.Drawing.Region)" />
+          <element api="M:System.Windows.Forms.Control.Invalidate(System.Drawing.Rectangle,System.Boolean)" />
+          <element api="M:System.Windows.Forms.Control.Invalidate(System.Drawing.Region,System.Boolean)" />
+        </element>
+        <element api="E:System.Windows.Forms.Control.Invalidated" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.Invoke">
+          <element api="M:System.Windows.Forms.Control.Invoke(System.Delegate)" />
+          <element api="M:System.Windows.Forms.Control.Invoke(System.Delegate,System.Object[])" />
+        </element>
+        <element api="M:System.Windows.Forms.Control.InvokeGotFocus(System.Windows.Forms.Control,System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.InvokeLostFocus(System.Windows.Forms.Control,System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.InvokeOnClick(System.Windows.Forms.Control,System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.InvokePaint(System.Windows.Forms.Control,System.Windows.Forms.PaintEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.InvokePaintBackground(System.Windows.Forms.Control,System.Windows.Forms.PaintEventArgs)" />
+        <element api="P:System.Windows.Forms.Control.InvokeRequired" />
+        <element api="P:System.Windows.Forms.Control.IsAccessible" />
+        <element api="P:System.Windows.Forms.Control.IsDisposed" />
+        <element api="P:System.Windows.Forms.Control.IsHandleCreated" />
+        <element api="M:System.Windows.Forms.Control.IsInputChar(System.Char)" />
+        <element api="M:System.Windows.Forms.Control.IsInputKey(System.Windows.Forms.Keys)" />
+        <element api="P:System.Windows.Forms.Control.IsMirrored" />
+        <element api="E:System.Windows.Forms.Control.KeyDown" />
+        <element api="E:System.Windows.Forms.Control.KeyPress" />
+        <element api="E:System.Windows.Forms.Control.KeyUp" />
+        <element api="E:System.Windows.Forms.Control.Layout" />
+        <element api="P:System.Windows.Forms.Control.LayoutEngine" />
+        <element api="E:System.Windows.Forms.Control.Leave" />
+        <element api="P:System.Windows.Forms.Control.Left" />
+        <element api="E:System.Windows.Forms.Control.LocationChanged" />
+        <element api="E:System.Windows.Forms.Control.LostFocus" />
+        <element api="E:System.Windows.Forms.Control.MouseCaptureChanged" />
+        <element api="E:System.Windows.Forms.Control.MouseClick" />
+        <element api="E:System.Windows.Forms.Control.MouseDoubleClick" />
+        <element api="E:System.Windows.Forms.Control.MouseDown" />
+        <element api="E:System.Windows.Forms.Control.MouseEnter" />
+        <element api="E:System.Windows.Forms.Control.MouseHover" />
+        <element api="E:System.Windows.Forms.Control.MouseLeave" />
+        <element api="E:System.Windows.Forms.Control.MouseMove" />
+        <element api="E:System.Windows.Forms.Control.MouseUp" />
+        <element api="E:System.Windows.Forms.Control.MouseWheel" />
+        <element api="E:System.Windows.Forms.Control.Move" />
+        <element api="P:System.Windows.Forms.Control.Name" />
+        <element api="M:System.Windows.Forms.Control.NotifyInvalidate(System.Drawing.Rectangle)" />
+        <element api="M:System.Windows.Forms.Control.OnAutoSizeChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnBackColorChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnBindingContextChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnCausesValidationChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnChangeUICues(System.Windows.Forms.UICuesEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnClick(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnClientSizeChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnContextMenuChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnContextMenuStripChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnControlAdded(System.Windows.Forms.ControlEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnControlRemoved(System.Windows.Forms.ControlEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnCursorChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnDockChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnDoubleClick(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnDragDrop(System.Windows.Forms.DragEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnDragEnter(System.Windows.Forms.DragEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnDragLeave(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnDragOver(System.Windows.Forms.DragEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnForeColorChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnGiveFeedback(System.Windows.Forms.GiveFeedbackEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnGotFocus(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnHelpRequested(System.Windows.Forms.HelpEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnImeModeChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnInvalidated(System.Windows.Forms.InvalidateEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnKeyDown(System.Windows.Forms.KeyEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnKeyPress(System.Windows.Forms.KeyPressEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnKeyUp(System.Windows.Forms.KeyEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnLeave(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnLocationChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnLostFocus(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMarginChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMouseCaptureChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMouseClick(System.Windows.Forms.MouseEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMouseDoubleClick(System.Windows.Forms.MouseEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMouseDown(System.Windows.Forms.MouseEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMouseEnter(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMouseHover(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMouseLeave(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMouseMove(System.Windows.Forms.MouseEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMouseUp(System.Windows.Forms.MouseEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMove(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnNotifyMessage(System.Windows.Forms.Message)" />
+        <element api="M:System.Windows.Forms.Control.OnParentBackColorChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnParentBackgroundImageChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnParentBindingContextChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnParentCursorChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnParentEnabledChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnParentFontChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnParentForeColorChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnParentRightToLeftChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnParentVisibleChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnPreviewKeyDown(System.Windows.Forms.PreviewKeyDownEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnPrint(System.Windows.Forms.PaintEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnQueryContinueDrag(System.Windows.Forms.QueryContinueDragEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnRegionChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnSizeChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnSystemColorsChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnTabIndexChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnTabStopChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnValidated(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnValidating(System.ComponentModel.CancelEventArgs)" />
+        <element api="P:System.Windows.Forms.Control.Padding" />
+        <element api="E:System.Windows.Forms.Control.PaddingChanged" />
+        <element api="E:System.Windows.Forms.Control.Paint" />
+        <element api="P:System.Windows.Forms.Control.Parent" />
+        <element api="E:System.Windows.Forms.Control.ParentChanged" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.PerformLayout">
+          <element api="M:System.Windows.Forms.Control.PerformLayout" />
+          <element api="M:System.Windows.Forms.Control.PerformLayout(System.Windows.Forms.Control,System.String)" />
+        </element>
+        <element api="M:System.Windows.Forms.Control.PointToClient(System.Drawing.Point)" />
+        <element api="M:System.Windows.Forms.Control.PointToScreen(System.Drawing.Point)" />
+        <element api="P:System.Windows.Forms.Control.PreferredSize" />
+        <element api="M:System.Windows.Forms.Control.PreProcessControlMessage(System.Windows.Forms.Message@)" />
+        <element api="M:System.Windows.Forms.Control.PreProcessMessage(System.Windows.Forms.Message@)" />
+        <element api="E:System.Windows.Forms.Control.PreviewKeyDown" />
+        <element api="M:System.Windows.Forms.Control.ProcessKeyEventArgs(System.Windows.Forms.Message@)" />
+        <element api="M:System.Windows.Forms.Control.ProcessKeyMessage(System.Windows.Forms.Message@)" />
+        <element api="P:System.Windows.Forms.Control.ProductName" />
+        <element api="P:System.Windows.Forms.Control.ProductVersion" />
+        <element api="E:System.Windows.Forms.Control.QueryAccessibilityHelp" />
+        <element api="E:System.Windows.Forms.Control.QueryContinueDrag" />
+        <element api="M:System.Windows.Forms.Control.RaiseDragEvent(System.Object,System.Windows.Forms.DragEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.RaiseKeyEvent(System.Object,System.Windows.Forms.KeyEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.RaiseMouseEvent(System.Object,System.Windows.Forms.MouseEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.RaisePaintEvent(System.Object,System.Windows.Forms.PaintEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.RecreateHandle" />
+        <element api="P:System.Windows.Forms.Control.RecreatingHandle" />
+        <element api="M:System.Windows.Forms.Control.RectangleToClient(System.Drawing.Rectangle)" />
+        <element api="M:System.Windows.Forms.Control.RectangleToScreen(System.Drawing.Rectangle)" />
+        <element api="M:System.Windows.Forms.Control.Refresh" />
+        <element api="P:System.Windows.Forms.Control.Region" />
+        <element api="E:System.Windows.Forms.Control.RegionChanged" />
+        <element api="P:System.Windows.Forms.Control.RenderRightToLeft" />
+        <element api="M:System.Windows.Forms.Control.ResetBackColor" />
+        <element api="M:System.Windows.Forms.Control.ResetBindings" />
+        <element api="M:System.Windows.Forms.Control.ResetCursor" />
+        <element api="M:System.Windows.Forms.Control.ResetFont" />
+        <element api="M:System.Windows.Forms.Control.ResetForeColor" />
+        <element api="M:System.Windows.Forms.Control.ResetImeMode" />
+        <element api="M:System.Windows.Forms.Control.ResetMouseEventArgs" />
+        <element api="M:System.Windows.Forms.Control.ResetRightToLeft" />
+        <element api="M:System.Windows.Forms.Control.ResetText" />
+        <element api="E:System.Windows.Forms.Control.Resize" />
+        <element api="P:System.Windows.Forms.Control.ResizeRedraw" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.ResumeLayout">
+          <element api="M:System.Windows.Forms.Control.ResumeLayout" />
+          <element api="M:System.Windows.Forms.Control.ResumeLayout(System.Boolean)" />
+        </element>
+        <element api="P:System.Windows.Forms.Control.Right" />
+        <element api="P:System.Windows.Forms.Control.RightToLeft" />
+        <element api="E:System.Windows.Forms.Control.RightToLeftChanged" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.RtlTranslateAlignment">
+          <element api="M:System.Windows.Forms.Control.RtlTranslateAlignment(System.Drawing.ContentAlignment)" />
+          <element api="M:System.Windows.Forms.Control.RtlTranslateAlignment(System.Windows.Forms.HorizontalAlignment)" />
+          <element api="M:System.Windows.Forms.Control.RtlTranslateAlignment(System.Windows.Forms.LeftRightAlignment)" />
+        </element>
+        <element api="M:System.Windows.Forms.Control.RtlTranslateContent(System.Drawing.ContentAlignment)" />
+        <element api="M:System.Windows.Forms.Control.RtlTranslateHorizontal(System.Windows.Forms.HorizontalAlignment)" />
+        <element api="M:System.Windows.Forms.Control.RtlTranslateLeftRight(System.Windows.Forms.LeftRightAlignment)" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.Scale">
+          <element api="M:System.Windows.Forms.Control.Scale(System.Single)" />
+          <element api="M:System.Windows.Forms.Control.Scale(System.Drawing.SizeF)" />
+          <element api="M:System.Windows.Forms.Control.Scale(System.Single,System.Single)" />
+        </element>
+        <element api="P:System.Windows.Forms.Control.ScaleChildren" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.Select">
+          <element api="M:System.Windows.Forms.Control.Select" />
+          <element api="M:System.Windows.Forms.Form.Select(System.Boolean,System.Boolean)" />
+        </element>
+        <element api="M:System.Windows.Forms.Control.SelectNextControl(System.Windows.Forms.Control,System.Boolean,System.Boolean,System.Boolean,System.Boolean)" />
+        <element api="M:System.Windows.Forms.Control.SendToBack" />
+        <element api="M:System.Windows.Forms.Control.SetAutoSizeMode(System.Windows.Forms.AutoSizeMode)" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.SetBounds">
+          <element api="M:System.Windows.Forms.Control.SetBounds(System.Int32,System.Int32,System.Int32,System.Int32)" />
+          <element api="M:System.Windows.Forms.Control.SetBounds(System.Int32,System.Int32,System.Int32,System.Int32,System.Windows.Forms.BoundsSpecified)" />
+        </element>
+        <element api="M:System.Windows.Forms.Control.SetStyle(System.Windows.Forms.ControlStyles,System.Boolean)" />
+        <element api="M:System.Windows.Forms.Control.SetTopLevel(System.Boolean)" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.Show">
+          <element api="M:System.Windows.Forms.Control.Show" />
+          <element api="M:System.Windows.Forms.Form.Show(System.Windows.Forms.IWin32Window)" />
+        </element>
+        <element api="P:System.Windows.Forms.Control.ShowFocusCues" />
+        <element api="P:System.Windows.Forms.Control.ShowKeyboardCues" />
+        <element api="P:System.Windows.Forms.Control.Site" />
+        <element api="E:System.Windows.Forms.Control.SizeChanged" />
+        <element api="M:System.Windows.Forms.Control.SizeFromClientSize(System.Drawing.Size)" />
+        <element api="E:System.Windows.Forms.Control.StyleChanged" />
+        <element api="M:System.Windows.Forms.Control.SuspendLayout" />
+        <element api="M:System.Windows.Forms.Control.System#Windows#Forms#IDropTarget#OnDragDrop(System.Windows.Forms.DragEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.System#Windows#Forms#IDropTarget#OnDragEnter(System.Windows.Forms.DragEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.System#Windows#Forms#IDropTarget#OnDragLeave(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.System#Windows#Forms#IDropTarget#OnDragOver(System.Windows.Forms.DragEventArgs)" />
+        <element api="E:System.Windows.Forms.Control.SystemColorsChanged" />
+        <element api="P:System.Windows.Forms.Control.Tag" />
+        <element api="E:System.Windows.Forms.Control.TextChanged" />
+        <element api="P:System.Windows.Forms.Control.Top" />
+        <element api="P:System.Windows.Forms.Control.TopLevelControl" />
+        <element api="M:System.Windows.Forms.Control.Update" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.UpdateBounds">
+          <element api="M:System.Windows.Forms.Control.UpdateBounds" />
+          <element api="M:System.Windows.Forms.Control.UpdateBounds(System.Int32,System.Int32,System.Int32,System.Int32)" />
+          <element api="M:System.Windows.Forms.Control.UpdateBounds(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="M:System.Windows.Forms.Control.UpdateStyles" />
+        <element api="M:System.Windows.Forms.Control.UpdateZOrder" />
+        <element api="P:System.Windows.Forms.Control.UseWaitCursor" />
+        <element api="E:System.Windows.Forms.Control.Validated" />
+        <element api="E:System.Windows.Forms.Control.Validating" />
+        <element api="P:System.Windows.Forms.Control.Visible" />
+        <element api="E:System.Windows.Forms.Control.VisibleChanged" />
+        <element api="P:System.Windows.Forms.Control.Width" />
+        <element api="P:System.Windows.Forms.Control.WindowTarget" />
+        <element api="P:System.Windows.Forms.Form.AcceptButton" />
+        <element api="M:System.Windows.Forms.Form.Activate" />
+        <element api="E:System.Windows.Forms.Form.Activated" />
+        <element api="M:System.Windows.Forms.Form.ActivateMdiChild(System.Windows.Forms.Form)" />
+        <element api="P:System.Windows.Forms.Form.ActiveMdiChild" />
+        <element api="M:System.Windows.Forms.Form.AddOwnedForm(System.Windows.Forms.Form)" />
+        <element api="M:System.Windows.Forms.Form.AdjustFormScrollbars(System.Boolean)" />
+        <element api="P:System.Windows.Forms.Form.AllowTransparency" />
+        <element api="M:System.Windows.Forms.Form.ApplyAutoScaling" />
+        <element api="P:System.Windows.Forms.Form.AutoScale" />
+        <element api="P:System.Windows.Forms.Form.AutoScaleBaseSize" />
+        <element api="P:System.Windows.Forms.Form.AutoScroll" />
+        <element api="P:System.Windows.Forms.Form.AutoSize" />
+        <element api="E:System.Windows.Forms.Form.AutoSizeChanged" />
+        <element api="P:System.Windows.Forms.Form.AutoSizeMode" />
+        <element api="P:System.Windows.Forms.Form.AutoValidate" />
+        <element api="E:System.Windows.Forms.Form.AutoValidateChanged" />
+        <element api="P:System.Windows.Forms.Form.BackColor" />
+        <element api="P:System.Windows.Forms.Form.CancelButton" />
+        <element api="M:System.Windows.Forms.Form.CenterToParent" />
+        <element api="M:System.Windows.Forms.Form.CenterToScreen" />
+        <element api="P:System.Windows.Forms.Form.ClientSize" />
+        <element api="M:System.Windows.Forms.Form.Close" />
+        <element api="E:System.Windows.Forms.Form.Closed" />
+        <element api="E:System.Windows.Forms.Form.Closing" />
+        <element api="P:System.Windows.Forms.Form.ControlBox" />
+        <element api="M:System.Windows.Forms.Form.CreateControlsInstance" />
+        <element api="M:System.Windows.Forms.Form.CreateHandle" />
+        <element api="P:System.Windows.Forms.Form.CreateParams" />
+        <element api="E:System.Windows.Forms.Form.Deactivate" />
+        <element api="P:System.Windows.Forms.Form.DefaultImeMode" />
+        <element api="P:System.Windows.Forms.Form.DefaultSize" />
+        <element api="M:System.Windows.Forms.Form.DefWndProc(System.Windows.Forms.Message@)" />
+        <element api="P:System.Windows.Forms.Form.DesktopBounds" />
+        <element api="P:System.Windows.Forms.Form.DesktopLocation" />
+        <element api="P:System.Windows.Forms.Form.DialogResult" />
+        <element api="P:System.Windows.Forms.Form.FormBorderStyle" />
+        <element api="E:System.Windows.Forms.Form.FormClosed" />
+        <element api="E:System.Windows.Forms.Form.FormClosing" />
+        <element api="M:System.Windows.Forms.Form.GetScaledBounds(System.Drawing.Rectangle,System.Drawing.SizeF,System.Windows.Forms.BoundsSpecified)" />
+        <element api="P:System.Windows.Forms.Form.HelpButton" />
+        <element api="E:System.Windows.Forms.Form.HelpButtonClicked" />
+        <element api="P:System.Windows.Forms.Form.Icon" />
+        <element api="E:System.Windows.Forms.Form.InputLanguageChanged" />
+        <element api="E:System.Windows.Forms.Form.InputLanguageChanging" />
+        <element api="P:System.Windows.Forms.Form.IsMdiChild" />
+        <element api="P:System.Windows.Forms.Form.IsMdiContainer" />
+        <element api="P:System.Windows.Forms.Form.IsRestrictedWindow" />
+        <element api="P:System.Windows.Forms.Form.KeyPreview" />
+        <element api="M:System.Windows.Forms.Form.LayoutMdi(System.Windows.Forms.MdiLayout)" />
+        <element api="E:System.Windows.Forms.Form.Load" />
+        <element api="P:System.Windows.Forms.Form.Location" />
+        <element api="P:System.Windows.Forms.Form.MainMenuStrip" />
+        <element api="P:System.Windows.Forms.Form.Margin" />
+        <element api="E:System.Windows.Forms.Form.MarginChanged" />
+        <element api="P:System.Windows.Forms.Form.MaximizeBox" />
+        <element api="P:System.Windows.Forms.Form.MaximizedBounds" />
+        <element api="E:System.Windows.Forms.Form.MaximizedBoundsChanged" />
+        <element api="P:System.Windows.Forms.Form.MaximumSize" />
+        <element api="E:System.Windows.Forms.Form.MaximumSizeChanged" />
+        <element api="E:System.Windows.Forms.Form.MdiChildActivate" />
+        <element api="P:System.Windows.Forms.Form.MdiChildren" />
+        <element api="P:System.Windows.Forms.Form.MdiParent" />
+        <element api="P:System.Windows.Forms.Form.Menu" />
+        <element api="E:System.Windows.Forms.Form.MenuComplete" />
+        <element api="E:System.Windows.Forms.Form.MenuStart" />
+        <element api="P:System.Windows.Forms.Form.MergedMenu" />
+        <element api="P:System.Windows.Forms.Form.MinimizeBox" />
+        <element api="P:System.Windows.Forms.Form.MinimumSize" />
+        <element api="E:System.Windows.Forms.Form.MinimumSizeChanged" />
+        <element api="P:System.Windows.Forms.Form.Modal" />
+        <element api="M:System.Windows.Forms.Form.OnActivated(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnBackgroundImageChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnBackgroundImageLayoutChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnClosed(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnClosing(System.ComponentModel.CancelEventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnCreateControl" />
+        <element api="M:System.Windows.Forms.Form.OnDeactivate(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnEnabledChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnEnter(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnFontChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnFormClosed(System.Windows.Forms.FormClosedEventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnFormClosing(System.Windows.Forms.FormClosingEventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnHandleCreated(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnHandleDestroyed(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnHelpButtonClicked(System.ComponentModel.CancelEventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnInputLanguageChanged(System.Windows.Forms.InputLanguageChangedEventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnInputLanguageChanging(System.Windows.Forms.InputLanguageChangingEventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnLayout(System.Windows.Forms.LayoutEventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnLoad(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnMaximizedBoundsChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnMaximumSizeChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnMdiChildActivate(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnMenuComplete(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnMenuStart(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnMinimumSizeChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnPaint(System.Windows.Forms.PaintEventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnResize(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnResizeBegin(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnResizeEnd(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnRightToLeftLayoutChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnShown(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnStyleChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnTextChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnVisibleChanged(System.EventArgs)" />
+        <element api="P:System.Windows.Forms.Form.Opacity" />
+        <element api="P:System.Windows.Forms.Form.OwnedForms" />
+        <element api="P:System.Windows.Forms.Form.Owner" />
+        <element api="M:System.Windows.Forms.Form.ProcessCmdKey(System.Windows.Forms.Message@,System.Windows.Forms.Keys)" />
+        <element api="M:System.Windows.Forms.Form.ProcessDialogChar(System.Char)" />
+        <element api="M:System.Windows.Forms.Form.ProcessDialogKey(System.Windows.Forms.Keys)" />
+        <element api="M:System.Windows.Forms.Form.ProcessKeyPreview(System.Windows.Forms.Message@)" />
+        <element api="M:System.Windows.Forms.Form.ProcessMnemonic(System.Char)" />
+        <element api="M:System.Windows.Forms.Form.ProcessTabKey(System.Boolean)" />
+        <element api="M:System.Windows.Forms.Form.RemoveOwnedForm(System.Windows.Forms.Form)" />
+        <element api="E:System.Windows.Forms.Form.ResizeBegin" />
+        <element api="E:System.Windows.Forms.Form.ResizeEnd" />
+        <element api="P:System.Windows.Forms.Form.RestoreBounds" />
+        <element api="P:System.Windows.Forms.Form.RightToLeftLayout" />
+        <element api="E:System.Windows.Forms.Form.RightToLeftLayoutChanged" />
+        <element api="M:System.Windows.Forms.Form.ScaleControl(System.Drawing.SizeF,System.Windows.Forms.BoundsSpecified)" />
+        <element api="M:System.Windows.Forms.Form.ScaleCore(System.Single,System.Single)" />
+        <element api="M:System.Windows.Forms.Form.SetBoundsCore(System.Int32,System.Int32,System.Int32,System.Int32,System.Windows.Forms.BoundsSpecified)" />
+        <element api="M:System.Windows.Forms.Form.SetClientSizeCore(System.Int32,System.Int32)" />
+        <element api="M:System.Windows.Forms.Form.SetDesktopBounds(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:System.Windows.Forms.Form.SetDesktopLocation(System.Int32,System.Int32)" />
+        <element api="M:System.Windows.Forms.Form.SetVisibleCore(System.Boolean)" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.ShowDialog">
+          <element api="M:System.Windows.Forms.Form.ShowDialog" />
+          <element api="M:System.Windows.Forms.Form.ShowDialog(System.Windows.Forms.IWin32Window)" />
+        </element>
+        <element api="P:System.Windows.Forms.Form.ShowIcon" />
+        <element api="P:System.Windows.Forms.Form.ShowInTaskbar" />
+        <element api="E:System.Windows.Forms.Form.Shown" />
+        <element api="P:System.Windows.Forms.Form.ShowWithoutActivation" />
+        <element api="P:System.Windows.Forms.Form.Size" />
+        <element api="P:System.Windows.Forms.Form.SizeGripStyle" />
+        <element api="P:System.Windows.Forms.Form.StartPosition" />
+        <element api="P:System.Windows.Forms.Form.TabIndex" />
+        <element api="E:System.Windows.Forms.Form.TabIndexChanged" />
+        <element api="P:System.Windows.Forms.Form.TabStop" />
+        <element api="E:System.Windows.Forms.Form.TabStopChanged" />
+        <element api="P:System.Windows.Forms.Form.Text" />
+        <element api="P:System.Windows.Forms.Form.TopLevel" />
+        <element api="P:System.Windows.Forms.Form.TopMost" />
+        <element api="M:System.Windows.Forms.Form.ToString" />
+        <element api="P:System.Windows.Forms.Form.TransparencyKey" />
+        <element api="M:System.Windows.Forms.Form.UpdateDefaultButton" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.ValidateChildren">
+          <element api="M:System.Windows.Forms.Form.ValidateChildren" />
+          <element api="M:System.Windows.Forms.Form.ValidateChildren(System.Windows.Forms.ValidationConstraints)" />
+        </element>
+        <element api="P:System.Windows.Forms.Form.WindowState" />
+        <element api="M:System.Windows.Forms.Form.WndProc(System.Windows.Forms.Message@)" />
+        <element api="P:System.Windows.Forms.ScrollableControl.AutoScrollMargin" />
+        <element api="P:System.Windows.Forms.ScrollableControl.AutoScrollMinSize" />
+        <element api="P:System.Windows.Forms.ScrollableControl.AutoScrollPosition" />
+        <element api="P:System.Windows.Forms.ScrollableControl.DisplayRectangle" />
+        <element api="P:System.Windows.Forms.ScrollableControl.DockPadding" />
+        <element api="M:System.Windows.Forms.ScrollableControl.GetScrollState(System.Int32)" />
+        <element api="P:System.Windows.Forms.ScrollableControl.HorizontalScroll" />
+        <element api="P:System.Windows.Forms.ScrollableControl.HScroll" />
+        <element api="M:System.Windows.Forms.ScrollableControl.OnMouseWheel(System.Windows.Forms.MouseEventArgs)" />
+        <element api="M:System.Windows.Forms.ScrollableControl.OnPaddingChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.ScrollableControl.OnPaintBackground(System.Windows.Forms.PaintEventArgs)" />
+        <element api="M:System.Windows.Forms.ScrollableControl.OnRightToLeftChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.ScrollableControl.OnScroll(System.Windows.Forms.ScrollEventArgs)" />
+        <element api="E:System.Windows.Forms.ScrollableControl.Scroll" />
+        <element api="M:System.Windows.Forms.ScrollableControl.ScrollControlIntoView(System.Windows.Forms.Control)" />
+        <element api="M:System.Windows.Forms.ScrollableControl.ScrollToControl(System.Windows.Forms.Control)" />
+        <element api="M:System.Windows.Forms.ScrollableControl.SetAutoScrollMargin(System.Int32,System.Int32)" />
+        <element api="M:System.Windows.Forms.ScrollableControl.SetDisplayRectLocation(System.Int32,System.Int32)" />
+        <element api="M:System.Windows.Forms.ScrollableControl.SetScrollState(System.Int32,System.Boolean)" />
+        <element api="P:System.Windows.Forms.ScrollableControl.VerticalScroll" />
+        <element api="P:System.Windows.Forms.ScrollableControl.VScroll" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess" module="System.ServiceProcess" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+        <type api="T:System.ServiceProcess.Design.ServiceInstallerDialog" />
+      </containers>
+      <file name="65dcd951-7cde-ebc1-a6bf-fdbf598f2e25" />
+    </api>
+    <api id="Methods.T:System.ServiceProcess.Design.ServiceInstallerDialog">
+      <topicdata name="ServiceInstallerDialog" group="list" subgroup="Methods" typeTopicId="T:System.ServiceProcess.Design.ServiceInstallerDialog" />
+      <apidata name="ServiceInstallerDialog" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceProcess.Design.ServiceInstallerDialog.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.Windows.Forms.Form.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="M:System.ServiceProcess.Design.ServiceInstallerDialog.Main" />
+        <element api="M:System.Windows.Forms.ContainerControl.OnAutoValidateChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.ContainerControl.OnParentChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.ContainerControl.PerformAutoScale" />
+        <element api="M:System.Windows.Forms.ContainerControl.System#Windows#Forms#IContainerControl#ActivateControl(System.Windows.Forms.Control)" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.Validate">
+          <element api="M:System.Windows.Forms.ContainerControl.Validate" />
+          <element api="M:System.Windows.Forms.ContainerControl.Validate(System.Boolean)" />
+        </element>
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.AccessibilityNotifyClients">
+          <element api="M:System.Windows.Forms.Control.AccessibilityNotifyClients(System.Windows.Forms.AccessibleEvents,System.Int32)" />
+          <element api="M:System.Windows.Forms.Control.AccessibilityNotifyClients(System.Windows.Forms.AccessibleEvents,System.Int32,System.Int32)" />
+        </element>
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.BeginInvoke">
+          <element api="M:System.Windows.Forms.Control.BeginInvoke(System.Delegate)" />
+          <element api="M:System.Windows.Forms.Control.BeginInvoke(System.Delegate,System.Object[])" />
+        </element>
+        <element api="M:System.Windows.Forms.Control.BringToFront" />
+        <element api="M:System.Windows.Forms.Control.Contains(System.Windows.Forms.Control)" />
+        <element api="M:System.Windows.Forms.Control.CreateAccessibilityInstance" />
+        <element api="M:System.Windows.Forms.Control.CreateControl" />
+        <element api="M:System.Windows.Forms.Control.CreateGraphics" />
+        <element api="M:System.Windows.Forms.Control.DestroyHandle" />
+        <element api="M:System.Windows.Forms.Control.DoDragDrop(System.Object,System.Windows.Forms.DragDropEffects)" />
+        <element api="M:System.Windows.Forms.Control.DrawToBitmap(System.Drawing.Bitmap,System.Drawing.Rectangle)" />
+        <element api="M:System.Windows.Forms.Control.EndInvoke(System.IAsyncResult)" />
+        <element api="M:System.Windows.Forms.Control.FindForm" />
+        <element api="M:System.Windows.Forms.Control.Focus" />
+        <element api="M:System.Windows.Forms.Control.GetAccessibilityObjectById(System.Int32)" />
+        <element api="M:System.Windows.Forms.Control.GetAutoSizeMode" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.GetChildAtPoint">
+          <element api="M:System.Windows.Forms.Control.GetChildAtPoint(System.Drawing.Point)" />
+          <element api="M:System.Windows.Forms.Control.GetChildAtPoint(System.Drawing.Point,System.Windows.Forms.GetChildAtPointSkip)" />
+        </element>
+        <element api="M:System.Windows.Forms.Control.GetContainerControl" />
+        <element api="M:System.Windows.Forms.Control.GetNextControl(System.Windows.Forms.Control,System.Boolean)" />
+        <element api="M:System.Windows.Forms.Control.GetPreferredSize(System.Drawing.Size)" />
+        <element api="M:System.Windows.Forms.Control.GetStyle(System.Windows.Forms.ControlStyles)" />
+        <element api="M:System.Windows.Forms.Control.GetTopLevel" />
+        <element api="M:System.Windows.Forms.Control.Hide" />
+        <element api="M:System.Windows.Forms.Control.InitLayout" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.Invalidate">
+          <element api="M:System.Windows.Forms.Control.Invalidate" />
+          <element api="M:System.Windows.Forms.Control.Invalidate(System.Boolean)" />
+          <element api="M:System.Windows.Forms.Control.Invalidate(System.Drawing.Rectangle)" />
+          <element api="M:System.Windows.Forms.Control.Invalidate(System.Drawing.Region)" />
+          <element api="M:System.Windows.Forms.Control.Invalidate(System.Drawing.Rectangle,System.Boolean)" />
+          <element api="M:System.Windows.Forms.Control.Invalidate(System.Drawing.Region,System.Boolean)" />
+        </element>
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.Invoke">
+          <element api="M:System.Windows.Forms.Control.Invoke(System.Delegate)" />
+          <element api="M:System.Windows.Forms.Control.Invoke(System.Delegate,System.Object[])" />
+        </element>
+        <element api="M:System.Windows.Forms.Control.InvokeGotFocus(System.Windows.Forms.Control,System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.InvokeLostFocus(System.Windows.Forms.Control,System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.InvokeOnClick(System.Windows.Forms.Control,System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.InvokePaint(System.Windows.Forms.Control,System.Windows.Forms.PaintEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.InvokePaintBackground(System.Windows.Forms.Control,System.Windows.Forms.PaintEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.IsInputChar(System.Char)" />
+        <element api="M:System.Windows.Forms.Control.IsInputKey(System.Windows.Forms.Keys)" />
+        <element api="M:System.Windows.Forms.Control.NotifyInvalidate(System.Drawing.Rectangle)" />
+        <element api="M:System.Windows.Forms.Control.OnAutoSizeChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnBackColorChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnBindingContextChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnCausesValidationChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnChangeUICues(System.Windows.Forms.UICuesEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnClick(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnClientSizeChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnContextMenuChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnContextMenuStripChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnControlAdded(System.Windows.Forms.ControlEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnControlRemoved(System.Windows.Forms.ControlEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnCursorChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnDockChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnDoubleClick(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnDragDrop(System.Windows.Forms.DragEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnDragEnter(System.Windows.Forms.DragEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnDragLeave(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnDragOver(System.Windows.Forms.DragEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnForeColorChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnGiveFeedback(System.Windows.Forms.GiveFeedbackEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnGotFocus(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnHelpRequested(System.Windows.Forms.HelpEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnImeModeChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnInvalidated(System.Windows.Forms.InvalidateEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnKeyDown(System.Windows.Forms.KeyEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnKeyPress(System.Windows.Forms.KeyPressEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnKeyUp(System.Windows.Forms.KeyEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnLeave(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnLocationChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnLostFocus(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMarginChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMouseCaptureChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMouseClick(System.Windows.Forms.MouseEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMouseDoubleClick(System.Windows.Forms.MouseEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMouseDown(System.Windows.Forms.MouseEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMouseEnter(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMouseHover(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMouseLeave(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMouseMove(System.Windows.Forms.MouseEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMouseUp(System.Windows.Forms.MouseEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnMove(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnNotifyMessage(System.Windows.Forms.Message)" />
+        <element api="M:System.Windows.Forms.Control.OnParentBackColorChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnParentBackgroundImageChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnParentBindingContextChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnParentCursorChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnParentEnabledChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnParentFontChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnParentForeColorChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnParentRightToLeftChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnParentVisibleChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnPreviewKeyDown(System.Windows.Forms.PreviewKeyDownEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnPrint(System.Windows.Forms.PaintEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnQueryContinueDrag(System.Windows.Forms.QueryContinueDragEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnRegionChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnSizeChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnSystemColorsChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnTabIndexChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnTabStopChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnValidated(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.OnValidating(System.ComponentModel.CancelEventArgs)" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.PerformLayout">
+          <element api="M:System.Windows.Forms.Control.PerformLayout" />
+          <element api="M:System.Windows.Forms.Control.PerformLayout(System.Windows.Forms.Control,System.String)" />
+        </element>
+        <element api="M:System.Windows.Forms.Control.PointToClient(System.Drawing.Point)" />
+        <element api="M:System.Windows.Forms.Control.PointToScreen(System.Drawing.Point)" />
+        <element api="M:System.Windows.Forms.Control.PreProcessControlMessage(System.Windows.Forms.Message@)" />
+        <element api="M:System.Windows.Forms.Control.PreProcessMessage(System.Windows.Forms.Message@)" />
+        <element api="M:System.Windows.Forms.Control.ProcessKeyEventArgs(System.Windows.Forms.Message@)" />
+        <element api="M:System.Windows.Forms.Control.ProcessKeyMessage(System.Windows.Forms.Message@)" />
+        <element api="M:System.Windows.Forms.Control.RaiseDragEvent(System.Object,System.Windows.Forms.DragEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.RaiseKeyEvent(System.Object,System.Windows.Forms.KeyEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.RaiseMouseEvent(System.Object,System.Windows.Forms.MouseEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.RaisePaintEvent(System.Object,System.Windows.Forms.PaintEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.RecreateHandle" />
+        <element api="M:System.Windows.Forms.Control.RectangleToClient(System.Drawing.Rectangle)" />
+        <element api="M:System.Windows.Forms.Control.RectangleToScreen(System.Drawing.Rectangle)" />
+        <element api="M:System.Windows.Forms.Control.Refresh" />
+        <element api="M:System.Windows.Forms.Control.ResetBackColor" />
+        <element api="M:System.Windows.Forms.Control.ResetBindings" />
+        <element api="M:System.Windows.Forms.Control.ResetCursor" />
+        <element api="M:System.Windows.Forms.Control.ResetFont" />
+        <element api="M:System.Windows.Forms.Control.ResetForeColor" />
+        <element api="M:System.Windows.Forms.Control.ResetImeMode" />
+        <element api="M:System.Windows.Forms.Control.ResetMouseEventArgs" />
+        <element api="M:System.Windows.Forms.Control.ResetRightToLeft" />
+        <element api="M:System.Windows.Forms.Control.ResetText" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.ResumeLayout">
+          <element api="M:System.Windows.Forms.Control.ResumeLayout" />
+          <element api="M:System.Windows.Forms.Control.ResumeLayout(System.Boolean)" />
+        </element>
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.RtlTranslateAlignment">
+          <element api="M:System.Windows.Forms.Control.RtlTranslateAlignment(System.Drawing.ContentAlignment)" />
+          <element api="M:System.Windows.Forms.Control.RtlTranslateAlignment(System.Windows.Forms.HorizontalAlignment)" />
+          <element api="M:System.Windows.Forms.Control.RtlTranslateAlignment(System.Windows.Forms.LeftRightAlignment)" />
+        </element>
+        <element api="M:System.Windows.Forms.Control.RtlTranslateContent(System.Drawing.ContentAlignment)" />
+        <element api="M:System.Windows.Forms.Control.RtlTranslateHorizontal(System.Windows.Forms.HorizontalAlignment)" />
+        <element api="M:System.Windows.Forms.Control.RtlTranslateLeftRight(System.Windows.Forms.LeftRightAlignment)" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.Scale">
+          <element api="M:System.Windows.Forms.Control.Scale(System.Single)" />
+          <element api="M:System.Windows.Forms.Control.Scale(System.Drawing.SizeF)" />
+          <element api="M:System.Windows.Forms.Control.Scale(System.Single,System.Single)" />
+        </element>
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.Select">
+          <element api="M:System.Windows.Forms.Control.Select" />
+          <element api="M:System.Windows.Forms.Form.Select(System.Boolean,System.Boolean)" />
+        </element>
+        <element api="M:System.Windows.Forms.Control.SelectNextControl(System.Windows.Forms.Control,System.Boolean,System.Boolean,System.Boolean,System.Boolean)" />
+        <element api="M:System.Windows.Forms.Control.SendToBack" />
+        <element api="M:System.Windows.Forms.Control.SetAutoSizeMode(System.Windows.Forms.AutoSizeMode)" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.SetBounds">
+          <element api="M:System.Windows.Forms.Control.SetBounds(System.Int32,System.Int32,System.Int32,System.Int32)" />
+          <element api="M:System.Windows.Forms.Control.SetBounds(System.Int32,System.Int32,System.Int32,System.Int32,System.Windows.Forms.BoundsSpecified)" />
+        </element>
+        <element api="M:System.Windows.Forms.Control.SetStyle(System.Windows.Forms.ControlStyles,System.Boolean)" />
+        <element api="M:System.Windows.Forms.Control.SetTopLevel(System.Boolean)" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.Show">
+          <element api="M:System.Windows.Forms.Control.Show" />
+          <element api="M:System.Windows.Forms.Form.Show(System.Windows.Forms.IWin32Window)" />
+        </element>
+        <element api="M:System.Windows.Forms.Control.SizeFromClientSize(System.Drawing.Size)" />
+        <element api="M:System.Windows.Forms.Control.SuspendLayout" />
+        <element api="M:System.Windows.Forms.Control.System#Windows#Forms#IDropTarget#OnDragDrop(System.Windows.Forms.DragEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.System#Windows#Forms#IDropTarget#OnDragEnter(System.Windows.Forms.DragEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.System#Windows#Forms#IDropTarget#OnDragLeave(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Control.System#Windows#Forms#IDropTarget#OnDragOver(System.Windows.Forms.DragEventArgs)" />
+        <element api="M:System.Windows.Forms.Control.Update" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.UpdateBounds">
+          <element api="M:System.Windows.Forms.Control.UpdateBounds" />
+          <element api="M:System.Windows.Forms.Control.UpdateBounds(System.Int32,System.Int32,System.Int32,System.Int32)" />
+          <element api="M:System.Windows.Forms.Control.UpdateBounds(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="M:System.Windows.Forms.Control.UpdateStyles" />
+        <element api="M:System.Windows.Forms.Control.UpdateZOrder" />
+        <element api="M:System.Windows.Forms.Form.Activate" />
+        <element api="M:System.Windows.Forms.Form.ActivateMdiChild(System.Windows.Forms.Form)" />
+        <element api="M:System.Windows.Forms.Form.AddOwnedForm(System.Windows.Forms.Form)" />
+        <element api="M:System.Windows.Forms.Form.AdjustFormScrollbars(System.Boolean)" />
+        <element api="M:System.Windows.Forms.Form.ApplyAutoScaling" />
+        <element api="M:System.Windows.Forms.Form.CenterToParent" />
+        <element api="M:System.Windows.Forms.Form.CenterToScreen" />
+        <element api="M:System.Windows.Forms.Form.Close" />
+        <element api="M:System.Windows.Forms.Form.CreateControlsInstance" />
+        <element api="M:System.Windows.Forms.Form.CreateHandle" />
+        <element api="M:System.Windows.Forms.Form.DefWndProc(System.Windows.Forms.Message@)" />
+        <element api="M:System.Windows.Forms.Form.GetScaledBounds(System.Drawing.Rectangle,System.Drawing.SizeF,System.Windows.Forms.BoundsSpecified)" />
+        <element api="M:System.Windows.Forms.Form.LayoutMdi(System.Windows.Forms.MdiLayout)" />
+        <element api="M:System.Windows.Forms.Form.OnActivated(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnBackgroundImageChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnBackgroundImageLayoutChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnClosed(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnClosing(System.ComponentModel.CancelEventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnCreateControl" />
+        <element api="M:System.Windows.Forms.Form.OnDeactivate(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnEnabledChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnEnter(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnFontChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnFormClosed(System.Windows.Forms.FormClosedEventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnFormClosing(System.Windows.Forms.FormClosingEventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnHandleCreated(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnHandleDestroyed(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnHelpButtonClicked(System.ComponentModel.CancelEventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnInputLanguageChanged(System.Windows.Forms.InputLanguageChangedEventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnInputLanguageChanging(System.Windows.Forms.InputLanguageChangingEventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnLayout(System.Windows.Forms.LayoutEventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnLoad(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnMaximizedBoundsChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnMaximumSizeChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnMdiChildActivate(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnMenuComplete(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnMenuStart(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnMinimumSizeChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnPaint(System.Windows.Forms.PaintEventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnResize(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnResizeBegin(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnResizeEnd(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnRightToLeftLayoutChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnShown(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnStyleChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnTextChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.OnVisibleChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.Form.ProcessCmdKey(System.Windows.Forms.Message@,System.Windows.Forms.Keys)" />
+        <element api="M:System.Windows.Forms.Form.ProcessDialogChar(System.Char)" />
+        <element api="M:System.Windows.Forms.Form.ProcessDialogKey(System.Windows.Forms.Keys)" />
+        <element api="M:System.Windows.Forms.Form.ProcessKeyPreview(System.Windows.Forms.Message@)" />
+        <element api="M:System.Windows.Forms.Form.ProcessMnemonic(System.Char)" />
+        <element api="M:System.Windows.Forms.Form.ProcessTabKey(System.Boolean)" />
+        <element api="M:System.Windows.Forms.Form.RemoveOwnedForm(System.Windows.Forms.Form)" />
+        <element api="M:System.Windows.Forms.Form.ScaleControl(System.Drawing.SizeF,System.Windows.Forms.BoundsSpecified)" />
+        <element api="M:System.Windows.Forms.Form.ScaleCore(System.Single,System.Single)" />
+        <element api="M:System.Windows.Forms.Form.SetBoundsCore(System.Int32,System.Int32,System.Int32,System.Int32,System.Windows.Forms.BoundsSpecified)" />
+        <element api="M:System.Windows.Forms.Form.SetClientSizeCore(System.Int32,System.Int32)" />
+        <element api="M:System.Windows.Forms.Form.SetDesktopBounds(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:System.Windows.Forms.Form.SetDesktopLocation(System.Int32,System.Int32)" />
+        <element api="M:System.Windows.Forms.Form.SetVisibleCore(System.Boolean)" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.ShowDialog">
+          <element api="M:System.Windows.Forms.Form.ShowDialog" />
+          <element api="M:System.Windows.Forms.Form.ShowDialog(System.Windows.Forms.IWin32Window)" />
+        </element>
+        <element api="M:System.Windows.Forms.Form.ToString" />
+        <element api="M:System.Windows.Forms.Form.UpdateDefaultButton" />
+        <element api="Overload:System.ServiceProcess.Design.ServiceInstallerDialog.ValidateChildren">
+          <element api="M:System.Windows.Forms.Form.ValidateChildren" />
+          <element api="M:System.Windows.Forms.Form.ValidateChildren(System.Windows.Forms.ValidationConstraints)" />
+        </element>
+        <element api="M:System.Windows.Forms.Form.WndProc(System.Windows.Forms.Message@)" />
+        <element api="M:System.Windows.Forms.ScrollableControl.GetScrollState(System.Int32)" />
+        <element api="M:System.Windows.Forms.ScrollableControl.OnMouseWheel(System.Windows.Forms.MouseEventArgs)" />
+        <element api="M:System.Windows.Forms.ScrollableControl.OnPaddingChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.ScrollableControl.OnPaintBackground(System.Windows.Forms.PaintEventArgs)" />
+        <element api="M:System.Windows.Forms.ScrollableControl.OnRightToLeftChanged(System.EventArgs)" />
+        <element api="M:System.Windows.Forms.ScrollableControl.OnScroll(System.Windows.Forms.ScrollEventArgs)" />
+        <element api="M:System.Windows.Forms.ScrollableControl.ScrollControlIntoView(System.Windows.Forms.Control)" />
+        <element api="M:System.Windows.Forms.ScrollableControl.ScrollToControl(System.Windows.Forms.Control)" />
+        <element api="M:System.Windows.Forms.ScrollableControl.SetAutoScrollMargin(System.Int32,System.Int32)" />
+        <element api="M:System.Windows.Forms.ScrollableControl.SetDisplayRectLocation(System.Int32,System.Int32)" />
+        <element api="M:System.Windows.Forms.ScrollableControl.SetScrollState(System.Int32,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess" module="System.ServiceProcess" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+        <type api="T:System.ServiceProcess.Design.ServiceInstallerDialog" />
+      </containers>
+      <file name="21f96b5e-4a0d-4088-7596-e24087b490bb" />
+    </api>
+    <api id="Properties.T:System.ServiceProcess.Design.ServiceInstallerDialog">
+      <topicdata name="ServiceInstallerDialog" group="list" subgroup="Properties" typeTopicId="T:System.ServiceProcess.Design.ServiceInstallerDialog" />
+      <apidata name="ServiceInstallerDialog" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceProcess.Design.ServiceInstallerDialog.#ctor" />
+      <elements>
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="P:System.ServiceProcess.Design.ServiceInstallerDialog.Password" />
+        <element api="P:System.ServiceProcess.Design.ServiceInstallerDialog.Result" />
+        <element api="P:System.ServiceProcess.Design.ServiceInstallerDialog.Username" />
+        <element api="P:System.Windows.Forms.ContainerControl.ActiveControl" />
+        <element api="P:System.Windows.Forms.ContainerControl.AutoScaleDimensions" />
+        <element api="P:System.Windows.Forms.ContainerControl.AutoScaleFactor" />
+        <element api="P:System.Windows.Forms.ContainerControl.AutoScaleMode" />
+        <element api="P:System.Windows.Forms.ContainerControl.BindingContext" />
+        <element api="P:System.Windows.Forms.ContainerControl.CanEnableIme" />
+        <element api="P:System.Windows.Forms.ContainerControl.CurrentAutoScaleDimensions" />
+        <element api="P:System.Windows.Forms.ContainerControl.ParentForm" />
+        <element api="P:System.Windows.Forms.Control.AccessibilityObject" />
+        <element api="P:System.Windows.Forms.Control.AccessibleDefaultActionDescription" />
+        <element api="P:System.Windows.Forms.Control.AccessibleDescription" />
+        <element api="P:System.Windows.Forms.Control.AccessibleName" />
+        <element api="P:System.Windows.Forms.Control.AccessibleRole" />
+        <element api="P:System.Windows.Forms.Control.AllowDrop" />
+        <element api="P:System.Windows.Forms.Control.Anchor" />
+        <element api="P:System.Windows.Forms.Control.AutoScrollOffset" />
+        <element api="P:System.Windows.Forms.Control.BackgroundImage" />
+        <element api="P:System.Windows.Forms.Control.BackgroundImageLayout" />
+        <element api="P:System.Windows.Forms.Control.Bottom" />
+        <element api="P:System.Windows.Forms.Control.Bounds" />
+        <element api="P:System.Windows.Forms.Control.CanFocus" />
+        <element api="P:System.Windows.Forms.Control.CanRaiseEvents" />
+        <element api="P:System.Windows.Forms.Control.CanSelect" />
+        <element api="P:System.Windows.Forms.Control.Capture" />
+        <element api="P:System.Windows.Forms.Control.CausesValidation" />
+        <element api="P:System.Windows.Forms.Control.ClientRectangle" />
+        <element api="P:System.Windows.Forms.Control.CompanyName" />
+        <element api="P:System.Windows.Forms.Control.ContainsFocus" />
+        <element api="P:System.Windows.Forms.Control.ContextMenu" />
+        <element api="P:System.Windows.Forms.Control.ContextMenuStrip" />
+        <element api="P:System.Windows.Forms.Control.Controls" />
+        <element api="P:System.Windows.Forms.Control.Created" />
+        <element api="P:System.Windows.Forms.Control.Cursor" />
+        <element api="P:System.Windows.Forms.Control.DataBindings" />
+        <element api="P:System.Windows.Forms.Control.DefaultCursor" />
+        <element api="P:System.Windows.Forms.Control.DefaultMargin" />
+        <element api="P:System.Windows.Forms.Control.DefaultMaximumSize" />
+        <element api="P:System.Windows.Forms.Control.DefaultMinimumSize" />
+        <element api="P:System.Windows.Forms.Control.DefaultPadding" />
+        <element api="P:System.Windows.Forms.Control.Disposing" />
+        <element api="P:System.Windows.Forms.Control.Dock" />
+        <element api="P:System.Windows.Forms.Control.DoubleBuffered" />
+        <element api="P:System.Windows.Forms.Control.Enabled" />
+        <element api="P:System.Windows.Forms.Control.Focused" />
+        <element api="P:System.Windows.Forms.Control.Font" />
+        <element api="P:System.Windows.Forms.Control.FontHeight" />
+        <element api="P:System.Windows.Forms.Control.ForeColor" />
+        <element api="P:System.Windows.Forms.Control.Handle" />
+        <element api="P:System.Windows.Forms.Control.HasChildren" />
+        <element api="P:System.Windows.Forms.Control.Height" />
+        <element api="P:System.Windows.Forms.Control.ImeMode" />
+        <element api="P:System.Windows.Forms.Control.ImeModeBase" />
+        <element api="P:System.Windows.Forms.Control.InvokeRequired" />
+        <element api="P:System.Windows.Forms.Control.IsAccessible" />
+        <element api="P:System.Windows.Forms.Control.IsDisposed" />
+        <element api="P:System.Windows.Forms.Control.IsHandleCreated" />
+        <element api="P:System.Windows.Forms.Control.IsMirrored" />
+        <element api="P:System.Windows.Forms.Control.LayoutEngine" />
+        <element api="P:System.Windows.Forms.Control.Left" />
+        <element api="P:System.Windows.Forms.Control.Name" />
+        <element api="P:System.Windows.Forms.Control.Padding" />
+        <element api="P:System.Windows.Forms.Control.Parent" />
+        <element api="P:System.Windows.Forms.Control.PreferredSize" />
+        <element api="P:System.Windows.Forms.Control.ProductName" />
+        <element api="P:System.Windows.Forms.Control.ProductVersion" />
+        <element api="P:System.Windows.Forms.Control.RecreatingHandle" />
+        <element api="P:System.Windows.Forms.Control.Region" />
+        <element api="P:System.Windows.Forms.Control.RenderRightToLeft" />
+        <element api="P:System.Windows.Forms.Control.ResizeRedraw" />
+        <element api="P:System.Windows.Forms.Control.Right" />
+        <element api="P:System.Windows.Forms.Control.RightToLeft" />
+        <element api="P:System.Windows.Forms.Control.ScaleChildren" />
+        <element api="P:System.Windows.Forms.Control.ShowFocusCues" />
+        <element api="P:System.Windows.Forms.Control.ShowKeyboardCues" />
+        <element api="P:System.Windows.Forms.Control.Site" />
+        <element api="P:System.Windows.Forms.Control.Tag" />
+        <element api="P:System.Windows.Forms.Control.Top" />
+        <element api="P:System.Windows.Forms.Control.TopLevelControl" />
+        <element api="P:System.Windows.Forms.Control.UseWaitCursor" />
+        <element api="P:System.Windows.Forms.Control.Visible" />
+        <element api="P:System.Windows.Forms.Control.Width" />
+        <element api="P:System.Windows.Forms.Control.WindowTarget" />
+        <element api="P:System.Windows.Forms.Form.AcceptButton" />
+        <element api="P:System.Windows.Forms.Form.ActiveMdiChild" />
+        <element api="P:System.Windows.Forms.Form.AllowTransparency" />
+        <element api="P:System.Windows.Forms.Form.AutoScale" />
+        <element api="P:System.Windows.Forms.Form.AutoScaleBaseSize" />
+        <element api="P:System.Windows.Forms.Form.AutoScroll" />
+        <element api="P:System.Windows.Forms.Form.AutoSize" />
+        <element api="P:System.Windows.Forms.Form.AutoSizeMode" />
+        <element api="P:System.Windows.Forms.Form.AutoValidate" />
+        <element api="P:System.Windows.Forms.Form.BackColor" />
+        <element api="P:System.Windows.Forms.Form.CancelButton" />
+        <element api="P:System.Windows.Forms.Form.ClientSize" />
+        <element api="P:System.Windows.Forms.Form.ControlBox" />
+        <element api="P:System.Windows.Forms.Form.CreateParams" />
+        <element api="P:System.Windows.Forms.Form.DefaultImeMode" />
+        <element api="P:System.Windows.Forms.Form.DefaultSize" />
+        <element api="P:System.Windows.Forms.Form.DesktopBounds" />
+        <element api="P:System.Windows.Forms.Form.DesktopLocation" />
+        <element api="P:System.Windows.Forms.Form.DialogResult" />
+        <element api="P:System.Windows.Forms.Form.FormBorderStyle" />
+        <element api="P:System.Windows.Forms.Form.HelpButton" />
+        <element api="P:System.Windows.Forms.Form.Icon" />
+        <element api="P:System.Windows.Forms.Form.IsMdiChild" />
+        <element api="P:System.Windows.Forms.Form.IsMdiContainer" />
+        <element api="P:System.Windows.Forms.Form.IsRestrictedWindow" />
+        <element api="P:System.Windows.Forms.Form.KeyPreview" />
+        <element api="P:System.Windows.Forms.Form.Location" />
+        <element api="P:System.Windows.Forms.Form.MainMenuStrip" />
+        <element api="P:System.Windows.Forms.Form.Margin" />
+        <element api="P:System.Windows.Forms.Form.MaximizeBox" />
+        <element api="P:System.Windows.Forms.Form.MaximizedBounds" />
+        <element api="P:System.Windows.Forms.Form.MaximumSize" />
+        <element api="P:System.Windows.Forms.Form.MdiChildren" />
+        <element api="P:System.Windows.Forms.Form.MdiParent" />
+        <element api="P:System.Windows.Forms.Form.Menu" />
+        <element api="P:System.Windows.Forms.Form.MergedMenu" />
+        <element api="P:System.Windows.Forms.Form.MinimizeBox" />
+        <element api="P:System.Windows.Forms.Form.MinimumSize" />
+        <element api="P:System.Windows.Forms.Form.Modal" />
+        <element api="P:System.Windows.Forms.Form.Opacity" />
+        <element api="P:System.Windows.Forms.Form.OwnedForms" />
+        <element api="P:System.Windows.Forms.Form.Owner" />
+        <element api="P:System.Windows.Forms.Form.RestoreBounds" />
+        <element api="P:System.Windows.Forms.Form.RightToLeftLayout" />
+        <element api="P:System.Windows.Forms.Form.ShowIcon" />
+        <element api="P:System.Windows.Forms.Form.ShowInTaskbar" />
+        <element api="P:System.Windows.Forms.Form.ShowWithoutActivation" />
+        <element api="P:System.Windows.Forms.Form.Size" />
+        <element api="P:System.Windows.Forms.Form.SizeGripStyle" />
+        <element api="P:System.Windows.Forms.Form.StartPosition" />
+        <element api="P:System.Windows.Forms.Form.TabIndex" />
+        <element api="P:System.Windows.Forms.Form.TabStop" />
+        <element api="P:System.Windows.Forms.Form.Text" />
+        <element api="P:System.Windows.Forms.Form.TopLevel" />
+        <element api="P:System.Windows.Forms.Form.TopMost" />
+        <element api="P:System.Windows.Forms.Form.TransparencyKey" />
+        <element api="P:System.Windows.Forms.Form.WindowState" />
+        <element api="P:System.Windows.Forms.ScrollableControl.AutoScrollMargin" />
+        <element api="P:System.Windows.Forms.ScrollableControl.AutoScrollMinSize" />
+        <element api="P:System.Windows.Forms.ScrollableControl.AutoScrollPosition" />
+        <element api="P:System.Windows.Forms.ScrollableControl.DisplayRectangle" />
+        <element api="P:System.Windows.Forms.ScrollableControl.DockPadding" />
+        <element api="P:System.Windows.Forms.ScrollableControl.HorizontalScroll" />
+        <element api="P:System.Windows.Forms.ScrollableControl.HScroll" />
+        <element api="P:System.Windows.Forms.ScrollableControl.VerticalScroll" />
+        <element api="P:System.Windows.Forms.ScrollableControl.VScroll" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess" module="System.ServiceProcess" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+        <type api="T:System.ServiceProcess.Design.ServiceInstallerDialog" />
+      </containers>
+      <file name="270f7c98-58b7-bc13-328e-61ee93f2ecac" />
+    </api>
+    <api id="Events.T:System.ServiceProcess.Design.ServiceInstallerDialog">
+      <topicdata name="ServiceInstallerDialog" group="list" subgroup="Events" typeTopicId="T:System.ServiceProcess.Design.ServiceInstallerDialog" />
+      <apidata name="ServiceInstallerDialog" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceProcess.Design.ServiceInstallerDialog.#ctor" />
+      <elements>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+        <element api="E:System.Windows.Forms.Control.BackColorChanged" />
+        <element api="E:System.Windows.Forms.Control.BackgroundImageChanged" />
+        <element api="E:System.Windows.Forms.Control.BackgroundImageLayoutChanged" />
+        <element api="E:System.Windows.Forms.Control.BindingContextChanged" />
+        <element api="E:System.Windows.Forms.Control.CausesValidationChanged" />
+        <element api="E:System.Windows.Forms.Control.ChangeUICues" />
+        <element api="E:System.Windows.Forms.Control.Click" />
+        <element api="E:System.Windows.Forms.Control.ClientSizeChanged" />
+        <element api="E:System.Windows.Forms.Control.ContextMenuChanged" />
+        <element api="E:System.Windows.Forms.Control.ContextMenuStripChanged" />
+        <element api="E:System.Windows.Forms.Control.ControlAdded" />
+        <element api="E:System.Windows.Forms.Control.ControlRemoved" />
+        <element api="E:System.Windows.Forms.Control.CursorChanged" />
+        <element api="E:System.Windows.Forms.Control.DockChanged" />
+        <element api="E:System.Windows.Forms.Control.DoubleClick" />
+        <element api="E:System.Windows.Forms.Control.DragDrop" />
+        <element api="E:System.Windows.Forms.Control.DragEnter" />
+        <element api="E:System.Windows.Forms.Control.DragLeave" />
+        <element api="E:System.Windows.Forms.Control.DragOver" />
+        <element api="E:System.Windows.Forms.Control.EnabledChanged" />
+        <element api="E:System.Windows.Forms.Control.Enter" />
+        <element api="E:System.Windows.Forms.Control.FontChanged" />
+        <element api="E:System.Windows.Forms.Control.ForeColorChanged" />
+        <element api="E:System.Windows.Forms.Control.GiveFeedback" />
+        <element api="E:System.Windows.Forms.Control.GotFocus" />
+        <element api="E:System.Windows.Forms.Control.HandleCreated" />
+        <element api="E:System.Windows.Forms.Control.HandleDestroyed" />
+        <element api="E:System.Windows.Forms.Control.HelpRequested" />
+        <element api="E:System.Windows.Forms.Control.ImeModeChanged" />
+        <element api="E:System.Windows.Forms.Control.Invalidated" />
+        <element api="E:System.Windows.Forms.Control.KeyDown" />
+        <element api="E:System.Windows.Forms.Control.KeyPress" />
+        <element api="E:System.Windows.Forms.Control.KeyUp" />
+        <element api="E:System.Windows.Forms.Control.Layout" />
+        <element api="E:System.Windows.Forms.Control.Leave" />
+        <element api="E:System.Windows.Forms.Control.LocationChanged" />
+        <element api="E:System.Windows.Forms.Control.LostFocus" />
+        <element api="E:System.Windows.Forms.Control.MouseCaptureChanged" />
+        <element api="E:System.Windows.Forms.Control.MouseClick" />
+        <element api="E:System.Windows.Forms.Control.MouseDoubleClick" />
+        <element api="E:System.Windows.Forms.Control.MouseDown" />
+        <element api="E:System.Windows.Forms.Control.MouseEnter" />
+        <element api="E:System.Windows.Forms.Control.MouseHover" />
+        <element api="E:System.Windows.Forms.Control.MouseLeave" />
+        <element api="E:System.Windows.Forms.Control.MouseMove" />
+        <element api="E:System.Windows.Forms.Control.MouseUp" />
+        <element api="E:System.Windows.Forms.Control.MouseWheel" />
+        <element api="E:System.Windows.Forms.Control.Move" />
+        <element api="E:System.Windows.Forms.Control.PaddingChanged" />
+        <element api="E:System.Windows.Forms.Control.Paint" />
+        <element api="E:System.Windows.Forms.Control.ParentChanged" />
+        <element api="E:System.Windows.Forms.Control.PreviewKeyDown" />
+        <element api="E:System.Windows.Forms.Control.QueryAccessibilityHelp" />
+        <element api="E:System.Windows.Forms.Control.QueryContinueDrag" />
+        <element api="E:System.Windows.Forms.Control.RegionChanged" />
+        <element api="E:System.Windows.Forms.Control.Resize" />
+        <element api="E:System.Windows.Forms.Control.RightToLeftChanged" />
+        <element api="E:System.Windows.Forms.Control.SizeChanged" />
+        <element api="E:System.Windows.Forms.Control.StyleChanged" />
+        <element api="E:System.Windows.Forms.Control.SystemColorsChanged" />
+        <element api="E:System.Windows.Forms.Control.TextChanged" />
+        <element api="E:System.Windows.Forms.Control.Validated" />
+        <element api="E:System.Windows.Forms.Control.Validating" />
+        <element api="E:System.Windows.Forms.Control.VisibleChanged" />
+        <element api="E:System.Windows.Forms.Form.Activated" />
+        <element api="E:System.Windows.Forms.Form.AutoSizeChanged" />
+        <element api="E:System.Windows.Forms.Form.AutoValidateChanged" />
+        <element api="E:System.Windows.Forms.Form.Closed" />
+        <element api="E:System.Windows.Forms.Form.Closing" />
+        <element api="E:System.Windows.Forms.Form.Deactivate" />
+        <element api="E:System.Windows.Forms.Form.FormClosed" />
+        <element api="E:System.Windows.Forms.Form.FormClosing" />
+        <element api="E:System.Windows.Forms.Form.HelpButtonClicked" />
+        <element api="E:System.Windows.Forms.Form.InputLanguageChanged" />
+        <element api="E:System.Windows.Forms.Form.InputLanguageChanging" />
+        <element api="E:System.Windows.Forms.Form.Load" />
+        <element api="E:System.Windows.Forms.Form.MarginChanged" />
+        <element api="E:System.Windows.Forms.Form.MaximizedBoundsChanged" />
+        <element api="E:System.Windows.Forms.Form.MaximumSizeChanged" />
+        <element api="E:System.Windows.Forms.Form.MdiChildActivate" />
+        <element api="E:System.Windows.Forms.Form.MenuComplete" />
+        <element api="E:System.Windows.Forms.Form.MenuStart" />
+        <element api="E:System.Windows.Forms.Form.MinimumSizeChanged" />
+        <element api="E:System.Windows.Forms.Form.ResizeBegin" />
+        <element api="E:System.Windows.Forms.Form.ResizeEnd" />
+        <element api="E:System.Windows.Forms.Form.RightToLeftLayoutChanged" />
+        <element api="E:System.Windows.Forms.Form.Shown" />
+        <element api="E:System.Windows.Forms.Form.TabIndexChanged" />
+        <element api="E:System.Windows.Forms.Form.TabStopChanged" />
+        <element api="E:System.Windows.Forms.ScrollableControl.Scroll" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess" module="System.ServiceProcess" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+        <type api="T:System.ServiceProcess.Design.ServiceInstallerDialog" />
+      </containers>
+      <file name="e39f1ac8-b26e-6405-ac7c-d30f7d9d78fe" />
+    </api>
+    <api id="M:System.ServiceProcess.Design.ServiceInstallerDialog.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceProcess" module="System.ServiceProcess" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+        <type api="T:System.ServiceProcess.Design.ServiceInstallerDialog" ref="true" />
+      </containers>
+      <file name="4a2f6851-1aee-348c-a1e7-14d212d58f6a" />
+    </api>
+    <api id="M:System.ServiceProcess.Design.ServiceInstallerDialog.Main">
+      <topicdata group="api" />
+      <apidata name="Main" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.ServiceProcess" module="System.ServiceProcess" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+        <type api="T:System.ServiceProcess.Design.ServiceInstallerDialog" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.STAThreadAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="399126f5-5efc-5944-e106-a06442e810de" />
+    </api>
+    <api id="P:System.ServiceProcess.Design.ServiceInstallerDialog.Password">
+      <topicdata group="api" />
+      <apidata name="Password" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Password" />
+      <setter name="set_Password" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess" module="System.ServiceProcess" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+        <type api="T:System.ServiceProcess.Design.ServiceInstallerDialog" ref="true" />
+      </containers>
+      <file name="d4267845-f7bb-af47-5dfe-4cce5fde4ce3" />
+    </api>
+    <api id="P:System.ServiceProcess.Design.ServiceInstallerDialog.Result">
+      <topicdata group="api" />
+      <apidata name="Result" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Result" />
+      <returns>
+        <type api="T:System.ServiceProcess.Design.ServiceInstallerDialogResult" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess" module="System.ServiceProcess" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+        <type api="T:System.ServiceProcess.Design.ServiceInstallerDialog" ref="true" />
+      </containers>
+      <file name="dfba1a7e-3d56-05f4-f5df-4bc3f6fdf944" />
+    </api>
+    <api id="P:System.ServiceProcess.Design.ServiceInstallerDialog.Username">
+      <topicdata group="api" />
+      <apidata name="Username" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Username" />
+      <setter name="set_Username" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess" module="System.ServiceProcess" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+        <type api="T:System.ServiceProcess.Design.ServiceInstallerDialog" ref="true" />
+      </containers>
+      <file name="3aae8c42-1626-c112-1a2d-9fde757ce2b8" />
+    </api>
+    <api id="T:System.ServiceProcess.Design.ServiceInstallerDialogResult">
+      <topicdata group="api" />
+      <apidata name="ServiceInstallerDialogResult" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.ServiceProcess.Design.ServiceInstallerDialogResult.OK" />
+        <element api="F:System.ServiceProcess.Design.ServiceInstallerDialogResult.UseSystem" />
+        <element api="F:System.ServiceProcess.Design.ServiceInstallerDialogResult.Canceled" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess" module="System.ServiceProcess" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+      </containers>
+      <file name="7bc809c4-2d1a-4bde-14bf-01e100a5cfb4" />
+    </api>
+    <api id="F:System.ServiceProcess.Design.ServiceInstallerDialogResult.Canceled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Canceled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.Design.ServiceInstallerDialogResult" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.ServiceProcess" module="System.ServiceProcess" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+        <type api="T:System.ServiceProcess.Design.ServiceInstallerDialogResult" ref="false" />
+      </containers>
+      <file name="91169403-35f5-32fa-5334-3bf6854e800e" />
+    </api>
+    <api id="F:System.ServiceProcess.Design.ServiceInstallerDialogResult.OK">
+      <topicdata group="api" notopic="" />
+      <apidata name="OK" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.Design.ServiceInstallerDialogResult" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.ServiceProcess" module="System.ServiceProcess" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+        <type api="T:System.ServiceProcess.Design.ServiceInstallerDialogResult" ref="false" />
+      </containers>
+      <file name="2052b7dc-4b0c-b953-1a2e-2d0e61d298da" />
+    </api>
+    <api id="F:System.ServiceProcess.Design.ServiceInstallerDialogResult.UseSystem">
+      <topicdata group="api" notopic="" />
+      <apidata name="UseSystem" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.Design.ServiceInstallerDialogResult" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.ServiceProcess" module="System.ServiceProcess" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceProcess.Design" />
+        <type api="T:System.ServiceProcess.Design.ServiceInstallerDialogResult" ref="false" />
+      </containers>
+      <file name="7437799b-b841-562b-1803-56d1077fcdc2" />
+    </api>
+  </apis>
+</reflection>

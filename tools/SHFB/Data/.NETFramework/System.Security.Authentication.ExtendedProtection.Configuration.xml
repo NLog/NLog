@@ -1,0 +1,834 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Security.Authentication.ExtendedProtection.Configuration">
+      <topicdata group="api" />
+      <apidata name="System.Security.Authentication.ExtendedProtection.Configuration" group="namespace" />
+      <elements>
+        <element api="T:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement" />
+        <element api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" />
+        <element api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement" />
+      </elements>
+      <file name="8007d9d1-9c33-6b80-d886-511446333545" />
+    </api>
+    <api id="T:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement" />
+      <apidata name="ExtendedProtectionPolicyElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+      </containers>
+      <file name="22581fbb-bac9-9f35-c12b-88302b7b5b59" />
+    </api>
+    <api id="AllMembers.T:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement">
+      <topicdata name="ExtendedProtectionPolicyElement" group="list" subgroup="members" typeTopicId="T:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement" />
+      <apidata name="ExtendedProtectionPolicyElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement.#ctor" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement.BuildPolicy" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement.CustomServiceNames" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement.PolicyEnforcement" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement.ProtectionScenario" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement" />
+      </containers>
+      <file name="b4fcc3f7-c20e-6867-2c95-6090c410c3e5" />
+    </api>
+    <api id="Methods.T:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement">
+      <topicdata name="ExtendedProtectionPolicyElement" group="list" subgroup="Methods" typeTopicId="T:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement" />
+      <apidata name="ExtendedProtectionPolicyElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement.BuildPolicy" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement" />
+      </containers>
+      <file name="e7ab5ad7-1a65-d58e-2bdb-c27fb196f051" />
+    </api>
+    <api id="Properties.T:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement">
+      <topicdata name="ExtendedProtectionPolicyElement" group="list" subgroup="Properties" typeTopicId="T:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement" />
+      <apidata name="ExtendedProtectionPolicyElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement.CustomServiceNames" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement.PolicyEnforcement" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement.ProtectionScenario" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement" />
+      </containers>
+      <file name="e746ebe5-d913-5720-824a-4e3689dc5992" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement" ref="true" />
+      </containers>
+      <file name="c0162aef-36a6-18a5-99e1-cffa64c28bdb" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement.BuildPolicy">
+      <topicdata group="api" />
+      <apidata name="BuildPolicy" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement" ref="true" />
+      </containers>
+      <file name="e8033fb7-e968-bd64-fedb-d96419ecd4bf" />
+    </api>
+    <api id="P:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement.CustomServiceNames">
+      <topicdata group="api" />
+      <apidata name="CustomServiceNames" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CustomServiceNames" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>customServiceNames</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9a606188-36b8-fdf2-4c75-ce2f061871bc" />
+    </api>
+    <api id="P:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement.PolicyEnforcement">
+      <topicdata group="api" />
+      <apidata name="PolicyEnforcement" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PolicyEnforcement" />
+      <setter name="set_PolicyEnforcement" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.PolicyEnforcement" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>policyEnforcement</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4bbb13a7-f230-15a4-26f7-1ca69d7026e1" />
+    </api>
+    <api id="P:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement.ProtectionScenario">
+      <topicdata group="api" />
+      <apidata name="ProtectionScenario" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ProtectionScenario" />
+      <setter name="set_ProtectionScenario" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.ProtectionScenario" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>protectionScenario</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Security.Authentication.ExtendedProtection.ProtectionScenario" ref="false" />
+            <enumValue>
+              <field name="TransportSelected" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="fb8e5a4a-1921-9a7c-cfaa-f7e23ac1acdf" />
+    </api>
+    <api id="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement" />
+      <apidata name="ServiceNameElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+      </containers>
+      <file name="694c30fc-a336-f652-cdad-d30681dd4aea" />
+    </api>
+    <api id="AllMembers.T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement">
+      <topicdata name="ServiceNameElement" group="list" subgroup="members" typeTopicId="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement" />
+      <apidata name="ServiceNameElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement.#ctor" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement.Name" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement" />
+      </containers>
+      <file name="aeea91ce-547e-68e2-cf6b-7b2e67aeb984" />
+    </api>
+    <api id="Methods.T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement">
+      <topicdata name="ServiceNameElement" group="list" subgroup="Methods" typeTopicId="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement" />
+      <apidata name="ServiceNameElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement" />
+      </containers>
+      <file name="5e215d87-b261-d241-f376-1392e5ad00bd" />
+    </api>
+    <api id="Properties.T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement">
+      <topicdata name="ServiceNameElement" group="list" subgroup="Properties" typeTopicId="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement" />
+      <apidata name="ServiceNameElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement.Name" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement" />
+      </containers>
+      <file name="7f91658d-ab09-d7b3-7221-80429ecde3f7" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement" ref="true" />
+      </containers>
+      <file name="6bdfb657-93a4-0674-a9cb-09bed701644f" />
+    </api>
+    <api id="P:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>name</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e97f4468-e3ae-5aac-a52b-192b67b043bc" />
+    </api>
+    <api id="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" />
+      <apidata name="ServiceNameElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElementCollection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationCollectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement" ref="true" />
+            </typeValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="099a2944-34e3-d9da-f1e4-713517d6d815" />
+    </api>
+    <api id="AllMembers.T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection">
+      <topicdata name="ServiceNameElementCollection" group="list" subgroup="members" typeTopicId="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" />
+      <apidata name="ServiceNameElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.CollectionType" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.#ctor" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Add(System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement)" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Clear" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.IndexOf(System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement)" />
+        <element api="Overload:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Item">
+          <element api="P:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Item(System.Int32)" />
+          <element api="P:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Item(System.String)" />
+        </element>
+        <element api="Overload:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Remove">
+          <element api="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Remove(System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement)" />
+          <element api="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Remove(System.String)" />
+        </element>
+        <element api="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.RemoveAt(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" />
+      </containers>
+      <file name="38bf263b-640e-69b5-50ee-b6105b81c95b" />
+    </api>
+    <api id="Methods.T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection">
+      <topicdata name="ServiceNameElementCollection" group="list" subgroup="Methods" typeTopicId="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" />
+      <apidata name="ServiceNameElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Add(System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement)" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Clear" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.IndexOf(System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement)" />
+        <element api="Overload:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Remove">
+          <element api="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Remove(System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement)" />
+          <element api="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Remove(System.String)" />
+        </element>
+        <element api="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.RemoveAt(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" />
+      </containers>
+      <file name="b49553ca-5d0c-4677-787c-1657f357fef2" />
+    </api>
+    <api id="Properties.T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection">
+      <topicdata name="ServiceNameElementCollection" group="list" subgroup="Properties" typeTopicId="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" />
+      <apidata name="ServiceNameElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.CollectionType" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+        <element api="Overload:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Item">
+          <element api="P:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Item(System.Int32)" />
+          <element api="P:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Item(System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" />
+      </containers>
+      <file name="e0e529aa-0107-7e03-e3de-d343175b606a" />
+    </api>
+    <api id="Overload:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Item">
+      <topicdata name="Item" group="list" subgroup="overload" memberSubgroup="property" pseudo="true" allMembersTopicId="AllMembers.T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <elements>
+        <element api="P:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Item(System.Int32)" />
+        <element api="P:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Item(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" ref="true" />
+      </containers>
+      <file name="9b50e104-1aeb-c78e-7f66-4ab8bf14e41f" />
+    </api>
+    <api id="Overload:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Remove">
+      <topicdata name="Remove" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Remove(System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement)" />
+        <element api="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Remove(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" ref="true" />
+      </containers>
+      <file name="be8a5bbe-a9bf-4dc9-e23c-270b3d2169c7" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" ref="true" />
+      </containers>
+      <file name="258ac3d1-216b-4694-0c06-6cbaba55f8a4" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Add(System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" ref="true" />
+      </containers>
+      <file name="ad000197-80c6-61e4-3339-a494544ef1cd" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" ref="true" />
+      </containers>
+      <file name="0529546b-ab4d-fabf-add7-eec70bd5e594" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.IndexOf(System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement)">
+      <topicdata group="api" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" ref="true" />
+      </containers>
+      <file name="4f4ea056-27d7-4435-b1f8-cb200299d50e" />
+    </api>
+    <api id="P:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" ref="true" />
+      </containers>
+      <file name="c76d86e6-854c-370f-dbb7-71596c5054b4" />
+    </api>
+    <api id="P:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Item(System.String)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" ref="true" />
+      </containers>
+      <file name="4cd4e651-9d5d-9095-4f31-0e4d3e778cd0" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Remove(System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Remove" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" ref="true" />
+      </containers>
+      <file name="89705eef-ceb5-3010-dad6-124df356cb40" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Remove(System.String)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.Remove" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" ref="true" />
+      </containers>
+      <file name="6b08192e-47bb-8032-a15e-30bbc0c9bece" />
+    </api>
+    <api id="M:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection.RemoveAt(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="RemoveAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication.ExtendedProtection.Configuration" />
+        <type api="T:System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection" ref="true" />
+      </containers>
+      <file name="f48ea1af-a260-d293-2345-e2a202fd6f07" />
+    </api>
+  </apis>
+</reflection>

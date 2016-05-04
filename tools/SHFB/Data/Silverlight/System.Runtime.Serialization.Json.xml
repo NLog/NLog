@@ -1,0 +1,698 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ServiceModel.Web">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Web.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Web.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Web.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\Tools\devdiv\silverlightplatformpublickey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.Runtime.Serialization.Json">
+      <assemblydata version="5.0.5.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Serialization.Json.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Serialization.Json.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Serialization.Json.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\Tools\devdiv\silverlightpublickey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.Serialization.Json">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.Serialization.Json" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />
+        <element api="T:System.Runtime.Serialization.Json.JsonReaderWriterFactory" />
+      </elements>
+      <file name="e3e3cf29-3398-085f-8aa8-ac958a3d9d37" />
+    </api>
+    <api id="T:System.Runtime.Serialization.Json.DataContractJsonSerializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />
+      <apidata name="DataContractJsonSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+      </containers>
+      <file name="a338edf6-ec61-cc0f-cff8-a4b3b13ab123" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Serialization.Json.DataContractJsonSerializer">
+      <topicdata name="DataContractJsonSerializer" group="list" subgroup="members" typeTopicId="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />
+      <apidata name="DataContractJsonSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor">
+          <element api="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type)" />
+          <element api="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type,System.Collections.Generic.IEnumerable{System.Type})" />
+        </element>
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.KnownTypes" />
+        <element api="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(System.IO.Stream)" />
+        <element api="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.WriteObject(System.IO.Stream,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />
+      </containers>
+      <file name="a0ba9beb-352a-7652-8917-7d949baafb45" />
+    </api>
+    <api id="Methods.T:System.Runtime.Serialization.Json.DataContractJsonSerializer">
+      <topicdata name="DataContractJsonSerializer" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />
+      <apidata name="DataContractJsonSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(System.IO.Stream)" />
+        <element api="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.WriteObject(System.IO.Stream,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />
+      </containers>
+      <file name="f8822d63-2790-253a-ec6c-032b28545ff5" />
+    </api>
+    <api id="Properties.T:System.Runtime.Serialization.Json.DataContractJsonSerializer">
+      <topicdata name="DataContractJsonSerializer" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />
+      <apidata name="DataContractJsonSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.KnownTypes" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />
+      </containers>
+      <file name="1eb3a677-2ef2-bb09-2cdc-9941b542491c" />
+    </api>
+    <api id="Overload:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type)" />
+        <element api="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type,System.Collections.Generic.IEnumerable{System.Type})" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" ref="true" />
+      </containers>
+      <file name="9c82bd5d-7916-eedc-5006-c873a1500ee3" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" ref="true" />
+      </containers>
+      <file name="f080480c-31c1-6ec5-9ddf-2a55547009f6" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type,System.Collections.Generic.IEnumerable{System.Type})">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="knownTypes">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Type" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" ref="true" />
+      </containers>
+      <file name="5221506d-4ab1-588e-a443-0e5e8bdcab14" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.KnownTypes">
+      <topicdata group="api" />
+      <apidata name="KnownTypes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_KnownTypes" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.Type" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" ref="true" />
+      </containers>
+      <file name="272c747a-dd8a-05db-4371-028ad8f9e196" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="ReadObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" ref="true" />
+      </containers>
+      <file name="5a6221e0-7083-9ec2-a97b-81fe92f21501" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.WriteObject(System.IO.Stream,System.Object)">
+      <topicdata group="api" />
+      <apidata name="WriteObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="graph">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" ref="true" />
+      </containers>
+      <file name="a8ce76ac-a9f7-4040-dbae-e0864a080540" />
+    </api>
+    <api id="T:System.Runtime.Serialization.Json.JsonReaderWriterFactory">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Json.JsonReaderWriterFactory" />
+      <apidata name="JsonReaderWriterFactory" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Serialization.Json" module="System.Runtime.Serialization.Json" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+      </containers>
+      <file name="de67974a-1bf2-3e99-31c8-2f823d5e132d" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Serialization.Json.JsonReaderWriterFactory">
+      <topicdata name="JsonReaderWriterFactory" group="list" subgroup="members" typeTopicId="T:System.Runtime.Serialization.Json.JsonReaderWriterFactory" />
+      <apidata name="JsonReaderWriterFactory" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader">
+          <element api="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader(System.Byte[],System.Xml.XmlDictionaryReaderQuotas)" />
+          <element api="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader(System.IO.Stream,System.Xml.XmlDictionaryReaderQuotas)" />
+          <element api="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader(System.Byte[],System.Int32,System.Int32,System.Xml.XmlDictionaryReaderQuotas)" />
+        </element>
+        <element api="Overload:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter">
+          <element api="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter(System.IO.Stream)" />
+          <element api="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter(System.IO.Stream,System.Text.Encoding)" />
+          <element api="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter(System.IO.Stream,System.Text.Encoding,System.Boolean)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization.Json" module="System.Runtime.Serialization.Json" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.JsonReaderWriterFactory" />
+      </containers>
+      <file name="761ef5e9-d303-466e-8d30-9896460e4e5c" />
+    </api>
+    <api id="Methods.T:System.Runtime.Serialization.Json.JsonReaderWriterFactory">
+      <topicdata name="JsonReaderWriterFactory" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Serialization.Json.JsonReaderWriterFactory" />
+      <apidata name="JsonReaderWriterFactory" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader">
+          <element api="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader(System.Byte[],System.Xml.XmlDictionaryReaderQuotas)" />
+          <element api="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader(System.IO.Stream,System.Xml.XmlDictionaryReaderQuotas)" />
+          <element api="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader(System.Byte[],System.Int32,System.Int32,System.Xml.XmlDictionaryReaderQuotas)" />
+        </element>
+        <element api="Overload:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter">
+          <element api="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter(System.IO.Stream)" />
+          <element api="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter(System.IO.Stream,System.Text.Encoding)" />
+          <element api="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter(System.IO.Stream,System.Text.Encoding,System.Boolean)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization.Json" module="System.Runtime.Serialization.Json" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.JsonReaderWriterFactory" />
+      </containers>
+      <file name="748f018f-c5a7-03a9-9bc9-23a11da666b2" />
+    </api>
+    <api id="Overload:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader">
+      <topicdata name="CreateJsonReader" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Json.JsonReaderWriterFactory" />
+      <apidata name="CreateJsonReader" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader(System.Byte[],System.Xml.XmlDictionaryReaderQuotas)" />
+        <element api="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader(System.IO.Stream,System.Xml.XmlDictionaryReaderQuotas)" />
+        <element api="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader(System.Byte[],System.Int32,System.Int32,System.Xml.XmlDictionaryReaderQuotas)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization.Json" module="System.Runtime.Serialization.Json" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.JsonReaderWriterFactory" ref="true" />
+      </containers>
+      <file name="0f7d47d8-acda-aa74-2284-dbf379fc1aa1" />
+    </api>
+    <api id="Overload:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter">
+      <topicdata name="CreateJsonWriter" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Json.JsonReaderWriterFactory" />
+      <apidata name="CreateJsonWriter" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter(System.IO.Stream)" />
+        <element api="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter(System.IO.Stream,System.Text.Encoding)" />
+        <element api="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter(System.IO.Stream,System.Text.Encoding,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization.Json" module="System.Runtime.Serialization.Json" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.JsonReaderWriterFactory" ref="true" />
+      </containers>
+      <file name="436aec7a-37ca-bd8b-5842-f359f85e635d" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader(System.Byte[],System.Int32,System.Int32,System.Xml.XmlDictionaryReaderQuotas)">
+      <topicdata group="api" />
+      <apidata name="CreateJsonReader" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="quotas">
+          <type api="T:System.Xml.XmlDictionaryReaderQuotas" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.XmlDictionaryReader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization.Json" module="System.Runtime.Serialization.Json" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.JsonReaderWriterFactory" ref="true" />
+      </containers>
+      <file name="84e4dedb-7a82-2f7d-0e88-fd9fc34d467a" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader(System.Byte[],System.Xml.XmlDictionaryReaderQuotas)">
+      <topicdata group="api" />
+      <apidata name="CreateJsonReader" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="quotas">
+          <type api="T:System.Xml.XmlDictionaryReaderQuotas" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.XmlDictionaryReader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization.Json" module="System.Runtime.Serialization.Json" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.JsonReaderWriterFactory" ref="true" />
+      </containers>
+      <file name="ea7930c8-9e1c-31ca-2cf8-8d616799b29a" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader(System.IO.Stream,System.Xml.XmlDictionaryReaderQuotas)">
+      <topicdata group="api" />
+      <apidata name="CreateJsonReader" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="quotas">
+          <type api="T:System.Xml.XmlDictionaryReaderQuotas" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.XmlDictionaryReader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization.Json" module="System.Runtime.Serialization.Json" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.JsonReaderWriterFactory" ref="true" />
+      </containers>
+      <file name="9a0ed570-b0b4-9ea3-a1bd-c7d7c3c5e93a" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter(System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="CreateJsonWriter" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.XmlDictionaryWriter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization.Json" module="System.Runtime.Serialization.Json" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.JsonReaderWriterFactory" ref="true" />
+      </containers>
+      <file name="741b9494-abc7-a496-0d2c-77db68c069ce" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter(System.IO.Stream,System.Text.Encoding)">
+      <topicdata group="api" />
+      <apidata name="CreateJsonWriter" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="encoding">
+          <type api="T:System.Text.Encoding" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.XmlDictionaryWriter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization.Json" module="System.Runtime.Serialization.Json" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.JsonReaderWriterFactory" ref="true" />
+      </containers>
+      <file name="883a3146-e2ba-604d-593d-b45d24b5550a" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter(System.IO.Stream,System.Text.Encoding,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="CreateJsonWriter" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="encoding">
+          <type api="T:System.Text.Encoding" ref="true" />
+        </parameter>
+        <parameter name="ownsStream">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.XmlDictionaryWriter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization.Json" module="System.Runtime.Serialization.Json" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.JsonReaderWriterFactory" ref="true" />
+      </containers>
+      <file name="475937ec-083a-0af5-7657-4969832d933d" />
+    </api>
+  </apis>
+</reflection>

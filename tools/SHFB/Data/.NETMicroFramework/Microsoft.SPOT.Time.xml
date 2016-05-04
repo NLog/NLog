@@ -1,0 +1,1260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.SPOT.Time">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.SPOT.Time</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.SPOT.Time">
+      <topicdata group="api" />
+      <apidata name="Microsoft.SPOT.Time" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.SPOT.Time.TimeServiceSettings" />
+        <element api="T:Microsoft.SPOT.Time.TimeServiceStatus" />
+        <element api="T:Microsoft.SPOT.Time.TimeServiceStatus.TimeServiceStatusFlags" />
+        <element api="T:Microsoft.SPOT.Time.SystemTimeChangedEventArgs" />
+        <element api="T:Microsoft.SPOT.Time.TimeSyncFailedEventArgs" />
+        <element api="T:Microsoft.SPOT.Time.SystemTimeChangedEventHandler" />
+        <element api="T:Microsoft.SPOT.Time.TimeSyncFailedEventHandler" />
+        <element api="T:Microsoft.SPOT.Time.TimeService" />
+      </elements>
+      <file name="68e3b3a5-c255-b6b4-2f4e-e09e55b4b471" />
+    </api>
+    <api id="T:Microsoft.SPOT.Time.SystemTimeChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Time.SystemTimeChangedEventArgs" />
+      <apidata name="SystemTimeChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.SPOT.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+      </containers>
+      <file name="723af613-a236-9dd2-c6d9-f1d63f684688" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Time.SystemTimeChangedEventArgs">
+      <topicdata name="SystemTimeChangedEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Time.SystemTimeChangedEventArgs" />
+      <apidata name="SystemTimeChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Time.SystemTimeChangedEventArgs.#ctor(System.DateTime)" />
+        <element api="F:Microsoft.SPOT.Time.SystemTimeChangedEventArgs.EventTime" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.SystemTimeChangedEventArgs" />
+      </containers>
+      <file name="9d910ede-9426-f217-c239-a4e2cef48525" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Time.SystemTimeChangedEventArgs">
+      <topicdata name="SystemTimeChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Time.SystemTimeChangedEventArgs" />
+      <apidata name="SystemTimeChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.SystemTimeChangedEventArgs" />
+      </containers>
+      <file name="afc3ab9c-3ca8-fff1-2147-a95b3cf768fc" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Time.SystemTimeChangedEventArgs">
+      <topicdata name="SystemTimeChangedEventArgs" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Time.SystemTimeChangedEventArgs" />
+      <apidata name="SystemTimeChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Time.SystemTimeChangedEventArgs.EventTime" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.SystemTimeChangedEventArgs" />
+      </containers>
+      <file name="816876e3-5f8a-076e-3f6d-3d0629ef54ba" />
+    </api>
+    <api id="M:Microsoft.SPOT.Time.SystemTimeChangedEventArgs.#ctor(System.DateTime)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="eventTime">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.SystemTimeChangedEventArgs" ref="true" />
+      </containers>
+      <file name="176927ea-2b01-f158-722e-85cd97bb284b" />
+    </api>
+    <api id="F:Microsoft.SPOT.Time.SystemTimeChangedEventArgs.EventTime">
+      <topicdata group="api" />
+      <apidata name="EventTime" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.SystemTimeChangedEventArgs" ref="true" />
+      </containers>
+      <file name="9dd66f08-11c0-5cbb-043d-1569ab07139f" />
+    </api>
+    <api id="T:Microsoft.SPOT.Time.SystemTimeChangedEventHandler">
+      <topicdata group="api" />
+      <apidata name="SystemTimeChangedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.SPOT.Time.SystemTimeChangedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+      </containers>
+      <file name="c0b17181-d17f-63aa-c238-2b9f0d03e22b" />
+    </api>
+    <api id="T:Microsoft.SPOT.Time.TimeService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Time.TimeService" />
+      <apidata name="TimeService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+      </containers>
+      <file name="4f46a0a5-5356-e0fb-6308-230f2e913bf1" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Time.TimeService">
+      <topicdata name="TimeService" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Time.TimeService" />
+      <apidata name="TimeService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Time.TimeService.LastSyncStatus" />
+        <element api="M:Microsoft.SPOT.Time.TimeService.SetTimeZoneOffset(System.Int32)" />
+        <element api="P:Microsoft.SPOT.Time.TimeService.Settings" />
+        <element api="M:Microsoft.SPOT.Time.TimeService.SetUtcTime(System.Int64)" />
+        <element api="M:Microsoft.SPOT.Time.TimeService.Start" />
+        <element api="M:Microsoft.SPOT.Time.TimeService.Stop" />
+        <element api="E:Microsoft.SPOT.Time.TimeService.SystemTimeChanged" />
+        <element api="E:Microsoft.SPOT.Time.TimeService.TimeSyncFailed" />
+        <element api="Overload:Microsoft.SPOT.Time.TimeService.UpdateNow">
+          <element api="M:Microsoft.SPOT.Time.TimeService.UpdateNow(System.UInt32)" />
+          <element api="M:Microsoft.SPOT.Time.TimeService.UpdateNow(System.Byte[],System.UInt32)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeService" />
+      </containers>
+      <file name="c46dc5e7-e290-1891-5256-e2f5f884e57f" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Time.TimeService">
+      <topicdata name="TimeService" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Time.TimeService" />
+      <apidata name="TimeService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Time.TimeService.SetTimeZoneOffset(System.Int32)" />
+        <element api="M:Microsoft.SPOT.Time.TimeService.SetUtcTime(System.Int64)" />
+        <element api="M:Microsoft.SPOT.Time.TimeService.Start" />
+        <element api="M:Microsoft.SPOT.Time.TimeService.Stop" />
+        <element api="Overload:Microsoft.SPOT.Time.TimeService.UpdateNow">
+          <element api="M:Microsoft.SPOT.Time.TimeService.UpdateNow(System.UInt32)" />
+          <element api="M:Microsoft.SPOT.Time.TimeService.UpdateNow(System.Byte[],System.UInt32)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeService" />
+      </containers>
+      <file name="46229e7e-f9ff-3c93-eef6-2074e0354e77" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Time.TimeService">
+      <topicdata name="TimeService" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Time.TimeService" />
+      <apidata name="TimeService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Time.TimeService.LastSyncStatus" />
+        <element api="P:Microsoft.SPOT.Time.TimeService.Settings" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeService" />
+      </containers>
+      <file name="73df4716-e005-7f4a-d819-58e3b54f6920" />
+    </api>
+    <api id="Events.T:Microsoft.SPOT.Time.TimeService">
+      <topicdata name="TimeService" group="list" subgroup="Events" typeTopicId="T:Microsoft.SPOT.Time.TimeService" />
+      <apidata name="TimeService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.SPOT.Time.TimeService.SystemTimeChanged" />
+        <element api="E:Microsoft.SPOT.Time.TimeService.TimeSyncFailed" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeService" />
+      </containers>
+      <file name="18da0321-adbc-9c69-6903-42a4271ae65c" />
+    </api>
+    <api id="Overload:Microsoft.SPOT.Time.TimeService.UpdateNow">
+      <topicdata name="UpdateNow" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Time.TimeService" />
+      <apidata name="UpdateNow" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Time.TimeService.UpdateNow(System.UInt32)" />
+        <element api="M:Microsoft.SPOT.Time.TimeService.UpdateNow(System.Byte[],System.UInt32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeService" ref="true" />
+      </containers>
+      <file name="157956cf-32ae-285d-6923-78763592206b" />
+    </api>
+    <api id="P:Microsoft.SPOT.Time.TimeService.LastSyncStatus">
+      <topicdata group="api" />
+      <apidata name="LastSyncStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LastSyncStatus" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Time.TimeServiceStatus" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeService" ref="true" />
+      </containers>
+      <file name="698fb504-751f-93ef-10d1-6b98d04d77e6" />
+    </api>
+    <api id="M:Microsoft.SPOT.Time.TimeService.SetTimeZoneOffset(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="SetTimeZoneOffset" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="offsetInMinutes">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeService" ref="true" />
+      </containers>
+      <file name="73d77b18-ad62-7279-4482-add45f079fa1" />
+    </api>
+    <api id="P:Microsoft.SPOT.Time.TimeService.Settings">
+      <topicdata group="api" />
+      <apidata name="Settings" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Settings" />
+      <setter name="set_Settings" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Time.TimeServiceSettings" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeService" ref="true" />
+      </containers>
+      <file name="45a530d2-c721-7037-5379-d57033fc7d56" />
+    </api>
+    <api id="M:Microsoft.SPOT.Time.TimeService.SetUtcTime(System.Int64)">
+      <topicdata group="api" />
+      <apidata name="SetUtcTime" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="utcTimeInTicks">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeService" ref="true" />
+      </containers>
+      <file name="afe3bffd-eb07-9492-bf17-51bda0be8efb" />
+    </api>
+    <api id="M:Microsoft.SPOT.Time.TimeService.Start">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeService" ref="true" />
+      </containers>
+      <file name="bc9996a2-8520-4b67-b231-cb9570b51455" />
+    </api>
+    <api id="M:Microsoft.SPOT.Time.TimeService.Stop">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeService" ref="true" />
+      </containers>
+      <file name="4f3f5d32-d3bc-9303-bf09-77c7149c5e44" />
+    </api>
+    <api id="E:Microsoft.SPOT.Time.TimeService.SystemTimeChanged">
+      <topicdata group="api" />
+      <apidata name="SystemTimeChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_SystemTimeChanged" />
+      <remover name="remove_SystemTimeChanged" />
+      <eventhandler>
+        <type api="T:Microsoft.SPOT.Time.SystemTimeChangedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.SPOT.Time.SystemTimeChangedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeService" ref="true" />
+      </containers>
+      <file name="752d2b79-1e35-db22-c215-1e410bc5b8f2" />
+    </api>
+    <api id="E:Microsoft.SPOT.Time.TimeService.TimeSyncFailed">
+      <topicdata group="api" />
+      <apidata name="TimeSyncFailed" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_TimeSyncFailed" />
+      <remover name="remove_TimeSyncFailed" />
+      <eventhandler>
+        <type api="T:Microsoft.SPOT.Time.TimeSyncFailedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.SPOT.Time.TimeSyncFailedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeService" ref="true" />
+      </containers>
+      <file name="86c9794a-e0bb-4eb5-266c-ce2dfd85b2aa" />
+    </api>
+    <api id="M:Microsoft.SPOT.Time.TimeService.UpdateNow(System.Byte[],System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="UpdateNow" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Microsoft.SPOT.Time.TimeService.UpdateNow" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="serverAddress">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="tolerance">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.SPOT.Time.TimeServiceStatus" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeService" ref="true" />
+      </containers>
+      <file name="6c4f81ad-99e1-3a5e-ea26-9d01ee7cddcb" />
+    </api>
+    <api id="M:Microsoft.SPOT.Time.TimeService.UpdateNow(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="UpdateNow" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Microsoft.SPOT.Time.TimeService.UpdateNow" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="tolerance">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.SPOT.Time.TimeServiceStatus" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeService" ref="true" />
+      </containers>
+      <file name="5f03ba17-a361-c496-6fec-37d3e55fe057" />
+    </api>
+    <api id="T:Microsoft.SPOT.Time.TimeServiceSettings">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Time.TimeServiceSettings" />
+      <apidata name="TimeServiceSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Time.TimeServiceSettings.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+      </containers>
+      <file name="827fd6af-3033-91a2-630d-d0684529838a" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Time.TimeServiceSettings">
+      <topicdata name="TimeServiceSettings" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Time.TimeServiceSettings" />
+      <apidata name="TimeServiceSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Time.TimeServiceSettings.#ctor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Time.TimeServiceSettings.#ctor" />
+        <element api="P:Microsoft.SPOT.Time.TimeServiceSettings.AlternateServer" />
+        <element api="F:Microsoft.SPOT.Time.TimeServiceSettings.AlternateServerIP" />
+        <element api="F:Microsoft.SPOT.Time.TimeServiceSettings.AutoDayLightSavings" />
+        <element api="F:Microsoft.SPOT.Time.TimeServiceSettings.ForceSyncAtWakeUp" />
+        <element api="P:Microsoft.SPOT.Time.TimeServiceSettings.PrimaryServer" />
+        <element api="F:Microsoft.SPOT.Time.TimeServiceSettings.PrimaryServerIP" />
+        <element api="F:Microsoft.SPOT.Time.TimeServiceSettings.RefreshTime" />
+        <element api="F:Microsoft.SPOT.Time.TimeServiceSettings.Tolerance" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceSettings" />
+      </containers>
+      <file name="2bb3492e-2066-5d7b-2db1-08a75b00b9e7" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Time.TimeServiceSettings">
+      <topicdata name="TimeServiceSettings" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Time.TimeServiceSettings" />
+      <apidata name="TimeServiceSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Time.TimeServiceSettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceSettings" />
+      </containers>
+      <file name="044771da-2edb-ce24-4bdd-32ce416a05e8" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Time.TimeServiceSettings">
+      <topicdata name="TimeServiceSettings" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Time.TimeServiceSettings" />
+      <apidata name="TimeServiceSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Time.TimeServiceSettings.#ctor" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Time.TimeServiceSettings.AlternateServer" />
+        <element api="P:Microsoft.SPOT.Time.TimeServiceSettings.PrimaryServer" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceSettings" />
+      </containers>
+      <file name="3bc03552-a3d9-e24e-635d-e2f2555c397f" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Time.TimeServiceSettings">
+      <topicdata name="TimeServiceSettings" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Time.TimeServiceSettings" />
+      <apidata name="TimeServiceSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Time.TimeServiceSettings.#ctor" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Time.TimeServiceSettings.AlternateServerIP" />
+        <element api="F:Microsoft.SPOT.Time.TimeServiceSettings.AutoDayLightSavings" />
+        <element api="F:Microsoft.SPOT.Time.TimeServiceSettings.ForceSyncAtWakeUp" />
+        <element api="F:Microsoft.SPOT.Time.TimeServiceSettings.PrimaryServerIP" />
+        <element api="F:Microsoft.SPOT.Time.TimeServiceSettings.RefreshTime" />
+        <element api="F:Microsoft.SPOT.Time.TimeServiceSettings.Tolerance" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceSettings" />
+      </containers>
+      <file name="6010c40b-ade3-26a0-0e6d-92cbe42a1e06" />
+    </api>
+    <api id="M:Microsoft.SPOT.Time.TimeServiceSettings.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceSettings" ref="true" />
+      </containers>
+      <file name="aa710639-42f7-2742-7a44-408d0ed0e64e" />
+    </api>
+    <api id="P:Microsoft.SPOT.Time.TimeServiceSettings.AlternateServer">
+      <topicdata group="api" />
+      <apidata name="AlternateServer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AlternateServer" />
+      <setter name="set_AlternateServer" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceSettings" ref="true" />
+      </containers>
+      <file name="9a3af4c1-57a6-dc0a-6a36-4af1e216353a" />
+    </api>
+    <api id="F:Microsoft.SPOT.Time.TimeServiceSettings.AlternateServerIP">
+      <topicdata group="api" />
+      <apidata name="AlternateServerIP" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceSettings" ref="true" />
+      </containers>
+      <file name="ca601213-709f-cc10-659c-2d7453cac98b" />
+    </api>
+    <api id="F:Microsoft.SPOT.Time.TimeServiceSettings.AutoDayLightSavings">
+      <topicdata group="api" />
+      <apidata name="AutoDayLightSavings" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceSettings" ref="true" />
+      </containers>
+      <file name="b2eed135-7058-b237-d1ec-620c6826e6a2" />
+    </api>
+    <api id="F:Microsoft.SPOT.Time.TimeServiceSettings.ForceSyncAtWakeUp">
+      <topicdata group="api" />
+      <apidata name="ForceSyncAtWakeUp" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceSettings" ref="true" />
+      </containers>
+      <file name="0ab20fb4-675b-5048-1d84-d51190cb1c24" />
+    </api>
+    <api id="P:Microsoft.SPOT.Time.TimeServiceSettings.PrimaryServer">
+      <topicdata group="api" />
+      <apidata name="PrimaryServer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PrimaryServer" />
+      <setter name="set_PrimaryServer" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceSettings" ref="true" />
+      </containers>
+      <file name="07a9af1e-1e0c-7f94-3c28-3cf681542d0f" />
+    </api>
+    <api id="F:Microsoft.SPOT.Time.TimeServiceSettings.PrimaryServerIP">
+      <topicdata group="api" />
+      <apidata name="PrimaryServerIP" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceSettings" ref="true" />
+      </containers>
+      <file name="a2b72585-2a4a-1acb-2b0b-2a1050de6eb0" />
+    </api>
+    <api id="F:Microsoft.SPOT.Time.TimeServiceSettings.RefreshTime">
+      <topicdata group="api" />
+      <apidata name="RefreshTime" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceSettings" ref="true" />
+      </containers>
+      <file name="a5946197-664d-40e0-973c-35481b5163d5" />
+    </api>
+    <api id="F:Microsoft.SPOT.Time.TimeServiceSettings.Tolerance">
+      <topicdata group="api" />
+      <apidata name="Tolerance" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceSettings" ref="true" />
+      </containers>
+      <file name="be28ac7c-7186-5118-682e-e53a22f14bed" />
+    </api>
+    <api id="T:Microsoft.SPOT.Time.TimeServiceStatus">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Time.TimeServiceStatus" />
+      <apidata name="TimeServiceStatus" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Time.TimeServiceStatus.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+      </containers>
+      <file name="be3fea22-7206-2020-ecf0-6f3b2300792f" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Time.TimeServiceStatus">
+      <topicdata name="TimeServiceStatus" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Time.TimeServiceStatus" />
+      <apidata name="TimeServiceStatus" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Time.TimeServiceStatus.#ctor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Time.TimeServiceStatus.#ctor" />
+        <element api="P:Microsoft.SPOT.Time.TimeServiceStatus.CurrentTimeUTC" />
+        <element api="F:Microsoft.SPOT.Time.TimeServiceStatus.Flags" />
+        <element api="F:Microsoft.SPOT.Time.TimeServiceStatus.SyncSourceServer" />
+        <element api="F:Microsoft.SPOT.Time.TimeServiceStatus.SyncTimeOffset" />
+        <element api="F:Microsoft.SPOT.Time.TimeServiceStatus.TimeUTC" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceStatus" />
+      </containers>
+      <file name="5607d1bf-2b51-cde7-7729-5924c67d4d65" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Time.TimeServiceStatus">
+      <topicdata name="TimeServiceStatus" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Time.TimeServiceStatus" />
+      <apidata name="TimeServiceStatus" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Time.TimeServiceStatus.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceStatus" />
+      </containers>
+      <file name="e376b889-dd9f-52fd-60ff-b09f70d35447" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Time.TimeServiceStatus">
+      <topicdata name="TimeServiceStatus" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Time.TimeServiceStatus" />
+      <apidata name="TimeServiceStatus" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Time.TimeServiceStatus.#ctor" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Time.TimeServiceStatus.CurrentTimeUTC" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceStatus" />
+      </containers>
+      <file name="6c685651-1c05-107b-aea7-9b22143699fc" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Time.TimeServiceStatus">
+      <topicdata name="TimeServiceStatus" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Time.TimeServiceStatus" />
+      <apidata name="TimeServiceStatus" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Time.TimeServiceStatus.#ctor" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Time.TimeServiceStatus.Flags" />
+        <element api="F:Microsoft.SPOT.Time.TimeServiceStatus.SyncSourceServer" />
+        <element api="F:Microsoft.SPOT.Time.TimeServiceStatus.SyncTimeOffset" />
+        <element api="F:Microsoft.SPOT.Time.TimeServiceStatus.TimeUTC" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceStatus" />
+      </containers>
+      <file name="99431469-b072-d340-de45-aa59d9ede6ff" />
+    </api>
+    <api id="M:Microsoft.SPOT.Time.TimeServiceStatus.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceStatus" ref="true" />
+      </containers>
+      <file name="d6ab6592-aa01-49f9-74e6-ebef152257dc" />
+    </api>
+    <api id="P:Microsoft.SPOT.Time.TimeServiceStatus.CurrentTimeUTC">
+      <topicdata group="api" />
+      <apidata name="CurrentTimeUTC" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CurrentTimeUTC" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceStatus" ref="true" />
+      </containers>
+      <file name="8ecccdfa-fd1a-b9ab-b124-94a142d25328" />
+    </api>
+    <api id="F:Microsoft.SPOT.Time.TimeServiceStatus.Flags">
+      <topicdata group="api" />
+      <apidata name="Flags" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Time.TimeServiceStatus.TimeServiceStatusFlags" ref="false">
+          <type api="T:Microsoft.SPOT.Time.TimeServiceStatus" ref="true" />
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceStatus" ref="true" />
+      </containers>
+      <file name="cdbe7058-3b24-74f4-6fde-9a517460af15" />
+    </api>
+    <api id="F:Microsoft.SPOT.Time.TimeServiceStatus.SyncSourceServer">
+      <topicdata group="api" />
+      <apidata name="SyncSourceServer" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceStatus" ref="true" />
+      </containers>
+      <file name="ef4016ce-725a-2275-32a2-f0502cc1aee3" />
+    </api>
+    <api id="F:Microsoft.SPOT.Time.TimeServiceStatus.SyncTimeOffset">
+      <topicdata group="api" />
+      <apidata name="SyncTimeOffset" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceStatus" ref="true" />
+      </containers>
+      <file name="92f64c4b-92e2-6507-895e-34f8f6d7d108" />
+    </api>
+    <api id="F:Microsoft.SPOT.Time.TimeServiceStatus.TimeUTC">
+      <topicdata group="api" />
+      <apidata name="TimeUTC" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceStatus" ref="true" />
+      </containers>
+      <file name="e96ab8d8-1cea-d31d-19e6-b2f0c50ffe62" />
+    </api>
+    <api id="T:Microsoft.SPOT.Time.TimeServiceStatus.TimeServiceStatusFlags">
+      <topicdata group="api" />
+      <apidata name="TimeServiceStatusFlags" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Time.TimeServiceStatus.TimeServiceStatusFlags.SyncSucceeded" />
+        <element api="F:Microsoft.SPOT.Time.TimeServiceStatus.TimeServiceStatusFlags.SyncFailed" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceStatus" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="1dc65249-c3fc-02e4-bba2-775f581d6b5a" />
+    </api>
+    <api id="F:Microsoft.SPOT.Time.TimeServiceStatus.TimeServiceStatusFlags.SyncFailed">
+      <topicdata group="api" notopic="" />
+      <apidata name="SyncFailed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Time.TimeServiceStatus.TimeServiceStatusFlags" ref="false">
+          <type api="T:Microsoft.SPOT.Time.TimeServiceStatus" ref="true" />
+        </type>
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceStatus.TimeServiceStatusFlags" ref="false">
+          <type api="T:Microsoft.SPOT.Time.TimeServiceStatus" ref="true" />
+        </type>
+      </containers>
+      <file name="30d1011d-04ec-7e2c-ae25-346fa776adc6" />
+    </api>
+    <api id="F:Microsoft.SPOT.Time.TimeServiceStatus.TimeServiceStatusFlags.SyncSucceeded">
+      <topicdata group="api" notopic="" />
+      <apidata name="SyncSucceeded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Time.TimeServiceStatus.TimeServiceStatusFlags" ref="false">
+          <type api="T:Microsoft.SPOT.Time.TimeServiceStatus" ref="true" />
+        </type>
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeServiceStatus.TimeServiceStatusFlags" ref="false">
+          <type api="T:Microsoft.SPOT.Time.TimeServiceStatus" ref="true" />
+        </type>
+      </containers>
+      <file name="5a1cb800-f870-7dbf-02e8-afa8c436a222" />
+    </api>
+    <api id="T:Microsoft.SPOT.Time.TimeSyncFailedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Time.TimeSyncFailedEventArgs" />
+      <apidata name="TimeSyncFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.SPOT.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+      </containers>
+      <file name="ca2839b9-3894-ef31-cad3-83cda1340711" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Time.TimeSyncFailedEventArgs">
+      <topicdata name="TimeSyncFailedEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Time.TimeSyncFailedEventArgs" />
+      <apidata name="TimeSyncFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Time.TimeSyncFailedEventArgs.#ctor(System.DateTime,System.UInt32)" />
+        <element api="F:Microsoft.SPOT.Time.TimeSyncFailedEventArgs.ErrorCode" />
+        <element api="F:Microsoft.SPOT.Time.TimeSyncFailedEventArgs.EventTime" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeSyncFailedEventArgs" />
+      </containers>
+      <file name="dd242f3f-1673-c20b-8ad2-d9cc7adc6de7" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Time.TimeSyncFailedEventArgs">
+      <topicdata name="TimeSyncFailedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Time.TimeSyncFailedEventArgs" />
+      <apidata name="TimeSyncFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeSyncFailedEventArgs" />
+      </containers>
+      <file name="7fc34667-98ca-fa0a-b308-ebeebad4cd68" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Time.TimeSyncFailedEventArgs">
+      <topicdata name="TimeSyncFailedEventArgs" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Time.TimeSyncFailedEventArgs" />
+      <apidata name="TimeSyncFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Time.TimeSyncFailedEventArgs.ErrorCode" />
+        <element api="F:Microsoft.SPOT.Time.TimeSyncFailedEventArgs.EventTime" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeSyncFailedEventArgs" />
+      </containers>
+      <file name="95916898-6d21-5acc-da91-44e84f7a622c" />
+    </api>
+    <api id="M:Microsoft.SPOT.Time.TimeSyncFailedEventArgs.#ctor(System.DateTime,System.UInt32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="eventTime">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="errorCode">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeSyncFailedEventArgs" ref="true" />
+      </containers>
+      <file name="d22abf9d-629a-9e7a-65a7-8938ba5cde37" />
+    </api>
+    <api id="F:Microsoft.SPOT.Time.TimeSyncFailedEventArgs.ErrorCode">
+      <topicdata group="api" />
+      <apidata name="ErrorCode" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeSyncFailedEventArgs" ref="true" />
+      </containers>
+      <file name="4fb714f3-2f83-e900-f299-6de12de52dd1" />
+    </api>
+    <api id="F:Microsoft.SPOT.Time.TimeSyncFailedEventArgs.EventTime">
+      <topicdata group="api" />
+      <apidata name="EventTime" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+        <type api="T:Microsoft.SPOT.Time.TimeSyncFailedEventArgs" ref="true" />
+      </containers>
+      <file name="b00e00be-6879-1455-e8a9-c0b96756de32" />
+    </api>
+    <api id="T:Microsoft.SPOT.Time.TimeSyncFailedEventHandler">
+      <topicdata group="api" />
+      <apidata name="TimeSyncFailedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.SPOT.Time.TimeSyncFailedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Time" module="Microsoft.SPOT.Time" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Time" />
+      </containers>
+      <file name="73c75853-68af-47ee-77f4-7a555aa8e951" />
+    </api>
+  </apis>
+</reflection>

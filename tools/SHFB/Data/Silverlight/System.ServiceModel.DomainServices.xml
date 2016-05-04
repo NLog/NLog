@@ -1,0 +1,463 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ServiceModel.DomainServices.Server">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.DomainServices.Server.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.1.61829.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.DomainServices.Server</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>72e74082-7928-4a70-83c1-49806b942fcb</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>WCF RIA Services</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ServiceModel.DomainServices">
+      <topicdata group="api" />
+      <apidata name="System.ServiceModel.DomainServices" group="namespace" />
+      <elements>
+        <element api="T:System.ServiceModel.DomainServices.DomainIdentifierAttribute" />
+        <element api="T:System.ServiceModel.DomainServices.ExternalReferenceAttribute" />
+      </elements>
+      <file name="180c3887-1604-23ef-2045-1c189a296cb5" />
+    </api>
+    <api id="T:System.ServiceModel.DomainServices.DomainIdentifierAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.DomainServices.DomainIdentifierAttribute" />
+      <apidata name="DomainIdentifierAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.ServiceModel.DomainServices.Server.ApplicationServices.AuthenticationServiceAttribute" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.Server" module="System.ServiceModel.DomainServices.Server" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <library assembly="System.ServiceModel.DomainServices.Client" module="System.ServiceModel.DomainServices.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="ac8c99f7-8f0e-751b-3c8b-244769a45ba3" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.DomainServices.DomainIdentifierAttribute">
+      <topicdata name="DomainIdentifierAttribute" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.DomainServices.DomainIdentifierAttribute" />
+      <apidata name="DomainIdentifierAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.DomainServices.DomainIdentifierAttribute.#ctor(System.String)" />
+        <element api="P:System.ServiceModel.DomainServices.DomainIdentifierAttribute.CodeProcessor">
+          <libraries>
+            <library assembly="System.ServiceModel.DomainServices.Server" module="System.ServiceModel.DomainServices.Server" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:System.ServiceModel.DomainServices.DomainIdentifierAttribute.IsApplicationService" />
+        <element api="P:System.ServiceModel.DomainServices.DomainIdentifierAttribute.Name" />
+        <element api="P:System.ServiceModel.DomainServices.DomainIdentifierAttribute.TypeId">
+          <libraries>
+            <library assembly="System.ServiceModel.DomainServices.Server" module="System.ServiceModel.DomainServices.Server" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.Server" module="System.ServiceModel.DomainServices.Server" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <library assembly="System.ServiceModel.DomainServices.Client" module="System.ServiceModel.DomainServices.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices" />
+        <type api="T:System.ServiceModel.DomainServices.DomainIdentifierAttribute" />
+      </containers>
+      <file name="d9b6a717-2186-cd54-edd2-7d4041b986eb" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.DomainServices.DomainIdentifierAttribute">
+      <topicdata name="DomainIdentifierAttribute" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.DomainServices.DomainIdentifierAttribute" />
+      <apidata name="DomainIdentifierAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.Server" module="System.ServiceModel.DomainServices.Server" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <library assembly="System.ServiceModel.DomainServices.Client" module="System.ServiceModel.DomainServices.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices" />
+        <type api="T:System.ServiceModel.DomainServices.DomainIdentifierAttribute" />
+      </containers>
+      <file name="eaebec55-f429-8793-ca4c-eec87bdef2fe" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.DomainServices.DomainIdentifierAttribute">
+      <topicdata name="DomainIdentifierAttribute" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.DomainServices.DomainIdentifierAttribute" />
+      <apidata name="DomainIdentifierAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.ServiceModel.DomainServices.DomainIdentifierAttribute.CodeProcessor">
+          <libraries>
+            <library assembly="System.ServiceModel.DomainServices.Server" module="System.ServiceModel.DomainServices.Server" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:System.ServiceModel.DomainServices.DomainIdentifierAttribute.IsApplicationService" />
+        <element api="P:System.ServiceModel.DomainServices.DomainIdentifierAttribute.Name" />
+        <element api="P:System.ServiceModel.DomainServices.DomainIdentifierAttribute.TypeId">
+          <libraries>
+            <library assembly="System.ServiceModel.DomainServices.Server" module="System.ServiceModel.DomainServices.Server" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.Server" module="System.ServiceModel.DomainServices.Server" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <library assembly="System.ServiceModel.DomainServices.Client" module="System.ServiceModel.DomainServices.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices" />
+        <type api="T:System.ServiceModel.DomainServices.DomainIdentifierAttribute" />
+      </containers>
+      <file name="b5378358-7778-f7f5-c2b4-a62db2fc7089" />
+    </api>
+    <api id="M:System.ServiceModel.DomainServices.DomainIdentifierAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.Server" module="System.ServiceModel.DomainServices.Server" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <library assembly="System.ServiceModel.DomainServices.Client" module="System.ServiceModel.DomainServices.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices" />
+        <type api="T:System.ServiceModel.DomainServices.DomainIdentifierAttribute" ref="true" />
+      </containers>
+      <file name="33b115ce-2a31-7c87-afb9-fe73b4671b18" />
+    </api>
+    <api id="P:System.ServiceModel.DomainServices.DomainIdentifierAttribute.CodeProcessor">
+      <topicdata group="api" />
+      <apidata name="CodeProcessor" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CodeProcessor" />
+      <setter name="set_CodeProcessor" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.Server" module="System.ServiceModel.DomainServices.Server" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices" />
+        <type api="T:System.ServiceModel.DomainServices.DomainIdentifierAttribute" ref="true" />
+      </containers>
+      <file name="88d27f0e-7502-8aab-f884-dc5875aab792" />
+    </api>
+    <api id="P:System.ServiceModel.DomainServices.DomainIdentifierAttribute.IsApplicationService">
+      <topicdata group="api" />
+      <apidata name="IsApplicationService" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsApplicationService" />
+      <setter name="set_IsApplicationService" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.Server" module="System.ServiceModel.DomainServices.Server" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <library assembly="System.ServiceModel.DomainServices.Client" module="System.ServiceModel.DomainServices.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices" />
+        <type api="T:System.ServiceModel.DomainServices.DomainIdentifierAttribute" ref="true" />
+      </containers>
+      <file name="b044b964-d803-574c-e9b9-ab0660d9f3b2" />
+    </api>
+    <api id="P:System.ServiceModel.DomainServices.DomainIdentifierAttribute.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.Server" module="System.ServiceModel.DomainServices.Server" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <library assembly="System.ServiceModel.DomainServices.Client" module="System.ServiceModel.DomainServices.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices" />
+        <type api="T:System.ServiceModel.DomainServices.DomainIdentifierAttribute" ref="true" />
+      </containers>
+      <file name="adbbdce6-4a80-d7a1-555f-e511f13765e0" />
+    </api>
+    <api id="P:System.ServiceModel.DomainServices.DomainIdentifierAttribute.TypeId">
+      <topicdata group="api" />
+      <apidata name="TypeId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_TypeId" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.Server" module="System.ServiceModel.DomainServices.Server" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices" />
+        <type api="T:System.ServiceModel.DomainServices.DomainIdentifierAttribute" ref="true" />
+      </containers>
+      <file name="6237d519-db5a-4c2d-70dc-691f0d015ae4" />
+    </api>
+    <api id="T:System.ServiceModel.DomainServices.ExternalReferenceAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.DomainServices.ExternalReferenceAttribute" />
+      <apidata name="ExternalReferenceAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.DomainServices.ExternalReferenceAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.Server" module="System.ServiceModel.DomainServices.Server" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <library assembly="System.ServiceModel.DomainServices.Client" module="System.ServiceModel.DomainServices.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Property" />
+              <field name="Field" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="8db6f821-babf-7d21-05ee-d596d58f1438" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.DomainServices.ExternalReferenceAttribute">
+      <topicdata name="ExternalReferenceAttribute" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.DomainServices.ExternalReferenceAttribute" />
+      <apidata name="ExternalReferenceAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.DomainServices.ExternalReferenceAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.DomainServices.ExternalReferenceAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.Server" module="System.ServiceModel.DomainServices.Server" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <library assembly="System.ServiceModel.DomainServices.Client" module="System.ServiceModel.DomainServices.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices" />
+        <type api="T:System.ServiceModel.DomainServices.ExternalReferenceAttribute" />
+      </containers>
+      <file name="e1b30259-4031-6c74-f702-c6aa134795a8" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.DomainServices.ExternalReferenceAttribute">
+      <topicdata name="ExternalReferenceAttribute" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.DomainServices.ExternalReferenceAttribute" />
+      <apidata name="ExternalReferenceAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.DomainServices.ExternalReferenceAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.Server" module="System.ServiceModel.DomainServices.Server" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <library assembly="System.ServiceModel.DomainServices.Client" module="System.ServiceModel.DomainServices.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices" />
+        <type api="T:System.ServiceModel.DomainServices.ExternalReferenceAttribute" />
+      </containers>
+      <file name="65fd92b7-2eac-a049-125f-9dacc6f30315" />
+    </api>
+    <api id="M:System.ServiceModel.DomainServices.ExternalReferenceAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.Server" module="System.ServiceModel.DomainServices.Server" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <library assembly="System.ServiceModel.DomainServices.Client" module="System.ServiceModel.DomainServices.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices" />
+        <type api="T:System.ServiceModel.DomainServices.ExternalReferenceAttribute" ref="true" />
+      </containers>
+      <file name="e8e3f012-ca4e-fec0-13e3-ec18daac5d93" />
+    </api>
+  </apis>
+</reflection>

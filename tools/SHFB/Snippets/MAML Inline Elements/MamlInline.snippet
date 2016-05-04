@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Visual Studio code snippets for MAML inline elements -->
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<!-- application element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>application element</Title>
+			<Shortcut>application</Shortcut>
+			<Description>The application inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<application>$selected$$end$</application>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- codeInline element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>codeInline element</Title>
+			<Shortcut>codeInline</Shortcut>
+			<Description>The codeInline inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<codeInline>$selected$$end$</codeInline>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- command element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>command element</Title>
+			<Shortcut>command</Shortcut>
+			<Description>The command inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<command>$selected$$end$</command>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- environmentVariable element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>environmentVariable element</Title>
+			<Shortcut>environmentVariable</Shortcut>
+			<Description>The environmentVariable inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<environmentVariable>$selected$$end$</environmentVariable>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- externalLink element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>externalLink element</Title>
+			<Shortcut>externalLinkn</Shortcut>
+			<Description>The externalLink inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>linkText</ID>
+					<ToolTip>The link text.</ToolTip>
+					<Default xml:space="preserve"> Inner text</Default>
+				</Literal>
+				<Literal Editable="true">
+					<ID>linkAlternateText</ID>
+					<ToolTip>The optional link alternate text.  Remove the element if not needed.</ToolTip>
+					<Default>Optional alternate text</Default>
+				</Literal>
+				<Literal Editable="true">
+					<ID>linkUri</ID>
+					<ToolTip>The URL for the external link.</ToolTip>
+					<Default>https://GitHub.com/EWSoftware/SHFB</Default>
+				</Literal>
+				<Literal Editable="true">
+					<ID>linkTarget</ID>
+					<ToolTip>The optional link target.  Remove the element if not needed.</ToolTip>
+					<Default>_blank</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="XML">
+				<![CDATA[<externalLink>
+	<linkText>$selected$$linkText$</linkText>
+	<linkAlternateText>$linkAlternateText$</linkAlternateText>
+  <linkUri>$linkUri$</linkUri>
+	<linkTarget>$linkTarget$</linkTarget>
+</externalLink>$end$]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- fictitiousUri element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>fictitiousUri element</Title>
+			<Shortcut>fictitiousUri</Shortcut>
+			<Description>The fictitiousUri inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<fictitiousUri>$selected$$end$</fictitiousUri>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- hardware element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>hardware element</Title>
+			<Shortcut>hardware</Shortcut>
+			<Description>The hardware inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<hardware>$selected$$end$</hardware>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- legacyBold element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>legacyBold element</Title>
+			<Shortcut>legacyBold</Shortcut>
+			<Description>The legacyBold inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<legacyBold>$selected$$end$</legacyBold>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- legacyItalic element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>legacyItalic element</Title>
+			<Shortcut>legacyItalic</Shortcut>
+			<Description>The legacyItalic inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<legacyItalic>$selected$$end$</legacyItalic>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- legacyUnderline element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>legacyUnderline element</Title>
+			<Shortcut>legacyUnderline</Shortcut>
+			<Description>The legacyUnderline inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<legacyUnderline>$selected$$end$</legacyUnderline>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- link (in-page address) element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>link (in-page address) element</Title>
+			<Shortcut>link</Shortcut>
+			<Description>The link (in-page address) inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>address</ID>
+					<ToolTip>The in-page link address.</ToolTip>
+					<Default>elementAddress</Default>
+				</Literal>
+				<Literal Editable="true">
+					<ID>innerText</ID>
+					<ToolTip>The link inner text.</ToolTip>
+					<Default xml:space="preserve"> Inner text</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="XML">
+				<![CDATA[<link xlink:href="#$address$">$selected$$innerText$</link>$end$]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- literal element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>literal element</Title>
+			<Shortcut>literal</Shortcut>
+			<Description>The literal inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<literal>$selected$$end$</literal>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- localUri element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>localUri element</Title>
+			<Shortcut>localUri</Shortcut>
+			<Description>The localUri inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<localUri>$selected$$end$</localUri>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- math element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>math element</Title>
+			<Shortcut>math</Shortcut>
+			<Description>The math inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<math>$selected$$end$</math>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- newTerm element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>newTerm element</Title>
+			<Shortcut>newTerm</Shortcut>
+			<Description>The newTerm inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<newTerm>$selected$$end$</newTerm>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- phrase element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>phrase element</Title>
+			<Shortcut>phrase</Shortcut>
+			<Description>The phrase inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<phrase>$selected$$end$</phrase>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- quoteInline element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>quoteInline element</Title>
+			<Shortcut>quoteInline</Shortcut>
+			<Description>The quoteInline inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<quoteInline>$selected$$end$</quoteInline>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- replaceable element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>replaceable element</Title>
+			<Shortcut>replaceable</Shortcut>
+			<Description>The replaceable inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<replaceable>$selected$$end$</replaceable>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- subscript element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>subscript element</Title>
+			<Shortcut>subscript</Shortcut>
+			<Description>The subscript inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<subscript>$selected$$end$</subscript>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- superscript element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>superscript element</Title>
+			<Shortcut>superscript</Shortcut>
+			<Description>The superscript inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<superscript>$selected$$end$</superscript>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- system element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>system element</Title>
+			<Shortcut>system</Shortcut>
+			<Description>The system inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<system>$selected$$end$</system>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- ui element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>ui element</Title>
+			<Shortcut>ui</Shortcut>
+			<Description>The ui inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<ui>$selected$$end$</ui>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- userInput element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>userInput element</Title>
+			<Shortcut>userInput</Shortcut>
+			<Description>The userInput inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<userInput>$selected$$end$</userInput>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

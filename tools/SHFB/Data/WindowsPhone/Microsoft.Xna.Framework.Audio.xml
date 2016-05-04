@@ -1,0 +1,3001 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Xna.Framework">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100C7835D93A2BF56C5649C2A0B9AF5806803B7A4D0845E70C70F4B57D0D98D308301707D61625955BF0AA34590999324F362AEDB9875EC9535A507399CF7DCAF41AB3672A6F2D2DE1654FD3BDA94C2AC80F7EBF73641C4D57F853A792BA33B442AE010895109171903D1B628CAF31D1370FDD8774B3CE58FB2809FBFDB0CFDDC7C0FE6CA9EE904C1C001DB280B9D583CE3F586A6D7F412104A06A7F183A0C263BB0D9A5984E3C76D2052AD01E0F743AE4B5E19FCC1B2D6C9692DE99699B0F7972F4B466F0A53E0CA18DE547BE55ADF43A36564165BFC28DE25F8A7B43038B22C07FE211D33CB24AD93FEF0DE4D67B28236BEE129B08B943B1DBF702A6A305A6AB6" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Xna.Framework.Audio">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Xna.Framework.Audio" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Xna.Framework.Audio.AudioChannels" />
+        <element api="T:Microsoft.Xna.Framework.Audio.AudioEmitter" />
+        <element api="T:Microsoft.Xna.Framework.Audio.AudioListener" />
+        <element api="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" />
+        <element api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" />
+        <element api="T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException" />
+        <element api="T:Microsoft.Xna.Framework.Audio.Microphone" />
+        <element api="T:Microsoft.Xna.Framework.Audio.MicrophoneState" />
+        <element api="T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException" />
+        <element api="T:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException" />
+        <element api="T:Microsoft.Xna.Framework.Audio.SoundEffect" />
+        <element api="T:Microsoft.Xna.Framework.Audio.SoundState" />
+      </elements>
+      <file name="ad7f6270-3c50-a91c-73b6-40d74e0f0a1a" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Audio.AudioChannels">
+      <topicdata group="api" />
+      <apidata name="AudioChannels" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Xna.Framework.Audio.AudioChannels.Mono" />
+        <element api="F:Microsoft.Xna.Framework.Audio.AudioChannels.Stereo" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+      </containers>
+      <file name="71cc4cf6-f1d1-547f-a0fd-ae07c6c9de6f" />
+    </api>
+    <api id="F:Microsoft.Xna.Framework.Audio.AudioChannels.Mono">
+      <topicdata group="api" notopic="" />
+      <apidata name="Mono" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioChannels" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioChannels" ref="false" />
+      </containers>
+      <file name="595007e1-5e6e-1ceb-7053-dd7ede338892" />
+    </api>
+    <api id="F:Microsoft.Xna.Framework.Audio.AudioChannels.Stereo">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stereo" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioChannels" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioChannels" ref="false" />
+      </containers>
+      <file name="6250f5d1-9b4d-b226-776f-111aedf69dac" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Audio.AudioEmitter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Audio.AudioEmitter" />
+      <apidata name="AudioEmitter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.AudioEmitter.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+      </containers>
+      <file name="b9a4026d-3a53-068e-3cbb-e07a95e27699" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Audio.AudioEmitter">
+      <topicdata name="AudioEmitter" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Audio.AudioEmitter" />
+      <apidata name="AudioEmitter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.AudioEmitter.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Audio.AudioEmitter.#ctor" />
+        <element api="P:Microsoft.Xna.Framework.Audio.AudioEmitter.DopplerScale" />
+        <element api="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Forward" />
+        <element api="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Position" />
+        <element api="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Up" />
+        <element api="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Velocity" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioEmitter" />
+      </containers>
+      <file name="7f4fd08c-e8d9-d298-a7d9-ea9e868f16c5" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Audio.AudioEmitter">
+      <topicdata name="AudioEmitter" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Audio.AudioEmitter" />
+      <apidata name="AudioEmitter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.AudioEmitter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioEmitter" />
+      </containers>
+      <file name="a5c6ac1c-3719-c7ae-5a7d-8615099aa010" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Audio.AudioEmitter">
+      <topicdata name="AudioEmitter" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Audio.AudioEmitter" />
+      <apidata name="AudioEmitter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.AudioEmitter.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Audio.AudioEmitter.DopplerScale" />
+        <element api="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Forward" />
+        <element api="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Position" />
+        <element api="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Up" />
+        <element api="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Velocity" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioEmitter" />
+      </containers>
+      <file name="9f27bef7-4c53-d602-9595-8c1b3c57a3f5" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.AudioEmitter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioEmitter" ref="true" />
+      </containers>
+      <file name="46864b6e-9593-996f-06fb-282e91902a92" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.AudioEmitter.DopplerScale">
+      <topicdata group="api" />
+      <apidata name="DopplerScale" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DopplerScale" />
+      <setter name="set_DopplerScale" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioEmitter" ref="true" />
+      </containers>
+      <file name="b4459f0a-c3b3-88db-76cd-340ac4147d3b" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Forward">
+      <topicdata group="api" />
+      <apidata name="Forward" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Forward" />
+      <setter name="set_Forward" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Vector3" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioEmitter" ref="true" />
+      </containers>
+      <file name="3daed62d-26e7-689f-0645-7ed5a5831296" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Position">
+      <topicdata group="api" />
+      <apidata name="Position" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Position" />
+      <setter name="set_Position" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Vector3" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioEmitter" ref="true" />
+      </containers>
+      <file name="570d30ab-3ff0-2c72-b394-10be24c109e3" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Up">
+      <topicdata group="api" />
+      <apidata name="Up" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Up" />
+      <setter name="set_Up" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Vector3" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioEmitter" ref="true" />
+      </containers>
+      <file name="110f270d-50eb-75b7-8913-93a7a41ab7a9" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Velocity">
+      <topicdata group="api" />
+      <apidata name="Velocity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Velocity" />
+      <setter name="set_Velocity" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Vector3" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioEmitter" ref="true" />
+      </containers>
+      <file name="c5b9d70f-0f48-d4fe-df51-03d826181b1c" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Audio.AudioListener">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Audio.AudioListener" />
+      <apidata name="AudioListener" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.AudioListener.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+      </containers>
+      <file name="75f12b52-a5e9-d7c8-6a70-9cfeb9d1580e" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Audio.AudioListener">
+      <topicdata name="AudioListener" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Audio.AudioListener" />
+      <apidata name="AudioListener" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.AudioListener.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Audio.AudioListener.#ctor" />
+        <element api="P:Microsoft.Xna.Framework.Audio.AudioListener.Forward" />
+        <element api="P:Microsoft.Xna.Framework.Audio.AudioListener.Position" />
+        <element api="P:Microsoft.Xna.Framework.Audio.AudioListener.Up" />
+        <element api="P:Microsoft.Xna.Framework.Audio.AudioListener.Velocity" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioListener" />
+      </containers>
+      <file name="5d565728-b769-7cb5-e7fe-74c7e9913dfc" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Audio.AudioListener">
+      <topicdata name="AudioListener" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Audio.AudioListener" />
+      <apidata name="AudioListener" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.AudioListener.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioListener" />
+      </containers>
+      <file name="6e234ada-7a79-b77c-151a-2ec40ae04ba3" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Audio.AudioListener">
+      <topicdata name="AudioListener" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Audio.AudioListener" />
+      <apidata name="AudioListener" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.AudioListener.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Audio.AudioListener.Forward" />
+        <element api="P:Microsoft.Xna.Framework.Audio.AudioListener.Position" />
+        <element api="P:Microsoft.Xna.Framework.Audio.AudioListener.Up" />
+        <element api="P:Microsoft.Xna.Framework.Audio.AudioListener.Velocity" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioListener" />
+      </containers>
+      <file name="12eb7e85-1522-7620-46aa-b2fc8ac4ebbb" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.AudioListener.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioListener" ref="true" />
+      </containers>
+      <file name="add492ef-02e3-641e-fb27-dd3a5fcd179e" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.AudioListener.Forward">
+      <topicdata group="api" />
+      <apidata name="Forward" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Forward" />
+      <setter name="set_Forward" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Vector3" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioListener" ref="true" />
+      </containers>
+      <file name="3fcff06b-fd18-7699-939c-20abe63dcee0" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.AudioListener.Position">
+      <topicdata group="api" />
+      <apidata name="Position" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Position" />
+      <setter name="set_Position" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Vector3" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioListener" ref="true" />
+      </containers>
+      <file name="8e648fc6-28a9-1cff-16a3-339bf0e8ff85" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.AudioListener.Up">
+      <topicdata group="api" />
+      <apidata name="Up" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Up" />
+      <setter name="set_Up" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Vector3" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioListener" ref="true" />
+      </containers>
+      <file name="3bc2c1e7-c7ac-fa79-8cc2-c19ba8648fce" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.AudioListener.Velocity">
+      <topicdata group="api" />
+      <apidata name="Velocity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Velocity" />
+      <setter name="set_Velocity" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Vector3" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.AudioListener" ref="true" />
+      </containers>
+      <file name="fcd2415d-1511-5581-b46c-dbfad1f9e0ea" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" />
+      <apidata name="DynamicSoundEffectInstance" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+      </containers>
+      <file name="ab5c93ec-020d-6610-a67b-66df042b2c5c" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance">
+      <topicdata name="DynamicSoundEffectInstance" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" />
+      <apidata name="DynamicSoundEffectInstance" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.#ctor(System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)" />
+        <element api="E:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.BufferNeeded" />
+        <element api="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.GetSampleDuration(System.Int32)" />
+        <element api="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.GetSampleSizeInBytes(System.TimeSpan)" />
+        <element api="P:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.IsLooped" />
+        <element api="P:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.PendingBufferCount" />
+        <element api="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Play" />
+        <element api="Overload:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer">
+          <element api="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Byte[])" />
+          <element api="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Byte[],System.Int32,System.Int32)" />
+        </element>
+        <element api="Overload:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Apply3D">
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener,Microsoft.Xna.Framework.Audio.AudioEmitter)" />
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener[],Microsoft.Xna.Framework.Audio.AudioEmitter)" />
+        </element>
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Dispose" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsDisposed" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pan" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pause" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pitch" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Resume" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.State" />
+        <element api="Overload:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Stop">
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop" />
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop(System.Boolean)" />
+        </element>
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Volume" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" />
+      </containers>
+      <file name="32b18527-a7fb-1814-0e7b-6b8c5460f56a" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance">
+      <topicdata name="DynamicSoundEffectInstance" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" />
+      <apidata name="DynamicSoundEffectInstance" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.GetSampleDuration(System.Int32)" />
+        <element api="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.GetSampleSizeInBytes(System.TimeSpan)" />
+        <element api="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Play" />
+        <element api="Overload:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer">
+          <element api="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Byte[])" />
+          <element api="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Byte[],System.Int32,System.Int32)" />
+        </element>
+        <element api="Overload:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Apply3D">
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener,Microsoft.Xna.Framework.Audio.AudioEmitter)" />
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener[],Microsoft.Xna.Framework.Audio.AudioEmitter)" />
+        </element>
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Dispose" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pause" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Resume" />
+        <element api="Overload:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Stop">
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop" />
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" />
+      </containers>
+      <file name="787e87ed-5ecf-67e0-8437-4dfffa90a807" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance">
+      <topicdata name="DynamicSoundEffectInstance" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" />
+      <apidata name="DynamicSoundEffectInstance" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.IsLooped" />
+        <element api="P:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.PendingBufferCount" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsDisposed" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pan" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pitch" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.State" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Volume" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" />
+      </containers>
+      <file name="0d1cf886-7772-dddf-76d7-e937b5937b94" />
+    </api>
+    <api id="Events.T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance">
+      <topicdata name="DynamicSoundEffectInstance" group="list" subgroup="Events" typeTopicId="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" />
+      <apidata name="DynamicSoundEffectInstance" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.BufferNeeded" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" />
+      </containers>
+      <file name="57c3b908-318b-3b4a-8cdf-32f74ca057f3" />
+    </api>
+    <api id="Overload:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer">
+      <topicdata name="SubmitBuffer" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" />
+      <apidata name="SubmitBuffer" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Byte[])" />
+        <element api="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Byte[],System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" ref="true" />
+      </containers>
+      <file name="3674fb61-405e-8303-dede-1945e71220a6" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.#ctor(System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="sampleRate">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="channels">
+          <type api="T:Microsoft.Xna.Framework.Audio.AudioChannels" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" ref="true" />
+      </containers>
+      <file name="f62bbd26-4230-0f6f-11a2-50e8816362a2" />
+    </api>
+    <api id="E:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.BufferNeeded">
+      <topicdata group="api" />
+      <apidata name="BufferNeeded" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_BufferNeeded" />
+      <remover name="remove_BufferNeeded" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.EventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.EventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" ref="true" />
+      </containers>
+      <file name="520de976-671d-dd39-1585-1030f2431498" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.GetSampleDuration(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GetSampleDuration" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sizeInBytes">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" ref="true" />
+      </containers>
+      <file name="b11052aa-77b7-e919-9d45-21339e4c9211" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.GetSampleSizeInBytes(System.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="GetSampleSizeInBytes" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="duration">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" ref="true" />
+      </containers>
+      <file name="c739d562-b6aa-4be6-21ff-eaf797da8da6" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.IsLooped">
+      <topicdata group="api" />
+      <apidata name="IsLooped" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsLooped">
+          <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_IsLooped" />
+      <setter name="set_IsLooped" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" ref="true" />
+      </containers>
+      <file name="02513660-deb6-83cf-a390-6cf5cfc7f4d3" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.PendingBufferCount">
+      <topicdata group="api" />
+      <apidata name="PendingBufferCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PendingBufferCount" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" ref="true" />
+      </containers>
+      <file name="cd1e3691-d4ae-e40b-13eb-e0f1dd4f4a59" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Play">
+      <topicdata group="api" />
+      <apidata name="Play" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Play">
+          <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" ref="true" />
+      </containers>
+      <file name="f181493c-455d-a822-59e2-dae918e67b8c" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="SubmitBuffer" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" ref="true" />
+      </containers>
+      <file name="cd89f403-b96b-eacc-619f-9c90aaa2b2e6" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="SubmitBuffer" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" ref="true" />
+      </containers>
+      <file name="4f16a46d-6136-f0db-9778-43930bc2858c" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException" />
+      <apidata name="InstancePlayLimitException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.InstancePlayLimitException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.InteropServices.ExternalException" ref="true" />
+          <type api="T:System.SystemException" ref="true" />
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+      </containers>
+      <file name="73b18938-7882-34fe-4d28-ed54bb254517" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException">
+      <topicdata name="InstancePlayLimitException" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException" />
+      <apidata name="InstancePlayLimitException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.InstancePlayLimitException.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:Microsoft.Xna.Framework.Audio.InstancePlayLimitException.#ctor">
+          <element api="M:Microsoft.Xna.Framework.Audio.InstancePlayLimitException.#ctor" />
+          <element api="M:Microsoft.Xna.Framework.Audio.InstancePlayLimitException.#ctor(System.String)" />
+          <element api="M:Microsoft.Xna.Framework.Audio.InstancePlayLimitException.#ctor(System.String,System.Exception)" />
+        </element>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="P:System.Runtime.InteropServices.ExternalException.ErrorCode" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException" />
+      </containers>
+      <file name="e9675d3e-4e29-d87f-567c-2e4b1e720060" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException">
+      <topicdata name="InstancePlayLimitException" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException" />
+      <apidata name="InstancePlayLimitException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.InstancePlayLimitException.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException" />
+      </containers>
+      <file name="575da4b5-1037-fc4b-7918-724550e82463" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException">
+      <topicdata name="InstancePlayLimitException" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException" />
+      <apidata name="InstancePlayLimitException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.InstancePlayLimitException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Runtime.InteropServices.ExternalException.ErrorCode" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException" />
+      </containers>
+      <file name="4d8998c0-a486-2a1b-b4af-5c687a96b156" />
+    </api>
+    <api id="Overload:Microsoft.Xna.Framework.Audio.InstancePlayLimitException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Audio.InstancePlayLimitException.#ctor" />
+        <element api="M:Microsoft.Xna.Framework.Audio.InstancePlayLimitException.#ctor(System.String)" />
+        <element api="M:Microsoft.Xna.Framework.Audio.InstancePlayLimitException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException" ref="true" />
+      </containers>
+      <file name="bd9fb90a-0d3c-0e93-0630-72736fe8c125" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.InstancePlayLimitException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Xna.Framework.Audio.InstancePlayLimitException.#ctor" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException" ref="true" />
+      </containers>
+      <file name="1d0eda02-5441-d42e-d756-64afc15fba86" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.InstancePlayLimitException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Xna.Framework.Audio.InstancePlayLimitException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException" ref="true" />
+      </containers>
+      <file name="5618e067-3302-e1ef-5fc2-4fbd6ad38825" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.InstancePlayLimitException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Xna.Framework.Audio.InstancePlayLimitException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="inner">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException" ref="true" />
+      </containers>
+      <file name="aee807bf-c429-d86d-1ef8-597588b422e9" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Audio.Microphone">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Audio.Microphone" />
+      <apidata name="Microphone" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+      </containers>
+      <file name="2f063763-f286-0916-6156-4c27f857339c" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Audio.Microphone">
+      <topicdata name="Microphone" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Audio.Microphone" />
+      <apidata name="Microphone" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Audio.Microphone.All" />
+        <element api="P:Microsoft.Xna.Framework.Audio.Microphone.BufferDuration" />
+        <element api="E:Microsoft.Xna.Framework.Audio.Microphone.BufferReady" />
+        <element api="P:Microsoft.Xna.Framework.Audio.Microphone.Default" />
+        <element api="Overload:Microsoft.Xna.Framework.Audio.Microphone.GetData">
+          <element api="M:Microsoft.Xna.Framework.Audio.Microphone.GetData(System.Byte[])" />
+          <element api="M:Microsoft.Xna.Framework.Audio.Microphone.GetData(System.Byte[],System.Int32,System.Int32)" />
+        </element>
+        <element api="M:Microsoft.Xna.Framework.Audio.Microphone.GetSampleDuration(System.Int32)" />
+        <element api="M:Microsoft.Xna.Framework.Audio.Microphone.GetSampleSizeInBytes(System.TimeSpan)" />
+        <element api="P:Microsoft.Xna.Framework.Audio.Microphone.IsHeadset" />
+        <element api="F:Microsoft.Xna.Framework.Audio.Microphone.Name" />
+        <element api="P:Microsoft.Xna.Framework.Audio.Microphone.SampleRate" />
+        <element api="M:Microsoft.Xna.Framework.Audio.Microphone.Start" />
+        <element api="P:Microsoft.Xna.Framework.Audio.Microphone.State" />
+        <element api="M:Microsoft.Xna.Framework.Audio.Microphone.Stop" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" />
+      </containers>
+      <file name="188c803b-d0aa-ec0b-89b9-064ed6e49b5d" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Audio.Microphone">
+      <topicdata name="Microphone" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Audio.Microphone" />
+      <apidata name="Microphone" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Xna.Framework.Audio.Microphone.GetData">
+          <element api="M:Microsoft.Xna.Framework.Audio.Microphone.GetData(System.Byte[])" />
+          <element api="M:Microsoft.Xna.Framework.Audio.Microphone.GetData(System.Byte[],System.Int32,System.Int32)" />
+        </element>
+        <element api="M:Microsoft.Xna.Framework.Audio.Microphone.GetSampleDuration(System.Int32)" />
+        <element api="M:Microsoft.Xna.Framework.Audio.Microphone.GetSampleSizeInBytes(System.TimeSpan)" />
+        <element api="M:Microsoft.Xna.Framework.Audio.Microphone.Start" />
+        <element api="M:Microsoft.Xna.Framework.Audio.Microphone.Stop" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" />
+      </containers>
+      <file name="f519630b-2a58-8a18-a639-111afcfaf94c" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Audio.Microphone">
+      <topicdata name="Microphone" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Audio.Microphone" />
+      <apidata name="Microphone" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Audio.Microphone.All" />
+        <element api="P:Microsoft.Xna.Framework.Audio.Microphone.BufferDuration" />
+        <element api="P:Microsoft.Xna.Framework.Audio.Microphone.Default" />
+        <element api="P:Microsoft.Xna.Framework.Audio.Microphone.IsHeadset" />
+        <element api="P:Microsoft.Xna.Framework.Audio.Microphone.SampleRate" />
+        <element api="P:Microsoft.Xna.Framework.Audio.Microphone.State" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" />
+      </containers>
+      <file name="f1cfed00-da0f-c979-1888-fae37a86f3f5" />
+    </api>
+    <api id="Events.T:Microsoft.Xna.Framework.Audio.Microphone">
+      <topicdata name="Microphone" group="list" subgroup="Events" typeTopicId="T:Microsoft.Xna.Framework.Audio.Microphone" />
+      <apidata name="Microphone" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.Xna.Framework.Audio.Microphone.BufferReady" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" />
+      </containers>
+      <file name="17c4ded3-1838-962e-fcb2-3d640be38b20" />
+    </api>
+    <api id="Fields.T:Microsoft.Xna.Framework.Audio.Microphone">
+      <topicdata name="Microphone" group="list" subgroup="Fields" typeTopicId="T:Microsoft.Xna.Framework.Audio.Microphone" />
+      <apidata name="Microphone" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Xna.Framework.Audio.Microphone.Name" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" />
+      </containers>
+      <file name="5a70690c-4dbf-8f4a-7c96-dc08cd38363e" />
+    </api>
+    <api id="Overload:Microsoft.Xna.Framework.Audio.Microphone.GetData">
+      <topicdata name="GetData" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Audio.Microphone" />
+      <apidata name="GetData" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Audio.Microphone.GetData(System.Byte[])" />
+        <element api="M:Microsoft.Xna.Framework.Audio.Microphone.GetData(System.Byte[],System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" ref="true" />
+      </containers>
+      <file name="42854255-4240-c961-754f-4b4f3d4d9f5c" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.Microphone.All">
+      <topicdata group="api" />
+      <apidata name="All" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_All" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Xna.Framework.Audio.Microphone" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" ref="true" />
+      </containers>
+      <file name="25d9d54f-591a-82b0-4427-58324f9bb297" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.Microphone.BufferDuration">
+      <topicdata group="api" />
+      <apidata name="BufferDuration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BufferDuration" />
+      <setter name="set_BufferDuration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" ref="true" />
+      </containers>
+      <file name="f5875c3f-fa6f-d7fe-1f0e-e0daca67a72e" />
+    </api>
+    <api id="E:Microsoft.Xna.Framework.Audio.Microphone.BufferReady">
+      <topicdata group="api" />
+      <apidata name="BufferReady" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_BufferReady" />
+      <remover name="remove_BufferReady" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.EventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.EventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" ref="true" />
+      </containers>
+      <file name="8b78a339-edd5-47f3-50d0-fe3259c9d56a" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.Microphone.Default">
+      <topicdata group="api" />
+      <apidata name="Default" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Default" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" ref="true" />
+      </containers>
+      <file name="b00ada99-fbd7-7787-4dee-d66334e0b9f2" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.Microphone.GetData(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="GetData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Audio.Microphone.GetData" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" ref="true" />
+      </containers>
+      <file name="0481e69a-bf56-dc68-31db-0b552c3b3c57" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.Microphone.GetData(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GetData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Audio.Microphone.GetData" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" ref="true" />
+      </containers>
+      <file name="e5b58a83-24e3-75cc-1cfe-0024fde9b319" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.Microphone.GetSampleDuration(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GetSampleDuration" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sizeInBytes">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" ref="true" />
+      </containers>
+      <file name="457f30e2-2c6b-28a4-9401-bc9f46575cb1" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.Microphone.GetSampleSizeInBytes(System.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="GetSampleSizeInBytes" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="duration">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" ref="true" />
+      </containers>
+      <file name="285dc20d-2bbc-6eaf-0fd2-0036639f797f" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.Microphone.IsHeadset">
+      <topicdata group="api" />
+      <apidata name="IsHeadset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsHeadset" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" ref="true" />
+      </containers>
+      <file name="a349acd0-70e1-a555-b90d-f9b7e3200dc4" />
+    </api>
+    <api id="F:Microsoft.Xna.Framework.Audio.Microphone.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" ref="true" />
+      </containers>
+      <file name="ab4562b4-ac96-6c21-28a4-3c9cc827d4c2" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.Microphone.SampleRate">
+      <topicdata group="api" />
+      <apidata name="SampleRate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SampleRate" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" ref="true" />
+      </containers>
+      <file name="f02e6295-25e1-b539-4d1c-7d07162d9076" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.Microphone.Start">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" ref="true" />
+      </containers>
+      <file name="3c8b1821-5507-b297-3057-afe1c1168fbf" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.Microphone.State">
+      <topicdata group="api" />
+      <apidata name="State" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_State" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Audio.MicrophoneState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" ref="true" />
+      </containers>
+      <file name="8dcfecf1-840c-7f49-a452-589488ed8e7a" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.Microphone.Stop">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.Microphone" ref="true" />
+      </containers>
+      <file name="3ccaeaf2-8e8b-9c7a-432f-7e4f0086a111" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Audio.MicrophoneState">
+      <topicdata group="api" />
+      <apidata name="MicrophoneState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Xna.Framework.Audio.MicrophoneState.Started" />
+        <element api="F:Microsoft.Xna.Framework.Audio.MicrophoneState.Stopped" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+      </containers>
+      <file name="af449c0f-dde7-9d36-9d91-f4493d60a691" />
+    </api>
+    <api id="F:Microsoft.Xna.Framework.Audio.MicrophoneState.Started">
+      <topicdata group="api" notopic="" />
+      <apidata name="Started" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Audio.MicrophoneState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.MicrophoneState" ref="false" />
+      </containers>
+      <file name="3ab844c2-6e63-be6e-7a43-01566b5416c0" />
+    </api>
+    <api id="F:Microsoft.Xna.Framework.Audio.MicrophoneState.Stopped">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stopped" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Audio.MicrophoneState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.MicrophoneState" ref="false" />
+      </containers>
+      <file name="da0e7548-1dfc-b752-8baa-9a4d51fc2048" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException" />
+      <apidata name="NoAudioHardwareException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.InteropServices.ExternalException" ref="true" />
+          <type api="T:System.SystemException" ref="true" />
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+      </containers>
+      <file name="be6d92e1-6cce-be3f-32a2-8bc00b31f6d4" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException">
+      <topicdata name="NoAudioHardwareException" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException" />
+      <apidata name="NoAudioHardwareException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor">
+          <element api="M:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor" />
+          <element api="M:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor(System.String)" />
+          <element api="M:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor(System.String,System.Exception)" />
+        </element>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="P:System.Runtime.InteropServices.ExternalException.ErrorCode" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException" />
+      </containers>
+      <file name="e61470f4-fc1e-ad71-a120-73efdd6f6d43" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException">
+      <topicdata name="NoAudioHardwareException" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException" />
+      <apidata name="NoAudioHardwareException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException" />
+      </containers>
+      <file name="46f693c9-b4ba-1814-56b3-c211d2da2e3a" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException">
+      <topicdata name="NoAudioHardwareException" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException" />
+      <apidata name="NoAudioHardwareException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Runtime.InteropServices.ExternalException.ErrorCode" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException" />
+      </containers>
+      <file name="80b508a2-1d0b-ae5c-d8ed-9a9cd1884d16" />
+    </api>
+    <api id="Overload:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor" />
+        <element api="M:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor(System.String)" />
+        <element api="M:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException" ref="true" />
+      </containers>
+      <file name="5bf38d9c-741e-394a-f695-8e8c8337b9ff" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException" ref="true" />
+      </containers>
+      <file name="ec5661e7-ead0-3950-2927-919ccbd53d94" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException" ref="true" />
+      </containers>
+      <file name="c44a8ae4-6ca3-5ede-4677-3d348b2bcc98" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="inner">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException" ref="true" />
+      </containers>
+      <file name="cbabe99b-1e50-f92c-7deb-0dcd23e81ce7" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException" />
+      <apidata name="NoMicrophoneConnectedException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+      </containers>
+      <file name="db50c2e8-04b6-d80c-3e6c-39662dca40a7" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException">
+      <topicdata name="NoMicrophoneConnectedException" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException" />
+      <apidata name="NoMicrophoneConnectedException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor">
+          <element api="M:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor" />
+          <element api="M:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor(System.String)" />
+          <element api="M:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor(System.String,System.Exception)" />
+        </element>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException" />
+      </containers>
+      <file name="a2cc6938-db4a-aea4-43f9-38be56092bb6" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException">
+      <topicdata name="NoMicrophoneConnectedException" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException" />
+      <apidata name="NoMicrophoneConnectedException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException" />
+      </containers>
+      <file name="398f09f0-9e85-6eb0-cc5b-cbaba5652fb7" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException">
+      <topicdata name="NoMicrophoneConnectedException" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException" />
+      <apidata name="NoMicrophoneConnectedException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException" />
+      </containers>
+      <file name="892565a7-4a13-885b-339f-c430a3f6b0fb" />
+    </api>
+    <api id="Overload:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor" />
+        <element api="M:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor(System.String)" />
+        <element api="M:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException" ref="true" />
+      </containers>
+      <file name="790dca6a-de2e-57c6-d6a7-0e9d65913aee" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException" ref="true" />
+      </containers>
+      <file name="e7f74a67-a5b3-2b5e-e8fd-dcb30f00cf2c" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException" ref="true" />
+      </containers>
+      <file name="1fa23abe-26db-9b09-932e-15792d55be8a" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="inner">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException" ref="true" />
+      </containers>
+      <file name="5b8889b9-4a3b-4aab-155b-2300d3190f11" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Audio.SoundEffect">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Audio.SoundEffect" />
+      <apidata name="SoundEffect" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+      </containers>
+      <file name="c1e699b5-ad36-99ac-13fe-0c8f42742d47" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Audio.SoundEffect">
+      <topicdata name="SoundEffect" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Audio.SoundEffect" />
+      <apidata name="SoundEffect" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Xna.Framework.Audio.SoundEffect.#ctor">
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.#ctor(System.Byte[],System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)" />
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.#ctor(System.Byte[],System.Int32,System.Int32,System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels,System.Int32,System.Int32)" />
+        </element>
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.CreateInstance" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.Dispose" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffect.DistanceScale" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffect.DopplerScale" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffect.Duration" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.FromStream(System.IO.Stream)" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.GetSampleDuration(System.Int32,System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.GetSampleSizeInBytes(System.TimeSpan,System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffect.IsDisposed" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffect.MasterVolume" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffect.Name" />
+        <element api="Overload:Microsoft.Xna.Framework.Audio.SoundEffect.Play">
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.Play" />
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.Play(System.Single,System.Single,System.Single)" />
+        </element>
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffect.SpeedOfSound" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" />
+      </containers>
+      <file name="0f153a3e-b1af-7d57-3332-6716359b450d" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Audio.SoundEffect">
+      <topicdata name="SoundEffect" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Audio.SoundEffect" />
+      <apidata name="SoundEffect" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.CreateInstance" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.Dispose" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.FromStream(System.IO.Stream)" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.GetSampleDuration(System.Int32,System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.GetSampleSizeInBytes(System.TimeSpan,System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)" />
+        <element api="Overload:Microsoft.Xna.Framework.Audio.SoundEffect.Play">
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.Play" />
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.Play(System.Single,System.Single,System.Single)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" />
+      </containers>
+      <file name="18cc9229-4779-b093-c946-20f6e494c3bc" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Audio.SoundEffect">
+      <topicdata name="SoundEffect" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Audio.SoundEffect" />
+      <apidata name="SoundEffect" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffect.DistanceScale" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffect.DopplerScale" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffect.Duration" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffect.IsDisposed" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffect.MasterVolume" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffect.Name" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffect.SpeedOfSound" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" />
+      </containers>
+      <file name="10c85d50-c226-6eb1-3c03-fc56e8f5c3f6" />
+    </api>
+    <api id="Overload:Microsoft.Xna.Framework.Audio.SoundEffect.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Audio.SoundEffect" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.#ctor(System.Byte[],System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.#ctor(System.Byte[],System.Int32,System.Int32,System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels,System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" ref="true" />
+      </containers>
+      <file name="6a581b44-de0a-b08b-f49a-ee2f97c49051" />
+    </api>
+    <api id="Overload:Microsoft.Xna.Framework.Audio.SoundEffect.Play">
+      <topicdata name="Play" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Audio.SoundEffect" />
+      <apidata name="Play" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.Play" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffect.Play(System.Single,System.Single,System.Single)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" ref="true" />
+      </containers>
+      <file name="876197a9-8943-38d7-a9a6-b8af1cc66d49" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.SoundEffect.#ctor(System.Byte[],System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Xna.Framework.Audio.SoundEffect.#ctor" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="sampleRate">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="channels">
+          <type api="T:Microsoft.Xna.Framework.Audio.AudioChannels" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" ref="true" />
+      </containers>
+      <file name="a6468bfc-0da1-0be5-3e9a-1ec19a8cdc1a" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.SoundEffect.#ctor(System.Byte[],System.Int32,System.Int32,System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Xna.Framework.Audio.SoundEffect.#ctor" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sampleRate">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="channels">
+          <type api="T:Microsoft.Xna.Framework.Audio.AudioChannels" ref="false" />
+        </parameter>
+        <parameter name="loopStart">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="loopLength">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" ref="true" />
+      </containers>
+      <file name="3268b408-b2c1-7170-0231-76ccda12a67d" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.SoundEffect.CreateInstance">
+      <topicdata group="api" />
+      <apidata name="CreateInstance" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" ref="true" />
+      </containers>
+      <file name="487f656f-65be-3ca0-db49-e899ed791574" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.SoundEffect.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" ref="true" />
+      </containers>
+      <file name="c11d04eb-1ac3-7838-8de1-b011c7bacbd0" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.SoundEffect.DistanceScale">
+      <topicdata group="api" />
+      <apidata name="DistanceScale" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DistanceScale" />
+      <setter name="set_DistanceScale" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" ref="true" />
+      </containers>
+      <file name="2d93100d-927c-b3f0-d877-cd6b81b0f9ce" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.SoundEffect.DopplerScale">
+      <topicdata group="api" />
+      <apidata name="DopplerScale" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DopplerScale" />
+      <setter name="set_DopplerScale" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" ref="true" />
+      </containers>
+      <file name="0c6d9286-12c3-5579-ba83-7379625b6171" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.SoundEffect.Duration">
+      <topicdata group="api" />
+      <apidata name="Duration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Duration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" ref="true" />
+      </containers>
+      <file name="e1146cf7-96fe-7f13-367a-9a68fb47a485" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.SoundEffect.FromStream(System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="FromStream" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" ref="true" />
+      </containers>
+      <file name="67e95de3-a9d9-6d20-fe20-715331446852" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.SoundEffect.GetSampleDuration(System.Int32,System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)">
+      <topicdata group="api" />
+      <apidata name="GetSampleDuration" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sizeInBytes">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sampleRate">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="channels">
+          <type api="T:Microsoft.Xna.Framework.Audio.AudioChannels" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" ref="true" />
+      </containers>
+      <file name="16fc062a-b319-189c-ce03-64a20a32acbe" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.SoundEffect.GetSampleSizeInBytes(System.TimeSpan,System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)">
+      <topicdata group="api" />
+      <apidata name="GetSampleSizeInBytes" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="duration">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="sampleRate">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="channels">
+          <type api="T:Microsoft.Xna.Framework.Audio.AudioChannels" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" ref="true" />
+      </containers>
+      <file name="3fbf0d9f-b33d-39db-49d0-447a5f811bc2" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.SoundEffect.IsDisposed">
+      <topicdata group="api" />
+      <apidata name="IsDisposed" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsDisposed" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" ref="true" />
+      </containers>
+      <file name="10c1b103-fced-9964-3963-31cd2e223a88" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.SoundEffect.MasterVolume">
+      <topicdata group="api" />
+      <apidata name="MasterVolume" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MasterVolume" />
+      <setter name="set_MasterVolume" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" ref="true" />
+      </containers>
+      <file name="0f2c1e36-b967-d1e6-fb97-1cd947c94e29" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.SoundEffect.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" ref="true" />
+      </containers>
+      <file name="4ee89a01-19b2-b577-ef20-e1c52121ad0b" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.SoundEffect.Play">
+      <topicdata group="api" />
+      <apidata name="Play" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Audio.SoundEffect.Play" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" ref="true" />
+      </containers>
+      <file name="c958dbcf-9e24-2fce-e3e1-742a485ce002" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.SoundEffect.Play(System.Single,System.Single,System.Single)">
+      <topicdata group="api" />
+      <apidata name="Play" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Audio.SoundEffect.Play" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="volume">
+          <type api="T:System.Single" ref="false" />
+        </parameter>
+        <parameter name="pitch">
+          <type api="T:System.Single" ref="false" />
+        </parameter>
+        <parameter name="pan">
+          <type api="T:System.Single" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" ref="true" />
+      </containers>
+      <file name="e3b0e998-203b-6625-5f69-fac2dcccede2" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.SoundEffect.SpeedOfSound">
+      <topicdata group="api" />
+      <apidata name="SpeedOfSound" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SpeedOfSound" />
+      <setter name="set_SpeedOfSound" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffect" ref="true" />
+      </containers>
+      <file name="f9fd1a7c-1a44-cf16-fd5d-7869d0ed8190" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" />
+      <apidata name="SoundEffectInstance" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance" ref="true" />
+        </descendents>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+      </containers>
+      <file name="ec29cdc3-934e-86cb-590b-556c6cebb7f3" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Audio.SoundEffectInstance">
+      <topicdata name="SoundEffectInstance" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" />
+      <apidata name="SoundEffectInstance" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D">
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener,Microsoft.Xna.Framework.Audio.AudioEmitter)" />
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener[],Microsoft.Xna.Framework.Audio.AudioEmitter)" />
+        </element>
+        <element api="Overload:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Dispose">
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Dispose" />
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Finalize" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsDisposed" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsLooped" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pan" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pause" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pitch" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Play" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Resume" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.State" />
+        <element api="Overload:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop">
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop" />
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop(System.Boolean)" />
+        </element>
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Volume" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" />
+      </containers>
+      <file name="fd051cc6-d51d-47c5-923d-eeede0d003a3" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Audio.SoundEffectInstance">
+      <topicdata name="SoundEffectInstance" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" />
+      <apidata name="SoundEffectInstance" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D">
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener,Microsoft.Xna.Framework.Audio.AudioEmitter)" />
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener[],Microsoft.Xna.Framework.Audio.AudioEmitter)" />
+        </element>
+        <element api="Overload:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Dispose">
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Dispose" />
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Finalize" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pause" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Play" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Resume" />
+        <element api="Overload:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop">
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop" />
+          <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" />
+      </containers>
+      <file name="29a02304-e355-6438-ff0a-8d6771115c8c" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Audio.SoundEffectInstance">
+      <topicdata name="SoundEffectInstance" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" />
+      <apidata name="SoundEffectInstance" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsDisposed" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsLooped" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pan" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pitch" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.State" />
+        <element api="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Volume" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" />
+      </containers>
+      <file name="c4bf09f8-f8c3-780e-e3f5-27a78898c34b" />
+    </api>
+    <api id="Overload:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D">
+      <topicdata name="Apply3D" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" />
+      <apidata name="Apply3D" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener,Microsoft.Xna.Framework.Audio.AudioEmitter)" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener[],Microsoft.Xna.Framework.Audio.AudioEmitter)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </containers>
+      <file name="501b3af9-42fc-1819-df0d-a9a31a861f27" />
+    </api>
+    <api id="Overload:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Dispose" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </containers>
+      <file name="f0fb947c-76b8-ed55-eb3c-5f0fcaf55d85" />
+    </api>
+    <api id="Overload:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop">
+      <topicdata name="Stop" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop" />
+        <element api="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </containers>
+      <file name="9410b22c-36a5-35c3-fb0e-10a990c38af5" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener,Microsoft.Xna.Framework.Audio.AudioEmitter)">
+      <topicdata group="api" />
+      <apidata name="Apply3D" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="listener">
+          <type api="T:Microsoft.Xna.Framework.Audio.AudioListener" ref="true" />
+        </parameter>
+        <parameter name="emitter">
+          <type api="T:Microsoft.Xna.Framework.Audio.AudioEmitter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </containers>
+      <file name="2005216c-9143-b1dc-ee43-0db03e54a40c" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener[],Microsoft.Xna.Framework.Audio.AudioEmitter)">
+      <topicdata group="api" />
+      <apidata name="Apply3D" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="listeners">
+          <arrayOf rank="1">
+            <type api="T:Microsoft.Xna.Framework.Audio.AudioListener" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="emitter">
+          <type api="T:Microsoft.Xna.Framework.Audio.AudioEmitter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </containers>
+      <file name="3ed4f546-a9b7-3ab3-0c93-91e9ab30f79e" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Dispose" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </containers>
+      <file name="4a891f40-99ff-738a-9e94-8ed41b97af12" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Dispose" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </containers>
+      <file name="1be93a34-dee3-99eb-cff6-898051d3b03e" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </containers>
+      <file name="24024b7d-46b4-c693-479c-477ba00b4b01" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsDisposed">
+      <topicdata group="api" />
+      <apidata name="IsDisposed" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsDisposed" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </containers>
+      <file name="bf4c992c-fffc-83e1-655c-2b3a051959a7" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsLooped">
+      <topicdata group="api" />
+      <apidata name="IsLooped" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsLooped" />
+      <setter name="set_IsLooped" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </containers>
+      <file name="ae928864-0939-deee-f38c-7a5d6a814af1" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pan">
+      <topicdata group="api" />
+      <apidata name="Pan" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Pan" />
+      <setter name="set_Pan" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </containers>
+      <file name="760f9468-feea-bff1-f56f-cbde2e8be40f" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pause">
+      <topicdata group="api" />
+      <apidata name="Pause" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </containers>
+      <file name="e53dd7c3-1d9f-de82-8759-6f2cf1c34c79" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pitch">
+      <topicdata group="api" />
+      <apidata name="Pitch" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Pitch" />
+      <setter name="set_Pitch" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </containers>
+      <file name="a07bbc64-76a7-e7e9-1975-0c9d7008e9c7" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Play">
+      <topicdata group="api" />
+      <apidata name="Play" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </containers>
+      <file name="642eb544-40d2-d445-93c3-15e11131f87b" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Resume">
+      <topicdata group="api" />
+      <apidata name="Resume" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </containers>
+      <file name="3c093b86-9ac6-2666-82dc-942a4f9d209c" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.State">
+      <topicdata group="api" />
+      <apidata name="State" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_State" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </containers>
+      <file name="8ff2e204-34e1-12ad-8134-cfc362827a0d" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </containers>
+      <file name="eda596da-b3e3-6102-56da-9701bb62cdb3" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="immediate">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </containers>
+      <file name="c43c44d2-1e95-2a22-8f56-67ea77663ce7" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Volume">
+      <topicdata group="api" />
+      <apidata name="Volume" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Volume" />
+      <setter name="set_Volume" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance" ref="true" />
+      </containers>
+      <file name="d73204bf-7745-b81a-61c6-be1f45d890ed" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Audio.SoundState">
+      <topicdata group="api" />
+      <apidata name="SoundState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Xna.Framework.Audio.SoundState.Paused" />
+        <element api="F:Microsoft.Xna.Framework.Audio.SoundState.Playing" />
+        <element api="F:Microsoft.Xna.Framework.Audio.SoundState.Stopped" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+      </containers>
+      <file name="144196c0-53cc-27cc-3a0d-2b0f9bbbcc49" />
+    </api>
+    <api id="F:Microsoft.Xna.Framework.Audio.SoundState.Paused">
+      <topicdata group="api" notopic="" />
+      <apidata name="Paused" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundState" ref="false" />
+      </containers>
+      <file name="648026d9-25e5-b459-de39-b514b59683ab" />
+    </api>
+    <api id="F:Microsoft.Xna.Framework.Audio.SoundState.Playing">
+      <topicdata group="api" notopic="" />
+      <apidata name="Playing" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundState" ref="false" />
+      </containers>
+      <file name="046ab6d3-f720-41ae-0164-da8a7bfe8287" />
+    </api>
+    <api id="F:Microsoft.Xna.Framework.Audio.SoundState.Stopped">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stopped" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundState" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework" module="Microsoft.Xna.Framework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Audio" />
+        <type api="T:Microsoft.Xna.Framework.Audio.SoundState" ref="false" />
+      </containers>
+      <file name="8980d4e2-9aae-81c3-649f-8924e432e66e" />
+    </api>
+  </apis>
+</reflection>

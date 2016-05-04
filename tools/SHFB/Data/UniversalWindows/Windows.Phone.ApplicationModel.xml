@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Phone.PhoneContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Phone.ApplicationModel">
+      <topicdata group="api" />
+      <apidata name="Windows.Phone.ApplicationModel" group="namespace" />
+      <elements>
+        <element api="T:Windows.Phone.ApplicationModel.ApplicationProfileModes" />
+        <element api="T:Windows.Phone.ApplicationModel.ApplicationProfile" />
+      </elements>
+      <file name="d1349604-0510-e417-08ae-b549e12a3cb0" />
+    </api>
+    <api id="T:Windows.Phone.ApplicationModel.ApplicationProfile">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.ApplicationModel.ApplicationProfile" />
+      <apidata name="ApplicationProfile" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.ApplicationModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Phone.PhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a4439026-8094-526f-75f8-4e05545b4f66" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.ApplicationModel.ApplicationProfile">
+      <topicdata name="ApplicationProfile" group="list" subgroup="members" typeTopicId="T:Windows.Phone.ApplicationModel.ApplicationProfile" />
+      <apidata name="ApplicationProfile" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Phone.ApplicationModel.ApplicationProfile.Modes" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.ApplicationModel" />
+        <type api="T:Windows.Phone.ApplicationModel.ApplicationProfile" />
+      </containers>
+      <file name="2e7c70ec-b104-3140-675c-65d37dcc9a21" />
+    </api>
+    <api id="Properties.T:Windows.Phone.ApplicationModel.ApplicationProfile">
+      <topicdata name="ApplicationProfile" group="list" subgroup="Properties" typeTopicId="T:Windows.Phone.ApplicationModel.ApplicationProfile" />
+      <apidata name="ApplicationProfile" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Phone.ApplicationModel.ApplicationProfile.Modes" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.ApplicationModel" />
+        <type api="T:Windows.Phone.ApplicationModel.ApplicationProfile" />
+      </containers>
+      <file name="c9bb3b74-9a20-fa1f-f880-11b1bd0a48c7" />
+    </api>
+    <api id="P:Windows.Phone.ApplicationModel.ApplicationProfile.Modes">
+      <topicdata group="api" />
+      <apidata name="Modes" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Modes" />
+      <returns>
+        <type api="T:Windows.Phone.ApplicationModel.ApplicationProfileModes" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.ApplicationModel" />
+        <type api="T:Windows.Phone.ApplicationModel.ApplicationProfile" ref="true" />
+      </containers>
+      <file name="18b6802f-5006-a2a0-e720-6c22575974b7" />
+    </api>
+    <api id="T:Windows.Phone.ApplicationModel.ApplicationProfileModes">
+      <topicdata group="api" />
+      <apidata name="ApplicationProfileModes" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.Phone.ApplicationModel.ApplicationProfileModes.Default" />
+        <element api="F:Windows.Phone.ApplicationModel.ApplicationProfileModes.Alternate" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.ApplicationModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Phone.PhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="fcbf79e8-216d-6a74-d07f-f0ff7b336399" />
+    </api>
+    <api id="F:Windows.Phone.ApplicationModel.ApplicationProfileModes.Alternate">
+      <topicdata group="api" notopic="" />
+      <apidata name="Alternate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.ApplicationModel.ApplicationProfileModes" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.ApplicationModel" />
+        <type api="T:Windows.Phone.ApplicationModel.ApplicationProfileModes" ref="false" />
+      </containers>
+      <file name="7af57e5f-ee39-c0b5-05e9-1339743e38af" />
+    </api>
+    <api id="F:Windows.Phone.ApplicationModel.ApplicationProfileModes.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.ApplicationModel.ApplicationProfileModes" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.ApplicationModel" />
+        <type api="T:Windows.Phone.ApplicationModel.ApplicationProfileModes" ref="false" />
+      </containers>
+      <file name="495adc4a-6511-3dfd-96e6-d694baacb6fa" />
+    </api>
+  </apis>
+</reflection>

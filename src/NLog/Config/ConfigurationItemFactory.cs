@@ -1,5 +1,5 @@
-﻿// 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// 
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -247,6 +247,11 @@ namespace NLog.Config
             if (assemblyLocation == null)
             {
                 InternalLogger.Warn("No auto loading because Nlog.dll location is unknown");
+                return factory;
+            }
+            if (!Directory.Exists(assemblyLocation))
+            {
+                InternalLogger.Warn("No auto loading because '{0}' doesn't exists", assemblyLocation);
                 return factory;
             }
 

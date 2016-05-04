@@ -1,0 +1,1463 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Networking.NetworkOperators">
+      <topicdata group="api" />
+      <apidata name="Windows.Networking.NetworkOperators" group="namespace" />
+      <elements>
+        <element api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationEventDetails" />
+        <element api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" />
+        <element api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode" />
+        <element api="T:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult" />
+        <element api="T:Windows.Networking.NetworkOperators.ProfileMediaType" />
+        <element api="T:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults" />
+        <element api="T:Windows.Networking.NetworkOperators.ProfileUsage" />
+        <element api="T:Windows.Networking.NetworkOperators.ProvisionedProfile" />
+        <element api="T:Windows.Networking.NetworkOperators.ProvisioningAgent" />
+      </elements>
+      <file name="00394d14-9943-3bc5-5ef8-6212643c1cce" />
+    </api>
+    <api id="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" />
+      <apidata name="HotspotAuthenticationContext" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Networking.NetworkOperators.IHotspotAuthenticationContext" ref="true" />
+        <type api="T:Windows.Networking.NetworkOperators.IHotspotAuthenticationContext2" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="53d490a5-62d8-7037-922c-ce2b22f2f45a" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext">
+      <topicdata name="HotspotAuthenticationContext" group="list" subgroup="members" typeTopicId="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" />
+      <apidata name="HotspotAuthenticationContext" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.AbortAuthentication(System.Boolean)" />
+        <element api="P:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.AuthenticationUrl" />
+        <element api="M:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.IssueCredentials(System.String,System.String,System.String,System.Boolean)" />
+        <element api="M:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.IssueCredentialsAsync(System.String,System.String,System.String,System.Boolean)" />
+        <element api="P:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.NetworkAdapter" />
+        <element api="P:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.RedirectMessageUrl" />
+        <element api="P:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.RedirectMessageXml" />
+        <element api="M:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.SkipAuthentication" />
+        <element api="M:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.TriggerAttentionRequired(System.String,System.String)" />
+        <element api="M:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.TryGetAuthenticationContext(System.String,Windows.Networking.NetworkOperators.HotspotAuthenticationContext@)" />
+        <element api="P:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.WirelessNetworkId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" />
+      </containers>
+      <file name="eb0fca9d-694f-b4f5-758b-7888cef3e13d" />
+    </api>
+    <api id="Methods.T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext">
+      <topicdata name="HotspotAuthenticationContext" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" />
+      <apidata name="HotspotAuthenticationContext" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.AbortAuthentication(System.Boolean)" />
+        <element api="M:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.IssueCredentials(System.String,System.String,System.String,System.Boolean)" />
+        <element api="M:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.IssueCredentialsAsync(System.String,System.String,System.String,System.Boolean)" />
+        <element api="M:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.SkipAuthentication" />
+        <element api="M:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.TriggerAttentionRequired(System.String,System.String)" />
+        <element api="M:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.TryGetAuthenticationContext(System.String,Windows.Networking.NetworkOperators.HotspotAuthenticationContext@)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" />
+      </containers>
+      <file name="2d99894f-7753-f8c0-5553-c3eca6d59da6" />
+    </api>
+    <api id="Properties.T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext">
+      <topicdata name="HotspotAuthenticationContext" group="list" subgroup="Properties" typeTopicId="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" />
+      <apidata name="HotspotAuthenticationContext" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.AuthenticationUrl" />
+        <element api="P:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.NetworkAdapter" />
+        <element api="P:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.RedirectMessageUrl" />
+        <element api="P:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.RedirectMessageXml" />
+        <element api="P:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.WirelessNetworkId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" />
+      </containers>
+      <file name="d3a1c2b3-89e2-3b28-668e-e73d3a134712" />
+    </api>
+    <api id="M:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.AbortAuthentication(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="AbortAuthentication" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="markAsManual" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" ref="true" />
+      </containers>
+      <file name="f2745c0d-1b47-712c-c574-47ffc1088d1d" />
+    </api>
+    <api id="P:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.AuthenticationUrl">
+      <topicdata group="api" />
+      <apidata name="AuthenticationUrl" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AuthenticationUrl" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" ref="true" />
+      </containers>
+      <file name="bf33122a-c847-dbe0-ef2e-72da0ce0bb00" />
+    </api>
+    <api id="M:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.IssueCredentials(System.String,System.String,System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="IssueCredentials" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="userName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="extraParameters" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="markAsManualConnectOnFailure" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" ref="true" />
+      </containers>
+      <file name="24050fe0-ff1b-7a58-d0c4-ea88113f9e94" />
+    </api>
+    <api id="M:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.IssueCredentialsAsync(System.String,System.String,System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="IssueCredentialsAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="userName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="extraParameters" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="markAsManualConnectOnFailure" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" ref="true" />
+      </containers>
+      <file name="74853dd2-b5a2-0db8-935a-27bc9f9044f4" />
+    </api>
+    <api id="P:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.NetworkAdapter">
+      <topicdata group="api" />
+      <apidata name="NetworkAdapter" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NetworkAdapter" />
+      <returns>
+        <type api="T:Windows.Networking.Connectivity.NetworkAdapter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" ref="true" />
+      </containers>
+      <file name="a757649e-a81b-648e-1f31-5f0314931281" />
+    </api>
+    <api id="P:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.RedirectMessageUrl">
+      <topicdata group="api" />
+      <apidata name="RedirectMessageUrl" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RedirectMessageUrl" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" ref="true" />
+      </containers>
+      <file name="8a97b39b-206c-f6aa-2ca9-f2328c934277" />
+    </api>
+    <api id="P:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.RedirectMessageXml">
+      <topicdata group="api" />
+      <apidata name="RedirectMessageXml" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RedirectMessageXml" />
+      <returns>
+        <type api="T:Windows.Data.Xml.Dom.XmlDocument" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" ref="true" />
+      </containers>
+      <file name="cc4dc90d-618c-03fd-b6d3-4a81515f38fd" />
+    </api>
+    <api id="M:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.SkipAuthentication">
+      <topicdata group="api" />
+      <apidata name="SkipAuthentication" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" ref="true" />
+      </containers>
+      <file name="f4a394d5-b2fe-b054-43de-ab6ef69939b2" />
+    </api>
+    <api id="M:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.TriggerAttentionRequired(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="TriggerAttentionRequired" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="packageRelativeApplicationId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="applicationParameters" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" ref="true" />
+      </containers>
+      <file name="e68966ae-f9a1-15de-e05f-eadac3d3891f" />
+    </api>
+    <api id="M:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.TryGetAuthenticationContext(System.String,Windows.Networking.NetworkOperators.HotspotAuthenticationContext@)">
+      <topicdata group="api" />
+      <apidata name="TryGetAuthenticationContext" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="evenToken" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context" out="true">
+          <referenceTo>
+            <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" ref="true" />
+      </containers>
+      <file name="fbbbfcf6-a0f0-ae5d-2817-f3a3016b5854" />
+    </api>
+    <api id="P:Windows.Networking.NetworkOperators.HotspotAuthenticationContext.WirelessNetworkId">
+      <topicdata group="api" />
+      <apidata name="WirelessNetworkId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_WirelessNetworkId" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationContext" ref="true" />
+      </containers>
+      <file name="4877a033-4371-162a-b7cd-fed6970ce238" />
+    </api>
+    <api id="T:Windows.Networking.NetworkOperators.HotspotAuthenticationEventDetails">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.NetworkOperators.HotspotAuthenticationEventDetails" />
+      <apidata name="HotspotAuthenticationEventDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Networking.NetworkOperators.IHotspotAuthenticationEventDetails" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ed85a45d-fd11-f2bd-f52c-27995180e786" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.NetworkOperators.HotspotAuthenticationEventDetails">
+      <topicdata name="HotspotAuthenticationEventDetails" group="list" subgroup="members" typeTopicId="T:Windows.Networking.NetworkOperators.HotspotAuthenticationEventDetails" />
+      <apidata name="HotspotAuthenticationEventDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Networking.NetworkOperators.HotspotAuthenticationEventDetails.EventToken" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationEventDetails" />
+      </containers>
+      <file name="dc0dc6bd-c914-7481-58a9-3423d961eff2" />
+    </api>
+    <api id="Methods.T:Windows.Networking.NetworkOperators.HotspotAuthenticationEventDetails">
+      <topicdata name="HotspotAuthenticationEventDetails" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.NetworkOperators.HotspotAuthenticationEventDetails" />
+      <apidata name="HotspotAuthenticationEventDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationEventDetails" />
+      </containers>
+      <file name="e62a3b22-6ae0-6c88-aca6-a6f024821d73" />
+    </api>
+    <api id="Properties.T:Windows.Networking.NetworkOperators.HotspotAuthenticationEventDetails">
+      <topicdata name="HotspotAuthenticationEventDetails" group="list" subgroup="Properties" typeTopicId="T:Windows.Networking.NetworkOperators.HotspotAuthenticationEventDetails" />
+      <apidata name="HotspotAuthenticationEventDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Networking.NetworkOperators.HotspotAuthenticationEventDetails.EventToken" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationEventDetails" />
+      </containers>
+      <file name="5140dfc7-4623-de6e-1c80-c346d5eb0ad1" />
+    </api>
+    <api id="P:Windows.Networking.NetworkOperators.HotspotAuthenticationEventDetails.EventToken">
+      <topicdata group="api" />
+      <apidata name="EventToken" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_EventToken" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationEventDetails" ref="true" />
+      </containers>
+      <file name="5f146dc7-f885-9f01-fb5a-ae985e0b6085" />
+    </api>
+    <api id="T:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode">
+      <topicdata group="api" />
+      <apidata name="HotspotAuthenticationResponseCode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode.NoError" />
+        <element api="F:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode.LoginSucceeded" />
+        <element api="F:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode.LoginFailed" />
+        <element api="F:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode.RadiusServerError" />
+        <element api="F:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode.NetworkAdministratorError" />
+        <element api="F:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode.LoginAborted" />
+        <element api="F:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode.AccessGatewayInternalError" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7c0ab6da-083d-91fe-3b6d-b7108cf6d023" />
+    </api>
+    <api id="F:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode.AccessGatewayInternalError">
+      <topicdata group="api" notopic="" />
+      <apidata name="AccessGatewayInternalError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode" ref="false" />
+      </returns>
+      <value>255</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode" ref="false" />
+      </containers>
+      <file name="0af43c85-0c7f-1908-ffc7-a08482c68cc9" />
+    </api>
+    <api id="F:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode.LoginAborted">
+      <topicdata group="api" notopic="" />
+      <apidata name="LoginAborted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode" ref="false" />
+      </returns>
+      <value>151</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode" ref="false" />
+      </containers>
+      <file name="59ae87ac-c6aa-64d4-3da7-cfc93fa2e6cf" />
+    </api>
+    <api id="F:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode.LoginFailed">
+      <topicdata group="api" notopic="" />
+      <apidata name="LoginFailed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode" ref="false" />
+      </returns>
+      <value>100</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode" ref="false" />
+      </containers>
+      <file name="4b7207a8-77d3-fbc4-0fa7-dc1586fa2308" />
+    </api>
+    <api id="F:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode.LoginSucceeded">
+      <topicdata group="api" notopic="" />
+      <apidata name="LoginSucceeded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode" ref="false" />
+      </returns>
+      <value>50</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode" ref="false" />
+      </containers>
+      <file name="337736b7-d09d-e29c-9adf-39fe3b168334" />
+    </api>
+    <api id="F:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode.NetworkAdministratorError">
+      <topicdata group="api" notopic="" />
+      <apidata name="NetworkAdministratorError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode" ref="false" />
+      </returns>
+      <value>105</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode" ref="false" />
+      </containers>
+      <file name="22f07519-cfb8-b07d-06d1-a8ea5d4f67a8" />
+    </api>
+    <api id="F:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode.NoError">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode" ref="false" />
+      </containers>
+      <file name="a265bba2-7683-f1a3-860f-1516ca9d5c63" />
+    </api>
+    <api id="F:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode.RadiusServerError">
+      <topicdata group="api" notopic="" />
+      <apidata name="RadiusServerError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode" ref="false" />
+      </returns>
+      <value>102</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode" ref="false" />
+      </containers>
+      <file name="ed0bad2c-2b0e-1c20-ff5b-c747b6a5c96b" />
+    </api>
+    <api id="T:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult" />
+      <apidata name="HotspotCredentialsAuthenticationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Networking.NetworkOperators.IHotspotCredentialsAuthenticationResult" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="7e80edc1-a4eb-7927-1d38-e89c00b20efd" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult">
+      <topicdata name="HotspotCredentialsAuthenticationResult" group="list" subgroup="members" typeTopicId="T:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult" />
+      <apidata name="HotspotCredentialsAuthenticationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult.AuthenticationReplyXml" />
+        <element api="P:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult.HasNetworkErrorOccurred" />
+        <element api="P:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult.LogoffUrl" />
+        <element api="P:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult.ResponseCode" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult" />
+      </containers>
+      <file name="8abcdce2-1fd6-640c-4f0d-f0c8bb074e87" />
+    </api>
+    <api id="Methods.T:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult">
+      <topicdata name="HotspotCredentialsAuthenticationResult" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult" />
+      <apidata name="HotspotCredentialsAuthenticationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult" />
+      </containers>
+      <file name="19344e2d-eb44-c602-4744-ea5dec89194e" />
+    </api>
+    <api id="Properties.T:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult">
+      <topicdata name="HotspotCredentialsAuthenticationResult" group="list" subgroup="Properties" typeTopicId="T:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult" />
+      <apidata name="HotspotCredentialsAuthenticationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult.AuthenticationReplyXml" />
+        <element api="P:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult.HasNetworkErrorOccurred" />
+        <element api="P:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult.LogoffUrl" />
+        <element api="P:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult.ResponseCode" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult" />
+      </containers>
+      <file name="bdf8542f-e084-a46d-09a6-4561ad1cc190" />
+    </api>
+    <api id="P:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult.AuthenticationReplyXml">
+      <topicdata group="api" />
+      <apidata name="AuthenticationReplyXml" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AuthenticationReplyXml" />
+      <returns>
+        <type api="T:Windows.Data.Xml.Dom.XmlDocument" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult" ref="true" />
+      </containers>
+      <file name="b02524bd-8cb8-26cf-aee4-93f30429817f" />
+    </api>
+    <api id="P:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult.HasNetworkErrorOccurred">
+      <topicdata group="api" />
+      <apidata name="HasNetworkErrorOccurred" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_HasNetworkErrorOccurred" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult" ref="true" />
+      </containers>
+      <file name="728a810b-f4af-9c69-1a43-0c3a76064282" />
+    </api>
+    <api id="P:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult.LogoffUrl">
+      <topicdata group="api" />
+      <apidata name="LogoffUrl" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_LogoffUrl" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult" ref="true" />
+      </containers>
+      <file name="3ff95023-9966-3d96-688c-f1e45f893511" />
+    </api>
+    <api id="P:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult.ResponseCode">
+      <topicdata group="api" />
+      <apidata name="ResponseCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResponseCode" />
+      <returns>
+        <type api="T:Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult" ref="true" />
+      </containers>
+      <file name="b8f18bfe-3e98-7879-7744-40135cfe8710" />
+    </api>
+    <api id="T:Windows.Networking.NetworkOperators.ProfileMediaType">
+      <topicdata group="api" />
+      <apidata name="ProfileMediaType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Networking.NetworkOperators.ProfileMediaType.Wlan" />
+        <element api="F:Windows.Networking.NetworkOperators.ProfileMediaType.Wwan" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1dde21bd-ddb8-189f-6051-0b1e3cb8d918" />
+    </api>
+    <api id="F:Windows.Networking.NetworkOperators.ProfileMediaType.Wlan">
+      <topicdata group="api" notopic="" />
+      <apidata name="Wlan" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.NetworkOperators.ProfileMediaType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProfileMediaType" ref="false" />
+      </containers>
+      <file name="3e25e6c2-ab94-87b1-b5f4-04e4118f89a1" />
+    </api>
+    <api id="F:Windows.Networking.NetworkOperators.ProfileMediaType.Wwan">
+      <topicdata group="api" notopic="" />
+      <apidata name="Wwan" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.NetworkOperators.ProfileMediaType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProfileMediaType" ref="false" />
+      </containers>
+      <file name="a41315c0-63cb-327d-f761-c6181f7ff785" />
+    </api>
+    <api id="T:Windows.Networking.NetworkOperators.ProfileUsage">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.NetworkOperators.ProfileUsage" />
+      <apidata name="ProfileUsage" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3484b1ed-98a9-38ef-eacd-31935d0c4292" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.NetworkOperators.ProfileUsage">
+      <topicdata name="ProfileUsage" group="list" subgroup="members" typeTopicId="T:Windows.Networking.NetworkOperators.ProfileUsage" />
+      <apidata name="ProfileUsage" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="F:Windows.Networking.NetworkOperators.ProfileUsage.LastSyncTime" />
+        <element api="F:Windows.Networking.NetworkOperators.ProfileUsage.UsageInMegabytes" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProfileUsage" />
+      </containers>
+      <file name="e250adb7-69b2-7b7b-5da9-5f70ca5cb066" />
+    </api>
+    <api id="Methods.T:Windows.Networking.NetworkOperators.ProfileUsage">
+      <topicdata name="ProfileUsage" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.NetworkOperators.ProfileUsage" />
+      <apidata name="ProfileUsage" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProfileUsage" />
+      </containers>
+      <file name="f1a97cf5-ce8f-1c43-9f25-d8ddd3cd2c96" />
+    </api>
+    <api id="Fields.T:Windows.Networking.NetworkOperators.ProfileUsage">
+      <topicdata name="ProfileUsage" group="list" subgroup="Fields" typeTopicId="T:Windows.Networking.NetworkOperators.ProfileUsage" />
+      <apidata name="ProfileUsage" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="F:Windows.Networking.NetworkOperators.ProfileUsage.LastSyncTime" />
+        <element api="F:Windows.Networking.NetworkOperators.ProfileUsage.UsageInMegabytes" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProfileUsage" />
+      </containers>
+      <file name="70f76c40-0ef9-a2bd-8c60-a7e79eb2b7f7" />
+    </api>
+    <api id="F:Windows.Networking.NetworkOperators.ProfileUsage.LastSyncTime">
+      <topicdata group="api" />
+      <apidata name="LastSyncTime" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProfileUsage" ref="false" />
+      </containers>
+      <file name="6d7a4060-0427-226b-83bc-8241812bd549" />
+    </api>
+    <api id="F:Windows.Networking.NetworkOperators.ProfileUsage.UsageInMegabytes">
+      <topicdata group="api" />
+      <apidata name="UsageInMegabytes" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProfileUsage" ref="false" />
+      </containers>
+      <file name="bf2e7b76-ed0e-a4a4-3919-a8b075304c19" />
+    </api>
+    <api id="T:Windows.Networking.NetworkOperators.ProvisionedProfile">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.NetworkOperators.ProvisionedProfile" />
+      <apidata name="ProvisionedProfile" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Networking.NetworkOperators.IProvisionedProfile" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="a4d4ccda-59f4-e8fb-389d-2a6b29bb381d" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.NetworkOperators.ProvisionedProfile">
+      <topicdata name="ProvisionedProfile" group="list" subgroup="members" typeTopicId="T:Windows.Networking.NetworkOperators.ProvisionedProfile" />
+      <apidata name="ProvisionedProfile" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Networking.NetworkOperators.ProvisionedProfile.UpdateCost(Windows.Networking.Connectivity.NetworkCostType)" />
+        <element api="M:Windows.Networking.NetworkOperators.ProvisionedProfile.UpdateUsage(Windows.Networking.NetworkOperators.ProfileUsage)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProvisionedProfile" />
+      </containers>
+      <file name="f84e9c7d-5b9e-e645-fb31-9f516046c470" />
+    </api>
+    <api id="Methods.T:Windows.Networking.NetworkOperators.ProvisionedProfile">
+      <topicdata name="ProvisionedProfile" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.NetworkOperators.ProvisionedProfile" />
+      <apidata name="ProvisionedProfile" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Networking.NetworkOperators.ProvisionedProfile.UpdateCost(Windows.Networking.Connectivity.NetworkCostType)" />
+        <element api="M:Windows.Networking.NetworkOperators.ProvisionedProfile.UpdateUsage(Windows.Networking.NetworkOperators.ProfileUsage)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProvisionedProfile" />
+      </containers>
+      <file name="bbd8d84e-2bad-a009-adb2-11f718b4beea" />
+    </api>
+    <api id="M:Windows.Networking.NetworkOperators.ProvisionedProfile.UpdateCost(Windows.Networking.Connectivity.NetworkCostType)">
+      <topicdata group="api" />
+      <apidata name="UpdateCost" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Networking.Connectivity.NetworkCostType" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProvisionedProfile" ref="true" />
+      </containers>
+      <file name="4316dc1c-50b8-6553-50f5-aa18af2447d9" />
+    </api>
+    <api id="M:Windows.Networking.NetworkOperators.ProvisionedProfile.UpdateUsage(Windows.Networking.NetworkOperators.ProfileUsage)">
+      <topicdata group="api" />
+      <apidata name="UpdateUsage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Networking.NetworkOperators.ProfileUsage" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProvisionedProfile" ref="true" />
+      </containers>
+      <file name="11309fea-4fe1-dccd-036e-1252802dedfe" />
+    </api>
+    <api id="T:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults" />
+      <apidata name="ProvisionFromXmlDocumentResults" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Networking.NetworkOperators.IProvisionFromXmlDocumentResults" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a864fae4-1826-8d97-c1f1-b0ae94092682" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults">
+      <topicdata name="ProvisionFromXmlDocumentResults" group="list" subgroup="members" typeTopicId="T:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults" />
+      <apidata name="ProvisionFromXmlDocumentResults" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults.AllElementsProvisioned" />
+        <element api="P:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults.ProvisionResultsXml" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults" />
+      </containers>
+      <file name="0e0ede91-76b2-4fef-8135-86de863aeaae" />
+    </api>
+    <api id="Methods.T:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults">
+      <topicdata name="ProvisionFromXmlDocumentResults" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults" />
+      <apidata name="ProvisionFromXmlDocumentResults" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults" />
+      </containers>
+      <file name="144a8f68-b648-7f39-2df1-da9fae94397a" />
+    </api>
+    <api id="Properties.T:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults">
+      <topicdata name="ProvisionFromXmlDocumentResults" group="list" subgroup="Properties" typeTopicId="T:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults" />
+      <apidata name="ProvisionFromXmlDocumentResults" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults.AllElementsProvisioned" />
+        <element api="P:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults.ProvisionResultsXml" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults" />
+      </containers>
+      <file name="83b78b01-173c-b5e8-5c5f-6af27a9b45ef" />
+    </api>
+    <api id="P:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults.AllElementsProvisioned">
+      <topicdata group="api" />
+      <apidata name="AllElementsProvisioned" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AllElementsProvisioned" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults" ref="true" />
+      </containers>
+      <file name="beae8467-7204-228d-0f45-bfd26c52a14e" />
+    </api>
+    <api id="P:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults.ProvisionResultsXml">
+      <topicdata group="api" />
+      <apidata name="ProvisionResultsXml" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ProvisionResultsXml" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults" ref="true" />
+      </containers>
+      <file name="edfc3104-23de-fa91-7fdc-7c0a54ab0ee1" />
+    </api>
+    <api id="T:Windows.Networking.NetworkOperators.ProvisioningAgent">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.NetworkOperators.ProvisioningAgent" />
+      <apidata name="ProvisioningAgent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Networking.NetworkOperators.ProvisioningAgent.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Networking.NetworkOperators.IProvisioningAgent" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d3895f83-1cb0-ba20-0d09-10eddc804167" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.NetworkOperators.ProvisioningAgent">
+      <topicdata name="ProvisioningAgent" group="list" subgroup="members" typeTopicId="T:Windows.Networking.NetworkOperators.ProvisioningAgent" />
+      <apidata name="ProvisioningAgent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Networking.NetworkOperators.ProvisioningAgent.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Networking.NetworkOperators.ProvisioningAgent.#ctor" />
+        <element api="M:Windows.Networking.NetworkOperators.ProvisioningAgent.CreateFromNetworkAccountId(System.String)" />
+        <element api="M:Windows.Networking.NetworkOperators.ProvisioningAgent.GetProvisionedProfile(Windows.Networking.NetworkOperators.ProfileMediaType,System.String)" />
+        <element api="M:Windows.Networking.NetworkOperators.ProvisioningAgent.ProvisionFromXmlDocumentAsync(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProvisioningAgent" />
+      </containers>
+      <file name="7dc74750-6b97-7fe9-3878-78859ad9aa4b" />
+    </api>
+    <api id="Methods.T:Windows.Networking.NetworkOperators.ProvisioningAgent">
+      <topicdata name="ProvisioningAgent" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.NetworkOperators.ProvisioningAgent" />
+      <apidata name="ProvisioningAgent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Networking.NetworkOperators.ProvisioningAgent.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Networking.NetworkOperators.ProvisioningAgent.CreateFromNetworkAccountId(System.String)" />
+        <element api="M:Windows.Networking.NetworkOperators.ProvisioningAgent.GetProvisionedProfile(Windows.Networking.NetworkOperators.ProfileMediaType,System.String)" />
+        <element api="M:Windows.Networking.NetworkOperators.ProvisioningAgent.ProvisionFromXmlDocumentAsync(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProvisioningAgent" />
+      </containers>
+      <file name="bd633c44-3aa5-a968-b0e7-ea977cc5c148" />
+    </api>
+    <api id="M:Windows.Networking.NetworkOperators.ProvisioningAgent.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProvisioningAgent" ref="true" />
+      </containers>
+      <file name="4e6c308c-661f-ec2d-521d-9eb3bc72a0fd" />
+    </api>
+    <api id="M:Windows.Networking.NetworkOperators.ProvisioningAgent.CreateFromNetworkAccountId(System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateFromNetworkAccountId" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="networkAccountId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Networking.NetworkOperators.ProvisioningAgent" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProvisioningAgent" ref="true" />
+      </containers>
+      <file name="2c26d824-c39e-b746-24b8-803d952f1803" />
+    </api>
+    <api id="M:Windows.Networking.NetworkOperators.ProvisioningAgent.GetProvisionedProfile(Windows.Networking.NetworkOperators.ProfileMediaType,System.String)">
+      <topicdata group="api" />
+      <apidata name="GetProvisionedProfile" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="mediaType" in="true">
+          <type api="T:Windows.Networking.NetworkOperators.ProfileMediaType" ref="false" />
+        </parameter>
+        <parameter name="profileName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Networking.NetworkOperators.ProvisionedProfile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProvisioningAgent" ref="true" />
+      </containers>
+      <file name="c566eb58-c7f0-d8d1-d882-48464de9071f" />
+    </api>
+    <api id="M:Windows.Networking.NetworkOperators.ProvisioningAgent.ProvisionFromXmlDocumentAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="ProvisionFromXmlDocumentAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="provisioningXmlDocument" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.NetworkOperators" />
+        <type api="T:Windows.Networking.NetworkOperators.ProvisioningAgent" ref="true" />
+      </containers>
+      <file name="4e940313-9705-d474-4c2d-79dd0e9e21e7" />
+    </api>
+  </apis>
+</reflection>

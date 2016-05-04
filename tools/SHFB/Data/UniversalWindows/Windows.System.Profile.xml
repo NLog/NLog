@@ -1,0 +1,2192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+    <assembly name="Windows.System.Profile.ProfileHardwareTokenContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+    <assembly name="Windows.System.Profile.ProfileRetailInfoContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+    <assembly name="Windows.System.Profile.ProfileSharedModeContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.System.Profile">
+      <topicdata group="api" />
+      <apidata name="Windows.System.Profile" group="namespace" />
+      <elements>
+        <element api="T:Windows.System.Profile.AnalyticsVersionInfo" />
+        <element api="T:Windows.System.Profile.AnalyticsInfo" />
+        <element api="T:Windows.System.Profile.ProfileHardwareTokenContract" />
+        <element api="T:Windows.System.Profile.HardwareToken" />
+        <element api="T:Windows.System.Profile.HardwareIdentification" />
+        <element api="T:Windows.System.Profile.ProfileRetailInfoContract" />
+        <element api="T:Windows.System.Profile.RetailInfo" />
+        <element api="T:Windows.System.Profile.KnownRetailInfoProperties" />
+        <element api="T:Windows.System.Profile.ProfileSharedModeContract" />
+        <element api="T:Windows.System.Profile.SharedModeSettings" />
+      </elements>
+      <file name="6cc2a07e-288b-0a2f-1cd7-e91b29f64e4b" />
+    </api>
+    <api id="T:Windows.System.Profile.AnalyticsInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Profile.AnalyticsInfo" />
+      <apidata name="AnalyticsInfo" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="37cf906d-f863-8c3d-f65c-1b318fc73ac4" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Profile.AnalyticsInfo">
+      <topicdata name="AnalyticsInfo" group="list" subgroup="members" typeTopicId="T:Windows.System.Profile.AnalyticsInfo" />
+      <apidata name="AnalyticsInfo" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Profile.AnalyticsInfo.DeviceForm" />
+        <element api="P:Windows.System.Profile.AnalyticsInfo.VersionInfo" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.AnalyticsInfo" />
+      </containers>
+      <file name="636ab664-c3ee-089e-5ce3-6a072fc7e0ca" />
+    </api>
+    <api id="Properties.T:Windows.System.Profile.AnalyticsInfo">
+      <topicdata name="AnalyticsInfo" group="list" subgroup="Properties" typeTopicId="T:Windows.System.Profile.AnalyticsInfo" />
+      <apidata name="AnalyticsInfo" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Profile.AnalyticsInfo.DeviceForm" />
+        <element api="P:Windows.System.Profile.AnalyticsInfo.VersionInfo" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.AnalyticsInfo" />
+      </containers>
+      <file name="ac1eec7f-0eeb-44ce-b7ee-955f0b5535ab" />
+    </api>
+    <api id="P:Windows.System.Profile.AnalyticsInfo.DeviceForm">
+      <topicdata group="api" />
+      <apidata name="DeviceForm" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DeviceForm" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.AnalyticsInfo" ref="true" />
+      </containers>
+      <file name="7d189bb6-9d23-3b40-3268-a55bf6fe1693" />
+    </api>
+    <api id="P:Windows.System.Profile.AnalyticsInfo.VersionInfo">
+      <topicdata group="api" />
+      <apidata name="VersionInfo" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_VersionInfo" />
+      <returns>
+        <type api="T:Windows.System.Profile.AnalyticsVersionInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.AnalyticsInfo" ref="true" />
+      </containers>
+      <file name="b28cce90-475e-e1e5-e985-b18bce7e27cd" />
+    </api>
+    <api id="T:Windows.System.Profile.AnalyticsVersionInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Profile.AnalyticsVersionInfo" />
+      <apidata name="AnalyticsVersionInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="222f0a78-aab9-3619-f659-8d79556f71aa" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Profile.AnalyticsVersionInfo">
+      <topicdata name="AnalyticsVersionInfo" group="list" subgroup="members" typeTopicId="T:Windows.System.Profile.AnalyticsVersionInfo" />
+      <apidata name="AnalyticsVersionInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.System.Profile.AnalyticsVersionInfo.DeviceFamily" />
+        <element api="P:Windows.System.Profile.AnalyticsVersionInfo.DeviceFamilyVersion" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.AnalyticsVersionInfo" />
+      </containers>
+      <file name="c8aaef78-2f24-e270-dd3e-90ef279bcbb5" />
+    </api>
+    <api id="Methods.T:Windows.System.Profile.AnalyticsVersionInfo">
+      <topicdata name="AnalyticsVersionInfo" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Profile.AnalyticsVersionInfo" />
+      <apidata name="AnalyticsVersionInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.AnalyticsVersionInfo" />
+      </containers>
+      <file name="75dff080-1b78-931b-09b8-b265941bab0a" />
+    </api>
+    <api id="Properties.T:Windows.System.Profile.AnalyticsVersionInfo">
+      <topicdata name="AnalyticsVersionInfo" group="list" subgroup="Properties" typeTopicId="T:Windows.System.Profile.AnalyticsVersionInfo" />
+      <apidata name="AnalyticsVersionInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Profile.AnalyticsVersionInfo.DeviceFamily" />
+        <element api="P:Windows.System.Profile.AnalyticsVersionInfo.DeviceFamilyVersion" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.AnalyticsVersionInfo" />
+      </containers>
+      <file name="3b1fb644-25c3-718f-e22f-5d37b6f2b1f0" />
+    </api>
+    <api id="P:Windows.System.Profile.AnalyticsVersionInfo.DeviceFamily">
+      <topicdata group="api" />
+      <apidata name="DeviceFamily" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DeviceFamily" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.AnalyticsVersionInfo" ref="true" />
+      </containers>
+      <file name="38e09d3b-b960-3b98-0ecf-73f647335aac" />
+    </api>
+    <api id="P:Windows.System.Profile.AnalyticsVersionInfo.DeviceFamilyVersion">
+      <topicdata group="api" />
+      <apidata name="DeviceFamilyVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DeviceFamilyVersion" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.AnalyticsVersionInfo" ref="true" />
+      </containers>
+      <file name="dc8bd4e8-3bee-ffbd-fb48-41ed6f6ad45b" />
+    </api>
+    <api id="T:Windows.System.Profile.HardwareIdentification">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Profile.HardwareIdentification" />
+      <apidata name="HardwareIdentification" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileHardwareTokenContract" module="Windows.System.Profile.ProfileHardwareTokenContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.System.Profile.ProfileHardwareTokenContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b3818d61-9223-ed8f-81a2-69576ab32e34" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Profile.HardwareIdentification">
+      <topicdata name="HardwareIdentification" group="list" subgroup="members" typeTopicId="T:Windows.System.Profile.HardwareIdentification" />
+      <apidata name="HardwareIdentification" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.System.Profile.HardwareIdentification.GetPackageSpecificToken(Windows.Storage.Streams.IBuffer)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileHardwareTokenContract" module="Windows.System.Profile.ProfileHardwareTokenContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.HardwareIdentification" />
+      </containers>
+      <file name="c94daacb-4a99-63cf-b188-6b347434c787" />
+    </api>
+    <api id="Methods.T:Windows.System.Profile.HardwareIdentification">
+      <topicdata name="HardwareIdentification" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Profile.HardwareIdentification" />
+      <apidata name="HardwareIdentification" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.System.Profile.HardwareIdentification.GetPackageSpecificToken(Windows.Storage.Streams.IBuffer)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileHardwareTokenContract" module="Windows.System.Profile.ProfileHardwareTokenContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.HardwareIdentification" />
+      </containers>
+      <file name="1db5fdc1-b0d4-10b1-a4ed-8611e6878ec0" />
+    </api>
+    <api id="M:Windows.System.Profile.HardwareIdentification.GetPackageSpecificToken(Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="GetPackageSpecificToken" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="nonce" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.System.Profile.HardwareToken" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileHardwareTokenContract" module="Windows.System.Profile.ProfileHardwareTokenContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.HardwareIdentification" ref="true" />
+      </containers>
+      <file name="d6fb6fa7-10ee-1a23-609c-9ddac04367c7" />
+    </api>
+    <api id="T:Windows.System.Profile.HardwareToken">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Profile.HardwareToken" />
+      <apidata name="HardwareToken" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileHardwareTokenContract" module="Windows.System.Profile.ProfileHardwareTokenContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.System.Profile.ProfileHardwareTokenContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bb73ed5d-6032-28f3-8002-890b5292beac" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Profile.HardwareToken">
+      <topicdata name="HardwareToken" group="list" subgroup="members" typeTopicId="T:Windows.System.Profile.HardwareToken" />
+      <apidata name="HardwareToken" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.System.Profile.HardwareToken.Certificate" />
+        <element api="P:Windows.System.Profile.HardwareToken.Id" />
+        <element api="P:Windows.System.Profile.HardwareToken.Signature" />
+      </elements>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileHardwareTokenContract" module="Windows.System.Profile.ProfileHardwareTokenContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.HardwareToken" />
+      </containers>
+      <file name="48d46322-3e1a-b8fa-41bc-8be1cfa29a40" />
+    </api>
+    <api id="Methods.T:Windows.System.Profile.HardwareToken">
+      <topicdata name="HardwareToken" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Profile.HardwareToken" />
+      <apidata name="HardwareToken" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileHardwareTokenContract" module="Windows.System.Profile.ProfileHardwareTokenContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.HardwareToken" />
+      </containers>
+      <file name="0ef05170-6293-afc7-18f2-b68d5228cde5" />
+    </api>
+    <api id="Properties.T:Windows.System.Profile.HardwareToken">
+      <topicdata name="HardwareToken" group="list" subgroup="Properties" typeTopicId="T:Windows.System.Profile.HardwareToken" />
+      <apidata name="HardwareToken" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Profile.HardwareToken.Certificate" />
+        <element api="P:Windows.System.Profile.HardwareToken.Id" />
+        <element api="P:Windows.System.Profile.HardwareToken.Signature" />
+      </elements>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileHardwareTokenContract" module="Windows.System.Profile.ProfileHardwareTokenContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.HardwareToken" />
+      </containers>
+      <file name="b10b0e40-4838-5c72-c303-fbfe067917f8" />
+    </api>
+    <api id="P:Windows.System.Profile.HardwareToken.Certificate">
+      <topicdata group="api" />
+      <apidata name="Certificate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Certificate" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileHardwareTokenContract" module="Windows.System.Profile.ProfileHardwareTokenContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.HardwareToken" ref="true" />
+      </containers>
+      <file name="92edebc1-4c98-0d3b-d9c6-f01e2a32d8cc" />
+    </api>
+    <api id="P:Windows.System.Profile.HardwareToken.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileHardwareTokenContract" module="Windows.System.Profile.ProfileHardwareTokenContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.HardwareToken" ref="true" />
+      </containers>
+      <file name="96000a05-11c2-e98f-2da1-6f1813cd7ed8" />
+    </api>
+    <api id="P:Windows.System.Profile.HardwareToken.Signature">
+      <topicdata group="api" />
+      <apidata name="Signature" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Signature" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileHardwareTokenContract" module="Windows.System.Profile.ProfileHardwareTokenContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.HardwareToken" ref="true" />
+      </containers>
+      <file name="104ad378-297c-06b3-441b-7d6f6b8d59bf" />
+    </api>
+    <api id="T:Windows.System.Profile.KnownRetailInfoProperties">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Profile.KnownRetailInfoProperties" />
+      <apidata name="KnownRetailInfoProperties" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.System.Profile.ProfileRetailInfoContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="788a109e-6609-103b-be9c-f80ce6e73983" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Profile.KnownRetailInfoProperties">
+      <topicdata name="KnownRetailInfoProperties" group="list" subgroup="members" typeTopicId="T:Windows.System.Profile.KnownRetailInfoProperties" />
+      <apidata name="KnownRetailInfoProperties" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.BatteryLifeDescription" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.DisplayDescription" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.DisplayModelName" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.FormFactor" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.FrontCameraDescription" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.GraphicsDescription" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.HasNfc" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.HasOpticalDrive" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.HasSdSlot" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.IsFeatured" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.IsOfficeInstalled" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.ManufacturerName" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.Memory" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.ModelName" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.Price" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.ProcessorDescription" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.RearCameraDescription" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.RetailAccessCode" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.ScreenSize" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.StorageDescription" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.Weight" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.WindowsEdition" />
+      </elements>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" />
+      </containers>
+      <file name="aa1906c6-8bee-0530-26bc-dd79542f9ad8" />
+    </api>
+    <api id="Properties.T:Windows.System.Profile.KnownRetailInfoProperties">
+      <topicdata name="KnownRetailInfoProperties" group="list" subgroup="Properties" typeTopicId="T:Windows.System.Profile.KnownRetailInfoProperties" />
+      <apidata name="KnownRetailInfoProperties" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.BatteryLifeDescription" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.DisplayDescription" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.DisplayModelName" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.FormFactor" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.FrontCameraDescription" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.GraphicsDescription" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.HasNfc" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.HasOpticalDrive" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.HasSdSlot" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.IsFeatured" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.IsOfficeInstalled" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.ManufacturerName" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.Memory" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.ModelName" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.Price" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.ProcessorDescription" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.RearCameraDescription" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.RetailAccessCode" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.ScreenSize" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.StorageDescription" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.Weight" />
+        <element api="P:Windows.System.Profile.KnownRetailInfoProperties.WindowsEdition" />
+      </elements>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" />
+      </containers>
+      <file name="b037ff65-4a75-e67c-4646-49fe1b2b38bd" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.BatteryLifeDescription">
+      <topicdata group="api" />
+      <apidata name="BatteryLifeDescription" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BatteryLifeDescription" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="eac8ce5f-8ca9-04b5-3cbb-499c16d79da4" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.DisplayDescription">
+      <topicdata group="api" />
+      <apidata name="DisplayDescription" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DisplayDescription" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="edf94569-3f0d-b9a5-9ad1-a5963962114f" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.DisplayModelName">
+      <topicdata group="api" />
+      <apidata name="DisplayModelName" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DisplayModelName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="efb61d9a-afe1-4569-c8cb-391c69ba992f" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.FormFactor">
+      <topicdata group="api" />
+      <apidata name="FormFactor" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FormFactor" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="9db1ae8d-fd51-1916-b675-2eb3e923eac1" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.FrontCameraDescription">
+      <topicdata group="api" />
+      <apidata name="FrontCameraDescription" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FrontCameraDescription" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="e75adeca-d114-9d62-7c85-eb59e75890bb" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.GraphicsDescription">
+      <topicdata group="api" />
+      <apidata name="GraphicsDescription" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_GraphicsDescription" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="cddd5ca1-9d20-e9eb-f40c-0c01aaf68304" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.HasNfc">
+      <topicdata group="api" />
+      <apidata name="HasNfc" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_HasNfc" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="3a5c0653-09a2-a561-3458-b5d752e3171b" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.HasOpticalDrive">
+      <topicdata group="api" />
+      <apidata name="HasOpticalDrive" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_HasOpticalDrive" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="4548d1bc-ca19-85ef-46e5-35c4d3459aee" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.HasSdSlot">
+      <topicdata group="api" />
+      <apidata name="HasSdSlot" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_HasSdSlot" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="09b6d1ef-48de-3a92-7a62-0d92c66e3c1e" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.IsFeatured">
+      <topicdata group="api" />
+      <apidata name="IsFeatured" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsFeatured" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="bb532b52-1322-2bd6-e0b0-1d930fcec4c8" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.IsOfficeInstalled">
+      <topicdata group="api" />
+      <apidata name="IsOfficeInstalled" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsOfficeInstalled" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="7394a60f-9d53-f4c3-adf1-b51c40cb017b" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.ManufacturerName">
+      <topicdata group="api" />
+      <apidata name="ManufacturerName" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ManufacturerName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="0798a5c8-8cb4-635d-2015-c32b08c086d6" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.Memory">
+      <topicdata group="api" />
+      <apidata name="Memory" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Memory" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="1666472d-f391-5c1f-fe2d-0e22a802e8c7" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.ModelName">
+      <topicdata group="api" />
+      <apidata name="ModelName" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ModelName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="9fd73585-766f-0b50-a8f0-c8f8a2cb9352" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.Price">
+      <topicdata group="api" />
+      <apidata name="Price" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Price" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="5c577e51-c77c-d5e3-cdf4-7a6a56810c1f" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.ProcessorDescription">
+      <topicdata group="api" />
+      <apidata name="ProcessorDescription" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ProcessorDescription" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="d0df2ea7-c665-da6b-782c-905542f4a51d" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.RearCameraDescription">
+      <topicdata group="api" />
+      <apidata name="RearCameraDescription" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RearCameraDescription" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="c2437917-4949-8ef3-9f3e-8d340f42fdf0" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.RetailAccessCode">
+      <topicdata group="api" />
+      <apidata name="RetailAccessCode" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RetailAccessCode" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="67093b6f-d05d-da7f-b9f1-5663f28f8253" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.ScreenSize">
+      <topicdata group="api" />
+      <apidata name="ScreenSize" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ScreenSize" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="c2dc764c-d21f-d918-994c-b1f0cdd9e9fd" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.StorageDescription">
+      <topicdata group="api" />
+      <apidata name="StorageDescription" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_StorageDescription" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="447513a2-9208-71a5-d1de-1160df9c3b80" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.Weight">
+      <topicdata group="api" />
+      <apidata name="Weight" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Weight" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="9ea9afa2-fdff-6111-1a36-ed5867b81120" />
+    </api>
+    <api id="P:Windows.System.Profile.KnownRetailInfoProperties.WindowsEdition">
+      <topicdata group="api" />
+      <apidata name="WindowsEdition" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_WindowsEdition" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.KnownRetailInfoProperties" ref="true" />
+      </containers>
+      <file name="58539cee-0b83-e18c-dda8-074b1a5bb3f6" />
+    </api>
+    <api id="T:Windows.System.Profile.ProfileHardwareTokenContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Profile.ProfileHardwareTokenContract" />
+      <apidata name="ProfileHardwareTokenContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileHardwareTokenContract" module="Windows.System.Profile.ProfileHardwareTokenContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ApiContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="c5cb3606-69c9-df8f-1a77-663179587ba9" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Profile.ProfileHardwareTokenContract">
+      <topicdata name="ProfileHardwareTokenContract" group="list" subgroup="members" typeTopicId="T:Windows.System.Profile.ProfileHardwareTokenContract" />
+      <apidata name="ProfileHardwareTokenContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileHardwareTokenContract" module="Windows.System.Profile.ProfileHardwareTokenContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.ProfileHardwareTokenContract" />
+      </containers>
+      <file name="3632ee94-8698-9de5-5ee7-25b8734e2365" />
+    </api>
+    <api id="Methods.T:Windows.System.Profile.ProfileHardwareTokenContract">
+      <topicdata name="ProfileHardwareTokenContract" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Profile.ProfileHardwareTokenContract" />
+      <apidata name="ProfileHardwareTokenContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileHardwareTokenContract" module="Windows.System.Profile.ProfileHardwareTokenContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.ProfileHardwareTokenContract" />
+      </containers>
+      <file name="9bf41f19-da26-0950-d757-4b7a6ec63e55" />
+    </api>
+    <api id="T:Windows.System.Profile.ProfileRetailInfoContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Profile.ProfileRetailInfoContract" />
+      <apidata name="ProfileRetailInfoContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ApiContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="dcecd42e-855e-b4de-167f-221f6013b2da" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Profile.ProfileRetailInfoContract">
+      <topicdata name="ProfileRetailInfoContract" group="list" subgroup="members" typeTopicId="T:Windows.System.Profile.ProfileRetailInfoContract" />
+      <apidata name="ProfileRetailInfoContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.ProfileRetailInfoContract" />
+      </containers>
+      <file name="f3665bd8-ac51-46f0-acb6-85b0c973d4c7" />
+    </api>
+    <api id="Methods.T:Windows.System.Profile.ProfileRetailInfoContract">
+      <topicdata name="ProfileRetailInfoContract" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Profile.ProfileRetailInfoContract" />
+      <apidata name="ProfileRetailInfoContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.ProfileRetailInfoContract" />
+      </containers>
+      <file name="3c7e32d3-fbe8-23b3-5a68-097558e401a5" />
+    </api>
+    <api id="T:Windows.System.Profile.ProfileSharedModeContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Profile.ProfileSharedModeContract" />
+      <apidata name="ProfileSharedModeContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileSharedModeContract" module="Windows.System.Profile.ProfileSharedModeContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ApiContractAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="160b2d36-3703-496a-f80c-2be2cf13bd56" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Profile.ProfileSharedModeContract">
+      <topicdata name="ProfileSharedModeContract" group="list" subgroup="members" typeTopicId="T:Windows.System.Profile.ProfileSharedModeContract" />
+      <apidata name="ProfileSharedModeContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileSharedModeContract" module="Windows.System.Profile.ProfileSharedModeContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.ProfileSharedModeContract" />
+      </containers>
+      <file name="2148ccb4-d8fe-25e4-550d-d2f9491cf7cb" />
+    </api>
+    <api id="Methods.T:Windows.System.Profile.ProfileSharedModeContract">
+      <topicdata name="ProfileSharedModeContract" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Profile.ProfileSharedModeContract" />
+      <apidata name="ProfileSharedModeContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileSharedModeContract" module="Windows.System.Profile.ProfileSharedModeContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.ProfileSharedModeContract" />
+      </containers>
+      <file name="33f3020c-8a8f-f7a8-66a8-005212e7bc52" />
+    </api>
+    <api id="T:Windows.System.Profile.RetailInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Profile.RetailInfo" />
+      <apidata name="RetailInfo" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.System.Profile.ProfileRetailInfoContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="61217a92-68ea-59be-7d16-c6b737c2ad51" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Profile.RetailInfo">
+      <topicdata name="RetailInfo" group="list" subgroup="members" typeTopicId="T:Windows.System.Profile.RetailInfo" />
+      <apidata name="RetailInfo" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Profile.RetailInfo.IsDemoModeEnabled" />
+        <element api="P:Windows.System.Profile.RetailInfo.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.RetailInfo" />
+      </containers>
+      <file name="f5d3ca23-9e86-60ee-2294-a92d04934bb6" />
+    </api>
+    <api id="Properties.T:Windows.System.Profile.RetailInfo">
+      <topicdata name="RetailInfo" group="list" subgroup="Properties" typeTopicId="T:Windows.System.Profile.RetailInfo" />
+      <apidata name="RetailInfo" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Profile.RetailInfo.IsDemoModeEnabled" />
+        <element api="P:Windows.System.Profile.RetailInfo.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.RetailInfo" />
+      </containers>
+      <file name="b6754e85-9d5d-9b23-e25f-ed29b3c34ded" />
+    </api>
+    <api id="P:Windows.System.Profile.RetailInfo.IsDemoModeEnabled">
+      <topicdata group="api" />
+      <apidata name="IsDemoModeEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsDemoModeEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.RetailInfo" ref="true" />
+      </containers>
+      <file name="9ef528aa-979d-de17-26e8-9a257f361a93" />
+    </api>
+    <api id="P:Windows.System.Profile.RetailInfo.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileRetailInfoContract" module="Windows.System.Profile.ProfileRetailInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.RetailInfo" ref="true" />
+      </containers>
+      <file name="13b64c6e-9262-68a8-b6fd-55002734db0d" />
+    </api>
+    <api id="T:Windows.System.Profile.SharedModeSettings">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Profile.SharedModeSettings" />
+      <apidata name="SharedModeSettings" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileSharedModeContract" module="Windows.System.Profile.ProfileSharedModeContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.System.Profile.ProfileSharedModeContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="92bc7126-0d6a-f549-7fd7-f45b1e9acabb" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Profile.SharedModeSettings">
+      <topicdata name="SharedModeSettings" group="list" subgroup="members" typeTopicId="T:Windows.System.Profile.SharedModeSettings" />
+      <apidata name="SharedModeSettings" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Profile.SharedModeSettings.IsEnabled" />
+      </elements>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileSharedModeContract" module="Windows.System.Profile.ProfileSharedModeContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.SharedModeSettings" />
+      </containers>
+      <file name="196820db-8298-2e75-5b77-749273e85a3f" />
+    </api>
+    <api id="Properties.T:Windows.System.Profile.SharedModeSettings">
+      <topicdata name="SharedModeSettings" group="list" subgroup="Properties" typeTopicId="T:Windows.System.Profile.SharedModeSettings" />
+      <apidata name="SharedModeSettings" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Profile.SharedModeSettings.IsEnabled" />
+      </elements>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileSharedModeContract" module="Windows.System.Profile.ProfileSharedModeContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.SharedModeSettings" />
+      </containers>
+      <file name="8feda5ca-6d7c-56ed-956e-bcb195cd4da4" />
+    </api>
+    <api id="P:Windows.System.Profile.SharedModeSettings.IsEnabled">
+      <topicdata group="api" />
+      <apidata name="IsEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.System.Profile.ProfileSharedModeContract" module="Windows.System.Profile.ProfileSharedModeContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile" />
+        <type api="T:Windows.System.Profile.SharedModeSettings" ref="true" />
+      </containers>
+      <file name="e1c6b058-2487-b5f1-e70f-1ebb94785bf8" />
+    </api>
+  </apis>
+</reflection>

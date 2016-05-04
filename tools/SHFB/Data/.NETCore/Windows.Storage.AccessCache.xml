@@ -1,0 +1,3071 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Storage.AccessCache">
+      <topicdata group="api" />
+      <apidata name="Windows.Storage.AccessCache" group="namespace" />
+      <elements>
+        <element api="T:Windows.Storage.AccessCache.AccessListEntry" />
+        <element api="T:Windows.Storage.AccessCache.AccessListEntryView" />
+        <element api="T:Windows.Storage.AccessCache.AccessCacheOptions" />
+        <element api="T:Windows.Storage.AccessCache.IStorageItemAccessList" />
+        <element api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" />
+        <element api="T:Windows.Storage.AccessCache.ItemRemovedEventArgs" />
+        <element api="T:Windows.Storage.AccessCache.StorageItemAccessList" />
+        <element api="T:Windows.Storage.AccessCache.StorageApplicationPermissions" />
+      </elements>
+      <file name="fe15d359-37ca-520b-bd0f-3507dfa45e98" />
+    </api>
+    <api id="T:Windows.Storage.AccessCache.AccessCacheOptions">
+      <topicdata group="api" />
+      <apidata name="AccessCacheOptions" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.Storage.AccessCache.AccessCacheOptions.None" />
+        <element api="F:Windows.Storage.AccessCache.AccessCacheOptions.DisallowUserInput" />
+        <element api="F:Windows.Storage.AccessCache.AccessCacheOptions.FastLocationsOnly" />
+        <element api="F:Windows.Storage.AccessCache.AccessCacheOptions.UseReadOnlyCachedCopy" />
+        <element api="F:Windows.Storage.AccessCache.AccessCacheOptions.SuppressAccessTimeUpdate" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="888fbedd-94d0-5407-80d3-5f8cadc56dec" />
+    </api>
+    <api id="F:Windows.Storage.AccessCache.AccessCacheOptions.DisallowUserInput">
+      <topicdata group="api" notopic="" />
+      <apidata name="DisallowUserInput" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.AccessCache.AccessCacheOptions" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.AccessCacheOptions" ref="false" />
+      </containers>
+      <file name="62997f51-bb8d-31eb-e131-a21125651c48" />
+    </api>
+    <api id="F:Windows.Storage.AccessCache.AccessCacheOptions.FastLocationsOnly">
+      <topicdata group="api" notopic="" />
+      <apidata name="FastLocationsOnly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.AccessCache.AccessCacheOptions" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.AccessCacheOptions" ref="false" />
+      </containers>
+      <file name="0d3e36f4-018d-e817-15b4-d20dc7e06057" />
+    </api>
+    <api id="F:Windows.Storage.AccessCache.AccessCacheOptions.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.AccessCache.AccessCacheOptions" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.AccessCacheOptions" ref="false" />
+      </containers>
+      <file name="0029962b-0e7c-03ab-101c-2203e7eab944" />
+    </api>
+    <api id="F:Windows.Storage.AccessCache.AccessCacheOptions.SuppressAccessTimeUpdate">
+      <topicdata group="api" notopic="" />
+      <apidata name="SuppressAccessTimeUpdate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.AccessCache.AccessCacheOptions" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.AccessCacheOptions" ref="false" />
+      </containers>
+      <file name="0f2f103a-7619-5c43-1dc5-0a06f45f6cb0" />
+    </api>
+    <api id="F:Windows.Storage.AccessCache.AccessCacheOptions.UseReadOnlyCachedCopy">
+      <topicdata group="api" notopic="" />
+      <apidata name="UseReadOnlyCachedCopy" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.AccessCache.AccessCacheOptions" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.AccessCacheOptions" ref="false" />
+      </containers>
+      <file name="fe9359bb-6945-b542-2938-ff2720def118" />
+    </api>
+    <api id="T:Windows.Storage.AccessCache.AccessListEntry">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.AccessListEntry" />
+      <apidata name="AccessListEntry" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6872e41c-6020-1953-d612-0ee7adb72260" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.AccessCache.AccessListEntry">
+      <topicdata name="AccessListEntry" group="list" subgroup="members" typeTopicId="T:Windows.Storage.AccessCache.AccessListEntry" />
+      <apidata name="AccessListEntry" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="F:Windows.Storage.AccessCache.AccessListEntry.Metadata" />
+        <element api="F:Windows.Storage.AccessCache.AccessListEntry.Token" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.AccessListEntry" />
+      </containers>
+      <file name="131342f3-c324-363b-e0b0-4db6a9139b96" />
+    </api>
+    <api id="Methods.T:Windows.Storage.AccessCache.AccessListEntry">
+      <topicdata name="AccessListEntry" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.AccessCache.AccessListEntry" />
+      <apidata name="AccessListEntry" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.AccessListEntry" />
+      </containers>
+      <file name="384df80b-9f5e-888f-a8c8-7d336a7d3984" />
+    </api>
+    <api id="Fields.T:Windows.Storage.AccessCache.AccessListEntry">
+      <topicdata name="AccessListEntry" group="list" subgroup="Fields" typeTopicId="T:Windows.Storage.AccessCache.AccessListEntry" />
+      <apidata name="AccessListEntry" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="F:Windows.Storage.AccessCache.AccessListEntry.Metadata" />
+        <element api="F:Windows.Storage.AccessCache.AccessListEntry.Token" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.AccessListEntry" />
+      </containers>
+      <file name="fa94476c-b99b-1cb4-e04a-638094dfaa19" />
+    </api>
+    <api id="F:Windows.Storage.AccessCache.AccessListEntry.Metadata">
+      <topicdata group="api" />
+      <apidata name="Metadata" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.AccessListEntry" ref="false" />
+      </containers>
+      <file name="868e33ae-829a-5380-dc7e-385459fe329f" />
+    </api>
+    <api id="F:Windows.Storage.AccessCache.AccessListEntry.Token">
+      <topicdata group="api" />
+      <apidata name="Token" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.AccessListEntry" ref="false" />
+      </containers>
+      <file name="57ad3059-6ea0-1d0d-8149-660fbe8dd85c" />
+    </api>
+    <api id="T:Windows.Storage.AccessCache.AccessListEntryView">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.AccessListEntryView" />
+      <apidata name="AccessListEntryView" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.AccessCache.AccessListEntry" ref="false" />
+          </specialization>
+        </type>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.AccessCache.AccessListEntry" ref="false" />
+          </specialization>
+        </type>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="59a46d41-c438-a014-d60f-80442d5bf649" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.AccessCache.AccessListEntryView">
+      <topicdata name="AccessListEntryView" group="list" subgroup="members" typeTopicId="T:Windows.Storage.AccessCache.AccessListEntryView" />
+      <apidata name="AccessListEntryView" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Storage.AccessCache.AccessListEntryView.First" />
+        <element api="M:Windows.Storage.AccessCache.AccessListEntryView.GetAt(System.UInt32)" />
+        <element api="M:Windows.Storage.AccessCache.AccessListEntryView.GetMany(System.UInt32,Windows.Storage.AccessCache.AccessListEntry[])" />
+        <element api="M:Windows.Storage.AccessCache.AccessListEntryView.IndexOf(Windows.Storage.AccessCache.AccessListEntry,System.UInt32@)" />
+        <element api="P:Windows.Storage.AccessCache.AccessListEntryView.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.AccessListEntryView" />
+      </containers>
+      <file name="7785f0ba-5fb2-dd82-2c51-9ed4aa397d05" />
+    </api>
+    <api id="Methods.T:Windows.Storage.AccessCache.AccessListEntryView">
+      <topicdata name="AccessListEntryView" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.AccessCache.AccessListEntryView" />
+      <apidata name="AccessListEntryView" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Storage.AccessCache.AccessListEntryView.First" />
+        <element api="M:Windows.Storage.AccessCache.AccessListEntryView.GetAt(System.UInt32)" />
+        <element api="M:Windows.Storage.AccessCache.AccessListEntryView.GetMany(System.UInt32,Windows.Storage.AccessCache.AccessListEntry[])" />
+        <element api="M:Windows.Storage.AccessCache.AccessListEntryView.IndexOf(Windows.Storage.AccessCache.AccessListEntry,System.UInt32@)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.AccessListEntryView" />
+      </containers>
+      <file name="702b2a55-2a78-adfa-d746-769a99c90a50" />
+    </api>
+    <api id="Properties.T:Windows.Storage.AccessCache.AccessListEntryView">
+      <topicdata name="AccessListEntryView" group="list" subgroup="Properties" typeTopicId="T:Windows.Storage.AccessCache.AccessListEntryView" />
+      <apidata name="AccessListEntryView" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Storage.AccessCache.AccessListEntryView.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.AccessListEntryView" />
+      </containers>
+      <file name="f4408029-72ac-3b3d-f8fa-263aa73f7272" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.AccessListEntryView.First">
+      <topicdata group="api" />
+      <apidata name="First" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IIterator`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.AccessCache.AccessListEntry" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IIterable`1.First">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Storage.AccessCache.AccessListEntry" ref="false" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.AccessListEntryView" ref="true" />
+      </containers>
+      <file name="b83a5441-f2a6-8fd1-da6d-e74c30ec4722" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.AccessListEntryView.GetAt(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.AccessCache.AccessListEntry" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVectorView`1.GetAt(System.UInt32)">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Storage.AccessCache.AccessListEntry" ref="false" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.AccessListEntryView" ref="true" />
+      </containers>
+      <file name="0403585b-12bb-c2bd-b269-8022a5b382f9" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.AccessListEntryView.GetMany(System.UInt32,Windows.Storage.AccessCache.AccessListEntry[])">
+      <topicdata group="api" />
+      <apidata name="GetMany" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="startIndex" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="items" out="true">
+          <arrayOf rank="1">
+            <type api="T:Windows.Storage.AccessCache.AccessListEntry" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVectorView`1.GetMany(System.UInt32,`0[])">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Storage.AccessCache.AccessListEntry" ref="false" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.AccessListEntryView" ref="true" />
+      </containers>
+      <file name="f75d2909-b093-64b5-7702-d848e1dfb296" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.AccessListEntryView.IndexOf(Windows.Storage.AccessCache.AccessListEntry,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Storage.AccessCache.AccessListEntry" ref="false" />
+        </parameter>
+        <parameter name="index" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVectorView`1.IndexOf(`0,System.UInt32@)">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Storage.AccessCache.AccessListEntry" ref="false" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.AccessListEntryView" ref="true" />
+      </containers>
+      <file name="620e5de2-cb25-420e-3f15-5b99f365b532" />
+    </api>
+    <api id="P:Windows.Storage.AccessCache.AccessListEntryView.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Size" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.Collections.IVectorView`1.Size">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Storage.AccessCache.AccessListEntry" ref="false" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.AccessListEntryView" ref="true" />
+      </containers>
+      <file name="dadeeaba-1a5c-e16c-9307-06fcc43d6cfa" />
+    </api>
+    <api id="T:Windows.Storage.AccessCache.IStorageItemAccessList">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.IStorageItemAccessList" />
+      <apidata name="IStorageItemAccessList" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>749729453</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>56976</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18421</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>178</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>195</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>221</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>54</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>201</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>253</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>212</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>83</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="75cfdaf6-759f-0ea2-812a-5b5859dd7746" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.AccessCache.IStorageItemAccessList">
+      <topicdata name="IStorageItemAccessList" group="list" subgroup="members" typeTopicId="T:Windows.Storage.AccessCache.IStorageItemAccessList" />
+      <apidata name="IStorageItemAccessList" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.Add">
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.Add(Windows.Storage.IStorageItem)" />
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.Add(Windows.Storage.IStorageItem,System.String)" />
+        </element>
+        <element api="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.AddOrReplace">
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem)" />
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem,System.String)" />
+        </element>
+        <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.CheckAccess(Windows.Storage.IStorageItem)" />
+        <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.Clear" />
+        <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.ContainsItem(System.String)" />
+        <element api="P:Windows.Storage.AccessCache.IStorageItemAccessList.Entries" />
+        <element api="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.GetFileAsync">
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFileAsync(System.String)" />
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFileAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+        </element>
+        <element api="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.GetFolderAsync">
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFolderAsync(System.String)" />
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFolderAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+        </element>
+        <element api="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.GetItemAsync">
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetItemAsync(System.String)" />
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetItemAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+        </element>
+        <element api="P:Windows.Storage.AccessCache.IStorageItemAccessList.MaximumItemsAllowed" />
+        <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.Remove(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" />
+      </containers>
+      <file name="bd4ecbe0-86a8-5f68-19ba-73d1d606c4d6" />
+    </api>
+    <api id="Methods.T:Windows.Storage.AccessCache.IStorageItemAccessList">
+      <topicdata name="IStorageItemAccessList" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.AccessCache.IStorageItemAccessList" />
+      <apidata name="IStorageItemAccessList" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.Add">
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.Add(Windows.Storage.IStorageItem)" />
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.Add(Windows.Storage.IStorageItem,System.String)" />
+        </element>
+        <element api="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.AddOrReplace">
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem)" />
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem,System.String)" />
+        </element>
+        <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.CheckAccess(Windows.Storage.IStorageItem)" />
+        <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.Clear" />
+        <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.ContainsItem(System.String)" />
+        <element api="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.GetFileAsync">
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFileAsync(System.String)" />
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFileAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+        </element>
+        <element api="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.GetFolderAsync">
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFolderAsync(System.String)" />
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFolderAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+        </element>
+        <element api="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.GetItemAsync">
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetItemAsync(System.String)" />
+          <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetItemAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+        </element>
+        <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.Remove(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" />
+      </containers>
+      <file name="f1e71ed6-bd5a-7776-da97-471ba313a8a5" />
+    </api>
+    <api id="Properties.T:Windows.Storage.AccessCache.IStorageItemAccessList">
+      <topicdata name="IStorageItemAccessList" group="list" subgroup="Properties" typeTopicId="T:Windows.Storage.AccessCache.IStorageItemAccessList" />
+      <apidata name="IStorageItemAccessList" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Storage.AccessCache.IStorageItemAccessList.Entries" />
+        <element api="P:Windows.Storage.AccessCache.IStorageItemAccessList.MaximumItemsAllowed" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" />
+      </containers>
+      <file name="c0c6e099-2174-ba81-ebbe-4d36e70647c4" />
+    </api>
+    <api id="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.Add">
+      <topicdata name="Add" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.IStorageItemAccessList" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.Add(Windows.Storage.IStorageItem)" />
+        <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.Add(Windows.Storage.IStorageItem,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <file name="d96812eb-4b62-7175-9ea6-2863881438f4" />
+    </api>
+    <api id="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.AddOrReplace">
+      <topicdata name="AddOrReplace" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.IStorageItemAccessList" />
+      <apidata name="AddOrReplace" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem)" />
+        <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <file name="92c37e53-395e-5a6e-47a0-c46960e73e01" />
+    </api>
+    <api id="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.GetFileAsync">
+      <topicdata name="GetFileAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.IStorageItemAccessList" />
+      <apidata name="GetFileAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFileAsync(System.String)" />
+        <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFileAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <file name="508c50fa-6a6d-50cf-b021-00bc174a9290" />
+    </api>
+    <api id="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.GetFolderAsync">
+      <topicdata name="GetFolderAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.IStorageItemAccessList" />
+      <apidata name="GetFolderAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFolderAsync(System.String)" />
+        <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFolderAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <file name="eb9a045e-03fc-7745-7c8e-fb8d5979d227" />
+    </api>
+    <api id="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.GetItemAsync">
+      <topicdata name="GetItemAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.IStorageItemAccessList" />
+      <apidata name="GetItemAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetItemAsync(System.String)" />
+        <element api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetItemAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <file name="ed21d0f4-76d4-60fc-bfa9-da2604314945" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.IStorageItemAccessList.Add(Windows.Storage.IStorageItem)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.Add" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageItem" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddOverloadDefaultMetadata</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="30c13e0d-800a-f906-5867-5798c744d16b" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.IStorageItemAccessList.Add(Windows.Storage.IStorageItem,System.String)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.Add" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageItem" ref="true" />
+        </parameter>
+        <parameter name="metadata" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Add</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e213038b-b3b2-5899-f577-f51dbab9065a" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.IStorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem)">
+      <topicdata group="api" />
+      <apidata name="AddOrReplace" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.AddOrReplace" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageItem" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddOrReplaceOverloadDefaultMetadata</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a03dbae3-2f4d-73b5-6a6e-9cdff69edb5d" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.IStorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem,System.String)">
+      <topicdata group="api" />
+      <apidata name="AddOrReplace" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.AddOrReplace" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageItem" ref="true" />
+        </parameter>
+        <parameter name="metadata" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddOrReplace</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d6b0876a-7eb7-7c18-6463-51088a98b883" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.IStorageItemAccessList.CheckAccess(Windows.Storage.IStorageItem)">
+      <topicdata group="api" />
+      <apidata name="CheckAccess" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageItem" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <file name="ef19612a-81b7-bce3-f402-4f844833f64b" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.IStorageItemAccessList.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <file name="087c3ab7-1722-e57b-395e-c7968e5b68b3" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.IStorageItemAccessList.ContainsItem(System.String)">
+      <topicdata group="api" />
+      <apidata name="ContainsItem" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <file name="4e52f745-6f00-b20d-d874-5360fa23acc1" />
+    </api>
+    <api id="P:Windows.Storage.AccessCache.IStorageItemAccessList.Entries">
+      <topicdata group="api" />
+      <apidata name="Entries" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Entries" />
+      <returns>
+        <type api="T:Windows.Storage.AccessCache.AccessListEntryView" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <file name="02b37d67-f233-cc8f-a8c4-bd21db110f95" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFileAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.GetFileAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.StorageFile" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetFileAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7314e8a1-3f05-6c5b-5e17-e1377bcaea32" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFileAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)">
+      <topicdata group="api" />
+      <apidata name="GetFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.GetFileAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.Storage.AccessCache.AccessCacheOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.StorageFile" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetFileWithOptionsAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b93130de-e6b9-3bc1-3678-744eed20e218" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFolderAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetFolderAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.GetFolderAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.StorageFolder" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetFolderAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fca614c9-8fcb-e221-e61b-70dbc4051fde" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFolderAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)">
+      <topicdata group="api" />
+      <apidata name="GetFolderAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.GetFolderAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.Storage.AccessCache.AccessCacheOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.StorageFolder" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetFolderWithOptionsAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a58cfaba-94c1-fcb3-0987-3cbbbd54c4ee" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetItemAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetItemAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.GetItemAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.IStorageItem" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetItemAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d640b49d-5e35-7c5f-0f57-fd0617a3f221" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetItemAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)">
+      <topicdata group="api" />
+      <apidata name="GetItemAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.IStorageItemAccessList.GetItemAsync" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.Storage.AccessCache.AccessCacheOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.IStorageItem" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetItemWithOptionsAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1ee971d8-86a8-6d2f-46bd-7b047822faf6" />
+    </api>
+    <api id="P:Windows.Storage.AccessCache.IStorageItemAccessList.MaximumItemsAllowed">
+      <topicdata group="api" />
+      <apidata name="MaximumItemsAllowed" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_MaximumItemsAllowed" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <file name="7dc9349f-b63e-9fc1-f02f-b807b03fbfaa" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.IStorageItemAccessList.Remove(System.String)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </containers>
+      <file name="76e4c2d3-96d6-7ad1-fba4-f0d6a4be14da" />
+    </api>
+    <api id="T:Windows.Storage.AccessCache.ItemRemovedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.ItemRemovedEventArgs" />
+      <apidata name="ItemRemovedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Storage.AccessCache.IItemRemovedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="efc0c071-b147-dff7-26b3-4f79fb4714e8" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.AccessCache.ItemRemovedEventArgs">
+      <topicdata name="ItemRemovedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Storage.AccessCache.ItemRemovedEventArgs" />
+      <apidata name="ItemRemovedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Storage.AccessCache.ItemRemovedEventArgs.RemovedEntry" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.ItemRemovedEventArgs" />
+      </containers>
+      <file name="b6f661d5-1b25-6dea-6561-e3968f204a13" />
+    </api>
+    <api id="Methods.T:Windows.Storage.AccessCache.ItemRemovedEventArgs">
+      <topicdata name="ItemRemovedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.AccessCache.ItemRemovedEventArgs" />
+      <apidata name="ItemRemovedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.ItemRemovedEventArgs" />
+      </containers>
+      <file name="81e363c0-4059-02ed-6491-46462434be5c" />
+    </api>
+    <api id="Properties.T:Windows.Storage.AccessCache.ItemRemovedEventArgs">
+      <topicdata name="ItemRemovedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Storage.AccessCache.ItemRemovedEventArgs" />
+      <apidata name="ItemRemovedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Storage.AccessCache.ItemRemovedEventArgs.RemovedEntry" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.ItemRemovedEventArgs" />
+      </containers>
+      <file name="be240b35-801d-36d5-12f7-13ff5cfe69a8" />
+    </api>
+    <api id="P:Windows.Storage.AccessCache.ItemRemovedEventArgs.RemovedEntry">
+      <topicdata group="api" />
+      <apidata name="RemovedEntry" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RemovedEntry" />
+      <returns>
+        <type api="T:Windows.Storage.AccessCache.AccessListEntry" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.ItemRemovedEventArgs" ref="true" />
+      </containers>
+      <file name="719d588f-e17f-f3e5-ab3a-45e68e163203" />
+    </api>
+    <api id="T:Windows.Storage.AccessCache.StorageApplicationPermissions">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.StorageApplicationPermissions" />
+      <apidata name="StorageApplicationPermissions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f9f7d953-86bd-ce64-60ab-33c0d13aaf86" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.AccessCache.StorageApplicationPermissions">
+      <topicdata name="StorageApplicationPermissions" group="list" subgroup="members" typeTopicId="T:Windows.Storage.AccessCache.StorageApplicationPermissions" />
+      <apidata name="StorageApplicationPermissions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList" />
+        <element api="P:Windows.Storage.AccessCache.StorageApplicationPermissions.MostRecentlyUsedList" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageApplicationPermissions" />
+      </containers>
+      <file name="794b137f-697f-f9ea-f31d-d66cdfcb15e1" />
+    </api>
+    <api id="Properties.T:Windows.Storage.AccessCache.StorageApplicationPermissions">
+      <topicdata name="StorageApplicationPermissions" group="list" subgroup="Properties" typeTopicId="T:Windows.Storage.AccessCache.StorageApplicationPermissions" />
+      <apidata name="StorageApplicationPermissions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList" />
+        <element api="P:Windows.Storage.AccessCache.StorageApplicationPermissions.MostRecentlyUsedList" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageApplicationPermissions" />
+      </containers>
+      <file name="14cf6ab5-6e7e-140a-ae31-fceef6ca6be9" />
+    </api>
+    <api id="P:Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList">
+      <topicdata group="api" />
+      <apidata name="FutureAccessList" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FutureAccessList" />
+      <returns>
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageApplicationPermissions" ref="true" />
+      </containers>
+      <file name="1686e4ae-be40-241a-171e-f1beb1b49af2" />
+    </api>
+    <api id="P:Windows.Storage.AccessCache.StorageApplicationPermissions.MostRecentlyUsedList">
+      <topicdata group="api" />
+      <apidata name="MostRecentlyUsedList" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MostRecentlyUsedList" />
+      <returns>
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageApplicationPermissions" ref="true" />
+      </containers>
+      <file name="5666e13a-0898-ee4d-9d89-dc47681c7ece" />
+    </api>
+    <api id="T:Windows.Storage.AccessCache.StorageItemAccessList">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.StorageItemAccessList" />
+      <apidata name="StorageItemAccessList" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bfefe374-350b-eca5-9b6c-e1c1fb42f192" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.AccessCache.StorageItemAccessList">
+      <topicdata name="StorageItemAccessList" group="list" subgroup="members" typeTopicId="T:Windows.Storage.AccessCache.StorageItemAccessList" />
+      <apidata name="StorageItemAccessList" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemAccessList.Add">
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.Add(Windows.Storage.IStorageItem)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.Add(Windows.Storage.IStorageItem,System.String)" />
+        </element>
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemAccessList.AddOrReplace">
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem,System.String)" />
+        </element>
+        <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.CheckAccess(Windows.Storage.IStorageItem)" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.Clear" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.ContainsItem(System.String)" />
+        <element api="P:Windows.Storage.AccessCache.StorageItemAccessList.Entries" />
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemAccessList.GetFileAsync">
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.GetFileAsync(System.String)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.GetFileAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+        </element>
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemAccessList.GetFolderAsync">
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.GetFolderAsync(System.String)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.GetFolderAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+        </element>
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemAccessList.GetItemAsync">
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.GetItemAsync(System.String)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.GetItemAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+        </element>
+        <element api="P:Windows.Storage.AccessCache.StorageItemAccessList.MaximumItemsAllowed" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.Remove(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" />
+      </containers>
+      <file name="5a00d6e9-2369-6e5c-d9fd-999948a9dcea" />
+    </api>
+    <api id="Methods.T:Windows.Storage.AccessCache.StorageItemAccessList">
+      <topicdata name="StorageItemAccessList" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.AccessCache.StorageItemAccessList" />
+      <apidata name="StorageItemAccessList" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemAccessList.Add">
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.Add(Windows.Storage.IStorageItem)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.Add(Windows.Storage.IStorageItem,System.String)" />
+        </element>
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemAccessList.AddOrReplace">
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem,System.String)" />
+        </element>
+        <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.CheckAccess(Windows.Storage.IStorageItem)" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.Clear" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.ContainsItem(System.String)" />
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemAccessList.GetFileAsync">
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.GetFileAsync(System.String)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.GetFileAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+        </element>
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemAccessList.GetFolderAsync">
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.GetFolderAsync(System.String)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.GetFolderAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+        </element>
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemAccessList.GetItemAsync">
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.GetItemAsync(System.String)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.GetItemAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+        </element>
+        <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.Remove(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" />
+      </containers>
+      <file name="41c243e0-dc1d-6417-dea0-b57593a9f4bc" />
+    </api>
+    <api id="Properties.T:Windows.Storage.AccessCache.StorageItemAccessList">
+      <topicdata name="StorageItemAccessList" group="list" subgroup="Properties" typeTopicId="T:Windows.Storage.AccessCache.StorageItemAccessList" />
+      <apidata name="StorageItemAccessList" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Storage.AccessCache.StorageItemAccessList.Entries" />
+        <element api="P:Windows.Storage.AccessCache.StorageItemAccessList.MaximumItemsAllowed" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" />
+      </containers>
+      <file name="2adcf8fb-b07a-8547-cb01-172e340c220c" />
+    </api>
+    <api id="Overload:Windows.Storage.AccessCache.StorageItemAccessList.Add">
+      <topicdata name="Add" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.StorageItemAccessList" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.Add(Windows.Storage.IStorageItem)" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.Add(Windows.Storage.IStorageItem,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <file name="3f093313-d75c-03f5-bc61-52bce58334f0" />
+    </api>
+    <api id="Overload:Windows.Storage.AccessCache.StorageItemAccessList.AddOrReplace">
+      <topicdata name="AddOrReplace" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.StorageItemAccessList" />
+      <apidata name="AddOrReplace" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem)" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <file name="24996d0c-8eae-292b-096b-baed42546b82" />
+    </api>
+    <api id="Overload:Windows.Storage.AccessCache.StorageItemAccessList.GetFileAsync">
+      <topicdata name="GetFileAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.StorageItemAccessList" />
+      <apidata name="GetFileAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.GetFileAsync(System.String)" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.GetFileAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <file name="41c1765c-5a88-e361-9d82-41b4980f7134" />
+    </api>
+    <api id="Overload:Windows.Storage.AccessCache.StorageItemAccessList.GetFolderAsync">
+      <topicdata name="GetFolderAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.StorageItemAccessList" />
+      <apidata name="GetFolderAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.GetFolderAsync(System.String)" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.GetFolderAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <file name="e00b6335-fefd-5465-43a1-ab8c4970b68d" />
+    </api>
+    <api id="Overload:Windows.Storage.AccessCache.StorageItemAccessList.GetItemAsync">
+      <topicdata name="GetItemAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.StorageItemAccessList" />
+      <apidata name="GetItemAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.GetItemAsync(System.String)" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemAccessList.GetItemAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <file name="69caff3e-afcf-6e5b-1365-4e77ad527ed8" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemAccessList.Add(Windows.Storage.IStorageItem)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemAccessList.Add" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageItem" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.Add(Windows.Storage.IStorageItem)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddOverloadDefaultMetadata</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="31821ca6-8514-1baf-514f-ecb1039e5f2e" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemAccessList.Add(Windows.Storage.IStorageItem,System.String)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemAccessList.Add" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageItem" ref="true" />
+        </parameter>
+        <parameter name="metadata" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.Add(Windows.Storage.IStorageItem,System.String)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Add</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7f6998ec-9e72-c943-4250-74a947cf092a" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem)">
+      <topicdata group="api" />
+      <apidata name="AddOrReplace" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemAccessList.AddOrReplace" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageItem" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddOrReplaceOverloadDefaultMetadata</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ba6ede50-08bf-651d-d1ce-4e7f9397ce55" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem,System.String)">
+      <topicdata group="api" />
+      <apidata name="AddOrReplace" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemAccessList.AddOrReplace" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageItem" ref="true" />
+        </parameter>
+        <parameter name="metadata" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem,System.String)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddOrReplace</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c2df5eea-9020-2365-f643-5699671254a3" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemAccessList.CheckAccess(Windows.Storage.IStorageItem)">
+      <topicdata group="api" />
+      <apidata name="CheckAccess" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageItem" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.CheckAccess(Windows.Storage.IStorageItem)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <file name="1d107505-6d64-f6ca-7628-339a95dba3b0" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemAccessList.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.Clear">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <file name="2e692c85-25e5-a584-aa3f-ea5b6324a28e" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemAccessList.ContainsItem(System.String)">
+      <topicdata group="api" />
+      <apidata name="ContainsItem" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.ContainsItem(System.String)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <file name="eb689051-d089-5169-32ba-076d85be1e20" />
+    </api>
+    <api id="P:Windows.Storage.AccessCache.StorageItemAccessList.Entries">
+      <topicdata group="api" />
+      <apidata name="Entries" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Entries" />
+      <returns>
+        <type api="T:Windows.Storage.AccessCache.AccessListEntryView" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Storage.AccessCache.IStorageItemAccessList.Entries">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <file name="9f00d15d-cbcd-0094-2323-07784a6f0dfc" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemAccessList.GetFileAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemAccessList.GetFileAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.StorageFile" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFileAsync(System.String)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetFileAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e3c6e433-0bbd-adf4-d744-935c025e8881" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemAccessList.GetFileAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)">
+      <topicdata group="api" />
+      <apidata name="GetFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemAccessList.GetFileAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.Storage.AccessCache.AccessCacheOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.StorageFile" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFileAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetFileWithOptionsAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="cfc745ae-1bc0-bbfb-51fb-4db91bd00185" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemAccessList.GetFolderAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetFolderAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemAccessList.GetFolderAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.StorageFolder" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFolderAsync(System.String)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetFolderAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a38baf86-0904-1b11-4234-c53ff10d44eb" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemAccessList.GetFolderAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)">
+      <topicdata group="api" />
+      <apidata name="GetFolderAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemAccessList.GetFolderAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.Storage.AccessCache.AccessCacheOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.StorageFolder" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFolderAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetFolderWithOptionsAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4aba71b3-8a5a-3e58-6555-9002c97fa3a6" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemAccessList.GetItemAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetItemAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemAccessList.GetItemAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.IStorageItem" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetItemAsync(System.String)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetItemAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7e8cc757-66dc-a4bf-509d-82bf5a014b3a" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemAccessList.GetItemAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)">
+      <topicdata group="api" />
+      <apidata name="GetItemAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemAccessList.GetItemAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.Storage.AccessCache.AccessCacheOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.IStorageItem" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetItemAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetItemWithOptionsAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3ecd1e8d-c038-2edf-a004-472bd25561bc" />
+    </api>
+    <api id="P:Windows.Storage.AccessCache.StorageItemAccessList.MaximumItemsAllowed">
+      <topicdata group="api" />
+      <apidata name="MaximumItemsAllowed" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MaximumItemsAllowed" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Storage.AccessCache.IStorageItemAccessList.MaximumItemsAllowed">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <file name="837801d9-f952-9677-038e-37e68204a92b" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemAccessList.Remove(System.String)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.Remove(System.String)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemAccessList" ref="true" />
+      </containers>
+      <file name="d93c7f3e-3887-59cb-acbb-a5b9f98f234a" />
+    </api>
+    <api id="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" />
+      <apidata name="StorageItemMostRecentlyUsedList" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Storage.AccessCache.IStorageItemMostRecentlyUsedList" ref="true" />
+        <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3808934b-a447-93ef-db46-64ca9735aea1" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList">
+      <topicdata name="StorageItemMostRecentlyUsedList" group="list" subgroup="members" typeTopicId="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" />
+      <apidata name="StorageItemMostRecentlyUsedList" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Add">
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Add(Windows.Storage.IStorageItem)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Add(Windows.Storage.IStorageItem,System.String)" />
+        </element>
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.AddOrReplace">
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.AddOrReplace(System.String,Windows.Storage.IStorageItem)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.AddOrReplace(System.String,Windows.Storage.IStorageItem,System.String)" />
+        </element>
+        <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.CheckAccess(Windows.Storage.IStorageItem)" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Clear" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.ContainsItem(System.String)" />
+        <element api="P:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Entries" />
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFileAsync">
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFileAsync(System.String)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFileAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+        </element>
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFolderAsync">
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFolderAsync(System.String)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFolderAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+        </element>
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetItemAsync">
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetItemAsync(System.String)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetItemAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+        </element>
+        <element api="E:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.ItemRemoved" />
+        <element api="P:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.MaximumItemsAllowed" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Remove(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" />
+      </containers>
+      <file name="aa696c1b-fe4c-6b08-abc4-0a2d8a086840" />
+    </api>
+    <api id="Methods.T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList">
+      <topicdata name="StorageItemMostRecentlyUsedList" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" />
+      <apidata name="StorageItemMostRecentlyUsedList" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Add">
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Add(Windows.Storage.IStorageItem)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Add(Windows.Storage.IStorageItem,System.String)" />
+        </element>
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.AddOrReplace">
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.AddOrReplace(System.String,Windows.Storage.IStorageItem)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.AddOrReplace(System.String,Windows.Storage.IStorageItem,System.String)" />
+        </element>
+        <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.CheckAccess(Windows.Storage.IStorageItem)" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Clear" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.ContainsItem(System.String)" />
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFileAsync">
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFileAsync(System.String)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFileAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+        </element>
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFolderAsync">
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFolderAsync(System.String)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFolderAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+        </element>
+        <element api="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetItemAsync">
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetItemAsync(System.String)" />
+          <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetItemAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+        </element>
+        <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Remove(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" />
+      </containers>
+      <file name="33a84c77-e6cb-9997-4a57-970ccfeea192" />
+    </api>
+    <api id="Properties.T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList">
+      <topicdata name="StorageItemMostRecentlyUsedList" group="list" subgroup="Properties" typeTopicId="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" />
+      <apidata name="StorageItemMostRecentlyUsedList" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Entries" />
+        <element api="P:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.MaximumItemsAllowed" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" />
+      </containers>
+      <file name="a1cbb666-c523-e599-09a7-58b0879ef2a6" />
+    </api>
+    <api id="Events.T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList">
+      <topicdata name="StorageItemMostRecentlyUsedList" group="list" subgroup="Events" typeTopicId="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" />
+      <apidata name="StorageItemMostRecentlyUsedList" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.ItemRemoved" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" />
+      </containers>
+      <file name="a3aa2ef9-c0d4-3e41-8860-382022308666" />
+    </api>
+    <api id="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Add">
+      <topicdata name="Add" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Add(Windows.Storage.IStorageItem)" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Add(Windows.Storage.IStorageItem,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <file name="266b50e2-3565-2f47-fe3d-70a5106c5c12" />
+    </api>
+    <api id="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.AddOrReplace">
+      <topicdata name="AddOrReplace" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" />
+      <apidata name="AddOrReplace" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.AddOrReplace(System.String,Windows.Storage.IStorageItem)" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.AddOrReplace(System.String,Windows.Storage.IStorageItem,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <file name="e191d025-54bc-d89a-8f1d-9c74e4a0eb02" />
+    </api>
+    <api id="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFileAsync">
+      <topicdata name="GetFileAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" />
+      <apidata name="GetFileAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFileAsync(System.String)" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFileAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <file name="43d66af6-18fe-2f5e-6d66-b74dcec5af32" />
+    </api>
+    <api id="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFolderAsync">
+      <topicdata name="GetFolderAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" />
+      <apidata name="GetFolderAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFolderAsync(System.String)" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFolderAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <file name="b349d333-f286-90ce-6a18-460cdaee8d39" />
+    </api>
+    <api id="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetItemAsync">
+      <topicdata name="GetItemAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" />
+      <apidata name="GetItemAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetItemAsync(System.String)" />
+        <element api="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetItemAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <file name="4c230f14-7a6d-a3d5-753a-84b0e859aa0d" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Add(Windows.Storage.IStorageItem)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Add" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageItem" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.Add(Windows.Storage.IStorageItem)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddOverloadDefaultMetadata</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7ccc4a4d-e201-ff65-53c3-6ab766925fc3" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Add(Windows.Storage.IStorageItem,System.String)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Add" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageItem" ref="true" />
+        </parameter>
+        <parameter name="metadata" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.Add(Windows.Storage.IStorageItem,System.String)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Add</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bcc8e3fc-49cc-ab83-e108-d4fbc974ab64" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.AddOrReplace(System.String,Windows.Storage.IStorageItem)">
+      <topicdata group="api" />
+      <apidata name="AddOrReplace" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.AddOrReplace" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageItem" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddOrReplaceOverloadDefaultMetadata</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="867c50df-3bc5-9c28-945e-d104c0dcb395" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.AddOrReplace(System.String,Windows.Storage.IStorageItem,System.String)">
+      <topicdata group="api" />
+      <apidata name="AddOrReplace" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.AddOrReplace" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageItem" ref="true" />
+        </parameter>
+        <parameter name="metadata" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.AddOrReplace(System.String,Windows.Storage.IStorageItem,System.String)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddOrReplace</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="46143c59-807b-dc0a-9ec0-44bc8cde5009" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.CheckAccess(Windows.Storage.IStorageItem)">
+      <topicdata group="api" />
+      <apidata name="CheckAccess" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageItem" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.CheckAccess(Windows.Storage.IStorageItem)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <file name="6b6192ea-eba3-ab04-823b-f345657fd70d" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.Clear">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <file name="707dd583-e654-058c-a324-f7ac5646e7b7" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.ContainsItem(System.String)">
+      <topicdata group="api" />
+      <apidata name="ContainsItem" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.ContainsItem(System.String)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <file name="f905f308-3ed7-1bbc-1ae6-30890f0e7390" />
+    </api>
+    <api id="P:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Entries">
+      <topicdata group="api" />
+      <apidata name="Entries" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Entries" />
+      <returns>
+        <type api="T:Windows.Storage.AccessCache.AccessListEntryView" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Storage.AccessCache.IStorageItemAccessList.Entries">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <file name="d9a88d2c-ac4d-b532-8233-9cb3972867b4" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFileAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFileAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.StorageFile" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFileAsync(System.String)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetFileAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1ea915d0-5bbc-81de-bec4-e373b8c74f1a" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFileAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)">
+      <topicdata group="api" />
+      <apidata name="GetFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFileAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.Storage.AccessCache.AccessCacheOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.StorageFile" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFileAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetFileWithOptionsAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="604459fd-6b91-5075-d79d-7f4048c030cf" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFolderAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetFolderAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFolderAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.StorageFolder" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFolderAsync(System.String)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetFolderAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2787f933-f45f-3221-04a3-101b9d57fb87" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFolderAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)">
+      <topicdata group="api" />
+      <apidata name="GetFolderAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetFolderAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.Storage.AccessCache.AccessCacheOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.StorageFolder" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetFolderAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetFolderWithOptionsAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c8210f69-c1ea-dd21-0cd2-f29a1c28a4cf" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetItemAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetItemAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetItemAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.IStorageItem" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetItemAsync(System.String)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetItemAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e648aad4-61f5-7a1b-2b74-4efeb629517a" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetItemAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)">
+      <topicdata group="api" />
+      <apidata name="GetItemAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.GetItemAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.Storage.AccessCache.AccessCacheOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.IStorageItem" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.GetItemAsync(System.String,Windows.Storage.AccessCache.AccessCacheOptions)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetItemWithOptionsAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="cf48dd96-8546-8981-12ec-cd28f62b7587" />
+    </api>
+    <api id="E:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.ItemRemoved">
+      <topicdata group="api" />
+      <apidata name="ItemRemoved" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ItemRemoved" />
+      <remover name="remove_ItemRemoved" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+            <type api="T:Windows.Storage.AccessCache.ItemRemovedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <file name="880c1f18-72b4-2334-b364-c0f89084445a" />
+    </api>
+    <api id="P:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.MaximumItemsAllowed">
+      <topicdata group="api" />
+      <apidata name="MaximumItemsAllowed" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MaximumItemsAllowed" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Storage.AccessCache.IStorageItemAccessList.MaximumItemsAllowed">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <file name="4debe66a-e82f-ce9c-eccd-a260b7b97ff3" />
+    </api>
+    <api id="M:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList.Remove(System.String)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Storage.AccessCache.IStorageItemAccessList.Remove(System.String)">
+          <type api="T:Windows.Storage.AccessCache.IStorageItemAccessList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.AccessCache" />
+        <type api="T:Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList" ref="true" />
+      </containers>
+      <file name="24ab949f-2503-5d1a-f839-7b262f97a68a" />
+    </api>
+  </apis>
+</reflection>

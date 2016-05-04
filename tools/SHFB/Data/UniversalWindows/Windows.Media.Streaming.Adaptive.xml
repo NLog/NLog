@@ -1,0 +1,3601 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Media.Streaming.Adaptive">
+      <topicdata group="api" />
+      <apidata name="Windows.Media.Streaming.Adaptive" group="namespace" />
+      <elements>
+        <element api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus" />
+        <element api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" />
+        <element api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult" />
+        <element api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs" />
+        <element api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs" />
+        <element api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs" />
+        <element api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs" />
+        <element api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs" />
+        <element api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType" />
+        <element api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult" />
+        <element api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedDeferral" />
+      </elements>
+      <file name="13b05623-bf15-c3d8-87a0-1cd15c2149fe" />
+    </api>
+    <api id="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" />
+      <apidata name="AdaptiveMediaSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Core.IMediaSource" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f335e302-56a3-533a-b4f7-3ef83aec5134" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource">
+      <topicdata name="AdaptiveMediaSource" group="list" subgroup="members" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" />
+      <apidata name="AdaptiveMediaSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.AudioOnlyPlayback" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.AvailableBitrates" />
+        <element api="Overload:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromStreamAsync">
+          <element api="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromStreamAsync(Windows.Storage.Streams.IInputStream,Windows.Foundation.Uri,System.String)" />
+          <element api="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromStreamAsync(Windows.Storage.Streams.IInputStream,Windows.Foundation.Uri,System.String,Windows.Web.Http.HttpClient)" />
+        </element>
+        <element api="Overload:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromUriAsync">
+          <element api="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromUriAsync(Windows.Foundation.Uri)" />
+          <element api="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromUriAsync(Windows.Foundation.Uri,Windows.Web.Http.HttpClient)" />
+        </element>
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CurrentDownloadBitrate" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CurrentPlaybackBitrate" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DesiredLiveOffset" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DesiredMaxBitrate" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DesiredMinBitrate" />
+        <element api="E:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DownloadBitrateChanged" />
+        <element api="E:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DownloadCompleted" />
+        <element api="E:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DownloadFailed" />
+        <element api="E:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DownloadRequested" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.InboundBitsPerSecond" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.InboundBitsPerSecondWindow" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.InitialBitrate" />
+        <element api="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.IsContentTypeSupported(System.String)" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.IsLive" />
+        <element api="E:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.PlaybackBitrateChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" />
+      </containers>
+      <file name="df8ff473-796d-6b3e-1895-b9601f884676" />
+    </api>
+    <api id="Methods.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource">
+      <topicdata name="AdaptiveMediaSource" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" />
+      <apidata name="AdaptiveMediaSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromStreamAsync">
+          <element api="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromStreamAsync(Windows.Storage.Streams.IInputStream,Windows.Foundation.Uri,System.String)" />
+          <element api="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromStreamAsync(Windows.Storage.Streams.IInputStream,Windows.Foundation.Uri,System.String,Windows.Web.Http.HttpClient)" />
+        </element>
+        <element api="Overload:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromUriAsync">
+          <element api="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromUriAsync(Windows.Foundation.Uri)" />
+          <element api="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromUriAsync(Windows.Foundation.Uri,Windows.Web.Http.HttpClient)" />
+        </element>
+        <element api="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.IsContentTypeSupported(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" />
+      </containers>
+      <file name="b4a7374c-61d2-446b-6645-1ecdf2f8e12d" />
+    </api>
+    <api id="Properties.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource">
+      <topicdata name="AdaptiveMediaSource" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" />
+      <apidata name="AdaptiveMediaSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.AudioOnlyPlayback" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.AvailableBitrates" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CurrentDownloadBitrate" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CurrentPlaybackBitrate" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DesiredLiveOffset" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DesiredMaxBitrate" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DesiredMinBitrate" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.InboundBitsPerSecond" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.InboundBitsPerSecondWindow" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.InitialBitrate" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.IsLive" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" />
+      </containers>
+      <file name="7571c7d4-7f76-150c-75d1-05fc5643be84" />
+    </api>
+    <api id="Events.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource">
+      <topicdata name="AdaptiveMediaSource" group="list" subgroup="Events" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" />
+      <apidata name="AdaptiveMediaSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DownloadBitrateChanged" />
+        <element api="E:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DownloadCompleted" />
+        <element api="E:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DownloadFailed" />
+        <element api="E:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DownloadRequested" />
+        <element api="E:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.PlaybackBitrateChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" />
+      </containers>
+      <file name="4d1bdcf4-ef12-bda3-2d25-70952ea65084" />
+    </api>
+    <api id="Overload:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromStreamAsync">
+      <topicdata name="CreateFromStreamAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" />
+      <apidata name="CreateFromStreamAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromStreamAsync(Windows.Storage.Streams.IInputStream,Windows.Foundation.Uri,System.String)" />
+        <element api="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromStreamAsync(Windows.Storage.Streams.IInputStream,Windows.Foundation.Uri,System.String,Windows.Web.Http.HttpClient)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <file name="be440625-3296-a5a3-1175-aba3d5e0a17b" />
+    </api>
+    <api id="Overload:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromUriAsync">
+      <topicdata name="CreateFromUriAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" />
+      <apidata name="CreateFromUriAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromUriAsync(Windows.Foundation.Uri)" />
+        <element api="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromUriAsync(Windows.Foundation.Uri,Windows.Web.Http.HttpClient)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <file name="870c581f-d85c-80c7-045e-de8f9a9d9e1a" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.AudioOnlyPlayback">
+      <topicdata group="api" />
+      <apidata name="AudioOnlyPlayback" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AudioOnlyPlayback" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <file name="b7e35abd-09d8-6abe-a009-976c6185bcf3" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.AvailableBitrates">
+      <topicdata group="api" />
+      <apidata name="AvailableBitrates" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AvailableBitrates" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <file name="ac6a86e9-3589-ddb1-0da3-1d0bc3dd75d6" />
+    </api>
+    <api id="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromStreamAsync(Windows.Storage.Streams.IInputStream,Windows.Foundation.Uri,System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateFromStreamAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromStreamAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stream" in="true">
+          <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+        </parameter>
+        <parameter name="uri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="contentType" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateFromStreamAsync</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="1e06643b-b845-4e0c-0923-4c5678b9d81c" />
+    </api>
+    <api id="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromStreamAsync(Windows.Storage.Streams.IInputStream,Windows.Foundation.Uri,System.String,Windows.Web.Http.HttpClient)">
+      <topicdata group="api" />
+      <apidata name="CreateFromStreamAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromStreamAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stream" in="true">
+          <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+        </parameter>
+        <parameter name="uri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="contentType" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="httpClient" in="true">
+          <type api="T:Windows.Web.Http.HttpClient" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateFromStreamWithDownloaderAsync</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4d7c13a2-69a5-f2eb-20c6-b18af39f80a8" />
+    </api>
+    <api id="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromUriAsync(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="CreateFromUriAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromUriAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="uri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateFromUriAsync</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="3c0318ca-ddb2-ded3-3fd9-0178efa72361" />
+    </api>
+    <api id="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromUriAsync(Windows.Foundation.Uri,Windows.Web.Http.HttpClient)">
+      <topicdata group="api" />
+      <apidata name="CreateFromUriAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CreateFromUriAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="uri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="httpClient" in="true">
+          <type api="T:Windows.Web.Http.HttpClient" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateFromUriWithDownloaderAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="db811e98-039d-2d6c-7e65-30c12554f8a7" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CurrentDownloadBitrate">
+      <topicdata group="api" />
+      <apidata name="CurrentDownloadBitrate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CurrentDownloadBitrate" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <file name="6b354298-52f6-059c-981a-048cbdc6e1af" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.CurrentPlaybackBitrate">
+      <topicdata group="api" />
+      <apidata name="CurrentPlaybackBitrate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CurrentPlaybackBitrate" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <file name="cf1ec766-9e61-0daa-8143-d39a5e9437d0" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DesiredLiveOffset">
+      <topicdata group="api" />
+      <apidata name="DesiredLiveOffset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DesiredLiveOffset" />
+      <setter name="set_DesiredLiveOffset" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <file name="52164bcb-0061-df7a-c1fd-4cfca4562aca" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DesiredMaxBitrate">
+      <topicdata group="api" />
+      <apidata name="DesiredMaxBitrate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DesiredMaxBitrate" />
+      <setter name="set_DesiredMaxBitrate" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <file name="48e85de6-345f-b345-270b-8bdf7e3e7a29" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DesiredMinBitrate">
+      <topicdata group="api" />
+      <apidata name="DesiredMinBitrate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DesiredMinBitrate" />
+      <setter name="set_DesiredMinBitrate" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <file name="884d79a5-bcee-e2ce-398f-0ae2d5c41053" />
+    </api>
+    <api id="E:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DownloadBitrateChanged">
+      <topicdata group="api" />
+      <apidata name="DownloadBitrateChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_DownloadBitrateChanged" />
+      <remover name="remove_DownloadBitrateChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+            <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <file name="41324ff3-72ca-4138-2287-044f25342718" />
+    </api>
+    <api id="E:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DownloadCompleted">
+      <topicdata group="api" />
+      <apidata name="DownloadCompleted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_DownloadCompleted" />
+      <remover name="remove_DownloadCompleted" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+            <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <file name="04c6fa30-40e4-fe78-35b4-8c2563a99350" />
+    </api>
+    <api id="E:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DownloadFailed">
+      <topicdata group="api" />
+      <apidata name="DownloadFailed" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_DownloadFailed" />
+      <remover name="remove_DownloadFailed" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+            <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <file name="2b0cf020-44c0-d559-1fc3-c7901381af9a" />
+    </api>
+    <api id="E:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.DownloadRequested">
+      <topicdata group="api" />
+      <apidata name="DownloadRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_DownloadRequested" />
+      <remover name="remove_DownloadRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+            <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <file name="ec7078da-588d-588c-0242-9b2df6484a3f" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.InboundBitsPerSecond">
+      <topicdata group="api" />
+      <apidata name="InboundBitsPerSecond" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_InboundBitsPerSecond" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <file name="6a6304af-db18-61c9-4882-5c5b8268fc4a" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.InboundBitsPerSecondWindow">
+      <topicdata group="api" />
+      <apidata name="InboundBitsPerSecondWindow" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InboundBitsPerSecondWindow" />
+      <setter name="set_InboundBitsPerSecondWindow" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <file name="c83a32d9-a6e2-357a-6b37-e38fcaa81243" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.InitialBitrate">
+      <topicdata group="api" />
+      <apidata name="InitialBitrate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InitialBitrate" />
+      <setter name="set_InitialBitrate" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <file name="b923bd2b-0584-481e-709b-30b96b60e6c0" />
+    </api>
+    <api id="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.IsContentTypeSupported(System.String)">
+      <topicdata group="api" />
+      <apidata name="IsContentTypeSupported" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="contentType" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <file name="fff431db-64d3-8366-7002-548201222ad6" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.IsLive">
+      <topicdata group="api" />
+      <apidata name="IsLive" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsLive" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <file name="4a829943-fc4b-50e3-1f44-6d792f4774c9" />
+    </api>
+    <api id="E:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource.PlaybackBitrateChanged">
+      <topicdata group="api" />
+      <apidata name="PlaybackBitrateChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PlaybackBitrateChanged" />
+      <remover name="remove_PlaybackBitrateChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+            <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </containers>
+      <file name="6d8ec2da-6385-d8ea-5d18-07b581ac49b2" />
+    </api>
+    <api id="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult" />
+      <apidata name="AdaptiveMediaSourceCreationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="907280e2-72c4-e6b4-d35f-e42911030f00" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult">
+      <topicdata name="AdaptiveMediaSourceCreationResult" group="list" subgroup="members" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult" />
+      <apidata name="AdaptiveMediaSourceCreationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult.HttpResponseMessage" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult.MediaSource" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult" />
+      </containers>
+      <file name="d1fee84c-17c0-609e-9555-f45e657dfeab" />
+    </api>
+    <api id="Methods.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult">
+      <topicdata name="AdaptiveMediaSourceCreationResult" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult" />
+      <apidata name="AdaptiveMediaSourceCreationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult" />
+      </containers>
+      <file name="a3690911-b695-6243-16f4-33c33a4ba127" />
+    </api>
+    <api id="Properties.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult">
+      <topicdata name="AdaptiveMediaSourceCreationResult" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult" />
+      <apidata name="AdaptiveMediaSourceCreationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult.HttpResponseMessage" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult.MediaSource" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult" />
+      </containers>
+      <file name="e6e2e5d5-fa9c-ecf8-f4a5-41f0bf799a6b" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult.HttpResponseMessage">
+      <topicdata group="api" />
+      <apidata name="HttpResponseMessage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_HttpResponseMessage" />
+      <returns>
+        <type api="T:Windows.Web.Http.HttpResponseMessage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult" ref="true" />
+      </containers>
+      <file name="623bb523-9aa4-61fc-0661-32841b287206" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult.MediaSource">
+      <topicdata group="api" />
+      <apidata name="MediaSource" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MediaSource" />
+      <returns>
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSource" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult" ref="true" />
+      </containers>
+      <file name="ecd259e2-e8ac-f66b-6981-239db3fc7223" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Status" />
+      <returns>
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult" ref="true" />
+      </containers>
+      <file name="625a2fc0-320b-64e3-8850-ab7eac2ca60f" />
+    </api>
+    <api id="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus">
+      <topicdata group="api" />
+      <apidata name="AdaptiveMediaSourceCreationStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus.Success" />
+        <element api="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus.ManifestDownloadFailure" />
+        <element api="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus.ManifestParseFailure" />
+        <element api="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus.UnsupportedManifestContentType" />
+        <element api="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus.UnsupportedManifestVersion" />
+        <element api="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus.UnsupportedManifestProfile" />
+        <element api="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus.UnknownFailure" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8bc4b9b5-fb70-d603-8fd0-7b87cef9f998" />
+    </api>
+    <api id="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus.ManifestDownloadFailure">
+      <topicdata group="api" notopic="" />
+      <apidata name="ManifestDownloadFailure" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus" ref="false" />
+      </containers>
+      <file name="df4ba35b-3ed5-321e-6172-95658b639df6" />
+    </api>
+    <api id="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus.ManifestParseFailure">
+      <topicdata group="api" notopic="" />
+      <apidata name="ManifestParseFailure" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus" ref="false" />
+      </containers>
+      <file name="72c502b1-883d-773a-9f61-d19851deb75d" />
+    </api>
+    <api id="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus.Success">
+      <topicdata group="api" notopic="" />
+      <apidata name="Success" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus" ref="false" />
+      </containers>
+      <file name="773b384e-86c6-eb73-9d1b-a2f191853a60" />
+    </api>
+    <api id="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus.UnknownFailure">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnknownFailure" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus" ref="false" />
+      </containers>
+      <file name="09384178-c9ca-47f3-af8c-1eb4877d4963" />
+    </api>
+    <api id="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus.UnsupportedManifestContentType">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnsupportedManifestContentType" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus" ref="false" />
+      </containers>
+      <file name="e4900e19-2a1a-d422-1da5-4fa9cfdde8e0" />
+    </api>
+    <api id="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus.UnsupportedManifestProfile">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnsupportedManifestProfile" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus" ref="false" />
+      </containers>
+      <file name="3329db09-96a2-3c20-a3fa-3228ab6b4588" />
+    </api>
+    <api id="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus.UnsupportedManifestVersion">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnsupportedManifestVersion" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus" ref="false" />
+      </containers>
+      <file name="42213959-73ac-291b-96d3-be1914418475" />
+    </api>
+    <api id="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs" />
+      <apidata name="AdaptiveMediaSourceDownloadBitrateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d64469ff-3e0c-7b89-150f-ca25ac1a24e6" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs">
+      <topicdata name="AdaptiveMediaSourceDownloadBitrateChangedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs" />
+      <apidata name="AdaptiveMediaSourceDownloadBitrateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs.NewValue" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs.OldValue" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs" />
+      </containers>
+      <file name="c52eb6c0-0520-6989-1fea-33cf268f7289" />
+    </api>
+    <api id="Methods.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs">
+      <topicdata name="AdaptiveMediaSourceDownloadBitrateChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs" />
+      <apidata name="AdaptiveMediaSourceDownloadBitrateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs" />
+      </containers>
+      <file name="efda3894-7ba5-091a-3e31-c8d12c347e6c" />
+    </api>
+    <api id="Properties.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs">
+      <topicdata name="AdaptiveMediaSourceDownloadBitrateChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs" />
+      <apidata name="AdaptiveMediaSourceDownloadBitrateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs.NewValue" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs.OldValue" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs" />
+      </containers>
+      <file name="01869001-8c2c-798e-b0b6-e5142cf0661a" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs.NewValue">
+      <topicdata group="api" />
+      <apidata name="NewValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NewValue" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs" ref="true" />
+      </containers>
+      <file name="4b05dd18-ccb2-5c5a-8488-68e220d7fab8" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs.OldValue">
+      <topicdata group="api" />
+      <apidata name="OldValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_OldValue" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedEventArgs" ref="true" />
+      </containers>
+      <file name="03b222d6-e5da-c722-f508-0191d122e64d" />
+    </api>
+    <api id="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs" />
+      <apidata name="AdaptiveMediaSourceDownloadCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7b8a2bdf-eb43-64e3-dace-f746cc7a9ddc" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs">
+      <topicdata name="AdaptiveMediaSourceDownloadCompletedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs" />
+      <apidata name="AdaptiveMediaSourceDownloadCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs.HttpResponseMessage" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs.ResourceByteRangeLength" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs.ResourceByteRangeOffset" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs.ResourceType" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs.ResourceUri" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs" />
+      </containers>
+      <file name="ed56931d-ae4a-e329-31af-3ab3152a4b60" />
+    </api>
+    <api id="Methods.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs">
+      <topicdata name="AdaptiveMediaSourceDownloadCompletedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs" />
+      <apidata name="AdaptiveMediaSourceDownloadCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs" />
+      </containers>
+      <file name="c2cdb37f-4909-7289-000e-a02d926ea70b" />
+    </api>
+    <api id="Properties.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs">
+      <topicdata name="AdaptiveMediaSourceDownloadCompletedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs" />
+      <apidata name="AdaptiveMediaSourceDownloadCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs.HttpResponseMessage" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs.ResourceByteRangeLength" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs.ResourceByteRangeOffset" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs.ResourceType" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs.ResourceUri" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs" />
+      </containers>
+      <file name="4775588a-d009-1b9d-dfef-20a968e6d1b0" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs.HttpResponseMessage">
+      <topicdata group="api" />
+      <apidata name="HttpResponseMessage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_HttpResponseMessage" />
+      <returns>
+        <type api="T:Windows.Web.Http.HttpResponseMessage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="fe9ea2a8-fe00-7a8e-59b1-2a4e36c25998" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs.ResourceByteRangeLength">
+      <topicdata group="api" />
+      <apidata name="ResourceByteRangeLength" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResourceByteRangeLength" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt64" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="28179e63-c33f-f43c-0273-85825fc2ab1c" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs.ResourceByteRangeOffset">
+      <topicdata group="api" />
+      <apidata name="ResourceByteRangeOffset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResourceByteRangeOffset" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt64" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="0d490dd0-6332-0895-408f-320e9934dc54" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs.ResourceType">
+      <topicdata group="api" />
+      <apidata name="ResourceType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResourceType" />
+      <returns>
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="c46384f0-1f32-b0a8-f699-c051c2a6f95c" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs.ResourceUri">
+      <topicdata group="api" />
+      <apidata name="ResourceUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResourceUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="cbb1c697-55d2-5623-0564-0a73418f0e5d" />
+    </api>
+    <api id="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs" />
+      <apidata name="AdaptiveMediaSourceDownloadFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="4715fdfe-9edd-6d33-2613-c8089b8e2ae0" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs">
+      <topicdata name="AdaptiveMediaSourceDownloadFailedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs" />
+      <apidata name="AdaptiveMediaSourceDownloadFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs.HttpResponseMessage" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs.ResourceByteRangeLength" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs.ResourceByteRangeOffset" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs.ResourceType" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs.ResourceUri" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs" />
+      </containers>
+      <file name="a8c7fecb-3b99-41b7-e076-c6363cfded11" />
+    </api>
+    <api id="Methods.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs">
+      <topicdata name="AdaptiveMediaSourceDownloadFailedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs" />
+      <apidata name="AdaptiveMediaSourceDownloadFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs" />
+      </containers>
+      <file name="49a42f7f-00ad-e751-c367-5fc63f75371f" />
+    </api>
+    <api id="Properties.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs">
+      <topicdata name="AdaptiveMediaSourceDownloadFailedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs" />
+      <apidata name="AdaptiveMediaSourceDownloadFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs.HttpResponseMessage" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs.ResourceByteRangeLength" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs.ResourceByteRangeOffset" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs.ResourceType" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs.ResourceUri" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs" />
+      </containers>
+      <file name="e322e11c-8278-9986-cd0b-2f2426c0611e" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs.HttpResponseMessage">
+      <topicdata group="api" />
+      <apidata name="HttpResponseMessage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_HttpResponseMessage" />
+      <returns>
+        <type api="T:Windows.Web.Http.HttpResponseMessage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs" ref="true" />
+      </containers>
+      <file name="52761097-56df-3969-c910-a753716d0ae3" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs.ResourceByteRangeLength">
+      <topicdata group="api" />
+      <apidata name="ResourceByteRangeLength" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResourceByteRangeLength" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt64" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs" ref="true" />
+      </containers>
+      <file name="c3bd0df1-7d6c-e05a-1cd1-9d3a370395df" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs.ResourceByteRangeOffset">
+      <topicdata group="api" />
+      <apidata name="ResourceByteRangeOffset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResourceByteRangeOffset" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt64" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs" ref="true" />
+      </containers>
+      <file name="30059fc9-0f93-7e0d-ba1b-eb750f11c4f2" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs.ResourceType">
+      <topicdata group="api" />
+      <apidata name="ResourceType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResourceType" />
+      <returns>
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs" ref="true" />
+      </containers>
+      <file name="461bec63-5af0-fee1-b9ee-7fae475477dd" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs.ResourceUri">
+      <topicdata group="api" />
+      <apidata name="ResourceUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResourceUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadFailedEventArgs" ref="true" />
+      </containers>
+      <file name="c3220966-73ab-534d-466d-eba011ee47c0" />
+    </api>
+    <api id="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedDeferral">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedDeferral" />
+      <apidata name="AdaptiveMediaSourceDownloadRequestedDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5a0936ca-19f7-8868-c71a-ac5bf9b99bd7" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedDeferral">
+      <topicdata name="AdaptiveMediaSourceDownloadRequestedDeferral" group="list" subgroup="members" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedDeferral" />
+      <apidata name="AdaptiveMediaSourceDownloadRequestedDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedDeferral" />
+      </containers>
+      <file name="8247c3ef-5197-0c93-c5ca-22e19477bf3c" />
+    </api>
+    <api id="Methods.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedDeferral">
+      <topicdata name="AdaptiveMediaSourceDownloadRequestedDeferral" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedDeferral" />
+      <apidata name="AdaptiveMediaSourceDownloadRequestedDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedDeferral" />
+      </containers>
+      <file name="7e91e4d4-12f8-5287-9c2e-335f3e2539d9" />
+    </api>
+    <api id="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedDeferral.Complete">
+      <topicdata group="api" />
+      <apidata name="Complete" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedDeferral" ref="true" />
+      </containers>
+      <file name="a9b1a10f-b7a7-baa8-552b-b2462b92d4d7" />
+    </api>
+    <api id="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs" />
+      <apidata name="AdaptiveMediaSourceDownloadRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fea2e88c-808b-a7d5-d7ed-0175cf6e08ec" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs">
+      <topicdata name="AdaptiveMediaSourceDownloadRequestedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs" />
+      <apidata name="AdaptiveMediaSourceDownloadRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs.GetDeferral" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs.ResourceByteRangeLength" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs.ResourceByteRangeOffset" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs.ResourceType" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs.ResourceUri" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs.Result" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs" />
+      </containers>
+      <file name="4f2c7347-2386-e8bf-84ff-e0d35c87d21b" />
+    </api>
+    <api id="Methods.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs">
+      <topicdata name="AdaptiveMediaSourceDownloadRequestedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs" />
+      <apidata name="AdaptiveMediaSourceDownloadRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs.GetDeferral" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs" />
+      </containers>
+      <file name="6d0a70ce-baab-325f-4192-7e004996a15d" />
+    </api>
+    <api id="Properties.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs">
+      <topicdata name="AdaptiveMediaSourceDownloadRequestedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs" />
+      <apidata name="AdaptiveMediaSourceDownloadRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs.ResourceByteRangeLength" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs.ResourceByteRangeOffset" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs.ResourceType" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs.ResourceUri" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs.Result" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs" />
+      </containers>
+      <file name="b34139e3-5339-a13e-089b-b8f288eb83b2" />
+    </api>
+    <api id="M:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs.GetDeferral">
+      <topicdata group="api" />
+      <apidata name="GetDeferral" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedDeferral" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="b0cc1ca4-2223-71fe-be27-387f1a1813cd" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs.ResourceByteRangeLength">
+      <topicdata group="api" />
+      <apidata name="ResourceByteRangeLength" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResourceByteRangeLength" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt64" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="43f17886-4aab-9903-b04d-0f79b0287fef" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs.ResourceByteRangeOffset">
+      <topicdata group="api" />
+      <apidata name="ResourceByteRangeOffset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResourceByteRangeOffset" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt64" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="998484b9-dde6-6c89-7259-f6d703a82bd7" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs.ResourceType">
+      <topicdata group="api" />
+      <apidata name="ResourceType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResourceType" />
+      <returns>
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="cc930146-a4d2-01fe-50b2-8efecc7318b8" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs.ResourceUri">
+      <topicdata group="api" />
+      <apidata name="ResourceUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResourceUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="b3de1499-53f1-be66-62bf-039aa512d9e5" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs.Result">
+      <topicdata group="api" />
+      <apidata name="Result" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Result" />
+      <returns>
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="c683e005-e021-f961-5929-e3fe59bb727d" />
+    </api>
+    <api id="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult" />
+      <apidata name="AdaptiveMediaSourceDownloadResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c1f98e25-3476-b4cb-02cb-f5696dbafda8" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult">
+      <topicdata name="AdaptiveMediaSourceDownloadResult" group="list" subgroup="members" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult" />
+      <apidata name="AdaptiveMediaSourceDownloadResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult.Buffer" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult.ContentType" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult.ExtendedStatus" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult.InputStream" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult.ResourceUri" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult" />
+      </containers>
+      <file name="173aaa4a-5fb8-a28e-4f11-414497231b77" />
+    </api>
+    <api id="Methods.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult">
+      <topicdata name="AdaptiveMediaSourceDownloadResult" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult" />
+      <apidata name="AdaptiveMediaSourceDownloadResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult" />
+      </containers>
+      <file name="7ed2b40a-6075-165d-e0cd-2edb8c6d4e9e" />
+    </api>
+    <api id="Properties.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult">
+      <topicdata name="AdaptiveMediaSourceDownloadResult" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult" />
+      <apidata name="AdaptiveMediaSourceDownloadResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult.Buffer" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult.ContentType" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult.ExtendedStatus" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult.InputStream" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult.ResourceUri" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult" />
+      </containers>
+      <file name="a2f5cc0e-c704-097d-b479-a6413874da7c" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult.Buffer">
+      <topicdata group="api" />
+      <apidata name="Buffer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Buffer" />
+      <setter name="set_Buffer" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult" ref="true" />
+      </containers>
+      <file name="99afd81d-c705-d95e-f62f-c2b81537c552" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult.ContentType">
+      <topicdata group="api" />
+      <apidata name="ContentType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ContentType" />
+      <setter name="set_ContentType" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult" ref="true" />
+      </containers>
+      <file name="72953ea6-f676-0c1d-fb75-45e3c5a5caff" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult.ExtendedStatus">
+      <topicdata group="api" />
+      <apidata name="ExtendedStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ExtendedStatus" />
+      <setter name="set_ExtendedStatus" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult" ref="true" />
+      </containers>
+      <file name="2232a440-04c8-b350-7377-624962946a71" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult.InputStream">
+      <topicdata group="api" />
+      <apidata name="InputStream" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InputStream" />
+      <setter name="set_InputStream" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult" ref="true" />
+      </containers>
+      <file name="563063ee-3e0a-7bf9-69f8-9545b93ee44f" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult.ResourceUri">
+      <topicdata group="api" />
+      <apidata name="ResourceUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ResourceUri" />
+      <setter name="set_ResourceUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult" ref="true" />
+      </containers>
+      <file name="94cc1337-1eee-5e3d-35ed-50feb872422c" />
+    </api>
+    <api id="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs" />
+      <apidata name="AdaptiveMediaSourcePlaybackBitrateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9e651518-a19e-96b7-1b31-e40094f2f6a9" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs">
+      <topicdata name="AdaptiveMediaSourcePlaybackBitrateChangedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs" />
+      <apidata name="AdaptiveMediaSourcePlaybackBitrateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs.AudioOnly" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs.NewValue" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs.OldValue" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs" />
+      </containers>
+      <file name="2867d9be-a7f2-aa77-47f9-6e428a6ed462" />
+    </api>
+    <api id="Methods.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs">
+      <topicdata name="AdaptiveMediaSourcePlaybackBitrateChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs" />
+      <apidata name="AdaptiveMediaSourcePlaybackBitrateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs" />
+      </containers>
+      <file name="1c82d061-4c05-e1d9-55c6-c7a390d06da7" />
+    </api>
+    <api id="Properties.T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs">
+      <topicdata name="AdaptiveMediaSourcePlaybackBitrateChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs" />
+      <apidata name="AdaptiveMediaSourcePlaybackBitrateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs.AudioOnly" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs.NewValue" />
+        <element api="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs.OldValue" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs" />
+      </containers>
+      <file name="fe04d352-4c9e-2e49-6bc0-bfb9d473b1cc" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs.AudioOnly">
+      <topicdata group="api" />
+      <apidata name="AudioOnly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AudioOnly" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs" ref="true" />
+      </containers>
+      <file name="1190051f-c8d7-6af0-eae2-4a7185b67e30" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs.NewValue">
+      <topicdata group="api" />
+      <apidata name="NewValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NewValue" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs" ref="true" />
+      </containers>
+      <file name="203e4eae-1914-7b1b-af40-7fec841d5f37" />
+    </api>
+    <api id="P:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs.OldValue">
+      <topicdata group="api" />
+      <apidata name="OldValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_OldValue" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourcePlaybackBitrateChangedEventArgs" ref="true" />
+      </containers>
+      <file name="723dd209-8928-6044-52ce-32887e408fff" />
+    </api>
+    <api id="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType">
+      <topicdata group="api" />
+      <apidata name="AdaptiveMediaSourceResourceType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType.Manifest" />
+        <element api="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType.InitializationSegment" />
+        <element api="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType.MediaSegment" />
+        <element api="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType.Key" />
+        <element api="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType.InitializationVector" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2d2886a6-3fbe-2344-23b3-fc890cb389c2" />
+    </api>
+    <api id="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType.InitializationSegment">
+      <topicdata group="api" notopic="" />
+      <apidata name="InitializationSegment" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType" ref="false" />
+      </containers>
+      <file name="5f67a3fb-39df-475c-f05b-c0d166fbd540" />
+    </api>
+    <api id="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType.InitializationVector">
+      <topicdata group="api" notopic="" />
+      <apidata name="InitializationVector" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType" ref="false" />
+      </containers>
+      <file name="b02bb75e-b291-f777-7e2e-ff9286829ddd" />
+    </api>
+    <api id="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType.Key">
+      <topicdata group="api" notopic="" />
+      <apidata name="Key" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType" ref="false" />
+      </containers>
+      <file name="ebd9ba07-5085-74c3-236c-034b816b4c12" />
+    </api>
+    <api id="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType.Manifest">
+      <topicdata group="api" notopic="" />
+      <apidata name="Manifest" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType" ref="false" />
+      </containers>
+      <file name="7b456734-750f-7b35-a44b-0b334701d801" />
+    </api>
+    <api id="F:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType.MediaSegment">
+      <topicdata group="api" notopic="" />
+      <apidata name="MediaSegment" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Streaming.Adaptive" />
+        <type api="T:Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType" ref="false" />
+      </containers>
+      <file name="94e53579-bc33-8975-84cf-c759f5947176" />
+    </api>
+  </apis>
+</reflection>

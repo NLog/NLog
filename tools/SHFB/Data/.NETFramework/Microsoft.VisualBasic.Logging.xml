@@ -1,0 +1,1979 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.VisualBasic">
+      <assemblydata version="10.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualBasic.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualBasic.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualBasic.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Visual Studio® 12 CTP</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation. All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\\dd\\tools\\devdiv\\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.VisualBasic.Logging">
+      <topicdata group="api" />
+      <apidata name="Microsoft.VisualBasic.Logging" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.VisualBasic.Logging.Log" />
+        <element api="T:Microsoft.VisualBasic.Logging.AspLog" />
+        <element api="T:Microsoft.VisualBasic.Logging.LogFileLocation" />
+        <element api="T:Microsoft.VisualBasic.Logging.LogFileCreationScheduleOption" />
+        <element api="T:Microsoft.VisualBasic.Logging.DiskSpaceExhaustedOption" />
+        <element api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" />
+      </elements>
+      <file name="e72ee191-816d-2cf0-f0b4-cd8c083ea983" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Logging.AspLog">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Logging.AspLog" />
+      <apidata name="AspLog" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Logging.AspLog.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.VisualBasic.Logging.Log" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Resources">
+            <type api="T:System.Security.Permissions.HostProtectionResource" ref="false" />
+            <enumValue>
+              <field name="ExternalProcessMgmt" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="9776cc3e-a017-fc91-c31b-106c1580d406" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Logging.AspLog">
+      <topicdata name="AspLog" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Logging.AspLog" />
+      <apidata name="AspLog" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Logging.AspLog.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.VisualBasic.Logging.AspLog.#ctor">
+          <element api="M:Microsoft.VisualBasic.Logging.AspLog.#ctor" />
+          <element api="M:Microsoft.VisualBasic.Logging.AspLog.#ctor(System.String)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.Logging.AspLog.InitializeWithDefaultsSinceNoConfigExists" />
+        <element api="P:Microsoft.VisualBasic.Logging.Log.DefaultFileLogWriter" />
+        <element api="P:Microsoft.VisualBasic.Logging.Log.TraceSource" />
+        <element api="Overload:Microsoft.VisualBasic.Logging.AspLog.WriteEntry">
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteEntry(System.String)" />
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteEntry(System.String,System.Diagnostics.TraceEventType)" />
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteEntry(System.String,System.Diagnostics.TraceEventType,System.Int32)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Logging.AspLog.WriteException">
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteException(System.Exception)" />
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteException(System.Exception,System.Diagnostics.TraceEventType,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteException(System.Exception,System.Diagnostics.TraceEventType,System.String,System.Int32)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.AspLog" />
+      </containers>
+      <file name="e20dfcc0-f054-1834-7d06-78abee862855" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Logging.AspLog">
+      <topicdata name="AspLog" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Logging.AspLog" />
+      <apidata name="AspLog" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Logging.AspLog.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Logging.AspLog.InitializeWithDefaultsSinceNoConfigExists" />
+        <element api="Overload:Microsoft.VisualBasic.Logging.AspLog.WriteEntry">
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteEntry(System.String)" />
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteEntry(System.String,System.Diagnostics.TraceEventType)" />
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteEntry(System.String,System.Diagnostics.TraceEventType,System.Int32)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Logging.AspLog.WriteException">
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteException(System.Exception)" />
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteException(System.Exception,System.Diagnostics.TraceEventType,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteException(System.Exception,System.Diagnostics.TraceEventType,System.String,System.Int32)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.AspLog" />
+      </containers>
+      <file name="4b8e8ca1-532d-98d4-b12c-4ccbd10a3bdc" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.Logging.AspLog">
+      <topicdata name="AspLog" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.Logging.AspLog" />
+      <apidata name="AspLog" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Logging.AspLog.#ctor" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.Logging.Log.DefaultFileLogWriter" />
+        <element api="P:Microsoft.VisualBasic.Logging.Log.TraceSource" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.AspLog" />
+      </containers>
+      <file name="e82bd9d2-ab6c-0130-0d94-0d49ce9899b6" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Logging.AspLog.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Logging.AspLog" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Logging.AspLog.#ctor" />
+        <element api="M:Microsoft.VisualBasic.Logging.AspLog.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.AspLog" ref="true" />
+      </containers>
+      <file name="f38d9bb9-910f-0604-3ba7-77269bb7c8b6" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.AspLog.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.VisualBasic.Logging.AspLog.#ctor" />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.AspLog" ref="true" />
+      </containers>
+      <file name="407618c7-83c5-1c07-4e3f-5fee4b57354a" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.AspLog.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.VisualBasic.Logging.AspLog.#ctor" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.AspLog" ref="true" />
+      </containers>
+      <file name="dd9a6de3-20df-b577-b47c-7c8ded699475" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.AspLog.InitializeWithDefaultsSinceNoConfigExists">
+      <topicdata group="api" />
+      <apidata name="InitializeWithDefaultsSinceNoConfigExists" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Microsoft.VisualBasic.Logging.Log.InitializeWithDefaultsSinceNoConfigExists">
+          <type api="T:Microsoft.VisualBasic.Logging.Log" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.AspLog" ref="true" />
+      </containers>
+      <file name="b6bdbc72-1184-33c5-bb1d-31fe2a3f4aae" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Logging.DiskSpaceExhaustedOption">
+      <topicdata group="api" />
+      <apidata name="DiskSpaceExhaustedOption" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.VisualBasic.Logging.DiskSpaceExhaustedOption.ThrowException" />
+        <element api="F:Microsoft.VisualBasic.Logging.DiskSpaceExhaustedOption.DiscardMessages" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+      </containers>
+      <file name="0b41c521-2446-6826-b3e5-f65e6529f064" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Logging.DiskSpaceExhaustedOption.DiscardMessages">
+      <topicdata group="api" notopic="" />
+      <apidata name="DiscardMessages" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Logging.DiskSpaceExhaustedOption" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.DiskSpaceExhaustedOption" ref="false" />
+      </containers>
+      <file name="a004379b-62a7-6079-e95d-59c5bf0253f0" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Logging.DiskSpaceExhaustedOption.ThrowException">
+      <topicdata group="api" notopic="" />
+      <apidata name="ThrowException" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Logging.DiskSpaceExhaustedOption" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.DiskSpaceExhaustedOption" ref="false" />
+      </containers>
+      <file name="ccd9a3b5-0c7e-ca4a-f772-a841e5074a90" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Logging.FileLogTraceListener">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Logging.FileLogTraceListener" />
+      <apidata name="FileLogTraceListener" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="66d30eed-70b2-98ef-ceeb-0dc2843f84d1" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Logging.FileLogTraceListener">
+      <topicdata name="FileLogTraceListener" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" />
+      <apidata name="FileLogTraceListener" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.#ctor">
+          <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.#ctor" />
+          <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.#ctor(System.String)" />
+        </element>
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.Append" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.AutoFlush" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.BaseFileName" />
+        <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.Close" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.CustomLocation" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.Delimiter" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.DiskSpaceExhaustedBehavior" />
+        <element api="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.Dispose">
+          <element api="M:System.Diagnostics.TraceListener.Dispose" />
+          <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.Dispose(System.Boolean)" />
+        </element>
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.Encoding" />
+        <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.Flush" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.FullLogFileName" />
+        <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.GetSupportedAttributes" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.IncludeHostName" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.Location" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.LogFileCreationSchedule" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.MaxFileSize" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.ReserveDiskSpace" />
+        <element api="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceData">
+          <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object)" />
+          <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object[])" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceEvent">
+          <element api="M:System.Diagnostics.TraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32)" />
+          <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[])" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.Write">
+          <element api="M:System.Diagnostics.TraceListener.Write(System.Object)" />
+          <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.Write(System.String)" />
+          <element api="M:System.Diagnostics.TraceListener.Write(System.Object,System.String)" />
+          <element api="M:System.Diagnostics.TraceListener.Write(System.String,System.String)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.WriteLine">
+          <element api="M:System.Diagnostics.TraceListener.WriteLine(System.Object)" />
+          <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.WriteLine(System.String)" />
+          <element api="M:System.Diagnostics.TraceListener.WriteLine(System.Object,System.String)" />
+          <element api="M:System.Diagnostics.TraceListener.WriteLine(System.String,System.String)" />
+        </element>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Diagnostics.TraceListener.Attributes" />
+        <element api="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.Fail">
+          <element api="M:System.Diagnostics.TraceListener.Fail(System.String)" />
+          <element api="M:System.Diagnostics.TraceListener.Fail(System.String,System.String)" />
+        </element>
+        <element api="P:System.Diagnostics.TraceListener.Filter" />
+        <element api="P:System.Diagnostics.TraceListener.IndentLevel" />
+        <element api="P:System.Diagnostics.TraceListener.IndentSize" />
+        <element api="P:System.Diagnostics.TraceListener.IsThreadSafe" />
+        <element api="P:System.Diagnostics.TraceListener.Name" />
+        <element api="P:System.Diagnostics.TraceListener.NeedIndent" />
+        <element api="P:System.Diagnostics.TraceListener.TraceOutputOptions" />
+        <element api="M:System.Diagnostics.TraceListener.TraceTransfer(System.Diagnostics.TraceEventCache,System.String,System.Int32,System.String,System.Guid)" />
+        <element api="M:System.Diagnostics.TraceListener.WriteIndent" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" />
+      </containers>
+      <file name="d84fce4c-fba8-735c-e8be-af2de5a1d415" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Logging.FileLogTraceListener">
+      <topicdata name="FileLogTraceListener" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" />
+      <apidata name="FileLogTraceListener" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.Close" />
+        <element api="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.Dispose">
+          <element api="M:System.Diagnostics.TraceListener.Dispose" />
+          <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.Flush" />
+        <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.GetSupportedAttributes" />
+        <element api="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceData">
+          <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object)" />
+          <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object[])" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceEvent">
+          <element api="M:System.Diagnostics.TraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32)" />
+          <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[])" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.Write">
+          <element api="M:System.Diagnostics.TraceListener.Write(System.Object)" />
+          <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.Write(System.String)" />
+          <element api="M:System.Diagnostics.TraceListener.Write(System.Object,System.String)" />
+          <element api="M:System.Diagnostics.TraceListener.Write(System.String,System.String)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.WriteLine">
+          <element api="M:System.Diagnostics.TraceListener.WriteLine(System.Object)" />
+          <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.WriteLine(System.String)" />
+          <element api="M:System.Diagnostics.TraceListener.WriteLine(System.Object,System.String)" />
+          <element api="M:System.Diagnostics.TraceListener.WriteLine(System.String,System.String)" />
+        </element>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.Fail">
+          <element api="M:System.Diagnostics.TraceListener.Fail(System.String)" />
+          <element api="M:System.Diagnostics.TraceListener.Fail(System.String,System.String)" />
+        </element>
+        <element api="M:System.Diagnostics.TraceListener.TraceTransfer(System.Diagnostics.TraceEventCache,System.String,System.Int32,System.String,System.Guid)" />
+        <element api="M:System.Diagnostics.TraceListener.WriteIndent" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" />
+      </containers>
+      <file name="565774ba-c0aa-4f85-eb73-65a84b393b8c" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.Logging.FileLogTraceListener">
+      <topicdata name="FileLogTraceListener" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" />
+      <apidata name="FileLogTraceListener" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.#ctor" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.Append" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.AutoFlush" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.BaseFileName" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.CustomLocation" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.Delimiter" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.DiskSpaceExhaustedBehavior" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.Encoding" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.FullLogFileName" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.IncludeHostName" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.Location" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.LogFileCreationSchedule" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.MaxFileSize" />
+        <element api="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.ReserveDiskSpace" />
+        <element api="P:System.Diagnostics.TraceListener.Attributes" />
+        <element api="P:System.Diagnostics.TraceListener.Filter" />
+        <element api="P:System.Diagnostics.TraceListener.IndentLevel" />
+        <element api="P:System.Diagnostics.TraceListener.IndentSize" />
+        <element api="P:System.Diagnostics.TraceListener.IsThreadSafe" />
+        <element api="P:System.Diagnostics.TraceListener.Name" />
+        <element api="P:System.Diagnostics.TraceListener.NeedIndent" />
+        <element api="P:System.Diagnostics.TraceListener.TraceOutputOptions" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" />
+      </containers>
+      <file name="33afa719-edfc-43cc-70e5-f9f38072574a" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Logging.FileLogTraceListener" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.#ctor" />
+        <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="f1b81f72-282b-a06d-f460-651ea3f6d105" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Logging.FileLogTraceListener" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.TraceListener.Dispose" />
+        <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="6e9f129d-43bf-3412-6be9-b31aa1622d69" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceData">
+      <topicdata name="TraceData" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Logging.FileLogTraceListener" />
+      <apidata name="TraceData" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object)" />
+        <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object[])" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="12d59c06-c0cc-e7e3-8ebd-32a79e21b648" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceEvent">
+      <topicdata name="TraceEvent" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Logging.FileLogTraceListener" />
+      <apidata name="TraceEvent" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.TraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32)" />
+        <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String)" />
+        <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[])" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="62145e07-c0a8-d3c6-85bc-63a4a7bd46b9" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.Write">
+      <topicdata name="Write" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Logging.FileLogTraceListener" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.TraceListener.Write(System.Object)" />
+        <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.Write(System.String)" />
+        <element api="M:System.Diagnostics.TraceListener.Write(System.Object,System.String)" />
+        <element api="M:System.Diagnostics.TraceListener.Write(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="0c722bab-7b58-d578-fa26-e101f9902b21" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.WriteLine">
+      <topicdata name="WriteLine" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Logging.FileLogTraceListener" />
+      <apidata name="WriteLine" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.TraceListener.WriteLine(System.Object)" />
+        <element api="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.WriteLine(System.String)" />
+        <element api="M:System.Diagnostics.TraceListener.WriteLine(System.Object,System.String)" />
+        <element api="M:System.Diagnostics.TraceListener.WriteLine(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="52184ea6-0a06-666e-30c1-1f0984466b13" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.#ctor" />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="3e0780ce-5eaa-d403-be3f-2928279e1575" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.#ctor" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="7668a228-cad3-264c-ff64-2df157e8d158" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.Append">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Append" />
+      <setter name="set_Append" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="b71547ac-5579-4fa4-8548-bab6bf898611" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.AutoFlush">
+      <topicdata group="api" />
+      <apidata name="AutoFlush" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AutoFlush" />
+      <setter name="set_AutoFlush" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="a570692e-8c8d-0be4-b83c-5a34c74452c6" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.BaseFileName">
+      <topicdata group="api" />
+      <apidata name="BaseFileName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BaseFileName" />
+      <setter name="set_BaseFileName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="f92e35a2-fce6-d868-ee62-cb85fec14d74" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.Close">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Synchronization">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="53607135-4214-451f-0d1a-e6936c5da366" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.CustomLocation">
+      <topicdata group="api" />
+      <apidata name="CustomLocation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CustomLocation" />
+      <setter name="set_CustomLocation" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="5b915f59-3440-a2c0-338f-5f54405bbbb1" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.Delimiter">
+      <topicdata group="api" />
+      <apidata name="Delimiter" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Delimiter" />
+      <setter name="set_Delimiter" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="f9c62679-8271-d51f-9234-56fb7be6aad7" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.DiskSpaceExhaustedBehavior">
+      <topicdata group="api" />
+      <apidata name="DiskSpaceExhaustedBehavior" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DiskSpaceExhaustedBehavior" />
+      <setter name="set_DiskSpaceExhaustedBehavior" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Logging.DiskSpaceExhaustedOption" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="84d42c4c-9b05-4a12-a63c-f80174b94f49" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.Dispose" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.Dispose(System.Boolean)">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Synchronization">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="39536dfd-3130-0bb5-16b7-5e00bf8d8703" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.Encoding">
+      <topicdata group="api" />
+      <apidata name="Encoding" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Encoding" />
+      <setter name="set_Encoding" />
+      <returns>
+        <type api="T:System.Text.Encoding" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="13abfee6-0dd1-f858-556e-4d8296de7400" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.Flush">
+      <topicdata group="api" />
+      <apidata name="Flush" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.Flush">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Synchronization">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="e480ad1c-a87f-f075-081c-dec71ecc5d5f" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.FullLogFileName">
+      <topicdata group="api" />
+      <apidata name="FullLogFileName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FullLogFileName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="ca7bc028-c4b7-d3c9-8ec4-013e18ed2888" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.GetSupportedAttributes">
+      <topicdata group="api" />
+      <apidata name="GetSupportedAttributes" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.GetSupportedAttributes">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Synchronization">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="ea91e6b3-3b70-f9e6-7c1b-d7d9920ee59a" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.IncludeHostName">
+      <topicdata group="api" />
+      <apidata name="IncludeHostName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IncludeHostName" />
+      <setter name="set_IncludeHostName" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="10b949b8-381d-17a0-e3d3-c659f870bd62" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.Location">
+      <topicdata group="api" />
+      <apidata name="Location" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Location" />
+      <setter name="set_Location" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Logging.LogFileLocation" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="ae97820c-5478-bc1f-a6d5-48bc2b3511c7" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.LogFileCreationSchedule">
+      <topicdata group="api" />
+      <apidata name="LogFileCreationSchedule" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_LogFileCreationSchedule" />
+      <setter name="set_LogFileCreationSchedule" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Logging.LogFileCreationScheduleOption" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="ab2bccce-8b28-18f9-02f3-f5854bb3544b" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.MaxFileSize">
+      <topicdata group="api" />
+      <apidata name="MaxFileSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxFileSize" />
+      <setter name="set_MaxFileSize" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="657e253a-9ef6-c88d-b197-9c3bdcd58ab3" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Logging.FileLogTraceListener.ReserveDiskSpace">
+      <topicdata group="api" />
+      <apidata name="ReserveDiskSpace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ReserveDiskSpace" />
+      <setter name="set_ReserveDiskSpace" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <file name="175e3477-38f0-89a0-7383-08caf1e493c4" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object)">
+      <topicdata group="api" />
+      <apidata name="TraceData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceData" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object)">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="eventCache">
+          <type api="T:System.Diagnostics.TraceEventCache" ref="true" />
+        </parameter>
+        <parameter name="source">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="eventType">
+          <type api="T:System.Diagnostics.TraceEventType" ref="false" />
+        </parameter>
+        <parameter name="id">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Synchronization">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="8456bcc3-42ca-72ea-0ab5-9485706554d2" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object[])">
+      <topicdata group="api" />
+      <apidata name="TraceData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceData" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object[])">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="eventCache">
+          <type api="T:System.Diagnostics.TraceEventCache" ref="true" />
+        </parameter>
+        <parameter name="source">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="eventType">
+          <type api="T:System.Diagnostics.TraceEventType" ref="false" />
+        </parameter>
+        <parameter name="id">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="data" params="true">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Synchronization">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="25dcf814-7822-cd53-bc55-c1f597bb0364" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String)">
+      <topicdata group="api" />
+      <apidata name="TraceEvent" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceEvent" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String)">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="eventCache">
+          <type api="T:System.Diagnostics.TraceEventCache" ref="true" />
+        </parameter>
+        <parameter name="source">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="eventType">
+          <type api="T:System.Diagnostics.TraceEventType" ref="false" />
+        </parameter>
+        <parameter name="id">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Synchronization">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="d891eb52-710d-7b28-72ba-8bc6bd998dba" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[])">
+      <topicdata group="api" />
+      <apidata name="TraceEvent" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.TraceEvent" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[])">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="eventCache">
+          <type api="T:System.Diagnostics.TraceEventCache" ref="true" />
+        </parameter>
+        <parameter name="source">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="eventType">
+          <type api="T:System.Diagnostics.TraceEventType" ref="false" />
+        </parameter>
+        <parameter name="id">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="format">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="args" params="true">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Synchronization">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="11d63c94-88e3-4ca6-8a09-57fd31cbbbd2" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.Write(System.String)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.Write" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.Write(System.String)">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Synchronization">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="8516a9fa-8a88-88b6-c104-d688f6d9efe9" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.FileLogTraceListener.WriteLine(System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteLine" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Logging.FileLogTraceListener.WriteLine" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.WriteLine(System.String)">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Synchronization">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="b6fa7637-56c3-1521-1d15-0adb89ece978" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Logging.Log">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Logging.Log" />
+      <apidata name="Log" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Logging.Log.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.VisualBasic.Logging.AspLog" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Resources">
+            <type api="T:System.Security.Permissions.HostProtectionResource" ref="false" />
+            <enumValue>
+              <field name="ExternalProcessMgmt" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="06787ea7-487e-7b5d-e1d9-7b84c4391855" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Logging.Log">
+      <topicdata name="Log" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Logging.Log" />
+      <apidata name="Log" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Logging.Log.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.VisualBasic.Logging.Log.#ctor">
+          <element api="M:Microsoft.VisualBasic.Logging.Log.#ctor" />
+          <element api="M:Microsoft.VisualBasic.Logging.Log.#ctor(System.String)" />
+        </element>
+        <element api="P:Microsoft.VisualBasic.Logging.Log.DefaultFileLogWriter" />
+        <element api="M:Microsoft.VisualBasic.Logging.Log.InitializeWithDefaultsSinceNoConfigExists" />
+        <element api="P:Microsoft.VisualBasic.Logging.Log.TraceSource" />
+        <element api="Overload:Microsoft.VisualBasic.Logging.Log.WriteEntry">
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteEntry(System.String)" />
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteEntry(System.String,System.Diagnostics.TraceEventType)" />
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteEntry(System.String,System.Diagnostics.TraceEventType,System.Int32)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Logging.Log.WriteException">
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteException(System.Exception)" />
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteException(System.Exception,System.Diagnostics.TraceEventType,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteException(System.Exception,System.Diagnostics.TraceEventType,System.String,System.Int32)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.Log" />
+      </containers>
+      <file name="d328ee68-ea15-b68b-9737-241fed87a888" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Logging.Log">
+      <topicdata name="Log" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Logging.Log" />
+      <apidata name="Log" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Logging.Log.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Logging.Log.InitializeWithDefaultsSinceNoConfigExists" />
+        <element api="Overload:Microsoft.VisualBasic.Logging.Log.WriteEntry">
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteEntry(System.String)" />
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteEntry(System.String,System.Diagnostics.TraceEventType)" />
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteEntry(System.String,System.Diagnostics.TraceEventType,System.Int32)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Logging.Log.WriteException">
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteException(System.Exception)" />
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteException(System.Exception,System.Diagnostics.TraceEventType,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Logging.Log.WriteException(System.Exception,System.Diagnostics.TraceEventType,System.String,System.Int32)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.Log" />
+      </containers>
+      <file name="b178565e-e4bf-cd62-13e9-f0751b494fce" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.Logging.Log">
+      <topicdata name="Log" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.Logging.Log" />
+      <apidata name="Log" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Logging.Log.#ctor" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.Logging.Log.DefaultFileLogWriter" />
+        <element api="P:Microsoft.VisualBasic.Logging.Log.TraceSource" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.Log" />
+      </containers>
+      <file name="f14fb33e-c4e5-87c0-6b5b-8b09235582e6" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Logging.Log.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Logging.Log" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Logging.Log.#ctor" />
+        <element api="M:Microsoft.VisualBasic.Logging.Log.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.Log" ref="true" />
+      </containers>
+      <file name="1e180add-ad21-a192-ac3e-bc461d43dc33" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Logging.Log.WriteEntry">
+      <topicdata name="WriteEntry" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Logging.Log" />
+      <apidata name="WriteEntry" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Logging.Log.WriteEntry(System.String)" />
+        <element api="M:Microsoft.VisualBasic.Logging.Log.WriteEntry(System.String,System.Diagnostics.TraceEventType)" />
+        <element api="M:Microsoft.VisualBasic.Logging.Log.WriteEntry(System.String,System.Diagnostics.TraceEventType,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.Log" ref="true" />
+      </containers>
+      <file name="064e0667-66c1-6246-6a37-d46b70bb193d" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Logging.Log.WriteException">
+      <topicdata name="WriteException" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Logging.Log" />
+      <apidata name="WriteException" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Logging.Log.WriteException(System.Exception)" />
+        <element api="M:Microsoft.VisualBasic.Logging.Log.WriteException(System.Exception,System.Diagnostics.TraceEventType,System.String)" />
+        <element api="M:Microsoft.VisualBasic.Logging.Log.WriteException(System.Exception,System.Diagnostics.TraceEventType,System.String,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.Log" ref="true" />
+      </containers>
+      <file name="14d7db1d-1217-2927-b941-2c007746015a" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.Log.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.VisualBasic.Logging.Log.#ctor" />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.Log" ref="true" />
+      </containers>
+      <file name="334890b7-ba02-7080-c584-18a75f9a29e5" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.Log.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.VisualBasic.Logging.Log.#ctor" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.Log" ref="true" />
+      </containers>
+      <file name="b674d296-e752-84b5-b29c-fa6cf8ee30b8" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Logging.Log.DefaultFileLogWriter">
+      <topicdata group="api" />
+      <apidata name="DefaultFileLogWriter" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DefaultFileLogWriter" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Logging.FileLogTraceListener" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.Log" ref="true" />
+      </containers>
+      <file name="b3b3cf9b-3a42-0699-3e15-ed8eceb3a477" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.Log.InitializeWithDefaultsSinceNoConfigExists">
+      <topicdata group="api" />
+      <apidata name="InitializeWithDefaultsSinceNoConfigExists" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.Log" ref="true" />
+      </containers>
+      <file name="bd455215-168d-0a3e-6445-a1bff0023ab9" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Logging.Log.TraceSource">
+      <topicdata group="api" />
+      <apidata name="TraceSource" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TraceSource" />
+      <returns>
+        <type api="T:System.Diagnostics.TraceSource" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.Log" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Advanced" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="450a527c-9b14-b103-43a5-7f5365da9166" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.Log.WriteEntry(System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteEntry" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Logging.Log.WriteEntry" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.Log" ref="true" />
+      </containers>
+      <file name="846e7f80-4cfd-ae01-615f-9156fe585562" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.Log.WriteEntry(System.String,System.Diagnostics.TraceEventType)">
+      <topicdata group="api" />
+      <apidata name="WriteEntry" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Logging.Log.WriteEntry" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="severity">
+          <type api="T:System.Diagnostics.TraceEventType" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.Log" ref="true" />
+      </containers>
+      <file name="f36e002d-5004-6f07-d07c-b728f8396715" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.Log.WriteEntry(System.String,System.Diagnostics.TraceEventType,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="WriteEntry" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Logging.Log.WriteEntry" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="severity">
+          <type api="T:System.Diagnostics.TraceEventType" ref="false" />
+        </parameter>
+        <parameter name="id">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.Log" ref="true" />
+      </containers>
+      <file name="03db4bc8-4eb2-de4b-17c6-d4794ac3dcfe" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.Log.WriteException(System.Exception)">
+      <topicdata group="api" />
+      <apidata name="WriteException" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Logging.Log.WriteException" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="ex">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.Log" ref="true" />
+      </containers>
+      <file name="964b91f2-02ce-86f0-9974-d3811759dc39" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.Log.WriteException(System.Exception,System.Diagnostics.TraceEventType,System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteException" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Logging.Log.WriteException" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="ex">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+        <parameter name="severity">
+          <type api="T:System.Diagnostics.TraceEventType" ref="false" />
+        </parameter>
+        <parameter name="additionalInfo">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.Log" ref="true" />
+      </containers>
+      <file name="b2605cd2-1655-c088-3bba-b46cc489f638" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Logging.Log.WriteException(System.Exception,System.Diagnostics.TraceEventType,System.String,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="WriteException" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Logging.Log.WriteException" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="ex">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+        <parameter name="severity">
+          <type api="T:System.Diagnostics.TraceEventType" ref="false" />
+        </parameter>
+        <parameter name="additionalInfo">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="id">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.Log" ref="true" />
+      </containers>
+      <file name="c5ae950f-4147-9b93-5fe6-670f40ba9a3d" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Logging.LogFileCreationScheduleOption">
+      <topicdata group="api" />
+      <apidata name="LogFileCreationScheduleOption" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.VisualBasic.Logging.LogFileCreationScheduleOption.None" />
+        <element api="F:Microsoft.VisualBasic.Logging.LogFileCreationScheduleOption.Daily" />
+        <element api="F:Microsoft.VisualBasic.Logging.LogFileCreationScheduleOption.Weekly" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+      </containers>
+      <file name="de34655a-5b02-5db6-be88-26a7185ee186" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Logging.LogFileCreationScheduleOption.Daily">
+      <topicdata group="api" notopic="" />
+      <apidata name="Daily" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Logging.LogFileCreationScheduleOption" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.LogFileCreationScheduleOption" ref="false" />
+      </containers>
+      <file name="8f04eba5-54af-2784-dda1-befde569e044" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Logging.LogFileCreationScheduleOption.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Logging.LogFileCreationScheduleOption" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.LogFileCreationScheduleOption" ref="false" />
+      </containers>
+      <file name="7a47aab8-6aeb-7518-c2f3-4e3984df6e8e" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Logging.LogFileCreationScheduleOption.Weekly">
+      <topicdata group="api" notopic="" />
+      <apidata name="Weekly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Logging.LogFileCreationScheduleOption" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.LogFileCreationScheduleOption" ref="false" />
+      </containers>
+      <file name="4ce62b9a-6135-a351-f5a2-639403f367d0" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Logging.LogFileLocation">
+      <topicdata group="api" />
+      <apidata name="LogFileLocation" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.VisualBasic.Logging.LogFileLocation.TempDirectory" />
+        <element api="F:Microsoft.VisualBasic.Logging.LogFileLocation.LocalUserApplicationDirectory" />
+        <element api="F:Microsoft.VisualBasic.Logging.LogFileLocation.CommonApplicationDirectory" />
+        <element api="F:Microsoft.VisualBasic.Logging.LogFileLocation.ExecutableDirectory" />
+        <element api="F:Microsoft.VisualBasic.Logging.LogFileLocation.Custom" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+      </containers>
+      <file name="2e224f38-ca34-22f3-91e6-73c71b259014" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Logging.LogFileLocation.CommonApplicationDirectory">
+      <topicdata group="api" notopic="" />
+      <apidata name="CommonApplicationDirectory" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Logging.LogFileLocation" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.LogFileLocation" ref="false" />
+      </containers>
+      <file name="99fff482-e9e2-c7d4-5300-b27718e75863" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Logging.LogFileLocation.Custom">
+      <topicdata group="api" notopic="" />
+      <apidata name="Custom" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Logging.LogFileLocation" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.LogFileLocation" ref="false" />
+      </containers>
+      <file name="c4d807f8-9a4a-12ab-f063-99c7d3ab785a" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Logging.LogFileLocation.ExecutableDirectory">
+      <topicdata group="api" notopic="" />
+      <apidata name="ExecutableDirectory" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Logging.LogFileLocation" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.LogFileLocation" ref="false" />
+      </containers>
+      <file name="c21a4ee0-3711-8ba2-41cc-22ead3e0c60e" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Logging.LogFileLocation.LocalUserApplicationDirectory">
+      <topicdata group="api" notopic="" />
+      <apidata name="LocalUserApplicationDirectory" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Logging.LogFileLocation" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.LogFileLocation" ref="false" />
+      </containers>
+      <file name="a7bca292-f5b9-52ef-1c01-e5bbc3739fc2" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Logging.LogFileLocation.TempDirectory">
+      <topicdata group="api" notopic="" />
+      <apidata name="TempDirectory" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Logging.LogFileLocation" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Logging" />
+        <type api="T:Microsoft.VisualBasic.Logging.LogFileLocation" ref="false" />
+      </containers>
+      <file name="8dff82b5-2c3d-50ec-dd88-7eeb3482b86b" />
+    </api>
+  </apis>
+</reflection>

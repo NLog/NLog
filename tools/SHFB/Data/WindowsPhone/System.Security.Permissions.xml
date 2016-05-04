@@ -1,0 +1,1096 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="2.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\silverlightplatformpublickey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30508.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30508.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Security.Permissions">
+      <topicdata group="api" />
+      <apidata name="System.Security.Permissions" group="namespace" />
+      <elements>
+        <element api="T:System.Security.Permissions.SecurityAttribute" />
+        <element api="T:System.Security.Permissions.CodeAccessSecurityAttribute" />
+        <element api="T:System.Security.Permissions.SecurityAction" />
+        <element api="T:System.Security.Permissions.SecurityPermissionAttribute" />
+        <element api="T:System.Security.Permissions.SecurityPermissionFlag" />
+      </elements>
+      <file name="4432d2db-02c3-38db-0884-c695a155187f" />
+    </api>
+    <api id="T:System.Security.Permissions.CodeAccessSecurityAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Permissions.CodeAccessSecurityAttribute" />
+      <apidata name="CodeAccessSecurityAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Security.Permissions.SecurityAttribute" ref="true" />
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Security.Permissions.SecurityPermissionAttribute" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+              <field name="Class" />
+              <field name="Constructor" />
+              <field name="Method" />
+              <field name="Struct" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CodeAccessSecurityAttribute is no longer accessible to application code.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="13bbd521-e0f9-9ff9-16c1-ed7921046774" />
+    </api>
+    <api id="AllMembers.T:System.Security.Permissions.CodeAccessSecurityAttribute">
+      <topicdata name="CodeAccessSecurityAttribute" group="list" subgroup="members" typeTopicId="T:System.Security.Permissions.CodeAccessSecurityAttribute" />
+      <apidata name="CodeAccessSecurityAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Security.Permissions.CodeAccessSecurityAttribute.#ctor(System.Security.Permissions.SecurityAction)" />
+        <element api="P:System.Security.Permissions.SecurityAttribute.Action" />
+        <element api="P:System.Security.Permissions.SecurityAttribute.Unrestricted" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.CodeAccessSecurityAttribute" />
+      </containers>
+      <file name="da85a4be-5409-3101-356e-83f8facdd371" />
+    </api>
+    <api id="Methods.T:System.Security.Permissions.CodeAccessSecurityAttribute">
+      <topicdata name="CodeAccessSecurityAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Security.Permissions.CodeAccessSecurityAttribute" />
+      <apidata name="CodeAccessSecurityAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.CodeAccessSecurityAttribute" />
+      </containers>
+      <file name="f34942d7-63d7-e7b6-50ed-2c9fef1ee456" />
+    </api>
+    <api id="Properties.T:System.Security.Permissions.CodeAccessSecurityAttribute">
+      <topicdata name="CodeAccessSecurityAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Security.Permissions.CodeAccessSecurityAttribute" />
+      <apidata name="CodeAccessSecurityAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Security.Permissions.SecurityAttribute.Action" />
+        <element api="P:System.Security.Permissions.SecurityAttribute.Unrestricted" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.CodeAccessSecurityAttribute" />
+      </containers>
+      <file name="0e273271-6479-6a2e-e522-d9bca0179fe2" />
+    </api>
+    <api id="M:System.Security.Permissions.CodeAccessSecurityAttribute.#ctor(System.Security.Permissions.SecurityAction)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="action">
+          <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.CodeAccessSecurityAttribute" ref="true" />
+      </containers>
+      <file name="1b740b7a-e0e9-5e8d-c1d3-84c3827e6c25" />
+    </api>
+    <api id="T:System.Security.Permissions.SecurityAction">
+      <topicdata group="api" />
+      <apidata name="SecurityAction" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Security.Permissions.SecurityAction.LinkDemand" />
+        <element api="F:System.Security.Permissions.SecurityAction.RequestMinimum" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SecurityAction is no longer accessible to application code.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e5d5104c-2357-2280-2983-d5f9ad3b7390" />
+    </api>
+    <api id="F:System.Security.Permissions.SecurityAction.LinkDemand">
+      <topicdata group="api" notopic="" />
+      <apidata name="LinkDemand" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+      </containers>
+      <file name="81346e68-2408-65f8-a3f4-0f7f2a90a2da" />
+    </api>
+    <api id="F:System.Security.Permissions.SecurityAction.RequestMinimum">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestMinimum" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Assembly level declarative security is obsolete and is no longer enforced by the CLR by default. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="315d4ae8-10e4-cad3-2c87-5bef2114a221" />
+    </api>
+    <api id="T:System.Security.Permissions.SecurityAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Permissions.SecurityAttribute" />
+      <apidata name="SecurityAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Security.Permissions.CodeAccessSecurityAttribute" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SecurityAttribute is no longer accessible to application code.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+              <field name="Class" />
+              <field name="Constructor" />
+              <field name="Method" />
+              <field name="Struct" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="fa3ab21a-2c9c-3176-a1ba-80c30ac1b9fc" />
+    </api>
+    <api id="AllMembers.T:System.Security.Permissions.SecurityAttribute">
+      <topicdata name="SecurityAttribute" group="list" subgroup="members" typeTopicId="T:System.Security.Permissions.SecurityAttribute" />
+      <apidata name="SecurityAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Security.Permissions.SecurityAttribute.#ctor(System.Security.Permissions.SecurityAction)" />
+        <element api="P:System.Security.Permissions.SecurityAttribute.Action" />
+        <element api="P:System.Security.Permissions.SecurityAttribute.Unrestricted" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityAttribute" />
+      </containers>
+      <file name="a261e617-1c25-f156-5d8a-b77c520aaa63" />
+    </api>
+    <api id="Methods.T:System.Security.Permissions.SecurityAttribute">
+      <topicdata name="SecurityAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Security.Permissions.SecurityAttribute" />
+      <apidata name="SecurityAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityAttribute" />
+      </containers>
+      <file name="4b6921eb-f5a8-13b1-68b2-a1ac35ef8781" />
+    </api>
+    <api id="Properties.T:System.Security.Permissions.SecurityAttribute">
+      <topicdata name="SecurityAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Security.Permissions.SecurityAttribute" />
+      <apidata name="SecurityAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Security.Permissions.SecurityAttribute.Action" />
+        <element api="P:System.Security.Permissions.SecurityAttribute.Unrestricted" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityAttribute" />
+      </containers>
+      <file name="cbc35a11-553a-6766-1cc3-30e1177ce701" />
+    </api>
+    <api id="M:System.Security.Permissions.SecurityAttribute.#ctor(System.Security.Permissions.SecurityAction)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="action">
+          <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityAttribute" ref="true" />
+      </containers>
+      <file name="5fabffc6-9748-0d95-272c-d30f8c74c94d" />
+    </api>
+    <api id="P:System.Security.Permissions.SecurityAttribute.Action">
+      <topicdata group="api" />
+      <apidata name="Action" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Action" />
+      <setter name="set_Action" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityAttribute" ref="true" />
+      </containers>
+      <file name="fd0f4088-fc93-7c1e-c841-6622ccfead5d" />
+    </api>
+    <api id="P:System.Security.Permissions.SecurityAttribute.Unrestricted">
+      <topicdata group="api" />
+      <apidata name="Unrestricted" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Unrestricted" />
+      <setter name="set_Unrestricted" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityAttribute" ref="true" />
+      </containers>
+      <file name="ae3dcf66-463f-138d-7bb1-d88d99323b1d" />
+    </api>
+    <api id="T:System.Security.Permissions.SecurityPermissionAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Permissions.SecurityPermissionAttribute" />
+      <apidata name="SecurityPermissionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Security.Permissions.CodeAccessSecurityAttribute" ref="true" />
+          <type api="T:System.Security.Permissions.SecurityAttribute" ref="true" />
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+              <field name="Class" />
+              <field name="Constructor" />
+              <field name="Method" />
+              <field name="Struct" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SecurityPermissionAttribute is no longer accessible to application code.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="49709153-fb4c-0755-3592-5e6fbe79ffc9" />
+    </api>
+    <api id="AllMembers.T:System.Security.Permissions.SecurityPermissionAttribute">
+      <topicdata name="SecurityPermissionAttribute" group="list" subgroup="members" typeTopicId="T:System.Security.Permissions.SecurityPermissionAttribute" />
+      <apidata name="SecurityPermissionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Security.Permissions.SecurityAttribute.Action" />
+        <element api="P:System.Security.Permissions.SecurityAttribute.Unrestricted" />
+        <element api="M:System.Security.Permissions.SecurityPermissionAttribute.#ctor(System.Security.Permissions.SecurityAction)" />
+        <element api="P:System.Security.Permissions.SecurityPermissionAttribute.ControlAppDomain" />
+        <element api="P:System.Security.Permissions.SecurityPermissionAttribute.ControlEvidence" />
+        <element api="P:System.Security.Permissions.SecurityPermissionAttribute.ControlPolicy" />
+        <element api="P:System.Security.Permissions.SecurityPermissionAttribute.ControlThread" />
+        <element api="P:System.Security.Permissions.SecurityPermissionAttribute.Flags" />
+        <element api="P:System.Security.Permissions.SecurityPermissionAttribute.SkipVerification" />
+        <element api="P:System.Security.Permissions.SecurityPermissionAttribute.UnmanagedCode" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionAttribute" />
+      </containers>
+      <file name="8e73e178-315a-44a5-6f33-2c4f642cc64b" />
+    </api>
+    <api id="Methods.T:System.Security.Permissions.SecurityPermissionAttribute">
+      <topicdata name="SecurityPermissionAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Security.Permissions.SecurityPermissionAttribute" />
+      <apidata name="SecurityPermissionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionAttribute" />
+      </containers>
+      <file name="79ed8da7-e2d8-3200-6550-abe2d0692c10" />
+    </api>
+    <api id="Properties.T:System.Security.Permissions.SecurityPermissionAttribute">
+      <topicdata name="SecurityPermissionAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Security.Permissions.SecurityPermissionAttribute" />
+      <apidata name="SecurityPermissionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Security.Permissions.SecurityAttribute.Action" />
+        <element api="P:System.Security.Permissions.SecurityAttribute.Unrestricted" />
+        <element api="P:System.Security.Permissions.SecurityPermissionAttribute.ControlAppDomain" />
+        <element api="P:System.Security.Permissions.SecurityPermissionAttribute.ControlEvidence" />
+        <element api="P:System.Security.Permissions.SecurityPermissionAttribute.ControlPolicy" />
+        <element api="P:System.Security.Permissions.SecurityPermissionAttribute.ControlThread" />
+        <element api="P:System.Security.Permissions.SecurityPermissionAttribute.Flags" />
+        <element api="P:System.Security.Permissions.SecurityPermissionAttribute.SkipVerification" />
+        <element api="P:System.Security.Permissions.SecurityPermissionAttribute.UnmanagedCode" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionAttribute" />
+      </containers>
+      <file name="40e1985e-1baa-447f-c9a9-7a2c7471e19b" />
+    </api>
+    <api id="M:System.Security.Permissions.SecurityPermissionAttribute.#ctor(System.Security.Permissions.SecurityAction)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="action">
+          <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionAttribute" ref="true" />
+      </containers>
+      <file name="a8d2419b-2a30-6c47-42cc-28fb5d7187e5" />
+    </api>
+    <api id="P:System.Security.Permissions.SecurityPermissionAttribute.ControlAppDomain">
+      <topicdata group="api" />
+      <apidata name="ControlAppDomain" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ControlAppDomain" />
+      <setter name="set_ControlAppDomain" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionAttribute" ref="true" />
+      </containers>
+      <file name="71d1d7a2-e678-9bf0-4dfc-155ffafbadb7" />
+    </api>
+    <api id="P:System.Security.Permissions.SecurityPermissionAttribute.ControlEvidence">
+      <topicdata group="api" />
+      <apidata name="ControlEvidence" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ControlEvidence" />
+      <setter name="set_ControlEvidence" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionAttribute" ref="true" />
+      </containers>
+      <file name="fd27a804-17dd-1265-2832-91172451691b" />
+    </api>
+    <api id="P:System.Security.Permissions.SecurityPermissionAttribute.ControlPolicy">
+      <topicdata group="api" />
+      <apidata name="ControlPolicy" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ControlPolicy" />
+      <setter name="set_ControlPolicy" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionAttribute" ref="true" />
+      </containers>
+      <file name="5051a990-3f75-abc3-4571-6f70ada7a9b5" />
+    </api>
+    <api id="P:System.Security.Permissions.SecurityPermissionAttribute.ControlThread">
+      <topicdata group="api" />
+      <apidata name="ControlThread" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ControlThread" />
+      <setter name="set_ControlThread" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionAttribute" ref="true" />
+      </containers>
+      <file name="7f5f198e-2208-3bc3-026e-129970007b25" />
+    </api>
+    <api id="P:System.Security.Permissions.SecurityPermissionAttribute.Flags">
+      <topicdata group="api" />
+      <apidata name="Flags" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Flags" />
+      <setter name="set_Flags" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionAttribute" ref="true" />
+      </containers>
+      <file name="29ac9faf-198a-e550-ec28-66b993bf0f79" />
+    </api>
+    <api id="P:System.Security.Permissions.SecurityPermissionAttribute.SkipVerification">
+      <topicdata group="api" />
+      <apidata name="SkipVerification" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SkipVerification" />
+      <setter name="set_SkipVerification" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionAttribute" ref="true" />
+      </containers>
+      <file name="8bba0115-dab1-a38a-7417-862dae4e828a" />
+    </api>
+    <api id="P:System.Security.Permissions.SecurityPermissionAttribute.UnmanagedCode">
+      <topicdata group="api" />
+      <apidata name="UnmanagedCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UnmanagedCode" />
+      <setter name="set_UnmanagedCode" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionAttribute" ref="true" />
+      </containers>
+      <file name="d6b34a2a-2470-a61f-1a25-a840b7b73423" />
+    </api>
+    <api id="T:System.Security.Permissions.SecurityPermissionFlag">
+      <topicdata group="api" />
+      <apidata name="SecurityPermissionFlag" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Security.Permissions.SecurityPermissionFlag.AllFlags" />
+        <element api="F:System.Security.Permissions.SecurityPermissionFlag.Assertion" />
+        <element api="F:System.Security.Permissions.SecurityPermissionFlag.BindingRedirects" />
+        <element api="F:System.Security.Permissions.SecurityPermissionFlag.ControlAppDomain" />
+        <element api="F:System.Security.Permissions.SecurityPermissionFlag.ControlDomainPolicy" />
+        <element api="F:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence" />
+        <element api="F:System.Security.Permissions.SecurityPermissionFlag.ControlPolicy" />
+        <element api="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" />
+        <element api="F:System.Security.Permissions.SecurityPermissionFlag.ControlThread" />
+        <element api="F:System.Security.Permissions.SecurityPermissionFlag.Execution" />
+        <element api="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" />
+        <element api="F:System.Security.Permissions.SecurityPermissionFlag.NoFlags" />
+        <element api="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" />
+        <element api="F:System.Security.Permissions.SecurityPermissionFlag.SerializationFormatter" />
+        <element api="F:System.Security.Permissions.SecurityPermissionFlag.SkipVerification" />
+        <element api="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SecurityPermissionFlag is no longer accessible to application code.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d820bd3e-f1dd-2830-e183-bfa0737580ee" />
+    </api>
+    <api id="F:System.Security.Permissions.SecurityPermissionFlag.AllFlags">
+      <topicdata group="api" notopic="" />
+      <apidata name="AllFlags" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </returns>
+      <value>16383</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </containers>
+      <file name="a9a8c16f-6585-0e78-be44-b3be87f15e9d" />
+    </api>
+    <api id="F:System.Security.Permissions.SecurityPermissionFlag.Assertion">
+      <topicdata group="api" notopic="" />
+      <apidata name="Assertion" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </containers>
+      <file name="a02d7b1b-7438-d902-896b-26cfedfbdb22" />
+    </api>
+    <api id="F:System.Security.Permissions.SecurityPermissionFlag.BindingRedirects">
+      <topicdata group="api" notopic="" />
+      <apidata name="BindingRedirects" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </returns>
+      <value>8192</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </containers>
+      <file name="dd1cb3eb-1fc2-168d-3318-72f47108486e" />
+    </api>
+    <api id="F:System.Security.Permissions.SecurityPermissionFlag.ControlAppDomain">
+      <topicdata group="api" notopic="" />
+      <apidata name="ControlAppDomain" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </returns>
+      <value>1024</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </containers>
+      <file name="3ae12052-781f-254f-a3c1-41f9cd58471d" />
+    </api>
+    <api id="F:System.Security.Permissions.SecurityPermissionFlag.ControlDomainPolicy">
+      <topicdata group="api" notopic="" />
+      <apidata name="ControlDomainPolicy" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </returns>
+      <value>256</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </containers>
+      <file name="96063390-e1fd-96d5-6bb7-48c6aaa88476" />
+    </api>
+    <api id="F:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence">
+      <topicdata group="api" notopic="" />
+      <apidata name="ControlEvidence" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </containers>
+      <file name="2f98b197-ff3d-b762-f48e-bab59d994e2f" />
+    </api>
+    <api id="F:System.Security.Permissions.SecurityPermissionFlag.ControlPolicy">
+      <topicdata group="api" notopic="" />
+      <apidata name="ControlPolicy" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </returns>
+      <value>64</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </containers>
+      <file name="bf6b4013-15a1-2aed-4735-1b1d564536e8" />
+    </api>
+    <api id="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal">
+      <topicdata group="api" notopic="" />
+      <apidata name="ControlPrincipal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </returns>
+      <value>512</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </containers>
+      <file name="54fba6ef-af28-887d-aec7-0c12e7571d28" />
+    </api>
+    <api id="F:System.Security.Permissions.SecurityPermissionFlag.ControlThread">
+      <topicdata group="api" notopic="" />
+      <apidata name="ControlThread" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </containers>
+      <file name="c108d671-8f55-8e21-24e1-c106e7672448" />
+    </api>
+    <api id="F:System.Security.Permissions.SecurityPermissionFlag.Execution">
+      <topicdata group="api" notopic="" />
+      <apidata name="Execution" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </containers>
+      <file name="d7d20441-bc1e-10ae-21f2-4a476e7818e4" />
+    </api>
+    <api id="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure">
+      <topicdata group="api" notopic="" />
+      <apidata name="Infrastructure" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </returns>
+      <value>4096</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </containers>
+      <file name="b8500c94-7589-ae57-2696-c93972474960" />
+    </api>
+    <api id="F:System.Security.Permissions.SecurityPermissionFlag.NoFlags">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoFlags" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </containers>
+      <file name="f729c32b-0f4c-0d68-feb4-88b74e688f31" />
+    </api>
+    <api id="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration">
+      <topicdata group="api" notopic="" />
+      <apidata name="RemotingConfiguration" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </returns>
+      <value>2048</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </containers>
+      <file name="05e5b51c-b001-e06f-72d6-f91306dc7c19" />
+    </api>
+    <api id="F:System.Security.Permissions.SecurityPermissionFlag.SerializationFormatter">
+      <topicdata group="api" notopic="" />
+      <apidata name="SerializationFormatter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </returns>
+      <value>128</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </containers>
+      <file name="c249af44-006e-2fd1-10ce-86d395164ccc" />
+    </api>
+    <api id="F:System.Security.Permissions.SecurityPermissionFlag.SkipVerification">
+      <topicdata group="api" notopic="" />
+      <apidata name="SkipVerification" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </containers>
+      <file name="ad2fbf89-005a-03c0-4ff0-8a69d712d104" />
+    </api>
+    <api id="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnmanagedCode" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Security.Permissions" />
+        <type api="T:System.Security.Permissions.SecurityPermissionFlag" ref="false" />
+      </containers>
+      <file name="40fce590-8498-eccb-949c-0b62fbad8459" />
+    </api>
+  </apis>
+</reflection>

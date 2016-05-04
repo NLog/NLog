@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ReflectionDataSet Platform="Silverlight" Version="4.0" Title="Silverlight 4">
+  <AssemblyLocations>
+    <Location Path="%ProgramFiles(x86)%\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0">
+      <AssemblyDetails Filename="Microsoft.VisualBasic.dll" Name="Microsoft.VisualBasic" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="mscorlib.dll" Name="mscorlib" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="system.dll" Name="System" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Core.dll" Name="System.Core" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Net.dll" Name="System.Net" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Runtime.Serialization.dll" Name="System.Runtime.Serialization" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.ServiceModel.dll" Name="System.ServiceModel" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ServiceModel.Web.dll" Name="System.ServiceModel.Web" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Windows.dll" Name="System.Windows" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Windows.Browser.dll" Name="System.Windows.Browser" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Xml.dll" Name="System.Xml" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+    </Location>
+    <Location Path="%ProgramFiles(x86)%\Microsoft F#\Silverlight\Libraries\Client\v3.0">
+      <AssemblyDetails Filename="FSharp.Core.dll" Name="FSharp.Core" Version="2.0.0.0" PublicKeyToken="31bf3856ad364e35" />
+    </Location>
+    <Location Path="%ProgramFiles(x86)%\Microsoft SDKs\Silverlight\v4.0\Libraries\Client">
+      <AssemblyDetails Filename="Microsoft.CSharp.dll" Name="Microsoft.CSharp" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ComponentModel.Composition.dll" Name="System.ComponentModel.Composition" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ComponentModel.Composition.Initialization.dll" Name="System.ComponentModel.Composition.Initialization" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ComponentModel.DataAnnotations.dll" Name="System.ComponentModel.DataAnnotations" Version="2.0.5.0" PublicKeyToken="ddd0da4d3e678217" />
+      <AssemblyDetails Filename="System.Data.Services.Client.dll" Name="System.Data.Services.Client" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Json.dll" Name="System.Json" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Numerics.dll" Name="System.Numerics" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Runtime.Serialization.Json.dll" Name="System.Runtime.Serialization.Json" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ServiceModel.Extensions.dll" Name="System.ServiceModel.Extensions" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ServiceModel.NetTcp.dll" Name="System.ServiceModel.NetTcp" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ServiceModel.PollingDuplex.dll" Name="System.ServiceModel.PollingDuplex" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ServiceModel.Syndication.dll" Name="System.ServiceModel.Syndication" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ServiceModel.Web.Extensions.dll" Name="System.ServiceModel.Web.Extensions" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.dll" Name="System.Windows.Controls" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Data.dll" Name="System.Windows.Controls.Data" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Data.Input.dll" Name="System.Windows.Controls.Data.Input" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Input.dll" Name="System.Windows.Controls.Input" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Navigation.dll" Name="System.Windows.Controls.Navigation" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Data.dll" Name="System.Windows.Data" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Xml.Linq.dll" Name="System.Xml.Linq" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Xml.Serialization.dll" Name="System.Xml.Serialization" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Xml.Utils.dll" Name="System.Xml.Utils" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Xml.XPath.dll" Name="System.Xml.XPath" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+    </Location>
+    <Location Path="%ProgramFiles(x86)%\Microsoft SDKs\Silverlight\v4.0\Libraries\Server">
+      <AssemblyDetails Filename="System.ServiceModel.PollingDuplex.dll" Name="System.ServiceModel.PollingDuplex" Version="4.0.0.0" PublicKeyToken="31bf3856ad364e35" />
+    </Location>
+    <Location Path="%ProgramFiles(x86)%\Microsoft SDKs\Silverlight\v4.0\Toolkit\Apr10\Bin">
+      <AssemblyDetails Filename="System.Windows.Controls.Data.DataForm.Toolkit.dll" Name="System.Windows.Controls.Data.DataForm.Toolkit" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Data.Toolkit.dll" Name="System.Windows.Controls.Data.Toolkit" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.DataVisualization.Toolkit.dll" Name="System.Windows.Controls.DataVisualization.Toolkit" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Input.Toolkit.dll" Name="System.Windows.Controls.Input.Toolkit" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Layout.Toolkit.dll" Name="System.Windows.Controls.Layout.Toolkit" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Theming.Toolkit.dll" Name="System.Windows.Controls.Theming.Toolkit" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Toolkit.dll" Name="System.Windows.Controls.Toolkit" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Toolkit.Internals.dll" Name="System.Windows.Controls.Toolkit.Internals" Version="4.0.5.0" PublicKeyToken="2c5c654d367bf4a7" />
+    </Location>
+    <Location Path="%ProgramFiles(x86)%\Microsoft SDKs\Silverlight\v4.0\Toolkit\Apr10\Bin\Design">
+      <AssemblyDetails Filename="System.Windows.Controls.Data.DataForm.Toolkit.Design.dll" Name="System.Windows.Controls.Data.DataForm.Toolkit.Design" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Data.DataForm.Toolkit.Expression.Design.dll" Name="System.Windows.Controls.Data.DataForm.Toolkit.Expression.Design" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Data.DataForm.Toolkit.VisualStudio.Design.dll" Name="System.Windows.Controls.Data.DataForm.Toolkit.VisualStudio.Design" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.DataVisualization.Toolkit.Design.dll" Name="System.Windows.Controls.DataVisualization.Toolkit.Design" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.DataVisualization.Toolkit.Expression.Design.dll" Name="System.Windows.Controls.DataVisualization.Toolkit.Expression.Design" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.DataVisualization.Toolkit.VisualStudio.Design.dll" Name="System.Windows.Controls.DataVisualization.Toolkit.VisualStudio.Design" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Input.Toolkit.Design.dll" Name="System.Windows.Controls.Input.Toolkit.Design" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Input.Toolkit.Expression.Design.dll" Name="System.Windows.Controls.Input.Toolkit.Expression.Design" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Input.Toolkit.VisualStudio.Design.dll" Name="System.Windows.Controls.Input.Toolkit.VisualStudio.Design" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Layout.Toolkit.Design.dll" Name="System.Windows.Controls.Layout.Toolkit.Design" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Layout.Toolkit.Expression.Design.dll" Name="System.Windows.Controls.Layout.Toolkit.Expression.Design" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Layout.Toolkit.VisualStudio.Design.dll" Name="System.Windows.Controls.Layout.Toolkit.VisualStudio.Design" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Theming.Toolkit.Design.dll" Name="System.Windows.Controls.Theming.Toolkit.Design" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Theming.Toolkit.Expression.Design.dll" Name="System.Windows.Controls.Theming.Toolkit.Expression.Design" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Theming.Toolkit.VisualStudio.Design.dll" Name="System.Windows.Controls.Theming.Toolkit.VisualStudio.Design" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Toolkit.Design.dll" Name="System.Windows.Controls.Toolkit.Design" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Toolkit.Expression.Design.dll" Name="System.Windows.Controls.Toolkit.Expression.Design" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Toolkit.VisualStudio.Design.dll" Name="System.Windows.Controls.Toolkit.VisualStudio.Design" Version="4.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+    </Location>
+    <Location Path="%ProgramFiles(x86)%\Microsoft SDKs\RIA Services\v1.0\Libraries\Server">
+      <AssemblyDetails Filename="Microsoft.ServiceModel.DomainServices.Tools.dll" Name="Microsoft.ServiceModel.DomainServices.Tools" Version="4.0.0.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ServiceModel.DomainServices.EntityFramework.dll" Name="System.ServiceModel.DomainServices.EntityFramework" Version="4.0.0.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ServiceModel.DomainServices.Hosting.dll" Name="System.ServiceModel.DomainServices.Hosting" Version="4.0.0.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ServiceModel.DomainServices.Hosting.OData.dll" Name="System.ServiceModel.DomainServices.Hosting.OData" Version="4.0.0.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ServiceModel.DomainServices.Server.dll" Name="System.ServiceModel.DomainServices.Server" Version="4.0.0.0" PublicKeyToken="31bf3856ad364e35" />
+    </Location>
+    <Location Path="%ProgramFiles(x86)%\Microsoft SDKs\RIA Services\v1.0\Libraries\Silverlight">
+      <AssemblyDetails Filename="System.ServiceModel.DomainServices.Client.dll" Name="System.ServiceModel.DomainServices.Client" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ServiceModel.DomainServices.Client.Web.dll" Name="System.ServiceModel.DomainServices.Client.Web" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.DomainServices.dll" Name="System.Windows.Controls.DomainServices" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+    </Location>
+  </AssemblyLocations>
+</ReflectionDataSet>

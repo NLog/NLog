@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.System.Power.Diagnostics">
+      <topicdata group="api" />
+      <apidata name="Windows.System.Power.Diagnostics" group="namespace" />
+      <elements>
+        <element api="T:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics" />
+        <element api="T:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics" />
+      </elements>
+      <file name="e384caa2-6216-9528-03f7-8df6b37771aa" />
+    </api>
+    <api id="T:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics" />
+      <apidata name="BackgroundEnergyDiagnostics" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="43cf8ca5-b82a-533f-164b-0bc55634b299" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics">
+      <topicdata name="BackgroundEnergyDiagnostics" group="list" subgroup="members" typeTopicId="T:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics" />
+      <apidata name="BackgroundEnergyDiagnostics" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics.ComputeTotalEnergyUsage" />
+        <element api="P:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics.DeviceSpecificConversionFactor" />
+        <element api="M:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics.ResetTotalEnergyUsage" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power.Diagnostics" />
+        <type api="T:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics" />
+      </containers>
+      <file name="4da81d5a-4897-565b-7e53-bfa5f8a27865" />
+    </api>
+    <api id="Methods.T:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics">
+      <topicdata name="BackgroundEnergyDiagnostics" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics" />
+      <apidata name="BackgroundEnergyDiagnostics" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics.ComputeTotalEnergyUsage" />
+        <element api="M:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics.ResetTotalEnergyUsage" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power.Diagnostics" />
+        <type api="T:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics" />
+      </containers>
+      <file name="54c5b5d5-ad01-1df6-4bfe-6d91332dd2af" />
+    </api>
+    <api id="Properties.T:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics">
+      <topicdata name="BackgroundEnergyDiagnostics" group="list" subgroup="Properties" typeTopicId="T:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics" />
+      <apidata name="BackgroundEnergyDiagnostics" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics.DeviceSpecificConversionFactor" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power.Diagnostics" />
+        <type api="T:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics" />
+      </containers>
+      <file name="82f16910-4ee1-3471-ee56-3d7eafd34170" />
+    </api>
+    <api id="M:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics.ComputeTotalEnergyUsage">
+      <topicdata group="api" />
+      <apidata name="ComputeTotalEnergyUsage" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power.Diagnostics" />
+        <type api="T:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics" ref="true" />
+      </containers>
+      <file name="6ec16625-69cf-372d-c781-22a87b96b5f5" />
+    </api>
+    <api id="P:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics.DeviceSpecificConversionFactor">
+      <topicdata group="api" />
+      <apidata name="DeviceSpecificConversionFactor" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DeviceSpecificConversionFactor" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power.Diagnostics" />
+        <type api="T:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics" ref="true" />
+      </containers>
+      <file name="4e5ccd61-e541-c15d-83e9-91474c5b9347" />
+    </api>
+    <api id="M:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics.ResetTotalEnergyUsage">
+      <topicdata group="api" />
+      <apidata name="ResetTotalEnergyUsage" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power.Diagnostics" />
+        <type api="T:Windows.System.Power.Diagnostics.BackgroundEnergyDiagnostics" ref="true" />
+      </containers>
+      <file name="9d21cb53-e13e-e1cd-9a4f-3cfd5f81329b" />
+    </api>
+    <api id="T:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics" />
+      <apidata name="ForegroundEnergyDiagnostics" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="54d034e1-1702-954a-77a7-72b46a783155" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics">
+      <topicdata name="ForegroundEnergyDiagnostics" group="list" subgroup="members" typeTopicId="T:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics" />
+      <apidata name="ForegroundEnergyDiagnostics" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics.ComputeTotalEnergyUsage" />
+        <element api="P:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics.DeviceSpecificConversionFactor" />
+        <element api="M:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics.ResetTotalEnergyUsage" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power.Diagnostics" />
+        <type api="T:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics" />
+      </containers>
+      <file name="95bc83f9-c10e-2ff0-6a8a-ff1652353175" />
+    </api>
+    <api id="Methods.T:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics">
+      <topicdata name="ForegroundEnergyDiagnostics" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics" />
+      <apidata name="ForegroundEnergyDiagnostics" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics.ComputeTotalEnergyUsage" />
+        <element api="M:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics.ResetTotalEnergyUsage" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power.Diagnostics" />
+        <type api="T:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics" />
+      </containers>
+      <file name="d791bc99-a598-2afd-5082-97b879a073a8" />
+    </api>
+    <api id="Properties.T:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics">
+      <topicdata name="ForegroundEnergyDiagnostics" group="list" subgroup="Properties" typeTopicId="T:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics" />
+      <apidata name="ForegroundEnergyDiagnostics" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics.DeviceSpecificConversionFactor" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power.Diagnostics" />
+        <type api="T:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics" />
+      </containers>
+      <file name="35adf8c6-21c9-2f15-6591-b1b0e3d267a6" />
+    </api>
+    <api id="M:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics.ComputeTotalEnergyUsage">
+      <topicdata group="api" />
+      <apidata name="ComputeTotalEnergyUsage" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power.Diagnostics" />
+        <type api="T:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics" ref="true" />
+      </containers>
+      <file name="f486d439-5124-7b7f-ceab-e146a3424344" />
+    </api>
+    <api id="P:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics.DeviceSpecificConversionFactor">
+      <topicdata group="api" />
+      <apidata name="DeviceSpecificConversionFactor" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DeviceSpecificConversionFactor" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power.Diagnostics" />
+        <type api="T:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics" ref="true" />
+      </containers>
+      <file name="f5fb8f76-d9e5-31e4-3fb3-6607abb355df" />
+    </api>
+    <api id="M:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics.ResetTotalEnergyUsage">
+      <topicdata group="api" />
+      <apidata name="ResetTotalEnergyUsage" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power.Diagnostics" />
+        <type api="T:Windows.System.Power.Diagnostics.ForegroundEnergyDiagnostics" ref="true" />
+      </containers>
+      <file name="7f22ac8d-77cb-262e-f729-a75843a56a0d" />
+    </api>
+  </apis>
+</reflection>

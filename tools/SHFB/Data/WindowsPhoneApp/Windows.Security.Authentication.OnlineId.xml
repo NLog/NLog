@@ -1,0 +1,1608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Security.Authentication.OnlineId">
+      <topicdata group="api" />
+      <apidata name="Windows.Security.Authentication.OnlineId" group="namespace" />
+      <elements>
+        <element api="T:Windows.Security.Authentication.OnlineId.CredentialPromptType" />
+        <element api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest" />
+        <element api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket" />
+        <element api="T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation" />
+        <element api="T:Windows.Security.Authentication.OnlineId.SignOutUserOperation" />
+        <element api="T:Windows.Security.Authentication.OnlineId.UserIdentity" />
+        <element api="T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator" />
+      </elements>
+      <file name="bb894eb3-92fa-5161-2c41-6f4ac3efc4bd" />
+    </api>
+    <api id="T:Windows.Security.Authentication.OnlineId.CredentialPromptType">
+      <topicdata group="api" />
+      <apidata name="CredentialPromptType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Security.Authentication.OnlineId.CredentialPromptType.PromptIfNeeded" />
+        <element api="F:Windows.Security.Authentication.OnlineId.CredentialPromptType.RetypeCredentials" />
+        <element api="F:Windows.Security.Authentication.OnlineId.CredentialPromptType.DoNotPrompt" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ae420baa-b123-0e53-f01b-1796e13db1b7" />
+    </api>
+    <api id="F:Windows.Security.Authentication.OnlineId.CredentialPromptType.DoNotPrompt">
+      <topicdata group="api" notopic="" />
+      <apidata name="DoNotPrompt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.OnlineId.CredentialPromptType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.CredentialPromptType" ref="false" />
+      </containers>
+      <file name="02b34f56-0457-02b1-d12f-a18a4a784f1c" />
+    </api>
+    <api id="F:Windows.Security.Authentication.OnlineId.CredentialPromptType.PromptIfNeeded">
+      <topicdata group="api" notopic="" />
+      <apidata name="PromptIfNeeded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.OnlineId.CredentialPromptType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.CredentialPromptType" ref="false" />
+      </containers>
+      <file name="8f8abb14-7734-2e30-2d09-3cab8f3be12f" />
+    </api>
+    <api id="F:Windows.Security.Authentication.OnlineId.CredentialPromptType.RetypeCredentials">
+      <topicdata group="api" notopic="" />
+      <apidata name="RetypeCredentials" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.OnlineId.CredentialPromptType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.CredentialPromptType" ref="false" />
+      </containers>
+      <file name="53fa58b3-51af-7889-86cd-e19d4daa3de6" />
+    </api>
+    <api id="T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator" />
+      <apidata name="OnlineIdAuthenticator" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Security.Authentication.OnlineId.IOnlineIdAuthenticator" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a19290bb-8448-56ed-7949-f973d0dc59cf" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator">
+      <topicdata name="OnlineIdAuthenticator" group="list" subgroup="members" typeTopicId="T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator" />
+      <apidata name="OnlineIdAuthenticator" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.#ctor" />
+        <element api="P:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.ApplicationId" />
+        <element api="P:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.AuthenticatedSafeCustomerId" />
+        <element api="Overload:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.AuthenticateUserAsync">
+          <element api="M:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.AuthenticateUserAsync(Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest)" />
+          <element api="M:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.AuthenticateUserAsync(Windows.Foundation.Collections.IIterable{Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest},Windows.Security.Authentication.OnlineId.CredentialPromptType)" />
+        </element>
+        <element api="P:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.CanSignOut" />
+        <element api="M:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.SignOutUserAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator" />
+      </containers>
+      <file name="3d0514fd-1383-9a28-5af0-317f844dd607" />
+    </api>
+    <api id="Methods.T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator">
+      <topicdata name="OnlineIdAuthenticator" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator" />
+      <apidata name="OnlineIdAuthenticator" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.AuthenticateUserAsync">
+          <element api="M:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.AuthenticateUserAsync(Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest)" />
+          <element api="M:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.AuthenticateUserAsync(Windows.Foundation.Collections.IIterable{Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest},Windows.Security.Authentication.OnlineId.CredentialPromptType)" />
+        </element>
+        <element api="M:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.SignOutUserAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator" />
+      </containers>
+      <file name="4d1e3252-4bab-1f85-7d2a-3b11316e355d" />
+    </api>
+    <api id="Properties.T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator">
+      <topicdata name="OnlineIdAuthenticator" group="list" subgroup="Properties" typeTopicId="T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator" />
+      <apidata name="OnlineIdAuthenticator" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.#ctor" />
+      <elements>
+        <element api="P:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.ApplicationId" />
+        <element api="P:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.AuthenticatedSafeCustomerId" />
+        <element api="P:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.CanSignOut" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator" />
+      </containers>
+      <file name="27d9a6a3-4b23-bb1b-0599-0e7af72f8bc8" />
+    </api>
+    <api id="Overload:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.AuthenticateUserAsync">
+      <topicdata name="AuthenticateUserAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator" />
+      <apidata name="AuthenticateUserAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.AuthenticateUserAsync(Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest)" />
+        <element api="M:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.AuthenticateUserAsync(Windows.Foundation.Collections.IIterable{Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest},Windows.Security.Authentication.OnlineId.CredentialPromptType)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator" ref="true" />
+      </containers>
+      <file name="716fbacc-e8c0-6e70-e16f-ce10e6752f42" />
+    </api>
+    <api id="M:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator" ref="true" />
+      </containers>
+      <file name="324dcc62-abb8-3ed5-d920-859ba96c5228" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.ApplicationId">
+      <topicdata group="api" />
+      <apidata name="ApplicationId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ApplicationId" />
+      <setter name="set_ApplicationId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator" ref="true" />
+      </containers>
+      <file name="2d3e33fc-a294-5bde-f76c-fdd88292473e" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.AuthenticatedSafeCustomerId">
+      <topicdata group="api" />
+      <apidata name="AuthenticatedSafeCustomerId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AuthenticatedSafeCustomerId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator" ref="true" />
+      </containers>
+      <file name="93a07e37-6061-f144-15d1-ba258e78cf88" />
+    </api>
+    <api id="M:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.AuthenticateUserAsync(Windows.Foundation.Collections.IIterable{Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest},Windows.Security.Authentication.OnlineId.CredentialPromptType)">
+      <topicdata group="api" />
+      <apidata name="AuthenticateUserAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.AuthenticateUserAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="requests" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="credentialPromptType" in="true">
+          <type api="T:Windows.Security.Authentication.OnlineId.CredentialPromptType" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AuthenticateUserAsyncAdvanced</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="946299ea-a576-3545-b320-1d7875f0a48f" />
+    </api>
+    <api id="M:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.AuthenticateUserAsync(Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest)">
+      <topicdata group="api" />
+      <apidata name="AuthenticateUserAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.AuthenticateUserAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="request" in="true">
+          <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AuthenticateUserAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8defc93b-e1af-9a6f-9ea9-4cbf75091af5" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.CanSignOut">
+      <topicdata group="api" />
+      <apidata name="CanSignOut" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CanSignOut" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator" ref="true" />
+      </containers>
+      <file name="237bfe64-6f8d-564a-d8a0-b9bcf137a999" />
+    </api>
+    <api id="M:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator.SignOutUserAsync">
+      <topicdata group="api" />
+      <apidata name="SignOutUserAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.OnlineId.SignOutUserOperation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator" ref="true" />
+      </containers>
+      <file name="291107de-7193-871f-1829-9e6385f1f383" />
+    </api>
+    <api id="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket" />
+      <apidata name="OnlineIdServiceTicket" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicket" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b55e4a79-6309-3de8-1ce5-80369ae8105a" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket">
+      <topicdata name="OnlineIdServiceTicket" group="list" subgroup="members" typeTopicId="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket" />
+      <apidata name="OnlineIdServiceTicket" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket.ErrorCode" />
+        <element api="P:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket.Request" />
+        <element api="P:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket" />
+      </containers>
+      <file name="89ef67d8-ad3c-185a-c6cf-1b18cf0a2aa9" />
+    </api>
+    <api id="Methods.T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket">
+      <topicdata name="OnlineIdServiceTicket" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket" />
+      <apidata name="OnlineIdServiceTicket" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket" />
+      </containers>
+      <file name="eef3809d-40c2-3f23-7133-ff16b5c535ae" />
+    </api>
+    <api id="Properties.T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket">
+      <topicdata name="OnlineIdServiceTicket" group="list" subgroup="Properties" typeTopicId="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket" />
+      <apidata name="OnlineIdServiceTicket" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket.ErrorCode" />
+        <element api="P:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket.Request" />
+        <element api="P:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket" />
+      </containers>
+      <file name="7abe08e7-44e2-e8cf-ead5-ae8b872e766a" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket.ErrorCode">
+      <topicdata group="api" />
+      <apidata name="ErrorCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ErrorCode" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket" ref="true" />
+      </containers>
+      <file name="a3b8155a-2976-a6ea-c0f8-fda16b51240d" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket.Request">
+      <topicdata group="api" />
+      <apidata name="Request" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Request" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket" ref="true" />
+      </containers>
+      <file name="71026427-df46-e63e-f025-43161fd3adfe" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket" ref="true" />
+      </containers>
+      <file name="86f468f3-b819-9e7c-b92f-b1da13f7bb5f" />
+    </api>
+    <api id="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest" />
+      <apidata name="OnlineIdServiceTicketRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="eca2f9e9-9bdc-6c42-0bcc-32a6cf651e8b" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest">
+      <topicdata name="OnlineIdServiceTicketRequest" group="list" subgroup="members" typeTopicId="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest" />
+      <apidata name="OnlineIdServiceTicketRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest.#ctor">
+          <element api="M:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest.#ctor(System.String)" />
+          <element api="M:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest.#ctor(System.String,System.String)" />
+        </element>
+        <element api="P:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest.Policy" />
+        <element api="P:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest.Service" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest" />
+      </containers>
+      <file name="4d37f678-c120-fa64-2991-861bc2e3a093" />
+    </api>
+    <api id="Methods.T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest">
+      <topicdata name="OnlineIdServiceTicketRequest" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest" />
+      <apidata name="OnlineIdServiceTicketRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest" />
+      </containers>
+      <file name="d5b4b0de-335c-9b8c-093d-64a19947c5d2" />
+    </api>
+    <api id="Properties.T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest">
+      <topicdata name="OnlineIdServiceTicketRequest" group="list" subgroup="Properties" typeTopicId="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest" />
+      <apidata name="OnlineIdServiceTicketRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest.Policy" />
+        <element api="P:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest.Service" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest" />
+      </containers>
+      <file name="ac8aeabc-5277-6fde-6a1b-b3374a176dbc" />
+    </api>
+    <api id="Overload:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest.#ctor(System.String)" />
+        <element api="M:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest.#ctor(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest" ref="true" />
+      </containers>
+      <file name="81428009-d934-6776-eae2-c47f89f261e4" />
+    </api>
+    <api id="M:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest.#ctor" />
+      <parameters>
+        <parameter name="service" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest" ref="true" />
+      </containers>
+      <file name="9daa2675-24e6-2faf-9b41-485441e1ba33" />
+    </api>
+    <api id="M:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest.#ctor" />
+      <parameters>
+        <parameter name="service" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="policy" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest" ref="true" />
+      </containers>
+      <file name="c9acd60c-eccc-472f-3d7d-72cf0fbb7949" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest.Policy">
+      <topicdata group="api" />
+      <apidata name="Policy" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Policy" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest" ref="true" />
+      </containers>
+      <file name="26d5ccb9-5d5d-8eb7-9917-8f2584c5f6d4" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest.Service">
+      <topicdata group="api" />
+      <apidata name="Service" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Service" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest" ref="true" />
+      </containers>
+      <file name="5fec3b06-9ea4-543d-9cba-d04c2f6f15bd" />
+    </api>
+    <api id="T:Windows.Security.Authentication.OnlineId.SignOutUserOperation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.OnlineId.SignOutUserOperation" />
+      <apidata name="SignOutUserOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+        <type api="T:Windows.Foundation.IAsyncInfo" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6c660ae0-3d9c-fd5b-ecb3-d4c5368d4727" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.Authentication.OnlineId.SignOutUserOperation">
+      <topicdata name="SignOutUserOperation" group="list" subgroup="members" typeTopicId="T:Windows.Security.Authentication.OnlineId.SignOutUserOperation" />
+      <apidata name="SignOutUserOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Security.Authentication.OnlineId.SignOutUserOperation.Cancel" />
+        <element api="M:Windows.Security.Authentication.OnlineId.SignOutUserOperation.Close" />
+        <element api="P:Windows.Security.Authentication.OnlineId.SignOutUserOperation.Completed" />
+        <element api="P:Windows.Security.Authentication.OnlineId.SignOutUserOperation.ErrorCode" />
+        <element api="M:Windows.Security.Authentication.OnlineId.SignOutUserOperation.GetResults" />
+        <element api="P:Windows.Security.Authentication.OnlineId.SignOutUserOperation.Id" />
+        <element api="P:Windows.Security.Authentication.OnlineId.SignOutUserOperation.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.SignOutUserOperation" />
+      </containers>
+      <file name="8108721c-ac79-e8a9-b3b2-8f9219d724a3" />
+    </api>
+    <api id="Methods.T:Windows.Security.Authentication.OnlineId.SignOutUserOperation">
+      <topicdata name="SignOutUserOperation" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.Authentication.OnlineId.SignOutUserOperation" />
+      <apidata name="SignOutUserOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Security.Authentication.OnlineId.SignOutUserOperation.Cancel" />
+        <element api="M:Windows.Security.Authentication.OnlineId.SignOutUserOperation.Close" />
+        <element api="M:Windows.Security.Authentication.OnlineId.SignOutUserOperation.GetResults" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.SignOutUserOperation" />
+      </containers>
+      <file name="f8a12d43-ad33-e53e-0bb7-9a6f9a186dd6" />
+    </api>
+    <api id="Properties.T:Windows.Security.Authentication.OnlineId.SignOutUserOperation">
+      <topicdata name="SignOutUserOperation" group="list" subgroup="Properties" typeTopicId="T:Windows.Security.Authentication.OnlineId.SignOutUserOperation" />
+      <apidata name="SignOutUserOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Security.Authentication.OnlineId.SignOutUserOperation.Completed" />
+        <element api="P:Windows.Security.Authentication.OnlineId.SignOutUserOperation.ErrorCode" />
+        <element api="P:Windows.Security.Authentication.OnlineId.SignOutUserOperation.Id" />
+        <element api="P:Windows.Security.Authentication.OnlineId.SignOutUserOperation.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.SignOutUserOperation" />
+      </containers>
+      <file name="ed96e9d5-fe8f-1d3c-94ef-9123447f01fe" />
+    </api>
+    <api id="M:Windows.Security.Authentication.OnlineId.SignOutUserOperation.Cancel">
+      <topicdata group="api" />
+      <apidata name="Cancel" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IAsyncInfo.Cancel">
+          <type api="T:Windows.Foundation.IAsyncInfo" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.SignOutUserOperation" ref="true" />
+      </containers>
+      <file name="955c16ae-fc7f-5d7c-8c73-75f6db854936" />
+    </api>
+    <api id="M:Windows.Security.Authentication.OnlineId.SignOutUserOperation.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IAsyncInfo.Close">
+          <type api="T:Windows.Foundation.IAsyncInfo" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.SignOutUserOperation" ref="true" />
+      </containers>
+      <file name="5536fd7c-8430-fb1c-52e4-b3bf43f2987a" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.SignOutUserOperation.Completed">
+      <topicdata group="api" />
+      <apidata name="Completed" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Completed" />
+      <setter name="set_Completed" />
+      <returns>
+        <type api="T:Windows.Foundation.AsyncActionCompletedHandler" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.IAsyncAction.Completed">
+          <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.SignOutUserOperation" ref="true" />
+      </containers>
+      <file name="acce3ac2-095d-a432-4f68-67e6b5b3bf64" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.SignOutUserOperation.ErrorCode">
+      <topicdata group="api" />
+      <apidata name="ErrorCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ErrorCode" />
+      <returns>
+        <type api="T:Windows.Foundation.HResult" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.IAsyncInfo.ErrorCode">
+          <type api="T:Windows.Foundation.IAsyncInfo" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.SignOutUserOperation" ref="true" />
+      </containers>
+      <file name="fc38a6b1-88bf-4bf3-428b-eb208bbd1198" />
+    </api>
+    <api id="M:Windows.Security.Authentication.OnlineId.SignOutUserOperation.GetResults">
+      <topicdata group="api" />
+      <apidata name="GetResults" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IAsyncAction.GetResults">
+          <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.SignOutUserOperation" ref="true" />
+      </containers>
+      <file name="fb303ead-02eb-c011-2865-fbb74653f09e" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.SignOutUserOperation.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.IAsyncInfo.Id">
+          <type api="T:Windows.Foundation.IAsyncInfo" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.SignOutUserOperation" ref="true" />
+      </containers>
+      <file name="c5b37e88-67b0-f471-f256-533d5ef18ee9" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.SignOutUserOperation.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Status" />
+      <returns>
+        <type api="T:Windows.Foundation.AsyncStatus" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.IAsyncInfo.Status">
+          <type api="T:Windows.Foundation.IAsyncInfo" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.SignOutUserOperation" ref="true" />
+      </containers>
+      <file name="819ef322-9ff8-6843-900b-75087cc2ec2a" />
+    </api>
+    <api id="T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation" />
+      <apidata name="UserAuthenticationOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.Authentication.OnlineId.UserIdentity" ref="true" />
+          </specialization>
+        </type>
+        <type api="T:Windows.Foundation.IAsyncInfo" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="67176f0d-3cc4-fca3-3f3d-f199017ef419" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation">
+      <topicdata name="UserAuthenticationOperation" group="list" subgroup="members" typeTopicId="T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation" />
+      <apidata name="UserAuthenticationOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.Cancel" />
+        <element api="M:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.Close" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.Completed" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.ErrorCode" />
+        <element api="M:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.GetResults" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.Id" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation" />
+      </containers>
+      <file name="588859f3-f4c6-22b5-b55a-c5c35b16e195" />
+    </api>
+    <api id="Methods.T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation">
+      <topicdata name="UserAuthenticationOperation" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation" />
+      <apidata name="UserAuthenticationOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.Cancel" />
+        <element api="M:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.Close" />
+        <element api="M:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.GetResults" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation" />
+      </containers>
+      <file name="5e73d58a-a07a-3afa-28bf-cde30192be38" />
+    </api>
+    <api id="Properties.T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation">
+      <topicdata name="UserAuthenticationOperation" group="list" subgroup="Properties" typeTopicId="T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation" />
+      <apidata name="UserAuthenticationOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.Completed" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.ErrorCode" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.Id" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation" />
+      </containers>
+      <file name="1ee79660-a78c-bf94-42cf-d5e091c7777f" />
+    </api>
+    <api id="M:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.Cancel">
+      <topicdata group="api" />
+      <apidata name="Cancel" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IAsyncInfo.Cancel">
+          <type api="T:Windows.Foundation.IAsyncInfo" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation" ref="true" />
+      </containers>
+      <file name="7d7730cb-4d43-ff4b-a87f-492594120363" />
+    </api>
+    <api id="M:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IAsyncInfo.Close">
+          <type api="T:Windows.Foundation.IAsyncInfo" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation" ref="true" />
+      </containers>
+      <file name="10ca576a-5aad-feb9-a38e-76d3d450b4a5" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.Completed">
+      <topicdata group="api" />
+      <apidata name="Completed" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Completed" />
+      <setter name="set_Completed" />
+      <returns>
+        <type api="T:Windows.Foundation.AsyncOperationCompletedHandler`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.Authentication.OnlineId.UserIdentity" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.IAsyncOperation`1.Completed">
+          <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Security.Authentication.OnlineId.UserIdentity" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation" ref="true" />
+      </containers>
+      <file name="0d789202-f38b-444d-b86c-49f58de11de6" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.ErrorCode">
+      <topicdata group="api" />
+      <apidata name="ErrorCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ErrorCode" />
+      <returns>
+        <type api="T:Windows.Foundation.HResult" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.IAsyncInfo.ErrorCode">
+          <type api="T:Windows.Foundation.IAsyncInfo" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation" ref="true" />
+      </containers>
+      <file name="23a49ddb-222d-1779-28d7-45a194629c02" />
+    </api>
+    <api id="M:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.GetResults">
+      <topicdata group="api" />
+      <apidata name="GetResults" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.OnlineId.UserIdentity" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.IAsyncOperation`1.GetResults">
+          <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Security.Authentication.OnlineId.UserIdentity" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation" ref="true" />
+      </containers>
+      <file name="f8c6d836-9e8a-1b09-6c81-4a6f5e7ab684" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.IAsyncInfo.Id">
+          <type api="T:Windows.Foundation.IAsyncInfo" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation" ref="true" />
+      </containers>
+      <file name="4c33551b-07bb-9869-09ea-b888a9af8380" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Status" />
+      <returns>
+        <type api="T:Windows.Foundation.AsyncStatus" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.IAsyncInfo.Status">
+          <type api="T:Windows.Foundation.IAsyncInfo" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserAuthenticationOperation" ref="true" />
+      </containers>
+      <file name="1c942102-8fe9-07d3-ba1a-45a1c8c47fb1" />
+    </api>
+    <api id="T:Windows.Security.Authentication.OnlineId.UserIdentity">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.OnlineId.UserIdentity" />
+      <apidata name="UserIdentity" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Security.Authentication.OnlineId.IUserIdentity" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fbf71ca5-61de-54ee-82c0-5ab2c7830dd7" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.Authentication.OnlineId.UserIdentity">
+      <topicdata name="UserIdentity" group="list" subgroup="members" typeTopicId="T:Windows.Security.Authentication.OnlineId.UserIdentity" />
+      <apidata name="UserIdentity" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserIdentity.FirstName" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserIdentity.Id" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserIdentity.IsBetaAccount" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserIdentity.IsConfirmedPC" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserIdentity.LastName" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserIdentity.SafeCustomerId" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserIdentity.SignInName" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserIdentity.Tickets" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserIdentity" />
+      </containers>
+      <file name="9b13a09a-0b3d-3268-6515-0f0e75abfc3e" />
+    </api>
+    <api id="Methods.T:Windows.Security.Authentication.OnlineId.UserIdentity">
+      <topicdata name="UserIdentity" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.Authentication.OnlineId.UserIdentity" />
+      <apidata name="UserIdentity" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserIdentity" />
+      </containers>
+      <file name="5b8fb695-0436-1070-115d-98759a3e27ef" />
+    </api>
+    <api id="Properties.T:Windows.Security.Authentication.OnlineId.UserIdentity">
+      <topicdata name="UserIdentity" group="list" subgroup="Properties" typeTopicId="T:Windows.Security.Authentication.OnlineId.UserIdentity" />
+      <apidata name="UserIdentity" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Security.Authentication.OnlineId.UserIdentity.FirstName" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserIdentity.Id" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserIdentity.IsBetaAccount" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserIdentity.IsConfirmedPC" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserIdentity.LastName" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserIdentity.SafeCustomerId" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserIdentity.SignInName" />
+        <element api="P:Windows.Security.Authentication.OnlineId.UserIdentity.Tickets" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserIdentity" />
+      </containers>
+      <file name="cfbb2d24-1a6b-36b4-7489-bdf782506779" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.UserIdentity.FirstName">
+      <topicdata group="api" />
+      <apidata name="FirstName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FirstName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserIdentity" ref="true" />
+      </containers>
+      <file name="94eab24c-48cf-eab6-08e8-ad03852c2b6f" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.UserIdentity.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserIdentity" ref="true" />
+      </containers>
+      <file name="5c287f49-6dfa-9a94-2118-4c7276afa7be" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.UserIdentity.IsBetaAccount">
+      <topicdata group="api" />
+      <apidata name="IsBetaAccount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsBetaAccount" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserIdentity" ref="true" />
+      </containers>
+      <file name="aff5c7e3-7004-acc5-2add-2e90302b105e" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.UserIdentity.IsConfirmedPC">
+      <topicdata group="api" />
+      <apidata name="IsConfirmedPC" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsConfirmedPC" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserIdentity" ref="true" />
+      </containers>
+      <file name="2b1db458-835d-4084-0bfb-a81111080a1d" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.UserIdentity.LastName">
+      <topicdata group="api" />
+      <apidata name="LastName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_LastName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserIdentity" ref="true" />
+      </containers>
+      <file name="4462d742-cf33-223b-efde-c1c851bf248d" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.UserIdentity.SafeCustomerId">
+      <topicdata group="api" />
+      <apidata name="SafeCustomerId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SafeCustomerId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserIdentity" ref="true" />
+      </containers>
+      <file name="0410296e-1be2-a644-02b7-0d67c2b877ed" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.UserIdentity.SignInName">
+      <topicdata group="api" />
+      <apidata name="SignInName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SignInName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserIdentity" ref="true" />
+      </containers>
+      <file name="be523573-795a-a41d-934e-118c15688bdf" />
+    </api>
+    <api id="P:Windows.Security.Authentication.OnlineId.UserIdentity.Tickets">
+      <topicdata group="api" />
+      <apidata name="Tickets" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Tickets" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.OnlineId" />
+        <type api="T:Windows.Security.Authentication.OnlineId.UserIdentity" ref="true" />
+      </containers>
+      <file name="158a48e4-e069-5a6a-b514-b2754c856e1f" />
+    </api>
+  </apis>
+</reflection>

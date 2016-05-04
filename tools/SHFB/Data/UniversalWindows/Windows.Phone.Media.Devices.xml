@@ -1,0 +1,666 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Phone.PhoneContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Phone.Media.Devices">
+      <topicdata group="api" />
+      <apidata name="Windows.Phone.Media.Devices" group="namespace" />
+      <elements>
+        <element api="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint" />
+        <element api="T:Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints" />
+        <element api="T:Windows.Phone.Media.Devices.AudioRoutingManager" />
+      </elements>
+      <file name="afe778e3-af51-9416-f9db-5c5ee14dc76b" />
+    </api>
+    <api id="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint">
+      <topicdata group="api" />
+      <apidata name="AudioRoutingEndpoint" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Phone.Media.Devices.AudioRoutingEndpoint.Default" />
+        <element api="F:Windows.Phone.Media.Devices.AudioRoutingEndpoint.Earpiece" />
+        <element api="F:Windows.Phone.Media.Devices.AudioRoutingEndpoint.Speakerphone" />
+        <element api="F:Windows.Phone.Media.Devices.AudioRoutingEndpoint.Bluetooth" />
+        <element api="F:Windows.Phone.Media.Devices.AudioRoutingEndpoint.WiredHeadset" />
+        <element api="F:Windows.Phone.Media.Devices.AudioRoutingEndpoint.WiredHeadsetSpeakerOnly" />
+        <element api="F:Windows.Phone.Media.Devices.AudioRoutingEndpoint.BluetoothWithNoiseAndEchoCancellation" />
+        <element api="F:Windows.Phone.Media.Devices.AudioRoutingEndpoint.BluetoothPreferred" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Phone.PhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0f0686fb-5594-fdc7-ac4f-d3cb2241446f" />
+    </api>
+    <api id="F:Windows.Phone.Media.Devices.AudioRoutingEndpoint.Bluetooth">
+      <topicdata group="api" notopic="" />
+      <apidata name="Bluetooth" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint" ref="false" />
+      </containers>
+      <file name="bb31bacb-46fa-0dc9-eb82-4ee1ee5c3b9f" />
+    </api>
+    <api id="F:Windows.Phone.Media.Devices.AudioRoutingEndpoint.BluetoothPreferred">
+      <topicdata group="api" notopic="" />
+      <apidata name="BluetoothPreferred" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Phone.PhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="93250721-14f8-871d-583a-80715df27ed3" />
+    </api>
+    <api id="F:Windows.Phone.Media.Devices.AudioRoutingEndpoint.BluetoothWithNoiseAndEchoCancellation">
+      <topicdata group="api" notopic="" />
+      <apidata name="BluetoothWithNoiseAndEchoCancellation" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint" ref="false" />
+      </containers>
+      <file name="b9c5c1ed-97c3-2743-ed5a-0935d5960942" />
+    </api>
+    <api id="F:Windows.Phone.Media.Devices.AudioRoutingEndpoint.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint" ref="false" />
+      </containers>
+      <file name="bc36807c-982d-5f46-834c-27a345fd81d8" />
+    </api>
+    <api id="F:Windows.Phone.Media.Devices.AudioRoutingEndpoint.Earpiece">
+      <topicdata group="api" notopic="" />
+      <apidata name="Earpiece" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint" ref="false" />
+      </containers>
+      <file name="d44ad934-9635-85bc-e1dd-d23a91b11299" />
+    </api>
+    <api id="F:Windows.Phone.Media.Devices.AudioRoutingEndpoint.Speakerphone">
+      <topicdata group="api" notopic="" />
+      <apidata name="Speakerphone" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint" ref="false" />
+      </containers>
+      <file name="d7938136-8fc5-8403-685c-04f7704e5159" />
+    </api>
+    <api id="F:Windows.Phone.Media.Devices.AudioRoutingEndpoint.WiredHeadset">
+      <topicdata group="api" notopic="" />
+      <apidata name="WiredHeadset" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint" ref="false" />
+      </containers>
+      <file name="8867ebd8-12d5-3584-3691-0ef0d3eea745" />
+    </api>
+    <api id="F:Windows.Phone.Media.Devices.AudioRoutingEndpoint.WiredHeadsetSpeakerOnly">
+      <topicdata group="api" notopic="" />
+      <apidata name="WiredHeadsetSpeakerOnly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint" ref="false" />
+      </containers>
+      <file name="e25cd24e-7007-5c20-8fbe-0e8ea05c6d5c" />
+    </api>
+    <api id="T:Windows.Phone.Media.Devices.AudioRoutingManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.Media.Devices.AudioRoutingManager" />
+      <apidata name="AudioRoutingManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Phone.PhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b7a62364-0ed5-aa57-b99c-bbea04ff9259" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.Media.Devices.AudioRoutingManager">
+      <topicdata name="AudioRoutingManager" group="list" subgroup="members" typeTopicId="T:Windows.Phone.Media.Devices.AudioRoutingManager" />
+      <apidata name="AudioRoutingManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="E:Windows.Phone.Media.Devices.AudioRoutingManager.AudioEndpointChanged" />
+        <element api="P:Windows.Phone.Media.Devices.AudioRoutingManager.AvailableAudioEndpoints" />
+        <element api="M:Windows.Phone.Media.Devices.AudioRoutingManager.GetAudioEndpoint" />
+        <element api="M:Windows.Phone.Media.Devices.AudioRoutingManager.GetDefault" />
+        <element api="M:Windows.Phone.Media.Devices.AudioRoutingManager.SetAudioEndpoint(Windows.Phone.Media.Devices.AudioRoutingEndpoint)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingManager" />
+      </containers>
+      <file name="43119f77-f2f2-c665-1530-3e2b6011c871" />
+    </api>
+    <api id="Methods.T:Windows.Phone.Media.Devices.AudioRoutingManager">
+      <topicdata name="AudioRoutingManager" group="list" subgroup="Methods" typeTopicId="T:Windows.Phone.Media.Devices.AudioRoutingManager" />
+      <apidata name="AudioRoutingManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Phone.Media.Devices.AudioRoutingManager.GetAudioEndpoint" />
+        <element api="M:Windows.Phone.Media.Devices.AudioRoutingManager.GetDefault" />
+        <element api="M:Windows.Phone.Media.Devices.AudioRoutingManager.SetAudioEndpoint(Windows.Phone.Media.Devices.AudioRoutingEndpoint)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingManager" />
+      </containers>
+      <file name="8de973a9-af1b-5dc3-a529-e5c453b0d11e" />
+    </api>
+    <api id="Properties.T:Windows.Phone.Media.Devices.AudioRoutingManager">
+      <topicdata name="AudioRoutingManager" group="list" subgroup="Properties" typeTopicId="T:Windows.Phone.Media.Devices.AudioRoutingManager" />
+      <apidata name="AudioRoutingManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Phone.Media.Devices.AudioRoutingManager.AvailableAudioEndpoints" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingManager" />
+      </containers>
+      <file name="db8dae6e-2f14-1148-893c-d04863bd5f51" />
+    </api>
+    <api id="Events.T:Windows.Phone.Media.Devices.AudioRoutingManager">
+      <topicdata name="AudioRoutingManager" group="list" subgroup="Events" typeTopicId="T:Windows.Phone.Media.Devices.AudioRoutingManager" />
+      <apidata name="AudioRoutingManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Phone.Media.Devices.AudioRoutingManager.AudioEndpointChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingManager" />
+      </containers>
+      <file name="075c0148-5bf6-883a-690c-3d4a1d0caa67" />
+    </api>
+    <api id="E:Windows.Phone.Media.Devices.AudioRoutingManager.AudioEndpointChanged">
+      <topicdata group="api" />
+      <apidata name="AudioEndpointChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_AudioEndpointChanged" />
+      <remover name="remove_AudioEndpointChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Phone.Media.Devices.AudioRoutingManager" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingManager" ref="true" />
+      </containers>
+      <file name="02a45305-77a9-0b7b-5ce7-9e4c76d50d70" />
+    </api>
+    <api id="P:Windows.Phone.Media.Devices.AudioRoutingManager.AvailableAudioEndpoints">
+      <topicdata group="api" />
+      <apidata name="AvailableAudioEndpoints" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AvailableAudioEndpoints" />
+      <returns>
+        <type api="T:Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingManager" ref="true" />
+      </containers>
+      <file name="5e6bcc87-8b35-5039-7491-2ef1b35b9c57" />
+    </api>
+    <api id="M:Windows.Phone.Media.Devices.AudioRoutingManager.GetAudioEndpoint">
+      <topicdata group="api" />
+      <apidata name="GetAudioEndpoint" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingManager" ref="true" />
+      </containers>
+      <file name="4d96b88a-07f8-b387-f421-53284d71fc40" />
+    </api>
+    <api id="M:Windows.Phone.Media.Devices.AudioRoutingManager.GetDefault">
+      <topicdata group="api" />
+      <apidata name="GetDefault" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingManager" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingManager" ref="true" />
+      </containers>
+      <file name="3dbdcdf3-1f4c-e771-d88c-5bbfd5bdf397" />
+    </api>
+    <api id="M:Windows.Phone.Media.Devices.AudioRoutingManager.SetAudioEndpoint(Windows.Phone.Media.Devices.AudioRoutingEndpoint)">
+      <topicdata group="api" />
+      <apidata name="SetAudioEndpoint" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="endpoint" in="true">
+          <type api="T:Windows.Phone.Media.Devices.AudioRoutingEndpoint" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AudioRoutingManager" ref="true" />
+      </containers>
+      <file name="4664fe6d-7d0e-2e03-a5c7-aefc2b2f1f19" />
+    </api>
+    <api id="T:Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints">
+      <topicdata group="api" />
+      <apidata name="AvailableAudioRoutingEndpoints" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints.None" />
+        <element api="F:Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints.Earpiece" />
+        <element api="F:Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints.Speakerphone" />
+        <element api="F:Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints.Bluetooth" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Phone.PhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fe716e66-8613-405f-1c0c-64b25d9d66d9" />
+    </api>
+    <api id="F:Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints.Bluetooth">
+      <topicdata group="api" notopic="" />
+      <apidata name="Bluetooth" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints" ref="false" />
+      </containers>
+      <file name="e140d46e-d6c5-e10b-5d80-227c3c9330be" />
+    </api>
+    <api id="F:Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints.Earpiece">
+      <topicdata group="api" notopic="" />
+      <apidata name="Earpiece" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints" ref="false" />
+      </containers>
+      <file name="d0921ec4-ba97-14dd-4c2c-4170bdffe9af" />
+    </api>
+    <api id="F:Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints" ref="false" />
+      </containers>
+      <file name="3aa268a0-d15b-775d-e54b-11b440fbd764" />
+    </api>
+    <api id="F:Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints.Speakerphone">
+      <topicdata group="api" notopic="" />
+      <apidata name="Speakerphone" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Media.Devices" />
+        <type api="T:Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints" ref="false" />
+      </containers>
+      <file name="976018e5-63ea-8ae4-da57-6e23f43ef2e1" />
+    </api>
+  </apis>
+</reflection>

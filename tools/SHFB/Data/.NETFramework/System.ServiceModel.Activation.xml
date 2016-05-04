@@ -1,0 +1,2229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ServiceModel">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.ServiceModel.Activation">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Activation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Activation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Activation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.ServiceModel.Web">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Web.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Web.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Web.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.WorkflowServices">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.WorkflowServices.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.WorkflowServices.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.WorkflowServices.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ServiceModel.Activation">
+      <topicdata group="api" />
+      <apidata name="System.ServiceModel.Activation" group="namespace" />
+      <elements>
+        <element api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute" />
+        <element api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode" />
+        <element api="T:System.ServiceModel.Activation.ServiceHostFactoryBase" />
+        <element api="T:System.ServiceModel.Activation.VirtualPathExtension" />
+        <element api="T:System.ServiceModel.Activation.HostedTransportConfiguration" />
+        <element api="T:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute" />
+        <element api="T:System.ServiceModel.Activation.ServiceBuildProvider" />
+        <element api="T:System.ServiceModel.Activation.ServiceHostFactory" />
+        <element api="T:System.ServiceModel.Activation.ServiceRoute" />
+        <element api="T:System.ServiceModel.Activation.WebScriptServiceHostFactory" />
+        <element api="T:System.ServiceModel.Activation.WebServiceHostFactory" />
+        <element api="T:System.ServiceModel.Activation.WorkflowServiceHostFactory" />
+      </elements>
+      <file name="45fb68c6-8207-946f-e940-e9ab471db6c3" />
+    </api>
+    <api id="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute" />
+      <apidata name="AspNetCompatibilityRequirementsAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8bec4060-57ad-0937-86b5-37abd6abd709" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute">
+      <topicdata name="AspNetCompatibilityRequirementsAttribute" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute" />
+      <apidata name="AspNetCompatibilityRequirementsAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.#ctor" />
+        <element api="P:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.RequirementsMode" />
+        <element api="M:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.System#ServiceModel#Description#IServiceBehavior#AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.System#ServiceModel#Description#IServiceBehavior#ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+        <element api="M:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.System#ServiceModel#Description#IServiceBehavior#Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute" />
+      </containers>
+      <file name="e879e615-8135-3a08-d99b-07edaec550c2" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute">
+      <topicdata name="AspNetCompatibilityRequirementsAttribute" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute" />
+      <apidata name="AspNetCompatibilityRequirementsAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.System#ServiceModel#Description#IServiceBehavior#AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.System#ServiceModel#Description#IServiceBehavior#ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+        <element api="M:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.System#ServiceModel#Description#IServiceBehavior#Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute" />
+      </containers>
+      <file name="61eb26b8-fe32-630b-722b-d4b74279416b" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute">
+      <topicdata name="AspNetCompatibilityRequirementsAttribute" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute" />
+      <apidata name="AspNetCompatibilityRequirementsAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.RequirementsMode" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute" />
+      </containers>
+      <file name="2da5031c-d413-31f6-6bcf-c015abafc1d1" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute" ref="true" />
+      </containers>
+      <file name="a46d59a4-60b9-6dcc-5c16-c008a4c2e01f" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.RequirementsMode">
+      <topicdata group="api" />
+      <apidata name="RequirementsMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RequirementsMode" />
+      <setter name="set_RequirementsMode" />
+      <returns>
+        <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute" ref="true" />
+      </containers>
+      <file name="adcdd7ed-33c1-0a67-c695-000e6b63ec05" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.System#ServiceModel#Description#IServiceBehavior#AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+      <topicdata group="api" eiiName="IServiceBehavior.AddBindingParameters" />
+      <apidata name="AddBindingParameters" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="description">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+        <parameter name="endpoints">
+          <type api="T:System.Collections.ObjectModel.Collection`1" ref="true">
+            <specialization>
+              <type api="T:System.ServiceModel.Description.ServiceEndpoint" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="parameters">
+          <type api="T:System.ServiceModel.Channels.BindingParameterCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute" ref="true" />
+      </containers>
+      <file name="549fbac9-d93f-c30d-1dd1-61927bf2fc97" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.System#ServiceModel#Description#IServiceBehavior#ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" eiiName="IServiceBehavior.ApplyDispatchBehavior" />
+      <apidata name="ApplyDispatchBehavior" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="description">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute" ref="true" />
+      </containers>
+      <file name="9f41574e-688c-63e9-fd97-512c6ab75810" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.System#ServiceModel#Description#IServiceBehavior#Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" eiiName="IServiceBehavior.Validate" />
+      <apidata name="Validate" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="description">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute" ref="true" />
+      </containers>
+      <file name="2bf1cf66-0a87-6912-6f84-c5a62a59f1fa" />
+    </api>
+    <api id="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode">
+      <topicdata group="api" />
+      <apidata name="AspNetCompatibilityRequirementsMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode.NotAllowed" />
+        <element api="F:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode.Allowed" />
+        <element api="F:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode.Required" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+      </containers>
+      <file name="d9785bbc-a3db-09ea-b2ec-14501b5a570c" />
+    </api>
+    <api id="F:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode.Allowed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Allowed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode" ref="false" />
+      </containers>
+      <file name="1bb64ec1-e94c-b5f9-e6dd-f887bc8965ee" />
+    </api>
+    <api id="F:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode.NotAllowed">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotAllowed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode" ref="false" />
+      </containers>
+      <file name="4cbf3be2-0c6e-ea42-1123-9db3ff1524da" />
+    </api>
+    <api id="F:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode.Required">
+      <topicdata group="api" notopic="" />
+      <apidata name="Required" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode" ref="false" />
+      </containers>
+      <file name="ea494c1b-5be0-b1b1-7ba9-8b8fe85637b6" />
+    </api>
+    <api id="T:System.ServiceModel.Activation.HostedTransportConfiguration">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.HostedTransportConfiguration" />
+      <apidata name="HostedTransportConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+      </containers>
+      <file name="541f365d-1ea4-4b41-d45a-f58b83cf48ee" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activation.HostedTransportConfiguration">
+      <topicdata name="HostedTransportConfiguration" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activation.HostedTransportConfiguration" />
+      <apidata name="HostedTransportConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activation.HostedTransportConfiguration.#ctor" />
+        <element api="M:System.ServiceModel.Activation.HostedTransportConfiguration.GetBaseAddresses(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.HostedTransportConfiguration" />
+      </containers>
+      <file name="fa72fabd-ca21-4087-a791-cb8bed58ce76" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activation.HostedTransportConfiguration">
+      <topicdata name="HostedTransportConfiguration" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activation.HostedTransportConfiguration" />
+      <apidata name="HostedTransportConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activation.HostedTransportConfiguration.GetBaseAddresses(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.HostedTransportConfiguration" />
+      </containers>
+      <file name="f82f1e19-b482-d8e4-94b5-3a09793f7c14" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.HostedTransportConfiguration.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.HostedTransportConfiguration" ref="true" />
+      </containers>
+      <file name="aa2eee2c-d14c-8f23-bb37-deedb024bd06" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.HostedTransportConfiguration.GetBaseAddresses(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetBaseAddresses" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="virtualPath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Uri" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.HostedTransportConfiguration" ref="true" />
+      </containers>
+      <file name="e11f2838-1bb8-26c1-b4ad-27284710f8e0" />
+    </api>
+    <api id="T:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute" />
+      <apidata name="ServiceActivationBuildProviderAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="eeb5b38d-f7cb-69a7-8045-438b4308112a" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute">
+      <topicdata name="ServiceActivationBuildProviderAttribute" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute" />
+      <apidata name="ServiceActivationBuildProviderAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute" />
+      </containers>
+      <file name="8ebb8ce6-88cc-3225-5f64-bc5e75337ac4" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute">
+      <topicdata name="ServiceActivationBuildProviderAttribute" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute" />
+      <apidata name="ServiceActivationBuildProviderAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute" />
+      </containers>
+      <file name="d0cb3e3f-7c06-7291-8d03-4136f8219a55" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute">
+      <topicdata name="ServiceActivationBuildProviderAttribute" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute" />
+      <apidata name="ServiceActivationBuildProviderAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute" />
+      </containers>
+      <file name="abb08c5a-4a9c-d185-a8b3-4008f5640798" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute" ref="true" />
+      </containers>
+      <file name="90ef0c81-bc10-899c-d800-8ab139987bf0" />
+    </api>
+    <api id="T:System.ServiceModel.Activation.ServiceBuildProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.ServiceBuildProvider" />
+      <apidata name="ServiceBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.ServiceBuildProvider.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Web.Compilation.BuildProvider" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.SecurityCriticalScope" ref="false" />
+            <enumValue>
+              <field name="Everything" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ServiceModel.Activation.ServiceActivationBuildProviderAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="ddd92ccc-f7f8-6ac3-0081-1ff79b14cf99" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activation.ServiceBuildProvider">
+      <topicdata name="ServiceBuildProvider" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activation.ServiceBuildProvider" />
+      <apidata name="ServiceBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.ServiceBuildProvider.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activation.ServiceBuildProvider.#ctor" />
+        <element api="P:System.ServiceModel.Activation.ServiceBuildProvider.CodeCompilerType" />
+        <element api="M:System.ServiceModel.Activation.ServiceBuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)" />
+        <element api="M:System.ServiceModel.Activation.ServiceBuildProvider.GetCustomString(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="M:System.ServiceModel.Activation.ServiceBuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="P:System.ServiceModel.Activation.ServiceBuildProvider.VirtualPathDependencies" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetGeneratedType(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="M:System.Web.Compilation.BuildProvider.ProcessCompileErrors(System.CodeDom.Compiler.CompilerResults)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceBuildProvider" />
+      </containers>
+      <file name="805f7ea0-c3a9-4103-832b-9c2cc04bc260" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activation.ServiceBuildProvider">
+      <topicdata name="ServiceBuildProvider" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activation.ServiceBuildProvider" />
+      <apidata name="ServiceBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.ServiceBuildProvider.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activation.ServiceBuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)" />
+        <element api="M:System.ServiceModel.Activation.ServiceBuildProvider.GetCustomString(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="M:System.ServiceModel.Activation.ServiceBuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetGeneratedType(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="M:System.Web.Compilation.BuildProvider.ProcessCompileErrors(System.CodeDom.Compiler.CompilerResults)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceBuildProvider" />
+      </containers>
+      <file name="10606537-fb28-481b-0138-a893b026cd37" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activation.ServiceBuildProvider">
+      <topicdata name="ServiceBuildProvider" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activation.ServiceBuildProvider" />
+      <apidata name="ServiceBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.ServiceBuildProvider.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.Activation.ServiceBuildProvider.CodeCompilerType" />
+        <element api="P:System.ServiceModel.Activation.ServiceBuildProvider.VirtualPathDependencies" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceBuildProvider" />
+      </containers>
+      <file name="b2e1549e-647c-8ff6-6679-d907c1f0a96e" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.ServiceBuildProvider.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceBuildProvider" ref="true" />
+      </containers>
+      <file name="318842a9-5cfb-e764-9ae8-cd5f61ea9df5" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.ServiceBuildProvider.CodeCompilerType">
+      <topicdata group="api" />
+      <apidata name="CodeCompilerType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Web.Compilation.BuildProvider.CodeCompilerType">
+          <type api="T:System.Web.Compilation.BuildProvider" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CodeCompilerType" />
+      <returns>
+        <type api="T:System.Web.Compilation.CompilerType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceBuildProvider" ref="true" />
+      </containers>
+      <file name="0202a354-d303-fdee-f097-2ead42aba491" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.ServiceBuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)">
+      <topicdata group="api" />
+      <apidata name="GenerateCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Web.Compilation.BuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)">
+          <type api="T:System.Web.Compilation.BuildProvider" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="assemblyBuilder">
+          <type api="T:System.Web.Compilation.AssemblyBuilder" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceBuildProvider" ref="true" />
+      </containers>
+      <file name="cc7bdaf2-5bdd-d5fc-eded-041d977735c7" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.ServiceBuildProvider.GetCustomString(System.CodeDom.Compiler.CompilerResults)">
+      <topicdata group="api" />
+      <apidata name="GetCustomString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Web.Compilation.BuildProvider.GetCustomString(System.CodeDom.Compiler.CompilerResults)">
+          <type api="T:System.Web.Compilation.BuildProvider" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="results">
+          <type api="T:System.CodeDom.Compiler.CompilerResults" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceBuildProvider" ref="true" />
+      </containers>
+      <file name="9aa8cb2d-0575-0201-285a-140b864bbc34" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.ServiceBuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)">
+      <topicdata group="api" />
+      <apidata name="GetResultFlags" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Web.Compilation.BuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)">
+          <type api="T:System.Web.Compilation.BuildProvider" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="results">
+          <type api="T:System.CodeDom.Compiler.CompilerResults" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Web.Compilation.BuildProviderResultFlags" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceBuildProvider" ref="true" />
+      </containers>
+      <file name="bf07c149-2ff0-f517-5519-2af1cd25ee74" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.ServiceBuildProvider.VirtualPathDependencies">
+      <topicdata group="api" />
+      <apidata name="VirtualPathDependencies" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Web.Compilation.BuildProvider.VirtualPathDependencies">
+          <type api="T:System.Web.Compilation.BuildProvider" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_VirtualPathDependencies" />
+      <returns>
+        <type api="T:System.Collections.ICollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceBuildProvider" ref="true" />
+      </containers>
+      <file name="ee960fd4-fd01-b135-503e-b3552086c6e5" />
+    </api>
+    <api id="T:System.ServiceModel.Activation.ServiceHostFactory">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.ServiceHostFactory" />
+      <apidata name="ServiceHostFactory" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.ServiceHostFactory.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ServiceModel.Activation.ServiceHostFactoryBase" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Data.Services.DataServiceHostFactory" ref="true" />
+          <type api="T:System.ServiceModel.Activation.WebScriptServiceHostFactory" ref="true" />
+          <type api="T:System.ServiceModel.Activation.WebServiceHostFactory" ref="true" />
+          <type api="T:System.Web.ApplicationServices.ApplicationServicesHostFactory" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+      </containers>
+      <file name="3a3472b1-959c-47d9-5050-a2263710d832" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activation.ServiceHostFactory">
+      <topicdata name="ServiceHostFactory" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activation.ServiceHostFactory" />
+      <apidata name="ServiceHostFactory" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.ServiceHostFactory.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activation.ServiceHostFactory.#ctor" />
+        <element api="Overload:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost">
+          <element api="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.String,System.Uri[])" />
+          <element api="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.Type,System.Uri[])" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceHostFactory" />
+      </containers>
+      <file name="4eb82921-faa9-5ada-58ea-7bf4a297eead" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activation.ServiceHostFactory">
+      <topicdata name="ServiceHostFactory" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activation.ServiceHostFactory" />
+      <apidata name="ServiceHostFactory" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.ServiceHostFactory.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost">
+          <element api="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.String,System.Uri[])" />
+          <element api="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.Type,System.Uri[])" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceHostFactory" />
+      </containers>
+      <file name="310cf0e2-85ef-1294-2ce6-d71b4de6c614" />
+    </api>
+    <api id="Overload:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost">
+      <topicdata name="CreateServiceHost" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.ServiceHostFactory" />
+      <apidata name="CreateServiceHost" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.String,System.Uri[])" />
+        <element api="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.Type,System.Uri[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceHostFactory" ref="true" />
+      </containers>
+      <file name="b4d2bbb2-2ffe-8f6b-c7bc-c70383f087ee" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.ServiceHostFactory.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceHostFactory" ref="true" />
+      </containers>
+      <file name="6192a26b-b21f-d048-8f5d-b70f79f04bd4" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.String,System.Uri[])">
+      <topicdata group="api" />
+      <apidata name="CreateServiceHost" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ServiceModel.Activation.ServiceHostFactoryBase.CreateServiceHost(System.String,System.Uri[])">
+          <type api="T:System.ServiceModel.Activation.ServiceHostFactoryBase" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="constructorString">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="baseAddresses">
+          <arrayOf rank="1">
+            <type api="T:System.Uri" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceHostFactory" ref="true" />
+      </containers>
+      <file name="a0aaa992-6457-acd8-4028-e2ad5014d8b9" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.Type,System.Uri[])">
+      <topicdata group="api" />
+      <apidata name="CreateServiceHost" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="serviceType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="baseAddresses">
+          <arrayOf rank="1">
+            <type api="T:System.Uri" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.ServiceHost" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceHostFactory" ref="true" />
+      </containers>
+      <file name="8daf7686-9d30-1715-effb-0df6f3bd4301" />
+    </api>
+    <api id="T:System.ServiceModel.Activation.ServiceHostFactoryBase">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.ServiceHostFactoryBase" />
+      <apidata name="ServiceHostFactoryBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.ServiceModel.ComIntegration.WasHostedComPlusFactory" ref="true" />
+          <type api="T:System.ServiceModel.Activation.ServiceHostFactory" ref="true" />
+          <type api="T:System.ServiceModel.Activation.WorkflowServiceHostFactory" ref="true" />
+          <type api="T:System.ServiceModel.Activities.Activation.WorkflowServiceHostFactory" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+      </containers>
+      <file name="053d2c0f-f25a-e310-75b2-f4fa35a964ad" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activation.ServiceHostFactoryBase">
+      <topicdata name="ServiceHostFactoryBase" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activation.ServiceHostFactoryBase" />
+      <apidata name="ServiceHostFactoryBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activation.ServiceHostFactoryBase.#ctor" />
+        <element api="M:System.ServiceModel.Activation.ServiceHostFactoryBase.CreateServiceHost(System.String,System.Uri[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceHostFactoryBase" />
+      </containers>
+      <file name="315f8262-cac5-2e2b-a95c-caa07d921e32" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activation.ServiceHostFactoryBase">
+      <topicdata name="ServiceHostFactoryBase" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activation.ServiceHostFactoryBase" />
+      <apidata name="ServiceHostFactoryBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activation.ServiceHostFactoryBase.CreateServiceHost(System.String,System.Uri[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceHostFactoryBase" />
+      </containers>
+      <file name="d5193a62-b445-5b11-3d93-a2faf947286e" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.ServiceHostFactoryBase.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceHostFactoryBase" ref="true" />
+      </containers>
+      <file name="c4fa65a1-9a2a-9195-d0a4-9aec487c6dc9" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.ServiceHostFactoryBase.CreateServiceHost(System.String,System.Uri[])">
+      <topicdata group="api" />
+      <apidata name="CreateServiceHost" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="constructorString">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="baseAddresses">
+          <arrayOf rank="1">
+            <type api="T:System.Uri" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceHostFactoryBase" ref="true" />
+      </containers>
+      <file name="227553a8-a5ee-8a2b-f4b2-455be4f799ca" />
+    </api>
+    <api id="T:System.ServiceModel.Activation.ServiceRoute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.ServiceRoute" />
+      <apidata name="ServiceRoute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Web.Routing.Route" ref="true" />
+          <type api="T:System.Web.Routing.RouteBase" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+      </containers>
+      <file name="6ae2d0a9-be50-fa20-587c-95f690c2e543" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activation.ServiceRoute">
+      <topicdata name="ServiceRoute" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activation.ServiceRoute" />
+      <apidata name="ServiceRoute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activation.ServiceRoute.#ctor(System.String,System.ServiceModel.Activation.ServiceHostFactoryBase,System.Type)" />
+        <element api="P:System.Web.Routing.Route.Constraints" />
+        <element api="P:System.Web.Routing.Route.DataTokens" />
+        <element api="P:System.Web.Routing.Route.Defaults" />
+        <element api="M:System.Web.Routing.Route.GetRouteData(System.Web.HttpContextBase)" />
+        <element api="M:System.Web.Routing.Route.GetVirtualPath(System.Web.Routing.RequestContext,System.Web.Routing.RouteValueDictionary)" />
+        <element api="M:System.Web.Routing.Route.ProcessConstraint(System.Web.HttpContextBase,System.Object,System.String,System.Web.Routing.RouteValueDictionary,System.Web.Routing.RouteDirection)" />
+        <element api="P:System.Web.Routing.Route.RouteHandler" />
+        <element api="P:System.Web.Routing.Route.Url" />
+        <element api="P:System.Web.Routing.RouteBase.RouteExistingFiles" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceRoute" />
+      </containers>
+      <file name="a6c78025-3ac7-1ce9-18fa-9bd53f0bef64" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activation.ServiceRoute">
+      <topicdata name="ServiceRoute" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activation.ServiceRoute" />
+      <apidata name="ServiceRoute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.Routing.Route.GetRouteData(System.Web.HttpContextBase)" />
+        <element api="M:System.Web.Routing.Route.GetVirtualPath(System.Web.Routing.RequestContext,System.Web.Routing.RouteValueDictionary)" />
+        <element api="M:System.Web.Routing.Route.ProcessConstraint(System.Web.HttpContextBase,System.Object,System.String,System.Web.Routing.RouteValueDictionary,System.Web.Routing.RouteDirection)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceRoute" />
+      </containers>
+      <file name="aa249955-d0de-e8c0-e914-c60a0286c970" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activation.ServiceRoute">
+      <topicdata name="ServiceRoute" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activation.ServiceRoute" />
+      <apidata name="ServiceRoute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Web.Routing.Route.Constraints" />
+        <element api="P:System.Web.Routing.Route.DataTokens" />
+        <element api="P:System.Web.Routing.Route.Defaults" />
+        <element api="P:System.Web.Routing.Route.RouteHandler" />
+        <element api="P:System.Web.Routing.Route.Url" />
+        <element api="P:System.Web.Routing.RouteBase.RouteExistingFiles" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceRoute" />
+      </containers>
+      <file name="b1ee1b33-111b-780c-c2bc-8421c9291e62" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.ServiceRoute.#ctor(System.String,System.ServiceModel.Activation.ServiceHostFactoryBase,System.Type)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="routePrefix">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="serviceHostFactory">
+          <type api="T:System.ServiceModel.Activation.ServiceHostFactoryBase" ref="true" />
+        </parameter>
+        <parameter name="serviceType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Activation" module="System.ServiceModel.Activation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.ServiceRoute" ref="true" />
+      </containers>
+      <file name="6b728c58-8041-ea8d-5610-2844f4ae75ce" />
+    </api>
+    <api id="T:System.ServiceModel.Activation.VirtualPathExtension">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.VirtualPathExtension" />
+      <apidata name="VirtualPathExtension" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ServiceModel.IExtension`1" ref="true">
+          <specialization>
+            <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+          </specialization>
+        </type>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+      </containers>
+      <file name="8dc4ca6f-bb3f-3174-ec4a-55541556faff" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activation.VirtualPathExtension">
+      <topicdata name="VirtualPathExtension" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activation.VirtualPathExtension" />
+      <apidata name="VirtualPathExtension" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.ServiceModel.Activation.VirtualPathExtension.ApplicationVirtualPath" />
+        <element api="M:System.ServiceModel.Activation.VirtualPathExtension.Attach(System.ServiceModel.ServiceHostBase)" />
+        <element api="M:System.ServiceModel.Activation.VirtualPathExtension.Detach(System.ServiceModel.ServiceHostBase)" />
+        <element api="P:System.ServiceModel.Activation.VirtualPathExtension.SiteName" />
+        <element api="P:System.ServiceModel.Activation.VirtualPathExtension.VirtualPath" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.VirtualPathExtension" />
+      </containers>
+      <file name="aa61b69d-882c-5850-198d-b8451c11f876" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activation.VirtualPathExtension">
+      <topicdata name="VirtualPathExtension" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activation.VirtualPathExtension" />
+      <apidata name="VirtualPathExtension" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activation.VirtualPathExtension.Attach(System.ServiceModel.ServiceHostBase)" />
+        <element api="M:System.ServiceModel.Activation.VirtualPathExtension.Detach(System.ServiceModel.ServiceHostBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.VirtualPathExtension" />
+      </containers>
+      <file name="5f6c17e9-9209-3707-b7c7-8a814f8ba95f" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activation.VirtualPathExtension">
+      <topicdata name="VirtualPathExtension" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activation.VirtualPathExtension" />
+      <apidata name="VirtualPathExtension" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.ServiceModel.Activation.VirtualPathExtension.ApplicationVirtualPath" />
+        <element api="P:System.ServiceModel.Activation.VirtualPathExtension.SiteName" />
+        <element api="P:System.ServiceModel.Activation.VirtualPathExtension.VirtualPath" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.VirtualPathExtension" />
+      </containers>
+      <file name="2e727da1-0f8b-0205-adc8-b3156e2e95b0" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.VirtualPathExtension.ApplicationVirtualPath">
+      <topicdata group="api" />
+      <apidata name="ApplicationVirtualPath" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ApplicationVirtualPath" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.VirtualPathExtension" ref="true" />
+      </containers>
+      <file name="455ce52e-b9c3-2e68-7c6a-ba4f53b4511a" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.VirtualPathExtension.Attach(System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" />
+      <apidata name="Attach" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="owner">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.IExtension`1.Attach(`0)">
+          <type api="T:System.ServiceModel.IExtension`1" ref="true">
+            <specialization>
+              <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.VirtualPathExtension" ref="true" />
+      </containers>
+      <file name="2dab9e14-7efe-b111-76e3-b848be82e68f" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.VirtualPathExtension.Detach(System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" />
+      <apidata name="Detach" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="owner">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.IExtension`1.Detach(`0)">
+          <type api="T:System.ServiceModel.IExtension`1" ref="true">
+            <specialization>
+              <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.VirtualPathExtension" ref="true" />
+      </containers>
+      <file name="3b462577-d808-437f-2c10-c126ed25fb3c" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.VirtualPathExtension.SiteName">
+      <topicdata group="api" />
+      <apidata name="SiteName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SiteName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.VirtualPathExtension" ref="true" />
+      </containers>
+      <file name="0b65b85c-1040-f011-ca67-be6b6e1741a8" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.VirtualPathExtension.VirtualPath">
+      <topicdata group="api" />
+      <apidata name="VirtualPath" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_VirtualPath" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.VirtualPathExtension" ref="true" />
+      </containers>
+      <file name="b52b693d-b03f-05c1-02db-2af5e9c8278b" />
+    </api>
+    <api id="T:System.ServiceModel.Activation.WebScriptServiceHostFactory">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.WebScriptServiceHostFactory" />
+      <apidata name="WebScriptServiceHostFactory" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.WebScriptServiceHostFactory.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ServiceModel.Activation.ServiceHostFactory" ref="true" />
+          <type api="T:System.ServiceModel.Activation.ServiceHostFactoryBase" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+      </containers>
+      <file name="102766c4-c596-4ccf-da33-b664d66067b2" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activation.WebScriptServiceHostFactory">
+      <topicdata name="WebScriptServiceHostFactory" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activation.WebScriptServiceHostFactory" />
+      <apidata name="WebScriptServiceHostFactory" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.WebScriptServiceHostFactory.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.Activation.WebScriptServiceHostFactory.CreateServiceHost">
+          <element api="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.String,System.Uri[])" />
+          <element api="M:System.ServiceModel.Activation.WebScriptServiceHostFactory.CreateServiceHost(System.Type,System.Uri[])" />
+        </element>
+        <element api="M:System.ServiceModel.Activation.WebScriptServiceHostFactory.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.WebScriptServiceHostFactory" />
+      </containers>
+      <file name="599c74dd-ad09-254f-e221-1c0a2b04bd53" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activation.WebScriptServiceHostFactory">
+      <topicdata name="WebScriptServiceHostFactory" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activation.WebScriptServiceHostFactory" />
+      <apidata name="WebScriptServiceHostFactory" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.WebScriptServiceHostFactory.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.Activation.WebScriptServiceHostFactory.CreateServiceHost">
+          <element api="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.String,System.Uri[])" />
+          <element api="M:System.ServiceModel.Activation.WebScriptServiceHostFactory.CreateServiceHost(System.Type,System.Uri[])" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.WebScriptServiceHostFactory" />
+      </containers>
+      <file name="00de9346-c62e-4c17-44f8-a2abf9981aa8" />
+    </api>
+    <api id="Overload:System.ServiceModel.Activation.WebScriptServiceHostFactory.CreateServiceHost">
+      <topicdata name="CreateServiceHost" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.WebScriptServiceHostFactory" />
+      <apidata name="CreateServiceHost" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.String,System.Uri[])" />
+        <element api="M:System.ServiceModel.Activation.WebScriptServiceHostFactory.CreateServiceHost(System.Type,System.Uri[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.WebScriptServiceHostFactory" ref="true" />
+      </containers>
+      <file name="a19573bd-6ea8-bcb5-2a31-51bbd641528b" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.WebScriptServiceHostFactory.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.WebScriptServiceHostFactory" ref="true" />
+      </containers>
+      <file name="b7e589b4-33c5-3b6a-b24a-fd7a5056c267" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.WebScriptServiceHostFactory.CreateServiceHost(System.Type,System.Uri[])">
+      <topicdata group="api" />
+      <apidata name="CreateServiceHost" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.ServiceModel.Activation.WebScriptServiceHostFactory.CreateServiceHost" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.Type,System.Uri[])">
+          <type api="T:System.ServiceModel.Activation.ServiceHostFactory" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="serviceType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="baseAddresses">
+          <arrayOf rank="1">
+            <type api="T:System.Uri" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.ServiceHost" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.WebScriptServiceHostFactory" ref="true" />
+      </containers>
+      <file name="3ea4c512-f296-5020-d544-ef83be289207" />
+    </api>
+    <api id="T:System.ServiceModel.Activation.WebServiceHostFactory">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.WebServiceHostFactory" />
+      <apidata name="WebServiceHostFactory" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.WebServiceHostFactory.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ServiceModel.Activation.ServiceHostFactory" ref="true" />
+          <type api="T:System.ServiceModel.Activation.ServiceHostFactoryBase" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+      </containers>
+      <file name="b4bfd76d-c628-a4ae-5b0d-a1dd959ba4e6" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activation.WebServiceHostFactory">
+      <topicdata name="WebServiceHostFactory" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activation.WebServiceHostFactory" />
+      <apidata name="WebServiceHostFactory" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.WebServiceHostFactory.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.Activation.WebServiceHostFactory.CreateServiceHost">
+          <element api="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.String,System.Uri[])" />
+          <element api="M:System.ServiceModel.Activation.WebServiceHostFactory.CreateServiceHost(System.Type,System.Uri[])" />
+        </element>
+        <element api="M:System.ServiceModel.Activation.WebServiceHostFactory.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.WebServiceHostFactory" />
+      </containers>
+      <file name="360a32f8-7cc9-e39b-788a-4bc5f646ce97" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activation.WebServiceHostFactory">
+      <topicdata name="WebServiceHostFactory" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activation.WebServiceHostFactory" />
+      <apidata name="WebServiceHostFactory" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.WebServiceHostFactory.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.Activation.WebServiceHostFactory.CreateServiceHost">
+          <element api="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.String,System.Uri[])" />
+          <element api="M:System.ServiceModel.Activation.WebServiceHostFactory.CreateServiceHost(System.Type,System.Uri[])" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.WebServiceHostFactory" />
+      </containers>
+      <file name="110d297f-75dd-99db-6d43-edae4d52f7d6" />
+    </api>
+    <api id="Overload:System.ServiceModel.Activation.WebServiceHostFactory.CreateServiceHost">
+      <topicdata name="CreateServiceHost" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.WebServiceHostFactory" />
+      <apidata name="CreateServiceHost" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.String,System.Uri[])" />
+        <element api="M:System.ServiceModel.Activation.WebServiceHostFactory.CreateServiceHost(System.Type,System.Uri[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.WebServiceHostFactory" ref="true" />
+      </containers>
+      <file name="f654d34c-ffe4-93c0-9db5-31392b0477d9" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.WebServiceHostFactory.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.WebServiceHostFactory" ref="true" />
+      </containers>
+      <file name="4e03a0df-4c59-ac9f-1366-2e6cd8437a98" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.WebServiceHostFactory.CreateServiceHost(System.Type,System.Uri[])">
+      <topicdata group="api" />
+      <apidata name="CreateServiceHost" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.ServiceModel.Activation.WebServiceHostFactory.CreateServiceHost" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.Type,System.Uri[])">
+          <type api="T:System.ServiceModel.Activation.ServiceHostFactory" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="serviceType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="baseAddresses">
+          <arrayOf rank="1">
+            <type api="T:System.Uri" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.ServiceHost" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.WebServiceHostFactory" ref="true" />
+      </containers>
+      <file name="adcb0341-401b-a485-79a9-ad8a09e7ffc2" />
+    </api>
+    <api id="T:System.ServiceModel.Activation.WorkflowServiceHostFactory">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.WorkflowServiceHostFactory" />
+      <apidata name="WorkflowServiceHostFactory" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.WorkflowServiceHostFactory.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ServiceModel.Activation.ServiceHostFactoryBase" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.WorkflowServices" module="System.WorkflowServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The WF3 types are deprecated.  Instead, please use the new WF4 types from System.Activities.*</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e604af5b-6bb7-b4a1-7ee7-5ff8c2a86c90" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activation.WorkflowServiceHostFactory">
+      <topicdata name="WorkflowServiceHostFactory" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activation.WorkflowServiceHostFactory" />
+      <apidata name="WorkflowServiceHostFactory" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.WorkflowServiceHostFactory.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activation.WorkflowServiceHostFactory.#ctor" />
+        <element api="M:System.ServiceModel.Activation.WorkflowServiceHostFactory.CreateServiceHost(System.String,System.Uri[])" />
+      </elements>
+      <containers>
+        <library assembly="System.WorkflowServices" module="System.WorkflowServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.WorkflowServiceHostFactory" />
+      </containers>
+      <file name="6bb7573a-cb63-1da4-77d4-804d36d7ca88" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activation.WorkflowServiceHostFactory">
+      <topicdata name="WorkflowServiceHostFactory" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activation.WorkflowServiceHostFactory" />
+      <apidata name="WorkflowServiceHostFactory" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.WorkflowServiceHostFactory.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activation.WorkflowServiceHostFactory.CreateServiceHost(System.String,System.Uri[])" />
+      </elements>
+      <containers>
+        <library assembly="System.WorkflowServices" module="System.WorkflowServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.WorkflowServiceHostFactory" />
+      </containers>
+      <file name="64da5874-aefe-e6c3-03cc-a95878fecab8" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.WorkflowServiceHostFactory.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.WorkflowServices" module="System.WorkflowServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.WorkflowServiceHostFactory" ref="true" />
+      </containers>
+      <file name="f79ae1c8-f598-b675-5106-e7ce55f3e91d" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.WorkflowServiceHostFactory.CreateServiceHost(System.String,System.Uri[])">
+      <topicdata group="api" />
+      <apidata name="CreateServiceHost" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ServiceModel.Activation.ServiceHostFactoryBase.CreateServiceHost(System.String,System.Uri[])">
+          <type api="T:System.ServiceModel.Activation.ServiceHostFactoryBase" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="constructorString">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="baseAddresses">
+          <arrayOf rank="1">
+            <type api="T:System.Uri" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.WorkflowServices" module="System.WorkflowServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation" />
+        <type api="T:System.ServiceModel.Activation.WorkflowServiceHostFactory" ref="true" />
+      </containers>
+      <file name="ec3fd94e-a388-ecea-bb35-c7af41d3a8f8" />
+    </api>
+  </apis>
+</reflection>

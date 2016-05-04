@@ -1,0 +1,2510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Activities">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>97bdccfe-43bf-4c17-991d-c797c2ef2243</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Activities.Debugger">
+      <topicdata group="api" />
+      <apidata name="System.Activities.Debugger" group="namespace" />
+      <elements>
+        <element api="T:System.Activities.Debugger.DebugInfo" />
+        <element api="T:System.Activities.Debugger.IDebuggableWorkflowTree" />
+        <element api="T:System.Activities.Debugger.LocalsItemDescription" />
+        <element api="T:System.Activities.Debugger.SourceLocation" />
+        <element api="T:System.Activities.Debugger.State" />
+        <element api="T:System.Activities.Debugger.StateManager" />
+        <element api="T:System.Activities.Debugger.SourceLocationProvider" />
+        <element api="T:System.Activities.Debugger.ThreadWorkerController" />
+        <element api="T:System.Activities.Debugger.VirtualStackFrame" />
+        <element api="T:System.Activities.Debugger.XamlDebuggerXmlReader" />
+        <element api="T:System.Activities.Debugger.SourceLocationFoundEventArgs" />
+      </elements>
+      <file name="16ec2319-e96d-e23e-1a88-e0f056e79b29" />
+    </api>
+    <api id="T:System.Activities.Debugger.DebugInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Debugger.DebugInfo" />
+      <apidata name="DebugInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+      </containers>
+      <file name="d2429858-f5eb-0546-3120-6799637dead4" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Debugger.DebugInfo">
+      <topicdata name="DebugInfo" group="list" subgroup="members" typeTopicId="T:System.Activities.Debugger.DebugInfo" />
+      <apidata name="DebugInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.DebugInfo" />
+      </containers>
+      <file name="68f72b27-66f9-889a-f51f-bf1e0d86b54f" />
+    </api>
+    <api id="Methods.T:System.Activities.Debugger.DebugInfo">
+      <topicdata name="DebugInfo" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Debugger.DebugInfo" />
+      <apidata name="DebugInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.DebugInfo" />
+      </containers>
+      <file name="617a1389-9c09-7345-441f-9ddb6d9a91bc" />
+    </api>
+    <api id="T:System.Activities.Debugger.IDebuggableWorkflowTree">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Debugger.IDebuggableWorkflowTree" />
+      <apidata name="IDebuggableWorkflowTree" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Activities.ActivityBuilder" ref="true" />
+        <type api="T:System.Activities.ActivityBuilder`1" ref="true" />
+        <type api="T:System.ServiceModel.Activities.WorkflowService" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+      </containers>
+      <file name="82f716b4-2a7e-86ef-5d68-adc1377efb15" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Debugger.IDebuggableWorkflowTree">
+      <topicdata name="IDebuggableWorkflowTree" group="list" subgroup="members" typeTopicId="T:System.Activities.Debugger.IDebuggableWorkflowTree" />
+      <apidata name="IDebuggableWorkflowTree" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Activities.Debugger.IDebuggableWorkflowTree.GetWorkflowRoot" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.IDebuggableWorkflowTree" />
+      </containers>
+      <file name="3f3239ff-05b7-cdfe-5376-6d8f149b897e" />
+    </api>
+    <api id="Methods.T:System.Activities.Debugger.IDebuggableWorkflowTree">
+      <topicdata name="IDebuggableWorkflowTree" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Debugger.IDebuggableWorkflowTree" />
+      <apidata name="IDebuggableWorkflowTree" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Activities.Debugger.IDebuggableWorkflowTree.GetWorkflowRoot" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.IDebuggableWorkflowTree" />
+      </containers>
+      <file name="d63e0092-e905-18e1-5ef8-48692f6ae59d" />
+    </api>
+    <api id="M:System.Activities.Debugger.IDebuggableWorkflowTree.GetWorkflowRoot">
+      <topicdata group="api" />
+      <apidata name="GetWorkflowRoot" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Activities.Activity" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.IDebuggableWorkflowTree" ref="true" />
+      </containers>
+      <file name="73e20efa-0c48-8813-318f-b5d7e4e8bfb6" />
+    </api>
+    <api id="T:System.Activities.Debugger.LocalsItemDescription">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Debugger.LocalsItemDescription" />
+      <apidata name="LocalsItemDescription" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+      </containers>
+      <file name="b2a33e1b-2aca-b484-83b2-e0ae7faeb380" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Debugger.LocalsItemDescription">
+      <topicdata name="LocalsItemDescription" group="list" subgroup="members" typeTopicId="T:System.Activities.Debugger.LocalsItemDescription" />
+      <apidata name="LocalsItemDescription" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Activities.Debugger.LocalsItemDescription.#ctor(System.String,System.Type)" />
+        <element api="P:System.Activities.Debugger.LocalsItemDescription.Name" />
+        <element api="M:System.Activities.Debugger.LocalsItemDescription.ToString" />
+        <element api="P:System.Activities.Debugger.LocalsItemDescription.Type" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.LocalsItemDescription" />
+      </containers>
+      <file name="d0c3f6ce-451c-9a59-0c3c-2de2bc2176d9" />
+    </api>
+    <api id="Methods.T:System.Activities.Debugger.LocalsItemDescription">
+      <topicdata name="LocalsItemDescription" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Debugger.LocalsItemDescription" />
+      <apidata name="LocalsItemDescription" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Activities.Debugger.LocalsItemDescription.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.LocalsItemDescription" />
+      </containers>
+      <file name="feaa6cb7-3238-774d-ee59-4dfb43683443" />
+    </api>
+    <api id="Properties.T:System.Activities.Debugger.LocalsItemDescription">
+      <topicdata name="LocalsItemDescription" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Debugger.LocalsItemDescription" />
+      <apidata name="LocalsItemDescription" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Debugger.LocalsItemDescription.Name" />
+        <element api="P:System.Activities.Debugger.LocalsItemDescription.Type" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.LocalsItemDescription" />
+      </containers>
+      <file name="a14a0df5-21d3-4406-fdb4-c8103a7b7512" />
+    </api>
+    <api id="M:System.Activities.Debugger.LocalsItemDescription.#ctor(System.String,System.Type)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.LocalsItemDescription" ref="true" />
+      </containers>
+      <file name="6e113300-c3a7-c1f8-a46b-a808db141046" />
+    </api>
+    <api id="P:System.Activities.Debugger.LocalsItemDescription.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.LocalsItemDescription" ref="true" />
+      </containers>
+      <file name="8ed4149c-77e3-d163-07b8-e62f42230691" />
+    </api>
+    <api id="M:System.Activities.Debugger.LocalsItemDescription.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.LocalsItemDescription" ref="true" />
+      </containers>
+      <file name="22945f7b-4b6d-d11b-20f5-d66c7cad4ccb" />
+    </api>
+    <api id="P:System.Activities.Debugger.LocalsItemDescription.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Type" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.LocalsItemDescription" ref="true" />
+      </containers>
+      <file name="1dfe75ff-99f9-5a04-cc89-5610176942ed" />
+    </api>
+    <api id="T:System.Activities.Debugger.SourceLocation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Debugger.SourceLocation" />
+      <apidata name="SourceLocation" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+      </containers>
+      <file name="2d4b455d-198e-cc5b-3e20-dc0e6f2f7b02" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Debugger.SourceLocation">
+      <topicdata name="SourceLocation" group="list" subgroup="members" typeTopicId="T:System.Activities.Debugger.SourceLocation" />
+      <apidata name="SourceLocation" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Activities.Debugger.SourceLocation.#ctor">
+          <element api="M:System.Activities.Debugger.SourceLocation.#ctor(System.String,System.Int32)" />
+          <element api="M:System.Activities.Debugger.SourceLocation.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="P:System.Activities.Debugger.SourceLocation.EndColumn" />
+        <element api="P:System.Activities.Debugger.SourceLocation.EndLine" />
+        <element api="M:System.Activities.Debugger.SourceLocation.Equals(System.Object)" />
+        <element api="P:System.Activities.Debugger.SourceLocation.FileName" />
+        <element api="M:System.Activities.Debugger.SourceLocation.GetHashCode" />
+        <element api="P:System.Activities.Debugger.SourceLocation.IsSingleWholeLine" />
+        <element api="P:System.Activities.Debugger.SourceLocation.StartColumn" />
+        <element api="P:System.Activities.Debugger.SourceLocation.StartLine" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocation" />
+      </containers>
+      <file name="e30fc5c7-f37a-80e5-facc-7d3efbac0765" />
+    </api>
+    <api id="Methods.T:System.Activities.Debugger.SourceLocation">
+      <topicdata name="SourceLocation" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Debugger.SourceLocation" />
+      <apidata name="SourceLocation" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Debugger.SourceLocation.Equals(System.Object)" />
+        <element api="M:System.Activities.Debugger.SourceLocation.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocation" />
+      </containers>
+      <file name="4e170b89-bf91-d979-454f-40e79ff653b8" />
+    </api>
+    <api id="Properties.T:System.Activities.Debugger.SourceLocation">
+      <topicdata name="SourceLocation" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Debugger.SourceLocation" />
+      <apidata name="SourceLocation" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="P:System.Activities.Debugger.SourceLocation.EndColumn" />
+        <element api="P:System.Activities.Debugger.SourceLocation.EndLine" />
+        <element api="P:System.Activities.Debugger.SourceLocation.FileName" />
+        <element api="P:System.Activities.Debugger.SourceLocation.IsSingleWholeLine" />
+        <element api="P:System.Activities.Debugger.SourceLocation.StartColumn" />
+        <element api="P:System.Activities.Debugger.SourceLocation.StartLine" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocation" />
+      </containers>
+      <file name="7ff8618e-d92f-0a14-032c-bd2e46c2efe5" />
+    </api>
+    <api id="Overload:System.Activities.Debugger.SourceLocation.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Activities.Debugger.SourceLocation" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Activities.Debugger.SourceLocation.#ctor(System.String,System.Int32)" />
+        <element api="M:System.Activities.Debugger.SourceLocation.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </containers>
+      <file name="da29bfe8-eb13-2930-2d88-e10f01926e98" />
+    </api>
+    <api id="M:System.Activities.Debugger.SourceLocation.#ctor(System.String,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.Debugger.SourceLocation.#ctor" />
+      <parameters>
+        <parameter name="fileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="line">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </containers>
+      <file name="b10f332b-b6ab-2427-b7ed-a31c5c195523" />
+    </api>
+    <api id="M:System.Activities.Debugger.SourceLocation.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.Debugger.SourceLocation.#ctor" />
+      <parameters>
+        <parameter name="fileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="startLine">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="startColumn">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="endLine">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="endColumn">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </containers>
+      <file name="88fceeb6-d784-f70d-195b-e55dacffee24" />
+    </api>
+    <api id="P:System.Activities.Debugger.SourceLocation.EndColumn">
+      <topicdata group="api" />
+      <apidata name="EndColumn" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EndColumn" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </containers>
+      <file name="ca7ba224-1fa6-c09d-707f-1b1c0d523f9d" />
+    </api>
+    <api id="P:System.Activities.Debugger.SourceLocation.EndLine">
+      <topicdata group="api" />
+      <apidata name="EndLine" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EndLine" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </containers>
+      <file name="d11a61e4-323e-5256-ee67-c3bca571b4ae" />
+    </api>
+    <api id="M:System.Activities.Debugger.SourceLocation.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Equals(System.Object)">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </containers>
+      <file name="ae31c239-6d96-6b05-e7f6-f051e6517829" />
+    </api>
+    <api id="P:System.Activities.Debugger.SourceLocation.FileName">
+      <topicdata group="api" />
+      <apidata name="FileName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FileName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </containers>
+      <file name="66383c67-d455-1040-2b50-1be9dbf3b6ba" />
+    </api>
+    <api id="M:System.Activities.Debugger.SourceLocation.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.GetHashCode">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </containers>
+      <file name="5fc84037-0d73-7703-856d-7311b8fb3206" />
+    </api>
+    <api id="P:System.Activities.Debugger.SourceLocation.IsSingleWholeLine">
+      <topicdata group="api" />
+      <apidata name="IsSingleWholeLine" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsSingleWholeLine" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </containers>
+      <file name="6f84bd2b-38a4-fbb4-93e2-16fe62f4a654" />
+    </api>
+    <api id="P:System.Activities.Debugger.SourceLocation.StartColumn">
+      <topicdata group="api" />
+      <apidata name="StartColumn" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_StartColumn" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </containers>
+      <file name="61df3b44-dddb-2b42-f5f5-5ae65e007616" />
+    </api>
+    <api id="P:System.Activities.Debugger.SourceLocation.StartLine">
+      <topicdata group="api" />
+      <apidata name="StartLine" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_StartLine" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </containers>
+      <file name="e902e7ce-2533-7718-a377-68ef1e9cc815" />
+    </api>
+    <api id="T:System.Activities.Debugger.SourceLocationFoundEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Debugger.SourceLocationFoundEventArgs" />
+      <apidata name="SourceLocationFoundEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+      </containers>
+      <file name="8bbf3462-9bcf-beec-8f7b-407af42817a3" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Debugger.SourceLocationFoundEventArgs">
+      <topicdata name="SourceLocationFoundEventArgs" group="list" subgroup="members" typeTopicId="T:System.Activities.Debugger.SourceLocationFoundEventArgs" />
+      <apidata name="SourceLocationFoundEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Debugger.SourceLocationFoundEventArgs.#ctor(System.Object,System.Activities.Debugger.SourceLocation)" />
+        <element api="P:System.Activities.Debugger.SourceLocationFoundEventArgs.SourceLocation" />
+        <element api="P:System.Activities.Debugger.SourceLocationFoundEventArgs.Target" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocationFoundEventArgs" />
+      </containers>
+      <file name="c37fe4cb-9e28-559d-f469-7e0ba79d7a25" />
+    </api>
+    <api id="Methods.T:System.Activities.Debugger.SourceLocationFoundEventArgs">
+      <topicdata name="SourceLocationFoundEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Debugger.SourceLocationFoundEventArgs" />
+      <apidata name="SourceLocationFoundEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocationFoundEventArgs" />
+      </containers>
+      <file name="75362c9c-097d-00d0-644e-3a5a029e9786" />
+    </api>
+    <api id="Properties.T:System.Activities.Debugger.SourceLocationFoundEventArgs">
+      <topicdata name="SourceLocationFoundEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Debugger.SourceLocationFoundEventArgs" />
+      <apidata name="SourceLocationFoundEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Debugger.SourceLocationFoundEventArgs.SourceLocation" />
+        <element api="P:System.Activities.Debugger.SourceLocationFoundEventArgs.Target" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocationFoundEventArgs" />
+      </containers>
+      <file name="48443d97-f940-0d2c-7497-04ec9e537a1b" />
+    </api>
+    <api id="M:System.Activities.Debugger.SourceLocationFoundEventArgs.#ctor(System.Object,System.Activities.Debugger.SourceLocation)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="target">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="sourceLocation">
+          <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocationFoundEventArgs" ref="true" />
+      </containers>
+      <file name="04c064bb-d2a2-738f-b9c1-d447afa0a876" />
+    </api>
+    <api id="P:System.Activities.Debugger.SourceLocationFoundEventArgs.SourceLocation">
+      <topicdata group="api" />
+      <apidata name="SourceLocation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SourceLocation" />
+      <returns>
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocationFoundEventArgs" ref="true" />
+      </containers>
+      <file name="1b811bbe-604c-b0fa-c6a5-5c080361e13c" />
+    </api>
+    <api id="P:System.Activities.Debugger.SourceLocationFoundEventArgs.Target">
+      <topicdata group="api" />
+      <apidata name="Target" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Target" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocationFoundEventArgs" ref="true" />
+      </containers>
+      <file name="b159cc24-ec43-3abb-3c27-2c23b09b8bf2" />
+    </api>
+    <api id="T:System.Activities.Debugger.SourceLocationProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Debugger.SourceLocationProvider" />
+      <apidata name="SourceLocationProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+      </containers>
+      <file name="888be2f9-41f4-9ebd-3e47-7746feabe3a7" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Debugger.SourceLocationProvider">
+      <topicdata name="SourceLocationProvider" group="list" subgroup="members" typeTopicId="T:System.Activities.Debugger.SourceLocationProvider" />
+      <apidata name="SourceLocationProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Activities.Debugger.SourceLocationProvider.CollectMapping(System.Activities.Activity,System.Activities.Activity,System.Collections.Generic.Dictionary{System.Object,System.Activities.Debugger.SourceLocation},System.String)" />
+        <element api="M:System.Activities.Debugger.SourceLocationProvider.GetSourceLocations(System.Activities.Activity,System.Activities.Debugger.Symbol.WorkflowSymbol)" />
+        <element api="M:System.Activities.Debugger.SourceLocationProvider.GetSymbols(System.Activities.Activity,System.Collections.Generic.Dictionary{System.Object,System.Activities.Debugger.SourceLocation})" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocationProvider" />
+      </containers>
+      <file name="716292ff-8819-2111-2ce7-38484bdf92e4" />
+    </api>
+    <api id="Methods.T:System.Activities.Debugger.SourceLocationProvider">
+      <topicdata name="SourceLocationProvider" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Debugger.SourceLocationProvider" />
+      <apidata name="SourceLocationProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Activities.Debugger.SourceLocationProvider.CollectMapping(System.Activities.Activity,System.Activities.Activity,System.Collections.Generic.Dictionary{System.Object,System.Activities.Debugger.SourceLocation},System.String)" />
+        <element api="M:System.Activities.Debugger.SourceLocationProvider.GetSourceLocations(System.Activities.Activity,System.Activities.Debugger.Symbol.WorkflowSymbol)" />
+        <element api="M:System.Activities.Debugger.SourceLocationProvider.GetSymbols(System.Activities.Activity,System.Collections.Generic.Dictionary{System.Object,System.Activities.Debugger.SourceLocation})" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocationProvider" />
+      </containers>
+      <file name="15a59d35-3271-de9a-093f-54d06d363742" />
+    </api>
+    <api id="M:System.Activities.Debugger.SourceLocationProvider.CollectMapping(System.Activities.Activity,System.Activities.Activity,System.Collections.Generic.Dictionary{System.Object,System.Activities.Debugger.SourceLocation},System.String)">
+      <topicdata group="api" />
+      <apidata name="CollectMapping" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="rootActivity1">
+          <type api="T:System.Activities.Activity" ref="true" />
+        </parameter>
+        <parameter name="rootActivity2">
+          <type api="T:System.Activities.Activity" ref="true" />
+        </parameter>
+        <parameter name="mapping">
+          <type api="T:System.Collections.Generic.Dictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.Object" ref="true" />
+              <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocationProvider" ref="true" />
+      </containers>
+      <file name="844516b9-0ff7-df57-64ed-4f42f65c4f76" />
+    </api>
+    <api id="M:System.Activities.Debugger.SourceLocationProvider.GetSourceLocations(System.Activities.Activity,System.Activities.Debugger.Symbol.WorkflowSymbol)">
+      <topicdata group="api" />
+      <apidata name="GetSourceLocations" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="rootActivity">
+          <type api="T:System.Activities.Activity" ref="true" />
+        </parameter>
+        <parameter name="symbol">
+          <type api="T:System.Activities.Debugger.Symbol.WorkflowSymbol" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.Dictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+            <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocationProvider" ref="true" />
+      </containers>
+      <file name="42b07b9d-c3d4-4c79-db0d-3d9f19d9eaf0" />
+    </api>
+    <api id="M:System.Activities.Debugger.SourceLocationProvider.GetSymbols(System.Activities.Activity,System.Collections.Generic.Dictionary{System.Object,System.Activities.Debugger.SourceLocation})">
+      <topicdata group="api" />
+      <apidata name="GetSymbols" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="rootActivity">
+          <type api="T:System.Activities.Activity" ref="true" />
+        </parameter>
+        <parameter name="sourceLocations">
+          <type api="T:System.Collections.Generic.Dictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.Object" ref="true" />
+              <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.ICollection`1" ref="true">
+          <specialization>
+            <type api="T:System.Activities.Debugger.Symbol.ActivitySymbol" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.SourceLocationProvider" ref="true" />
+      </containers>
+      <file name="3ab0bca6-8bff-6688-be9e-d093e2774f26" />
+    </api>
+    <api id="T:System.Activities.Debugger.State">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Debugger.State" />
+      <apidata name="State" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+      </containers>
+      <file name="001d082a-8264-a99b-3b40-c05b8d8edf18" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Debugger.State">
+      <topicdata name="State" group="list" subgroup="members" typeTopicId="T:System.Activities.Debugger.State" />
+      <apidata name="State" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.State" />
+      </containers>
+      <file name="00a14baf-ae01-6f15-ed88-8c70336741a8" />
+    </api>
+    <api id="Methods.T:System.Activities.Debugger.State">
+      <topicdata name="State" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Debugger.State" />
+      <apidata name="State" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.State" />
+      </containers>
+      <file name="30bf12c5-95fa-d13d-a452-cf8bed223092" />
+    </api>
+    <api id="T:System.Activities.Debugger.StateManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Debugger.StateManager" />
+      <apidata name="StateManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+      </containers>
+      <file name="cbfe5c7a-f6b9-4d63-aa5a-a47f1d4eae8b" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Debugger.StateManager">
+      <topicdata name="StateManager" group="list" subgroup="members" typeTopicId="T:System.Activities.Debugger.StateManager" />
+      <apidata name="StateManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Debugger.StateManager.Dispose" />
+        <element api="M:System.Activities.Debugger.StateManager.Exit(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.StateManager" />
+      </containers>
+      <file name="fed49eb6-5e0c-0244-a757-59797226b65d" />
+    </api>
+    <api id="Methods.T:System.Activities.Debugger.StateManager">
+      <topicdata name="StateManager" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Debugger.StateManager" />
+      <apidata name="StateManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Debugger.StateManager.Dispose" />
+        <element api="M:System.Activities.Debugger.StateManager.Exit(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.StateManager" />
+      </containers>
+      <file name="e3a97ce7-378e-e5f2-e7fd-ff8934444d40" />
+    </api>
+    <api id="M:System.Activities.Debugger.StateManager.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.StateManager" ref="true" />
+      </containers>
+      <file name="7cd9869b-16a3-c26a-00d9-f820a6f28b0d" />
+    </api>
+    <api id="M:System.Activities.Debugger.StateManager.Exit(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Exit" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="threadIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.StateManager" ref="true" />
+      </containers>
+      <file name="68d24ef3-2389-0a64-a51d-83d4dd9db624" />
+    </api>
+    <api id="T:System.Activities.Debugger.ThreadWorkerController">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Debugger.ThreadWorkerController" />
+      <apidata name="ThreadWorkerController" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Debugger.ThreadWorkerController.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+      </containers>
+      <file name="a924d01d-d75f-dde6-69e9-bcc6ddc44105" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Debugger.ThreadWorkerController">
+      <topicdata name="ThreadWorkerController" group="list" subgroup="members" typeTopicId="T:System.Activities.Debugger.ThreadWorkerController" />
+      <apidata name="ThreadWorkerController" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Debugger.ThreadWorkerController.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Debugger.ThreadWorkerController.#ctor" />
+        <element api="M:System.Activities.Debugger.ThreadWorkerController.IslandWorker(System.Activities.Debugger.ThreadWorkerController)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.ThreadWorkerController" />
+      </containers>
+      <file name="b7698aad-9695-39ca-30ae-07c3af104f57" />
+    </api>
+    <api id="Methods.T:System.Activities.Debugger.ThreadWorkerController">
+      <topicdata name="ThreadWorkerController" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Debugger.ThreadWorkerController" />
+      <apidata name="ThreadWorkerController" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Debugger.ThreadWorkerController.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Debugger.ThreadWorkerController.IslandWorker(System.Activities.Debugger.ThreadWorkerController)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.ThreadWorkerController" />
+      </containers>
+      <file name="83f8a366-db05-6ffb-4562-bc898e1b34d2" />
+    </api>
+    <api id="M:System.Activities.Debugger.ThreadWorkerController.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.ThreadWorkerController" ref="true" />
+      </containers>
+      <file name="181946fe-07a2-e515-8cbf-1c4feff46c44" />
+    </api>
+    <api id="M:System.Activities.Debugger.ThreadWorkerController.IslandWorker(System.Activities.Debugger.ThreadWorkerController)">
+      <topicdata group="api" />
+      <apidata name="IslandWorker" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="controller">
+          <type api="T:System.Activities.Debugger.ThreadWorkerController" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.ThreadWorkerController" ref="true" />
+      </containers>
+      <file name="e54a3190-a2bf-382f-8e76-37bee2b5555d" />
+    </api>
+    <api id="T:System.Activities.Debugger.VirtualStackFrame">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Debugger.VirtualStackFrame" />
+      <apidata name="VirtualStackFrame" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+      </containers>
+      <file name="28d89df2-4029-eb24-fe50-e1079d1ae1c3" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Debugger.VirtualStackFrame">
+      <topicdata name="VirtualStackFrame" group="list" subgroup="members" typeTopicId="T:System.Activities.Debugger.VirtualStackFrame" />
+      <apidata name="VirtualStackFrame" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Activities.Debugger.VirtualStackFrame.#ctor">
+          <element api="M:System.Activities.Debugger.VirtualStackFrame.#ctor(System.Activities.Debugger.State)" />
+          <element api="M:System.Activities.Debugger.VirtualStackFrame.#ctor(System.Activities.Debugger.State,System.Collections.Generic.IDictionary{System.String,System.Object})" />
+        </element>
+        <element api="P:System.Activities.Debugger.VirtualStackFrame.Locals" />
+        <element api="P:System.Activities.Debugger.VirtualStackFrame.State" />
+        <element api="M:System.Activities.Debugger.VirtualStackFrame.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.VirtualStackFrame" />
+      </containers>
+      <file name="f29f6b2a-7302-772d-23f2-94b88cd207de" />
+    </api>
+    <api id="Methods.T:System.Activities.Debugger.VirtualStackFrame">
+      <topicdata name="VirtualStackFrame" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Debugger.VirtualStackFrame" />
+      <apidata name="VirtualStackFrame" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Activities.Debugger.VirtualStackFrame.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.VirtualStackFrame" />
+      </containers>
+      <file name="e0adb919-bcdc-9a61-e033-e4ee56e2b067" />
+    </api>
+    <api id="Properties.T:System.Activities.Debugger.VirtualStackFrame">
+      <topicdata name="VirtualStackFrame" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Debugger.VirtualStackFrame" />
+      <apidata name="VirtualStackFrame" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Debugger.VirtualStackFrame.Locals" />
+        <element api="P:System.Activities.Debugger.VirtualStackFrame.State" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.VirtualStackFrame" />
+      </containers>
+      <file name="479ca475-6d37-6ae4-fdbe-25f5c048ebe7" />
+    </api>
+    <api id="Overload:System.Activities.Debugger.VirtualStackFrame.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Activities.Debugger.VirtualStackFrame" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Activities.Debugger.VirtualStackFrame.#ctor(System.Activities.Debugger.State)" />
+        <element api="M:System.Activities.Debugger.VirtualStackFrame.#ctor(System.Activities.Debugger.State,System.Collections.Generic.IDictionary{System.String,System.Object})" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.VirtualStackFrame" ref="true" />
+      </containers>
+      <file name="4d21612c-f8f3-b6d7-a4c7-0f646f1e05d3" />
+    </api>
+    <api id="M:System.Activities.Debugger.VirtualStackFrame.#ctor(System.Activities.Debugger.State)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.Debugger.VirtualStackFrame.#ctor" />
+      <parameters>
+        <parameter name="state">
+          <type api="T:System.Activities.Debugger.State" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.VirtualStackFrame" ref="true" />
+      </containers>
+      <file name="5c8e9c4c-be4a-4ba8-a351-a8fbcbedc83c" />
+    </api>
+    <api id="M:System.Activities.Debugger.VirtualStackFrame.#ctor(System.Activities.Debugger.State,System.Collections.Generic.IDictionary{System.String,System.Object})">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.Debugger.VirtualStackFrame.#ctor" />
+      <parameters>
+        <parameter name="state">
+          <type api="T:System.Activities.Debugger.State" ref="true" />
+        </parameter>
+        <parameter name="locals">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.VirtualStackFrame" ref="true" />
+      </containers>
+      <file name="9ecaf2b2-daf4-0291-eb47-a4481a231f40" />
+    </api>
+    <api id="P:System.Activities.Debugger.VirtualStackFrame.Locals">
+      <topicdata group="api" />
+      <apidata name="Locals" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Locals" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.VirtualStackFrame" ref="true" />
+      </containers>
+      <file name="10a8e73f-a909-6b94-4ec5-df8428e1aded" />
+    </api>
+    <api id="P:System.Activities.Debugger.VirtualStackFrame.State">
+      <topicdata group="api" />
+      <apidata name="State" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_State" />
+      <returns>
+        <type api="T:System.Activities.Debugger.State" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.VirtualStackFrame" ref="true" />
+      </containers>
+      <file name="9e2637a7-3d08-853f-2a94-0a6519f098b2" />
+    </api>
+    <api id="M:System.Activities.Debugger.VirtualStackFrame.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.VirtualStackFrame" ref="true" />
+      </containers>
+      <file name="ddd0cb5e-d85f-addf-68d8-83a2ece65c24" />
+    </api>
+    <api id="T:System.Activities.Debugger.XamlDebuggerXmlReader">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Debugger.XamlDebuggerXmlReader" />
+      <apidata name="XamlDebuggerXmlReader" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Xaml.XamlReader" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Xaml.IXamlLineInfo" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+      </containers>
+      <file name="68b0ede6-71e6-97ff-c4ee-4686f610a285" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Debugger.XamlDebuggerXmlReader">
+      <topicdata name="XamlDebuggerXmlReader" group="list" subgroup="members" typeTopicId="T:System.Activities.Debugger.XamlDebuggerXmlReader" />
+      <apidata name="XamlDebuggerXmlReader" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Activities.Debugger.XamlDebuggerXmlReader.#ctor">
+          <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.#ctor(System.IO.TextReader)" />
+          <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.#ctor(System.IO.TextReader,System.Xaml.XamlSchemaContext)" />
+          <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.#ctor(System.Xaml.XamlReader,System.IO.TextReader)" />
+          <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.#ctor(System.Xaml.XamlReader,System.Xaml.IXamlLineInfo,System.IO.TextReader)" />
+        </element>
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.CollectNonActivitySourceLocation" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.CopyAttachedSourceLocation(System.Object,System.Object)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.Dispose(System.Boolean)" />
+        <element api="F:System.Activities.Debugger.XamlDebuggerXmlReader.EndColumnName" />
+        <element api="F:System.Activities.Debugger.XamlDebuggerXmlReader.EndLineName" />
+        <element api="F:System.Activities.Debugger.XamlDebuggerXmlReader.FileNameName" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.GetEndColumn(System.Object)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.GetEndLine(System.Object)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.GetFileName(System.Object)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.GetStartColumn(System.Object)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.GetStartLine(System.Object)" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.HasLineInfo" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.IsEof" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.LineNumber" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.LinePosition" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.Member" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.Namespace" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.NodeType" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.Read" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.SchemaContext" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.SetEndColumn(System.Object,System.Object)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.SetEndLine(System.Object,System.Object)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.SetFileName(System.Object,System.Object)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.SetStartColumn(System.Object,System.Object)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.SetStartLine(System.Object,System.Object)" />
+        <element api="E:System.Activities.Debugger.XamlDebuggerXmlReader.SourceLocationFound" />
+        <element api="F:System.Activities.Debugger.XamlDebuggerXmlReader.StartColumnName" />
+        <element api="F:System.Activities.Debugger.XamlDebuggerXmlReader.StartLineName" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.Type" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.Value" />
+        <element api="M:System.Xaml.XamlReader.Close" />
+        <element api="P:System.Xaml.XamlReader.IsDisposed" />
+        <element api="M:System.Xaml.XamlReader.ReadSubtree" />
+        <element api="M:System.Xaml.XamlReader.Skip" />
+        <element api="M:System.Xaml.XamlReader.System#IDisposable#Dispose" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" />
+      </containers>
+      <file name="cde57d31-5bb9-b56d-d107-8382f0a346d6" />
+    </api>
+    <api id="Methods.T:System.Activities.Debugger.XamlDebuggerXmlReader">
+      <topicdata name="XamlDebuggerXmlReader" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Debugger.XamlDebuggerXmlReader" />
+      <apidata name="XamlDebuggerXmlReader" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.CopyAttachedSourceLocation(System.Object,System.Object)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.Dispose(System.Boolean)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.GetEndColumn(System.Object)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.GetEndLine(System.Object)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.GetFileName(System.Object)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.GetStartColumn(System.Object)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.GetStartLine(System.Object)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.Read" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.SetEndColumn(System.Object,System.Object)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.SetEndLine(System.Object,System.Object)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.SetFileName(System.Object,System.Object)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.SetStartColumn(System.Object,System.Object)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.SetStartLine(System.Object,System.Object)" />
+        <element api="M:System.Xaml.XamlReader.Close" />
+        <element api="M:System.Xaml.XamlReader.ReadSubtree" />
+        <element api="M:System.Xaml.XamlReader.Skip" />
+        <element api="M:System.Xaml.XamlReader.System#IDisposable#Dispose" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" />
+      </containers>
+      <file name="ce2314a5-c845-ad14-5252-fd4202567ce2" />
+    </api>
+    <api id="Properties.T:System.Activities.Debugger.XamlDebuggerXmlReader">
+      <topicdata name="XamlDebuggerXmlReader" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Debugger.XamlDebuggerXmlReader" />
+      <apidata name="XamlDebuggerXmlReader" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.CollectNonActivitySourceLocation" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.HasLineInfo" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.IsEof" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.LineNumber" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.LinePosition" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.Member" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.Namespace" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.NodeType" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.SchemaContext" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.Type" />
+        <element api="P:System.Activities.Debugger.XamlDebuggerXmlReader.Value" />
+        <element api="P:System.Xaml.XamlReader.IsDisposed" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" />
+      </containers>
+      <file name="2cb77db1-88cc-e5a0-1a6e-2ac894df25bd" />
+    </api>
+    <api id="Events.T:System.Activities.Debugger.XamlDebuggerXmlReader">
+      <topicdata name="XamlDebuggerXmlReader" group="list" subgroup="Events" typeTopicId="T:System.Activities.Debugger.XamlDebuggerXmlReader" />
+      <apidata name="XamlDebuggerXmlReader" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="E:System.Activities.Debugger.XamlDebuggerXmlReader.SourceLocationFound" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" />
+      </containers>
+      <file name="e53e7abb-8d61-8ef6-c53b-1f83ea88fc83" />
+    </api>
+    <api id="Fields.T:System.Activities.Debugger.XamlDebuggerXmlReader">
+      <topicdata name="XamlDebuggerXmlReader" group="list" subgroup="Fields" typeTopicId="T:System.Activities.Debugger.XamlDebuggerXmlReader" />
+      <apidata name="XamlDebuggerXmlReader" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:System.Activities.Debugger.XamlDebuggerXmlReader.EndColumnName" />
+        <element api="F:System.Activities.Debugger.XamlDebuggerXmlReader.EndLineName" />
+        <element api="F:System.Activities.Debugger.XamlDebuggerXmlReader.FileNameName" />
+        <element api="F:System.Activities.Debugger.XamlDebuggerXmlReader.StartColumnName" />
+        <element api="F:System.Activities.Debugger.XamlDebuggerXmlReader.StartLineName" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" />
+      </containers>
+      <file name="bdcc59c0-58d3-df2a-da4e-45726af9c340" />
+    </api>
+    <api id="Overload:System.Activities.Debugger.XamlDebuggerXmlReader.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Activities.Debugger.XamlDebuggerXmlReader" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.#ctor(System.IO.TextReader)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.#ctor(System.IO.TextReader,System.Xaml.XamlSchemaContext)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.#ctor(System.Xaml.XamlReader,System.IO.TextReader)" />
+        <element api="M:System.Activities.Debugger.XamlDebuggerXmlReader.#ctor(System.Xaml.XamlReader,System.Xaml.IXamlLineInfo,System.IO.TextReader)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="4beedb41-1498-abf6-e594-3f2f2bbc6324" />
+    </api>
+    <api id="M:System.Activities.Debugger.XamlDebuggerXmlReader.#ctor(System.IO.TextReader)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.Debugger.XamlDebuggerXmlReader.#ctor" />
+      <parameters>
+        <parameter name="underlyingTextReader">
+          <type api="T:System.IO.TextReader" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="c1fe2af8-b1d9-de9f-48c9-c0ae77a2f7e5" />
+    </api>
+    <api id="M:System.Activities.Debugger.XamlDebuggerXmlReader.#ctor(System.IO.TextReader,System.Xaml.XamlSchemaContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.Debugger.XamlDebuggerXmlReader.#ctor" />
+      <parameters>
+        <parameter name="underlyingTextReader">
+          <type api="T:System.IO.TextReader" ref="true" />
+        </parameter>
+        <parameter name="schemaContext">
+          <type api="T:System.Xaml.XamlSchemaContext" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="3ab34e0a-fa35-d6c3-b730-69f4ee59fc54" />
+    </api>
+    <api id="M:System.Activities.Debugger.XamlDebuggerXmlReader.#ctor(System.Xaml.XamlReader,System.IO.TextReader)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.Debugger.XamlDebuggerXmlReader.#ctor" />
+      <parameters>
+        <parameter name="underlyingReader">
+          <type api="T:System.Xaml.XamlReader" ref="true" />
+        </parameter>
+        <parameter name="textReader">
+          <type api="T:System.IO.TextReader" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Don't use this constructor. Use "public XamlDebuggerXmlReader(TextReader underlyingTextReader)" or "public XamlDebuggerXmlReader(TextReader underlyingTextReader, XamlSchemaContext schemaContext)" instead.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e9d0ed01-7dc8-8aa5-7b20-e9f7c575ee42" />
+    </api>
+    <api id="M:System.Activities.Debugger.XamlDebuggerXmlReader.#ctor(System.Xaml.XamlReader,System.Xaml.IXamlLineInfo,System.IO.TextReader)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.Debugger.XamlDebuggerXmlReader.#ctor" />
+      <parameters>
+        <parameter name="underlyingReader">
+          <type api="T:System.Xaml.XamlReader" ref="true" />
+        </parameter>
+        <parameter name="xamlLineInfo">
+          <type api="T:System.Xaml.IXamlLineInfo" ref="true" />
+        </parameter>
+        <parameter name="textReader">
+          <type api="T:System.IO.TextReader" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Don't use this constructor. Use "public XamlDebuggerXmlReader(TextReader underlyingTextReader)" or "public XamlDebuggerXmlReader(TextReader underlyingTextReader, XamlSchemaContext schemaContext)" instead.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ff7c8732-f619-4eb1-907f-dfc297e4f6d3" />
+    </api>
+    <api id="P:System.Activities.Debugger.XamlDebuggerXmlReader.CollectNonActivitySourceLocation">
+      <topicdata group="api" />
+      <apidata name="CollectNonActivitySourceLocation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CollectNonActivitySourceLocation" />
+      <setter name="set_CollectNonActivitySourceLocation" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="88abc334-27e5-cfd5-8a5d-ad3cd506666a" />
+    </api>
+    <api id="M:System.Activities.Debugger.XamlDebuggerXmlReader.CopyAttachedSourceLocation(System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name="CopyAttachedSourceLocation" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="destination">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="bf88717a-ac8f-0cc1-0a94-6023b44d8b69" />
+    </api>
+    <api id="M:System.Activities.Debugger.XamlDebuggerXmlReader.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Xaml.XamlReader.Dispose(System.Boolean)">
+          <type api="T:System.Xaml.XamlReader" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="10382f0e-247a-1203-3197-066612f39513" />
+    </api>
+    <api id="F:System.Activities.Debugger.XamlDebuggerXmlReader.EndColumnName">
+      <topicdata group="api" />
+      <apidata name="EndColumnName" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Xaml.AttachableMemberIdentifier" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="7f91b684-5996-14d0-efaf-aeebda5e0d53" />
+    </api>
+    <api id="F:System.Activities.Debugger.XamlDebuggerXmlReader.EndLineName">
+      <topicdata group="api" />
+      <apidata name="EndLineName" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Xaml.AttachableMemberIdentifier" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="b7331ddb-b581-375a-ed61-05287cc8bbad" />
+    </api>
+    <api id="F:System.Activities.Debugger.XamlDebuggerXmlReader.FileNameName">
+      <topicdata group="api" />
+      <apidata name="FileNameName" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Xaml.AttachableMemberIdentifier" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="08baae46-9aaa-51b8-89ee-94e12f5081f3" />
+    </api>
+    <api id="M:System.Activities.Debugger.XamlDebuggerXmlReader.GetEndColumn(System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetEndColumn" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="20acccc9-f0df-7271-cf0b-3cc72bfe892f" />
+    </api>
+    <api id="M:System.Activities.Debugger.XamlDebuggerXmlReader.GetEndLine(System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetEndLine" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c05593ff-da77-185e-83db-1c83566d7ee2" />
+    </api>
+    <api id="M:System.Activities.Debugger.XamlDebuggerXmlReader.GetFileName(System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetFileName" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="74311953-6279-117a-e048-15de598df81e" />
+    </api>
+    <api id="M:System.Activities.Debugger.XamlDebuggerXmlReader.GetStartColumn(System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetStartColumn" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e86ae825-8d8d-0db9-8ac2-9629039d86b2" />
+    </api>
+    <api id="M:System.Activities.Debugger.XamlDebuggerXmlReader.GetStartLine(System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetStartLine" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7f6cc1c9-b1bb-c48c-3a84-392f7e6e9fa7" />
+    </api>
+    <api id="P:System.Activities.Debugger.XamlDebuggerXmlReader.HasLineInfo">
+      <topicdata group="api" />
+      <apidata name="HasLineInfo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_HasLineInfo" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Xaml.IXamlLineInfo.HasLineInfo">
+          <type api="T:System.Xaml.IXamlLineInfo" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="9b36a614-6c9a-83cd-d711-908833f14edc" />
+    </api>
+    <api id="P:System.Activities.Debugger.XamlDebuggerXmlReader.IsEof">
+      <topicdata group="api" />
+      <apidata name="IsEof" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Xaml.XamlReader.IsEof">
+          <type api="T:System.Xaml.XamlReader" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_IsEof" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="cfc583b2-0744-f0a4-6051-537e56af8679" />
+    </api>
+    <api id="P:System.Activities.Debugger.XamlDebuggerXmlReader.LineNumber">
+      <topicdata group="api" />
+      <apidata name="LineNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_LineNumber" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Xaml.IXamlLineInfo.LineNumber">
+          <type api="T:System.Xaml.IXamlLineInfo" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="8646479e-8495-8dad-b81d-d0bdac656187" />
+    </api>
+    <api id="P:System.Activities.Debugger.XamlDebuggerXmlReader.LinePosition">
+      <topicdata group="api" />
+      <apidata name="LinePosition" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_LinePosition" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Xaml.IXamlLineInfo.LinePosition">
+          <type api="T:System.Xaml.IXamlLineInfo" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="693da69b-5bb6-e4e8-23ae-ba356730d9b2" />
+    </api>
+    <api id="P:System.Activities.Debugger.XamlDebuggerXmlReader.Member">
+      <topicdata group="api" />
+      <apidata name="Member" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Xaml.XamlReader.Member">
+          <type api="T:System.Xaml.XamlReader" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Member" />
+      <returns>
+        <type api="T:System.Xaml.XamlMember" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="dbf5e9dd-76b2-6f20-afeb-f6ef9e759bc9" />
+    </api>
+    <api id="P:System.Activities.Debugger.XamlDebuggerXmlReader.Namespace">
+      <topicdata group="api" />
+      <apidata name="Namespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Xaml.XamlReader.Namespace">
+          <type api="T:System.Xaml.XamlReader" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Namespace" />
+      <returns>
+        <type api="T:System.Xaml.NamespaceDeclaration" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="36c2dfd4-7e1b-8915-c221-bafbe099e3ce" />
+    </api>
+    <api id="P:System.Activities.Debugger.XamlDebuggerXmlReader.NodeType">
+      <topicdata group="api" />
+      <apidata name="NodeType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Xaml.XamlReader.NodeType">
+          <type api="T:System.Xaml.XamlReader" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_NodeType" />
+      <returns>
+        <type api="T:System.Xaml.XamlNodeType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="9b7dd322-9eec-e962-e5cb-76bc665f5d07" />
+    </api>
+    <api id="M:System.Activities.Debugger.XamlDebuggerXmlReader.Read">
+      <topicdata group="api" />
+      <apidata name="Read" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Xaml.XamlReader.Read">
+          <type api="T:System.Xaml.XamlReader" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="3415b0fa-e75c-46fc-0208-b34d54afb19b" />
+    </api>
+    <api id="P:System.Activities.Debugger.XamlDebuggerXmlReader.SchemaContext">
+      <topicdata group="api" />
+      <apidata name="SchemaContext" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Xaml.XamlReader.SchemaContext">
+          <type api="T:System.Xaml.XamlReader" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_SchemaContext" />
+      <returns>
+        <type api="T:System.Xaml.XamlSchemaContext" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="d5370f57-7852-aa4c-febb-c5cc3365cd77" />
+    </api>
+    <api id="M:System.Activities.Debugger.XamlDebuggerXmlReader.SetEndColumn(System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetEndColumn" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="f7ab45f4-ca2b-4553-42b3-81c35e4b0bba" />
+    </api>
+    <api id="M:System.Activities.Debugger.XamlDebuggerXmlReader.SetEndLine(System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetEndLine" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="8bfa166a-33df-bb5b-7be0-f6300b46028a" />
+    </api>
+    <api id="M:System.Activities.Debugger.XamlDebuggerXmlReader.SetFileName(System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetFileName" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="c14c9e18-4819-5506-65a0-18492c6b3f25" />
+    </api>
+    <api id="M:System.Activities.Debugger.XamlDebuggerXmlReader.SetStartColumn(System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetStartColumn" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="8b5bec21-0f0f-3ced-6d95-3cd4a6be3b92" />
+    </api>
+    <api id="M:System.Activities.Debugger.XamlDebuggerXmlReader.SetStartLine(System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetStartLine" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="2023db95-5d20-a5c1-ef51-f36c72f3a3ee" />
+    </api>
+    <api id="E:System.Activities.Debugger.XamlDebuggerXmlReader.SourceLocationFound">
+      <topicdata group="api" />
+      <apidata name="SourceLocationFound" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_SourceLocationFound" />
+      <remover name="remove_SourceLocationFound" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Activities.Debugger.SourceLocationFoundEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Activities.Debugger.SourceLocationFoundEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="8fd1b677-545c-2073-b900-a3d34e09d05a" />
+    </api>
+    <api id="F:System.Activities.Debugger.XamlDebuggerXmlReader.StartColumnName">
+      <topicdata group="api" />
+      <apidata name="StartColumnName" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Xaml.AttachableMemberIdentifier" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="7e6a9995-dcdc-815e-ad95-e09ff9eedff1" />
+    </api>
+    <api id="F:System.Activities.Debugger.XamlDebuggerXmlReader.StartLineName">
+      <topicdata group="api" />
+      <apidata name="StartLineName" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Xaml.AttachableMemberIdentifier" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="58128b13-9dd7-c0cb-f9dd-0dbdc9150379" />
+    </api>
+    <api id="P:System.Activities.Debugger.XamlDebuggerXmlReader.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Xaml.XamlReader.Type">
+          <type api="T:System.Xaml.XamlReader" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Type" />
+      <returns>
+        <type api="T:System.Xaml.XamlType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="13961b50-0622-a2f9-0f82-0ffc3e1a4d0d" />
+    </api>
+    <api id="P:System.Activities.Debugger.XamlDebuggerXmlReader.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Xaml.XamlReader.Value">
+          <type api="T:System.Xaml.XamlReader" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger" />
+        <type api="T:System.Activities.Debugger.XamlDebuggerXmlReader" ref="true" />
+      </containers>
+      <file name="53ea00d8-fd56-c299-154a-130fa2376ad1" />
+    </api>
+  </apis>
+</reflection>

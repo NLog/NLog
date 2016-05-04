@@ -1,0 +1,1624 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Xml">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xml.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xml.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xml.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Xml.Serialization.Configuration">
+      <topicdata group="api" />
+      <apidata name="System.Xml.Serialization.Configuration" group="namespace" />
+      <elements>
+        <element api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" />
+        <element api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection.DateTimeSerializationMode" />
+        <element api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" />
+        <element api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" />
+        <element api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection" />
+        <element api="T:System.Xml.Serialization.Configuration.SerializationSectionGroup" />
+        <element api="T:System.Xml.Serialization.Configuration.XmlSerializerSection" />
+        <element api="T:System.Xml.Serialization.Configuration.RootedPathValidator" />
+      </elements>
+      <file name="ac9134fd-dc9d-dff5-7a92-bda457af8ff2" />
+    </api>
+    <api id="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" />
+      <apidata name="DateTimeSerializationSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.DateTimeSerializationSection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+      </containers>
+      <file name="02266ad5-fd8b-1059-9779-49ba6e7137ec" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Serialization.Configuration.DateTimeSerializationSection">
+      <topicdata name="DateTimeSerializationSection" group="list" subgroup="members" typeTopicId="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" />
+      <apidata name="DateTimeSerializationSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.DateTimeSerializationSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="M:System.Xml.Serialization.Configuration.DateTimeSerializationSection.#ctor" />
+        <element api="P:System.Xml.Serialization.Configuration.DateTimeSerializationSection.Mode" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" />
+      </containers>
+      <file name="0174ab5f-b0a7-1d27-be41-7ceb69c7d09d" />
+    </api>
+    <api id="Methods.T:System.Xml.Serialization.Configuration.DateTimeSerializationSection">
+      <topicdata name="DateTimeSerializationSection" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" />
+      <apidata name="DateTimeSerializationSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.DateTimeSerializationSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" />
+      </containers>
+      <file name="bb5b0f18-443e-9830-5547-cd0b659ae876" />
+    </api>
+    <api id="Properties.T:System.Xml.Serialization.Configuration.DateTimeSerializationSection">
+      <topicdata name="DateTimeSerializationSection" group="list" subgroup="Properties" typeTopicId="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" />
+      <apidata name="DateTimeSerializationSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.DateTimeSerializationSection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="P:System.Xml.Serialization.Configuration.DateTimeSerializationSection.Mode" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" />
+      </containers>
+      <file name="6fcd776f-9d65-ec78-a431-34337ea3503b" />
+    </api>
+    <api id="M:System.Xml.Serialization.Configuration.DateTimeSerializationSection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" ref="true" />
+      </containers>
+      <file name="6f060c96-8c70-32a3-6ca0-208289280f7f" />
+    </api>
+    <api id="P:System.Xml.Serialization.Configuration.DateTimeSerializationSection.Mode">
+      <topicdata group="api" />
+      <apidata name="Mode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Mode" />
+      <setter name="set_Mode" />
+      <returns>
+        <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection.DateTimeSerializationMode" ref="false">
+          <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" ref="true" />
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mode</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection.DateTimeSerializationMode" ref="false">
+              <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" ref="true" />
+            </type>
+            <enumValue>
+              <field name="Roundtrip" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="5cd9dd92-54eb-a942-ae30-b7fb3d475057" />
+    </api>
+    <api id="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection.DateTimeSerializationMode">
+      <topicdata group="api" />
+      <apidata name="DateTimeSerializationMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Xml.Serialization.Configuration.DateTimeSerializationSection.DateTimeSerializationMode.Default" />
+        <element api="F:System.Xml.Serialization.Configuration.DateTimeSerializationSection.DateTimeSerializationMode.Roundtrip" />
+        <element api="F:System.Xml.Serialization.Configuration.DateTimeSerializationSection.DateTimeSerializationMode.Local" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" ref="true" />
+      </containers>
+      <file name="f732c3ef-21fd-9902-27f9-6f789af98954" />
+    </api>
+    <api id="F:System.Xml.Serialization.Configuration.DateTimeSerializationSection.DateTimeSerializationMode.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection.DateTimeSerializationMode" ref="false">
+          <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" ref="true" />
+        </type>
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection.DateTimeSerializationMode" ref="false">
+          <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" ref="true" />
+        </type>
+      </containers>
+      <file name="fea3d5c0-dc61-6baa-b53e-b5f99b4240c3" />
+    </api>
+    <api id="F:System.Xml.Serialization.Configuration.DateTimeSerializationSection.DateTimeSerializationMode.Local">
+      <topicdata group="api" notopic="" />
+      <apidata name="Local" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection.DateTimeSerializationMode" ref="false">
+          <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" ref="true" />
+        </type>
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection.DateTimeSerializationMode" ref="false">
+          <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" ref="true" />
+        </type>
+      </containers>
+      <file name="9f361dcf-a996-ae0b-9307-4d07c80eb963" />
+    </api>
+    <api id="F:System.Xml.Serialization.Configuration.DateTimeSerializationSection.DateTimeSerializationMode.Roundtrip">
+      <topicdata group="api" notopic="" />
+      <apidata name="Roundtrip" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection.DateTimeSerializationMode" ref="false">
+          <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" ref="true" />
+        </type>
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection.DateTimeSerializationMode" ref="false">
+          <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" ref="true" />
+        </type>
+      </containers>
+      <file name="29313e67-c15d-8052-902d-f4b44b392192" />
+    </api>
+    <api id="T:System.Xml.Serialization.Configuration.RootedPathValidator">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Serialization.Configuration.RootedPathValidator" />
+      <apidata name="RootedPathValidator" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.RootedPathValidator.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationValidatorBase" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+      </containers>
+      <file name="b0f410f0-8b7f-d8ed-c3d0-18b96ddcab87" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Serialization.Configuration.RootedPathValidator">
+      <topicdata name="RootedPathValidator" group="list" subgroup="members" typeTopicId="T:System.Xml.Serialization.Configuration.RootedPathValidator" />
+      <apidata name="RootedPathValidator" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.RootedPathValidator.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Xml.Serialization.Configuration.RootedPathValidator.#ctor" />
+        <element api="M:System.Xml.Serialization.Configuration.RootedPathValidator.CanValidate(System.Type)" />
+        <element api="M:System.Xml.Serialization.Configuration.RootedPathValidator.Validate(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.RootedPathValidator" />
+      </containers>
+      <file name="4379b88d-0fc8-de73-9118-2a5c2fb86e8f" />
+    </api>
+    <api id="Methods.T:System.Xml.Serialization.Configuration.RootedPathValidator">
+      <topicdata name="RootedPathValidator" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Serialization.Configuration.RootedPathValidator" />
+      <apidata name="RootedPathValidator" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.RootedPathValidator.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Xml.Serialization.Configuration.RootedPathValidator.CanValidate(System.Type)" />
+        <element api="M:System.Xml.Serialization.Configuration.RootedPathValidator.Validate(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.RootedPathValidator" />
+      </containers>
+      <file name="873091bd-9db4-a21e-39d2-682a21f4b876" />
+    </api>
+    <api id="M:System.Xml.Serialization.Configuration.RootedPathValidator.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.RootedPathValidator" ref="true" />
+      </containers>
+      <file name="a1417f71-a832-6e7f-1a4f-71c5be87954c" />
+    </api>
+    <api id="M:System.Xml.Serialization.Configuration.RootedPathValidator.CanValidate(System.Type)">
+      <topicdata group="api" />
+      <apidata name="CanValidate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Configuration.ConfigurationValidatorBase.CanValidate(System.Type)">
+          <type api="T:System.Configuration.ConfigurationValidatorBase" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.RootedPathValidator" ref="true" />
+      </containers>
+      <file name="f4974668-529f-b57d-0158-03e45e9d1d96" />
+    </api>
+    <api id="M:System.Xml.Serialization.Configuration.RootedPathValidator.Validate(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Validate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Configuration.ConfigurationValidatorBase.Validate(System.Object)">
+          <type api="T:System.Configuration.ConfigurationValidatorBase" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.RootedPathValidator" ref="true" />
+      </containers>
+      <file name="55a0845f-0a1a-f91d-6689-490b73043bc2" />
+    </api>
+    <api id="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" />
+      <apidata name="SchemaImporterExtensionElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+      </containers>
+      <file name="7e26635f-a6a4-8442-c890-b2dc145477e5" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement">
+      <topicdata name="SchemaImporterExtensionElement" group="list" subgroup="members" typeTopicId="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" />
+      <apidata name="SchemaImporterExtensionElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="Overload:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.#ctor">
+          <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.#ctor" />
+          <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.#ctor(System.String,System.String)" />
+          <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.#ctor(System.String,System.Type)" />
+        </element>
+        <element api="P:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.Name" />
+        <element api="P:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.Type" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" />
+      </containers>
+      <file name="c7641550-1073-f095-ad6f-a08cee80dad4" />
+    </api>
+    <api id="Methods.T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement">
+      <topicdata name="SchemaImporterExtensionElement" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" />
+      <apidata name="SchemaImporterExtensionElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" />
+      </containers>
+      <file name="96a1e9a4-5859-4f13-b558-cc9d399c72d9" />
+    </api>
+    <api id="Properties.T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement">
+      <topicdata name="SchemaImporterExtensionElement" group="list" subgroup="Properties" typeTopicId="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" />
+      <apidata name="SchemaImporterExtensionElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.Name" />
+        <element api="P:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.Type" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" />
+      </containers>
+      <file name="5c3065e4-69ab-38a3-5f2a-3005991184a8" />
+    </api>
+    <api id="Overload:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.#ctor" />
+        <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.#ctor(System.String,System.String)" />
+        <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.#ctor(System.String,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" ref="true" />
+      </containers>
+      <file name="e42d4d8e-9083-7869-6f4b-b7440da86475" />
+    </api>
+    <api id="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.#ctor" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" ref="true" />
+      </containers>
+      <file name="96294c3b-9fae-c5fb-d743-da38aefa608d" />
+    </api>
+    <api id="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.#ctor" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="type">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" ref="true" />
+      </containers>
+      <file name="e6eb54ae-df81-0858-f953-55b5253469ee" />
+    </api>
+    <api id="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.#ctor(System.String,System.Type)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.#ctor" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" ref="true" />
+      </containers>
+      <file name="ffa6454f-6a8b-e028-1162-ed6b1963f7d9" />
+    </api>
+    <api id="P:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>name</value>
+          </argument>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="IsKey">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="7e71c7c8-4b35-b97d-dcc0-7948da89d607" />
+    </api>
+    <api id="P:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Type" />
+      <setter name="set_Type" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>type</value>
+          </argument>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="IsKey">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="ee2f9783-2d55-8c88-de63-64ef5c455eb0" />
+    </api>
+    <api id="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" />
+      <apidata name="SchemaImporterExtensionElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElementCollection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationCollectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" ref="true" />
+            </typeValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a77fd85e-5f03-7c43-2eea-46fa18b66d04" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection">
+      <topicdata name="SchemaImporterExtensionElementCollection" group="list" subgroup="members" typeTopicId="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" />
+      <apidata name="SchemaImporterExtensionElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.CollectionType" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.#ctor" />
+        <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Add(System.Xml.Serialization.Configuration.SchemaImporterExtensionElement)" />
+        <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Clear" />
+        <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.IndexOf(System.Xml.Serialization.Configuration.SchemaImporterExtensionElement)" />
+        <element api="Overload:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Item">
+          <element api="P:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Item(System.Int32)" />
+          <element api="P:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Item(System.String)" />
+        </element>
+        <element api="Overload:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Remove">
+          <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Remove(System.Xml.Serialization.Configuration.SchemaImporterExtensionElement)" />
+          <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Remove(System.String)" />
+        </element>
+        <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.RemoveAt(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" />
+      </containers>
+      <file name="420930b0-3922-d5fb-e31a-60b7e4447b0a" />
+    </api>
+    <api id="Methods.T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection">
+      <topicdata name="SchemaImporterExtensionElementCollection" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" />
+      <apidata name="SchemaImporterExtensionElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Add(System.Xml.Serialization.Configuration.SchemaImporterExtensionElement)" />
+        <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Clear" />
+        <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.IndexOf(System.Xml.Serialization.Configuration.SchemaImporterExtensionElement)" />
+        <element api="Overload:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Remove">
+          <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Remove(System.Xml.Serialization.Configuration.SchemaImporterExtensionElement)" />
+          <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Remove(System.String)" />
+        </element>
+        <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.RemoveAt(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" />
+      </containers>
+      <file name="4bbf9b66-76bf-745f-e72d-d2807471cce9" />
+    </api>
+    <api id="Properties.T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection">
+      <topicdata name="SchemaImporterExtensionElementCollection" group="list" subgroup="Properties" typeTopicId="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" />
+      <apidata name="SchemaImporterExtensionElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.CollectionType" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+        <element api="Overload:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Item">
+          <element api="P:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Item(System.Int32)" />
+          <element api="P:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Item(System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" />
+      </containers>
+      <file name="9d8f11b1-8479-7ace-ebf8-e6ba522914de" />
+    </api>
+    <api id="Overload:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Item">
+      <topicdata name="Item" group="list" subgroup="overload" memberSubgroup="property" pseudo="true" allMembersTopicId="AllMembers.T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <elements>
+        <element api="P:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Item(System.Int32)" />
+        <element api="P:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Item(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" ref="true" />
+      </containers>
+      <file name="61d173a1-eba3-a7f1-bfe4-31572bc48f00" />
+    </api>
+    <api id="Overload:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Remove">
+      <topicdata name="Remove" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Remove(System.Xml.Serialization.Configuration.SchemaImporterExtensionElement)" />
+        <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Remove(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" ref="true" />
+      </containers>
+      <file name="01cc2834-0964-4684-38f4-691407a00669" />
+    </api>
+    <api id="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" ref="true" />
+      </containers>
+      <file name="e70b542a-4294-a6bc-cb81-dea4fd651462" />
+    </api>
+    <api id="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Add(System.Xml.Serialization.Configuration.SchemaImporterExtensionElement)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" ref="true" />
+      </containers>
+      <file name="41529dda-5870-0bbf-5b57-0b910fe0bcad" />
+    </api>
+    <api id="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" ref="true" />
+      </containers>
+      <file name="5762f3a5-2e15-acb8-131e-322f85adc0c4" />
+    </api>
+    <api id="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.IndexOf(System.Xml.Serialization.Configuration.SchemaImporterExtensionElement)">
+      <topicdata group="api" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" ref="true" />
+      </containers>
+      <file name="8d6c38f9-a3fc-3591-8738-974a0de526ec" />
+    </api>
+    <api id="P:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" ref="true" />
+      </containers>
+      <file name="4bde6a51-641d-0f9c-e01c-27d667836094" />
+    </api>
+    <api id="P:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Item(System.String)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" ref="true" />
+      </containers>
+      <file name="2659b47a-e831-2756-b7ab-b5368515879d" />
+    </api>
+    <api id="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Remove(System.String)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Remove" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" ref="true" />
+      </containers>
+      <file name="b0851f2a-edba-a2b9-78bc-f27ecb32dd80" />
+    </api>
+    <api id="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Remove(System.Xml.Serialization.Configuration.SchemaImporterExtensionElement)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.Remove" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" ref="true" />
+      </containers>
+      <file name="2f2217f8-4225-2817-30c0-e708ed4e47c5" />
+    </api>
+    <api id="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection.RemoveAt(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="RemoveAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" ref="true" />
+      </containers>
+      <file name="046ca63f-2351-e99a-1a73-560b18daaae3" />
+    </api>
+    <api id="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection" />
+      <apidata name="SchemaImporterExtensionsSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+      </containers>
+      <file name="2f246017-fa5c-8c5c-b39b-b55d1028e62a" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection">
+      <topicdata name="SchemaImporterExtensionsSection" group="list" subgroup="members" typeTopicId="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection" />
+      <apidata name="SchemaImporterExtensionsSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection.#ctor" />
+        <element api="P:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection.SchemaImporterExtensions" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection" />
+      </containers>
+      <file name="f6fa1eaa-552e-f29b-2774-e7ecbf9abe7b" />
+    </api>
+    <api id="Methods.T:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection">
+      <topicdata name="SchemaImporterExtensionsSection" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection" />
+      <apidata name="SchemaImporterExtensionsSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection" />
+      </containers>
+      <file name="d60ae9ab-b57f-5ee2-e7f7-a8616c2e9771" />
+    </api>
+    <api id="Properties.T:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection">
+      <topicdata name="SchemaImporterExtensionsSection" group="list" subgroup="Properties" typeTopicId="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection" />
+      <apidata name="SchemaImporterExtensionsSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="P:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection.SchemaImporterExtensions" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection" />
+      </containers>
+      <file name="e06c0f2f-1dc2-b7e1-d8fe-e1a37b85fb26" />
+    </api>
+    <api id="M:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection" ref="true" />
+      </containers>
+      <file name="e5da66b4-1e6f-9a1a-b51c-9931e9f99139" />
+    </api>
+    <api id="P:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection.SchemaImporterExtensions">
+      <topicdata group="api" />
+      <apidata name="SchemaImporterExtensions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SchemaImporterExtensions" />
+      <returns>
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <assignment name="IsDefaultCollection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="9d6f588b-f5ae-0868-fce9-7d3c50dd5b7e" />
+    </api>
+    <api id="T:System.Xml.Serialization.Configuration.SerializationSectionGroup">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Serialization.Configuration.SerializationSectionGroup" />
+      <apidata name="SerializationSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.SerializationSectionGroup.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSectionGroup" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+      </containers>
+      <file name="9f42d678-6ba7-dab0-06e4-391fc2a101ae" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Serialization.Configuration.SerializationSectionGroup">
+      <topicdata name="SerializationSectionGroup" group="list" subgroup="members" typeTopicId="T:System.Xml.Serialization.Configuration.SerializationSectionGroup" />
+      <apidata name="SerializationSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.SerializationSectionGroup.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Xml.Serialization.Configuration.SerializationSectionGroup.ForceDeclaration">
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration" />
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration(System.Boolean)" />
+        </element>
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclarationRequired" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclared" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Name" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroupName" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroups" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Sections" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Type" />
+        <element api="M:System.Xml.Serialization.Configuration.SerializationSectionGroup.#ctor" />
+        <element api="P:System.Xml.Serialization.Configuration.SerializationSectionGroup.DateTimeSerialization" />
+        <element api="P:System.Xml.Serialization.Configuration.SerializationSectionGroup.SchemaImporterExtensions" />
+        <element api="P:System.Xml.Serialization.Configuration.SerializationSectionGroup.XmlSerializer" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SerializationSectionGroup" />
+      </containers>
+      <file name="32e03de7-afbb-9348-f1c5-80f31e5869bc" />
+    </api>
+    <api id="Methods.T:System.Xml.Serialization.Configuration.SerializationSectionGroup">
+      <topicdata name="SerializationSectionGroup" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Serialization.Configuration.SerializationSectionGroup" />
+      <apidata name="SerializationSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.SerializationSectionGroup.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Xml.Serialization.Configuration.SerializationSectionGroup.ForceDeclaration">
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration" />
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration(System.Boolean)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SerializationSectionGroup" />
+      </containers>
+      <file name="b1f9575a-c427-524c-f93b-cd5073a83fe7" />
+    </api>
+    <api id="Properties.T:System.Xml.Serialization.Configuration.SerializationSectionGroup">
+      <topicdata name="SerializationSectionGroup" group="list" subgroup="Properties" typeTopicId="T:System.Xml.Serialization.Configuration.SerializationSectionGroup" />
+      <apidata name="SerializationSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.SerializationSectionGroup.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclarationRequired" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclared" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Name" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroupName" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroups" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Sections" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Type" />
+        <element api="P:System.Xml.Serialization.Configuration.SerializationSectionGroup.DateTimeSerialization" />
+        <element api="P:System.Xml.Serialization.Configuration.SerializationSectionGroup.SchemaImporterExtensions" />
+        <element api="P:System.Xml.Serialization.Configuration.SerializationSectionGroup.XmlSerializer" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SerializationSectionGroup" />
+      </containers>
+      <file name="659ff772-f48a-2ccb-340b-b91f6d2f1b68" />
+    </api>
+    <api id="M:System.Xml.Serialization.Configuration.SerializationSectionGroup.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SerializationSectionGroup" ref="true" />
+      </containers>
+      <file name="0dac71d5-db70-46a4-356b-eae789347b93" />
+    </api>
+    <api id="P:System.Xml.Serialization.Configuration.SerializationSectionGroup.DateTimeSerialization">
+      <topicdata group="api" />
+      <apidata name="DateTimeSerialization" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DateTimeSerialization" />
+      <returns>
+        <type api="T:System.Xml.Serialization.Configuration.DateTimeSerializationSection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SerializationSectionGroup" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>dateTimeSerialization</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3416933c-ec29-f160-15c2-459e5ba55d5d" />
+    </api>
+    <api id="P:System.Xml.Serialization.Configuration.SerializationSectionGroup.SchemaImporterExtensions">
+      <topicdata group="api" />
+      <apidata name="SchemaImporterExtensions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SchemaImporterExtensions" />
+      <returns>
+        <type api="T:System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SerializationSectionGroup" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>schemaImporterExtensions</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9f232ace-5efa-2259-7048-9c67f90dbc8a" />
+    </api>
+    <api id="P:System.Xml.Serialization.Configuration.SerializationSectionGroup.XmlSerializer">
+      <topicdata group="api" />
+      <apidata name="XmlSerializer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_XmlSerializer" />
+      <returns>
+        <type api="T:System.Xml.Serialization.Configuration.XmlSerializerSection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.SerializationSectionGroup" ref="true" />
+      </containers>
+      <file name="8c7a492c-fa81-cae9-9be3-2d98a1b03bd4" />
+    </api>
+    <api id="T:System.Xml.Serialization.Configuration.XmlSerializerSection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Serialization.Configuration.XmlSerializerSection" />
+      <apidata name="XmlSerializerSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.XmlSerializerSection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+      </containers>
+      <file name="e521a229-21ec-57ad-cc24-e17269d31964" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Serialization.Configuration.XmlSerializerSection">
+      <topicdata name="XmlSerializerSection" group="list" subgroup="members" typeTopicId="T:System.Xml.Serialization.Configuration.XmlSerializerSection" />
+      <apidata name="XmlSerializerSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.XmlSerializerSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="M:System.Xml.Serialization.Configuration.XmlSerializerSection.#ctor" />
+        <element api="P:System.Xml.Serialization.Configuration.XmlSerializerSection.CheckDeserializeAdvances" />
+        <element api="P:System.Xml.Serialization.Configuration.XmlSerializerSection.TempFilesLocation" />
+        <element api="P:System.Xml.Serialization.Configuration.XmlSerializerSection.UseLegacySerializerGeneration" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.XmlSerializerSection" />
+      </containers>
+      <file name="89bc2b2a-4abe-7fe3-6c0e-10ec014fe20c" />
+    </api>
+    <api id="Methods.T:System.Xml.Serialization.Configuration.XmlSerializerSection">
+      <topicdata name="XmlSerializerSection" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Serialization.Configuration.XmlSerializerSection" />
+      <apidata name="XmlSerializerSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.XmlSerializerSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.XmlSerializerSection" />
+      </containers>
+      <file name="60720c2f-f0c1-54af-3c16-3b30fc1de712" />
+    </api>
+    <api id="Properties.T:System.Xml.Serialization.Configuration.XmlSerializerSection">
+      <topicdata name="XmlSerializerSection" group="list" subgroup="Properties" typeTopicId="T:System.Xml.Serialization.Configuration.XmlSerializerSection" />
+      <apidata name="XmlSerializerSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Serialization.Configuration.XmlSerializerSection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="P:System.Xml.Serialization.Configuration.XmlSerializerSection.CheckDeserializeAdvances" />
+        <element api="P:System.Xml.Serialization.Configuration.XmlSerializerSection.TempFilesLocation" />
+        <element api="P:System.Xml.Serialization.Configuration.XmlSerializerSection.UseLegacySerializerGeneration" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.XmlSerializerSection" />
+      </containers>
+      <file name="810d8448-26e3-17a4-2c90-ae14d02a7791" />
+    </api>
+    <api id="M:System.Xml.Serialization.Configuration.XmlSerializerSection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.XmlSerializerSection" ref="true" />
+      </containers>
+      <file name="026c5237-0ddb-8013-a58a-16963407bbf1" />
+    </api>
+    <api id="P:System.Xml.Serialization.Configuration.XmlSerializerSection.CheckDeserializeAdvances">
+      <topicdata group="api" />
+      <apidata name="CheckDeserializeAdvances" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CheckDeserializeAdvances" />
+      <setter name="set_CheckDeserializeAdvances" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.XmlSerializerSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>checkDeserializeAdvances</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="b7b0ce58-0011-9461-6756-4da39ce29d5a" />
+    </api>
+    <api id="P:System.Xml.Serialization.Configuration.XmlSerializerSection.TempFilesLocation">
+      <topicdata group="api" />
+      <apidata name="TempFilesLocation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TempFilesLocation" />
+      <setter name="set_TempFilesLocation" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.XmlSerializerSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>tempFilesLocation</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <nullValue />
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="4eab44fa-912e-d0f4-9538-380d508159c3" />
+    </api>
+    <api id="P:System.Xml.Serialization.Configuration.XmlSerializerSection.UseLegacySerializerGeneration">
+      <topicdata group="api" />
+      <apidata name="UseLegacySerializerGeneration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UseLegacySerializerGeneration" />
+      <setter name="set_UseLegacySerializerGeneration" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Serialization.Configuration" />
+        <type api="T:System.Xml.Serialization.Configuration.XmlSerializerSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>useLegacySerializerGeneration</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="8ffb6a62-2adf-cb0b-d7f2-79bc9ed0c229" />
+    </api>
+  </apis>
+</reflection>

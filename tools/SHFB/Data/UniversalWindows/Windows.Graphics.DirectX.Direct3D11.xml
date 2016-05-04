@@ -1,0 +1,1191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Graphics.DirectX.Direct3D11">
+      <topicdata group="api" />
+      <apidata name="Windows.Graphics.DirectX.Direct3D11" group="namespace" />
+      <elements>
+        <element api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription" />
+        <element api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription" />
+        <element api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DUsage" />
+        <element api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" />
+        <element api="T:Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice" />
+        <element api="T:Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface" />
+      </elements>
+      <file name="bdb01f06-f076-9a26-cda2-77bbe79ce341" />
+    </api>
+    <api id="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings">
+      <topicdata group="api" />
+      <apidata name="Direct3DBindings" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.VertexBuffer" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.IndexBuffer" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.ConstantBuffer" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.ShaderResource" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.StreamOutput" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.RenderTarget" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.DepthStencil" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.UnorderedAccess" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.Decoder" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.VideoEncoder" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7cfea502-0dca-90f2-f655-99c1c8446df5" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.ConstantBuffer">
+      <topicdata group="api" notopic="" />
+      <apidata name="ConstantBuffer" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </containers>
+      <file name="5971f37f-ab32-9e09-5f17-bbc0102071cd" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.Decoder">
+      <topicdata group="api" notopic="" />
+      <apidata name="Decoder" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </returns>
+      <value>512</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </containers>
+      <file name="68e9fae3-3cdf-2766-4782-a517700557d0" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.DepthStencil">
+      <topicdata group="api" notopic="" />
+      <apidata name="DepthStencil" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </returns>
+      <value>64</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </containers>
+      <file name="fcc597f9-7f8a-ceef-5ea8-8cddf99d9a6a" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.IndexBuffer">
+      <topicdata group="api" notopic="" />
+      <apidata name="IndexBuffer" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </containers>
+      <file name="4ec95362-ccd1-20c9-1185-1fd3d9bf03f4" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.RenderTarget">
+      <topicdata group="api" notopic="" />
+      <apidata name="RenderTarget" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </containers>
+      <file name="0b8b141e-2a64-bf0d-2733-e2554272f591" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.ShaderResource">
+      <topicdata group="api" notopic="" />
+      <apidata name="ShaderResource" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </containers>
+      <file name="f9850fa2-3434-27de-a7cc-f7eb6852a2a9" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.StreamOutput">
+      <topicdata group="api" notopic="" />
+      <apidata name="StreamOutput" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </containers>
+      <file name="ae02f1a1-1017-62a0-aaaf-7f4a2a778cc4" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.UnorderedAccess">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnorderedAccess" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </returns>
+      <value>128</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </containers>
+      <file name="cd5d6788-d32d-4c65-8056-faa08a722928" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.VertexBuffer">
+      <topicdata group="api" notopic="" />
+      <apidata name="VertexBuffer" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </containers>
+      <file name="fd7f6f35-1cfe-6958-fc87-e9828d1c51db" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings.VideoEncoder">
+      <topicdata group="api" notopic="" />
+      <apidata name="VideoEncoder" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </returns>
+      <value>1024</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DBindings" ref="false" />
+      </containers>
+      <file name="b2e1d8cd-8cef-b532-5f76-ebff472d8dd9" />
+    </api>
+    <api id="T:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription" />
+      <apidata name="Direct3DMultisampleDescription" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7354b01a-e1f7-85e3-cc58-68bcca572c9d" />
+    </api>
+    <api id="AllMembers.T:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription">
+      <topicdata name="Direct3DMultisampleDescription" group="list" subgroup="members" typeTopicId="T:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription" />
+      <apidata name="Direct3DMultisampleDescription" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription.Count" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription.Quality" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription" />
+      </containers>
+      <file name="796982b3-5e8a-5994-f8f8-c05bc42f1693" />
+    </api>
+    <api id="Methods.T:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription">
+      <topicdata name="Direct3DMultisampleDescription" group="list" subgroup="Methods" typeTopicId="T:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription" />
+      <apidata name="Direct3DMultisampleDescription" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription" />
+      </containers>
+      <file name="42d7106d-45a8-a672-9b4e-8c0e2462c3c2" />
+    </api>
+    <api id="Fields.T:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription">
+      <topicdata name="Direct3DMultisampleDescription" group="list" subgroup="Fields" typeTopicId="T:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription" />
+      <apidata name="Direct3DMultisampleDescription" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription.Count" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription.Quality" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription" />
+      </containers>
+      <file name="6bc02764-1092-e034-c93a-87e5f6c89cbc" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription.Count">
+      <topicdata group="api" />
+      <apidata name="Count" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription" ref="false" />
+      </containers>
+      <file name="71aa9d60-237d-68aa-55bc-8ac476c237db" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription.Quality">
+      <topicdata group="api" />
+      <apidata name="Quality" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription" ref="false" />
+      </containers>
+      <file name="c8535257-da66-849d-98a8-40195b237dcb" />
+    </api>
+    <api id="T:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription" />
+      <apidata name="Direct3DSurfaceDescription" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7e6434a2-f1f2-5693-6cff-8cd170702a42" />
+    </api>
+    <api id="AllMembers.T:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription">
+      <topicdata name="Direct3DSurfaceDescription" group="list" subgroup="members" typeTopicId="T:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription" />
+      <apidata name="Direct3DSurfaceDescription" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription.Format" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription.Height" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription.MultisampleDescription" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription.Width" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription" />
+      </containers>
+      <file name="b275f404-f6de-a928-87d8-b2a1523db659" />
+    </api>
+    <api id="Methods.T:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription">
+      <topicdata name="Direct3DSurfaceDescription" group="list" subgroup="Methods" typeTopicId="T:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription" />
+      <apidata name="Direct3DSurfaceDescription" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription" />
+      </containers>
+      <file name="ff243268-2f15-60c5-c34d-94518bf036c0" />
+    </api>
+    <api id="Fields.T:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription">
+      <topicdata name="Direct3DSurfaceDescription" group="list" subgroup="Fields" typeTopicId="T:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription" />
+      <apidata name="Direct3DSurfaceDescription" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription.Format" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription.Height" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription.MultisampleDescription" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription.Width" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription" />
+      </containers>
+      <file name="6d2290d5-9116-687a-9c28-f0ea04214961" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription.Format">
+      <topicdata group="api" />
+      <apidata name="Format" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription" ref="false" />
+      </containers>
+      <file name="f4352f4a-6ba7-fe53-88ff-a201cf0ecb47" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription.Height">
+      <topicdata group="api" />
+      <apidata name="Height" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription" ref="false" />
+      </containers>
+      <file name="1dec3873-7b4c-f59d-8a9a-c6724f28eb3c" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription.MultisampleDescription">
+      <topicdata group="api" />
+      <apidata name="MultisampleDescription" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription" ref="false" />
+      </containers>
+      <file name="f711e1a0-b09e-3c48-06f3-7bceddeebd31" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription.Width">
+      <topicdata group="api" />
+      <apidata name="Width" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription" ref="false" />
+      </containers>
+      <file name="db4ad991-b8da-e2e4-3f5d-332f55ac4367" />
+    </api>
+    <api id="T:Windows.Graphics.DirectX.Direct3D11.Direct3DUsage">
+      <topicdata group="api" />
+      <apidata name="Direct3DUsage" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DUsage.Default" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DUsage.Immutable" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DUsage.Dynamic" />
+        <element api="F:Windows.Graphics.DirectX.Direct3D11.Direct3DUsage.Staging" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d7bb3827-32a4-9341-d326-213696c6214a" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DUsage.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DUsage" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DUsage" ref="false" />
+      </containers>
+      <file name="c507de03-c24e-75c6-0d03-d6ba1958b625" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DUsage.Dynamic">
+      <topicdata group="api" notopic="" />
+      <apidata name="Dynamic" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DUsage" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DUsage" ref="false" />
+      </containers>
+      <file name="3512b27b-2526-aa4a-2154-aabaeb5b1c1f" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DUsage.Immutable">
+      <topicdata group="api" notopic="" />
+      <apidata name="Immutable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DUsage" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DUsage" ref="false" />
+      </containers>
+      <file name="a1c3e59e-0a76-fdbe-f730-8457217c5bfc" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.Direct3D11.Direct3DUsage.Staging">
+      <topicdata group="api" notopic="" />
+      <apidata name="Staging" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DUsage" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DUsage" ref="false" />
+      </containers>
+      <file name="7869b482-1518-4751-1ac1-4d0c29f1fa1e" />
+    </api>
+    <api id="T:Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice" />
+      <apidata name="IDirect3DDevice" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2742428843</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>36191</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18000</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>157</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>62</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>158</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>174</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>61</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>155</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>198</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>112</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2e714260-1f00-3b86-1833-1422f5215329" />
+    </api>
+    <api id="AllMembers.T:Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice">
+      <topicdata name="IDirect3DDevice" group="list" subgroup="members" typeTopicId="T:Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice" />
+      <apidata name="IDirect3DDevice" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Foundation.IClosable.Close" />
+        <element api="M:Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice.Trim" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice" />
+      </containers>
+      <file name="4fac77d5-249c-0864-db39-9ae89bef70cc" />
+    </api>
+    <api id="Methods.T:Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice">
+      <topicdata name="IDirect3DDevice" group="list" subgroup="Methods" typeTopicId="T:Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice" />
+      <apidata name="IDirect3DDevice" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Foundation.IClosable.Close" />
+        <element api="M:Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice.Trim" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice" />
+      </containers>
+      <file name="8ed85def-7f73-f232-e548-67b7d5dfa05e" />
+    </api>
+    <api id="M:Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice.Trim">
+      <topicdata group="api" />
+      <apidata name="Trim" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice" ref="true" />
+      </containers>
+      <file name="1c12af6b-941c-436a-38bb-222700c3a301" />
+    </api>
+    <api id="T:Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface" />
+      <apidata name="IDirect3DSurface" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>200581446</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>5057</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18068</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>190</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>227</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>122</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>191</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>21</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>234</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>245</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>134</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6a3df3d8-bdd1-a531-d4b3-ee188ced86dc" />
+    </api>
+    <api id="AllMembers.T:Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface">
+      <topicdata name="IDirect3DSurface" group="list" subgroup="members" typeTopicId="T:Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface" />
+      <apidata name="IDirect3DSurface" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Foundation.IClosable.Close" />
+        <element api="P:Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface.Description" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface" />
+      </containers>
+      <file name="2fc0abd1-9bfa-0dab-702a-f12e6a29422e" />
+    </api>
+    <api id="Methods.T:Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface">
+      <topicdata name="IDirect3DSurface" group="list" subgroup="Methods" typeTopicId="T:Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface" />
+      <apidata name="IDirect3DSurface" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Foundation.IClosable.Close" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface" />
+      </containers>
+      <file name="c83b8934-9fd9-78d2-f4cb-8e09c4bd3c06" />
+    </api>
+    <api id="Properties.T:Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface">
+      <topicdata name="IDirect3DSurface" group="list" subgroup="Properties" typeTopicId="T:Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface" />
+      <apidata name="IDirect3DSurface" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface.Description" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface" />
+      </containers>
+      <file name="28a32df5-8b6a-d058-54eb-500e05295395" />
+    </api>
+    <api id="P:Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface.Description">
+      <topicdata group="api" />
+      <apidata name="Description" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Description" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX.Direct3D11" />
+        <type api="T:Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface" ref="true" />
+      </containers>
+      <file name="3035eb1d-02e4-80a1-c5b7-0b4e2ad5b339" />
+    </api>
+  </apis>
+</reflection>

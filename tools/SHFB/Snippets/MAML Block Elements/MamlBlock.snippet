@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Visual Studio code snippets for MAML block elements -->
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<!-- alert element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+			<Title>alert element</Title>
+			<Shortcut>alert</Shortcut>
+			<Description>The alert block element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>class</ID>
+					<ToolTip>The alert class.  See IntelliSense for valid values (Ctrl+J).</ToolTip>
+					<Default>note</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="XML">
+				<![CDATA[<alert class="$class$">
+	<para>$end$</para>
+</alert>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- code element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+			<Title>code element</Title>
+			<Shortcut>code</Shortcut>
+			<Description>The code block element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>language</ID>
+					<ToolTip>The language identifier.  See IntelliSense for valid values (Ctrl+J).</ToolTip>
+					<Default>cs</Default>
+				</Literal>
+				<Literal Editable="true">
+					<ID>title</ID>
+					<ToolTip>An optional title</ToolTip>
+					<Default xml:space="preserve"> title=" "</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="XML">
+				<![CDATA[<code language="$language$"$title$>
+$end$
+</code>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- definitionTable element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+			<Title>definitionTable element</Title>
+			<Shortcut>definitionTable</Shortcut>
+			<Description>The definitionTable block element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<definitionTable>
+	<definedTerm>$end$Term 1</definedTerm>
+	<definition>
+		<para>Definition 1</para>
+	</definition>
+
+	<definedTerm>Term 2</definedTerm>
+	<definition>
+		<para>Definition 2</para>
+	</definition>
+
+</definitionTable>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- glossaryEntry element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+			<Title>glossaryEntry element</Title>
+			<Shortcut>glossaryEntry</Shortcut>
+			<Description>The glossaryEntry block element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<glossaryEntry>
+	<terms>
+		<term>$end$[One or more term elements]</term>
+	</terms>
+	<definition>
+		<para>Definition</para>
+	</definition>
+	<relatedEntry termId="Optional related term elements" />
+</glossaryEntry>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- list element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+			<Title>list element</Title>
+			<Shortcut>list</Shortcut>
+			<Description>The list block element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>class</ID>
+					<ToolTip>The list class.  See IntelliSense for valid values (Ctrl+J).</ToolTip>
+					<Default>bullet</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="XML">
+				<![CDATA[<list class="$class$">
+	<listItem>
+		<para>$end$Item 1</para>
+	</listItem>
+
+	<listItem>
+		<para>Item 2</para>
+	</listItem>
+
+</list>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- para element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>para element</Title>
+			<Shortcut>para</Shortcut>
+			<Description>The para inline element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<para>$selected$$end$</para>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- quote element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+			<Title>quote element</Title>
+			<Shortcut>quote</Shortcut>
+			<Description>The quote block element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<quote>$selected$$end$</quote>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- section element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+			<Title>section element</Title>
+			<Shortcut>section</Shortcut>
+			<Description>The section block element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>address</ID>
+					<ToolTip>The optional section address</ToolTip>
+					<Default xml:space="preserve"> address="optionalAddress"</Default>
+				</Literal>
+				<Literal Editable="true">
+					<ID>title</ID>
+					<ToolTip>The optional title.  Delete if not needed</ToolTip>
+					<Default>Optional title.  Delete element if not needed.</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="XML">
+				<![CDATA[<section$address$>
+	<title>$title$</title>
+	<content>
+		<para>$end$</para>
+	</content>
+</section>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	<!-- table element -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+			<Title>table element</Title>
+			<Shortcut>table</Shortcut>
+			<Description>The table block element</Description>
+			<Author>Eric Woodruff</Author>
+		</Header>
+		<Snippet>
+			<Code Language="XML">
+				<![CDATA[<table>
+	<tableHeader>
+		<row>
+			<entry><para>$end$Header 1</para></entry>
+			<entry><para>Header 2</para></entry>
+		</row>
+	</tableHeader>
+	<row>
+		<entry><para>Column 1</para></entry>
+		<entry><para>Column 2</para></entry>
+	</row>
+</table>]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

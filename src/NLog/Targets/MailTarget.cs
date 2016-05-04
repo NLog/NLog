@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
 using JetBrains.Annotations;
 
 #if !SILVERLIGHT
@@ -49,6 +48,12 @@ namespace NLog.Targets
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
+
+    // For issue #1351 - These are not available for Android or IOS
+#if !__ANDROID__ && !__IOS__
+    using System.Configuration;
+    using System.Net.Configuration;
+#endif
 
     /// <summary>
     /// Sends log messages by email using SMTP protocol.
@@ -87,6 +92,8 @@ namespace NLog.Targets
     {
         private const string RequiredPropertyIsEmptyFormat = "After the processing of the MailTarget's '{0}' property it appears to be empty. The email message will not be sent.";
 
+        private Layout _from;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MailTarget" /> class.
         /// </summary>
@@ -104,12 +111,70 @@ namespace NLog.Targets
             this.Timeout = 10000;
         }
 
+#if !__ANDROID__ && !__IOS__
+        private SmtpSection _currentailSettings;
+
+        /// <summary>
+        /// Gets the mailSettings/smtp configuration from app.config in cases when we need those configuration.
+        /// E.g when UseSystemNetMailSettings is enabled and we need to read the From attribute from system.net/mailSettings/smtp
+        /// </summary>
+        /// <remarks>Internal for mocking</remarks>
+        internal SmtpSection SmtpSection
+        {
+            get
+            {
+                if (_currentailSettings == null)
+                {
+                    try
+                    {
+                        _currentailSettings = System.Configuration.ConfigurationManager.GetSection("system.net/mailSettings/smtp") as SmtpSection;
+                    }
+                    catch (Exception ex)
+                    {
+                        InternalLogger.Warn(ex, "reading 'From' from .config failed.");
+
+                        if (ex.MustBeRethrown())
+                        {
+                            throw;
+                        }
+                        _currentailSettings = new SmtpSection();
+                    }
+                }
+
+                return _currentailSettings;
+            }
+            set { _currentailSettings = value; }
+        }
+#endif
+
         /// <summary>
         /// Gets or sets sender's email address (e.g. joe@domain.com).
         /// </summary>
         /// <docgen category='Message Options' order='10' />
-        [RequiredParameter]
-        public Layout From { get; set; }
+        public Layout From
+        {
+            get
+            {
+#if !__ANDROID__ && !__IOS__
+                if (UseSystemNetMailSettings)
+                {
+                    // In contrary to other settings, System.Net.Mail.SmtpClient doesn't read the 'From' attribute from the system.net/mailSettings/smtp section in the config file.
+                    // Thus, when UseSystemNetMailSettings is enabled we have to read the configuration section of system.net/mailSettings/smtp to initialize the 'From' address.
+                    // It will do so only if the 'From' attribute in system.net/mailSettings/smtp is not empty.
+
+                    //only use from config when not set in current
+                    if (_from == null)
+                    {
+                        var from = SmtpSection.From;
+                        if (from == null) return null;
+                        return from;
+                    }
+                }
+#endif
+                return _from;
+            }
+            set { _from = value; }
+        }
 
         /// <summary>
         /// Gets or sets recipients' email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com).
@@ -284,11 +349,12 @@ namespace NLog.Targets
         /// </summary>
         protected override void InitializeTarget()
         {
-
             CheckRequiredParameters();
 
             base.InitializeTarget();
         }
+
+
 
         /// <summary>
         /// Create mail and send with SMTP
@@ -315,7 +381,9 @@ namespace NLog.Targets
                     using (ISmtpClient client = this.CreateSmtpClient())
                     {
                         if (!UseSystemNetMailSettings)
+                        {
                             ConfigureMailClient(lastEvent, client);
+                        }
 
                         InternalLogger.Debug("Sending mail to {0} using {1}:{2} (ssl={3})", msg.To, client.Host, client.Port, client.EnableSsl);
                         InternalLogger.Trace("  Subject: '{0}'", msg.Subject);
@@ -392,6 +460,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="lastEvent">last event for username/password</param>
         /// <param name="client">client to set properties on</param>
+        /// <remarks>Configure not at <see cref="InitializeTarget"/>, as the properties could have layout renderers.</remarks>
         internal void ConfigureMailClient(LogEventInfo lastEvent, ISmtpClient client)
         {
             CheckRequiredParameters();
@@ -405,7 +474,7 @@ namespace NLog.Targets
             {
                 throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
             }
-            
+
             if (this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && string.IsNullOrEmpty(this.PickupDirectoryLocation))
             {
                 throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "PickupDirectoryLocation"));
@@ -416,7 +485,7 @@ namespace NLog.Targets
                 var renderedSmtpServer = this.SmtpServer.Render(lastEvent);
                 if (string.IsNullOrEmpty(renderedSmtpServer))
                 {
-                    throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer" ));
+                    throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
                 }
 
                 client.Host = renderedSmtpServer;
@@ -448,7 +517,7 @@ namespace NLog.Targets
             client.DeliveryMethod = this.DeliveryMethod;
             client.Timeout = this.Timeout;
 
-            
+
         }
 
         /// <summary>
@@ -475,14 +544,17 @@ namespace NLog.Targets
         {
             if (!this.UseSystemNetMailSettings && this.SmtpServer == null && this.DeliveryMethod == SmtpDeliveryMethod.Network)
             {
-                throw new NLogConfigurationException(
-                    string.Format("The MailTarget's '{0}' properties are not set - but needed because useSystemNetMailSettings=false and DeliveryMethod=Network. The email message will not be sent.", "SmtpServer"));
+                throw new NLogConfigurationException("The MailTarget's '{0}' properties are not set - but needed because useSystemNetMailSettings=false and DeliveryMethod=Network. The email message will not be sent.", "SmtpServer");
             }
 
             if (!this.UseSystemNetMailSettings && string.IsNullOrEmpty(this.PickupDirectoryLocation) && this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
             {
-                throw new NLogConfigurationException(
-                    string.Format("The MailTarget's '{0}' properties are not set - but needed because useSystemNetMailSettings=false and DeliveryMethod=SpecifiedPickupDirectory. The email message will not be sent.", "PickupDirectoryLocation"));
+                throw new NLogConfigurationException("The MailTarget's '{0}' properties are not set - but needed because useSystemNetMailSettings=false and DeliveryMethod=SpecifiedPickupDirectory. The email message will not be sent.", "PickupDirectoryLocation");
+            }
+
+            if (this.From == null)
+            {
+                throw new NLogConfigurationException(RequiredPropertyIsEmptyFormat, "From");
             }
         }
 
@@ -520,14 +592,17 @@ namespace NLog.Targets
                 sb.Append(layout.Render(logEvent));
         }
 
+
+
         /// <summary>
         /// Create the mailmessage with the addresses, properties and body.
         /// </summary>
         private MailMessage CreateMailMessage(LogEventInfo lastEvent, string body)
         {
-
             var msg = new MailMessage();
+
             var renderedFrom = this.From == null ? null : this.From.Render(lastEvent);
+
             if (string.IsNullOrEmpty(renderedFrom))
             {
                 throw new NLogRuntimeException(RequiredPropertyIsEmptyFormat, "From");

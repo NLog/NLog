@@ -1,0 +1,3792 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Xml">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xml.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xml.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xml.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Xml.Xsl">
+      <topicdata group="api" />
+      <apidata name="System.Xml.Xsl" group="namespace" />
+      <elements>
+        <element api="T:System.Xml.Xsl.XslCompiledTransform" />
+        <element api="T:System.Xml.Xsl.XsltMessageEncounteredEventArgs" />
+        <element api="T:System.Xml.Xsl.XsltMessageEncounteredEventHandler" />
+        <element api="T:System.Xml.Xsl.XsltArgumentList" />
+        <element api="T:System.Xml.Xsl.IXsltContextFunction" />
+        <element api="T:System.Xml.Xsl.IXsltContextVariable" />
+        <element api="T:System.Xml.Xsl.XsltContext" />
+        <element api="T:System.Xml.Xsl.XsltException" />
+        <element api="T:System.Xml.Xsl.XsltCompileException" />
+        <element api="T:System.Xml.Xsl.XslTransform" />
+        <element api="T:System.Xml.Xsl.XsltSettings" />
+      </elements>
+      <file name="ff0c843b-0669-e87c-5d6e-daf1c378f461" />
+    </api>
+    <api id="T:System.Xml.Xsl.IXsltContextFunction">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Xsl.IXsltContextFunction" />
+      <apidata name="IXsltContextFunction" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+      </containers>
+      <file name="702a21d0-fddd-3cab-8e26-8a80b4932ba5" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Xsl.IXsltContextFunction">
+      <topicdata name="IXsltContextFunction" group="list" subgroup="members" typeTopicId="T:System.Xml.Xsl.IXsltContextFunction" />
+      <apidata name="IXsltContextFunction" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Xml.Xsl.IXsltContextFunction.ArgTypes" />
+        <element api="M:System.Xml.Xsl.IXsltContextFunction.Invoke(System.Xml.Xsl.XsltContext,System.Object[],System.Xml.XPath.XPathNavigator)" />
+        <element api="P:System.Xml.Xsl.IXsltContextFunction.Maxargs" />
+        <element api="P:System.Xml.Xsl.IXsltContextFunction.Minargs" />
+        <element api="P:System.Xml.Xsl.IXsltContextFunction.ReturnType" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextFunction" />
+      </containers>
+      <file name="558adfaf-a45b-24d6-6ae5-8d06f3476fab" />
+    </api>
+    <api id="Methods.T:System.Xml.Xsl.IXsltContextFunction">
+      <topicdata name="IXsltContextFunction" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Xsl.IXsltContextFunction" />
+      <apidata name="IXsltContextFunction" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Xml.Xsl.IXsltContextFunction.Invoke(System.Xml.Xsl.XsltContext,System.Object[],System.Xml.XPath.XPathNavigator)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextFunction" />
+      </containers>
+      <file name="f6dc678c-3558-1bcc-2225-6820419fe1ce" />
+    </api>
+    <api id="Properties.T:System.Xml.Xsl.IXsltContextFunction">
+      <topicdata name="IXsltContextFunction" group="list" subgroup="Properties" typeTopicId="T:System.Xml.Xsl.IXsltContextFunction" />
+      <apidata name="IXsltContextFunction" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Xml.Xsl.IXsltContextFunction.ArgTypes" />
+        <element api="P:System.Xml.Xsl.IXsltContextFunction.Maxargs" />
+        <element api="P:System.Xml.Xsl.IXsltContextFunction.Minargs" />
+        <element api="P:System.Xml.Xsl.IXsltContextFunction.ReturnType" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextFunction" />
+      </containers>
+      <file name="d08f0bf1-e408-541e-5d46-e31b38011b51" />
+    </api>
+    <api id="P:System.Xml.Xsl.IXsltContextFunction.ArgTypes">
+      <topicdata group="api" />
+      <apidata name="ArgTypes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ArgTypes" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Xml.XPath.XPathResultType" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextFunction" ref="true" />
+      </containers>
+      <file name="112c14e3-6fb5-9fe7-7a77-029933eb5f31" />
+    </api>
+    <api id="M:System.Xml.Xsl.IXsltContextFunction.Invoke(System.Xml.Xsl.XsltContext,System.Object[],System.Xml.XPath.XPathNavigator)">
+      <topicdata group="api" />
+      <apidata name="Invoke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="xsltContext">
+          <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+        </parameter>
+        <parameter name="args">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="docContext">
+          <type api="T:System.Xml.XPath.XPathNavigator" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextFunction" ref="true" />
+      </containers>
+      <file name="26d3d74d-8105-1a7a-d877-e25900370b8d" />
+    </api>
+    <api id="P:System.Xml.Xsl.IXsltContextFunction.Maxargs">
+      <topicdata group="api" />
+      <apidata name="Maxargs" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Maxargs" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextFunction" ref="true" />
+      </containers>
+      <file name="41b757f7-9624-bdc2-ff89-39f78a412b1d" />
+    </api>
+    <api id="P:System.Xml.Xsl.IXsltContextFunction.Minargs">
+      <topicdata group="api" />
+      <apidata name="Minargs" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Minargs" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextFunction" ref="true" />
+      </containers>
+      <file name="36a2cd4b-9c2b-1d1b-b4d4-b5c047a9b82a" />
+    </api>
+    <api id="P:System.Xml.Xsl.IXsltContextFunction.ReturnType">
+      <topicdata group="api" />
+      <apidata name="ReturnType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ReturnType" />
+      <returns>
+        <type api="T:System.Xml.XPath.XPathResultType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextFunction" ref="true" />
+      </containers>
+      <file name="3e274879-67e7-88e4-a4e1-c93ca8168da6" />
+    </api>
+    <api id="T:System.Xml.Xsl.IXsltContextVariable">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Xsl.IXsltContextVariable" />
+      <apidata name="IXsltContextVariable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+      </containers>
+      <file name="d2571653-4d00-007b-1639-d7f33703da28" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Xsl.IXsltContextVariable">
+      <topicdata name="IXsltContextVariable" group="list" subgroup="members" typeTopicId="T:System.Xml.Xsl.IXsltContextVariable" />
+      <apidata name="IXsltContextVariable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Xml.Xsl.IXsltContextVariable.Evaluate(System.Xml.Xsl.XsltContext)" />
+        <element api="P:System.Xml.Xsl.IXsltContextVariable.IsLocal" />
+        <element api="P:System.Xml.Xsl.IXsltContextVariable.IsParam" />
+        <element api="P:System.Xml.Xsl.IXsltContextVariable.VariableType" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextVariable" />
+      </containers>
+      <file name="ea198848-5caa-fc8e-4e8a-49d9f7b72cc2" />
+    </api>
+    <api id="Methods.T:System.Xml.Xsl.IXsltContextVariable">
+      <topicdata name="IXsltContextVariable" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Xsl.IXsltContextVariable" />
+      <apidata name="IXsltContextVariable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Xml.Xsl.IXsltContextVariable.Evaluate(System.Xml.Xsl.XsltContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextVariable" />
+      </containers>
+      <file name="6bca8373-8b51-3c4a-aa1a-308fc893228c" />
+    </api>
+    <api id="Properties.T:System.Xml.Xsl.IXsltContextVariable">
+      <topicdata name="IXsltContextVariable" group="list" subgroup="Properties" typeTopicId="T:System.Xml.Xsl.IXsltContextVariable" />
+      <apidata name="IXsltContextVariable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Xml.Xsl.IXsltContextVariable.IsLocal" />
+        <element api="P:System.Xml.Xsl.IXsltContextVariable.IsParam" />
+        <element api="P:System.Xml.Xsl.IXsltContextVariable.VariableType" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextVariable" />
+      </containers>
+      <file name="5de9193f-7d6f-64e7-cc12-a0226e88c633" />
+    </api>
+    <api id="M:System.Xml.Xsl.IXsltContextVariable.Evaluate(System.Xml.Xsl.XsltContext)">
+      <topicdata group="api" />
+      <apidata name="Evaluate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="xsltContext">
+          <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextVariable" ref="true" />
+      </containers>
+      <file name="fc7635f5-4131-8cde-85eb-1be860387f35" />
+    </api>
+    <api id="P:System.Xml.Xsl.IXsltContextVariable.IsLocal">
+      <topicdata group="api" />
+      <apidata name="IsLocal" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsLocal" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextVariable" ref="true" />
+      </containers>
+      <file name="8bcad1ea-8a54-1480-9434-db68bef07fc7" />
+    </api>
+    <api id="P:System.Xml.Xsl.IXsltContextVariable.IsParam">
+      <topicdata group="api" />
+      <apidata name="IsParam" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsParam" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextVariable" ref="true" />
+      </containers>
+      <file name="32dcae5a-1e94-cd76-471d-53d880980e8b" />
+    </api>
+    <api id="P:System.Xml.Xsl.IXsltContextVariable.VariableType">
+      <topicdata group="api" />
+      <apidata name="VariableType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_VariableType" />
+      <returns>
+        <type api="T:System.Xml.XPath.XPathResultType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextVariable" ref="true" />
+      </containers>
+      <file name="20e13784-4fe1-9d53-fa63-d99e14b02d89" />
+    </api>
+    <api id="T:System.Xml.Xsl.XslCompiledTransform">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Xsl.XslCompiledTransform" />
+      <apidata name="XslCompiledTransform" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Xsl.XslCompiledTransform.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+      </containers>
+      <file name="c1d16364-4472-3dac-33fb-45e3870434c7" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Xsl.XslCompiledTransform">
+      <topicdata name="XslCompiledTransform" group="list" subgroup="members" typeTopicId="T:System.Xml.Xsl.XslCompiledTransform" />
+      <apidata name="XslCompiledTransform" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Xsl.XslCompiledTransform.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Xml.Xsl.XslCompiledTransform.#ctor">
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.#ctor" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.#ctor(System.Boolean)" />
+        </element>
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.CompileToType(System.Xml.XmlReader,System.Xml.Xsl.XsltSettings,System.Xml.XmlResolver,System.Boolean,System.Reflection.Emit.TypeBuilder,System.String)" />
+        <element api="Overload:System.Xml.Xsl.XslCompiledTransform.Load">
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Xml.XPath.IXPathNavigable)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.String)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Type)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Xml.XmlReader)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltSettings,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Reflection.MethodInfo,System.Byte[],System.Type[])" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.String,System.Xml.Xsl.XsltSettings,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Xml.XmlReader,System.Xml.Xsl.XsltSettings,System.Xml.XmlResolver)" />
+        </element>
+        <element api="P:System.Xml.Xsl.XslCompiledTransform.OutputSettings" />
+        <element api="P:System.Xml.Xsl.XslCompiledTransform.TemporaryFiles" />
+        <element api="Overload:System.Xml.Xsl.XslCompiledTransform.Transform">
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.XmlWriter)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.String)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.XmlWriter)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.XmlWriter)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" />
+      </containers>
+      <file name="c0393022-340a-eb47-470a-801825d03e7d" />
+    </api>
+    <api id="Methods.T:System.Xml.Xsl.XslCompiledTransform">
+      <topicdata name="XslCompiledTransform" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Xsl.XslCompiledTransform" />
+      <apidata name="XslCompiledTransform" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Xsl.XslCompiledTransform.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.CompileToType(System.Xml.XmlReader,System.Xml.Xsl.XsltSettings,System.Xml.XmlResolver,System.Boolean,System.Reflection.Emit.TypeBuilder,System.String)" />
+        <element api="Overload:System.Xml.Xsl.XslCompiledTransform.Load">
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Xml.XPath.IXPathNavigable)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.String)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Type)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Xml.XmlReader)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltSettings,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Reflection.MethodInfo,System.Byte[],System.Type[])" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.String,System.Xml.Xsl.XsltSettings,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Xml.XmlReader,System.Xml.Xsl.XsltSettings,System.Xml.XmlResolver)" />
+        </element>
+        <element api="Overload:System.Xml.Xsl.XslCompiledTransform.Transform">
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.XmlWriter)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.String)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.XmlWriter)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.XmlWriter)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" />
+      </containers>
+      <file name="5940d74e-3586-81b8-be06-748b6417557b" />
+    </api>
+    <api id="Properties.T:System.Xml.Xsl.XslCompiledTransform">
+      <topicdata name="XslCompiledTransform" group="list" subgroup="Properties" typeTopicId="T:System.Xml.Xsl.XslCompiledTransform" />
+      <apidata name="XslCompiledTransform" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Xsl.XslCompiledTransform.#ctor" />
+      <elements>
+        <element api="P:System.Xml.Xsl.XslCompiledTransform.OutputSettings" />
+        <element api="P:System.Xml.Xsl.XslCompiledTransform.TemporaryFiles" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" />
+      </containers>
+      <file name="34ca585c-b1d5-5172-1132-5d8ebac51181" />
+    </api>
+    <api id="Overload:System.Xml.Xsl.XslCompiledTransform.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Xml.Xsl.XslCompiledTransform" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.#ctor" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.#ctor(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="f56db64e-3a4b-e3cc-489b-692d91c3889e" />
+    </api>
+    <api id="Overload:System.Xml.Xsl.XslCompiledTransform.Load">
+      <topicdata name="Load" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Xml.Xsl.XslCompiledTransform" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Xml.XPath.IXPathNavigable)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.String)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Type)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Xml.XmlReader)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltSettings,System.Xml.XmlResolver)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Reflection.MethodInfo,System.Byte[],System.Type[])" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.String,System.Xml.Xsl.XsltSettings,System.Xml.XmlResolver)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Xml.XmlReader,System.Xml.Xsl.XsltSettings,System.Xml.XmlResolver)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="daf137be-122d-0361-58f0-f9417eb89d48" />
+    </api>
+    <api id="Overload:System.Xml.Xsl.XslCompiledTransform.Transform">
+      <topicdata name="Transform" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Xml.Xsl.XslCompiledTransform" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.XmlWriter)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.String)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.XmlWriter)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.XmlWriter)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)" />
+        <element api="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="759092ce-3e35-cd74-c0b5-1bd07b40afd3" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xml.Xsl.XslCompiledTransform.#ctor" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="8f8353f0-8c44-d303-9650-7d01758de4d5" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.#ctor(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xml.Xsl.XslCompiledTransform.#ctor" />
+      <parameters>
+        <parameter name="enableDebug">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="7213c99c-a40f-b7eb-8815-411031ba903e" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.CompileToType(System.Xml.XmlReader,System.Xml.Xsl.XsltSettings,System.Xml.XmlResolver,System.Boolean,System.Reflection.Emit.TypeBuilder,System.String)">
+      <topicdata group="api" />
+      <apidata name="CompileToType" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stylesheet">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+        <parameter name="settings">
+          <type api="T:System.Xml.Xsl.XsltSettings" ref="true" />
+        </parameter>
+        <parameter name="stylesheetResolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+        <parameter name="debug">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="typeBuilder">
+          <type api="T:System.Reflection.Emit.TypeBuilder" ref="true" />
+        </parameter>
+        <parameter name="scriptAssemblyPath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.CodeDom.Compiler.CompilerErrorCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="a6ed2e85-87d6-3e2f-55ca-ea62ad225bad" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Reflection.MethodInfo,System.Byte[],System.Type[])">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Load" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="executeMethod">
+          <type api="T:System.Reflection.MethodInfo" ref="true" />
+        </parameter>
+        <parameter name="queryData">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="earlyBoundTypes">
+          <arrayOf rank="1">
+            <type api="T:System.Type" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="fe8ea125-926a-d23b-e66b-d47c209ac1d4" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Load(System.String)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Load" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stylesheetUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="a9387e02-23b6-5bec-5021-3ab1287ca964" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Load(System.String,System.Xml.Xsl.XsltSettings,System.Xml.XmlResolver)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Load" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stylesheetUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="settings">
+          <type api="T:System.Xml.Xsl.XsltSettings" ref="true" />
+        </parameter>
+        <parameter name="stylesheetResolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="82765bb8-8238-ddae-2c76-29ec0a6b7737" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Type)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Load" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="compiledStylesheet">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="52626338-5a52-d96f-8a31-6c742197871d" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Xml.XmlReader)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Load" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stylesheet">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="455311e3-1a75-3b1b-b14d-84e9d55e3ce6" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Xml.XmlReader,System.Xml.Xsl.XsltSettings,System.Xml.XmlResolver)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Load" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stylesheet">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+        <parameter name="settings">
+          <type api="T:System.Xml.Xsl.XsltSettings" ref="true" />
+        </parameter>
+        <parameter name="stylesheetResolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="2535df6b-ed11-aa17-ee87-f07b2663bad0" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Xml.XPath.IXPathNavigable)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Load" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stylesheet">
+          <type api="T:System.Xml.XPath.IXPathNavigable" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="aac712a0-8692-4dbd-4869-a93f8a00d29a" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Load(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltSettings,System.Xml.XmlResolver)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Load" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stylesheet">
+          <type api="T:System.Xml.XPath.IXPathNavigable" ref="true" />
+        </parameter>
+        <parameter name="settings">
+          <type api="T:System.Xml.Xsl.XsltSettings" ref="true" />
+        </parameter>
+        <parameter name="stylesheetResolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="13b98008-bbde-d113-a3d8-dbf1adf3fc47" />
+    </api>
+    <api id="P:System.Xml.Xsl.XslCompiledTransform.OutputSettings">
+      <topicdata group="api" />
+      <apidata name="OutputSettings" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OutputSettings" />
+      <returns>
+        <type api="T:System.Xml.XmlWriterSettings" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="88cbea89-50df-65cf-5e43-5c91847ee87d" />
+    </api>
+    <api id="P:System.Xml.Xsl.XslCompiledTransform.TemporaryFiles">
+      <topicdata group="api" />
+      <apidata name="TemporaryFiles" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TemporaryFiles" />
+      <returns>
+        <type api="T:System.CodeDom.Compiler.TempFileCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="48c8e321-f482-0431-ad38-234981004d6f" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="resultsFile">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="15b11a13-5be4-8f82-2b41-37622b905f42" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.XmlWriter)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="results">
+          <type api="T:System.Xml.XmlWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="12c2e46b-cac4-b9f8-1634-f543b8c22566" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="arguments">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="results">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="ccfee68a-011a-951d-0caf-b78e0e87d933" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="arguments">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="results">
+          <type api="T:System.IO.TextWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="323766c1-b56a-33f7-90f4-738dd97a6dce" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="arguments">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="results">
+          <type api="T:System.Xml.XmlWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="ea30fbe8-a366-cc7b-d3f0-7d3fd530a652" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.XmlWriter)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+        <parameter name="results">
+          <type api="T:System.Xml.XmlWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="e5ef700b-4627-839f-9acc-ac610931818a" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+        <parameter name="arguments">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="results">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="b3b7ac6a-3c71-6c32-c477-5c33bb772a29" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+        <parameter name="arguments">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="results">
+          <type api="T:System.IO.TextWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="0c227bdc-5c79-7c4a-4f38-97c9a719293a" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+        <parameter name="arguments">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="results">
+          <type api="T:System.Xml.XmlWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="a1e9d68d-1b68-17fc-e6c8-e104aec9e086" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XmlReader,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+        <parameter name="arguments">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="results">
+          <type api="T:System.Xml.XmlWriter" ref="true" />
+        </parameter>
+        <parameter name="documentResolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="4dab8239-2eba-16c7-0529-0bd8810648e2" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.XmlWriter)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.IXPathNavigable" ref="true" />
+        </parameter>
+        <parameter name="results">
+          <type api="T:System.Xml.XmlWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="9a56b9d9-8e4c-0dcd-7e8e-6f6b00e1b2c7" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.IXPathNavigable" ref="true" />
+        </parameter>
+        <parameter name="arguments">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="results">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="46fb7425-7da3-9642-b968-67094b8bcd24" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.IXPathNavigable" ref="true" />
+        </parameter>
+        <parameter name="arguments">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="results">
+          <type api="T:System.IO.TextWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="a337444a-2060-f809-49ea-98ea6e3df338" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.IXPathNavigable" ref="true" />
+        </parameter>
+        <parameter name="arguments">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="results">
+          <type api="T:System.Xml.XmlWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="74a5368a-9454-91e3-6860-e5357c8941e6" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslCompiledTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.IXPathNavigable" ref="true" />
+        </parameter>
+        <parameter name="arguments">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="results">
+          <type api="T:System.Xml.XmlWriter" ref="true" />
+        </parameter>
+        <parameter name="documentResolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslCompiledTransform" ref="true" />
+      </containers>
+      <file name="92c1a38d-c91a-40c6-1118-2fec9356b1df" />
+    </api>
+    <api id="T:System.Xml.Xsl.XsltArgumentList">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Xsl.XsltArgumentList" />
+      <apidata name="XsltArgumentList" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Xml.Xsl.XsltArgumentList.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+      </containers>
+      <file name="fa2a111b-3909-ca4e-33d6-8d818027bc31" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Xsl.XsltArgumentList">
+      <topicdata name="XsltArgumentList" group="list" subgroup="members" typeTopicId="T:System.Xml.Xsl.XsltArgumentList" />
+      <apidata name="XsltArgumentList" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Xml.Xsl.XsltArgumentList.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Xml.Xsl.XsltArgumentList.#ctor" />
+        <element api="M:System.Xml.Xsl.XsltArgumentList.AddExtensionObject(System.String,System.Object)" />
+        <element api="M:System.Xml.Xsl.XsltArgumentList.AddParam(System.String,System.String,System.Object)" />
+        <element api="M:System.Xml.Xsl.XsltArgumentList.Clear" />
+        <element api="M:System.Xml.Xsl.XsltArgumentList.GetExtensionObject(System.String)" />
+        <element api="M:System.Xml.Xsl.XsltArgumentList.GetParam(System.String,System.String)" />
+        <element api="M:System.Xml.Xsl.XsltArgumentList.RemoveExtensionObject(System.String)" />
+        <element api="M:System.Xml.Xsl.XsltArgumentList.RemoveParam(System.String,System.String)" />
+        <element api="E:System.Xml.Xsl.XsltArgumentList.XsltMessageEncountered" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltArgumentList" />
+      </containers>
+      <file name="27697955-2357-c8df-a399-f90004e5d7ac" />
+    </api>
+    <api id="Methods.T:System.Xml.Xsl.XsltArgumentList">
+      <topicdata name="XsltArgumentList" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Xsl.XsltArgumentList" />
+      <apidata name="XsltArgumentList" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Xml.Xsl.XsltArgumentList.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Xml.Xsl.XsltArgumentList.AddExtensionObject(System.String,System.Object)" />
+        <element api="M:System.Xml.Xsl.XsltArgumentList.AddParam(System.String,System.String,System.Object)" />
+        <element api="M:System.Xml.Xsl.XsltArgumentList.Clear" />
+        <element api="M:System.Xml.Xsl.XsltArgumentList.GetExtensionObject(System.String)" />
+        <element api="M:System.Xml.Xsl.XsltArgumentList.GetParam(System.String,System.String)" />
+        <element api="M:System.Xml.Xsl.XsltArgumentList.RemoveExtensionObject(System.String)" />
+        <element api="M:System.Xml.Xsl.XsltArgumentList.RemoveParam(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltArgumentList" />
+      </containers>
+      <file name="a9c0ac10-b802-350b-3f9d-33d3b8e88c91" />
+    </api>
+    <api id="Events.T:System.Xml.Xsl.XsltArgumentList">
+      <topicdata name="XsltArgumentList" group="list" subgroup="Events" typeTopicId="T:System.Xml.Xsl.XsltArgumentList" />
+      <apidata name="XsltArgumentList" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Xml.Xsl.XsltArgumentList.#ctor" />
+      <elements>
+        <element api="E:System.Xml.Xsl.XsltArgumentList.XsltMessageEncountered" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltArgumentList" />
+      </containers>
+      <file name="4ca90065-ad5b-a11d-aee7-90ab43e7fb39" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltArgumentList.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+      </containers>
+      <file name="2e039f18-bb33-f9c5-7a32-91c8a81b2bd1" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltArgumentList.AddExtensionObject(System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name="AddExtensionObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="namespaceUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="extension">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+      </containers>
+      <file name="99fab337-77fe-b1c3-a855-8d43ac0b1b0f" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltArgumentList.AddParam(System.String,System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name="AddParam" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="namespaceUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+      </containers>
+      <file name="246edb8e-176a-e5a2-7c8e-0853519f8ef6" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltArgumentList.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+      </containers>
+      <file name="c5b12c3c-8fda-2401-1de5-cc7de0700dc8" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltArgumentList.GetExtensionObject(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetExtensionObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="namespaceUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+      </containers>
+      <file name="ef34d2e4-8684-a0b8-9f29-002dffd13fca" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltArgumentList.GetParam(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="GetParam" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="namespaceUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+      </containers>
+      <file name="56aacd96-769e-cb1a-662e-20319ec263ba" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltArgumentList.RemoveExtensionObject(System.String)">
+      <topicdata group="api" />
+      <apidata name="RemoveExtensionObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="namespaceUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+      </containers>
+      <file name="28a10fa9-f3be-0d2f-1db2-a7cac89ea135" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltArgumentList.RemoveParam(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="RemoveParam" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="namespaceUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+      </containers>
+      <file name="fdd70b77-d6a8-718c-829f-814a81f2fdd7" />
+    </api>
+    <api id="E:System.Xml.Xsl.XsltArgumentList.XsltMessageEncountered">
+      <topicdata group="api" />
+      <apidata name="XsltMessageEncountered" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_XsltMessageEncountered" />
+      <remover name="remove_XsltMessageEncountered" />
+      <eventhandler>
+        <type api="T:System.Xml.Xsl.XsltMessageEncounteredEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Xml.Xsl.XsltMessageEncounteredEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+      </containers>
+      <file name="3c84ec5d-2bfc-0294-1390-c6a32695e892" />
+    </api>
+    <api id="T:System.Xml.Xsl.XsltCompileException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Xsl.XsltCompileException" />
+      <apidata name="XsltCompileException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Xml.Xsl.XsltCompileException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Xml.Xsl.XsltException" ref="true" />
+          <type api="T:System.SystemException" ref="true" />
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+      </containers>
+      <file name="f53835ea-2a22-868b-8d89-13eede0d698e" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Xsl.XsltCompileException">
+      <topicdata name="XsltCompileException" group="list" subgroup="members" typeTopicId="T:System.Xml.Xsl.XsltCompileException" />
+      <apidata name="XsltCompileException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Xml.Xsl.XsltCompileException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="E:System.Exception.SerializeObjectState" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Xml.Xsl.XsltCompileException.#ctor">
+          <element api="M:System.Xml.Xsl.XsltCompileException.#ctor" />
+          <element api="M:System.Xml.Xsl.XsltCompileException.#ctor(System.String)" />
+          <element api="M:System.Xml.Xsl.XsltCompileException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+          <element api="M:System.Xml.Xsl.XsltCompileException.#ctor(System.String,System.Exception)" />
+          <element api="M:System.Xml.Xsl.XsltCompileException.#ctor(System.Exception,System.String,System.Int32,System.Int32)" />
+        </element>
+        <element api="M:System.Xml.Xsl.XsltCompileException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="P:System.Xml.Xsl.XsltException.LineNumber" />
+        <element api="P:System.Xml.Xsl.XsltException.LinePosition" />
+        <element api="P:System.Xml.Xsl.XsltException.Message" />
+        <element api="P:System.Xml.Xsl.XsltException.SourceUri" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltCompileException" />
+      </containers>
+      <file name="a51c98c1-42f4-90b8-e582-0046d1e91884" />
+    </api>
+    <api id="Methods.T:System.Xml.Xsl.XsltCompileException">
+      <topicdata name="XsltCompileException" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Xsl.XsltCompileException" />
+      <apidata name="XsltCompileException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Xml.Xsl.XsltCompileException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Xml.Xsl.XsltCompileException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltCompileException" />
+      </containers>
+      <file name="1b932e9b-3f22-3efb-94c7-23697477ec61" />
+    </api>
+    <api id="Properties.T:System.Xml.Xsl.XsltCompileException">
+      <topicdata name="XsltCompileException" group="list" subgroup="Properties" typeTopicId="T:System.Xml.Xsl.XsltCompileException" />
+      <apidata name="XsltCompileException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Xml.Xsl.XsltCompileException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="P:System.Xml.Xsl.XsltException.LineNumber" />
+        <element api="P:System.Xml.Xsl.XsltException.LinePosition" />
+        <element api="P:System.Xml.Xsl.XsltException.Message" />
+        <element api="P:System.Xml.Xsl.XsltException.SourceUri" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltCompileException" />
+      </containers>
+      <file name="b6158eae-f3f6-90ed-385c-16124943d47c" />
+    </api>
+    <api id="Events.T:System.Xml.Xsl.XsltCompileException">
+      <topicdata name="XsltCompileException" group="list" subgroup="Events" typeTopicId="T:System.Xml.Xsl.XsltCompileException" />
+      <apidata name="XsltCompileException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Xml.Xsl.XsltCompileException.#ctor" />
+      <elements>
+        <element api="E:System.Exception.SerializeObjectState" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltCompileException" />
+      </containers>
+      <file name="3714ebb4-2cb0-8e5e-9628-63dd641105da" />
+    </api>
+    <api id="Overload:System.Xml.Xsl.XsltCompileException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Xml.Xsl.XsltCompileException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Xml.Xsl.XsltCompileException.#ctor" />
+        <element api="M:System.Xml.Xsl.XsltCompileException.#ctor(System.String)" />
+        <element api="M:System.Xml.Xsl.XsltCompileException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Xml.Xsl.XsltCompileException.#ctor(System.String,System.Exception)" />
+        <element api="M:System.Xml.Xsl.XsltCompileException.#ctor(System.Exception,System.String,System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltCompileException" ref="true" />
+      </containers>
+      <file name="7d8228bc-1421-e288-3194-a0267e58cd6d" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltCompileException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xml.Xsl.XsltCompileException.#ctor" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltCompileException" ref="true" />
+      </containers>
+      <file name="ff4f421c-f2ea-484e-1b5a-dd0eb6f7ce9e" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltCompileException.#ctor(System.Exception,System.String,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xml.Xsl.XsltCompileException.#ctor" />
+      <parameters>
+        <parameter name="inner">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+        <parameter name="sourceUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="lineNumber">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="linePosition">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltCompileException" ref="true" />
+      </containers>
+      <file name="2fac5e2d-d751-d4f1-a7ce-7783bf1618e1" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltCompileException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Xml.Xsl.XsltCompileException.#ctor" />
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltCompileException" ref="true" />
+      </containers>
+      <file name="3439eaea-8853-86da-60f0-cd3d03c65344" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltCompileException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xml.Xsl.XsltCompileException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltCompileException" ref="true" />
+      </containers>
+      <file name="99e5a8d8-08d4-266f-7c91-6c5cba00d36b" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltCompileException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xml.Xsl.XsltCompileException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltCompileException" ref="true" />
+      </containers>
+      <file name="5ee43d5c-f6f7-b4ab-19ca-e1e2e6f4da92" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltCompileException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name="GetObjectData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Xml.Xsl.XsltException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Xml.Xsl.XsltException" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.Serialization.ISerializable" ref="true" />
+        </member>
+        <member api="M:System.Runtime.InteropServices._Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.InteropServices._Exception" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltCompileException" ref="true" />
+      </containers>
+      <file name="8d2b08d0-8253-9555-a18b-fdfc642487ac" />
+    </api>
+    <api id="T:System.Xml.Xsl.XsltContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Xsl.XsltContext" />
+      <apidata name="XsltContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Xml.XmlNamespaceManager" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.ServiceModel.Dispatcher.XPathMessageContext" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+      </containers>
+      <file name="f6c0455e-196c-980d-0afb-3b7583167983" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Xsl.XsltContext">
+      <topicdata name="XsltContext" group="list" subgroup="members" typeTopicId="T:System.Xml.Xsl.XsltContext" />
+      <apidata name="XsltContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String)" />
+        <element api="P:System.Xml.XmlNamespaceManager.DefaultNamespace" />
+        <element api="M:System.Xml.XmlNamespaceManager.GetEnumerator" />
+        <element api="M:System.Xml.XmlNamespaceManager.GetNamespacesInScope(System.Xml.XmlNamespaceScope)" />
+        <element api="M:System.Xml.XmlNamespaceManager.HasNamespace(System.String)" />
+        <element api="M:System.Xml.XmlNamespaceManager.LookupNamespace(System.String)" />
+        <element api="M:System.Xml.XmlNamespaceManager.LookupPrefix(System.String)" />
+        <element api="P:System.Xml.XmlNamespaceManager.NameTable" />
+        <element api="M:System.Xml.XmlNamespaceManager.PopScope" />
+        <element api="M:System.Xml.XmlNamespaceManager.PushScope" />
+        <element api="M:System.Xml.XmlNamespaceManager.RemoveNamespace(System.String,System.String)" />
+        <element api="Overload:System.Xml.Xsl.XsltContext.#ctor">
+          <element api="M:System.Xml.Xsl.XsltContext.#ctor" />
+          <element api="M:System.Xml.Xsl.XsltContext.#ctor(System.Xml.NameTable)" />
+        </element>
+        <element api="M:System.Xml.Xsl.XsltContext.CompareDocument(System.String,System.String)" />
+        <element api="M:System.Xml.Xsl.XsltContext.PreserveWhitespace(System.Xml.XPath.XPathNavigator)" />
+        <element api="M:System.Xml.Xsl.XsltContext.ResolveFunction(System.String,System.String,System.Xml.XPath.XPathResultType[])" />
+        <element api="M:System.Xml.Xsl.XsltContext.ResolveVariable(System.String,System.String)" />
+        <element api="P:System.Xml.Xsl.XsltContext.Whitespace" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" />
+      </containers>
+      <file name="f89eb41e-5cd5-7871-9ce4-c4727864ca2e" />
+    </api>
+    <api id="Methods.T:System.Xml.Xsl.XsltContext">
+      <topicdata name="XsltContext" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Xsl.XsltContext" />
+      <apidata name="XsltContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String)" />
+        <element api="M:System.Xml.XmlNamespaceManager.GetEnumerator" />
+        <element api="M:System.Xml.XmlNamespaceManager.GetNamespacesInScope(System.Xml.XmlNamespaceScope)" />
+        <element api="M:System.Xml.XmlNamespaceManager.HasNamespace(System.String)" />
+        <element api="M:System.Xml.XmlNamespaceManager.LookupNamespace(System.String)" />
+        <element api="M:System.Xml.XmlNamespaceManager.LookupPrefix(System.String)" />
+        <element api="M:System.Xml.XmlNamespaceManager.PopScope" />
+        <element api="M:System.Xml.XmlNamespaceManager.PushScope" />
+        <element api="M:System.Xml.XmlNamespaceManager.RemoveNamespace(System.String,System.String)" />
+        <element api="M:System.Xml.Xsl.XsltContext.CompareDocument(System.String,System.String)" />
+        <element api="M:System.Xml.Xsl.XsltContext.PreserveWhitespace(System.Xml.XPath.XPathNavigator)" />
+        <element api="M:System.Xml.Xsl.XsltContext.ResolveFunction(System.String,System.String,System.Xml.XPath.XPathResultType[])" />
+        <element api="M:System.Xml.Xsl.XsltContext.ResolveVariable(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" />
+      </containers>
+      <file name="9009f0e9-fbaa-919f-cf71-bab0afcffd16" />
+    </api>
+    <api id="Properties.T:System.Xml.Xsl.XsltContext">
+      <topicdata name="XsltContext" group="list" subgroup="Properties" typeTopicId="T:System.Xml.Xsl.XsltContext" />
+      <apidata name="XsltContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Xml.XmlNamespaceManager.DefaultNamespace" />
+        <element api="P:System.Xml.XmlNamespaceManager.NameTable" />
+        <element api="P:System.Xml.Xsl.XsltContext.Whitespace" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" />
+      </containers>
+      <file name="e89278ce-22e1-1a66-f654-6c5581a6a595" />
+    </api>
+    <api id="Overload:System.Xml.Xsl.XsltContext.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Xml.Xsl.XsltContext" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Xml.Xsl.XsltContext.#ctor" />
+        <element api="M:System.Xml.Xsl.XsltContext.#ctor(System.Xml.NameTable)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+      </containers>
+      <file name="58f11200-38f0-8fd2-b159-80e03169779b" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltContext.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Xml.Xsl.XsltContext.#ctor" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+      </containers>
+      <file name="b9b84c49-95a2-cd15-a9ae-f10862fecbfd" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltContext.#ctor(System.Xml.NameTable)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Xml.Xsl.XsltContext.#ctor" />
+      <parameters>
+        <parameter name="table">
+          <type api="T:System.Xml.NameTable" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+      </containers>
+      <file name="42a59538-0a6e-2d37-6e10-e062721ffd17" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltContext.CompareDocument(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="CompareDocument" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="baseUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="nextbaseUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+      </containers>
+      <file name="86baa877-6226-4394-bd76-a4aa678a5b07" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltContext.PreserveWhitespace(System.Xml.XPath.XPathNavigator)">
+      <topicdata group="api" />
+      <apidata name="PreserveWhitespace" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="node">
+          <type api="T:System.Xml.XPath.XPathNavigator" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+      </containers>
+      <file name="61ec4b4d-2ec5-7c09-6e06-97aabab1390d" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltContext.ResolveFunction(System.String,System.String,System.Xml.XPath.XPathResultType[])">
+      <topicdata group="api" />
+      <apidata name="ResolveFunction" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="prefix">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="ArgTypes">
+          <arrayOf rank="1">
+            <type api="T:System.Xml.XPath.XPathResultType" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.Xsl.IXsltContextFunction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+      </containers>
+      <file name="9fd39143-c829-8078-a331-a535601c48f7" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltContext.ResolveVariable(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="ResolveVariable" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="prefix">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.Xsl.IXsltContextVariable" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+      </containers>
+      <file name="6bb4f067-1359-6872-bf44-f1698959476b" />
+    </api>
+    <api id="P:System.Xml.Xsl.XsltContext.Whitespace">
+      <topicdata group="api" />
+      <apidata name="Whitespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Whitespace" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+      </containers>
+      <file name="decd17ba-ed5d-6237-f48e-f06d15813caf" />
+    </api>
+    <api id="T:System.Xml.Xsl.XsltException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Xsl.XsltException" />
+      <apidata name="XsltException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Xml.Xsl.XsltException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.SystemException" ref="true" />
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Xml.Xsl.XsltCompileException" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+      </containers>
+      <file name="29e23266-aaaf-f731-b6b0-7be397763360" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Xsl.XsltException">
+      <topicdata name="XsltException" group="list" subgroup="members" typeTopicId="T:System.Xml.Xsl.XsltException" />
+      <apidata name="XsltException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Xml.Xsl.XsltException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="E:System.Exception.SerializeObjectState" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Xml.Xsl.XsltException.#ctor">
+          <element api="M:System.Xml.Xsl.XsltException.#ctor" />
+          <element api="M:System.Xml.Xsl.XsltException.#ctor(System.String)" />
+          <element api="M:System.Xml.Xsl.XsltException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+          <element api="M:System.Xml.Xsl.XsltException.#ctor(System.String,System.Exception)" />
+        </element>
+        <element api="M:System.Xml.Xsl.XsltException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="P:System.Xml.Xsl.XsltException.LineNumber" />
+        <element api="P:System.Xml.Xsl.XsltException.LinePosition" />
+        <element api="P:System.Xml.Xsl.XsltException.Message" />
+        <element api="P:System.Xml.Xsl.XsltException.SourceUri" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltException" />
+      </containers>
+      <file name="649a3649-8912-b709-bd12-cd30c08b8fff" />
+    </api>
+    <api id="Methods.T:System.Xml.Xsl.XsltException">
+      <topicdata name="XsltException" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Xsl.XsltException" />
+      <apidata name="XsltException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Xml.Xsl.XsltException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Xml.Xsl.XsltException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltException" />
+      </containers>
+      <file name="a41086d0-f428-f37c-859f-2c46717077ed" />
+    </api>
+    <api id="Properties.T:System.Xml.Xsl.XsltException">
+      <topicdata name="XsltException" group="list" subgroup="Properties" typeTopicId="T:System.Xml.Xsl.XsltException" />
+      <apidata name="XsltException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Xml.Xsl.XsltException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="P:System.Xml.Xsl.XsltException.LineNumber" />
+        <element api="P:System.Xml.Xsl.XsltException.LinePosition" />
+        <element api="P:System.Xml.Xsl.XsltException.Message" />
+        <element api="P:System.Xml.Xsl.XsltException.SourceUri" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltException" />
+      </containers>
+      <file name="2a7f957e-b626-d4bf-dea0-16543e67ad6e" />
+    </api>
+    <api id="Events.T:System.Xml.Xsl.XsltException">
+      <topicdata name="XsltException" group="list" subgroup="Events" typeTopicId="T:System.Xml.Xsl.XsltException" />
+      <apidata name="XsltException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Xml.Xsl.XsltException.#ctor" />
+      <elements>
+        <element api="E:System.Exception.SerializeObjectState" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltException" />
+      </containers>
+      <file name="48eb19a6-2853-1e7a-0b2a-acb5d0f535bf" />
+    </api>
+    <api id="Overload:System.Xml.Xsl.XsltException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Xml.Xsl.XsltException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Xml.Xsl.XsltException.#ctor" />
+        <element api="M:System.Xml.Xsl.XsltException.#ctor(System.String)" />
+        <element api="M:System.Xml.Xsl.XsltException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Xml.Xsl.XsltException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltException" ref="true" />
+      </containers>
+      <file name="46cf0919-50a6-36a8-52be-251e8728f7da" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xml.Xsl.XsltException.#ctor" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltException" ref="true" />
+      </containers>
+      <file name="c2def0d7-83d7-9afb-eb52-98db8d299863" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Xml.Xsl.XsltException.#ctor" />
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltException" ref="true" />
+      </containers>
+      <file name="5d554734-0ca0-0505-71fb-ec5ddc89188e" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xml.Xsl.XsltException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltException" ref="true" />
+      </containers>
+      <file name="25291fa5-6514-b147-1681-c856d91e25ff" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xml.Xsl.XsltException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltException" ref="true" />
+      </containers>
+      <file name="35edc877-7fef-bf3a-b9ba-a47518bc3ee0" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name="GetObjectData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Exception" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.Serialization.ISerializable" ref="true" />
+        </member>
+        <member api="M:System.Runtime.InteropServices._Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.InteropServices._Exception" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltException" ref="true" />
+      </containers>
+      <file name="8026c9cb-a5d9-75f5-6168-cf36060504c4" />
+    </api>
+    <api id="P:System.Xml.Xsl.XsltException.LineNumber">
+      <topicdata group="api" />
+      <apidata name="LineNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_LineNumber" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltException" ref="true" />
+      </containers>
+      <file name="7ebb283f-2c0a-3ba4-d362-d9926861e1a6" />
+    </api>
+    <api id="P:System.Xml.Xsl.XsltException.LinePosition">
+      <topicdata group="api" />
+      <apidata name="LinePosition" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_LinePosition" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltException" ref="true" />
+      </containers>
+      <file name="a6f8fc7f-9aef-40ef-c2be-7e0d9692eeaf" />
+    </api>
+    <api id="P:System.Xml.Xsl.XsltException.Message">
+      <topicdata group="api" />
+      <apidata name="Message" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Exception.Message">
+          <type api="T:System.Exception" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Message" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.InteropServices._Exception.Message">
+          <type api="T:System.Runtime.InteropServices._Exception" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltException" ref="true" />
+      </containers>
+      <file name="91f7425e-424e-b6a4-4eb2-453ea4152a43" />
+    </api>
+    <api id="P:System.Xml.Xsl.XsltException.SourceUri">
+      <topicdata group="api" />
+      <apidata name="SourceUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_SourceUri" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltException" ref="true" />
+      </containers>
+      <file name="e820f309-00af-1bf3-fa9c-92c1e94af94e" />
+    </api>
+    <api id="T:System.Xml.Xsl.XsltMessageEncounteredEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Xsl.XsltMessageEncounteredEventArgs" />
+      <apidata name="XsltMessageEncounteredEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+      </containers>
+      <file name="92988918-cd29-15fe-f19d-791efbd349ba" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Xsl.XsltMessageEncounteredEventArgs">
+      <topicdata name="XsltMessageEncounteredEventArgs" group="list" subgroup="members" typeTopicId="T:System.Xml.Xsl.XsltMessageEncounteredEventArgs" />
+      <apidata name="XsltMessageEncounteredEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Xml.Xsl.XsltMessageEncounteredEventArgs.#ctor" />
+        <element api="P:System.Xml.Xsl.XsltMessageEncounteredEventArgs.Message" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltMessageEncounteredEventArgs" />
+      </containers>
+      <file name="169c5244-434c-694e-49eb-4fedc8c138ed" />
+    </api>
+    <api id="Methods.T:System.Xml.Xsl.XsltMessageEncounteredEventArgs">
+      <topicdata name="XsltMessageEncounteredEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Xsl.XsltMessageEncounteredEventArgs" />
+      <apidata name="XsltMessageEncounteredEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltMessageEncounteredEventArgs" />
+      </containers>
+      <file name="6007d214-e5ee-fe30-1ddf-0fe09e8c7d66" />
+    </api>
+    <api id="Properties.T:System.Xml.Xsl.XsltMessageEncounteredEventArgs">
+      <topicdata name="XsltMessageEncounteredEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Xml.Xsl.XsltMessageEncounteredEventArgs" />
+      <apidata name="XsltMessageEncounteredEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Xml.Xsl.XsltMessageEncounteredEventArgs.Message" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltMessageEncounteredEventArgs" />
+      </containers>
+      <file name="3dc82d0a-54a6-a832-972c-bac523f27bee" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltMessageEncounteredEventArgs.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltMessageEncounteredEventArgs" ref="true" />
+      </containers>
+      <file name="f5b11eec-a0fa-a094-db1d-ea32a9ee3b1e" />
+    </api>
+    <api id="P:System.Xml.Xsl.XsltMessageEncounteredEventArgs.Message">
+      <topicdata group="api" />
+      <apidata name="Message" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Message" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltMessageEncounteredEventArgs" ref="true" />
+      </containers>
+      <file name="6864de63-5449-f158-54c1-647359feaf94" />
+    </api>
+    <api id="T:System.Xml.Xsl.XsltMessageEncounteredEventHandler">
+      <topicdata group="api" />
+      <apidata name="XsltMessageEncounteredEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Xml.Xsl.XsltMessageEncounteredEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+      </containers>
+      <file name="56fe4b6e-a85a-bdb9-c07e-1ea8d3aea50b" />
+    </api>
+    <api id="T:System.Xml.Xsl.XslTransform">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Xsl.XslTransform" />
+      <apidata name="XslTransform" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Xsl.XslTransform.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>This class has been deprecated. Please use System.Xml.Xsl.XslCompiledTransform instead. http://go.microsoft.com/fwlink/?linkid=14202</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="97c21cf9-a20e-b20e-3112-32f074fd2e56" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Xsl.XslTransform">
+      <topicdata name="XslTransform" group="list" subgroup="members" typeTopicId="T:System.Xml.Xsl.XslTransform" />
+      <apidata name="XslTransform" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Xsl.XslTransform.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Xml.Xsl.XslTransform.#ctor" />
+        <element api="Overload:System.Xml.Xsl.XslTransform.Load">
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.IXPathNavigable)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.String)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XmlReader)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.XPathNavigator)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.IXPathNavigable,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.String,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XmlReader,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.XPathNavigator,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.IXPathNavigable,System.Xml.XmlResolver,System.Security.Policy.Evidence)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XmlReader,System.Xml.XmlResolver,System.Security.Policy.Evidence)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.XPathNavigator,System.Xml.XmlResolver,System.Security.Policy.Evidence)" />
+        </element>
+        <element api="Overload:System.Xml.Xsl.XslTransform.Transform">
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.String,System.String)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.String,System.String,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.Stream,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.Stream,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)" />
+        </element>
+        <element api="P:System.Xml.Xsl.XslTransform.XmlResolver" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" />
+      </containers>
+      <file name="752a86f8-657d-ba32-e8b9-d9e0d337cfa3" />
+    </api>
+    <api id="Methods.T:System.Xml.Xsl.XslTransform">
+      <topicdata name="XslTransform" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Xsl.XslTransform" />
+      <apidata name="XslTransform" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Xsl.XslTransform.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Xml.Xsl.XslTransform.Load">
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.IXPathNavigable)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.String)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XmlReader)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.XPathNavigator)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.IXPathNavigable,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.String,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XmlReader,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.XPathNavigator,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.IXPathNavigable,System.Xml.XmlResolver,System.Security.Policy.Evidence)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XmlReader,System.Xml.XmlResolver,System.Security.Policy.Evidence)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.XPathNavigator,System.Xml.XmlResolver,System.Security.Policy.Evidence)" />
+        </element>
+        <element api="Overload:System.Xml.Xsl.XslTransform.Transform">
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.String,System.String)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.String,System.String,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.Stream,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.Stream,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter,System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" />
+      </containers>
+      <file name="9f072b5c-48bc-fe11-27df-1b32f7b4beca" />
+    </api>
+    <api id="Properties.T:System.Xml.Xsl.XslTransform">
+      <topicdata name="XslTransform" group="list" subgroup="Properties" typeTopicId="T:System.Xml.Xsl.XslTransform" />
+      <apidata name="XslTransform" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Xsl.XslTransform.#ctor" />
+      <elements>
+        <element api="P:System.Xml.Xsl.XslTransform.XmlResolver" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" />
+      </containers>
+      <file name="9686cabd-22fe-3d87-2694-057847bfd7f9" />
+    </api>
+    <api id="Overload:System.Xml.Xsl.XslTransform.Load">
+      <topicdata name="Load" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Xml.Xsl.XslTransform" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.IXPathNavigable)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Load(System.String)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XmlReader)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.XPathNavigator)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.IXPathNavigable,System.Xml.XmlResolver)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Load(System.String,System.Xml.XmlResolver)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XmlReader,System.Xml.XmlResolver)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.XPathNavigator,System.Xml.XmlResolver)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.IXPathNavigable,System.Xml.XmlResolver,System.Security.Policy.Evidence)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XmlReader,System.Xml.XmlResolver,System.Security.Policy.Evidence)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.XPathNavigator,System.Xml.XmlResolver,System.Security.Policy.Evidence)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="0fb8320c-4724-d3a3-abd8-db6940e4df9c" />
+    </api>
+    <api id="Overload:System.Xml.Xsl.XslTransform.Transform">
+      <topicdata name="Transform" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Xml.Xsl.XslTransform" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Transform(System.String,System.String)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlResolver)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Transform(System.String,System.String,System.Xml.XmlResolver)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlResolver)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.Stream,System.Xml.XmlResolver)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter,System.Xml.XmlResolver)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.Stream,System.Xml.XmlResolver)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter,System.Xml.XmlResolver)" />
+        <element api="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="4538ceab-5389-8a55-423e-3a69b4225282" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="ab8c1b1b-8023-049f-b24f-7daf843838b4" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Load(System.String)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Load" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="url">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="e78559d6-e60c-ff78-9329-fa6d4ba3fdbb" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Load(System.String,System.Xml.XmlResolver)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Load" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="url">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="resolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="c8774ec2-f864-37af-4e4c-4aaf5ecf5de7" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XmlReader)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Load" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stylesheet">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="7f983c85-58e0-9fa0-a7b7-5048246fcdba" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XmlReader,System.Xml.XmlResolver)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Load" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stylesheet">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+        <parameter name="resolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="27fcf555-4a2e-354c-b3de-08ac06803e39" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XmlReader,System.Xml.XmlResolver,System.Security.Policy.Evidence)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Load" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stylesheet">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+        <parameter name="resolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+        <parameter name="evidence">
+          <type api="T:System.Security.Policy.Evidence" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="e2bd4c7c-2f07-2da1-fbcc-af29025c5629" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.IXPathNavigable)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Load" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stylesheet">
+          <type api="T:System.Xml.XPath.IXPathNavigable" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="2388c3fa-6ebb-4363-c5d4-208942413423" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.IXPathNavigable,System.Xml.XmlResolver)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Load" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stylesheet">
+          <type api="T:System.Xml.XPath.IXPathNavigable" ref="true" />
+        </parameter>
+        <parameter name="resolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="46f8d732-7f02-9599-d2ff-95b9186526f1" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.IXPathNavigable,System.Xml.XmlResolver,System.Security.Policy.Evidence)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Load" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stylesheet">
+          <type api="T:System.Xml.XPath.IXPathNavigable" ref="true" />
+        </parameter>
+        <parameter name="resolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+        <parameter name="evidence">
+          <type api="T:System.Security.Policy.Evidence" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="45ea5ba8-4d4d-2495-15b3-20533a39aa4d" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.XPathNavigator)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Load" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stylesheet">
+          <type api="T:System.Xml.XPath.XPathNavigator" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="76a44323-586e-4fee-a68e-24f026530b6c" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.XPathNavigator,System.Xml.XmlResolver)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Load" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stylesheet">
+          <type api="T:System.Xml.XPath.XPathNavigator" ref="true" />
+        </parameter>
+        <parameter name="resolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="c7a5110e-feeb-88c3-0090-fe0bd500cbab" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XPath.XPathNavigator,System.Xml.XmlResolver,System.Security.Policy.Evidence)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Load" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stylesheet">
+          <type api="T:System.Xml.XPath.XPathNavigator" ref="true" />
+        </parameter>
+        <parameter name="resolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+        <parameter name="evidence">
+          <type api="T:System.Security.Policy.Evidence" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="ef45e660-8411-0fac-7426-ac11e13a8cb4" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Transform(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputfile">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="outputfile">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="c5d907ea-0750-69a7-f475-82d840090f6e" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Transform(System.String,System.String,System.Xml.XmlResolver)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputfile">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="outputfile">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="resolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="956b43a5-d97e-f8bb-8eb5-d36c49148f41" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.IXPathNavigable" ref="true" />
+        </parameter>
+        <parameter name="args">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.XmlReader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="f2a7d55d-299a-7372-4bb5-470894a2fbf4" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.IXPathNavigable" ref="true" />
+        </parameter>
+        <parameter name="args">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="output">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="63eac3bd-6831-01cd-575f-666dc4d64596" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.Stream,System.Xml.XmlResolver)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.IXPathNavigable" ref="true" />
+        </parameter>
+        <parameter name="args">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="output">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="resolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="ddcfd959-76c9-9902-b6f8-12b3821c91a7" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.IXPathNavigable" ref="true" />
+        </parameter>
+        <parameter name="args">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="output">
+          <type api="T:System.IO.TextWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="f00f4548-ca1b-038d-fbc6-b2fb74271ab0" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter,System.Xml.XmlResolver)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.IXPathNavigable" ref="true" />
+        </parameter>
+        <parameter name="args">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="output">
+          <type api="T:System.IO.TextWriter" ref="true" />
+        </parameter>
+        <parameter name="resolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="c5d3b3b5-1fdd-932c-635d-e8d968ddc4d3" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlResolver)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.IXPathNavigable" ref="true" />
+        </parameter>
+        <parameter name="args">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="resolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.XmlReader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="b43c1ec6-4c3d-ca42-97c2-e9e86ef06e30" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.IXPathNavigable" ref="true" />
+        </parameter>
+        <parameter name="args">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="output">
+          <type api="T:System.Xml.XmlWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="eeb6c680-7470-bf35-f76f-931e4819b89d" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.IXPathNavigable" ref="true" />
+        </parameter>
+        <parameter name="args">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="output">
+          <type api="T:System.Xml.XmlWriter" ref="true" />
+        </parameter>
+        <parameter name="resolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="654d7aa4-8c1e-0c47-536c-996fbf92c29f" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.XPathNavigator" ref="true" />
+        </parameter>
+        <parameter name="args">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.XmlReader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="6d61b0c9-43b9-de27-d1ca-de39a15b1d49" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.XPathNavigator" ref="true" />
+        </parameter>
+        <parameter name="args">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="output">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="51c71d62-aada-3380-018c-8c2548103386" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.Stream,System.Xml.XmlResolver)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.XPathNavigator" ref="true" />
+        </parameter>
+        <parameter name="args">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="output">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="resolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="8123a11b-b040-9253-d847-0c7584300cf6" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.XPathNavigator" ref="true" />
+        </parameter>
+        <parameter name="args">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="output">
+          <type api="T:System.IO.TextWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="238b237c-8ee9-4d83-fbae-44f91ef41940" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter,System.Xml.XmlResolver)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.XPathNavigator" ref="true" />
+        </parameter>
+        <parameter name="args">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="output">
+          <type api="T:System.IO.TextWriter" ref="true" />
+        </parameter>
+        <parameter name="resolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="09ec6e0c-689a-a0fc-3877-d6de64058c54" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlResolver)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.XPathNavigator" ref="true" />
+        </parameter>
+        <parameter name="args">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="resolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.XmlReader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="651ade07-5e64-8721-fa65-c7e803b23417" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.XPathNavigator" ref="true" />
+        </parameter>
+        <parameter name="args">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="output">
+          <type api="T:System.Xml.XmlWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="d2251215-80b8-9717-01b6-bd39e48114a4" />
+    </api>
+    <api id="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)">
+      <topicdata group="api" />
+      <apidata name="Transform" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Xsl.XslTransform.Transform" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.Xml.XPath.XPathNavigator" ref="true" />
+        </parameter>
+        <parameter name="args">
+          <type api="T:System.Xml.Xsl.XsltArgumentList" ref="true" />
+        </parameter>
+        <parameter name="output">
+          <type api="T:System.Xml.XmlWriter" ref="true" />
+        </parameter>
+        <parameter name="resolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="adc2f9a7-71fe-6a3e-23c9-8d5427fccb40" />
+    </api>
+    <api id="P:System.Xml.Xsl.XslTransform.XmlResolver">
+      <topicdata group="api" />
+      <apidata name="XmlResolver" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata set="true" />
+      <setter name="set_XmlResolver" />
+      <returns>
+        <type api="T:System.Xml.XmlResolver" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XslTransform" ref="true" />
+      </containers>
+      <file name="7fb220df-dacb-9a49-9740-31e395931a54" />
+    </api>
+    <api id="T:System.Xml.Xsl.XsltSettings">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Xsl.XsltSettings" />
+      <apidata name="XsltSettings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Xsl.XsltSettings.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+      </containers>
+      <file name="1ec3076d-208f-5987-ecf9-9aba348b127b" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Xsl.XsltSettings">
+      <topicdata name="XsltSettings" group="list" subgroup="members" typeTopicId="T:System.Xml.Xsl.XsltSettings" />
+      <apidata name="XsltSettings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Xsl.XsltSettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Xml.Xsl.XsltSettings.#ctor">
+          <element api="M:System.Xml.Xsl.XsltSettings.#ctor" />
+          <element api="M:System.Xml.Xsl.XsltSettings.#ctor(System.Boolean,System.Boolean)" />
+        </element>
+        <element api="P:System.Xml.Xsl.XsltSettings.Default" />
+        <element api="P:System.Xml.Xsl.XsltSettings.EnableDocumentFunction" />
+        <element api="P:System.Xml.Xsl.XsltSettings.EnableScript" />
+        <element api="P:System.Xml.Xsl.XsltSettings.TrustedXslt" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltSettings" />
+      </containers>
+      <file name="ff642183-40f5-cb1e-9bfc-44b8f79278d3" />
+    </api>
+    <api id="Methods.T:System.Xml.Xsl.XsltSettings">
+      <topicdata name="XsltSettings" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Xsl.XsltSettings" />
+      <apidata name="XsltSettings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Xsl.XsltSettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltSettings" />
+      </containers>
+      <file name="5ba6182b-a09a-57dd-d301-b60002ff56fa" />
+    </api>
+    <api id="Properties.T:System.Xml.Xsl.XsltSettings">
+      <topicdata name="XsltSettings" group="list" subgroup="Properties" typeTopicId="T:System.Xml.Xsl.XsltSettings" />
+      <apidata name="XsltSettings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Xml.Xsl.XsltSettings.#ctor" />
+      <elements>
+        <element api="P:System.Xml.Xsl.XsltSettings.Default" />
+        <element api="P:System.Xml.Xsl.XsltSettings.EnableDocumentFunction" />
+        <element api="P:System.Xml.Xsl.XsltSettings.EnableScript" />
+        <element api="P:System.Xml.Xsl.XsltSettings.TrustedXslt" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltSettings" />
+      </containers>
+      <file name="e8c01ae9-53af-b824-a0ad-54b4f4c6906c" />
+    </api>
+    <api id="Overload:System.Xml.Xsl.XsltSettings.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Xml.Xsl.XsltSettings" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Xml.Xsl.XsltSettings.#ctor" />
+        <element api="M:System.Xml.Xsl.XsltSettings.#ctor(System.Boolean,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltSettings" ref="true" />
+      </containers>
+      <file name="4f3df57f-a772-f82f-f70b-e96337caf27e" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltSettings.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xml.Xsl.XsltSettings.#ctor" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltSettings" ref="true" />
+      </containers>
+      <file name="0c696c4b-cb67-8f15-1341-04bf98350dd1" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltSettings.#ctor(System.Boolean,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xml.Xsl.XsltSettings.#ctor" />
+      <parameters>
+        <parameter name="enableDocumentFunction">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="enableScript">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltSettings" ref="true" />
+      </containers>
+      <file name="f2e175b1-d020-df4d-ad7d-5aa0fc966688" />
+    </api>
+    <api id="P:System.Xml.Xsl.XsltSettings.Default">
+      <topicdata group="api" />
+      <apidata name="Default" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Default" />
+      <returns>
+        <type api="T:System.Xml.Xsl.XsltSettings" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltSettings" ref="true" />
+      </containers>
+      <file name="f6c99f61-ead3-d0ea-7810-5bc394759c3b" />
+    </api>
+    <api id="P:System.Xml.Xsl.XsltSettings.EnableDocumentFunction">
+      <topicdata group="api" />
+      <apidata name="EnableDocumentFunction" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_EnableDocumentFunction" />
+      <setter name="set_EnableDocumentFunction" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltSettings" ref="true" />
+      </containers>
+      <file name="ef0ca78c-4b19-a437-b1ae-d7686dc45d66" />
+    </api>
+    <api id="P:System.Xml.Xsl.XsltSettings.EnableScript">
+      <topicdata group="api" />
+      <apidata name="EnableScript" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_EnableScript" />
+      <setter name="set_EnableScript" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltSettings" ref="true" />
+      </containers>
+      <file name="8090f033-4374-d8e6-5044-c2a62f2bbdb8" />
+    </api>
+    <api id="P:System.Xml.Xsl.XsltSettings.TrustedXslt">
+      <topicdata group="api" />
+      <apidata name="TrustedXslt" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TrustedXslt" />
+      <returns>
+        <type api="T:System.Xml.Xsl.XsltSettings" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltSettings" ref="true" />
+      </containers>
+      <file name="127946cb-ca77-e348-15aa-823eb6f6cc0c" />
+    </api>
+  </apis>
+</reflection>

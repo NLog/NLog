@@ -1,0 +1,1204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="MFDpwsDevice">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MFDpwsDevice</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Dpws.Device.Services">
+      <topicdata group="api" />
+      <apidata name="Dpws.Device.Services" group="namespace" />
+      <elements>
+        <element api="T:Dpws.Device.Services.DpwsHostedService" />
+        <element api="T:Dpws.Device.Services.DpwsWseEventSource" />
+        <element api="T:Dpws.Device.Services.DpwsWseEventSources" />
+        <element api="T:Dpws.Device.Services.DpwsWseSubscriptionMgr" />
+      </elements>
+      <file name="00cb8d71-94c7-9223-10f2-e9cfb51412da" />
+    </api>
+    <api id="T:Dpws.Device.Services.DpwsHostedService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Dpws.Device.Services.DpwsHostedService" />
+      <apidata name="DpwsHostedService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Ws.Services.IWsServiceEndpoint" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+      </containers>
+      <file name="1e8166f6-5bef-a9d1-483f-a7a78965afb7" />
+    </api>
+    <api id="AllMembers.T:Dpws.Device.Services.DpwsHostedService">
+      <topicdata name="DpwsHostedService" group="list" subgroup="members" typeTopicId="T:Dpws.Device.Services.DpwsHostedService" />
+      <apidata name="DpwsHostedService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Dpws.Device.Services.DpwsHostedService.#ctor(Ws.Services.ProtocolVersion)" />
+        <element api="M:Dpws.Device.Services.DpwsHostedService.AddEventServices" />
+        <element api="P:Dpws.Device.Services.DpwsHostedService.EndpointAddress" />
+        <element api="P:Dpws.Device.Services.DpwsHostedService.EndpointRefs" />
+        <element api="P:Dpws.Device.Services.DpwsHostedService.EventSources" />
+        <element api="M:Dpws.Device.Services.DpwsHostedService.GetStatus(Ws.Services.Soap.WsMessage)" />
+        <element api="F:Dpws.Device.Services.DpwsHostedService.m_version" />
+        <element api="M:Dpws.Device.Services.DpwsHostedService.Renew(Ws.Services.Soap.WsMessage)" />
+        <element api="P:Dpws.Device.Services.DpwsHostedService.ServiceID" />
+        <element api="P:Dpws.Device.Services.DpwsHostedService.ServiceNamespace" />
+        <element api="P:Dpws.Device.Services.DpwsHostedService.ServiceOperations" />
+        <element api="P:Dpws.Device.Services.DpwsHostedService.ServiceTypeName" />
+        <element api="M:Dpws.Device.Services.DpwsHostedService.Subscribe(Ws.Services.Soap.WsMessage)" />
+        <element api="M:Dpws.Device.Services.DpwsHostedService.Unsubscribe(Ws.Services.Soap.WsMessage)" />
+        <element api="P:Dpws.Device.Services.DpwsHostedService.Ws#Services#IWsServiceEndpoint#BlockingCall" />
+        <element api="M:Dpws.Device.Services.DpwsHostedService.Ws#Services#IWsServiceEndpoint#ProcessRequest(Ws.Services.Soap.WsMessage)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" />
+      </containers>
+      <file name="de4453c5-4a0b-007e-6000-9c66dbc8311b" />
+    </api>
+    <api id="Methods.T:Dpws.Device.Services.DpwsHostedService">
+      <topicdata name="DpwsHostedService" group="list" subgroup="Methods" typeTopicId="T:Dpws.Device.Services.DpwsHostedService" />
+      <apidata name="DpwsHostedService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Dpws.Device.Services.DpwsHostedService.AddEventServices" />
+        <element api="M:Dpws.Device.Services.DpwsHostedService.GetStatus(Ws.Services.Soap.WsMessage)" />
+        <element api="M:Dpws.Device.Services.DpwsHostedService.Renew(Ws.Services.Soap.WsMessage)" />
+        <element api="M:Dpws.Device.Services.DpwsHostedService.Subscribe(Ws.Services.Soap.WsMessage)" />
+        <element api="M:Dpws.Device.Services.DpwsHostedService.Unsubscribe(Ws.Services.Soap.WsMessage)" />
+        <element api="M:Dpws.Device.Services.DpwsHostedService.Ws#Services#IWsServiceEndpoint#ProcessRequest(Ws.Services.Soap.WsMessage)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" />
+      </containers>
+      <file name="8257d5a5-7274-9f42-2cc7-212e2b8ccfcd" />
+    </api>
+    <api id="Properties.T:Dpws.Device.Services.DpwsHostedService">
+      <topicdata name="DpwsHostedService" group="list" subgroup="Properties" typeTopicId="T:Dpws.Device.Services.DpwsHostedService" />
+      <apidata name="DpwsHostedService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Dpws.Device.Services.DpwsHostedService.EndpointAddress" />
+        <element api="P:Dpws.Device.Services.DpwsHostedService.EndpointRefs" />
+        <element api="P:Dpws.Device.Services.DpwsHostedService.EventSources" />
+        <element api="P:Dpws.Device.Services.DpwsHostedService.ServiceID" />
+        <element api="P:Dpws.Device.Services.DpwsHostedService.ServiceNamespace" />
+        <element api="P:Dpws.Device.Services.DpwsHostedService.ServiceOperations" />
+        <element api="P:Dpws.Device.Services.DpwsHostedService.ServiceTypeName" />
+        <element api="P:Dpws.Device.Services.DpwsHostedService.Ws#Services#IWsServiceEndpoint#BlockingCall" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" />
+      </containers>
+      <file name="de5d6b46-a966-f841-56db-fdc74c0c96e6" />
+    </api>
+    <api id="Fields.T:Dpws.Device.Services.DpwsHostedService">
+      <topicdata name="DpwsHostedService" group="list" subgroup="Fields" typeTopicId="T:Dpws.Device.Services.DpwsHostedService" />
+      <apidata name="DpwsHostedService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Dpws.Device.Services.DpwsHostedService.m_version" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" />
+      </containers>
+      <file name="cf339295-6d65-f06f-709c-9539cd023e0a" />
+    </api>
+    <api id="M:Dpws.Device.Services.DpwsHostedService.#ctor(Ws.Services.ProtocolVersion)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="v">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" ref="true" />
+      </containers>
+      <file name="935e21d5-a0df-393a-a78c-788323a8fa4b" />
+    </api>
+    <api id="M:Dpws.Device.Services.DpwsHostedService.AddEventServices">
+      <topicdata group="api" />
+      <apidata name="AddEventServices" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" ref="true" />
+      </containers>
+      <file name="ff9296d8-3c2e-c5a6-1586-183edf55c5de" />
+    </api>
+    <api id="P:Dpws.Device.Services.DpwsHostedService.EndpointAddress">
+      <topicdata group="api" />
+      <apidata name="EndpointAddress" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_EndpointAddress" />
+      <setter name="set_EndpointAddress" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Ws.Services.IWsServiceEndpoint.EndpointAddress">
+          <type api="T:Ws.Services.IWsServiceEndpoint" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" ref="true" />
+      </containers>
+      <file name="da2d7e2d-8379-3991-34bd-1785840e2843" />
+    </api>
+    <api id="P:Dpws.Device.Services.DpwsHostedService.EndpointRefs">
+      <topicdata group="api" />
+      <apidata name="EndpointRefs" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EndpointRefs" />
+      <returns>
+        <type api="T:Ws.Services.WsaAddressing.WsWsaEndpointRefs" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" ref="true" />
+      </containers>
+      <file name="690338b3-dc00-18b6-fc47-deb7be8113fa" />
+    </api>
+    <api id="P:Dpws.Device.Services.DpwsHostedService.EventSources">
+      <topicdata group="api" />
+      <apidata name="EventSources" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_EventSources" />
+      <setter name="set_EventSources" />
+      <returns>
+        <type api="T:Dpws.Device.Services.DpwsWseEventSources" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" ref="true" />
+      </containers>
+      <file name="3093de77-b6c7-19b7-86bd-c1e170022c06" />
+    </api>
+    <api id="M:Dpws.Device.Services.DpwsHostedService.GetStatus(Ws.Services.Soap.WsMessage)">
+      <topicdata group="api" />
+      <apidata name="GetStatus" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="msg">
+          <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" ref="true" />
+      </containers>
+      <file name="9b3d00e5-9bda-a719-c448-f37b910b730d" />
+    </api>
+    <api id="F:Dpws.Device.Services.DpwsHostedService.m_version">
+      <topicdata group="api" />
+      <apidata name="m_version" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" ref="true" />
+      </containers>
+      <file name="b9588194-f6fe-88c2-9fe2-4b10e075523b" />
+    </api>
+    <api id="M:Dpws.Device.Services.DpwsHostedService.Renew(Ws.Services.Soap.WsMessage)">
+      <topicdata group="api" />
+      <apidata name="Renew" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="msg">
+          <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" ref="true" />
+      </containers>
+      <file name="a8216703-9d04-e89d-b931-120d4557e0d5" />
+    </api>
+    <api id="P:Dpws.Device.Services.DpwsHostedService.ServiceID">
+      <topicdata group="api" />
+      <apidata name="ServiceID" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ServiceID" />
+      <setter name="set_ServiceID" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" ref="true" />
+      </containers>
+      <file name="cebce87e-6a0f-4935-39b7-0ab9dc9487f6" />
+    </api>
+    <api id="P:Dpws.Device.Services.DpwsHostedService.ServiceNamespace">
+      <topicdata group="api" />
+      <apidata name="ServiceNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ServiceNamespace" />
+      <setter name="set_ServiceNamespace" />
+      <returns>
+        <type api="T:Ws.Services.Xml.WsXmlNamespace" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" ref="true" />
+      </containers>
+      <file name="3ef5d0ac-976c-3345-48dc-01f3f807c2be" />
+    </api>
+    <api id="P:Dpws.Device.Services.DpwsHostedService.ServiceOperations">
+      <topicdata group="api" />
+      <apidata name="ServiceOperations" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ServiceOperations" />
+      <returns>
+        <type api="T:Ws.Services.WsServiceOperations" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Ws.Services.IWsServiceEndpoint.ServiceOperations">
+          <type api="T:Ws.Services.IWsServiceEndpoint" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" ref="true" />
+      </containers>
+      <file name="f89e576f-fc85-feef-5f0f-7feaffcad780" />
+    </api>
+    <api id="P:Dpws.Device.Services.DpwsHostedService.ServiceTypeName">
+      <topicdata group="api" />
+      <apidata name="ServiceTypeName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ServiceTypeName" />
+      <setter name="set_ServiceTypeName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" ref="true" />
+      </containers>
+      <file name="be9ffe3c-b41e-813e-7688-d998031835ac" />
+    </api>
+    <api id="M:Dpws.Device.Services.DpwsHostedService.Subscribe(Ws.Services.Soap.WsMessage)">
+      <topicdata group="api" />
+      <apidata name="Subscribe" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="msg">
+          <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" ref="true" />
+      </containers>
+      <file name="fa6170b0-5b68-3ae3-198a-52a7cbe77ce5" />
+    </api>
+    <api id="M:Dpws.Device.Services.DpwsHostedService.Unsubscribe(Ws.Services.Soap.WsMessage)">
+      <topicdata group="api" />
+      <apidata name="Unsubscribe" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="msg">
+          <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" ref="true" />
+      </containers>
+      <file name="232d4156-83ac-96f9-037a-6f16adceb447" />
+    </api>
+    <api id="P:Dpws.Device.Services.DpwsHostedService.Ws#Services#IWsServiceEndpoint#BlockingCall">
+      <topicdata group="api" eiiName="IWsServiceEndpoint.BlockingCall" />
+      <apidata name="BlockingCall" group="member" subgroup="property" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Ws.Services.IWsServiceEndpoint.BlockingCall" />
+      <setter name="set_Ws.Services.IWsServiceEndpoint.BlockingCall" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Ws.Services.IWsServiceEndpoint.BlockingCall">
+          <type api="T:Ws.Services.IWsServiceEndpoint" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" ref="true" />
+      </containers>
+      <file name="a5d10577-ae8f-315f-8ba7-452132498e04" />
+    </api>
+    <api id="M:Dpws.Device.Services.DpwsHostedService.Ws#Services#IWsServiceEndpoint#ProcessRequest(Ws.Services.Soap.WsMessage)">
+      <topicdata group="api" eiiName="IWsServiceEndpoint.ProcessRequest" />
+      <apidata name="ProcessRequest" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="request">
+          <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Ws.Services.IWsServiceEndpoint.ProcessRequest(Ws.Services.Soap.WsMessage)">
+          <type api="T:Ws.Services.IWsServiceEndpoint" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" ref="true" />
+      </containers>
+      <file name="32903bbb-ce16-4a81-d6c6-5f2c3f863efd" />
+    </api>
+    <api id="T:Dpws.Device.Services.DpwsWseEventSource">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Dpws.Device.Services.DpwsWseEventSource" />
+      <apidata name="DpwsWseEventSource" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+      </containers>
+      <file name="c72a3236-c60f-e802-3584-e59b1bc4e6b1" />
+    </api>
+    <api id="AllMembers.T:Dpws.Device.Services.DpwsWseEventSource">
+      <topicdata name="DpwsWseEventSource" group="list" subgroup="members" typeTopicId="T:Dpws.Device.Services.DpwsWseEventSource" />
+      <apidata name="DpwsWseEventSource" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Dpws.Device.Services.DpwsWseEventSource.#ctor(System.String,System.String,System.String)" />
+        <element api="P:Dpws.Device.Services.DpwsWseEventSource.Name" />
+        <element api="P:Dpws.Device.Services.DpwsWseEventSource.NamespaceURI" />
+        <element api="P:Dpws.Device.Services.DpwsWseEventSource.Operation" />
+        <element api="P:Dpws.Device.Services.DpwsWseEventSource.Prefix" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseEventSource" />
+      </containers>
+      <file name="15052eb2-49d3-6ddb-41f7-1489164f6fe0" />
+    </api>
+    <api id="Methods.T:Dpws.Device.Services.DpwsWseEventSource">
+      <topicdata name="DpwsWseEventSource" group="list" subgroup="Methods" typeTopicId="T:Dpws.Device.Services.DpwsWseEventSource" />
+      <apidata name="DpwsWseEventSource" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseEventSource" />
+      </containers>
+      <file name="80065187-f515-0aa7-8d92-584f686dc3d8" />
+    </api>
+    <api id="Properties.T:Dpws.Device.Services.DpwsWseEventSource">
+      <topicdata name="DpwsWseEventSource" group="list" subgroup="Properties" typeTopicId="T:Dpws.Device.Services.DpwsWseEventSource" />
+      <apidata name="DpwsWseEventSource" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Dpws.Device.Services.DpwsWseEventSource.Name" />
+        <element api="P:Dpws.Device.Services.DpwsWseEventSource.NamespaceURI" />
+        <element api="P:Dpws.Device.Services.DpwsWseEventSource.Operation" />
+        <element api="P:Dpws.Device.Services.DpwsWseEventSource.Prefix" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseEventSource" />
+      </containers>
+      <file name="891f4624-ad6e-4878-af32-280910bd418b" />
+    </api>
+    <api id="M:Dpws.Device.Services.DpwsWseEventSource.#ctor(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="prefix">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="namespaceURI">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseEventSource" ref="true" />
+      </containers>
+      <file name="dbe382e1-f2c4-91e8-c5eb-cd48461d34e7" />
+    </api>
+    <api id="P:Dpws.Device.Services.DpwsWseEventSource.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseEventSource" ref="true" />
+      </containers>
+      <file name="15936800-06a5-f478-e7cc-72ed16fe3fc1" />
+    </api>
+    <api id="P:Dpws.Device.Services.DpwsWseEventSource.NamespaceURI">
+      <topicdata group="api" />
+      <apidata name="NamespaceURI" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NamespaceURI" />
+      <setter name="set_NamespaceURI" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseEventSource" ref="true" />
+      </containers>
+      <file name="af777ea0-ca2a-7bf5-619b-5208684a2e9f" />
+    </api>
+    <api id="P:Dpws.Device.Services.DpwsWseEventSource.Operation">
+      <topicdata group="api" />
+      <apidata name="Operation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Operation" />
+      <setter name="set_Operation" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseEventSource" ref="true" />
+      </containers>
+      <file name="7e42b340-8fd8-ab8b-b786-b9d95b99d7a1" />
+    </api>
+    <api id="P:Dpws.Device.Services.DpwsWseEventSource.Prefix">
+      <topicdata group="api" />
+      <apidata name="Prefix" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Prefix" />
+      <setter name="set_Prefix" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseEventSource" ref="true" />
+      </containers>
+      <file name="b76170b6-70ee-98f7-9a81-b7b8782b287b" />
+    </api>
+    <api id="T:Dpws.Device.Services.DpwsWseEventSources">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Dpws.Device.Services.DpwsWseEventSources" />
+      <apidata name="DpwsWseEventSources" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Dpws.Device.Services.DpwsWseEventSources.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+      </containers>
+      <file name="816aea6a-5fa1-3577-48c3-e418f0b6a797" />
+    </api>
+    <api id="AllMembers.T:Dpws.Device.Services.DpwsWseEventSources">
+      <topicdata name="DpwsWseEventSources" group="list" subgroup="members" typeTopicId="T:Dpws.Device.Services.DpwsWseEventSources" />
+      <apidata name="DpwsWseEventSources" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Dpws.Device.Services.DpwsWseEventSources.#ctor" />
+      <elements>
+        <element api="M:Dpws.Device.Services.DpwsWseEventSources.#ctor" />
+        <element api="M:Dpws.Device.Services.DpwsWseEventSources.Add(Dpws.Device.Services.DpwsWseEventSource)" />
+        <element api="P:Dpws.Device.Services.DpwsWseEventSources.Count" />
+        <element api="Overload:Dpws.Device.Services.DpwsWseEventSources.Item">
+          <element api="P:Dpws.Device.Services.DpwsWseEventSources.Item(System.Int32)" />
+          <element api="P:Dpws.Device.Services.DpwsWseEventSources.Item(System.String)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseEventSources" />
+      </containers>
+      <file name="65a34836-826d-9672-a428-286a8e914cec" />
+    </api>
+    <api id="Methods.T:Dpws.Device.Services.DpwsWseEventSources">
+      <topicdata name="DpwsWseEventSources" group="list" subgroup="Methods" typeTopicId="T:Dpws.Device.Services.DpwsWseEventSources" />
+      <apidata name="DpwsWseEventSources" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Dpws.Device.Services.DpwsWseEventSources.#ctor" />
+      <elements>
+        <element api="M:Dpws.Device.Services.DpwsWseEventSources.Add(Dpws.Device.Services.DpwsWseEventSource)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseEventSources" />
+      </containers>
+      <file name="538ecd68-5292-d5d7-456a-362af52aa5c8" />
+    </api>
+    <api id="Properties.T:Dpws.Device.Services.DpwsWseEventSources">
+      <topicdata name="DpwsWseEventSources" group="list" subgroup="Properties" typeTopicId="T:Dpws.Device.Services.DpwsWseEventSources" />
+      <apidata name="DpwsWseEventSources" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Dpws.Device.Services.DpwsWseEventSources.#ctor" />
+      <elements>
+        <element api="P:Dpws.Device.Services.DpwsWseEventSources.Count" />
+        <element api="Overload:Dpws.Device.Services.DpwsWseEventSources.Item">
+          <element api="P:Dpws.Device.Services.DpwsWseEventSources.Item(System.Int32)" />
+          <element api="P:Dpws.Device.Services.DpwsWseEventSources.Item(System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseEventSources" />
+      </containers>
+      <file name="66772681-00f1-6f42-5c24-8a8df259480d" />
+    </api>
+    <api id="Overload:Dpws.Device.Services.DpwsWseEventSources.Item">
+      <topicdata name="Item" group="list" subgroup="overload" memberSubgroup="property" pseudo="true" allMembersTopicId="AllMembers.T:Dpws.Device.Services.DpwsWseEventSources" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <elements>
+        <element api="P:Dpws.Device.Services.DpwsWseEventSources.Item(System.Int32)" />
+        <element api="P:Dpws.Device.Services.DpwsWseEventSources.Item(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseEventSources" ref="true" />
+      </containers>
+      <file name="fbe5e6c8-8dcc-c622-4c4b-368108270d18" />
+    </api>
+    <api id="M:Dpws.Device.Services.DpwsWseEventSources.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseEventSources" ref="true" />
+      </containers>
+      <file name="83d9439e-47b9-e3c4-2eec-23c4d980b0db" />
+    </api>
+    <api id="M:Dpws.Device.Services.DpwsWseEventSources.Add(Dpws.Device.Services.DpwsWseEventSource)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:Dpws.Device.Services.DpwsWseEventSource" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseEventSources" ref="true" />
+      </containers>
+      <file name="18fc1e22-c896-6437-d354-61f7ebfc47b6" />
+    </api>
+    <api id="P:Dpws.Device.Services.DpwsWseEventSources.Count">
+      <topicdata group="api" />
+      <apidata name="Count" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Count" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseEventSources" ref="true" />
+      </containers>
+      <file name="758a613b-885d-9c98-55e0-42755391e002" />
+    </api>
+    <api id="P:Dpws.Device.Services.DpwsWseEventSources.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:Dpws.Device.Services.DpwsWseEventSources.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Dpws.Device.Services.DpwsWseEventSource" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseEventSources" ref="true" />
+      </containers>
+      <file name="01dd8f2f-43d5-9099-2e36-bdd62933ba10" />
+    </api>
+    <api id="P:Dpws.Device.Services.DpwsWseEventSources.Item(System.String)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:Dpws.Device.Services.DpwsWseEventSources.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="eventSourceName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Dpws.Device.Services.DpwsWseEventSource" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseEventSources" ref="true" />
+      </containers>
+      <file name="babfdabb-1ce1-492a-0285-d1f05ec2e580" />
+    </api>
+    <api id="T:Dpws.Device.Services.DpwsWseSubscriptionMgr">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Dpws.Device.Services.DpwsWseSubscriptionMgr" />
+      <apidata name="DpwsWseSubscriptionMgr" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+      </containers>
+      <file name="cb0914b7-acc1-d16a-cd75-c322576b9e23" />
+    </api>
+    <api id="AllMembers.T:Dpws.Device.Services.DpwsWseSubscriptionMgr">
+      <topicdata name="DpwsWseSubscriptionMgr" group="list" subgroup="members" typeTopicId="T:Dpws.Device.Services.DpwsWseSubscriptionMgr" />
+      <apidata name="DpwsWseSubscriptionMgr" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Dpws.Device.Services.DpwsWseSubscriptionMgr.#ctor(Ws.Services.Binding.Binding,Ws.Services.ProtocolVersion)" />
+        <element api="M:Dpws.Device.Services.DpwsWseSubscriptionMgr.FireEvent(Dpws.Device.Services.DpwsHostedService,Dpws.Device.Services.DpwsWseEventSource,Ws.Services.Soap.WsMessage)" />
+        <element api="M:Dpws.Device.Services.DpwsWseSubscriptionMgr.GetStatus(Ws.Services.WsaAddressing.WsWsaHeader,System.Xml.XmlReader,Ws.Services.WsServiceEndpoints)" />
+        <element api="P:Dpws.Device.Services.DpwsWseSubscriptionMgr.PersistEventConnections" />
+        <element api="M:Dpws.Device.Services.DpwsWseSubscriptionMgr.Renew(Ws.Services.WsaAddressing.WsWsaHeader,System.Xml.XmlReader,Ws.Services.WsServiceEndpoints)" />
+        <element api="M:Dpws.Device.Services.DpwsWseSubscriptionMgr.Unsubscribe(Ws.Services.WsaAddressing.WsWsaHeader,System.Xml.XmlReader,Ws.Services.WsServiceEndpoints)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseSubscriptionMgr" />
+      </containers>
+      <file name="e01d6458-9eb4-03ea-1214-48ba1a8cef95" />
+    </api>
+    <api id="Methods.T:Dpws.Device.Services.DpwsWseSubscriptionMgr">
+      <topicdata name="DpwsWseSubscriptionMgr" group="list" subgroup="Methods" typeTopicId="T:Dpws.Device.Services.DpwsWseSubscriptionMgr" />
+      <apidata name="DpwsWseSubscriptionMgr" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Dpws.Device.Services.DpwsWseSubscriptionMgr.FireEvent(Dpws.Device.Services.DpwsHostedService,Dpws.Device.Services.DpwsWseEventSource,Ws.Services.Soap.WsMessage)" />
+        <element api="M:Dpws.Device.Services.DpwsWseSubscriptionMgr.GetStatus(Ws.Services.WsaAddressing.WsWsaHeader,System.Xml.XmlReader,Ws.Services.WsServiceEndpoints)" />
+        <element api="M:Dpws.Device.Services.DpwsWseSubscriptionMgr.Renew(Ws.Services.WsaAddressing.WsWsaHeader,System.Xml.XmlReader,Ws.Services.WsServiceEndpoints)" />
+        <element api="M:Dpws.Device.Services.DpwsWseSubscriptionMgr.Unsubscribe(Ws.Services.WsaAddressing.WsWsaHeader,System.Xml.XmlReader,Ws.Services.WsServiceEndpoints)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseSubscriptionMgr" />
+      </containers>
+      <file name="e1106d83-a1de-ccfd-c9af-0ede774163af" />
+    </api>
+    <api id="Properties.T:Dpws.Device.Services.DpwsWseSubscriptionMgr">
+      <topicdata name="DpwsWseSubscriptionMgr" group="list" subgroup="Properties" typeTopicId="T:Dpws.Device.Services.DpwsWseSubscriptionMgr" />
+      <apidata name="DpwsWseSubscriptionMgr" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Dpws.Device.Services.DpwsWseSubscriptionMgr.PersistEventConnections" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseSubscriptionMgr" />
+      </containers>
+      <file name="42eef18d-1b9a-fe4d-9d15-dfc85447a89a" />
+    </api>
+    <api id="M:Dpws.Device.Services.DpwsWseSubscriptionMgr.#ctor(Ws.Services.Binding.Binding,Ws.Services.ProtocolVersion)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="binding">
+          <type api="T:Ws.Services.Binding.Binding" ref="true" />
+        </parameter>
+        <parameter name="version">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseSubscriptionMgr" ref="true" />
+      </containers>
+      <file name="208cdc05-360a-46d7-07a5-7e45cbff29c3" />
+    </api>
+    <api id="M:Dpws.Device.Services.DpwsWseSubscriptionMgr.FireEvent(Dpws.Device.Services.DpwsHostedService,Dpws.Device.Services.DpwsWseEventSource,Ws.Services.Soap.WsMessage)">
+      <topicdata group="api" />
+      <apidata name="FireEvent" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="hostedService">
+          <type api="T:Dpws.Device.Services.DpwsHostedService" ref="true" />
+        </parameter>
+        <parameter name="eventSource">
+          <type api="T:Dpws.Device.Services.DpwsWseEventSource" ref="true" />
+        </parameter>
+        <parameter name="msgEvt">
+          <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseSubscriptionMgr" ref="true" />
+      </containers>
+      <file name="5219326e-9c3e-09b8-02de-af698fa23e08" />
+    </api>
+    <api id="M:Dpws.Device.Services.DpwsWseSubscriptionMgr.GetStatus(Ws.Services.WsaAddressing.WsWsaHeader,System.Xml.XmlReader,Ws.Services.WsServiceEndpoints)">
+      <topicdata group="api" />
+      <apidata name="GetStatus" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="header">
+          <type api="T:Ws.Services.WsaAddressing.WsWsaHeader" ref="true" />
+        </parameter>
+        <parameter name="reader">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+        <parameter name="serviceEndpoints">
+          <type api="T:Ws.Services.WsServiceEndpoints" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseSubscriptionMgr" ref="true" />
+      </containers>
+      <file name="728d060c-822a-c21b-a55f-cebec234a053" />
+    </api>
+    <api id="P:Dpws.Device.Services.DpwsWseSubscriptionMgr.PersistEventConnections">
+      <topicdata group="api" />
+      <apidata name="PersistEventConnections" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata set="true" />
+      <setter name="set_PersistEventConnections" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseSubscriptionMgr" ref="true" />
+      </containers>
+      <file name="edcb8978-d445-c3ce-7929-c8ac982c8f00" />
+    </api>
+    <api id="M:Dpws.Device.Services.DpwsWseSubscriptionMgr.Renew(Ws.Services.WsaAddressing.WsWsaHeader,System.Xml.XmlReader,Ws.Services.WsServiceEndpoints)">
+      <topicdata group="api" />
+      <apidata name="Renew" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="header">
+          <type api="T:Ws.Services.WsaAddressing.WsWsaHeader" ref="true" />
+        </parameter>
+        <parameter name="reader">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+        <parameter name="serviceEndpoints">
+          <type api="T:Ws.Services.WsServiceEndpoints" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseSubscriptionMgr" ref="true" />
+      </containers>
+      <file name="6405d45f-dd81-f86e-a7b6-d44418b913cf" />
+    </api>
+    <api id="M:Dpws.Device.Services.DpwsWseSubscriptionMgr.Unsubscribe(Ws.Services.WsaAddressing.WsWsaHeader,System.Xml.XmlReader,Ws.Services.WsServiceEndpoints)">
+      <topicdata group="api" />
+      <apidata name="Unsubscribe" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="header">
+          <type api="T:Ws.Services.WsaAddressing.WsWsaHeader" ref="true" />
+        </parameter>
+        <parameter name="reader">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+        <parameter name="serviceEndpoints">
+          <type api="T:Ws.Services.WsServiceEndpoints" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Services" />
+        <type api="T:Dpws.Device.Services.DpwsWseSubscriptionMgr" ref="true" />
+      </containers>
+      <file name="6b6f9599-714f-aca8-de11-0a20367476b8" />
+    </api>
+  </apis>
+</reflection>

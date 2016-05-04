@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Bluetooth">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Bluetooth" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Bluetooth.BluetoothCacheMode" />
+      </elements>
+      <file name="45f66428-5280-e35f-9b73-082f270e1122" />
+    </api>
+    <api id="T:Windows.Devices.Bluetooth.BluetoothCacheMode">
+      <topicdata group="api" />
+      <apidata name="BluetoothCacheMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Bluetooth.BluetoothCacheMode.Cached" />
+        <element api="F:Windows.Devices.Bluetooth.BluetoothCacheMode.Uncached" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c4cd6e51-9192-434b-20c8-e4a4eb6db637" />
+    </api>
+    <api id="F:Windows.Devices.Bluetooth.BluetoothCacheMode.Cached">
+      <topicdata group="api" notopic="" />
+      <apidata name="Cached" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Bluetooth.BluetoothCacheMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth" />
+        <type api="T:Windows.Devices.Bluetooth.BluetoothCacheMode" ref="false" />
+      </containers>
+      <file name="6c7fb79c-0011-ed3e-0b6c-82cb69eb1d74" />
+    </api>
+    <api id="F:Windows.Devices.Bluetooth.BluetoothCacheMode.Uncached">
+      <topicdata group="api" notopic="" />
+      <apidata name="Uncached" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Bluetooth.BluetoothCacheMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth" />
+        <type api="T:Windows.Devices.Bluetooth.BluetoothCacheMode" ref="false" />
+      </containers>
+      <file name="d20ac780-2847-2e75-afee-09aebe5620b7" />
+    </api>
+  </apis>
+</reflection>

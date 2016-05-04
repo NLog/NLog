@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Automation.Text">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Automation.Text" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Automation.Text.TextPatternRangeEndpoint" />
+        <element api="T:System.Windows.Automation.Text.TextUnit" />
+      </elements>
+      <file name="a7e2bac5-c054-59ad-d4ed-af8f78872050" />
+    </api>
+    <api id="T:System.Windows.Automation.Text.TextPatternRangeEndpoint">
+      <topicdata group="api" />
+      <apidata name="TextPatternRangeEndpoint" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start" />
+        <element api="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.End" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Text" />
+      </containers>
+      <file name="d17acffe-653b-2122-49b6-f615124e2b0d" />
+    </api>
+    <api id="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.End">
+      <topicdata group="api" notopic="" />
+      <apidata name="End" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Automation.Text.TextPatternRangeEndpoint" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Text" />
+        <type api="T:System.Windows.Automation.Text.TextPatternRangeEndpoint" ref="false" />
+      </containers>
+      <file name="d70d2923-ef3d-fc0e-1fbf-2fef83613a74" />
+    </api>
+    <api id="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start">
+      <topicdata group="api" notopic="" />
+      <apidata name="Start" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Automation.Text.TextPatternRangeEndpoint" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Text" />
+        <type api="T:System.Windows.Automation.Text.TextPatternRangeEndpoint" ref="false" />
+      </containers>
+      <file name="bdbbe55c-7213-70bd-48ee-92248bff6271" />
+    </api>
+    <api id="T:System.Windows.Automation.Text.TextUnit">
+      <topicdata group="api" />
+      <apidata name="TextUnit" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Automation.Text.TextUnit.Character" />
+        <element api="F:System.Windows.Automation.Text.TextUnit.Format" />
+        <element api="F:System.Windows.Automation.Text.TextUnit.Word" />
+        <element api="F:System.Windows.Automation.Text.TextUnit.Line" />
+        <element api="F:System.Windows.Automation.Text.TextUnit.Paragraph" />
+        <element api="F:System.Windows.Automation.Text.TextUnit.Page" />
+        <element api="F:System.Windows.Automation.Text.TextUnit.Document" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Text" />
+      </containers>
+      <file name="25239ff0-fd6e-9fef-860b-24bd1104a22d" />
+    </api>
+    <api id="F:System.Windows.Automation.Text.TextUnit.Character">
+      <topicdata group="api" notopic="" />
+      <apidata name="Character" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Automation.Text.TextUnit" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Text" />
+        <type api="T:System.Windows.Automation.Text.TextUnit" ref="false" />
+      </containers>
+      <file name="cbf560e0-e1cd-3e68-ccb4-0e9fd4ac6f8e" />
+    </api>
+    <api id="F:System.Windows.Automation.Text.TextUnit.Document">
+      <topicdata group="api" notopic="" />
+      <apidata name="Document" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Automation.Text.TextUnit" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Text" />
+        <type api="T:System.Windows.Automation.Text.TextUnit" ref="false" />
+      </containers>
+      <file name="44f9206a-ec0e-aa18-a912-9aafd9384bbe" />
+    </api>
+    <api id="F:System.Windows.Automation.Text.TextUnit.Format">
+      <topicdata group="api" notopic="" />
+      <apidata name="Format" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Automation.Text.TextUnit" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Text" />
+        <type api="T:System.Windows.Automation.Text.TextUnit" ref="false" />
+      </containers>
+      <file name="1c7fc7a2-99e5-8a28-7a03-5022faeb2610" />
+    </api>
+    <api id="F:System.Windows.Automation.Text.TextUnit.Line">
+      <topicdata group="api" notopic="" />
+      <apidata name="Line" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Automation.Text.TextUnit" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Text" />
+        <type api="T:System.Windows.Automation.Text.TextUnit" ref="false" />
+      </containers>
+      <file name="ac7e5134-d616-35f7-4edc-3a4a8c420d0f" />
+    </api>
+    <api id="F:System.Windows.Automation.Text.TextUnit.Page">
+      <topicdata group="api" notopic="" />
+      <apidata name="Page" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Automation.Text.TextUnit" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Text" />
+        <type api="T:System.Windows.Automation.Text.TextUnit" ref="false" />
+      </containers>
+      <file name="2244feaf-5edf-7f6d-cf92-abd6a2946062" />
+    </api>
+    <api id="F:System.Windows.Automation.Text.TextUnit.Paragraph">
+      <topicdata group="api" notopic="" />
+      <apidata name="Paragraph" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Automation.Text.TextUnit" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Text" />
+        <type api="T:System.Windows.Automation.Text.TextUnit" ref="false" />
+      </containers>
+      <file name="e66ee33c-1d4f-8e79-2035-93de97074e79" />
+    </api>
+    <api id="F:System.Windows.Automation.Text.TextUnit.Word">
+      <topicdata group="api" notopic="" />
+      <apidata name="Word" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Automation.Text.TextUnit" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Text" />
+        <type api="T:System.Windows.Automation.Text.TextUnit" ref="false" />
+      </containers>
+      <file name="8ff2fc40-55a4-07af-afa1-0fad63124093" />
+    </api>
+  </apis>
+</reflection>

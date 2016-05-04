@@ -1,0 +1,3048 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sandcastle.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Sandcastle.Core.BuildAssembler.BuildAssemblerCore">
+            <summary>
+            This class contains the build context and the build components
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.#ctor">
+            <summary>
+            Private default constructor to satisfy MEF composition
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.#ctor(System.Action{Sandcastle.Core.LogLevel,System.String})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="messageLogger">The message logger action</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.Dispose(System.Boolean)">
+            <summary>
+            Dispose of all components when being disposed
+            </summary>
+            <param name="disposing">Pass true to dispose of the managed and unmanaged resources or false to just
+            dispose of the unmanaged resources.</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.OnComponentEvent(System.Object,System.EventArgs)">
+            <summary>
+            This raises the <see cref="E:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.ComponentEvent"/> event
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments.  This may be <see cref="F:System.EventArgs.Empty"/> or a derived event
+            arguments class containing information for the event handlers.</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.Cancel">
+            <summary>
+            This is used to cancel the build
+            </summary>
+            <remarks>The build will terminate as soon as possible after initializing a component or after a
+            topic finishes being generated.</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.Execute(System.Xml.XPath.XPathDocument,System.String)">
+            <summary>
+            This is used to execute the build assembler instance using the specified configuration file and
+            manifest file.
+            </summary>
+            <param name="configuration">The build assembler configuration</param>
+            <param name="manifest">The manifest file</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.ReadManifest(System.String)">
+            <summary>
+            This is used to read a manifest file to extract topic IDs for processing
+            </summary>
+            <param name="manifest">The manifest file to read</param>
+            <returns>An enumerable list of topic IDs</returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.Apply(System.String)">
+            <summary>
+            Apply the current set of components to the topics defined in the given manifest file
+            </summary>
+            <param name="manifestFile">The manifest file containing the topics to generate</param>
+            <returns>A count of the number of topics processed</returns>
+            <overloads>There are two overloads for this method</overloads>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.Apply(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Apply the current set of components to the given list of topics
+            </summary>
+            <param name="topics">The enumerable list of topic IDs</param>
+            <returns>A count of the number of topics processed</returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.CurrentDomain_AssemblyResolve(System.Object,System.ResolveEventArgs)">
+            <summary>
+            This is handled to resolve dependent assemblies and load them when necessary
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="args">The event arguments</param>
+            <returns>The loaded assembly or null if not found</returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.AddComponents(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Add a set of components based on the given configuration
+            </summary>
+            <param name="configuration">The configuration containing the component definitions</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.ClearComponents">
+            <summary>
+            Dispose of all components and clear them from the collection
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.LoadComponents(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This is used to load a set of components in a configuration and return them as an enumerable list
+            </summary>
+            <param name="configuration">The con</param>
+            <returns>An enumerable list of components created based on the configuration information</returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.LoadComponent(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This is used to create a component based on the given configuration
+            </summary>
+            <param name="configuration">The component configuration</param>
+            <returns>A component created using the given definition</returns>
+            <exception cref="T:System.ArgumentNullException">This is thrown if <paramref name="configuration"/> is null</exception>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.CreateComponentContainer(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This is used to create a composition container filled with the available build components
+            </summary>
+            <param name="componentLocations">The component locations configuration node</param>
+            <remarks>If any component locations are specified, they are searched recursively for component
+            assemblies in the order given.  The custom components and tools folders are added last if not already
+            specified as one of the component locations.  There may be duplicate component IDs across the
+            assemblies found.  Only the first component for a unique ID will be used.  As such, assemblies in a
+            folder that appears earlier in the list can override copies in folders lower in the list.</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.AddAssemblyCatalogs(System.ComponentModel.Composition.Hosting.AggregateCatalog,System.String,System.Collections.Generic.HashSet{System.String},System.Boolean)">
+            <summary>
+            This adds assembly catalogs to the given aggregate catalog for the given folder and all of its
+            subfolders recursively.
+            </summary>
+            <param name="catalog">The aggregate catalog to which the assembly catalogs are added.</param>
+            <param name="folder">The root folder to search.  It and all subfolders recursively will be searched
+            for assemblies to add to the aggregate catalog.</param>
+            <param name="searchedFolders">A hash set of folders that have already been searched and added.</param>
+            <param name="includeSubfolders">True to search subfolders recursively, false to only search the given
+            folder.</param>
+            <remarks>It is done this way to prevent a single assembly that would normally be discovered via a
+            directory catalog from preventing all assemblies from loading if it cannot be examined when the parts
+            are composed (i.e. trying to load a Windows Store assembly on Windows 7).</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.LogMessage(Sandcastle.Core.LogLevel,System.String)">
+            <summary>
+            This is a helper method used to create log message tuples
+            </summary>
+            <param name="level">The log level</param>
+            <param name="message">The message</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.LogMessage(Sandcastle.Core.BuildAssembler.MessageLevel,System.String)">
+            <summary>
+            This is a helper method used to create log message tuples
+            </summary>
+            <param name="level">The log level</param>
+            <param name="message">The message</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.WriteMessage(Sandcastle.Core.BuildAssembler.MessageLevel,System.String,System.Object[])">
+            <summary>
+            Write a message to the message log
+            </summary>
+            <param name="level">The message level</param>
+            <param name="message">The message to write</param>
+            <param name="args">An optional list of arguments to format into the message</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.WriteMessage(System.Type,Sandcastle.Core.BuildAssembler.MessageLevel,System.String,System.String)">
+            <summary>
+            Write a component message to the message log
+            </summary>
+            <param name="type">The component type making the request</param>
+            <param name="level">The message level</param>
+            <param name="key">An optional topic key related to the message or null if there isn't one</param>
+            <param name="message">The message to write to the console</param>
+            <remarks>If the message level is below the current verbosity level setting, the message is ignored</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.Context">
+            <summary>
+            This read-only property returns the current build context
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.BuildComponents">
+            <summary>
+            This read-only property returns the current list of build components
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.VerbosityLevel">
+            <summary>
+            The verbosity level for the message handlers
+            </summary>
+            <value>The value can be set to <c>Info</c>, <c>Warn</c>, or <c>Error</c>.  The default level
+            is <see cref="F:Sandcastle.Core.BuildAssembler.MessageLevel.Info"/> so that all messages are displayed.  Setting it to a higher
+            level will suppress messages below the given level.</value>
+            <remarks>It is up to the message handler to make use of this property</remarks>
+        </member>
+        <member name="E:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.ComponentEvent">
+            <summary>
+            This event is raised when a component wants to signal that something of interest has happened
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.BuildComponentUtilities">
+            <summary>
+            This class contains a set of utility extension methods that can be used by build components
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponentUtilities.GetExceptionMessage(System.Exception)">
+            <summary>
+            This is used to get the message strings from an exception and any of its inner exceptions
+            </summary>
+            <param name="exception">The exception from which to get the message</param>
+            <returns>The exception message along with any inner exception messages</returns>
+            <remarks><see cref="T:System.Xml.XmlException"/> and <see cref="T:System.Xml.Xsl.XsltException"/> messages will be returned with
+            line number, line position, and source URI information.</remarks>
+            <exception cref="T:System.ArgumentNullException">This is thrown if the <paramref name="exception"/> argument
+            is null</exception>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponentUtilities.GetInnerXml(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This is used to get the inner XML of a node without changing the spacing
+            </summary>
+            <param name="node">The node from which to get the inner XML</param>
+            <returns>The inner XML as a string with its spacing preserved</returns>
+            <exception cref="T:System.ArgumentNullException">This is thrown if the <paramref name="node"/> parameter
+            is null.</exception>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponentUtilities.ConvertNodeIteratorToArray(System.Xml.XPath.XPathNodeIterator)">
+            <summary>
+            This method is obsolete and has been replaced by <see cref="M:Sandcastle.Core.BuildAssembler.BuildComponentUtilities.ToArray(System.Xml.XPath.XPathNodeIterator)"/>
+            </summary>
+            <param name="iterator">The XPath iterator to convert to an array</param>
+            <returns>An array with the cloned nodes from the iterator</returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponentUtilities.ToArray(System.Xml.XPath.XPathNodeIterator)">
+            <summary>
+            Convert an XPath node iterator to an array
+            </summary>
+            <param name="iterator">The XPath iterator to convert to an array</param>
+            <returns>An array with the cloned nodes from the iterator</returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponentUtilities.EvalXPathExpr(System.Xml.XPath.IXPathNavigable,System.Xml.XPath.XPathExpression,Sandcastle.Core.BuildAssembler.CustomContext)">
+            <summary>
+            This is used to get the string result from evaluating an XPath expression against the given
+            document and context.
+            </summary>
+            <param name="document">The document to use</param>
+            <param name="expression">The XPath expression to evaluate</param>
+            <param name="context">The context to use</param>
+            <returns>The evaluated expression result</returns>
+            <overloads>There are two overloads for this method</overloads>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponentUtilities.EvalXPathExpr(System.Xml.XPath.IXPathNavigable,System.Xml.XPath.XPathExpression,System.String[])">
+            <summary>
+            This is used to get the string result from evaluating an XPath expression against the given document
+            and a context created from a set of key/value pairs.
+            </summary>
+            <param name="document">The document to use</param>
+            <param name="expression">The XPath expression to evaluate</param>
+            <param name="keyValuePairs">A set of key/value pairs to use when creating the context</param>
+            <returns>The evaluated expression result</returns>
+            <example>
+            <code language="cs">
+            string result = document.EvalXPathExpr("concat($key, '.htm')", "key", "filename");
+            </code>
+            </example>
+            <exception cref="T:System.ArgumentException">This is thrown if the <paramref name="keyValuePairs"/>
+            parameter contains an odd number of parameters.</exception>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponentUtilities.GetRelativePath(System.String,System.String)">
+            <summary>
+            This returns the path argument adjusted to be relative to the base path. Absolute path names will
+            be returned unchanged.
+            </summary>
+            <param name="path">The path to adjust including the filename</param>
+            <param name="basePath">The base path to use including the filename</param>
+            <returns>The path argument as a path relative to the given base path</returns>
+            <example>
+            <code language="none" title=" ">
+            path:     "xxx/aaa/target.html"
+            basePath: "xxx/bbb/source.html"
+            result:   "../aaa/target.html"
+            </code>
+            </example>
+            <remarks>This assumes that the path separator is "/" and that both paths include a filename</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponentUtilities.IsLegalXmlText(System.String)">
+            <summary>
+            This is used to confirm that the specified text only contains legal XML characters
+            </summary>
+            <param name="text">The text to check</param>
+            <returns>True if all characters are legal XML characters, false if not</returns>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentCore">
+            <summary>
+            This is the abstract base class for all build components
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentCore.#ctor(Sandcastle.Core.BuildAssembler.BuildAssemblerCore)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="buildAssembler">A reference to the build assembler</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentCore.Finalize">
+            <summary>
+            This handles garbage collection to ensure proper disposal of the build component if not done
+            explicitly with <see cref="M:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentCore.Dispose"/>.
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentCore.Dispose">
+            <summary>
+            This implements the Dispose() interface to properly dispose of the build component.
+            </summary>
+            <overloads>There are two overloads for this method.</overloads>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentCore.Dispose(System.Boolean)">
+            <summary>
+            This can be overridden by derived classes to add their own disposal code if necessary.
+            </summary>
+            <param name="disposing">Pass true to dispose of the managed and unmanaged resources or false to just
+            dispose of the unmanaged resources.</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentCore.Initialize(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This abstract method must be overridden to initialize the component
+            </summary>
+            <param name="configuration">The component configuration</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentCore.Apply(System.Xml.XmlDocument,System.String)">
+            <summary>
+            This abstract method must be overridden to apply the build component's changes to the specified
+            document.
+            </summary>
+            <param name="document">The document that the build component can modify</param>
+            <param name="key">The key that uniquely identifies the document</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentCore.OnComponentEvent(System.EventArgs)">
+            <summary>
+            This can be used to raise the <see cref="E:Sandcastle.Core.BuildAssembler.BuildAssemblerCore.ComponentEvent"/>
+            event with the specified event arguments.
+            </summary>
+            <param name="e">The event arguments.  This can be <see cref="F:System.EventArgs.Empty"/> or a derived event
+            arguments class containing information to pass to the event handlers.</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentCore.WriteMessage(Sandcastle.Core.BuildAssembler.MessageLevel,System.String,System.Object[])">
+            <summary>
+            This can be used to report a message
+            </summary>
+            <param name="level">The message level</param>
+            <param name="message">The message to report</param>
+            <param name="args">An optional list of arguments to format into the message</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentCore.WriteMessage(System.String,Sandcastle.Core.BuildAssembler.MessageLevel,System.String,System.Object[])">
+            <summary>
+            This can be used to report a message for a specific topic ID
+            </summary>
+            <param name="key">The topic key related to the message</param>
+            <param name="level">The message level</param>
+            <param name="message">The message to report</param>
+            <param name="args">An optional list of arguments to format into the message</param>
+            <remarks>This is useful for warning and error messages as the topic ID will be included even when
+            the message level is set to warnings or higher.  In such cases, the informational messages containing
+            the "building topic X" messages are suppressed.</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentCore.BuildAssembler">
+            <summary>
+            This read-only property returns a reference to the build assembler instance using the component
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentCore.Data">
+            <summary>
+            This read-only property returns a static dictionary that can be used to store information shared
+            between build components.
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentCore.IsThreadSafe">
+            <summary>
+            Reserved for future use
+            </summary>
+            <value>This property is not currently used.  It is reserved for future use.</value>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentExportAttribute">
+            <summary>
+            This is a custom version of the <see cref="T:System.ComponentModel.Composition.ExportAttribute"/> that contains metadata for the
+            BuildAssembler build components.
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentExportAttribute.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="id">The required build component ID</param>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentExportAttribute.Id">
+            <summary>
+            This read-only property is used to get the build component ID
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentExportAttribute.IsVisible">
+            <summary>
+            This is used to get or set whether or not the component is visible to configuration tools
+            </summary>
+            <remarks>Configuration tools can use this to exclude components that should not appear for the user
+            to select.  It is false by default.</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentExportAttribute.IsConfigurable">
+            <summary>
+            This is used to get or set whether or not the build component is configurable
+            </summary>
+            <value>If this returns true, the <see cref="M:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentFactory.ConfigureComponent(System.String,System.ComponentModel.Composition.Hosting.CompositionContainer)"/> method can be
+            called to allow the user to configure the build component's settings when requested.  The default is
+            false.</value>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentExportAttribute.Description">
+            <summary>
+            This is used to get or set a brief description of the build component
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentExportAttribute.Version">
+            <summary>
+            This is used to get or set the build component version number
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentExportAttribute.Copyright">
+            <summary>
+            This is used to get or set copyright information for the build component
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentFactory">
+            <summary>
+            This is an abstract base class that defines the factory method for build components as well as build
+            tool interaction methods.
+            </summary>
+            <remarks>Build components are non-shared and instances are created as needed</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentFactory.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentFactory.Create">
+            <summary>
+            This is implemented to provide a build component factory
+            </summary>
+            <returns>A new instance of a build component</returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentFactory.ConfigureComponent(System.String,System.ComponentModel.Composition.Hosting.CompositionContainer)">
+            <summary>
+            This method can be overridden to let configuration tools allow the user to edit the component
+            configuration.
+            </summary>
+            <param name="currentConfiguration">A string containing the current configuration XML fragment</param>
+            <param name="container">A composition container that holds all of the exported components found
+            by the build tool.  This can be used to locate and work with other components if necessary.</param>
+            <returns>A string containing the new configuration XML fragment</returns>
+            <remarks>The base implementation uses a generic editor dialog that edits the XML as text</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentFactory.BuildAssembler">
+            <summary>
+            This is used to import the build assembler instance that is passed to the build component when it
+            is created.
+            </summary>
+            <value>This may be null when used in a configuration tool which only needs access to the
+            configuration methods on the factory class.</value>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentFactory.Dependencies">
+            <summary>
+            This read-only property can be overridden to provide a list of build components on which this
+            component depends.
+            </summary>
+            <value>If the indicated components do not exist in the project settings or in the configuration file
+            already, the build tool can use this information to add them automatically with a default
+            configuration.  It returns an empty list by default.</value>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentFactory.ReferenceBuildPlacement">
+            <summary>
+            This is used to get or set a placement action for reference content builds
+            </summary>
+            <value>The default is to not place the component.  Components that are exposed to build tools should
+            set this to define a proper placement action.</value>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentFactory.ConceptualBuildPlacement">
+            <summary>
+            This is used to get or set a placement action for conceptual content builds
+            </summary>
+            <value>The default is to not place the component.  Components that are exposed to build tools should
+            set this to define a proper placement action.</value>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentFactory.DefaultConfiguration">
+            <summary>
+            This read-only property can be overridden to define a default configuration for the build component
+            </summary>
+            <value>It returns an empty string by default</value>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.BuildComponent.ComponentPlacement">
+            <summary>
+            This is used to define the placement of a build component within a BuildAssembler configuration file
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.ComponentPlacement.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+            <remarks>The <see cref="P:Sandcastle.Core.BuildAssembler.BuildComponent.ComponentPlacement.Placement"/> is set to <c>None</c></remarks>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.ComponentPlacement.#ctor(Sandcastle.Core.BuildAssembler.BuildComponent.PlacementAction,System.String)">
+            <summary>
+            Constructor.  Indicate the placement action and an optional component ID related to it if needed.
+            </summary>
+            <param name="placement">The placement action to use</param>
+            <param name="id">A build component ID for use with the <c>Before</c>, <c>After</c>, or
+            <c>Replace</c> <see cref="P:Sandcastle.Core.BuildAssembler.BuildComponent.ComponentPlacement.Placement"/> action.</param>
+            <exception cref="T:System.ArgumentException">This is thrown if <c>Before</c>, <c>After</c>, or <c>Replace</c>
+            is specified without an ID or if one is specified with <c>None</c>, <c>Start</c>, or <c>End</c>.</exception>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.ComponentPlacement.#ctor(Sandcastle.Core.BuildAssembler.BuildComponent.PlacementAction,System.String,System.Int32)">
+            <summary>
+            Constructor.  Indicate the placement action, component ID, and instance to act on.
+            </summary>
+            <param name="placement">The placement action to use</param>
+            <param name="id">A build component ID for use with the <c>Before</c>, <c>After</c>, or
+            <c>Replace</c> <see cref="P:Sandcastle.Core.BuildAssembler.BuildComponent.ComponentPlacement.Placement"/> action.</param>
+            <param name="instance">The instance to use with the placement option</param>
+            <exception cref="T:System.ArgumentException">This is thrown if <c>Before</c>, <c>After</c>, or <c>Replace</c>
+            is specified without an ID or if instance is less than one.</exception>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.ComponentPlacement.Placement">
+            <summary>
+            This read-only property returns the placement action value
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.ComponentPlacement.Id">
+            <summary>
+            This read-only property returns the ID of the component related to the <see cref="T:Sandcastle.Core.BuildAssembler.BuildComponent.PlacementAction"/>
+            if applicable.
+            </summary>
+            <value>This only has meaning for the <c>Before</c>, <c>After</c>, and <c>Replace</c>
+            <see cref="T:Sandcastle.Core.BuildAssembler.BuildComponent.PlacementAction"/>.</value>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.ComponentPlacement.Instance">
+            <summary>
+            This read-only property returns the instance of the component to replace, insert before, or insert
+            after.
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.ComponentPlacement.AdjustedInstance">
+            <summary>
+            This property is used to get or set the instance of the component to replace, insert before, or
+            insert after adjusted for other components that have already been processed.
+            </summary>
+            <value>This is a property for use by designers and build tools</value>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.BuildComponent.CopyComponentCore">
+            <summary>
+            This abstract class is used to create copy components used in other build components such as
+            <c>CopyFromIndexComponent</c>
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.CopyComponentCore.#ctor(Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentCore)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="parent">The parent build component</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.CopyComponentCore.Initialize(System.Xml.XPath.XPathNavigator,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            This abstract method must be overridden to initialize the copy component
+            </summary>
+            <param name="configuration">The copy component configuration</param>
+            <param name="data">A dictionary object with string as key and object as value.</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.CopyComponentCore.Apply(System.Xml.XmlDocument,System.String)">
+            <summary>
+            This abstract method must be overridden to apply the copy component's changes to the specified
+            document.
+            </summary>
+            <param name="document">The document that the build component can modify</param>
+            <param name="key">The key that uniquely identifies the document</param>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.CopyComponentCore.ParentBuildComponent">
+            <summary>
+            This read-only property returns a reference to the parent build component
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.BuildComponent.CopyComponentExportAttribute">
+            <summary>
+            This is a custom version of the <see cref="T:System.ComponentModel.Composition.ExportAttribute"/> that contains metadata for the
+            BuildAssembler copy components.
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.CopyComponentExportAttribute.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="id">The required copy component ID</param>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.CopyComponentExportAttribute.Id">
+            <summary>
+            This read-only property is used to get the copy component ID
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.CopyComponentExportAttribute.Description">
+            <summary>
+            This is used to get or set a brief description of the copy component
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.CopyComponentExportAttribute.Version">
+            <summary>
+            This is used to get or set the copy component version number
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.CopyComponentExportAttribute.Copyright">
+            <summary>
+            This is used to get or set copyright information for the copy component
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.BuildComponent.IBuildComponentMetadata">
+            <summary>
+            This class defines the metadata for a BuildAssembler build component
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.IBuildComponentMetadata.Id">
+            <summary>
+            This read-only property returns the ID for the build component
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.IBuildComponentMetadata.IsVisible">
+            <summary>
+            This read-only property returns true if the build component is visible to configuration tools
+            </summary>
+            <remarks>Configuration tools can use this to exclude components that should not appear for the user
+            to select.</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.IBuildComponentMetadata.IsConfigurable">
+            <summary>
+            This read-only property returns true if the build component is configurable or false if it is not
+            </summary>
+            <value>If this returns true, the <see cref="M:Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentFactory.ConfigureComponent(System.String,System.ComponentModel.Composition.Hosting.CompositionContainer)"/> method can be
+            called to allow the user to configure the build component's settings when requested.</value>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.IBuildComponentMetadata.Description">
+            <summary>
+            This read-only property returns a brief description of the build component
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.IBuildComponentMetadata.Version">
+            <summary>
+            This read-only property returns the version of the build component
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.IBuildComponentMetadata.Copyright">
+            <summary>
+            This read-only property returns the copyright information for the build component
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.BuildComponent.ICopyComponentFactory">
+            <summary>
+            This interface defines the factory method for copy components
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildComponent.ICopyComponentFactory.Create(Sandcastle.Core.BuildAssembler.BuildComponent.BuildComponentCore)">
+            <summary>
+            This is implemented to provide a syntax generator factory
+            </summary>
+            <param name="parent">The parent build component</param>
+            <returns>A new instance of a syntax generator</returns>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.BuildComponent.ICopyComponentMetadata">
+            <summary>
+            This class defines the metadata for a BuildAssembler build component
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.ICopyComponentMetadata.Id">
+            <summary>
+            This read-only property returns the ID for the copy component
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.ICopyComponentMetadata.Description">
+            <summary>
+            This read-only property returns a brief description of the copy component
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.ICopyComponentMetadata.Version">
+            <summary>
+            This read-only property returns the version of the copy component
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildComponent.ICopyComponentMetadata.Copyright">
+            <summary>
+            This read-only property returns the copyright information for the copy component
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.BuildComponent.PlacementAction">
+            <summary>
+            This enumeration defines the build component configuration file placement action values
+            </summary>
+        </member>
+        <member name="F:Sandcastle.Core.BuildAssembler.BuildComponent.PlacementAction.None">
+            <summary>The component is not used in this configuration</summary>
+        </member>
+        <member name="F:Sandcastle.Core.BuildAssembler.BuildComponent.PlacementAction.Start">
+            <summary>Insert the component at the start of the configuration file</summary>
+        </member>
+        <member name="F:Sandcastle.Core.BuildAssembler.BuildComponent.PlacementAction.End">
+            <summary>Insert the component at the end of the configuration file</summary>
+        </member>
+        <member name="F:Sandcastle.Core.BuildAssembler.BuildComponent.PlacementAction.Before">
+            <summary>Place the component before the one indicated</summary>
+        </member>
+        <member name="F:Sandcastle.Core.BuildAssembler.BuildComponent.PlacementAction.After">
+            <summary>Place the component after the one indicated</summary>
+        </member>
+        <member name="F:Sandcastle.Core.BuildAssembler.BuildComponent.PlacementAction.Replace">
+            <summary>Replace the indicated component configuration with this one</summary>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.BuildContext">
+            <summary>
+            This represents the build context used by BuildAssembler
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildContext.AddNamespace(System.String,System.String)">
+            <summary>
+            This adds an XML namespace to the context
+            </summary>
+            <param name="prefix">The namespace prefix</param>
+            <param name="uri">The namespace URI</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildContext.LookupNamespace(System.String)">
+            <summary>
+            This looks up a namespace by prefix
+            </summary>
+            <param name="prefix">The namespace prefix to look up</param>
+            <returns>The URI if found or null if not found</returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildContext.RemoveNamespace(System.String)">
+            <summary>
+            This removes a namespace from the context
+            </summary>
+            <param name="prefix">The namespace prefix to remove</param>
+            <returns>True if found and removed or false if not found</returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildContext.AddVariable(System.String,System.String)">
+            <summary>
+            Add a variable to the context with the specified value
+            </summary>
+            <param name="name">The variable to add</param>
+            <param name="value">The value to assign the variable</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildContext.LookupVariable(System.String)">
+            <summary>
+            Look up the named variable
+            </summary>
+            <param name="name">The variable to look up</param>
+            <returns>The variable value if found or null if not found</returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildContext.RemoveVariable(System.String)">
+            <summary>
+            Remove the named variable from the context
+            </summary>
+            <param name="name">The variable to remove</param>
+            <returns>True if found and removed or false if not found</returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildContext.ClearVariables">
+            <summary>
+            Remove all variables from the context
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.BuildContext.Load(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This is used to load the context settings from the given configuration information
+            </summary>
+            <param name="configuration">The configuration information from which to load the context
+            settings.</param>
+            <remarks>There should be one ore more <c>namespace</c> elements with a <c>prefix</c> and a
+            <c>uri</c> attribute that identify the namespace to add to the context.</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildContext.Item(System.String)">
+            <summary>
+            Indexer
+            </summary>
+            <param name="name">The variable for which to get or set the value</param>
+            <returns>The variable value if found or null if the named variable was not found</returns>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.BuildContext.XsltContext">
+            <summary>
+            This read-only property returns the context used for XPath queries
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.CustomContext">
+            <summary>
+            This represents a custom XSLT context used by BuildAssembler
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.CustomContext.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.CustomContext.ClearVariable(System.String)">
+            <summary>
+            Clear the named variable
+            </summary>
+            <param name="name">The variable to clear</param>
+            <returns>True if successful, false if not found</returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.CustomContext.ClearVariables">
+            <summary>
+            Clear all variables
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.CustomContext.ResolveVariable(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.CustomContext.ResolveFunction(System.String,System.String,System.Xml.XPath.XPathResultType[])">
+            <summary>
+            This method is not implemented
+            </summary>
+            <param name="prefix">Not used</param>
+            <param name="name">Not used</param>
+            <param name="argumentTypes">Not used</param>
+            <returns>Not implemented</returns>
+            <exception cref="T:System.NotImplementedException">This method is not implemented</exception>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.CustomContext.CompareDocument(System.String,System.String)">
+            <summary>
+            This method is not used
+            </summary>
+            <param name="baseUri">Not used</param>
+            <param name="nextBaseUri">Not used</param>
+            <returns>This implementation always returns zero</returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.CustomContext.PreserveWhitespace(System.Xml.XPath.XPathNavigator)">
+            <inheritdoc />
+            <remarks>This implementation always returns true</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.CustomContext.Item(System.String)">
+            <summary>
+            Indexer
+            </summary>
+            <param name="variable">The variable value to get or set</param>
+            <returns>The variable value as a string</returns>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.CustomContext.Whitespace">
+            <inheritdoc />
+            <value>This implementation always returns true</value>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.CustomVariable">
+            <summary>
+            This represents a custom XSLT variable used by a BuildAssembler <see cref="T:Sandcastle.Core.BuildAssembler.CustomContext"/>
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.CustomVariable.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="value">The variable's value</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.CustomVariable.Evaluate(System.Xml.Xsl.XsltContext)">
+            <inheritdoc />
+            <remarks>This always returns the value of the variable assigned in the constructor</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.CustomVariable.IsLocal">
+            <inheritdoc />
+            <value>This implementation always returns false</value>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.CustomVariable.IsParam">
+            <inheritdoc />
+            <value>This implementation always returns false</value>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.CustomVariable.VariableType">
+            <inheritdoc/>
+            <value>This implementation always returns <see cref="F:System.Xml.XPath.XPathResultType.String"/></value>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.MessageLevel">
+            <summary>
+            This enumerated type defines the message logging levels
+            </summary>
+        </member>
+        <member name="F:Sandcastle.Core.BuildAssembler.MessageLevel.Ignore">
+            <summary>Do not show at all</summary>
+        </member>
+        <member name="F:Sandcastle.Core.BuildAssembler.MessageLevel.Info">
+            <summary>Informational message</summary>
+        </member>
+        <member name="F:Sandcastle.Core.BuildAssembler.MessageLevel.Warn">
+            <summary>A warning message (a minor problem)</summary>
+        </member>
+        <member name="F:Sandcastle.Core.BuildAssembler.MessageLevel.Error">
+            <summary>An error message (a major problem that will stop the build)</summary>
+        </member>
+        <member name="F:Sandcastle.Core.BuildAssembler.MessageLevel.Diagnostic">
+            <summary>A diagnostic message, useful for debugging</summary>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorFactory">
+            <summary>
+            This interface defines the factory method for syntax generators
+            </summary>
+            <remarks>Although not required, syntax generators are non-shared and instances are created as needed.</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorFactory.Create">
+            <summary>
+            This is implemented to provide a syntax generator factory
+            </summary>
+            <returns>A new instance of a syntax generator</returns>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorFactory.ResourceItemFileLocation">
+            <summary>
+            This read-only property is implemented to return the default and localized resource item file
+            location.
+            </summary>
+            <remarks><para>If it returns null or an empty string, it is assumed the syntax generator has no
+            resource item files.  Otherwise, this will return the folder containing the default and localized
+            resource item files for things such as the title to use for syntax sections and code examples,
+            unsupported language feature messages, etc.</para>
+            
+            <para>The resource item files are like those in the presentation styles.  The root folder contains
+            the default (English) resource item file.  Subfolders, if any, named after each supported language
+            contain the localized version of the file.  In all cases, the file is named using the language ID
+            plus a ".xml" extension.</para></remarks>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorMetadata">
+            <summary>
+            This class defines the metadata for a BuildAssembler syntax generator component
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorMetadata.Id">
+            <summary>
+            This read-only property returns the ID for the syntax generator (typically the language name)
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorMetadata.LanguageElementName">
+            <summary>
+            This read-only property is used to get the value used as the XML element name and in resource item
+            IDs used during XSL transformation such as for label text.
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorMetadata.KeywordStyleParameter">
+            <summary>
+            This read-only property is used to get the keyword style parameter value used by the client side
+            script in the topics for language-specific keyword text.
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorMetadata.IsConfigurable">
+            <summary>
+            This read-only property returns true if the syntax generator is configurable or false if it is not
+            </summary>
+            <value>Configuration is handled by the <c>SyntaxComponent</c> build component.</value>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorMetadata.Description">
+            <summary>
+            This read-only property returns a brief description of the syntax generator
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorMetadata.Version">
+            <summary>
+            This read-only property returns the version of the syntax generator
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorMetadata.Copyright">
+            <summary>
+            This read-only property returns the copyright information for the syntax generator
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorMetadata.SortOrder">
+            <summary>
+            This read-only property returns the value that defines the order in which the syntax generators are
+            added the to the configuration file.
+            </summary>
+            <value>The sort order determines the order of the syntax sections in each topic</value>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorMetadata.AlternateIds">
+            <summary>
+            This read-only property returns a comma-separated list of alternate language IDs that can be used
+            by designers to translate an alternate ID to the primary <see cref="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorMetadata.Id"/>
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorMetadata.DefaultConfiguration">
+            <summary>
+            This read-only property returns a string containing an XML fragment that defines the default
+            syntax generator configuration if supported.
+            </summary>
+            <value>Designers can use this value as a default if they provide configuration editing support</value>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ManagedSyntaxWriter">
+            <summary>
+            This is used to write out syntax for managed code
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter">
+            <summary>
+            This is used as the abstract base class for syntax writers
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter.WriteStartBlock(System.String,System.String)">
+            <summary>
+            Write a start block
+            </summary>
+            <param name="codeLanguage">The code language of the block</param>
+            <param name="styleId">The style ID of the block</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter.WriteStartSubBlock(System.String)">
+            <summary>
+            Write a start sub-block
+            </summary>
+            <param name="classId">The style class ID of the sub-block</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter.WriteEndBlock">
+            <summary>
+            Write an end block
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter.WriteEndSubBlock">
+            <summary>
+            Write an end sub-block
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter.WriteString(System.String)">
+            <summary>
+            Write a string value
+            </summary>
+            <param name="text">The string to write</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter.WriteStringWithStyle(System.String,System.String)">
+            <summary>
+            Write a string value with a style
+            </summary>
+            <param name="text">The string to write</param>
+            <param name="style">The style class ID to use</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter.WriteReferenceLink(System.String)">
+            <summary>
+            Write a reference link
+            </summary>
+            <param name="reference">The reference link ID</param>
+            <overloads>There are two overloads for this method</overloads>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter.WriteReferenceLink(System.String,System.String)">
+            <summary>
+            Write a reference link with inner text
+            </summary>
+            <param name="reference">The reference link ID</param>
+            <param name="text">The inner text of the link</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter.WriteMessage(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Write a message include item
+            </summary>
+            <param name="message">The message include item ID</param>
+            <param name="parameters">Optional parameters to add to the message include item</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter.WriteLine">
+            <summary>
+            Write out a blank line
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter.WriteKeyword(System.String)">
+            <summary>
+            Write out a keyword
+            </summary>
+            <param name="keyword">The keyword to write</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter.WriteParameter(System.String)">
+            <summary>
+            Write out a parameter
+            </summary>
+            <param name="parameter">The parameter to write</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter.WriteIdentifier(System.String)">
+            <summary>
+            Write out an identifier
+            </summary>
+            <param name="identifier">The identifier to write</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter.WriteLiteral(System.String)">
+            <summary>
+            Write out a literal
+            </summary>
+            <param name="literal">The literal to write</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter.WriteMessage(System.String)">
+            <summary>
+            Write out a message
+            </summary>
+            <param name="message">The message include item ID to write</param>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter.Position">
+            <summary>
+            The current position of the writer
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter.RenderReferenceLinks">
+            <summary>
+            This is used to indicate whether or not the syntax writer should render reference links as actual
+            links.
+            </summary>
+            <value>The default is false to render reference link elements as identifiers instead.  If set to
+            true, it will render them as actual clickable links if the target can be resolved.</value>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ManagedSyntaxWriter.#ctor(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="location">The location in which to write the output</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ManagedSyntaxWriter.WriteStartBlock(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ManagedSyntaxWriter.WriteStartSubBlock(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ManagedSyntaxWriter.WriteEndBlock">
+            <inheritdoc />
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ManagedSyntaxWriter.WriteEndSubBlock">
+            <inheritdoc />
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ManagedSyntaxWriter.WriteLine">
+            <inheritdoc />
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ManagedSyntaxWriter.WriteString(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ManagedSyntaxWriter.WriteStringWithStyle(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ManagedSyntaxWriter.WriteReferenceLink(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ManagedSyntaxWriter.WriteReferenceLink(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ManagedSyntaxWriter.WriteMessage(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ManagedSyntaxWriter.Position">
+            <inheritdoc />
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorCore">
+            <summary>
+            This is the abstract base class for syntax generators
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorCore.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorCore.Initialize(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Initialize the syntax generator
+            </summary>
+            <param name="configuration">The syntax generator configuration</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorCore.WriteSyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            This is implemented to write the syntax
+            </summary>
+            <param name="reflection">The reflection data used to generate the syntax</param>
+            <param name="writer">The writer to which the syntax information is written</param>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorExportAttribute">
+            <summary>
+            This is a custom version of the <see cref="T:System.ComponentModel.Composition.ExportAttribute"/> that contains metadata for the
+            BuildAssembler syntax generators.
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorExportAttribute.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="id">The required plug-in ID</param>
+            <param name="languageElementName">The language element name and resource item ID</param>
+            <param name="keywordStyleParameter">The keyword style parameter value for client side script</param>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorExportAttribute.Id">
+            <summary>
+            This read-only property is used to get the syntax generator ID (typically the language name)
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorExportAttribute.LanguageElementName">
+            <summary>
+            This read-only property is used to get the value used as the XML element name and in resource item
+            IDs used during XSL transformation such as for label text.
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorExportAttribute.KeywordStyleParameter">
+            <summary>
+            This read-only property is used to get the keyword style parameter value used by the client side
+            script in the topics for language specific keyword/separator text.
+            </summary>
+            <value>This will be one of the following: <c>cs</c> (C# or equivalent), <c>vb</c> (VB.NET
+            or equivalent), <c>cpp</c> (C++ or equivalent), <c>fs</c> (F# or equivalent), or a value unique to
+            the language.</value>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorExportAttribute.IsConfigurable">
+            <summary>
+            This is used to get or set whether or not the syntax generator is configurable
+            </summary>
+            <value>Configuration is handled by the <c>SyntaxComponent</c> build component.</value>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorExportAttribute.Description">
+            <summary>
+            This is used to get or set a brief description of the syntax generator
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorExportAttribute.Version">
+            <summary>
+            This is used to get or set the syntax generator version number
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorExportAttribute.Copyright">
+            <summary>
+            This is used to get or set copyright information for the syntax generator
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorExportAttribute.SortOrder">
+            <summary>
+            This is used to get or set the value that defines the order in which the syntax generators are added
+            the to the configuration file.
+            </summary>
+            <value>The sort order determines the order of the syntax sections in each topic</value>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorExportAttribute.AlternateIds">
+            <summary>
+            This is used to get or set a comma-separated list of alternate language IDs that can be used by
+            designers to translate an alternate ID to the primary <see cref="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorExportAttribute.Id"/>
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorExportAttribute.DefaultConfiguration">
+            <summary>
+            This is used to get or set a string containing an XML fragment that defines the default syntax
+            generator configuration if supported.
+            </summary>
+            <value>Designers can use this value as a default if they provide configuration editing support</value>
+        </member>
+        <member name="T:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate">
+            <summary>
+            This abstract class is used as the base class for syntax generators
+            </summary>
+        </member>
+        <member name="F:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.MaxPosition">
+            <summary>
+            The maximum line width for the generated syntax
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteNamespaceSyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write namespace syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteClassSyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write class syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteStructureSyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write structure syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteInterfaceSyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write interface syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteDelegateSyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write delegate syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteEnumerationSyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write enumeration syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteConstructorSyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write constructor syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WritePropertySyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write property syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteFieldSyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write field syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteEventSyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write event syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.Initialize(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Initialize the syntax generator
+            </summary>
+            <param name="configuration">The syntax generator configuration</param>
+            <remarks>The base implementation just validates that a <see cref="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.Language"/> and
+            <see cref="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.StyleId"/> have been defined.</remarks>
+            <exception cref="T:System.InvalidOperationException">This is thrown if a <see cref="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.Language"/> or
+            <see cref="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.StyleId"/> has not been set.</exception>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteSyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            This is the main syntax writing method
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteTypeSyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write type syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteMemberSyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write member syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteMethodSyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write method syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteNormalMethodSyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write normal method syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteOperatorSyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write operator syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteCastSyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write cast syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteAttachedPropertySyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write attached property syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteAttachedEventSyntax(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write attached event syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.IsUnsupportedVarargs(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write unsupported variable arguments syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+            <returns>True if unsupported, false if it is supported</returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.IsUnsupportedUnsafe(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write unsupported unsafe code syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+            <returns>True if unsupported, false if it is supported</returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.IsUnsupportedGeneric(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write unsupported generic types syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+            <returns>True if unsupported, false if it is supported</returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.IsUnsupportedExplicit(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write unsupported explicit implementation syntax
+            </summary>
+            <param name="reflection">The reflection data used to produce the syntax</param>
+            <param name="writer">The writer to which the syntax is written</param>
+            <returns>True if unsupported, false if it is supported</returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteWithLineBreakIfNeeded(Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter,System.String,System.String)">
+            <summary>
+            This is used to write a string followed by an optional line break if needed (the writer position is
+            past the maximum position afterwards).
+            </summary>
+            <param name="writer">The syntax writer to use</param>
+            <param name="text">An optional text string to write before the new line</param>
+            <param name="indent">An optional indent to write after the line break</param>
+            <returns>True if a new line was written, false if not</returns>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteTypeReference(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write out a type reference
+            </summary>
+            <param name="reference">The type reference to output</param>
+            <param name="writer">The syntax writer to which the type reference is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteNormalTypeReference(System.String,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write out a normal type reference
+            </summary>
+            <param name="api">The type reference to output</param>
+            <param name="writer">The syntax writer to which the type reference is written</param>
+        </member>
+        <member name="M:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.WriteConstantValue(System.Xml.XPath.XPathNavigator,Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxWriter)">
+            <summary>
+            Write out a constant's value
+            </summary>
+            <param name="parent">The parent node</param>
+            <param name="writer">The syntax writer</param>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.Language">
+            <summary>
+            This is used to get or set the language name
+            </summary>
+            <value>This is used as the code language name added as an attribute to the <c>div</c>element written
+            to the topics.  The presentation style XSL transformations will also use it to name the
+            language-specific resource items.</value>
+        </member>
+        <member name="P:Sandcastle.Core.BuildAssembler.SyntaxGenerator.SyntaxGeneratorTemplate.StyleId">
+            <summary>
+            This is used to get or set the style ID
+            </summary>
+            <value>This is used as the code style ID added as an attribute to the <c>div</c>element written
+            to the topics.  The presentation style XSL transformations will use it to group common language
+            elements such as language-specific text and code snippets so that they can be shown and hidden
+            together.</value>
+        </member>
+        <member name="T:Sandcastle.Core.ComponentUtilities">
+            <summary>
+            This class contains properties and methods used to locate and work with build components, plug-ins,
+            syntax generators, and presentation styles.
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.ComponentUtilities.AssemblyFolder(System.Reflection.Assembly)">
+            <summary>
+            This is used to get the physical location of the specified assembly
+            </summary>
+            <param name="assembly">The assembly for which to get the physical location (the currently executing
+            (calling) assembly if null).</param>
+            <returns>This returns the actual location of the assembly, where it was found versus where it is
+            executing from, which may be different if shadow copied.  This is required in order to find
+            supporting files which will not be present in the shadow copied location.</returns>
+        </member>
+        <member name="M:Sandcastle.Core.ComponentUtilities.SetPaths">
+            <summary>
+            Set the paths used to find component configuration files and assemblies
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.ComponentUtilities.CreateComponentContainer(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            This is used to return a composition container filled with the available build components (SHFB
+            plug-ins, presentation styles, and BuildAssembler components and syntax generators).
+            </summary>
+            <param name="folders">An enumerable list of additional folders to search recursively for components.</param>
+            <returns>The a composition container that contains all of the available components</returns>
+            <remarks>The following folders are searched in the following order.  If the given folder has not been
+            specified or does not exist, it is ignored.
+            
+            <list type="number">
+                <item>The enumerable list of additional folders - This is typically the current project's
+            <c>ComponentPath</c> folder and the current project's folder.  This allows for project-specific
+            build components.  If the project's <c>ComponentPath</c> property is set, that folder is searched
+            first and then the project's folder is searched.</item>
+                <item>Common application data folder - The help file builder's common application data folder
+            where third-party build components are typically installed.</item>
+                <item><c>SHFBROOT</c> - The root Sandcastle Help File Builder installation folder and its
+            subfolders.  This allows for XCOPY deployments that keep everything together.</item>
+            </list>
+            
+            All folders and their subfolders are search recursively for assemblies (*.dll).  There may be
+            duplicate component IDs across the assemblies found.  Only the first component for a unique
+            ID will be used.  As such, assemblies in a folder with a higher search precedence can override
+            copies in folders lower in the search order.</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.ComponentUtilities.AddAssemblyCatalogs(System.ComponentModel.Composition.Hosting.AggregateCatalog,System.String,System.Collections.Generic.HashSet{System.String},System.Boolean)">
+            <summary>
+            This adds assembly catalogs to the given aggregate catalog for the given folder and all of its
+            subfolders recursively.
+            </summary>
+            <param name="catalog">The aggregate catalog to which the assembly catalogs are added.</param>
+            <param name="folder">The root folder to search.  It and all subfolders recursively will be searched
+            for assemblies to add to the aggregate catalog.</param>
+            <param name="searchedFolders">A hash set of folders that have already been searched and added.</param>
+            <param name="includeSubfolders">True to search subfolders recursively, false to only search the given
+            folder.</param>
+            <remarks>It is done this way to prevent a single assembly that would normally be discovered via a
+            directory catalog from preventing all assemblies from loading if it cannot be examined when the parts
+            are composed (i.e. trying to load a Windows Store assembly on Windows 7).</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.ComponentUtilities.ToRecognizedSyntaxFilterIds(System.Collections.Generic.IEnumerable{Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorMetadata},System.String)">
+            <summary>
+            This is used to convert the given set of comma-separated syntax filter IDs to a set of recognized
+            filter IDs.
+            </summary>
+            <param name="allFilters">The list of all available syntax filter generators</param>
+            <param name="filterIds">A comma-separated list of syntax filter IDs to convert</param>
+            <returns>The validated and recognized set of syntax filter IDs.  If possible, the value is condensed
+            to one of a set of combination values such as None, All, AllButUsage, or Standard.</returns>
+        </member>
+        <member name="M:Sandcastle.Core.ComponentUtilities.SyntaxFiltersFrom(System.Collections.Generic.IEnumerable{Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorMetadata},System.String)">
+            <summary>
+            This is used to return a collection of syntax filters based on the comma-separated list of IDs passed
+            to the method.
+            </summary>
+            <param name="allFilters">The list of all available syntax filter generators</param>
+            <param name="filterIds">A comma-separated list of syntax filter ID values.</param>
+            <returns>An enumerable list of <see cref="T:Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorMetadata"/> representing the syntax
+            filters found.</returns>
+            <remarks>The following special IDs are also recognized: None = No filters, All = all filters,
+            AllButUsage = All but syntax filters with "Usage" in their ID (i.e. VisualBasicUsage), Standard = C#,
+            VB.NET, and C++ only.</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.ComponentUtilities.SyntaxFilterGeneratorsFrom(System.Collections.Generic.IEnumerable{Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorMetadata},System.String)">
+            <summary>
+            This returns the syntax generator XML elements to insert into a BuildAssembler configuration file for
+            the comma-separated list of syntax filter IDs.
+            </summary>
+            <param name="allFilters">The list of all available syntax filter generators</param>
+            <param name="filterIds">A comma-separated list of syntax filter ID values.</param>
+            <returns>A string containing the generator XML elements for the specified syntax filter IDs.</returns>
+        </member>
+        <member name="M:Sandcastle.Core.ComponentUtilities.SyntaxFilterLanguagesFrom(System.Collections.Generic.IEnumerable{Sandcastle.Core.BuildAssembler.SyntaxGenerator.ISyntaxGeneratorMetadata},System.String)">
+            <summary>
+            This returns the syntax language XML elements to insert into a BuildAssembler configuration file for
+            the comma-separated list of syntax filter IDs.
+            </summary>
+            <param name="allFilters">The list of all available syntax filter generators</param>
+            <param name="filterIds">A comma-separated list of syntax filter ID values.</param>
+            <returns>A string containing the language XML elements for the specified syntax filter IDs.</returns>
+        </member>
+        <member name="M:Sandcastle.Core.ComponentUtilities.SyntaxGeneratorResourceItemFiles(System.ComponentModel.Composition.Hosting.CompositionContainer,System.Globalization.CultureInfo)">
+            <summary>
+            This returns an enumerable list of resource item files for all defined syntax filters
+            </summary>
+            <param name="componentContainer">The component container from which to get the available syntax
+            filter generators.</param>
+            <param name="language">The language used to find localized versions if they exist</param>
+            <returns>An enumerable list of syntax filter generator resource item files.  If localized versions in
+            the specified language do not exit, the default resource item files (typically English US) will be
+            returned.</returns>
+        </member>
+        <member name="M:Sandcastle.Core.ComponentUtilities.XmlStreamAxis(System.String,System.String)">
+            <summary>
+            This provides a fast and efficient way of querying large XML files for a specific element type
+            </summary>
+            <param name="xmlFile">The XML file to search</param>
+            <param name="elementName">The element name for which to search</param>
+            <returns>An enumerable list of <see cref="T:System.Xml.Linq.XElement"/> instances for each of the found nodes</returns>
+            <remarks>This version only looks for a single element type which cannot contain nested instances of
+            the given element.</remarks>
+            <overloads>
+            <summary>There are two overloads for this method</summary>
+            <remarks>Using these methods to search for specific elements avoids having to load the entire file
+            which can be quite costly in terms of memory when it is extremely large.  It is typically faster as
+            well since it doesn't have to load and parse the whole file before starting the search.</remarks>
+            </overloads>
+        </member>
+        <member name="M:Sandcastle.Core.ComponentUtilities.XmlStreamAxis(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            This provides a fast and efficient way of querying large XML files for specific element types which
+            themselves may contain instances of the given elements.
+            </summary>
+            <param name="xmlFile">The XML file to search</param>
+            <param name="elementNames">An enumerable list of element names for which to search</param>
+            <returns>An enumerable list of <see cref="T:System.Xml.Linq.XElement"/> instances for each of the found nodes including
+            any nested instances of elements with those names.</returns>
+            <remarks>If the element contains nested instances of the elements, the parent is returned first
+            followed by the nested elements (one level deep only).</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.ComponentUtilities.ToolsFolder">
+            <summary>
+            This read-only property returns the path to the Sandcastle Help File and Tools assemblies
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.ComponentUtilities.ComponentsFolder">
+             <summary>
+             This read-only property returns the common application data build components folder
+             </summary>
+            <remarks>Third party components should be located in the <strong>EWSoftware\Sandcastle Help File
+             Builder\Components and Plug-Ins</strong> folder or a subfolder beneath it in the common application
+             data folder.</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.ComponentUtilities.DefaultSyntaxFilter">
+            <summary>
+            This read-only property returns the default syntax filter setting
+            </summary>
+            <value>This returns "Standard" to add the standard C#, VB.NET and C++ syntax filter to each API
+            topic.</value>
+        </member>
+        <member name="T:Sandcastle.Core.CommandLine.BaseOption">
+            <summary>
+            This abstract base class represents a command line option
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.BaseOption.#ctor(System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="name">The option name</param>
+            <param name="description">The option description</param>
+            <exception cref="T:System.ArgumentException">This is thrown if the <paramref name="name"/> parameter is null
+            or empty or contains non-alphabetic characters.</exception>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.BaseOption.ParseArgument(System.String)">
+            <summary>
+            This method is overridden to parse the option arguments, if any
+            </summary>
+            <param name="args">The arguments to parse</param>
+            <returns>A <see cref="T:Sandcastle.Core.CommandLine.ParseResult"/> value to indicate the success or failure of the operation</returns>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.BaseOption.WriteTemplate(System.IO.TextWriter)">
+            <summary>
+            This method is overridden to show the command line syntax for the option
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter"/> to which the syntax string is written</param>
+        </member>
+        <member name="P:Sandcastle.Core.CommandLine.BaseOption.Name">
+            <summary>
+            This read-only property returns the option name
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.CommandLine.BaseOption.Description">
+            <summary>
+            This read-only property returns the option description
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.CommandLine.BaseOption.RequiredMessage">
+            <summary>
+            This is used to get or set a message to display if the option is missing
+            </summary>
+            <remarks>The default is null and the parameter is optional.  If set to a non-null, non-empty string
+            value, the parameter is required.</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.CommandLine.BaseOption.Value">
+            <summary>
+            This property is used to get or set the option value
+            </summary>
+            <remarks>As written, the value can only be set when initially parsed</remarks>
+            <exception cref="T:System.InvalidOperationException">This is thrown if an attempt is made to retrieve the
+            value before it has been set or if an attempt is made to set the value twice.</exception>
+        </member>
+        <member name="P:Sandcastle.Core.CommandLine.BaseOption.IsPresent">
+            <summary>
+            This read-only property is used to determine whether or not the option value was present on the
+            command line.
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.CommandLine.BooleanOption">
+            <summary>
+            This defines a Boolean option
+            </summary>
+            <remarks>A Boolean option is one that has a name followed by a '+' for true or a '-' for false</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.BooleanOption.#ctor(System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="name">The Boolean option name</param>
+            <param name="description">The Boolean option description</param>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.BooleanOption.ParseArgument(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.BooleanOption.WriteTemplate(System.IO.TextWriter)">
+            <inheritdoc />
+        </member>
+        <member name="T:Sandcastle.Core.CommandLine.ListOption">
+            <summary>
+            This defines a list option
+            </summary>
+            <remarks>A a list option is like a <see cref="T:Sandcastle.Core.CommandLine.StringOption"/> but the value is a comma-separated
+            list of one or more values.</remarks>
+        </member>
+        <member name="T:Sandcastle.Core.CommandLine.StringOption">
+            <summary>
+            This defines a string option
+            </summary>
+            <remarks>A string option is one that has a name/value pair separated by a colon</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.StringOption.#ctor(System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="name">The string option name</param>
+            <param name="description">The string option description</param>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.StringOption.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="name">The string option name</param>
+            <param name="description">The string option description</param>
+            <param name="template">A template to use when showing the command line syntax</param>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.StringOption.ParseArgument(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.StringOption.WriteTemplate(System.IO.TextWriter)">
+            <inheritdoc />
+        </member>
+        <member name="P:Sandcastle.Core.CommandLine.StringOption.Template">
+            <summary>
+            This is used to specify the template used when showing the command line syntax
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.ListOption.#ctor(System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="name">The list option name</param>
+            <param name="description">The list option description</param>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.ListOption.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="name">The list option name</param>
+            <param name="description">The list option description</param>
+            <param name="template">A template to use when showing the command line syntax</param>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.ListOption.ParseArgument(System.String)">
+            <inheritdoc />
+            <remarks>If the option appears multiple times, the values are combined into a single list</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.ListOption.WriteTemplate(System.IO.TextWriter)">
+            <inheritdoc />
+        </member>
+        <member name="P:Sandcastle.Core.CommandLine.ListOption.Value">
+            <summary>
+            This is overridden to return the value as a string array
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.CommandLine.OptionCollection">
+            <summary>
+            This collection is used to hold a set of command line option definitions
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.OptionCollection.InsertItem(System.Int32,Sandcastle.Core.CommandLine.BaseOption)">
+            <inheritdoc />
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.OptionCollection.ClearItems">
+            <inheritdoc />
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.OptionCollection.RemoveItem(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.OptionCollection.SetItem(System.Int32,Sandcastle.Core.CommandLine.BaseOption)">
+            <inheritdoc />
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.OptionCollection.ParseArguments(System.String[])">
+            <summary>
+            Parse an array of command line option strings into command line option instances
+            </summary>
+            <param name="args">The array of options to parse</param>
+            <returns>The results of parsing the command line option strings</returns>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.OptionCollection.WriteOptionSummary(System.IO.TextWriter)">
+            <summary>
+            This is used to write out a summary of the options
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter"/> to which the summary is written</param>
+            <exception cref="T:System.ArgumentNullException">This is thrown if the <paramref name="writer"/> parameter
+            is null.</exception>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.OptionCollection.ParseArguments(System.String[],Sandcastle.Core.CommandLine.ParseArgumentsResult)">
+            <summary>
+            This is used to parse the command line options and return the results
+            </summary>
+            <param name="args">The array of option strings to parse</param>
+            <param name="results">The results of the parsing operation</param>
+        </member>
+        <member name="P:Sandcastle.Core.CommandLine.OptionCollection.Item(System.String)">
+            <summary>
+            This read-only property can be used to retrieve an option by name
+            </summary>
+            <param name="name">The name of the option to retrieve</param>
+            <returns></returns>
+        </member>
+        <member name="T:Sandcastle.Core.CommandLine.ParseArgumentsResult">
+            <summary>
+            This is used to hold the results of parsing a set of command line option strings
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.ParseArgumentsResult.#ctor(Sandcastle.Core.CommandLine.OptionCollection)">
+            <summary>
+            Internal constructor
+            </summary>
+            <param name="options">The option collection related to the results</param>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.ParseArgumentsResult.AddError(System.String,Sandcastle.Core.CommandLine.ParseResult)">
+            <summary>
+            This is used to add a parsing error
+            </summary>
+            <param name="optionName">The option name</param>
+            <param name="error">The error result</param>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.ParseArgumentsResult.AddNonOption(System.String)">
+            <summary>
+            This is used to add a non-option
+            </summary>
+            <param name="value">The non-option value</param>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.ParseArgumentsResult.WriteParseErrors(System.IO.TextWriter)">
+            <summary>
+            This is used to write out a list of all parsing errors
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter"/> to which the summary is written</param>
+        </member>
+        <member name="P:Sandcastle.Core.CommandLine.ParseArgumentsResult.Options">
+            <summary>
+            This read-only property is used to get the option collection related to the results
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.CommandLine.ParseArgumentsResult.Success">
+            <summary>
+            This read-only property is used to see if the options were parsed successfully
+            </summary>
+            <value>Returns true if successful, false if not</value>
+        </member>
+        <member name="P:Sandcastle.Core.CommandLine.ParseArgumentsResult.UnusedArguments">
+            <summary>
+            This read-only property returns a collection of the unused arguments
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.CommandLine.ParseResult">
+            <summary>
+            This enumerated type defines the command line option parsing results
+            </summary>
+        </member>
+        <member name="F:Sandcastle.Core.CommandLine.ParseResult.Success">
+            <summary>Success</summary>
+        </member>
+        <member name="F:Sandcastle.Core.CommandLine.ParseResult.ArgumentNotAllowed">
+            <summary>Argument not allowed</summary>
+        </member>
+        <member name="F:Sandcastle.Core.CommandLine.ParseResult.MalformedArgument">
+            <summary>Malformed argument</summary>
+        </member>
+        <member name="F:Sandcastle.Core.CommandLine.ParseResult.MissingOption">
+            <summary>Missing option</summary>
+        </member>
+        <member name="F:Sandcastle.Core.CommandLine.ParseResult.UnrecognizedOption">
+            <summary>Unrecognized option</summary>
+        </member>
+        <member name="F:Sandcastle.Core.CommandLine.ParseResult.MultipleOccurence">
+            <summary>A single-use option appeared multiple times</summary>
+        </member>
+        <member name="T:Sandcastle.Core.CommandLine.SwitchOption">
+            <summary>
+            This defines a switch option
+            </summary>
+            <remarks>A switch option is one that is only represented by its name</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.SwitchOption.#ctor(System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="name">The switch option name</param>
+            <param name="description">The switch option description</param>
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.SwitchOption.ParseArgument(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Sandcastle.Core.CommandLine.SwitchOption.WriteTemplate(System.IO.TextWriter)">
+            <inheritdoc />
+        </member>
+        <member name="T:Sandcastle.Core.ConsoleApplication">
+            <summary>
+            This class contains various utility methods used by console applications
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.ConsoleApplication.GetConfigurationFile">
+            <summary>
+            Get a configuration file for the currently executing (the calling) assembly
+            </summary>
+            <returns>An XML document containing the configuration</returns>
+            <remarks>This returns the configuration from the actual location of the assembly, where it was found
+            versus where it is executing from, which may be different if shadow copied.</remarks>
+            <overloads>There are two overloads for this method</overloads>
+        </member>
+        <member name="M:Sandcastle.Core.ConsoleApplication.GetConfigurationFile(System.String)">
+            <summary>
+            Load the specified configuration file
+            </summary>
+            <param name="file">The configuration file to load</param>
+            <returns>An XML document containing the configuration</returns>
+        </member>
+        <member name="M:Sandcastle.Core.ConsoleApplication.WriteBanner">
+            <summary>
+            Write the name, version, and copyright information of the calling assembly
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.ConsoleApplication.WriteMessage(Sandcastle.Core.LogLevel,System.String)">
+            <summary>
+            Write a message to the console
+            </summary>
+            <param name="level">The log level of the message</param>
+            <param name="message">The message string to display</param>
+        </member>
+        <member name="M:Sandcastle.Core.ConsoleApplication.WriteMessage(Sandcastle.Core.LogLevel,System.String,System.Object[])">
+            <summary>
+            Write a formatted message to the console with the given parameters
+            </summary>
+            <param name="level">The log level of the message</param>
+            <param name="format">The message format string</param>
+            <param name="args">The list of arguments to format into the message</param>
+        </member>
+        <member name="M:Sandcastle.Core.ConsoleApplication.LogMessage(Sandcastle.Core.LogLevel,System.String,System.Object[])">
+            <summary>
+            Write a formatted message to the MSBuild logger with the given parameters
+            </summary>
+            <param name="level">The log level of the message</param>
+            <param name="format">The message format string</param>
+            <param name="args">The list of arguments to format into the message</param>
+        </member>
+        <member name="P:Sandcastle.Core.ConsoleApplication.VerbosityLevel">
+            <summary>
+            The verbosity level for the <see cref="O:Sandcastle.Core.ConsoleApplication.WriteMessage"/>
+            methods.
+            </summary>
+            <value>The default level is <see cref="F:Sandcastle.Core.LogLevel.Info"/> so that all messages are displayed.
+            Setting it to a higher level will suppress messages below the given level.</value>
+        </member>
+        <member name="P:Sandcastle.Core.ConsoleApplication.Log">
+            <summary>
+            This is used to set the MSBuild log to use for all messages output via the message writing methods
+            </summary>
+            <value>If null, the messages are written to the console</value>
+        </member>
+        <member name="P:Sandcastle.Core.ConsoleApplication.ToolName">
+            <summary>
+            This is used to set the tool name reported in warning and error messages when running under MSBuild
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.Constants">
+            <summary>
+            This class holds a set of constants that define various application values such as the application name,
+            common data folder locations, etc.
+            </summary>
+        </member>
+        <member name="F:Sandcastle.Core.Constants.CompanyName">
+            <summary>The company name</summary>
+        </member>
+        <member name="F:Sandcastle.Core.Constants.AppName">
+            <summary>The application name</summary>
+        </member>
+        <member name="F:Sandcastle.Core.Constants.DefaultPresentationStyle">
+            <summary>The default presentation style</summary>
+        </member>
+        <member name="F:Sandcastle.Core.Constants.ProgramDataFolder">
+            <summary>
+            The application folder in which the component and user data files are stored.
+            </summary>
+            <remarks>This folder will be located under the <see cref="T:System.Environment.SpecialFolder">CommonApplicationData</see>
+            or <see cref="T:System.Environment.SpecialFolder">LocalApplicationData</see> folder.</remarks>
+        </member>
+        <member name="F:Sandcastle.Core.Constants.ComponentsAndPlugInsFolder">
+            <summary>
+            This folder is located under the <see cref="T:System.Environment.SpecialFolder">CommonApplicationData</see>
+            folder and contains custom build components that can be added to a project.
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.Reflection.AssemblyDetails">
+            <summary>
+            This class is used to hold the details for an assembly
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.AssemblyDetails.#ctor">
+            <summary>
+            Private constructor
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.AssemblyDetails.OnPropertyChanged(System.String)">
+            <summary>
+            This raises the <see cref="E:Sandcastle.Core.Reflection.AssemblyDetails.PropertyChanged"/> event
+            </summary>
+            <param name="propertyName">The property name that changed</param>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.AssemblyDetails.FromAssemblyName(System.Reflection.AssemblyName)">
+            <summary>
+            This is used to create an assembly details instance from an assembly name
+            </summary>
+            <param name="name">The assembly name information</param>
+            <returns>The new assembly details item</returns>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.AssemblyDetails.FromXml(System.String,System.Xml.Linq.XElement)">
+            <summary>
+            This is used to create an assembly details instance from an XML element
+            </summary>
+            <param name="path">The path to the assembly</param>
+            <param name="details">The XML element containing the details</param>
+            <returns>The new assembly details item</returns>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.AssemblyDetails.ToXml(System.String)">
+            <summary>
+            This is used to convert the assembly detail to an XML element
+            </summary>
+            <param name="basePath">The base path for the assembly</param>
+            <returns>The assembly details as an XML element</returns>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.AssemblyDetails.ToString">
+            <summary>
+            This is overridden to convert the assembly details to a string in the strong name format
+            </summary>
+            <returns>The assembly details as a strong name string</returns>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.AssemblyDetails.GetHashCode">
+            <summary>
+            This is used to return a hash code for the assembly details in string format
+            </summary>
+            <returns>The hash code for the assembly details</returns>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.AssemblyDetails.Equals(System.Object)">
+            <summary>
+            This is overridden to allow proper comparison of assembly detail objects
+            </summary>
+            <param name="obj">The object to which this instance is compared</param>
+            <returns>Returns true if the object equals this instance, false if it does not</returns>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.AssemblyDetails.Filename">
+            <summary>
+            This read-only property returns the assembly filename
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.AssemblyDetails.Name">
+            <summary>
+            This read-only property returns the assembly name
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.AssemblyDetails.Version">
+            <summary>
+            This read-only property is used to get the version for the assembly
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.AssemblyDetails.Culture">
+            <summary>
+            This read-only property is used to get the culture for the assembly
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.AssemblyDetails.PublicKeyToken">
+            <summary>
+            This read-only property returns the public key token for the assembly
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.AssemblyDetails.IsIncluded">
+            <summary>
+            This is used to get or set whether or not to include the assembly
+            </summary>
+            <remarks>Certain assemblies cannot be parsed or do not contain any useful information.  This can
+            be set to false to exclude them from being processed.</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.AssemblyDetails.Description">
+            <summary>
+            This read-only property returns the assembly description which is a combination of the name,
+            version, culture, and public key token.
+            </summary>
+        </member>
+        <member name="E:Sandcastle.Core.Reflection.AssemblyDetails.PropertyChanged">
+            <summary>
+            The property changed event
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.Reflection.AssemblyLocation">
+            <summary>
+            This class defines the settings for a specific assembly location
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.AssemblyLocation.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.AssemblyLocation.#ctor(System.String)">
+            <summary>
+            Private constructor
+            </summary>
+            <param name="storedPath">The stored path to use</param>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.AssemblyLocation.OnPropertyChanged(System.String)">
+            <summary>
+            This raises the <see cref="E:Sandcastle.Core.Reflection.AssemblyLocation.PropertyChanged"/> event
+            </summary>
+            <param name="propertyName">The property name that changed</param>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.AssemblyLocation.FromXml(System.Xml.Linq.XElement)">
+            <summary>
+            This is used to load the settings for an assembly location from an XML element
+            </summary>
+            <param name="location">The XML element containing the settings</param>
+            <returns>The new assembly location item</returns>
+            <remarks>If the location element is empty, the assembly details will be created by scanning the
+            location for assemblies.</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.AssemblyLocation.ToXml">
+            <summary>
+            This is used to convert the assembly location to an XML element
+            </summary>
+            <returns>The assembly location as an XML element</returns>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.AssemblyLocation.DetermineAssemblyDetails(System.Boolean)">
+            <summary>
+            This can be used to load an empty location with information about the assemblies it contains
+            </summary>
+            <param name="clearAndRefresh">True to clear and refresh all file information or false to only remove
+            assemblies that no longer exist and add new assemblies.</param>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.AssemblyLocation.StoredPath">
+            <summary>
+            This is used to get or set the path to the assembly location
+            </summary>
+            <value>The path may contain environment variable references</value>
+            <remarks>When the stored path is changed, the set of assemblies in it is updated as well</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.AssemblyLocation.Path">
+            <summary>
+            This read-only property returns the actual path to the assembly location
+            </summary>
+            <remarks>This returns the path with any environment variable references replaced with the actual
+            path elements.</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.AssemblyLocation.IsCoreLocation">
+            <summary>
+            This read-only property is used to determine if this entry represents a core framework location
+            </summary>
+            <value>True if it is the core location, false if not</value>
+            <remarks>The core location is determined by searching for <c>mscorlib</c> in the assembly set</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.AssemblyLocation.AllAssemblies">
+            <summary>
+            This read-only property returns a bindable list of all assembly details for this location
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.AssemblyLocation.IncludedAssemblies">
+            <summary>
+            This read-only property returns an enumerable list of only the included assembly details for this
+            location.
+            </summary>
+        </member>
+        <member name="E:Sandcastle.Core.Reflection.AssemblyLocation.PropertyChanged">
+            <summary>
+            The property changed event
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.Reflection.ReflectionDataSetDictionary">
+            <summary>
+            This dictionary contains reflection data settings for the various .NET Framework platforms and versions
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSetDictionary.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="componentLocations">An optional enumerable list of additional component locations to
+            search for reflection data set files.</param>
+            <remarks>Keys are case-insensitive</remarks>
+            <remarks>The following folders are searched in the following order.  If the given folder has not been
+            specified or does not exist, it is ignored.
+            
+            <list type="number">
+                <item><c>SHFBROOT</c> - The root Sandcastle Help File Builder installation folder and its
+            subfolders.  This allows for XCOPY deployments that keep everything together.</item>
+                <item>Common application data folder - The help file builder's common application data folder
+            where third-party build components are typically installed.</item>
+                <item>The enumerable list of additional folders - This is typically the current project's
+            <c>ComponentPath</c> folder and the current project's folder.  This allows for project-specific
+            reflection data files.  If the project's <c>ComponentPath</c> property is set, that folder is
+            searched first and then the project's folder is searched.</item>
+            </list>
+            
+            All folders and their subfolders are search recursively for reflection data files (*.reflection).
+            There may be duplicate titles across the files found.  If duplicates are found, the last one seen is
+            used.  As such, reflection data files in a folder with a later search precedence can override
+            copies in folders earlier in the search order.</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSetDictionary.CoreFrameworkByTitle(System.String,System.Boolean)">
+            <summary>
+            This is used to find the first core framework matching the specified title or the next highest
+            version if found but not installed if redirection is requested.
+            </summary>
+            <param name="title">The title to find</param>
+            <param name="withRedirect">True to redirect to the next highest version that is installed if the
+            requested title is not installed or false to return the exact match even if not present.</param>
+            <returns>The framework settings if found or null if not found</returns>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSetDictionary.CoreFrameworkMatching(System.String,System.Version,System.Boolean)">
+            <summary>
+            This is used to find the first core framework matching the specified platform and version or the next
+            highest version if not found and redirection is requested.
+            </summary>
+            <param name="platform">The platform to find.</param>
+            <param name="version">The version to find.  This can be a partial version number if redirection is
+            requested.</param>
+            <param name="withRedirect">True to redirect to the next highest version that is installed or false to
+            return the exact match even if not present.</param>
+            <returns>The framework settings if found or null if not found</returns>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSetDictionary.CoreFrameworkMostRecent(System.String)">
+            <summary>
+            This is used to find the most recent core framework matching the specified platform
+            </summary>
+            <param name="platform">The platform to find</param>
+            <returns>The framework settings if found or null if not found</returns>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSetDictionary.DefaultFrameworkTitle">
+            <summary>
+            This read-only property is used to get the title of the default framework version to use
+            </summary>
+            <remarks>The default is the .NET Framework 4.5</remarks>
+        </member>
+        <member name="T:Sandcastle.Core.Reflection.ReflectionDataSet">
+            <summary>
+            This class contains information used to obtain reflection data and comments for a specific set of
+            assemblies.
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSet.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSet.#ctor(System.String)">
+            <summary>
+            File constructor
+            </summary>
+            <param name="filename">The filename from which to load the reflection data set information</param>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSet.OnPropertyChanged(System.String)">
+            <summary>
+            This raises the <see cref="E:Sandcastle.Core.Reflection.ReflectionDataSet.PropertyChanged"/> event
+            </summary>
+            <param name="propertyName">The property name that changed</param>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSet.Save">
+            <summary>
+            This is used to save the reflection data set information to an XML file
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSet.IgnoreIfUnresolvedConfiguration">
+            <summary>
+            This is used to return the <c>ignoreIfUnresolved</c> configuration entries for the MRefBuilder
+            configuration file.
+            </summary>
+            <returns>The configuration entries</returns>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSet.BindingRedirectionConfiguration">
+            <summary>
+            This is used to return the <c>assemblyBinding</c> configuration entries for the MRefBuilder
+            configuration file.
+            </summary>
+            <returns>The configuration entries</returns>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSet.IgnoredNamespacesConfiguration">
+            <summary>
+            This is used to return the API filter <c>namespace</c> configuration entries for the MRefBuilder
+            configuration file.
+            </summary>
+            <returns>The configuration entries</returns>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSet.CommentsFileLocations(System.Globalization.CultureInfo)">
+            <summary>
+            This is used to return an enumerable list of comments file locations
+            </summary>
+            <param name="language">An optional language to use when searching for XML comments files, or
+            null to use the current language.</param>
+            <returns>An enumerable list of file paths to search for XML comments files</returns>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSet.CultureSpecificCommentsFileFolder(Sandcastle.Core.Reflection.AssemblyLocation,System.Globalization.CultureInfo)">
+            <summary>
+            This is used to see if any comments files exist in a culture-specific framework location folder
+            </summary>
+            <param name="location">The framework location</param>
+            <param name="language">The language used to check for a culture-specific folder</param>
+            <returns>True if files were</returns>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSet.ContainsAssembly(System.String)">
+            <summary>
+            This is used to see if the framework contains an assembly that uses the specified name
+            </summary>
+            <param name="assemblyName">The assembly name without a path or extension or a strong name value.
+            If a strong name value is specified, only the name part is used to determine if the assembly is
+            present in the framework.  Assembly names are compare case-insensitively.</param>
+            <returns>True if the framework contains the named assembly, false if not.</returns>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSet.FindAssembly(System.String)">
+            <summary>
+            This is used to find an assembly by name
+            </summary>
+            <param name="assemblyName">The assembly name without a path or extension or a strong name value.
+            If a strong name value is specified, only the name part is used to determine if the assembly is
+            present in the framework.  Assembly names are compared case-insensitively.</param>
+            <returns>The assembly if found or null if not found</returns>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSet.GetReferencedNamespaces(System.Globalization.CultureInfo,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            This is used to get an enumerable list of unique namespaces referenced in the XML comments files of
+            the given set of namespaces.
+            </summary>
+            <param name="language">The language to use when locating the XML comments files</param>
+            <param name="searchNamespaces">An enumerable list of namespaces to search</param>
+            <param name="validNamespaces">An enumerable list of valid namespaces</param>
+            <returns>An enumerable list of unique namespaces in the related XML comments files</returns>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.Filename">
+            <summary>
+            This is used to get or set the filename
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.Platform">
+            <summary>
+            This is used to get or set the platform associated with the reflection data set
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.Version">
+            <summary>
+            This is used to get or set the version number associated with the reflection data set if applicable
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.Title">
+            <summary>
+            This is used to get or set the reflection data set title
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.Notes">
+            <summary>
+            This is used to get or set notes about this reflection data set
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.AllSystemTypesRedirected">
+            <summary>
+            This is used to get or set whether or not all <c>System</c> types are redirected to other assemblies
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.IsCoreFramework">
+            <summary>
+            This read-only property is used to determine if this entry represents a core framework
+            </summary>
+            <value>True if it is the core framework, false if not</value>
+            <remarks>The core location is determined by searching for <c>mscorlib</c> in the assembly set</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.CoreFrameworkLocation">
+            <summary>
+            This read-only property is used to get the core framework location if there is one
+            </summary>
+            <value>The core framework location or null if there isn't one</value>
+            <remarks>The core location is determined by searching for <c>mscorlib</c> in the assembly set</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.AssemblyLocations">
+            <summary>
+            This read-only property returns a bindable list of assembly locations
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.IgnoredNamespaces">
+            <summary>
+            This read-only property returns a bindable list of ignored namespaces used for building the
+            reflection data.
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.IgnoredUnresolved">
+            <summary>
+            This read-only property returns a bindable list of ignored unresolved assembly identities used for
+            building the reflection data.
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.BindingRedirections">
+            <summary>
+            This read-only property returns a bindable list of binding redirections used for building the
+            reflection data.
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.IsPresent">
+            <summary>
+            This read-only property can be used to determine if the reflection data set's core assemblies are
+            present on the current system
+            </summary>
+            <returns>True if the core assembly folder exists and contains the first assembly, false if not.  If
+            the first assembly is present, it is assumed that all of them are.</returns>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.IncludedAssemblies">
+            <summary>
+            This read-only property returns an enumerable list of all included assemblies in the reflection data
+            set.
+            </summary>
+        </member>
+        <member name="E:Sandcastle.Core.Reflection.ReflectionDataSet.PropertyChanged">
+            <summary>
+            The property changed event
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.Reflection.ReflectionDataSet.StringWrapper">
+            <summary>
+            This is used to create a bindable, editable list of string values
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSet.StringWrapper.op_Implicit(Sandcastle.Core.Reflection.ReflectionDataSet.StringWrapper)~System.String">
+            <summary>
+            This is used to handle an implicit conversion from a <see cref="T:Sandcastle.Core.Reflection.ReflectionDataSet.StringWrapper"/> object to a string
+            </summary>
+            <param name="wrapper">The <see cref="T:Sandcastle.Core.Reflection.ReflectionDataSet.StringWrapper"/> to convert</param>
+            <returns>The value of the given wrapper as a string</returns>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.StringWrapper.Value">
+            <summary>
+            The string value
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.Reflection.ReflectionDataSet.BindingRedirection">
+            <summary>
+            This class is used to edit binding redirection settings
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSet.BindingRedirection.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSet.BindingRedirection.FromXml(System.Xml.Linq.XElement)">
+            <summary>
+            Create an instance from an XML element
+            </summary>
+            <param name="redirection">The binding redirection settings</param>
+            <returns>The binding redirection settings created from the XML element</returns>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSet.BindingRedirection.ToXml">
+            <summary>
+            This is used to convert the binding redirection to an XML element
+            </summary>
+            <returns>The binding redirection as an XML element</returns>
+        </member>
+        <member name="M:Sandcastle.Core.Reflection.ReflectionDataSet.BindingRedirection.ToBindingRedirectionElement">
+            <summary>
+            This is used to convert the binding redirection entry to an MRefBuilder configuration file
+            assembly binding redirection element.
+            </summary>
+            <returns>The binding redirection as an MRefBuilder configuration element</returns>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.BindingRedirection.Name">
+            <summary>
+            The assembly name
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.BindingRedirection.Culture">
+            <summary>
+            The assembly culture (optional)
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.BindingRedirection.PublicKeyToken">
+            <summary>
+            The public key token
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.BindingRedirection.OldVersion">
+            <summary>
+            The old version
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.ReflectionDataSet.BindingRedirection.NewVersion">
+            <summary>
+            The new version
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.Reflection.PlatformType">
+            <summary>
+            This class holds a set of constants used to define the various .NET platform types
+            </summary>
+        </member>
+        <member name="F:Sandcastle.Core.Reflection.PlatformType.DotNetCore">
+            <summary>.NET Core (Windows Store Apps) Framework</summary>
+        </member>
+        <member name="F:Sandcastle.Core.Reflection.PlatformType.DotNetFramework">
+            <summary>.NET Framework</summary>
+        </member>
+        <member name="F:Sandcastle.Core.Reflection.PlatformType.DotNetMicroFramework">
+            <summary>.NET Micro Framework</summary>
+        </member>
+        <member name="F:Sandcastle.Core.Reflection.PlatformType.DotNetPortable">
+            <summary>.NET Portable Library Framework</summary>
+        </member>
+        <member name="F:Sandcastle.Core.Reflection.PlatformType.Silverlight">
+            <summary>Silverlight Framework</summary>
+        </member>
+        <member name="F:Sandcastle.Core.Reflection.PlatformType.WindowsPhone">
+            <summary>Windows Phone Framework</summary>
+        </member>
+        <member name="F:Sandcastle.Core.Reflection.PlatformType.WindowsPhoneApp">
+            <summary>Windows Phone Store Apps Framework</summary>
+        </member>
+        <member name="P:Sandcastle.Core.Reflection.PlatformType.PlatformTypes">
+            <summary>
+            This read-only property returns an enumerable list of the valid platform types
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.HelpFileFormats">
+            <summary>
+            This public enumerated type defines the type(s) of help file that can be generated
+            </summary>
+        </member>
+        <member name="F:Sandcastle.Core.HelpFileFormats.HtmlHelp1">
+            <summary>HTML Help 1 (.chm) format built with HHC.EXE</summary>
+        </member>
+        <member name="F:Sandcastle.Core.HelpFileFormats.MSHelpViewer">
+            <summary>MS Help Viewer (.mshc) format, a ZIP file containing the help content</summary>
+        </member>
+        <member name="F:Sandcastle.Core.HelpFileFormats.Website">
+            <summary>A website with a basic TOC and search panes</summary>
+        </member>
+        <member name="F:Sandcastle.Core.HelpFileFormats.OpenXml">
+            <summary>Open XML (.docx) format, compatible with Microsoft Word and Open Office</summary>
+        </member>
+        <member name="F:Sandcastle.Core.HelpFileFormats.Markdown">
+            <summary>Markdown (.md) format, suitable for use in wikis such as those for GitHub projects</summary>
+        </member>
+        <member name="T:Sandcastle.Core.LogLevel">
+            <summary>
+            This enumerated type defines the message logging levels
+            </summary>
+        </member>
+        <member name="F:Sandcastle.Core.LogLevel.Info">
+            <summary>An informational message</summary>
+        </member>
+        <member name="F:Sandcastle.Core.LogLevel.Warn">
+            <summary>A warning message</summary>
+        </member>
+        <member name="F:Sandcastle.Core.LogLevel.Error">
+            <summary>A error message</summary>
+        </member>
+        <member name="F:Sandcastle.Core.LogLevel.Diagnostic">
+            <summary>A diagnostic message, useful for debugging</summary>
+        </member>
+        <member name="T:Sandcastle.Core.PresentationStyle.ContentFiles">
+            <summary>
+            This class is used to contain content files for a presentation style that are to be embedded in the
+            compiled help file.
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.PresentationStyle.ContentFiles.#ctor(Sandcastle.Core.HelpFileFormats,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="helpFileFormats">The help file formats to which the files apply</param>
+            <param name="sourcePath">The source path</param>
+            <overloads>There are two overloads for the constructor</overloads>
+            <remarks>The files from the source path will be copied to a like named folder in the build output</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.PresentationStyle.ContentFiles.#ctor(Sandcastle.Core.HelpFileFormats,System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="helpFileFormats">The help file formats to which the files apply</param>
+            <param name="sourcePath">The source path</param>
+            <param name="destination">The destination path to use in the build output</param>
+        </member>
+        <member name="M:Sandcastle.Core.PresentationStyle.ContentFiles.#ctor(Sandcastle.Core.HelpFileFormats,System.String,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="helpFileFormats">The help file formats to which the files apply</param>
+            <param name="basePath">An alternate base path or null to use the presentation style base path</param>
+            <param name="sourcePath">The source path</param>
+            <param name="destination">The destination path</param>
+            <param name="templateFileExtensions">An enumerable list of file extensions to treat as template files</param>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.ContentFiles.HelpFileFormats">
+            <summary>
+            This read-only property returns the help file formats to which these files apply
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.ContentFiles.BasePath">
+            <summary>
+            This read-only property returns the base path used for the source path files
+            </summary>
+            <value>If null, the presentation style base path is used</value>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.ContentFiles.SourcePathWildcard">
+            <summary>
+            This read-only property returns the source path wildcard used to copy files
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.ContentFiles.DestinationFolder">
+            <summary>
+            This read-only property returns the destination folder of the content files in the compiled help file
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.ContentFiles.TemplateFileExtensions">
+            <summary>
+            This read-only property returns an enumerable list of file extensions that should be treated as
+            template files that need substitution tags replaced at build time.
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.PresentationStyle.IPresentationStyleMetadata">
+            <summary>
+            This class defines the metadata for a presentation style plug-in
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.IPresentationStyleMetadata.Id">
+            <summary>
+            This read-only property returns the ID for the presentation style
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.IPresentationStyleMetadata.Title">
+            <summary>
+            This read-only property returns the title for the presentation style
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.IPresentationStyleMetadata.Description">
+            <summary>
+            This read-only property returns a brief description of the presentation style
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.IPresentationStyleMetadata.Version">
+            <summary>
+            This read-only property returns the version of the presentation style
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.IPresentationStyleMetadata.Copyright">
+            <summary>
+            This read-only property returns the copyright information for the presentation style
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.IPresentationStyleMetadata.IsDeprecated">
+            <summary>
+            This read-only property is used to indicate that the presentation style has been deprecated
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.PresentationStyle.PlugInDependency">
+            <summary>
+            This class is used to define a plug-in upon which a presentation style depends and the default
+            configuration to use for it.
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.PresentationStyle.PlugInDependency.#ctor(System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="id">The ID of the plug-in depended upon</param>
+            <param name="configuration">The default configuration.  If null or empty, an empty
+            <c>configuration</c> element will be used.</param>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PlugInDependency.Id">
+            <summary>
+            The ID of the plug-in upon which the presentation style depends
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PlugInDependency.Configuration">
+            <summary>
+            The default configuration to use for the plug-in
+            </summary>
+            <remarks>This can be either an empty <c>configuration</c> element or one filled in with default
+            values for any plug-in configuration parameters.  If the plug-in is visible to the user and has been
+            added to the project, the project configuration will override this one.</remarks>
+        </member>
+        <member name="T:Sandcastle.Core.PresentationStyle.PresentationStyleExportAttribute">
+            <summary>
+            This is a custom version of the <see cref="T:System.ComponentModel.Composition.ExportAttribute"/> that contains metadata for presentation
+            style plug-ins.
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.PresentationStyle.PresentationStyleExportAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="id">The required presentation style ID</param>
+            <param name="title">The required presentation style title</param>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleExportAttribute.Id">
+            <summary>
+            This read-only property is used to get the presentation style ID
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleExportAttribute.Title">
+            <summary>
+            This read-only property is used to get the presentation style title
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleExportAttribute.Description">
+            <summary>
+            This is used to get or set a brief description of the presentation style
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleExportAttribute.Version">
+            <summary>
+            This is used to get or set the presentation style version number
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleExportAttribute.Copyright">
+            <summary>
+            This is used to get or set copyright information for the presentation style
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleExportAttribute.IsDeprecated">
+            <summary>
+            This read-only property is used to indicate that the presentation style has been deprecated
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.PresentationStyle.PresentationStyleSettings">
+            <summary>
+            This abstract base class is used to define the settings and common functionality for a specific
+            presentation style.
+            </summary>
+            <remarks>Presentation styles are singletons by nature.  The composition container will create instances
+            as needed.</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.CheckForErrors">
+            <summary>
+            This is used to check the presentation style for errors
+            </summary>
+            <returns>An enumerable list of problems found or an empty list if everything is okay</returns>
+        </member>
+        <member name="M:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.ResolvePath(System.String)">
+            <summary>
+            This is used to resolve a presentation style path
+            </summary>
+            <param name="path">The path to resolve</param>
+            <returns>The resolved path</returns>
+            <remarks>Environment variables in the path will be expanded.  If relative, the path is converted
+            to a full path relative to the presentation style's base path.</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.ResolveEnvironmentVariables(System.String)">
+            <summary>
+            This is used to resolve environment variables in a path with the added step of resolving
+            <c>%SHFBROOT%</c> to the path found by the component utilities if it does not resolve automatically.
+            </summary>
+            <param name="path">The path in which to resolve an environment variable</param>
+            <returns>The resolved path value</returns>
+        </member>
+        <member name="M:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.CopyHelpContent(Sandcastle.Core.HelpFileFormats,System.String,System.Action{System.String,System.Object[]},System.Action{System.String,System.String,System.String})">
+            <summary>
+            This is used to copy the presentation style help file content to the given destination folder
+            </summary>
+            <param name="format">The help file format for which to copy files</param>
+            <param name="destinationBasePath">The destination base path to which the files are copied</param>
+            <param name="progressReporter">An optional action delegate used to report progress</param>
+            <param name="transformTemplate">A action delegate used to transform a template file (file, source
+            folder, destination folder)</param>
+        </member>
+        <member name="M:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.RecursiveCopy(System.String,System.String,System.Action{System.String,System.Object[]},System.Collections.Generic.IEnumerable{System.String},System.Action{System.String,System.String,System.String})">
+            <summary>
+            This copies files from the specified source folder to the specified destination folder.  If any
+            subfolders are found below the source folder and the wildcard is "*.*", the subfolders are also
+            copied recursively.
+            </summary>
+            <param name="sourcePath">The source path from which to copy</param>
+            <param name="destPath">The destination path to which to copy</param>
+            <param name="progressReporter">An optional action delegate used to report progress</param>
+            <param name="templateFileExtensions">An enumerable list of file extensions that will be treated like
+            template files and will have substitution tags replaced.</param>
+            <param name="transformTemplate">A action delegate used to transform a template file (file, source
+            folder, destination folder)</param>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.Location">
+            <summary>
+            This is overridden in derived classes to provide the location of the presentation style files
+            </summary>
+            <value>Typically, this will return the path of the executing assembly</value>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.BasePath">
+            <summary>
+            This is used to get or set the presentation style base path used to resolve relative paths within the
+            presentation style.
+            </summary>
+            <value>If null or empty, the <see cref="P:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.Location"/> path is used as the base path.  If relative, it
+            is considered to be relative to the <see cref="P:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.Location"/> path.</value>
+            <remarks>This is useful for defining a base path with multiple presentation styles are included
+            such as with the standard presentation styles.</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.SupportedFormats">
+            <summary>
+            This is used to get or set the help file formats supported by the presentation style
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.SupportsNamespaceGrouping">
+            <summary>
+            This is used to get or set whether or not namespace grouping is supported by the presentation style
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.SupportsCodeSnippetGrouping">
+            <summary>
+            This is used to get or set whether or not code snippet grouping is supported by the presentation
+            style.
+            </summary>
+            <remarks>If true, code snippets will be grouped and sorted based on the syntax generators present
+            in the project.</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.ContentFiles">
+            <summary>
+            This read-only property returns the list of help content file locations
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.ResourceItemsPath">
+            <summary>
+            This is used to get or set the path in which BuildAssembler resource item files are stored
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.ToolResourceItemsPath">
+            <summary>
+            This is used to get or set the path in which help file builder resource item files are stored
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.DocumentModelTransformation">
+            <summary>
+            This is used to get or set the document model transformation file and its parameters
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.IntermediateTocTransformation">
+            <summary>
+            This is used to get or set the intermediate TOC transformation file and its parameters
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.ConceptualBuildConfiguration">
+            <summary>
+            This is used to get or set the BuildAssembler configuration filename for conceptual builds
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.ReferenceBuildConfiguration">
+            <summary>
+            This is used to get or set the BuildAssembler configuration filename for reference builds
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.TransformComponentArguments">
+            <summary>
+            This read-only property returns the transform component arguments if any
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.PresentationStyleSettings.PlugInDependencies">
+            <summary>
+            This read-only property returns any plug-in dependencies required by the presentation style
+            </summary>
+            <remarks>This is used to ensure that any dependent plug-ins are added to the build.  If any of the
+            plug-ins are visible to the user and have been added to the project, the project configuration will
+            override the default configuration supplied here.</remarks>
+        </member>
+        <member name="T:Sandcastle.Core.PresentationStyle.TransformationFile">
+            <summary>
+            This class is used to represent an XSL transformation with optional parameters
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.PresentationStyle.TransformationFile.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="transformationFile">The transformation file to use</param>
+            <overloads>There are two overloads for the constructor</overloads>
+        </member>
+        <member name="M:Sandcastle.Core.PresentationStyle.TransformationFile.#ctor(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="transformationFile">The transformation file to use</param>
+            <param name="parameters">An optional set of key/value parameters for the transformation file</param>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.TransformationFile.TransformationFilename">
+            <summary>
+            This read-only property returns the transformation filename
+            </summary>
+        </member>
+        <member name="T:Sandcastle.Core.PresentationStyle.TransformComponentArgument">
+            <summary>
+            This class is used to contain transform component argument values
+            </summary>
+            <remarks>These are inserted into the BuildAssembler configuration file for the <c>TransformComponent</c>
+            to use at build time.</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.PresentationStyle.TransformComponentArgument.#ctor(Sandcastle.Core.PresentationStyle.TransformComponentArgument)">
+            <summary>
+            Private copy constructor
+            </summary>
+            <param name="clone">The transform component argument to clone</param>
+        </member>
+        <member name="M:Sandcastle.Core.PresentationStyle.TransformComponentArgument.#ctor(System.String,System.Boolean,System.Boolean,System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="key">The transform argument key name</param>
+            <param name="isForConceptualBuild">True if used in conceptual builds, false if not</param>
+            <param name="isForReferenceBuild">True if used in reference builds, false if not</param>
+            <param name="value">The default value of the argument</param>
+            <param name="description">A description of the transform argument</param>
+            <overloads>There are three overloads for the constructor</overloads>
+        </member>
+        <member name="M:Sandcastle.Core.PresentationStyle.TransformComponentArgument.#ctor(System.String,System.Boolean,System.Boolean,System.String,System.Xml.Linq.XElement)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="key">The transform argument key name</param>
+            <param name="isForConceptualBuild">True if used in conceptual builds, false if not</param>
+            <param name="isForReferenceBuild">True if used in reference builds, false if not</param>
+            <param name="description">A description of the transform argument</param>
+            <param name="content">The default content of the argument</param>
+        </member>
+        <member name="M:Sandcastle.Core.PresentationStyle.TransformComponentArgument.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="argument">The XML element containing the transform component argument settings</param>
+            <remarks>This is used by designers to create arguments from serialized project settings</remarks>
+        </member>
+        <member name="M:Sandcastle.Core.PresentationStyle.TransformComponentArgument.Clone">
+            <summary>
+            This is used to clone a transform component argument
+            </summary>
+            <returns>A clone of the current transform component argument</returns>
+        </member>
+        <member name="M:Sandcastle.Core.PresentationStyle.TransformComponentArgument.ToXml">
+            <summary>
+            This is used to convert the transform component argument to an XML element for storing in a project
+            </summary>
+            <returns>The transform component argument as an XML element</returns>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.TransformComponentArgument.Key">
+            <summary>
+            This read-only property returns the argument key
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.TransformComponentArgument.IsForConceptualBuild">
+            <summary>
+            This read-only property returns whether or not the argument applies to conceptual builds
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.TransformComponentArgument.IsForReferenceBuild">
+            <summary>
+            This read-only property returns whether or not the argument applies to reference builds
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.TransformComponentArgument.Description">
+            <summary>
+            This read-only property returns a description of the argument
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.TransformComponentArgument.Value">
+            <summary>
+            This is used to get or set the argument's value for simple arguments
+            </summary>
+            <remarks>If set to a non-null value, the value of the <see cref="P:Sandcastle.Core.PresentationStyle.TransformComponentArgument.Content"/> property is ignored.
+            This property will take precedence if both are set.</remarks>
+        </member>
+        <member name="P:Sandcastle.Core.PresentationStyle.TransformComponentArgument.Content">
+            <summary>
+            This is used to get or set the argument's content for complex arguments
+            </summary>
+            <remarks>If set to a non-null value, the value of the <see cref="P:Sandcastle.Core.PresentationStyle.TransformComponentArgument.Value"/> property is ignored.  The
+            <value>Value</value> property takes precedence if both are set.  The root element name is not
+            relevant.  Only the content is significant and will be used.</remarks>
+        </member>
+        <member name="T:Sandcastle.Core.UI.ConfigurationEditorDlg">
+            <summary>
+            This form is used to edit a build component configuration as XML text.  This is used for components that
+            have to built-in configuration method override.
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.UI.ConfigurationEditorDlg.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.UI.ConfigurationEditorDlg.btnClose_Click(System.Object,System.EventArgs)">
+            <summary>
+            Close the form without saving
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:Sandcastle.Core.UI.ConfigurationEditorDlg.btnOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            Save the changes
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:Sandcastle.Core.UI.ConfigurationEditorDlg.txtConfiguration_Enter(System.Object,System.EventArgs)">
+            <summary>
+            Clear the text selection on entry to prevent accidental deletion of the text.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="F:Sandcastle.Core.UI.ConfigurationEditorDlg.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Sandcastle.Core.UI.ConfigurationEditorDlg.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Sandcastle.Core.UI.ConfigurationEditorDlg.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:Sandcastle.Core.UI.ConfigurationEditorDlg.Configuration">
+            <summary>
+            This is used to set or get the configuration text
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- Syntax section and code example title.  Add one for the primary ID and one for each alternate ID. -->
+  <item id="devlang_Visual Basic">VB</item>
+  <item id="devlang_VisualBasic">VB</item>
+  <item id="devlang_vb">VB</item>
+  <item id="devlang_vb#">VB</item>
+  <item id="devlang_vbnet">VB</item>
+  <item id="devlang_vb.net">VB</item>
+  <item id="devlang_kblangvb">VB</item>
+  <item id="devlang_VisualBasicDeclaration">VB</item>
+
+	<!-- Development language metadata values.  Add one for the primary ID and one for each alternate ID.  -->
+  <item id="metaLang_Visual Basic">VB</item>
+  <item id="metaLang_VisualBasic">VB</item>
+  <item id="metaLang_vb">VB</item>
+  <item id="metaLang_vb#">VB</item>
+  <item id="metaLang_vbnet">VB</item>
+  <item id="metaLang_vb.net">VB</item>
+  <item id="metaLang_kblangvb">VB</item>
+  <item id="metaLang_VisualBasicDeclaration">VB</item>
+
+	<!-- VB syntax section messages -->
+	<item id="UnsupportedUnsafe_VisualBasic">Visual Basic does not support APIs that consume or return unsafe types.</item>
+	<item id="UnsupportedOperator_VisualBasic">Visual Basic does not support this operator.</item>
+	<item id="UnsupportedStaticClass_VisualBasic">Visual Basic does not support the declaration of static classes.</item>
+	<item id="UnsupportedVarargs_VisualBasic">Visual Basic does not support methods that use variable length arguments
+(<span class="code">varargs</span>).  The compiler automatically resolves calls to this method to the same method
+that uses a parameter array.</item>
+
+</content>

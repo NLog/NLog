@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Phone.Maps">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Phone Core Maps assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Phone.Maps</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright © Microsoft 2011</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>00ba7b7c-3b8e-4a48-b94b-14b64d6d07e7</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Phone.Maps">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Phone.Maps" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Phone.Maps.MapsApplicationContext" />
+        <element api="T:Microsoft.Phone.Maps.MapsSettings" />
+      </elements>
+      <file name="7e3f8082-a2dd-e66f-6a98-fac725b25dc5" />
+    </api>
+    <api id="T:Microsoft.Phone.Maps.MapsApplicationContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Maps.MapsApplicationContext" />
+      <apidata name="MapsApplicationContext" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps" />
+      </containers>
+      <file name="9b132b7b-d54d-bf80-8967-57a5933002ae" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Maps.MapsApplicationContext">
+      <topicdata name="MapsApplicationContext" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Maps.MapsApplicationContext" />
+      <apidata name="MapsApplicationContext" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.MapsApplicationContext.ApplicationId" />
+        <element api="P:Microsoft.Phone.Maps.MapsApplicationContext.AuthenticationToken" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps" />
+        <type api="T:Microsoft.Phone.Maps.MapsApplicationContext" />
+      </containers>
+      <file name="ae8b84b3-4df7-23ef-ac96-a2adbe228672" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Maps.MapsApplicationContext">
+      <topicdata name="MapsApplicationContext" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Maps.MapsApplicationContext" />
+      <apidata name="MapsApplicationContext" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps" />
+        <type api="T:Microsoft.Phone.Maps.MapsApplicationContext" />
+      </containers>
+      <file name="c6e5c638-8b09-11fd-3e36-9c50a6e77b4b" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Maps.MapsApplicationContext">
+      <topicdata name="MapsApplicationContext" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Maps.MapsApplicationContext" />
+      <apidata name="MapsApplicationContext" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.MapsApplicationContext.ApplicationId" />
+        <element api="P:Microsoft.Phone.Maps.MapsApplicationContext.AuthenticationToken" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps" />
+        <type api="T:Microsoft.Phone.Maps.MapsApplicationContext" />
+      </containers>
+      <file name="453722f8-c2a1-f50e-562d-7eb4bfc7fbda" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.MapsApplicationContext.ApplicationId">
+      <topicdata group="api" />
+      <apidata name="ApplicationId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ApplicationId" />
+      <setter name="set_ApplicationId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps" />
+        <type api="T:Microsoft.Phone.Maps.MapsApplicationContext" ref="true" />
+      </containers>
+      <file name="643a8eb7-9de1-1b5e-bdac-d56feef59c13" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.MapsApplicationContext.AuthenticationToken">
+      <topicdata group="api" />
+      <apidata name="AuthenticationToken" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AuthenticationToken" />
+      <setter name="set_AuthenticationToken" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps" />
+        <type api="T:Microsoft.Phone.Maps.MapsApplicationContext" ref="true" />
+      </containers>
+      <file name="ab70e5a5-73b4-7f29-4fbf-61dcb652448f" />
+    </api>
+    <api id="T:Microsoft.Phone.Maps.MapsSettings">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Maps.MapsSettings" />
+      <apidata name="MapsSettings" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps" />
+      </containers>
+      <file name="c6ca40ee-1016-dc8b-76b8-293ae3adb1db" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Maps.MapsSettings">
+      <topicdata name="MapsSettings" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Maps.MapsSettings" />
+      <apidata name="MapsSettings" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.MapsSettings.ApplicationContext" />
+        <element api="P:Microsoft.Phone.Maps.MapsSettings.IsMapsDisabled" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps" />
+        <type api="T:Microsoft.Phone.Maps.MapsSettings" />
+      </containers>
+      <file name="d15023e1-9e70-cd70-62b7-16c5a1300e05" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Maps.MapsSettings">
+      <topicdata name="MapsSettings" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Maps.MapsSettings" />
+      <apidata name="MapsSettings" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.MapsSettings.ApplicationContext" />
+        <element api="P:Microsoft.Phone.Maps.MapsSettings.IsMapsDisabled" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps" />
+        <type api="T:Microsoft.Phone.Maps.MapsSettings" />
+      </containers>
+      <file name="3436f445-14de-aa24-6a50-39c956bfe26b" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.MapsSettings.ApplicationContext">
+      <topicdata group="api" />
+      <apidata name="ApplicationContext" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ApplicationContext" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.MapsApplicationContext" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps" />
+        <type api="T:Microsoft.Phone.Maps.MapsSettings" ref="true" />
+      </containers>
+      <file name="56d225e9-b494-a90e-ffa9-600c2f650da1" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.MapsSettings.IsMapsDisabled">
+      <topicdata group="api" />
+      <apidata name="IsMapsDisabled" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsMapsDisabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps" />
+        <type api="T:Microsoft.Phone.Maps.MapsSettings" ref="true" />
+      </containers>
+      <file name="fe03f223-7d84-584f-dda6-fd9bfd93a3e2" />
+    </api>
+  </apis>
+</reflection>

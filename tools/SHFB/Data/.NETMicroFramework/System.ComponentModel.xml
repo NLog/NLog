@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ComponentModel">
+      <topicdata group="api" />
+      <apidata name="System.ComponentModel" group="namespace" />
+      <elements>
+        <element api="T:System.ComponentModel.EditorBrowsableState" />
+        <element api="T:System.ComponentModel.EditorBrowsableAttribute" />
+      </elements>
+      <file name="0de82105-8f0d-3514-72ed-11d749ecebe4" />
+    </api>
+    <api id="T:System.ComponentModel.EditorBrowsableAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.EditorBrowsableAttribute" />
+      <apidata name="EditorBrowsableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ComponentModel.EditorBrowsableAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+              <field name="Struct" />
+              <field name="Enum" />
+              <field name="Constructor" />
+              <field name="Method" />
+              <field name="Property" />
+              <field name="Field" />
+              <field name="Event" />
+              <field name="Interface" />
+              <field name="Delegate" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b188f306-0bb4-81d8-8a08-9fe980481b0e" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.EditorBrowsableAttribute">
+      <topicdata name="EditorBrowsableAttribute" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.EditorBrowsableAttribute" />
+      <apidata name="EditorBrowsableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ComponentModel.EditorBrowsableAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ComponentModel.EditorBrowsableAttribute.#ctor">
+          <element api="M:System.ComponentModel.EditorBrowsableAttribute.#ctor" />
+          <element api="M:System.ComponentModel.EditorBrowsableAttribute.#ctor(System.ComponentModel.EditorBrowsableState)" />
+        </element>
+        <element api="M:System.ComponentModel.EditorBrowsableAttribute.Equals(System.Object)" />
+        <element api="P:System.ComponentModel.EditorBrowsableAttribute.State" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableAttribute" />
+      </containers>
+      <file name="226ad751-9c80-8a6e-2043-5a3dd3655c7d" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.EditorBrowsableAttribute">
+      <topicdata name="EditorBrowsableAttribute" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.EditorBrowsableAttribute" />
+      <apidata name="EditorBrowsableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ComponentModel.EditorBrowsableAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.EditorBrowsableAttribute.Equals(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableAttribute" />
+      </containers>
+      <file name="a7ba42dc-7e66-b94b-2b0e-6a67151573e3" />
+    </api>
+    <api id="Properties.T:System.ComponentModel.EditorBrowsableAttribute">
+      <topicdata name="EditorBrowsableAttribute" group="list" subgroup="Properties" typeTopicId="T:System.ComponentModel.EditorBrowsableAttribute" />
+      <apidata name="EditorBrowsableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ComponentModel.EditorBrowsableAttribute.#ctor" />
+      <elements>
+        <element api="P:System.ComponentModel.EditorBrowsableAttribute.State" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableAttribute" />
+      </containers>
+      <file name="8ace78cc-9327-9f9f-5079-a22712660b16" />
+    </api>
+    <api id="Overload:System.ComponentModel.EditorBrowsableAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.EditorBrowsableAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ComponentModel.EditorBrowsableAttribute.#ctor" />
+        <element api="M:System.ComponentModel.EditorBrowsableAttribute.#ctor(System.ComponentModel.EditorBrowsableState)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+      </containers>
+      <file name="6d28900f-ea95-c5e3-4474-d4885dce4b25" />
+    </api>
+    <api id="M:System.ComponentModel.EditorBrowsableAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ComponentModel.EditorBrowsableAttribute.#ctor" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+      </containers>
+      <file name="ab32303d-5681-5758-4bf6-f57fbf69f608" />
+    </api>
+    <api id="M:System.ComponentModel.EditorBrowsableAttribute.#ctor(System.ComponentModel.EditorBrowsableState)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ComponentModel.EditorBrowsableAttribute.#ctor" />
+      <parameters>
+        <parameter name="state">
+          <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+      </containers>
+      <file name="64d5ecf0-1c2f-85a1-ba94-4f4531287eb0" />
+    </api>
+    <api id="M:System.ComponentModel.EditorBrowsableAttribute.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Equals(System.Object)">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+      </containers>
+      <file name="1ff1eaec-eaf1-2591-9bd3-fa5a60abc19e" />
+    </api>
+    <api id="P:System.ComponentModel.EditorBrowsableAttribute.State">
+      <topicdata group="api" />
+      <apidata name="State" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_State" />
+      <returns>
+        <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+      </containers>
+      <file name="6af33196-23c8-bcff-7c43-9cfad557400c" />
+    </api>
+    <api id="T:System.ComponentModel.EditorBrowsableState">
+      <topicdata group="api" />
+      <apidata name="EditorBrowsableState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.ComponentModel.EditorBrowsableState.Always" />
+        <element api="F:System.ComponentModel.EditorBrowsableState.Never" />
+        <element api="F:System.ComponentModel.EditorBrowsableState.Advanced" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+      </containers>
+      <file name="b0f7601a-f04a-882e-0649-4461e994768c" />
+    </api>
+    <api id="F:System.ComponentModel.EditorBrowsableState.Advanced">
+      <topicdata group="api" notopic="" />
+      <apidata name="Advanced" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+      </containers>
+      <file name="9ee7b084-00cc-a104-b91c-770f29e6f5df" />
+    </api>
+    <api id="F:System.ComponentModel.EditorBrowsableState.Always">
+      <topicdata group="api" notopic="" />
+      <apidata name="Always" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+      </containers>
+      <file name="1b76c2b5-2c78-8e1f-d892-84bd0c495d4c" />
+    </api>
+    <api id="F:System.ComponentModel.EditorBrowsableState.Never">
+      <topicdata group="api" notopic="" />
+      <apidata name="Never" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+      </containers>
+      <file name="a5e03c04-5050-c5bf-1f45-7d791445e12b" />
+    </api>
+  </apis>
+</reflection>

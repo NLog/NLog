@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -330,18 +330,24 @@ namespace NLog.Targets
                 }
 
                 this.ConnectionString = SimpleLayout.Escape(cs.ConnectionString);
-                this.ProviderFactory = DbProviderFactories.GetFactory(cs.ProviderName);
-                foundProvider = true;
+                if (!string.IsNullOrEmpty(cs.ProviderName))
+                {
+                    this.ProviderFactory = DbProviderFactories.GetFactory(cs.ProviderName);
+                    foundProvider = true;
+                }
+            
             }
 
             if (!foundProvider)
             {
                 foreach (DataRow row in DbProviderFactories.GetFactoryClasses().Rows)
                 {
-                    if ((string)row["InvariantName"] == this.DBProvider)
+                    var invariantname = (string)row["InvariantName"];
+                    if (invariantname == this.DBProvider)
                     {
                         this.ProviderFactory = DbProviderFactories.GetFactory(this.DBProvider);
                         foundProvider = true;
+                        break;
                     }
                 }
             }

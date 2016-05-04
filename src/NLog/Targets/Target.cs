@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -50,6 +50,7 @@ namespace NLog.Targets
     {
         private object lockObject = new object();
         private List<Layout> allLayouts;
+        private bool scannedForLayouts;
         private Exception initializeException;
 
         /// <summary>
@@ -75,6 +76,20 @@ namespace NLog.Targets
         /// Gets a value indicating whether the target has been initialized.
         /// </summary>
         protected bool IsInitialized { get; private set; }
+
+        /// <summary>
+        /// Get all used layouts in this target.
+        /// </summary>
+        /// <returns></returns>
+        internal List<Layout> GetAllLayouts()
+        {
+
+            if (!scannedForLayouts)
+            {
+                FindAllLayouts();
+            }
+            return allLayouts;
+        }
 
         /// <summary>
         /// Initializes this instance.
@@ -295,9 +310,11 @@ namespace NLog.Targets
                     {
                         this.InitializeTarget();
                         this.initializeException = null;
-                        if (this.allLayouts == null)
+                        if (!scannedForLayouts)
                         {
-                            throw new NLogRuntimeException("{0}.allLayouts is null. Call base.InitializeTarget() in {0}", this.GetType());
+                            InternalLogger.Debug("InitializeTarget is done but not scanned For Layouts");
+                            //this is critical, as we need the layouts. So if base.InitializeTarget() isn't called, we fix the layouts here.
+                            FindAllLayouts();
                         }
                     }
                     catch (Exception exception)
@@ -397,8 +414,15 @@ namespace NLog.Targets
         /// </summary>
         protected virtual void InitializeTarget()
         {
+            //rescan as amount layouts can be changed.
+            FindAllLayouts();
+        }
+
+        private void FindAllLayouts()
+        {
             this.allLayouts = new List<Layout>(ObjectGraphScanner.FindReachableObjects<Layout>(this));
             InternalLogger.Trace("{0} has {1} layouts", this, this.allLayouts.Count);
+            this.scannedForLayouts = true;
         }
 
         /// <summary>

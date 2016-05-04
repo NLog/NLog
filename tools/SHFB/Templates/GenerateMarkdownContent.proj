@@ -1,0 +1,38 @@
+﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<!-- Sandcastle Help File Builder Tasks.  https://GitHub.com/EWSoftware/SHFB -->
+	<UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.GenerateMarkdownContent"
+    AssemblyFile="{@SHFBFolder}\SandcastleBuilder.Utils.dll" />
+
+	<!-- Task properties -->
+	<PropertyGroup>
+		<WorkingFolder>{@HtmlEncWorkingFolder}Output\Markdown</WorkingFolder>
+		<OutputFolder>{@HtmlEncOutputFolder}</OutputFolder>
+		<DefaultTopic>{@DefaultTopic}</DefaultTopic>
+	</PropertyGroup>
+
+	<!-- This defines the dependencies for the Build target -->
+	<PropertyGroup>
+		<BuildDependsOn>
+			BeforeGenerateMarkdownContent;
+			GenerateMarkdownContent;
+			AfterGenerateMarkdownContent
+		</BuildDependsOn>
+	</PropertyGroup>
+
+	<Target Name="Build" DependsOnTargets="$(BuildDependsOn)" />
+
+	<!-- The Generate Markdown Content file target -->
+	<Target Name="GenerateMarkdownContent">
+
+		<!-- Generate the markdown content -->
+		<SandcastleBuilder.Utils.MSBuild.GenerateMarkdownContent
+      WorkingFolder="$(WorkingFolder)"
+      OutputFolder="$(OutputFolder)"
+			DefaultTopic="$(DefaultTopic)"/>
+
+	</Target>
+
+	<!-- The following targets may be overridden or replaced to perform additional processing. -->
+	<Target Name="BeforeGenerateMarkdownContent" />
+	<Target Name="AfterGenerateMarkdownContent" />
+</Project>

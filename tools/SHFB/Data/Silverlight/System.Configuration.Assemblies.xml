@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\silverlightplatformpublickey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Configuration.Assemblies">
+      <topicdata group="api" />
+      <apidata name="System.Configuration.Assemblies" group="namespace" />
+      <elements>
+        <element api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" />
+        <element api="T:System.Configuration.Assemblies.AssemblyVersionCompatibility" />
+      </elements>
+      <file name="5cbc71eb-6d2c-e5ef-9a44-566f74f43210" />
+    </api>
+    <api id="T:System.Configuration.Assemblies.AssemblyHashAlgorithm">
+      <topicdata group="api" />
+      <apidata name="AssemblyHashAlgorithm" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Configuration.Assemblies.AssemblyHashAlgorithm.None" />
+        <element api="F:System.Configuration.Assemblies.AssemblyHashAlgorithm.MD5" />
+        <element api="F:System.Configuration.Assemblies.AssemblyHashAlgorithm.SHA1" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7d1dcd80-1fb2-2c5b-f4e7-c44b609e3492" />
+    </api>
+    <api id="F:System.Configuration.Assemblies.AssemblyHashAlgorithm.MD5">
+      <topicdata group="api" notopic="" />
+      <apidata name="MD5" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+      </returns>
+      <value>32771</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+      </containers>
+      <file name="3578a9d2-582e-7a78-5faa-ad5c625e022a" />
+    </api>
+    <api id="F:System.Configuration.Assemblies.AssemblyHashAlgorithm.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+      </containers>
+      <file name="f3617697-7bfe-7c2b-4038-050385ce6197" />
+    </api>
+    <api id="F:System.Configuration.Assemblies.AssemblyHashAlgorithm.SHA1">
+      <topicdata group="api" notopic="" />
+      <apidata name="SHA1" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+      </returns>
+      <value>32772</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+      </containers>
+      <file name="839d793b-8e93-33eb-0a12-714188d82a58" />
+    </api>
+    <api id="T:System.Configuration.Assemblies.AssemblyVersionCompatibility">
+      <topicdata group="api" />
+      <apidata name="AssemblyVersionCompatibility" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Configuration.Assemblies.AssemblyVersionCompatibility.SameMachine" />
+        <element api="F:System.Configuration.Assemblies.AssemblyVersionCompatibility.SameProcess" />
+        <element api="F:System.Configuration.Assemblies.AssemblyVersionCompatibility.SameDomain" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="21bc5c5e-4692-ac77-f896-873735c9068d" />
+    </api>
+    <api id="F:System.Configuration.Assemblies.AssemblyVersionCompatibility.SameDomain">
+      <topicdata group="api" notopic="" />
+      <apidata name="SameDomain" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Configuration.Assemblies.AssemblyVersionCompatibility" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyVersionCompatibility" ref="false" />
+      </containers>
+      <file name="4bdce21f-0ee1-11ef-fe2f-16c0402ceeae" />
+    </api>
+    <api id="F:System.Configuration.Assemblies.AssemblyVersionCompatibility.SameMachine">
+      <topicdata group="api" notopic="" />
+      <apidata name="SameMachine" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Configuration.Assemblies.AssemblyVersionCompatibility" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyVersionCompatibility" ref="false" />
+      </containers>
+      <file name="0095e6a0-a432-0b44-5404-0ab810b4de31" />
+    </api>
+    <api id="F:System.Configuration.Assemblies.AssemblyVersionCompatibility.SameProcess">
+      <topicdata group="api" notopic="" />
+      <apidata name="SameProcess" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Configuration.Assemblies.AssemblyVersionCompatibility" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyVersionCompatibility" ref="false" />
+      </containers>
+      <file name="bceffa8b-4b56-5727-993c-c2a3cbc6d72a" />
+    </api>
+  </apis>
+</reflection>

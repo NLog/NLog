@@ -1,0 +1,2632 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ComponentModel.Composition.Registration">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ComponentModel.Composition.Registration.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ComponentModel.Composition.Registration.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ComponentModel.Composition.Registration.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ComponentModel.Composition.Registration">
+      <topicdata group="api" />
+      <apidata name="System.ComponentModel.Composition.Registration" group="namespace" />
+      <elements>
+        <element api="T:System.ComponentModel.Composition.Registration.ExportBuilder" />
+        <element api="T:System.ComponentModel.Composition.Registration.ImportBuilder" />
+        <element api="T:System.ComponentModel.Composition.Registration.ParameterImportBuilder" />
+        <element api="T:System.ComponentModel.Composition.Registration.PartBuilder" />
+        <element api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+        <element api="T:System.ComponentModel.Composition.Registration.RegistrationBuilder" />
+      </elements>
+      <file name="145222ea-0a0e-e810-d443-59736fe2065b" />
+    </api>
+    <api id="T:System.ComponentModel.Composition.Registration.ExportBuilder">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.ExportBuilder" />
+      <apidata name="ExportBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ComponentModel.Composition.Registration.ExportBuilder.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+      </containers>
+      <file name="73f19912-e591-5015-9efd-8394b96eb786" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.Composition.Registration.ExportBuilder">
+      <topicdata name="ExportBuilder" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.Composition.Registration.ExportBuilder" />
+      <apidata name="ExportBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ComponentModel.Composition.Registration.ExportBuilder.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.Composition.Registration.ExportBuilder.#ctor" />
+        <element api="Overload:System.ComponentModel.Composition.Registration.ExportBuilder.AddMetadata">
+          <element api="M:System.ComponentModel.Composition.Registration.ExportBuilder.AddMetadata(System.String,System.Func{System.Type,System.Object})" />
+          <element api="M:System.ComponentModel.Composition.Registration.ExportBuilder.AddMetadata(System.String,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.Composition.Registration.ExportBuilder.AsContractName(System.String)" />
+        <element api="Overload:System.ComponentModel.Composition.Registration.ExportBuilder.AsContractType">
+          <element api="M:System.ComponentModel.Composition.Registration.ExportBuilder.AsContractType``1" />
+          <element api="M:System.ComponentModel.Composition.Registration.ExportBuilder.AsContractType(System.Type)" />
+        </element>
+        <element api="M:System.ComponentModel.Composition.Registration.ExportBuilder.Inherited" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" />
+      </containers>
+      <file name="592b7aab-7a4c-28e2-3d49-5f5049b09041" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.Composition.Registration.ExportBuilder">
+      <topicdata name="ExportBuilder" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.Composition.Registration.ExportBuilder" />
+      <apidata name="ExportBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ComponentModel.Composition.Registration.ExportBuilder.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ComponentModel.Composition.Registration.ExportBuilder.AddMetadata">
+          <element api="M:System.ComponentModel.Composition.Registration.ExportBuilder.AddMetadata(System.String,System.Func{System.Type,System.Object})" />
+          <element api="M:System.ComponentModel.Composition.Registration.ExportBuilder.AddMetadata(System.String,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.Composition.Registration.ExportBuilder.AsContractName(System.String)" />
+        <element api="Overload:System.ComponentModel.Composition.Registration.ExportBuilder.AsContractType">
+          <element api="M:System.ComponentModel.Composition.Registration.ExportBuilder.AsContractType``1" />
+          <element api="M:System.ComponentModel.Composition.Registration.ExportBuilder.AsContractType(System.Type)" />
+        </element>
+        <element api="M:System.ComponentModel.Composition.Registration.ExportBuilder.Inherited" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" />
+      </containers>
+      <file name="52f94e62-61f2-e8ed-d7ba-588239b39c20" />
+    </api>
+    <api id="Overload:System.ComponentModel.Composition.Registration.ExportBuilder.AddMetadata">
+      <topicdata name="AddMetadata" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.ExportBuilder" />
+      <apidata name="AddMetadata" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.Composition.Registration.ExportBuilder.AddMetadata(System.String,System.Func{System.Type,System.Object})" />
+        <element api="M:System.ComponentModel.Composition.Registration.ExportBuilder.AddMetadata(System.String,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+      </containers>
+      <file name="75fa28e7-2390-8e89-15f0-58f698026e17" />
+    </api>
+    <api id="Overload:System.ComponentModel.Composition.Registration.ExportBuilder.AsContractType">
+      <topicdata name="AsContractType" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.ExportBuilder" />
+      <apidata name="AsContractType" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.Composition.Registration.ExportBuilder.AsContractType``1" />
+        <element api="M:System.ComponentModel.Composition.Registration.ExportBuilder.AsContractType(System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+      </containers>
+      <file name="677bb367-e386-26d5-ef93-b1f841458dff" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.ExportBuilder.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+      </containers>
+      <file name="e4f4af2d-6da4-cb38-ca9c-ff6cd8488a7f" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.ExportBuilder.AddMetadata(System.String,System.Func{System.Type,System.Object})">
+      <topicdata group="api" />
+      <apidata name="AddMetadata" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.ExportBuilder.AddMetadata" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="itemFunc">
+          <type api="T:System.Func`2" ref="true">
+            <specialization>
+              <type api="T:System.Type" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+      </containers>
+      <file name="4b325673-f099-80d7-b293-d98d6727b0bd" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.ExportBuilder.AddMetadata(System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name="AddMetadata" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.ExportBuilder.AddMetadata" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+      </containers>
+      <file name="596421de-a86e-d654-8c01-17d73baf30e9" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.ExportBuilder.AsContractName(System.String)">
+      <topicdata group="api" />
+      <apidata name="AsContractName" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="contractName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+      </containers>
+      <file name="5eff7eb6-947c-3f07-0f34-161e98761b49" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.ExportBuilder.AsContractType``1">
+      <topicdata group="api" />
+      <apidata name="AsContractType" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.ExportBuilder.AsContractType" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+      </containers>
+      <file name="efaba52e-b942-6589-79a7-40abbc9b06d9" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.ExportBuilder.AsContractType(System.Type)">
+      <topicdata group="api" />
+      <apidata name="AsContractType" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.ExportBuilder.AsContractType" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+      </containers>
+      <file name="765ac13b-dd08-127f-66ec-2a691b1673c4" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.ExportBuilder.Inherited">
+      <topicdata group="api" />
+      <apidata name="Inherited" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+      </containers>
+      <file name="c95334bd-9bdf-cf11-89ce-d6f9a074b9ce" />
+    </api>
+    <api id="T:System.ComponentModel.Composition.Registration.ImportBuilder">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.ImportBuilder" />
+      <apidata name="ImportBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ComponentModel.Composition.Registration.ImportBuilder.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+      </containers>
+      <file name="418d5274-c905-83d7-9ae0-66b0444acc1a" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.Composition.Registration.ImportBuilder">
+      <topicdata name="ImportBuilder" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.Composition.Registration.ImportBuilder" />
+      <apidata name="ImportBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ComponentModel.Composition.Registration.ImportBuilder.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.Composition.Registration.ImportBuilder.#ctor" />
+        <element api="M:System.ComponentModel.Composition.Registration.ImportBuilder.AllowDefault" />
+        <element api="M:System.ComponentModel.Composition.Registration.ImportBuilder.AllowRecomposition" />
+        <element api="M:System.ComponentModel.Composition.Registration.ImportBuilder.AsContractName(System.String)" />
+        <element api="Overload:System.ComponentModel.Composition.Registration.ImportBuilder.AsContractType">
+          <element api="M:System.ComponentModel.Composition.Registration.ImportBuilder.AsContractType``1" />
+          <element api="M:System.ComponentModel.Composition.Registration.ImportBuilder.AsContractType(System.Type)" />
+        </element>
+        <element api="M:System.ComponentModel.Composition.Registration.ImportBuilder.AsMany(System.Boolean)" />
+        <element api="M:System.ComponentModel.Composition.Registration.ImportBuilder.RequiredCreationPolicy(System.ComponentModel.Composition.CreationPolicy)" />
+        <element api="M:System.ComponentModel.Composition.Registration.ImportBuilder.Source(System.ComponentModel.Composition.ImportSource)" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" />
+      </containers>
+      <file name="504c2b4b-12b6-29f2-adc5-4e8ed51e7504" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.Composition.Registration.ImportBuilder">
+      <topicdata name="ImportBuilder" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.Composition.Registration.ImportBuilder" />
+      <apidata name="ImportBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ComponentModel.Composition.Registration.ImportBuilder.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.Composition.Registration.ImportBuilder.AllowDefault" />
+        <element api="M:System.ComponentModel.Composition.Registration.ImportBuilder.AllowRecomposition" />
+        <element api="M:System.ComponentModel.Composition.Registration.ImportBuilder.AsContractName(System.String)" />
+        <element api="Overload:System.ComponentModel.Composition.Registration.ImportBuilder.AsContractType">
+          <element api="M:System.ComponentModel.Composition.Registration.ImportBuilder.AsContractType``1" />
+          <element api="M:System.ComponentModel.Composition.Registration.ImportBuilder.AsContractType(System.Type)" />
+        </element>
+        <element api="M:System.ComponentModel.Composition.Registration.ImportBuilder.AsMany(System.Boolean)" />
+        <element api="M:System.ComponentModel.Composition.Registration.ImportBuilder.RequiredCreationPolicy(System.ComponentModel.Composition.CreationPolicy)" />
+        <element api="M:System.ComponentModel.Composition.Registration.ImportBuilder.Source(System.ComponentModel.Composition.ImportSource)" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" />
+      </containers>
+      <file name="fdd03d29-665e-21af-1c49-75eec79b8c90" />
+    </api>
+    <api id="Overload:System.ComponentModel.Composition.Registration.ImportBuilder.AsContractType">
+      <topicdata name="AsContractType" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.ImportBuilder" />
+      <apidata name="AsContractType" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.Composition.Registration.ImportBuilder.AsContractType``1" />
+        <element api="M:System.ComponentModel.Composition.Registration.ImportBuilder.AsContractType(System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+      </containers>
+      <file name="2dd0dd06-a267-13ec-b94b-4125cb8e7c62" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.ImportBuilder.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+      </containers>
+      <file name="e551f171-e85f-fa9d-13d8-beacc722ac6d" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.ImportBuilder.AllowDefault">
+      <topicdata group="api" />
+      <apidata name="AllowDefault" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+      </containers>
+      <file name="612d0f6d-3b4c-487f-4348-883599432184" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.ImportBuilder.AllowRecomposition">
+      <topicdata group="api" />
+      <apidata name="AllowRecomposition" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+      </containers>
+      <file name="5eae13d2-e341-2d7f-7207-b91cb1551aca" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.ImportBuilder.AsContractName(System.String)">
+      <topicdata group="api" />
+      <apidata name="AsContractName" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="contractName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+      </containers>
+      <file name="1c9121bb-310d-a9d6-f12b-5252f170a588" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.ImportBuilder.AsContractType``1">
+      <topicdata group="api" />
+      <apidata name="AsContractType" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.ImportBuilder.AsContractType" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+      </containers>
+      <file name="d4a2edad-0635-272a-3bc7-d1601215f1ab" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.ImportBuilder.AsContractType(System.Type)">
+      <topicdata group="api" />
+      <apidata name="AsContractType" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.ImportBuilder.AsContractType" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+      </containers>
+      <file name="5981f6d0-7ef0-cd79-331e-29e9e87511c6" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.ImportBuilder.AsMany(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="AsMany" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="isMany" optional="true">
+          <type api="T:System.Boolean" ref="false" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+      </containers>
+      <file name="6c742245-5f06-0479-936f-5f97130a4f0d" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.ImportBuilder.RequiredCreationPolicy(System.ComponentModel.Composition.CreationPolicy)">
+      <topicdata group="api" />
+      <apidata name="RequiredCreationPolicy" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="requiredCreationPolicy">
+          <type api="T:System.ComponentModel.Composition.CreationPolicy" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+      </containers>
+      <file name="f910be3b-e9cf-dd4b-7136-455362c6d2f3" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.ImportBuilder.Source(System.ComponentModel.Composition.ImportSource)">
+      <topicdata group="api" />
+      <apidata name="Source" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.ComponentModel.Composition.ImportSource" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+      </containers>
+      <file name="d5d5938c-3c8b-0959-7b14-2a7c151a08af" />
+    </api>
+    <api id="T:System.ComponentModel.Composition.Registration.ParameterImportBuilder">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.ParameterImportBuilder" />
+      <apidata name="ParameterImportBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.Composition.Registration.ParameterImportBuilder.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+      </containers>
+      <file name="1c87e005-d521-e336-909d-ab7ff68731d2" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.Composition.Registration.ParameterImportBuilder">
+      <topicdata name="ParameterImportBuilder" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.Composition.Registration.ParameterImportBuilder" />
+      <apidata name="ParameterImportBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.Composition.Registration.ParameterImportBuilder.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.Composition.Registration.ParameterImportBuilder.#ctor" />
+        <element api="Overload:System.ComponentModel.Composition.Registration.ParameterImportBuilder.Import">
+          <element api="M:System.ComponentModel.Composition.Registration.ParameterImportBuilder.Import``1" />
+          <element api="M:System.ComponentModel.Composition.Registration.ParameterImportBuilder.Import``1(System.Action{System.ComponentModel.Composition.Registration.ImportBuilder})" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ParameterImportBuilder" />
+      </containers>
+      <file name="0f61ded7-3ce4-4fe1-de55-78c5aff1ad1b" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.Composition.Registration.ParameterImportBuilder">
+      <topicdata name="ParameterImportBuilder" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.Composition.Registration.ParameterImportBuilder" />
+      <apidata name="ParameterImportBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.Composition.Registration.ParameterImportBuilder.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ComponentModel.Composition.Registration.ParameterImportBuilder.Import">
+          <element api="M:System.ComponentModel.Composition.Registration.ParameterImportBuilder.Import``1" />
+          <element api="M:System.ComponentModel.Composition.Registration.ParameterImportBuilder.Import``1(System.Action{System.ComponentModel.Composition.Registration.ImportBuilder})" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ParameterImportBuilder" />
+      </containers>
+      <file name="1ec370dc-ac2a-dda4-1e8e-acaf8d20f7f0" />
+    </api>
+    <api id="Overload:System.ComponentModel.Composition.Registration.ParameterImportBuilder.Import">
+      <topicdata name="Import" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.ParameterImportBuilder" />
+      <apidata name="Import" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.Composition.Registration.ParameterImportBuilder.Import``1" />
+        <element api="M:System.ComponentModel.Composition.Registration.ParameterImportBuilder.Import``1(System.Action{System.ComponentModel.Composition.Registration.ImportBuilder})" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ParameterImportBuilder" ref="true" />
+      </containers>
+      <file name="c60e8bc9-22ff-dfe4-825a-e26fdacd7ef7" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.ParameterImportBuilder.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ParameterImportBuilder" ref="true" />
+      </containers>
+      <file name="d963630f-b08b-45d5-0609-f47ffcccae6a" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.ParameterImportBuilder.Import``1">
+      <topicdata group="api" />
+      <apidata name="Import" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.ParameterImportBuilder.Import" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <returns>
+        <template name="T" index="0" api="M:System.ComponentModel.Composition.Registration.ParameterImportBuilder.Import``1" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ParameterImportBuilder" ref="true" />
+      </containers>
+      <file name="3349b1b3-4806-f882-7e94-ee92155fa328" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.ParameterImportBuilder.Import``1(System.Action{System.ComponentModel.Composition.Registration.ImportBuilder})">
+      <topicdata group="api" />
+      <apidata name="Import" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.ParameterImportBuilder.Import" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="configure">
+          <type api="T:System.Action`1" ref="true">
+            <specialization>
+              <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="M:System.ComponentModel.Composition.Registration.ParameterImportBuilder.Import``1(System.Action{System.ComponentModel.Composition.Registration.ImportBuilder})" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.ParameterImportBuilder" ref="true" />
+      </containers>
+      <file name="58e4d77b-6cdf-583a-5de4-6c7b3e7d25ad" />
+    </api>
+    <api id="T:System.ComponentModel.Composition.Registration.PartBuilder">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.PartBuilder" />
+      <apidata name="PartBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+      </containers>
+      <file name="bce9ecd8-5385-50e8-4788-8087537c1a8e" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.Composition.Registration.PartBuilder">
+      <topicdata name="PartBuilder" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.Composition.Registration.PartBuilder" />
+      <apidata name="PartBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder.AddMetadata">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.AddMetadata(System.String,System.Func{System.Type,System.Object})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.AddMetadata(System.String,System.Object)" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder.Export">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.Export" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.Export``1" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.Export(System.Action{System.ComponentModel.Composition.Registration.ExportBuilder})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.Export``1(System.Action{System.ComponentModel.Composition.Registration.ExportBuilder})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces(System.Predicate{System.Type})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces(System.Predicate{System.Type},System.Action{System.Type,System.ComponentModel.Composition.Registration.ExportBuilder})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties(System.Predicate{System.Reflection.PropertyInfo})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties``1(System.Predicate{System.Reflection.PropertyInfo})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ExportBuilder})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties``1(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ExportBuilder})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties(System.Predicate{System.Reflection.PropertyInfo})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties``1(System.Predicate{System.Reflection.PropertyInfo})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ImportBuilder})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties``1(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ImportBuilder})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder.SelectConstructor">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.SelectConstructor(System.Func{System.Reflection.ConstructorInfo[],System.Reflection.ConstructorInfo})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.SelectConstructor(System.Func{System.Reflection.ConstructorInfo[],System.Reflection.ConstructorInfo},System.Action{System.Reflection.ParameterInfo,System.ComponentModel.Composition.Registration.ImportBuilder})" />
+        </element>
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.SetCreationPolicy(System.ComponentModel.Composition.CreationPolicy)" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" />
+      </containers>
+      <file name="cb4ea1f5-116a-688f-a839-3128c8ddfa73" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.Composition.Registration.PartBuilder">
+      <topicdata name="PartBuilder" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.Composition.Registration.PartBuilder" />
+      <apidata name="PartBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder.AddMetadata">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.AddMetadata(System.String,System.Func{System.Type,System.Object})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.AddMetadata(System.String,System.Object)" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder.Export">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.Export" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.Export``1" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.Export(System.Action{System.ComponentModel.Composition.Registration.ExportBuilder})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.Export``1(System.Action{System.ComponentModel.Composition.Registration.ExportBuilder})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces(System.Predicate{System.Type})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces(System.Predicate{System.Type},System.Action{System.Type,System.ComponentModel.Composition.Registration.ExportBuilder})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties(System.Predicate{System.Reflection.PropertyInfo})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties``1(System.Predicate{System.Reflection.PropertyInfo})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ExportBuilder})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties``1(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ExportBuilder})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties(System.Predicate{System.Reflection.PropertyInfo})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties``1(System.Predicate{System.Reflection.PropertyInfo})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ImportBuilder})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties``1(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ImportBuilder})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder.SelectConstructor">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.SelectConstructor(System.Func{System.Reflection.ConstructorInfo[],System.Reflection.ConstructorInfo})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.SelectConstructor(System.Func{System.Reflection.ConstructorInfo[],System.Reflection.ConstructorInfo},System.Action{System.Reflection.ParameterInfo,System.ComponentModel.Composition.Registration.ImportBuilder})" />
+        </element>
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.SetCreationPolicy(System.ComponentModel.Composition.CreationPolicy)" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" />
+      </containers>
+      <file name="1f3640a3-4ced-9ec4-7f52-1e669ad407bd" />
+    </api>
+    <api id="Overload:System.ComponentModel.Composition.Registration.PartBuilder.AddMetadata">
+      <topicdata name="AddMetadata" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.PartBuilder" />
+      <apidata name="AddMetadata" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.AddMetadata(System.String,System.Func{System.Type,System.Object})" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.AddMetadata(System.String,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="e8caf047-916f-bcff-73b5-71debdf0c099" />
+    </api>
+    <api id="Overload:System.ComponentModel.Composition.Registration.PartBuilder.Export">
+      <topicdata name="Export" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.PartBuilder" />
+      <apidata name="Export" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.Export" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.Export``1" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.Export(System.Action{System.ComponentModel.Composition.Registration.ExportBuilder})" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.Export``1(System.Action{System.ComponentModel.Composition.Registration.ExportBuilder})" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="f3edc47d-1a32-05f4-f930-e479d0803a1f" />
+    </api>
+    <api id="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces">
+      <topicdata name="ExportInterfaces" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.PartBuilder" />
+      <apidata name="ExportInterfaces" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces(System.Predicate{System.Type})" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces(System.Predicate{System.Type},System.Action{System.Type,System.ComponentModel.Composition.Registration.ExportBuilder})" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="bc1a8959-27f9-0f61-7cb0-b4f129d064e9" />
+    </api>
+    <api id="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties">
+      <topicdata name="ExportProperties" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.PartBuilder" />
+      <apidata name="ExportProperties" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties(System.Predicate{System.Reflection.PropertyInfo})" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties``1(System.Predicate{System.Reflection.PropertyInfo})" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ExportBuilder})" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties``1(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ExportBuilder})" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="118642d8-1b0c-d715-72fa-f3777fec6b47" />
+    </api>
+    <api id="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties">
+      <topicdata name="ImportProperties" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.PartBuilder" />
+      <apidata name="ImportProperties" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties(System.Predicate{System.Reflection.PropertyInfo})" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties``1(System.Predicate{System.Reflection.PropertyInfo})" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ImportBuilder})" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties``1(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ImportBuilder})" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="74314979-fb3c-021f-9c56-b604e29cb377" />
+    </api>
+    <api id="Overload:System.ComponentModel.Composition.Registration.PartBuilder.SelectConstructor">
+      <topicdata name="SelectConstructor" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.PartBuilder" />
+      <apidata name="SelectConstructor" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.SelectConstructor(System.Func{System.Reflection.ConstructorInfo[],System.Reflection.ConstructorInfo})" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.SelectConstructor(System.Func{System.Reflection.ConstructorInfo[],System.Reflection.ConstructorInfo},System.Action{System.Reflection.ParameterInfo,System.ComponentModel.Composition.Registration.ImportBuilder})" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="e13b0d99-3b11-ecde-fb9f-9f1f83c42681" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.AddMetadata(System.String,System.Func{System.Type,System.Object})">
+      <topicdata group="api" />
+      <apidata name="AddMetadata" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder.AddMetadata" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="itemFunc">
+          <type api="T:System.Func`2" ref="true">
+            <specialization>
+              <type api="T:System.Type" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="243e6f0d-5bbb-4d68-aa6e-902aeff54d5d" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.AddMetadata(System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name="AddMetadata" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder.AddMetadata" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="f65f5ecd-02f4-cfa8-56ae-77682510ed3c" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.Export">
+      <topicdata group="api" />
+      <apidata name="Export" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder.Export" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="140775f8-14c8-2a32-e65c-80c5c040daf0" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.Export``1">
+      <topicdata group="api" />
+      <apidata name="Export" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder.Export" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="3e5749b0-72e1-e63f-cfa1-7ce6e3504e55" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.Export(System.Action{System.ComponentModel.Composition.Registration.ExportBuilder})">
+      <topicdata group="api" />
+      <apidata name="Export" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder.Export" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="exportConfiguration">
+          <type api="T:System.Action`1" ref="true">
+            <specialization>
+              <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="b7e2b75e-16e2-da36-4b7b-64231218e286" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.Export``1(System.Action{System.ComponentModel.Composition.Registration.ExportBuilder})">
+      <topicdata group="api" />
+      <apidata name="Export" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder.Export" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="exportConfiguration">
+          <type api="T:System.Action`1" ref="true">
+            <specialization>
+              <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="ae1a0482-f2b3-3eb4-f9a8-be4a5c09644d" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces">
+      <topicdata group="api" />
+      <apidata name="ExportInterfaces" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="1474d9ea-9f86-989c-2aa8-5f2523dcc7c6" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces(System.Predicate{System.Type})">
+      <topicdata group="api" />
+      <apidata name="ExportInterfaces" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="interfaceFilter">
+          <type api="T:System.Predicate`1" ref="true">
+            <specialization>
+              <type api="T:System.Type" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="ff708236-966d-a553-615b-fd1e7b438909" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces(System.Predicate{System.Type},System.Action{System.Type,System.ComponentModel.Composition.Registration.ExportBuilder})">
+      <topicdata group="api" />
+      <apidata name="ExportInterfaces" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="interfaceFilter">
+          <type api="T:System.Predicate`1" ref="true">
+            <specialization>
+              <type api="T:System.Type" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="exportConfiguration">
+          <type api="T:System.Action`2" ref="true">
+            <specialization>
+              <type api="T:System.Type" ref="true" />
+              <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="75373970-f406-f201-0de7-d261480a1898" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties(System.Predicate{System.Reflection.PropertyInfo})">
+      <topicdata group="api" />
+      <apidata name="ExportProperties" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="propertyFilter">
+          <type api="T:System.Predicate`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.PropertyInfo" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="a5a3d78a-f7ab-6bf9-207f-dd93163a05c2" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties``1(System.Predicate{System.Reflection.PropertyInfo})">
+      <topicdata group="api" />
+      <apidata name="ExportProperties" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="propertyFilter">
+          <type api="T:System.Predicate`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.PropertyInfo" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="cbd394ff-664c-c0fa-f238-def5f71c2d52" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ExportBuilder})">
+      <topicdata group="api" />
+      <apidata name="ExportProperties" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="propertyFilter">
+          <type api="T:System.Predicate`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.PropertyInfo" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="exportConfiguration">
+          <type api="T:System.Action`2" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.PropertyInfo" ref="true" />
+              <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="b3362b24-a0da-3ae4-baa8-9d0088290e24" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties``1(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ExportBuilder})">
+      <topicdata group="api" />
+      <apidata name="ExportProperties" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="propertyFilter">
+          <type api="T:System.Predicate`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.PropertyInfo" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="exportConfiguration">
+          <type api="T:System.Action`2" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.PropertyInfo" ref="true" />
+              <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="5891ca2e-8088-f4b7-ae68-2a3b89e3d70d" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties(System.Predicate{System.Reflection.PropertyInfo})">
+      <topicdata group="api" />
+      <apidata name="ImportProperties" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="propertyFilter">
+          <type api="T:System.Predicate`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.PropertyInfo" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="f8e49075-f295-e88f-8e93-9314aa39bebc" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties``1(System.Predicate{System.Reflection.PropertyInfo})">
+      <topicdata group="api" />
+      <apidata name="ImportProperties" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="propertyFilter">
+          <type api="T:System.Predicate`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.PropertyInfo" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="88c91b00-aa0d-93b0-8d31-6c5dbfa4c101" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ImportBuilder})">
+      <topicdata group="api" />
+      <apidata name="ImportProperties" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="propertyFilter">
+          <type api="T:System.Predicate`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.PropertyInfo" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="importConfiguration">
+          <type api="T:System.Action`2" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.PropertyInfo" ref="true" />
+              <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="40b8d06a-635a-63f1-1d39-59b0ac4715e3" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties``1(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ImportBuilder})">
+      <topicdata group="api" />
+      <apidata name="ImportProperties" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="propertyFilter">
+          <type api="T:System.Predicate`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.PropertyInfo" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="importConfiguration">
+          <type api="T:System.Action`2" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.PropertyInfo" ref="true" />
+              <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="162fca70-00d5-d0b8-056e-886bb6112a4f" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.SelectConstructor(System.Func{System.Reflection.ConstructorInfo[],System.Reflection.ConstructorInfo})">
+      <topicdata group="api" />
+      <apidata name="SelectConstructor" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder.SelectConstructor" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="constructorFilter">
+          <type api="T:System.Func`2" ref="true">
+            <specialization>
+              <arrayOf rank="1">
+                <type api="T:System.Reflection.ConstructorInfo" ref="true" />
+              </arrayOf>
+              <type api="T:System.Reflection.ConstructorInfo" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="fd11496f-4d0d-4d74-987b-13c263b00c4f" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.SelectConstructor(System.Func{System.Reflection.ConstructorInfo[],System.Reflection.ConstructorInfo},System.Action{System.Reflection.ParameterInfo,System.ComponentModel.Composition.Registration.ImportBuilder})">
+      <topicdata group="api" />
+      <apidata name="SelectConstructor" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder.SelectConstructor" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="constructorFilter">
+          <type api="T:System.Func`2" ref="true">
+            <specialization>
+              <arrayOf rank="1">
+                <type api="T:System.Reflection.ConstructorInfo" ref="true" />
+              </arrayOf>
+              <type api="T:System.Reflection.ConstructorInfo" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="importConfiguration">
+          <type api="T:System.Action`2" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.ParameterInfo" ref="true" />
+              <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="341b2107-2cbf-a981-3b8f-a0718587ec00" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder.SetCreationPolicy(System.ComponentModel.Composition.CreationPolicy)">
+      <topicdata group="api" />
+      <apidata name="SetCreationPolicy" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="creationPolicy">
+          <type api="T:System.ComponentModel.Composition.CreationPolicy" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </containers>
+      <file name="d9856ae3-e458-f135-54a9-0f99ae476f98" />
+    </api>
+    <api id="T:System.ComponentModel.Composition.Registration.PartBuilder`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+      <apidata name="PartBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <templates>
+        <template name="T" />
+      </templates>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+      </containers>
+      <file name="e0bfd765-ee7e-05b1-0718-41761229e4a0" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.Composition.Registration.PartBuilder`1">
+      <topicdata name="PartBuilder" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+      <apidata name="PartBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.AddMetadata">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.AddMetadata(System.String,System.Func{System.Type,System.Object})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.AddMetadata(System.String,System.Object)" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.Export">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.Export" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.Export(System.Action{System.ComponentModel.Composition.Registration.ExportBuilder})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportInterfaces">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces(System.Predicate{System.Type})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces(System.Predicate{System.Type},System.Action{System.Type,System.ComponentModel.Composition.Registration.ExportBuilder})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperties">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties(System.Predicate{System.Reflection.PropertyInfo})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ExportBuilder})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperties">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties(System.Predicate{System.Reflection.PropertyInfo})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ImportBuilder})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.SelectConstructor">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.SelectConstructor(System.Func{System.Reflection.ConstructorInfo[],System.Reflection.ConstructorInfo})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.SelectConstructor(System.Linq.Expressions.Expression{System.Func{System.ComponentModel.Composition.Registration.ParameterImportBuilder,`0}})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.SelectConstructor(System.Func{System.Reflection.ConstructorInfo[],System.Reflection.ConstructorInfo},System.Action{System.Reflection.ParameterInfo,System.ComponentModel.Composition.Registration.ImportBuilder})" />
+        </element>
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.SetCreationPolicy(System.ComponentModel.Composition.CreationPolicy)" />
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Action{System.ComponentModel.Composition.Registration.ExportBuilder})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Action{System.ComponentModel.Composition.Registration.ExportBuilder})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Action{System.ComponentModel.Composition.Registration.ImportBuilder})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Action{System.ComponentModel.Composition.Registration.ImportBuilder})" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+      </containers>
+      <file name="74e3126e-83cd-a73e-34a8-843d985db722" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.Composition.Registration.PartBuilder`1">
+      <topicdata name="PartBuilder" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+      <apidata name="PartBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.AddMetadata">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.AddMetadata(System.String,System.Func{System.Type,System.Object})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.AddMetadata(System.String,System.Object)" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.Export">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.Export" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.Export(System.Action{System.ComponentModel.Composition.Registration.ExportBuilder})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportInterfaces">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces(System.Predicate{System.Type})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportInterfaces(System.Predicate{System.Type},System.Action{System.Type,System.ComponentModel.Composition.Registration.ExportBuilder})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperties">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties(System.Predicate{System.Reflection.PropertyInfo})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ExportProperties(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ExportBuilder})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperties">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties(System.Predicate{System.Reflection.PropertyInfo})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.ImportProperties(System.Predicate{System.Reflection.PropertyInfo},System.Action{System.Reflection.PropertyInfo,System.ComponentModel.Composition.Registration.ImportBuilder})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.SelectConstructor">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.SelectConstructor(System.Func{System.Reflection.ConstructorInfo[],System.Reflection.ConstructorInfo})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.SelectConstructor(System.Linq.Expressions.Expression{System.Func{System.ComponentModel.Composition.Registration.ParameterImportBuilder,`0}})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.SelectConstructor(System.Func{System.Reflection.ConstructorInfo[],System.Reflection.ConstructorInfo},System.Action{System.Reflection.ParameterInfo,System.ComponentModel.Composition.Registration.ImportBuilder})" />
+        </element>
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.SetCreationPolicy(System.ComponentModel.Composition.CreationPolicy)" />
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Action{System.ComponentModel.Composition.Registration.ExportBuilder})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Action{System.ComponentModel.Composition.Registration.ExportBuilder})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty">
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Action{System.ComponentModel.Composition.Registration.ImportBuilder})" />
+          <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Action{System.ComponentModel.Composition.Registration.ImportBuilder})" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+      </containers>
+      <file name="0e5eab7d-4835-d9a4-cbe9-9ef0aca3e972" />
+    </api>
+    <api id="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.SelectConstructor">
+      <topicdata name="SelectConstructor" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+      <apidata name="SelectConstructor" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.SelectConstructor(System.Func{System.Reflection.ConstructorInfo[],System.Reflection.ConstructorInfo})" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.SelectConstructor(System.Linq.Expressions.Expression{System.Func{System.ComponentModel.Composition.Registration.ParameterImportBuilder,`0}})" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder.SelectConstructor(System.Func{System.Reflection.ConstructorInfo[],System.Reflection.ConstructorInfo},System.Action{System.Reflection.ParameterInfo,System.ComponentModel.Composition.Registration.ImportBuilder})" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true" />
+      </containers>
+      <file name="2b9a53b1-2793-a6be-cd40-2b26e7d0db7b" />
+    </api>
+    <api id="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty">
+      <topicdata name="ExportProperty" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+      <apidata name="ExportProperty" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Action{System.ComponentModel.Composition.Registration.ExportBuilder})" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Action{System.ComponentModel.Composition.Registration.ExportBuilder})" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true" />
+      </containers>
+      <file name="9d99961d-0065-c998-6a32-87f0b67cf9b8" />
+    </api>
+    <api id="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty">
+      <topicdata name="ImportProperty" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+      <apidata name="ImportProperty" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Action{System.ComponentModel.Composition.Registration.ImportBuilder})" />
+        <element api="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Action{System.ComponentModel.Composition.Registration.ImportBuilder})" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true" />
+      </containers>
+      <file name="2709f1ac-580a-81af-a7c7-fa95f92ea359" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+      <topicdata group="api" />
+      <apidata name="ExportProperty" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="propertyFilter">
+          <type api="T:System.Linq.Expressions.Expression`1" ref="true">
+            <specialization>
+              <type api="T:System.Func`2" ref="true">
+                <specialization>
+                  <template name="T" index="0" api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+                  <type api="T:System.Object" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true" />
+      </containers>
+      <file name="fbfe5b6c-187b-9c5f-ff52-a4f952ae7ba5" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+      <topicdata group="api" />
+      <apidata name="ExportProperty" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="TContract" />
+      </templates>
+      <parameters>
+        <parameter name="propertyFilter">
+          <type api="T:System.Linq.Expressions.Expression`1" ref="true">
+            <specialization>
+              <type api="T:System.Func`2" ref="true">
+                <specialization>
+                  <template name="T" index="0" api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+                  <type api="T:System.Object" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true" />
+      </containers>
+      <file name="a54c5ab0-2c1b-93d3-9d5d-4780a3c635ac" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Action{System.ComponentModel.Composition.Registration.ExportBuilder})">
+      <topicdata group="api" />
+      <apidata name="ExportProperty" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="propertyFilter">
+          <type api="T:System.Linq.Expressions.Expression`1" ref="true">
+            <specialization>
+              <type api="T:System.Func`2" ref="true">
+                <specialization>
+                  <template name="T" index="0" api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+                  <type api="T:System.Object" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="exportConfiguration">
+          <type api="T:System.Action`1" ref="true">
+            <specialization>
+              <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true" />
+      </containers>
+      <file name="2b28857f-dfb0-efee-9edd-7d6e49bb263a" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Action{System.ComponentModel.Composition.Registration.ExportBuilder})">
+      <topicdata group="api" />
+      <apidata name="ExportProperty" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ExportProperty" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="TContract" />
+      </templates>
+      <parameters>
+        <parameter name="propertyFilter">
+          <type api="T:System.Linq.Expressions.Expression`1" ref="true">
+            <specialization>
+              <type api="T:System.Func`2" ref="true">
+                <specialization>
+                  <template name="T" index="0" api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+                  <type api="T:System.Object" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="exportConfiguration">
+          <type api="T:System.Action`1" ref="true">
+            <specialization>
+              <type api="T:System.ComponentModel.Composition.Registration.ExportBuilder" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true" />
+      </containers>
+      <file name="d81f918d-0853-5ff6-31d1-9a51dc45934b" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+      <topicdata group="api" />
+      <apidata name="ImportProperty" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="propertyFilter">
+          <type api="T:System.Linq.Expressions.Expression`1" ref="true">
+            <specialization>
+              <type api="T:System.Func`2" ref="true">
+                <specialization>
+                  <template name="T" index="0" api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+                  <type api="T:System.Object" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true" />
+      </containers>
+      <file name="9a02600c-7daa-5c78-a1c2-1caff87990bb" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+      <topicdata group="api" />
+      <apidata name="ImportProperty" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="TContract" />
+      </templates>
+      <parameters>
+        <parameter name="propertyFilter">
+          <type api="T:System.Linq.Expressions.Expression`1" ref="true">
+            <specialization>
+              <type api="T:System.Func`2" ref="true">
+                <specialization>
+                  <template name="T" index="0" api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+                  <type api="T:System.Object" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true" />
+      </containers>
+      <file name="52725b75-89b2-ceea-c68a-02bdda5436ff" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Action{System.ComponentModel.Composition.Registration.ImportBuilder})">
+      <topicdata group="api" />
+      <apidata name="ImportProperty" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="propertyFilter">
+          <type api="T:System.Linq.Expressions.Expression`1" ref="true">
+            <specialization>
+              <type api="T:System.Func`2" ref="true">
+                <specialization>
+                  <template name="T" index="0" api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+                  <type api="T:System.Object" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="importConfiguration">
+          <type api="T:System.Action`1" ref="true">
+            <specialization>
+              <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true" />
+      </containers>
+      <file name="5d96534c-d8d1-7831-9633-847949b3bb3f" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Action{System.ComponentModel.Composition.Registration.ImportBuilder})">
+      <topicdata group="api" />
+      <apidata name="ImportProperty" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.ImportProperty" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="TContract" />
+      </templates>
+      <parameters>
+        <parameter name="propertyFilter">
+          <type api="T:System.Linq.Expressions.Expression`1" ref="true">
+            <specialization>
+              <type api="T:System.Func`2" ref="true">
+                <specialization>
+                  <template name="T" index="0" api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+                  <type api="T:System.Object" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="importConfiguration">
+          <type api="T:System.Action`1" ref="true">
+            <specialization>
+              <type api="T:System.ComponentModel.Composition.Registration.ImportBuilder" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true" />
+      </containers>
+      <file name="4a0d4259-da14-c98c-c901-670af2cd8396" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.PartBuilder`1.SelectConstructor(System.Linq.Expressions.Expression{System.Func{System.ComponentModel.Composition.Registration.ParameterImportBuilder,`0}})">
+      <topicdata group="api" />
+      <apidata name="SelectConstructor" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.PartBuilder`1.SelectConstructor" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="constructorFilter">
+          <type api="T:System.Linq.Expressions.Expression`1" ref="true">
+            <specialization>
+              <type api="T:System.Func`2" ref="true">
+                <specialization>
+                  <type api="T:System.ComponentModel.Composition.Registration.ParameterImportBuilder" ref="true" />
+                  <template name="T" index="0" api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true" />
+      </containers>
+      <file name="d3467434-fb70-abfa-8186-502f86ec1e10" />
+    </api>
+    <api id="T:System.ComponentModel.Composition.Registration.RegistrationBuilder">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.RegistrationBuilder" />
+      <apidata name="RegistrationBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Reflection.Context.CustomReflectionContext" ref="true" />
+          <type api="T:System.Reflection.ReflectionContext" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+      </containers>
+      <file name="99a97442-64a0-c998-2f36-b673b286e200" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.Composition.Registration.RegistrationBuilder">
+      <topicdata name="RegistrationBuilder" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.Composition.Registration.RegistrationBuilder" />
+      <apidata name="RegistrationBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.#ctor" />
+        <element api="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForType">
+          <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForType``1" />
+          <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForType(System.Type)" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesDerivedFrom">
+          <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesDerivedFrom``1" />
+          <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesDerivedFrom(System.Type)" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesMatching">
+          <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesMatching``1(System.Predicate{System.Type})" />
+          <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesMatching(System.Predicate{System.Type})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.GetCustomAttributes">
+          <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.GetCustomAttributes(System.Reflection.MemberInfo,System.Collections.Generic.IEnumerable{System.Object})" />
+          <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.GetCustomAttributes(System.Reflection.ParameterInfo,System.Collections.Generic.IEnumerable{System.Object})" />
+        </element>
+        <element api="M:System.Reflection.ReflectionContext.GetTypeForObject(System.Object)" />
+        <element api="M:System.Reflection.Context.CustomReflectionContext.AddProperties(System.Type)" />
+        <element api="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.CreateProperty">
+          <element api="M:System.Reflection.Context.CustomReflectionContext.CreateProperty(System.Type,System.String,System.Func{System.Object,System.Object},System.Action{System.Object,System.Object})" />
+          <element api="M:System.Reflection.Context.CustomReflectionContext.CreateProperty(System.Type,System.String,System.Func{System.Object,System.Object},System.Action{System.Object,System.Object},System.Collections.Generic.IEnumerable{System.Attribute},System.Collections.Generic.IEnumerable{System.Attribute},System.Collections.Generic.IEnumerable{System.Attribute})" />
+        </element>
+        <element api="M:System.Reflection.Context.CustomReflectionContext.MapAssembly(System.Reflection.Assembly)" />
+        <element api="M:System.Reflection.Context.CustomReflectionContext.MapType(System.Reflection.TypeInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.RegistrationBuilder" />
+      </containers>
+      <file name="eb3ceb94-b5d1-d35e-bd05-81eed762386c" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.Composition.Registration.RegistrationBuilder">
+      <topicdata name="RegistrationBuilder" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.Composition.Registration.RegistrationBuilder" />
+      <apidata name="RegistrationBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForType">
+          <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForType``1" />
+          <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForType(System.Type)" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesDerivedFrom">
+          <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesDerivedFrom``1" />
+          <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesDerivedFrom(System.Type)" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesMatching">
+          <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesMatching``1(System.Predicate{System.Type})" />
+          <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesMatching(System.Predicate{System.Type})" />
+        </element>
+        <element api="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.GetCustomAttributes">
+          <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.GetCustomAttributes(System.Reflection.MemberInfo,System.Collections.Generic.IEnumerable{System.Object})" />
+          <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.GetCustomAttributes(System.Reflection.ParameterInfo,System.Collections.Generic.IEnumerable{System.Object})" />
+        </element>
+        <element api="M:System.Reflection.ReflectionContext.GetTypeForObject(System.Object)" />
+        <element api="M:System.Reflection.Context.CustomReflectionContext.AddProperties(System.Type)" />
+        <element api="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.CreateProperty">
+          <element api="M:System.Reflection.Context.CustomReflectionContext.CreateProperty(System.Type,System.String,System.Func{System.Object,System.Object},System.Action{System.Object,System.Object})" />
+          <element api="M:System.Reflection.Context.CustomReflectionContext.CreateProperty(System.Type,System.String,System.Func{System.Object,System.Object},System.Action{System.Object,System.Object},System.Collections.Generic.IEnumerable{System.Attribute},System.Collections.Generic.IEnumerable{System.Attribute},System.Collections.Generic.IEnumerable{System.Attribute})" />
+        </element>
+        <element api="M:System.Reflection.Context.CustomReflectionContext.MapAssembly(System.Reflection.Assembly)" />
+        <element api="M:System.Reflection.Context.CustomReflectionContext.MapType(System.Reflection.TypeInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.RegistrationBuilder" />
+      </containers>
+      <file name="75136676-dbad-a1e3-bb9f-a85e3cc21e8b" />
+    </api>
+    <api id="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForType">
+      <topicdata name="ForType" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.RegistrationBuilder" />
+      <apidata name="ForType" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForType``1" />
+        <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForType(System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.RegistrationBuilder" ref="true" />
+      </containers>
+      <file name="9656193b-b9b0-2f14-2d0b-2b74b53dbcf2" />
+    </api>
+    <api id="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesDerivedFrom">
+      <topicdata name="ForTypesDerivedFrom" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.RegistrationBuilder" />
+      <apidata name="ForTypesDerivedFrom" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesDerivedFrom``1" />
+        <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesDerivedFrom(System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.RegistrationBuilder" ref="true" />
+      </containers>
+      <file name="96b36958-7ea1-20eb-fc91-4f9c633ff12a" />
+    </api>
+    <api id="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesMatching">
+      <topicdata name="ForTypesMatching" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.RegistrationBuilder" />
+      <apidata name="ForTypesMatching" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesMatching``1(System.Predicate{System.Type})" />
+        <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesMatching(System.Predicate{System.Type})" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.RegistrationBuilder" ref="true" />
+      </containers>
+      <file name="349fa54f-402e-6d86-dc8d-64a3e5809d55" />
+    </api>
+    <api id="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.GetCustomAttributes">
+      <topicdata name="GetCustomAttributes" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.Composition.Registration.RegistrationBuilder" />
+      <apidata name="GetCustomAttributes" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.GetCustomAttributes(System.Reflection.MemberInfo,System.Collections.Generic.IEnumerable{System.Object})" />
+        <element api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.GetCustomAttributes(System.Reflection.ParameterInfo,System.Collections.Generic.IEnumerable{System.Object})" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.RegistrationBuilder" ref="true" />
+      </containers>
+      <file name="1dea1ac6-dd9b-9bcc-4832-dc22bf57aac8" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.RegistrationBuilder" ref="true" />
+      </containers>
+      <file name="085033ad-2f30-e847-0d3e-8f53b2595bde" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForType``1">
+      <topicdata group="api" />
+      <apidata name="ForType" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForType" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForType``1" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.RegistrationBuilder" ref="true" />
+      </containers>
+      <file name="7b7c8109-27ab-cc9d-17d9-fa6e5bdb72a7" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForType(System.Type)">
+      <topicdata group="api" />
+      <apidata name="ForType" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForType" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.RegistrationBuilder" ref="true" />
+      </containers>
+      <file name="c1d6811b-1b3d-813e-aa83-0e7e7c7bf902" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesDerivedFrom``1">
+      <topicdata group="api" />
+      <apidata name="ForTypesDerivedFrom" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesDerivedFrom" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesDerivedFrom``1" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.RegistrationBuilder" ref="true" />
+      </containers>
+      <file name="2b9cfdbf-9df9-1b24-6094-a8bcd52c0fe0" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesDerivedFrom(System.Type)">
+      <topicdata group="api" />
+      <apidata name="ForTypesDerivedFrom" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesDerivedFrom" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.RegistrationBuilder" ref="true" />
+      </containers>
+      <file name="4b1a9840-282d-45a9-5bce-3f1320b00d14" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesMatching``1(System.Predicate{System.Type})">
+      <topicdata group="api" />
+      <apidata name="ForTypesMatching" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesMatching" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="typeFilter">
+          <type api="T:System.Predicate`1" ref="true">
+            <specialization>
+              <type api="T:System.Type" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesMatching``1(System.Predicate{System.Type})" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.RegistrationBuilder" ref="true" />
+      </containers>
+      <file name="0908f174-966a-990f-0697-a6a305981ffe" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesMatching(System.Predicate{System.Type})">
+      <topicdata group="api" />
+      <apidata name="ForTypesMatching" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.ForTypesMatching" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="typeFilter">
+          <type api="T:System.Predicate`1" ref="true">
+            <specialization>
+              <type api="T:System.Type" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.Composition.Registration.PartBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.RegistrationBuilder" ref="true" />
+      </containers>
+      <file name="d914d8ec-a299-f4f4-2de1-bd2280a9537c" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.GetCustomAttributes(System.Reflection.MemberInfo,System.Collections.Generic.IEnumerable{System.Object})">
+      <topicdata group="api" />
+      <apidata name="GetCustomAttributes" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.GetCustomAttributes" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Reflection.Context.CustomReflectionContext.GetCustomAttributes(System.Reflection.MemberInfo,System.Collections.Generic.IEnumerable{System.Object})">
+          <type api="T:System.Reflection.Context.CustomReflectionContext" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="member">
+          <type api="T:System.Reflection.MemberInfo" ref="true" />
+        </parameter>
+        <parameter name="declaredAttributes">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.RegistrationBuilder" ref="true" />
+      </containers>
+      <file name="e268a94d-11e2-13f4-a4b1-2a6a9ec228f6" />
+    </api>
+    <api id="M:System.ComponentModel.Composition.Registration.RegistrationBuilder.GetCustomAttributes(System.Reflection.ParameterInfo,System.Collections.Generic.IEnumerable{System.Object})">
+      <topicdata group="api" />
+      <apidata name="GetCustomAttributes" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.ComponentModel.Composition.Registration.RegistrationBuilder.GetCustomAttributes" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Reflection.Context.CustomReflectionContext.GetCustomAttributes(System.Reflection.ParameterInfo,System.Collections.Generic.IEnumerable{System.Object})">
+          <type api="T:System.Reflection.Context.CustomReflectionContext" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="parameter">
+          <type api="T:System.Reflection.ParameterInfo" ref="true" />
+        </parameter>
+        <parameter name="declaredAttributes">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Composition.Registration" module="System.ComponentModel.Composition.Registration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ComponentModel.Composition.Registration" />
+        <type api="T:System.ComponentModel.Composition.Registration.RegistrationBuilder" ref="true" />
+      </containers>
+      <file name="a2befd6c-4596-21be-39d8-7149c9c7a63c" />
+    </api>
+  </apis>
+</reflection>

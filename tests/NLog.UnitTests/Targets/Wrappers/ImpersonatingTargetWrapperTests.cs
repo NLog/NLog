@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -35,19 +35,26 @@
 
 namespace NLog.UnitTests.Targets.Wrappers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Runtime.InteropServices;
-    using System.Security.Principal;
     using NLog.Common;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using System;
+    using System.Collections.Generic;
+    using System.DirectoryServices.AccountManagement;
+    using System.Runtime.InteropServices;
+    using System.Security.Principal;
     using Xunit;
 
-    public class ImpersonatingTargetWrapperTests : NLogTestBase
+    public class ImpersonatingTargetWrapperTests : NLogTestBase, IDisposable
     {
         private const string NLogTestUser = "NLogTestUser";
         private const string NLogTestUserPassword = "BC@57acasd123";
+        private const string Localhost = "127.0.0.1";
+
+        public ImpersonatingTargetWrapperTests()
+        {
+            CreateUserIfNotPresent();
+        }
 
         [Fact]
         public void ImpersonatingWrapperTest()
@@ -180,7 +187,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var wrapper = new ImpersonatingTargetWrapper()
             {
                 UserName = NLogTestUser,
-                Password = NLogTestUserPassword, // wrong password
+                Password = NLogTestUserPassword,
                 Domain = Environment.MachineName,
                 ImpersonationLevel = (SecurityImpersonationLevel)1234,
                 WrappedTarget = wrapped,
@@ -292,6 +299,39 @@ namespace NLog.UnitTests.Targets.Wrappers
                     Assert.True(windowsIdentity.IsAuthenticated);
                     Assert.Equal(Environment.MachineName + "\\" + ExpectedUser, windowsIdentity.Name);
                 }
+            }
+        }
+
+        private void CreateUserIfNotPresent()
+        {
+            using (var context = new PrincipalContext(ContextType.Machine, Localhost))
+            {
+                if (UserPrincipal.FindByIdentity(context, IdentityType.Name, NLogTestUser) != null)
+                    return;
+
+                var user = new UserPrincipal(context);
+                user.SetPassword(NLogTestUserPassword);
+                user.Name = NLogTestUser;
+                user.Save();
+
+                var group = GroupPrincipal.FindByIdentity(context, "Users");
+                group.Members.Add(user);
+                group.Save();
+            }
+        }
+
+        public void Dispose()
+        {
+            DeleteUser();
+        }
+
+        private void DeleteUser()
+        {
+            using (var context = new PrincipalContext(ContextType.Machine, Localhost))
+            using (var up = UserPrincipal.FindByIdentity(context, IdentityType.Name, NLogTestUser))
+            {
+                if (up != null)
+                    up.Delete();
             }
         }
     }

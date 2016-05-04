@@ -1,0 +1,2131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Web">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>add_permissions_for_users.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>properties_security_tab_w_user.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>properties_security_tab.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Drawing.BitmapSuffixInSatelliteAssemblyAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>WebForms.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/WebForms.js</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Focus.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/Focus.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.WebForm_FindFirstFocusableChild</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SmartNav.htm</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>text/html</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SmartNav.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>WebUIValidation.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/WebUIValidation.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Page_ValidationVer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/TreeView.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.TreeView_HoverNode</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Menu.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/Menu.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Menu_ClearInterval</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MenuStandards.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MenuStandards.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.WebForms &amp;&amp; Sys.WebForms.Menu</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>WebParts.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/WebParts.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.WebPart</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GridView.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/GridView.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.GridView</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DetailsView.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/DetailsView.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.DetailsView</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Spacer.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Menu_Default_Separator.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Menu_Popout.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Menu_ScrollDown.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Menu_ScrollUp.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_Dash.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_DashCollapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_DashExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_I.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_L.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_LCollapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_LExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_R.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_RCollapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_RExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_T.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_TCollapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_TExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_Expand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_Collapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_NoExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_XP_Explorer_Expand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_XP_Explorer_Collapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_XP_Explorer_NoExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_XP_Explorer_RootNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_XP_Explorer_ParentNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_XP_Explorer_LeafNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_MSDN_Expand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_MSDN_Collapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_MSDN_NoExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Windows_Help_Expand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Windows_Help_Collapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Windows_Help_NoExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Arrows_Collapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Arrows_Expand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Arrows_NoExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList2_LeafNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList2_ParentNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList2_RootNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList3_LeafNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList3_ParentNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList3_RootNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList4_LeafNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList4_ParentNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList4_RootNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList_LeafNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList_ParentNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList_RootNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Contacts_Collapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Contacts_Expand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Contacts_NoExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Events_LeafNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Events_ParentNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Events_RootNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_FAQ_LeafNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_FAQ_ParentNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_FAQ_RootNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Inbox_LeafNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Inbox_ParentNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Inbox_RootNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_News_LeafNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_News_ParentNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_News_RootNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Simple2_NoExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Simple_NoExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>WebPartMenu_Check.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+          <assignment name="PartialTrustVisibilityLevel">
+            <type api="T:System.Security.PartialTrustVisibilityLevel" ref="false" />
+            <enumValue>
+              <field name="NotVisibleByDefault" />
+            </enumValue>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Web.Mail">
+      <topicdata group="api" />
+      <apidata name="System.Web.Mail" group="namespace" />
+      <elements>
+        <element api="T:System.Web.Mail.SmtpMail" />
+        <element api="T:System.Web.Mail.MailFormat" />
+        <element api="T:System.Web.Mail.MailPriority" />
+        <element api="T:System.Web.Mail.MailEncoding" />
+        <element api="T:System.Web.Mail.MailAttachment" />
+        <element api="T:System.Web.Mail.MailMessage" />
+      </elements>
+      <file name="de02dd9b-2f10-25a9-d78f-d59404dd3611" />
+    </api>
+    <api id="T:System.Web.Mail.MailAttachment">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.Mail.MailAttachment" />
+      <apidata name="MailAttachment" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The recommended alternative is System.Net.Mail.Attachment. http://go.microsoft.com/fwlink/?linkid=14202</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e11f4043-f7b6-b1c4-cc19-2244bd7edf23" />
+    </api>
+    <api id="AllMembers.T:System.Web.Mail.MailAttachment">
+      <topicdata name="MailAttachment" group="list" subgroup="members" typeTopicId="T:System.Web.Mail.MailAttachment" />
+      <apidata name="MailAttachment" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Web.Mail.MailAttachment.#ctor">
+          <element api="M:System.Web.Mail.MailAttachment.#ctor(System.String)" />
+          <element api="M:System.Web.Mail.MailAttachment.#ctor(System.String,System.Web.Mail.MailEncoding)" />
+        </element>
+        <element api="P:System.Web.Mail.MailAttachment.Encoding" />
+        <element api="P:System.Web.Mail.MailAttachment.Filename" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailAttachment" />
+      </containers>
+      <file name="d16f4d6f-f314-27b5-4f27-956dfb4242f7" />
+    </api>
+    <api id="Methods.T:System.Web.Mail.MailAttachment">
+      <topicdata name="MailAttachment" group="list" subgroup="Methods" typeTopicId="T:System.Web.Mail.MailAttachment" />
+      <apidata name="MailAttachment" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailAttachment" />
+      </containers>
+      <file name="6139b90a-032a-30cc-7dcf-0078431727a0" />
+    </api>
+    <api id="Properties.T:System.Web.Mail.MailAttachment">
+      <topicdata name="MailAttachment" group="list" subgroup="Properties" typeTopicId="T:System.Web.Mail.MailAttachment" />
+      <apidata name="MailAttachment" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Web.Mail.MailAttachment.Encoding" />
+        <element api="P:System.Web.Mail.MailAttachment.Filename" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailAttachment" />
+      </containers>
+      <file name="e2636533-92b3-1d03-34dd-aa1eb06ff793" />
+    </api>
+    <api id="Overload:System.Web.Mail.MailAttachment.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.Mail.MailAttachment" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Web.Mail.MailAttachment.#ctor(System.String)" />
+        <element api="M:System.Web.Mail.MailAttachment.#ctor(System.String,System.Web.Mail.MailEncoding)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailAttachment" ref="true" />
+      </containers>
+      <file name="e852d27b-7823-642a-deaa-65326926edde" />
+    </api>
+    <api id="M:System.Web.Mail.MailAttachment.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Web.Mail.MailAttachment.#ctor" />
+      <parameters>
+        <parameter name="filename">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailAttachment" ref="true" />
+      </containers>
+      <file name="ae945647-92f0-6d1a-c6f1-615b68a601c1" />
+    </api>
+    <api id="M:System.Web.Mail.MailAttachment.#ctor(System.String,System.Web.Mail.MailEncoding)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Web.Mail.MailAttachment.#ctor" />
+      <parameters>
+        <parameter name="filename">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="encoding">
+          <type api="T:System.Web.Mail.MailEncoding" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailAttachment" ref="true" />
+      </containers>
+      <file name="c41a76cb-da1d-28c9-3186-c04cd76945ad" />
+    </api>
+    <api id="P:System.Web.Mail.MailAttachment.Encoding">
+      <topicdata group="api" />
+      <apidata name="Encoding" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Encoding" />
+      <returns>
+        <type api="T:System.Web.Mail.MailEncoding" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailAttachment" ref="true" />
+      </containers>
+      <file name="1b167c19-f2a6-8d62-4a67-fee119c75dd0" />
+    </api>
+    <api id="P:System.Web.Mail.MailAttachment.Filename">
+      <topicdata group="api" />
+      <apidata name="Filename" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Filename" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailAttachment" ref="true" />
+      </containers>
+      <file name="d79c64ef-c0b6-e4b7-84d8-3faed4f437d9" />
+    </api>
+    <api id="T:System.Web.Mail.MailEncoding">
+      <topicdata group="api" />
+      <apidata name="MailEncoding" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Web.Mail.MailEncoding.UUEncode" />
+        <element api="F:System.Web.Mail.MailEncoding.Base64" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The recommended alternative is System.Net.Mime.TransferEncoding. http://go.microsoft.com/fwlink/?linkid=14202</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5bf8ab44-eae2-6df5-3fbe-9933dfe75b83" />
+    </api>
+    <api id="F:System.Web.Mail.MailEncoding.Base64">
+      <topicdata group="api" notopic="" />
+      <apidata name="Base64" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Web.Mail.MailEncoding" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailEncoding" ref="false" />
+      </containers>
+      <file name="04bd4dd9-b2b9-b4cd-1fd6-61854f59b972" />
+    </api>
+    <api id="F:System.Web.Mail.MailEncoding.UUEncode">
+      <topicdata group="api" notopic="" />
+      <apidata name="UUEncode" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Web.Mail.MailEncoding" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailEncoding" ref="false" />
+      </containers>
+      <file name="219e8070-c48f-d0fd-cab5-d5bb8b0eac1f" />
+    </api>
+    <api id="T:System.Web.Mail.MailFormat">
+      <topicdata group="api" />
+      <apidata name="MailFormat" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Web.Mail.MailFormat.Text" />
+        <element api="F:System.Web.Mail.MailFormat.Html" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The recommended alternative is System.Net.Mail.MailMessage.IsBodyHtml. http://go.microsoft.com/fwlink/?linkid=14202</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="819f9898-dd0e-a0c1-8236-15bc6ce72466" />
+    </api>
+    <api id="F:System.Web.Mail.MailFormat.Html">
+      <topicdata group="api" notopic="" />
+      <apidata name="Html" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Web.Mail.MailFormat" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailFormat" ref="false" />
+      </containers>
+      <file name="1b9eae46-6b05-4a73-0b65-6c87d2291df5" />
+    </api>
+    <api id="F:System.Web.Mail.MailFormat.Text">
+      <topicdata group="api" notopic="" />
+      <apidata name="Text" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Web.Mail.MailFormat" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailFormat" ref="false" />
+      </containers>
+      <file name="6a5432eb-0ea0-2c73-a72a-3f22d77ed8ab" />
+    </api>
+    <api id="T:System.Web.Mail.MailMessage">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.Mail.MailMessage" />
+      <apidata name="MailMessage" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Mail.MailMessage.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The recommended alternative is System.Net.Mail.MailMessage. http://go.microsoft.com/fwlink/?linkid=14202</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5f5b0656-3233-fd85-f8bc-c479f6d01db6" />
+    </api>
+    <api id="AllMembers.T:System.Web.Mail.MailMessage">
+      <topicdata name="MailMessage" group="list" subgroup="members" typeTopicId="T:System.Web.Mail.MailMessage" />
+      <apidata name="MailMessage" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Mail.MailMessage.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.Mail.MailMessage.#ctor" />
+        <element api="P:System.Web.Mail.MailMessage.Attachments" />
+        <element api="P:System.Web.Mail.MailMessage.Bcc" />
+        <element api="P:System.Web.Mail.MailMessage.Body" />
+        <element api="P:System.Web.Mail.MailMessage.BodyEncoding" />
+        <element api="P:System.Web.Mail.MailMessage.BodyFormat" />
+        <element api="P:System.Web.Mail.MailMessage.Cc" />
+        <element api="P:System.Web.Mail.MailMessage.Fields" />
+        <element api="P:System.Web.Mail.MailMessage.From" />
+        <element api="P:System.Web.Mail.MailMessage.Headers" />
+        <element api="P:System.Web.Mail.MailMessage.Priority" />
+        <element api="P:System.Web.Mail.MailMessage.Subject" />
+        <element api="P:System.Web.Mail.MailMessage.To" />
+        <element api="P:System.Web.Mail.MailMessage.UrlContentBase" />
+        <element api="P:System.Web.Mail.MailMessage.UrlContentLocation" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailMessage" />
+      </containers>
+      <file name="10dc0901-cb55-15db-54ca-b62888317938" />
+    </api>
+    <api id="Methods.T:System.Web.Mail.MailMessage">
+      <topicdata name="MailMessage" group="list" subgroup="Methods" typeTopicId="T:System.Web.Mail.MailMessage" />
+      <apidata name="MailMessage" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Mail.MailMessage.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailMessage" />
+      </containers>
+      <file name="e8d97334-2c58-5ec3-df29-b0f3485b6204" />
+    </api>
+    <api id="Properties.T:System.Web.Mail.MailMessage">
+      <topicdata name="MailMessage" group="list" subgroup="Properties" typeTopicId="T:System.Web.Mail.MailMessage" />
+      <apidata name="MailMessage" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Mail.MailMessage.#ctor" />
+      <elements>
+        <element api="P:System.Web.Mail.MailMessage.Attachments" />
+        <element api="P:System.Web.Mail.MailMessage.Bcc" />
+        <element api="P:System.Web.Mail.MailMessage.Body" />
+        <element api="P:System.Web.Mail.MailMessage.BodyEncoding" />
+        <element api="P:System.Web.Mail.MailMessage.BodyFormat" />
+        <element api="P:System.Web.Mail.MailMessage.Cc" />
+        <element api="P:System.Web.Mail.MailMessage.Fields" />
+        <element api="P:System.Web.Mail.MailMessage.From" />
+        <element api="P:System.Web.Mail.MailMessage.Headers" />
+        <element api="P:System.Web.Mail.MailMessage.Priority" />
+        <element api="P:System.Web.Mail.MailMessage.Subject" />
+        <element api="P:System.Web.Mail.MailMessage.To" />
+        <element api="P:System.Web.Mail.MailMessage.UrlContentBase" />
+        <element api="P:System.Web.Mail.MailMessage.UrlContentLocation" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailMessage" />
+      </containers>
+      <file name="9a5d621d-31ea-1a3f-07b5-ddbd24ae9934" />
+    </api>
+    <api id="M:System.Web.Mail.MailMessage.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailMessage" ref="true" />
+      </containers>
+      <file name="b68263f7-f897-22ee-ab9d-fbf8e837c9c1" />
+    </api>
+    <api id="P:System.Web.Mail.MailMessage.Attachments">
+      <topicdata group="api" />
+      <apidata name="Attachments" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Attachments" />
+      <returns>
+        <type api="T:System.Collections.IList" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailMessage" ref="true" />
+      </containers>
+      <file name="b80c7dee-3276-12a4-e639-6e9c4fe3a840" />
+    </api>
+    <api id="P:System.Web.Mail.MailMessage.Bcc">
+      <topicdata group="api" />
+      <apidata name="Bcc" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Bcc" />
+      <setter name="set_Bcc" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailMessage" ref="true" />
+      </containers>
+      <file name="37fd1d1f-9520-84a4-c556-1e47bc36319f" />
+    </api>
+    <api id="P:System.Web.Mail.MailMessage.Body">
+      <topicdata group="api" />
+      <apidata name="Body" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Body" />
+      <setter name="set_Body" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailMessage" ref="true" />
+      </containers>
+      <file name="108a2708-6491-edf2-4962-b7a6a4040723" />
+    </api>
+    <api id="P:System.Web.Mail.MailMessage.BodyEncoding">
+      <topicdata group="api" />
+      <apidata name="BodyEncoding" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BodyEncoding" />
+      <setter name="set_BodyEncoding" />
+      <returns>
+        <type api="T:System.Text.Encoding" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailMessage" ref="true" />
+      </containers>
+      <file name="39967d69-eaaa-1dc8-a761-d4b95f8a79b7" />
+    </api>
+    <api id="P:System.Web.Mail.MailMessage.BodyFormat">
+      <topicdata group="api" />
+      <apidata name="BodyFormat" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BodyFormat" />
+      <setter name="set_BodyFormat" />
+      <returns>
+        <type api="T:System.Web.Mail.MailFormat" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailMessage" ref="true" />
+      </containers>
+      <file name="9ca2556f-ae4e-deef-7adc-4857e0f810a5" />
+    </api>
+    <api id="P:System.Web.Mail.MailMessage.Cc">
+      <topicdata group="api" />
+      <apidata name="Cc" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Cc" />
+      <setter name="set_Cc" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailMessage" ref="true" />
+      </containers>
+      <file name="1269ed01-98cc-1083-c901-28ebe0ffb816" />
+    </api>
+    <api id="P:System.Web.Mail.MailMessage.Fields">
+      <topicdata group="api" />
+      <apidata name="Fields" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Fields" />
+      <returns>
+        <type api="T:System.Collections.IDictionary" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailMessage" ref="true" />
+      </containers>
+      <file name="7ad628e1-5700-917f-26df-bdecbdf3a092" />
+    </api>
+    <api id="P:System.Web.Mail.MailMessage.From">
+      <topicdata group="api" />
+      <apidata name="From" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_From" />
+      <setter name="set_From" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailMessage" ref="true" />
+      </containers>
+      <file name="e8b16e7e-4e7c-ad3d-2332-37f25b7d574c" />
+    </api>
+    <api id="P:System.Web.Mail.MailMessage.Headers">
+      <topicdata group="api" />
+      <apidata name="Headers" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Headers" />
+      <returns>
+        <type api="T:System.Collections.IDictionary" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailMessage" ref="true" />
+      </containers>
+      <file name="9947627e-8133-c03f-3b82-c1b01a2c4346" />
+    </api>
+    <api id="P:System.Web.Mail.MailMessage.Priority">
+      <topicdata group="api" />
+      <apidata name="Priority" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Priority" />
+      <setter name="set_Priority" />
+      <returns>
+        <type api="T:System.Web.Mail.MailPriority" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailMessage" ref="true" />
+      </containers>
+      <file name="1a736cbe-c0d1-a880-1a35-5b479be64fa1" />
+    </api>
+    <api id="P:System.Web.Mail.MailMessage.Subject">
+      <topicdata group="api" />
+      <apidata name="Subject" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Subject" />
+      <setter name="set_Subject" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailMessage" ref="true" />
+      </containers>
+      <file name="7b5cbce6-26c8-1b5a-141e-2c6b9465d3ad" />
+    </api>
+    <api id="P:System.Web.Mail.MailMessage.To">
+      <topicdata group="api" />
+      <apidata name="To" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_To" />
+      <setter name="set_To" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailMessage" ref="true" />
+      </containers>
+      <file name="90688b49-ed23-ec1b-314d-aa6a25de695d" />
+    </api>
+    <api id="P:System.Web.Mail.MailMessage.UrlContentBase">
+      <topicdata group="api" />
+      <apidata name="UrlContentBase" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UrlContentBase" />
+      <setter name="set_UrlContentBase" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailMessage" ref="true" />
+      </containers>
+      <file name="78b36a93-5d3d-10f1-f314-02a47206a03c" />
+    </api>
+    <api id="P:System.Web.Mail.MailMessage.UrlContentLocation">
+      <topicdata group="api" />
+      <apidata name="UrlContentLocation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UrlContentLocation" />
+      <setter name="set_UrlContentLocation" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailMessage" ref="true" />
+      </containers>
+      <file name="61c86841-d764-8f18-0f28-34d2efbad9d6" />
+    </api>
+    <api id="T:System.Web.Mail.MailPriority">
+      <topicdata group="api" />
+      <apidata name="MailPriority" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Web.Mail.MailPriority.Normal" />
+        <element api="F:System.Web.Mail.MailPriority.Low" />
+        <element api="F:System.Web.Mail.MailPriority.High" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The recommended alternative is System.Net.Mail.MailPriority. http://go.microsoft.com/fwlink/?linkid=14202</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="acafd026-9656-cc52-40a3-c075c7233d12" />
+    </api>
+    <api id="F:System.Web.Mail.MailPriority.High">
+      <topicdata group="api" notopic="" />
+      <apidata name="High" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Web.Mail.MailPriority" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailPriority" ref="false" />
+      </containers>
+      <file name="13f123ba-43b1-595b-2e31-a23cd8e89e2c" />
+    </api>
+    <api id="F:System.Web.Mail.MailPriority.Low">
+      <topicdata group="api" notopic="" />
+      <apidata name="Low" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Web.Mail.MailPriority" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailPriority" ref="false" />
+      </containers>
+      <file name="01600689-bfb3-ddb0-102c-376328c2bd57" />
+    </api>
+    <api id="F:System.Web.Mail.MailPriority.Normal">
+      <topicdata group="api" notopic="" />
+      <apidata name="Normal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Web.Mail.MailPriority" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.MailPriority" ref="false" />
+      </containers>
+      <file name="ba27b340-09ff-b2d6-fb0f-0ec8463fc4e4" />
+    </api>
+    <api id="T:System.Web.Mail.SmtpMail">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.Mail.SmtpMail" />
+      <apidata name="SmtpMail" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The recommended alternative is System.Net.Mail.SmtpClient. http://go.microsoft.com/fwlink/?linkid=14202</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9989e2df-6a20-7143-d4cb-6bd78c27e072" />
+    </api>
+    <api id="AllMembers.T:System.Web.Mail.SmtpMail">
+      <topicdata name="SmtpMail" group="list" subgroup="members" typeTopicId="T:System.Web.Mail.SmtpMail" />
+      <apidata name="SmtpMail" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Web.Mail.SmtpMail.Send">
+          <element api="M:System.Web.Mail.SmtpMail.Send(System.Web.Mail.MailMessage)" />
+          <element api="M:System.Web.Mail.SmtpMail.Send(System.String,System.String,System.String,System.String)" />
+        </element>
+        <element api="P:System.Web.Mail.SmtpMail.SmtpServer" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.SmtpMail" />
+      </containers>
+      <file name="96408039-b4a3-dcb7-ea9b-c0bfe6d6ae81" />
+    </api>
+    <api id="Methods.T:System.Web.Mail.SmtpMail">
+      <topicdata name="SmtpMail" group="list" subgroup="Methods" typeTopicId="T:System.Web.Mail.SmtpMail" />
+      <apidata name="SmtpMail" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Web.Mail.SmtpMail.Send">
+          <element api="M:System.Web.Mail.SmtpMail.Send(System.Web.Mail.MailMessage)" />
+          <element api="M:System.Web.Mail.SmtpMail.Send(System.String,System.String,System.String,System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.SmtpMail" />
+      </containers>
+      <file name="859c51d2-9496-300d-6cd6-715b9edf6bb8" />
+    </api>
+    <api id="Properties.T:System.Web.Mail.SmtpMail">
+      <topicdata name="SmtpMail" group="list" subgroup="Properties" typeTopicId="T:System.Web.Mail.SmtpMail" />
+      <apidata name="SmtpMail" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Web.Mail.SmtpMail.SmtpServer" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.SmtpMail" />
+      </containers>
+      <file name="68a72554-9ca6-98b8-5699-f115bdb637e5" />
+    </api>
+    <api id="Overload:System.Web.Mail.SmtpMail.Send">
+      <topicdata name="Send" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.Mail.SmtpMail" />
+      <apidata name="Send" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Web.Mail.SmtpMail.Send(System.Web.Mail.MailMessage)" />
+        <element api="M:System.Web.Mail.SmtpMail.Send(System.String,System.String,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.SmtpMail" ref="true" />
+      </containers>
+      <file name="741668ac-6b40-e7dc-47e4-ff92856ff287" />
+    </api>
+    <api id="M:System.Web.Mail.SmtpMail.Send(System.String,System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="Send" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Web.Mail.SmtpMail.Send" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="from">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="to">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="subject">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="messageText">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.SmtpMail" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Web.AspNetHostingPermissionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="Demand" />
+            </enumValue>
+          </argument>
+          <assignment name="Level">
+            <type api="T:System.Web.AspNetHostingPermissionLevel" ref="false" />
+            <enumValue>
+              <field name="Medium" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="91847f4f-a084-3d4b-bef2-6c5323e0bf75" />
+    </api>
+    <api id="M:System.Web.Mail.SmtpMail.Send(System.Web.Mail.MailMessage)">
+      <topicdata group="api" />
+      <apidata name="Send" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Web.Mail.SmtpMail.Send" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.Web.Mail.MailMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.SmtpMail" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Web.AspNetHostingPermissionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="Demand" />
+            </enumValue>
+          </argument>
+          <assignment name="Level">
+            <type api="T:System.Web.AspNetHostingPermissionLevel" ref="false" />
+            <enumValue>
+              <field name="Medium" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="559ff51f-86ed-ffef-7196-8fc80a5659c6" />
+    </api>
+    <api id="P:System.Web.Mail.SmtpMail.SmtpServer">
+      <topicdata group="api" />
+      <apidata name="SmtpServer" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SmtpServer" />
+      <setter name="set_SmtpServer" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mail" />
+        <type api="T:System.Web.Mail.SmtpMail" ref="true" />
+      </containers>
+      <file name="b022154b-1072-77bf-4f14-ac34a707c7a4" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.Resources">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.Resources" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.Resources.ResourceLoader" />
+      </elements>
+      <file name="c4204c3f-1071-8b3d-64a1-174620b93e38" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Resources.ResourceLoader">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Resources.ResourceLoader" />
+      <apidata name="ResourceLoader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Resources.ResourceLoader.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Resources.IResourceLoader" ref="true" />
+        <type api="T:Windows.ApplicationModel.Resources.IResourceLoader2" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="796cb6ff-b781-a0e5-3001-3cabc0b361d0" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Resources.ResourceLoader">
+      <topicdata name="ResourceLoader" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Resources.ResourceLoader" />
+      <apidata name="ResourceLoader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Resources.ResourceLoader.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.ApplicationModel.Resources.ResourceLoader.#ctor">
+          <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.#ctor" />
+          <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.#ctor(System.String)" />
+        </element>
+        <element api="Overload:Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView">
+          <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView" />
+          <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView(System.String)" />
+        </element>
+        <element api="Overload:Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse">
+          <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse" />
+          <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse(System.String)" />
+        </element>
+        <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.GetString(System.String)" />
+        <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.GetStringForReference(Windows.Foundation.Uri)" />
+        <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.GetStringForUri(Windows.Foundation.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources" />
+        <type api="T:Windows.ApplicationModel.Resources.ResourceLoader" />
+      </containers>
+      <file name="8adfb7fa-519f-1ab6-1215-d51086cdcb88" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Resources.ResourceLoader">
+      <topicdata name="ResourceLoader" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Resources.ResourceLoader" />
+      <apidata name="ResourceLoader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Resources.ResourceLoader.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView">
+          <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView" />
+          <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView(System.String)" />
+        </element>
+        <element api="Overload:Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse">
+          <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse" />
+          <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse(System.String)" />
+        </element>
+        <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.GetString(System.String)" />
+        <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.GetStringForReference(Windows.Foundation.Uri)" />
+        <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.GetStringForUri(Windows.Foundation.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources" />
+        <type api="T:Windows.ApplicationModel.Resources.ResourceLoader" />
+      </containers>
+      <file name="92f7bef8-c4b3-8f62-4e52-fc37098083b4" />
+    </api>
+    <api id="Overload:Windows.ApplicationModel.Resources.ResourceLoader.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Resources.ResourceLoader" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.#ctor" />
+        <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources" />
+        <type api="T:Windows.ApplicationModel.Resources.ResourceLoader" ref="true" />
+      </containers>
+      <file name="d495b5cf-9bce-c56a-c388-df9f3156d0dc" />
+    </api>
+    <api id="Overload:Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView">
+      <topicdata name="GetForCurrentView" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Resources.ResourceLoader" />
+      <apidata name="GetForCurrentView" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView" />
+        <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources" />
+        <type api="T:Windows.ApplicationModel.Resources.ResourceLoader" ref="true" />
+      </containers>
+      <file name="e630539c-75e1-fbc3-0012-72b3a8cccdfd" />
+    </api>
+    <api id="Overload:Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse">
+      <topicdata name="GetForViewIndependentUse" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Resources.ResourceLoader" />
+      <apidata name="GetForViewIndependentUse" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse" />
+        <element api="M:Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources" />
+        <type api="T:Windows.ApplicationModel.Resources.ResourceLoader" ref="true" />
+      </containers>
+      <file name="d3f0f24b-e83a-a95d-22bd-d15eb8aaa96b" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Resources.ResourceLoader.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.ApplicationModel.Resources.ResourceLoader.#ctor" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources" />
+        <type api="T:Windows.ApplicationModel.Resources.ResourceLoader" ref="true" />
+      </containers>
+      <file name="f148097f-2f7f-6183-d1b9-91871c99bec6" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Resources.ResourceLoader.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.ApplicationModel.Resources.ResourceLoader.#ctor" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources" />
+        <type api="T:Windows.ApplicationModel.Resources.ResourceLoader" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ResourceLoader may be altered or unavailable for releases after Windows Phone 'OSVersion' (TBD). Instead, use GetForCurrentView.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f5f4ae6a-2908-673b-2395-b9d573a4fac6" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView">
+      <topicdata group="api" />
+      <apidata name="GetForCurrentView" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Resources.ResourceLoader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources" />
+        <type api="T:Windows.ApplicationModel.Resources.ResourceLoader" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetForCurrentView</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4eff55c3-2c52-c267-928e-eea4313e06f8" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetForCurrentView" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.ApplicationModel.Resources.ResourceLoader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources" />
+        <type api="T:Windows.ApplicationModel.Resources.ResourceLoader" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetForCurrentViewWithName</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="edacbcef-8c70-2fed-3569-30acca43b669" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse">
+      <topicdata group="api" />
+      <apidata name="GetForViewIndependentUse" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Resources.ResourceLoader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources" />
+        <type api="T:Windows.ApplicationModel.Resources.ResourceLoader" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetForViewIndependentUse</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f7dabd78-14ef-3f21-a597-3647ef42eb8a" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetForViewIndependentUse" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.ApplicationModel.Resources.ResourceLoader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources" />
+        <type api="T:Windows.ApplicationModel.Resources.ResourceLoader" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetForViewIndependentUseWithName</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="985561f7-8aff-c45a-71c6-f89136d79742" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Resources.ResourceLoader.GetString(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="resource" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources" />
+        <type api="T:Windows.ApplicationModel.Resources.ResourceLoader" ref="true" />
+      </containers>
+      <file name="8657f241-c50d-90d7-deaa-67a210419435" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Resources.ResourceLoader.GetStringForReference(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="GetStringForReference" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="uri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources" />
+        <type api="T:Windows.ApplicationModel.Resources.ResourceLoader" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetStringForReference may be altered or unavailable for releases after Windows Phone 'OSVersion' (TBD). Instead, use GetStringForUri.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e98faf43-202c-0cdb-9d90-1df4cb86404f" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Resources.ResourceLoader.GetStringForUri(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="GetStringForUri" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="uri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources" />
+        <type api="T:Windows.ApplicationModel.Resources.ResourceLoader" ref="true" />
+      </containers>
+      <file name="d447e8e7-5a92-24fa-15c5-aad2f5f6c287" />
+    </api>
+  </apis>
+</reflection>

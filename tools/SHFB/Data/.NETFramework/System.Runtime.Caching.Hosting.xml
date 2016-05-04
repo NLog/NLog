@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Runtime.Caching">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Caching.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Caching.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Caching.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>..\..\..\..\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.Caching.Hosting">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.Caching.Hosting" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.Caching.Hosting.IApplicationIdentifier" />
+        <element api="T:System.Runtime.Caching.Hosting.IFileChangeNotificationSystem" />
+        <element api="T:System.Runtime.Caching.Hosting.IMemoryCacheManager" />
+      </elements>
+      <file name="6e04147a-1f98-e279-dcbb-117510590de7" />
+    </api>
+    <api id="T:System.Runtime.Caching.Hosting.IApplicationIdentifier">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Caching.Hosting.IApplicationIdentifier" />
+      <apidata name="IApplicationIdentifier" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Hosting" />
+      </containers>
+      <file name="5c545a5d-28bc-4393-6707-8db5de8e7ec2" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Caching.Hosting.IApplicationIdentifier">
+      <topicdata name="IApplicationIdentifier" group="list" subgroup="members" typeTopicId="T:System.Runtime.Caching.Hosting.IApplicationIdentifier" />
+      <apidata name="IApplicationIdentifier" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Caching.Hosting.IApplicationIdentifier.GetApplicationId" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Hosting" />
+        <type api="T:System.Runtime.Caching.Hosting.IApplicationIdentifier" />
+      </containers>
+      <file name="7a63d7c6-1d38-429d-c9d9-f6b351cf569f" />
+    </api>
+    <api id="Methods.T:System.Runtime.Caching.Hosting.IApplicationIdentifier">
+      <topicdata name="IApplicationIdentifier" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Caching.Hosting.IApplicationIdentifier" />
+      <apidata name="IApplicationIdentifier" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Caching.Hosting.IApplicationIdentifier.GetApplicationId" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Hosting" />
+        <type api="T:System.Runtime.Caching.Hosting.IApplicationIdentifier" />
+      </containers>
+      <file name="7c74cf8c-b517-5422-8a03-e7cde38ca91a" />
+    </api>
+    <api id="M:System.Runtime.Caching.Hosting.IApplicationIdentifier.GetApplicationId">
+      <topicdata group="api" />
+      <apidata name="GetApplicationId" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Hosting" />
+        <type api="T:System.Runtime.Caching.Hosting.IApplicationIdentifier" ref="true" />
+      </containers>
+      <file name="591d6577-f213-5fe8-6c63-78878b838fce" />
+    </api>
+    <api id="T:System.Runtime.Caching.Hosting.IFileChangeNotificationSystem">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Caching.Hosting.IFileChangeNotificationSystem" />
+      <apidata name="IFileChangeNotificationSystem" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Hosting" />
+      </containers>
+      <file name="21f3e20c-eb25-3ca7-2e1a-2c0c9c1f0231" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Caching.Hosting.IFileChangeNotificationSystem">
+      <topicdata name="IFileChangeNotificationSystem" group="list" subgroup="members" typeTopicId="T:System.Runtime.Caching.Hosting.IFileChangeNotificationSystem" />
+      <apidata name="IFileChangeNotificationSystem" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Caching.Hosting.IFileChangeNotificationSystem.StartMonitoring(System.String,System.Runtime.Caching.OnChangedCallback,System.Object@,System.DateTimeOffset@,System.Int64@)" />
+        <element api="M:System.Runtime.Caching.Hosting.IFileChangeNotificationSystem.StopMonitoring(System.String,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Hosting" />
+        <type api="T:System.Runtime.Caching.Hosting.IFileChangeNotificationSystem" />
+      </containers>
+      <file name="20a25655-f69c-bfd6-f629-c44c819f0382" />
+    </api>
+    <api id="Methods.T:System.Runtime.Caching.Hosting.IFileChangeNotificationSystem">
+      <topicdata name="IFileChangeNotificationSystem" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Caching.Hosting.IFileChangeNotificationSystem" />
+      <apidata name="IFileChangeNotificationSystem" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Caching.Hosting.IFileChangeNotificationSystem.StartMonitoring(System.String,System.Runtime.Caching.OnChangedCallback,System.Object@,System.DateTimeOffset@,System.Int64@)" />
+        <element api="M:System.Runtime.Caching.Hosting.IFileChangeNotificationSystem.StopMonitoring(System.String,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Hosting" />
+        <type api="T:System.Runtime.Caching.Hosting.IFileChangeNotificationSystem" />
+      </containers>
+      <file name="41c2148e-f1e5-dd09-0deb-46ebf7b751cc" />
+    </api>
+    <api id="M:System.Runtime.Caching.Hosting.IFileChangeNotificationSystem.StartMonitoring(System.String,System.Runtime.Caching.OnChangedCallback,System.Object@,System.DateTimeOffset@,System.Int64@)">
+      <topicdata group="api" />
+      <apidata name="StartMonitoring" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="filePath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="onChangedCallback">
+          <type api="T:System.Runtime.Caching.OnChangedCallback" ref="true" />
+        </parameter>
+        <parameter name="state" out="true">
+          <referenceTo>
+            <type api="T:System.Object" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="lastWriteTime" out="true">
+          <referenceTo>
+            <type api="T:System.DateTimeOffset" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="fileSize" out="true">
+          <referenceTo>
+            <type api="T:System.Int64" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Hosting" />
+        <type api="T:System.Runtime.Caching.Hosting.IFileChangeNotificationSystem" ref="true" />
+      </containers>
+      <file name="567cee4f-9655-2b84-d01e-7cb9d5578f45" />
+    </api>
+    <api id="M:System.Runtime.Caching.Hosting.IFileChangeNotificationSystem.StopMonitoring(System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name="StopMonitoring" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="filePath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Hosting" />
+        <type api="T:System.Runtime.Caching.Hosting.IFileChangeNotificationSystem" ref="true" />
+      </containers>
+      <file name="77954270-3d7a-2da8-f13e-e2ec1d50ba27" />
+    </api>
+    <api id="T:System.Runtime.Caching.Hosting.IMemoryCacheManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Caching.Hosting.IMemoryCacheManager" />
+      <apidata name="IMemoryCacheManager" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Hosting" />
+      </containers>
+      <file name="c58410ad-f757-f4a4-fa19-467c24e69837" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Caching.Hosting.IMemoryCacheManager">
+      <topicdata name="IMemoryCacheManager" group="list" subgroup="members" typeTopicId="T:System.Runtime.Caching.Hosting.IMemoryCacheManager" />
+      <apidata name="IMemoryCacheManager" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Caching.Hosting.IMemoryCacheManager.ReleaseCache(System.Runtime.Caching.MemoryCache)" />
+        <element api="M:System.Runtime.Caching.Hosting.IMemoryCacheManager.UpdateCacheSize(System.Int64,System.Runtime.Caching.MemoryCache)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Hosting" />
+        <type api="T:System.Runtime.Caching.Hosting.IMemoryCacheManager" />
+      </containers>
+      <file name="5d191ebf-c871-0e6e-c3fb-1119e82349e0" />
+    </api>
+    <api id="Methods.T:System.Runtime.Caching.Hosting.IMemoryCacheManager">
+      <topicdata name="IMemoryCacheManager" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Caching.Hosting.IMemoryCacheManager" />
+      <apidata name="IMemoryCacheManager" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Caching.Hosting.IMemoryCacheManager.ReleaseCache(System.Runtime.Caching.MemoryCache)" />
+        <element api="M:System.Runtime.Caching.Hosting.IMemoryCacheManager.UpdateCacheSize(System.Int64,System.Runtime.Caching.MemoryCache)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Hosting" />
+        <type api="T:System.Runtime.Caching.Hosting.IMemoryCacheManager" />
+      </containers>
+      <file name="99563b41-7aa7-d964-d7cc-86d46413fdcc" />
+    </api>
+    <api id="M:System.Runtime.Caching.Hosting.IMemoryCacheManager.ReleaseCache(System.Runtime.Caching.MemoryCache)">
+      <topicdata group="api" />
+      <apidata name="ReleaseCache" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="cache">
+          <type api="T:System.Runtime.Caching.MemoryCache" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Hosting" />
+        <type api="T:System.Runtime.Caching.Hosting.IMemoryCacheManager" ref="true" />
+      </containers>
+      <file name="00951ede-d567-9ec3-551d-2942119efb4f" />
+    </api>
+    <api id="M:System.Runtime.Caching.Hosting.IMemoryCacheManager.UpdateCacheSize(System.Int64,System.Runtime.Caching.MemoryCache)">
+      <topicdata group="api" />
+      <apidata name="UpdateCacheSize" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="size">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="cache">
+          <type api="T:System.Runtime.Caching.MemoryCache" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Hosting" />
+        <type api="T:System.Runtime.Caching.Hosting.IMemoryCacheManager" ref="true" />
+      </containers>
+      <file name="52646ce1-3a7c-a8fd-2d31-1aed5b6e0a02" />
+    </api>
+  </apis>
+</reflection>

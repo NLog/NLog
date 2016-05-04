@@ -1,0 +1,1663 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.SPOT.Net">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.SPOT.Net</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.SPOT.Net.NetworkInformation">
+      <topicdata group="api" />
+      <apidata name="Microsoft.SPOT.Net.NetworkInformation" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityEventArgs" />
+        <element api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityChangedEventHandler" />
+        <element api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkAddressChangedEventHandler" />
+        <element api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkChange" />
+        <element api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterfaceType" />
+        <element api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" />
+        <element api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" />
+        <element api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType" />
+        <element api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType" />
+        <element api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.RadioType" />
+      </elements>
+      <file name="cfb57035-7142-6f99-10fb-30ef820d4ddb" />
+    </api>
+    <api id="T:Microsoft.SPOT.Net.NetworkInformation.NetworkAddressChangedEventHandler">
+      <topicdata group="api" />
+      <apidata name="NetworkAddressChangedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.SPOT.EventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+      </containers>
+      <file name="fbe27da9-a6ee-ed27-9086-9ff0a41dcbcd" />
+    </api>
+    <api id="T:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityChangedEventHandler">
+      <topicdata group="api" />
+      <apidata name="NetworkAvailabilityChangedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+      </containers>
+      <file name="36595f7e-d129-2fb1-e6d4-8b8719d6ef85" />
+    </api>
+    <api id="T:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityEventArgs" />
+      <apidata name="NetworkAvailabilityEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.SPOT.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+      </containers>
+      <file name="b2f98bcb-d997-cc81-9681-1c1141553cf3" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityEventArgs">
+      <topicdata name="NetworkAvailabilityEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityEventArgs" />
+      <apidata name="NetworkAvailabilityEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityEventArgs.IsAvailable" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityEventArgs" />
+      </containers>
+      <file name="17b2903c-f872-1bcb-6d3c-78eba2782042" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityEventArgs">
+      <topicdata name="NetworkAvailabilityEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityEventArgs" />
+      <apidata name="NetworkAvailabilityEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityEventArgs" />
+      </containers>
+      <file name="4e3f7903-bfea-e7b0-b5fe-356f7c351285" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityEventArgs">
+      <topicdata name="NetworkAvailabilityEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityEventArgs" />
+      <apidata name="NetworkAvailabilityEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityEventArgs.IsAvailable" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityEventArgs" />
+      </containers>
+      <file name="999aa31e-fcf6-136b-76c7-cb73fd6c2e84" />
+    </api>
+    <api id="P:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityEventArgs.IsAvailable">
+      <topicdata group="api" />
+      <apidata name="IsAvailable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsAvailable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityEventArgs" ref="true" />
+      </containers>
+      <file name="eaf44744-f190-88b1-19c1-9814985ef426" />
+    </api>
+    <api id="T:Microsoft.SPOT.Net.NetworkInformation.NetworkChange">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Net.NetworkInformation.NetworkChange" />
+      <apidata name="NetworkChange" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+      </containers>
+      <file name="948b219b-fb99-c885-b164-30d846deeeed" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Net.NetworkInformation.NetworkChange">
+      <topicdata name="NetworkChange" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Net.NetworkInformation.NetworkChange" />
+      <apidata name="NetworkChange" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.SPOT.Net.NetworkInformation.NetworkChange.NetworkAddressChanged" />
+        <element api="E:Microsoft.SPOT.Net.NetworkInformation.NetworkChange.NetworkAvailabilityChanged" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkChange" />
+      </containers>
+      <file name="144e713b-75db-7dad-cf06-6f78b80ff179" />
+    </api>
+    <api id="Events.T:Microsoft.SPOT.Net.NetworkInformation.NetworkChange">
+      <topicdata name="NetworkChange" group="list" subgroup="Events" typeTopicId="T:Microsoft.SPOT.Net.NetworkInformation.NetworkChange" />
+      <apidata name="NetworkChange" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.SPOT.Net.NetworkInformation.NetworkChange.NetworkAddressChanged" />
+        <element api="E:Microsoft.SPOT.Net.NetworkInformation.NetworkChange.NetworkAvailabilityChanged" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkChange" />
+      </containers>
+      <file name="99188a38-7d27-5e3e-1b4a-c7b4df8c1fb0" />
+    </api>
+    <api id="E:Microsoft.SPOT.Net.NetworkInformation.NetworkChange.NetworkAddressChanged">
+      <topicdata group="api" />
+      <apidata name="NetworkAddressChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_NetworkAddressChanged" />
+      <remover name="remove_NetworkAddressChanged" />
+      <eventhandler>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkAddressChangedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.SPOT.EventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkChange" ref="true" />
+      </containers>
+      <file name="0c8da4db-f503-634e-0402-33fa3ce9ee0f" />
+    </api>
+    <api id="E:Microsoft.SPOT.Net.NetworkInformation.NetworkChange.NetworkAvailabilityChanged">
+      <topicdata group="api" />
+      <apidata name="NetworkAvailabilityChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_NetworkAvailabilityChanged" />
+      <remover name="remove_NetworkAvailabilityChanged" />
+      <eventhandler>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityChangedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkAvailabilityEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkChange" ref="true" />
+      </containers>
+      <file name="8dfd6dd6-eba0-f661-9f9f-6db6053f11c3" />
+    </api>
+    <api id="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" />
+      <apidata name="NetworkInterface" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+      </containers>
+      <file name="5c177c0c-dd19-5623-64d3-d11d5db3dec0" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface">
+      <topicdata name="NetworkInterface" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" />
+      <apidata name="NetworkInterface" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.#ctor(System.Int32)" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.DnsAddresses" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableDhcp" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableDynamicDns" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableStaticDns(System.String[])" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableStaticIP(System.String,System.String,System.String)" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.GatewayAddress" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.IPAddress" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.IsDhcpEnabled" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.IsDynamicDnsEnabled" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.NetworkInterfaceType" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.PhysicalAddress" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.ReleaseDhcpLease" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.RenewDhcpLease" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.SubnetMask" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" />
+      </containers>
+      <file name="3f2e6ff4-81a3-6cda-7faa-709525ee8c9a" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface">
+      <topicdata name="NetworkInterface" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" />
+      <apidata name="NetworkInterface" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableDhcp" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableDynamicDns" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableStaticDns(System.String[])" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableStaticIP(System.String,System.String,System.String)" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.ReleaseDhcpLease" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.RenewDhcpLease" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" />
+      </containers>
+      <file name="451174c1-8dda-c53b-6cee-a010f1c0a169" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface">
+      <topicdata name="NetworkInterface" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" />
+      <apidata name="NetworkInterface" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.DnsAddresses" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.GatewayAddress" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.IPAddress" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.IsDhcpEnabled" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.IsDynamicDnsEnabled" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.NetworkInterfaceType" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.PhysicalAddress" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.SubnetMask" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" />
+      </containers>
+      <file name="9e80c247-bda7-3e9b-b9c5-32faa4a08344" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.#ctor(System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <parameters>
+        <parameter name="interfaceIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" ref="true" />
+      </containers>
+      <file name="ff11cbc6-07a4-bbc6-7821-c97035a87c9a" />
+    </api>
+    <api id="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.DnsAddresses">
+      <topicdata group="api" />
+      <apidata name="DnsAddresses" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DnsAddresses" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" ref="true" />
+      </containers>
+      <file name="203fa38a-6058-6369-9fab-e9bf2f84f497" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableDhcp">
+      <topicdata group="api" />
+      <apidata name="EnableDhcp" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" ref="true" />
+      </containers>
+      <file name="671d99ba-af12-b4c3-703d-6d4ec1c32e65" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableDynamicDns">
+      <topicdata group="api" />
+      <apidata name="EnableDynamicDns" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" ref="true" />
+      </containers>
+      <file name="d3cf9d59-03eb-ce79-588f-35a9ebab2911" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableStaticDns(System.String[])">
+      <topicdata group="api" />
+      <apidata name="EnableStaticDns" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="dnsAddresses">
+          <arrayOf rank="1">
+            <type api="T:System.String" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" ref="true" />
+      </containers>
+      <file name="50131844-4ad7-8179-b190-bd7cfcac527f" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableStaticIP(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="EnableStaticIP" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="ipAddress">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="subnetMask">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="gatewayAddress">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" ref="true" />
+      </containers>
+      <file name="edb9c5bb-9ebe-357f-6a06-5effa8ec819a" />
+    </api>
+    <api id="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.GatewayAddress">
+      <topicdata group="api" />
+      <apidata name="GatewayAddress" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_GatewayAddress" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" ref="true" />
+      </containers>
+      <file name="cd38beab-148d-4756-18a2-42f08a9df133" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces">
+      <topicdata group="api" />
+      <apidata name="GetAllNetworkInterfaces" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" ref="true" />
+      </containers>
+      <file name="d34fd58f-db7b-6f77-ff95-ea1ab0833abc" />
+    </api>
+    <api id="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.IPAddress">
+      <topicdata group="api" />
+      <apidata name="IPAddress" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IPAddress" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" ref="true" />
+      </containers>
+      <file name="859b7b82-c631-9b5b-4f54-79d8956640e5" />
+    </api>
+    <api id="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.IsDhcpEnabled">
+      <topicdata group="api" />
+      <apidata name="IsDhcpEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsDhcpEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" ref="true" />
+      </containers>
+      <file name="d3a0042c-73e4-4600-285e-2776af0cf2f1" />
+    </api>
+    <api id="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.IsDynamicDnsEnabled">
+      <topicdata group="api" />
+      <apidata name="IsDynamicDnsEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsDynamicDnsEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" ref="true" />
+      </containers>
+      <file name="ff4ca3ab-5ebf-1552-6725-beff256bd149" />
+    </api>
+    <api id="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.NetworkInterfaceType">
+      <topicdata group="api" />
+      <apidata name="NetworkInterfaceType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NetworkInterfaceType" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterfaceType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" ref="true" />
+      </containers>
+      <file name="bbb296bb-1890-f945-0eca-c0744c98d610" />
+    </api>
+    <api id="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.PhysicalAddress">
+      <topicdata group="api" />
+      <apidata name="PhysicalAddress" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PhysicalAddress" />
+      <setter name="set_PhysicalAddress" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" ref="true" />
+      </containers>
+      <file name="c1b45185-bf99-5a9b-3f66-d335adbbf70d" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.ReleaseDhcpLease">
+      <topicdata group="api" />
+      <apidata name="ReleaseDhcpLease" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" ref="true" />
+      </containers>
+      <file name="f220d89f-11e8-5172-fef1-e4b91b68404d" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.RenewDhcpLease">
+      <topicdata group="api" />
+      <apidata name="RenewDhcpLease" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" ref="true" />
+      </containers>
+      <file name="b84f7be7-55b0-9989-037e-f1252c666e61" />
+    </api>
+    <api id="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.SubnetMask">
+      <topicdata group="api" />
+      <apidata name="SubnetMask" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SubnetMask" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" ref="true" />
+      </containers>
+      <file name="f14a4399-0fb6-1aa5-ae28-48e1569d797a" />
+    </api>
+    <api id="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterfaceType">
+      <topicdata group="api" />
+      <apidata name="NetworkInterfaceType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.NetworkInterfaceType.Unknown" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.NetworkInterfaceType.Ethernet" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.NetworkInterfaceType.Wireless80211" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+      </containers>
+      <file name="949cb014-9f95-1292-8545-8991b648d848" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.NetworkInterfaceType.Ethernet">
+      <topicdata group="api" notopic="" />
+      <apidata name="Ethernet" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterfaceType" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterfaceType" ref="false" />
+      </containers>
+      <file name="720bfc4e-0291-7d9b-086b-37d1363afb78" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.NetworkInterfaceType.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterfaceType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterfaceType" ref="false" />
+      </containers>
+      <file name="5ef88ea7-bf9c-9328-73cb-02e203e2f331" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.NetworkInterfaceType.Wireless80211">
+      <topicdata group="api" notopic="" />
+      <apidata name="Wireless80211" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterfaceType" ref="false" />
+      </returns>
+      <value>71</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterfaceType" ref="false" />
+      </containers>
+      <file name="2f6d941c-5528-71bc-5896-3a0ad52e0af7" />
+    </api>
+    <api id="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" />
+      <apidata name="Wireless80211" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+      </containers>
+      <file name="00d391e5-974e-19df-6044-dd57e501c1a7" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211">
+      <topicdata name="Wireless80211" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" />
+      <apidata name="Wireless80211" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.DnsAddresses" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableDhcp" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableDynamicDns" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableStaticDns(System.String[])" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableStaticIP(System.String,System.String,System.String)" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.GatewayAddress" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.IPAddress" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.IsDhcpEnabled" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.IsDynamicDnsEnabled" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.NetworkInterfaceType" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.PhysicalAddress" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.ReleaseDhcpLease" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.RenewDhcpLease" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.SubnetMask" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.Authentication" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.Encryption" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.Id" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.MaxPassPhraseLength" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.NetworkKey" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.NetworkKeyLength" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.PassPhrase" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.Radio" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.ReKeyInternal" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.ReKeyInternalLength" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.SaveConfiguration(Microsoft.SPOT.Net.NetworkInformation.Wireless80211[],System.Boolean)" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.Ssid" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.SsidLength" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.ValidateConfiguration(Microsoft.SPOT.Net.NetworkInformation.Wireless80211)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" />
+      </containers>
+      <file name="b028c95d-ff0f-088b-dc55-401a2d46e5d8" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211">
+      <topicdata name="Wireless80211" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" />
+      <apidata name="Wireless80211" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableDhcp" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableDynamicDns" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableStaticDns(System.String[])" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.EnableStaticIP(System.String,System.String,System.String)" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.ReleaseDhcpLease" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.RenewDhcpLease" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.SaveConfiguration(Microsoft.SPOT.Net.NetworkInformation.Wireless80211[],System.Boolean)" />
+        <element api="M:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.ValidateConfiguration(Microsoft.SPOT.Net.NetworkInformation.Wireless80211)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" />
+      </containers>
+      <file name="a0ea37bb-4d59-f6be-7749-ef2df2967328" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211">
+      <topicdata name="Wireless80211" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" />
+      <apidata name="Wireless80211" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.DnsAddresses" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.GatewayAddress" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.IPAddress" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.IsDhcpEnabled" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.IsDynamicDnsEnabled" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.NetworkInterfaceType" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.PhysicalAddress" />
+        <element api="P:Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.SubnetMask" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" />
+      </containers>
+      <file name="cf55567f-b429-f441-9f33-2a01f6d3baed" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211">
+      <topicdata name="Wireless80211" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" />
+      <apidata name="Wireless80211" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.Authentication" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.Encryption" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.Id" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.MaxPassPhraseLength" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.NetworkKey" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.NetworkKeyLength" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.PassPhrase" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.Radio" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.ReKeyInternal" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.ReKeyInternalLength" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.Ssid" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.SsidLength" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" />
+      </containers>
+      <file name="013aab5b-6f2d-16f6-a617-d95c2defe4c9" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.Authentication">
+      <topicdata group="api" />
+      <apidata name="Authentication" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+      </containers>
+      <file name="1c692473-1696-f3b4-d1ce-cf527387f822" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.Encryption">
+      <topicdata group="api" />
+      <apidata name="Encryption" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+      </containers>
+      <file name="5974dc56-5cf8-3a1b-67ee-5780fb7dbca9" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+      </containers>
+      <file name="7740b2cc-2c65-9bb0-c5c3-a6f52fcf850b" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.MaxPassPhraseLength">
+      <topicdata group="api" />
+      <apidata name="MaxPassPhraseLength" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>64</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+      </containers>
+      <file name="f9890aed-f815-211a-b5b3-7f0546529e18" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.NetworkKey">
+      <topicdata group="api" />
+      <apidata name="NetworkKey" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+      </containers>
+      <file name="f18da8d3-00da-4ef5-82ec-a6a99191d6e4" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.NetworkKeyLength">
+      <topicdata group="api" />
+      <apidata name="NetworkKeyLength" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>256</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+      </containers>
+      <file name="a7aad065-9890-8008-c1d1-1810ad01de54" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.PassPhrase">
+      <topicdata group="api" />
+      <apidata name="PassPhrase" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+      </containers>
+      <file name="aa04929f-38b4-f277-94d4-fc5f5db46011" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.Radio">
+      <topicdata group="api" />
+      <apidata name="Radio" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.RadioType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+      </containers>
+      <file name="5a873941-0c80-8e3b-623a-75dd79b0e0b0" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.ReKeyInternal">
+      <topicdata group="api" />
+      <apidata name="ReKeyInternal" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+      </containers>
+      <file name="d72437f8-4a55-34c1-7ca6-79d6acd5d754" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.ReKeyInternalLength">
+      <topicdata group="api" />
+      <apidata name="ReKeyInternalLength" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+      </containers>
+      <file name="9ac60388-70eb-3873-9931-97c8af5b822d" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.SaveConfiguration(Microsoft.SPOT.Net.NetworkInformation.Wireless80211[],System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="SaveConfiguration" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="wirelessConfigurations">
+          <arrayOf rank="1">
+            <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="useEncryption">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+      </containers>
+      <file name="20abae40-96ef-ac2c-5a0f-897c09eb0201" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.Ssid">
+      <topicdata group="api" />
+      <apidata name="Ssid" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+      </containers>
+      <file name="2bef6bb3-02f8-71d1-e0f7-dc395048b2ef" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.SsidLength">
+      <topicdata group="api" />
+      <apidata name="SsidLength" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+      </containers>
+      <file name="81f45dbf-0783-974f-12de-6869012e7d8e" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.ValidateConfiguration(Microsoft.SPOT.Net.NetworkInformation.Wireless80211)">
+      <topicdata group="api" />
+      <apidata name="ValidateConfiguration" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="wirelessConfiguration">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+      </containers>
+      <file name="3e6302bd-b68b-c5c5-5cf0-5eac554868c3" />
+    </api>
+    <api id="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType">
+      <topicdata group="api" />
+      <apidata name="AuthenticationType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType.None" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType.EAP" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType.PEAP" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType.WCN" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType.Open" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType.Shared" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="0037f78a-b22a-6cca-082a-1e0d02baecec" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType.EAP">
+      <topicdata group="api" notopic="" />
+      <apidata name="EAP" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </containers>
+      <file name="40e66082-4c6f-1916-aa11-84da9676f64a" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </containers>
+      <file name="6bf6d25b-b27a-3df7-6fa3-508bd442415b" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType.Open">
+      <topicdata group="api" notopic="" />
+      <apidata name="Open" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </containers>
+      <file name="452e1c74-a76c-115e-4690-41b4e2a19cff" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType.PEAP">
+      <topicdata group="api" notopic="" />
+      <apidata name="PEAP" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </containers>
+      <file name="8a8edff6-d992-265c-807c-6fa6aaf45313" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType.Shared">
+      <topicdata group="api" notopic="" />
+      <apidata name="Shared" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </containers>
+      <file name="6987242d-83b6-f173-e46f-d6c2391c7c7d" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType.WCN">
+      <topicdata group="api" notopic="" />
+      <apidata name="WCN" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.AuthenticationType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </containers>
+      <file name="5f8b42ed-2c87-b06e-eae0-e319cf19d3a0" />
+    </api>
+    <api id="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType">
+      <topicdata group="api" />
+      <apidata name="EncryptionType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType.None" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType.WEP" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType.WPA" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType.WPAPSK" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType.Certificate" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="0b4460d0-821a-4ca3-a9a6-339606945f0d" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType.Certificate">
+      <topicdata group="api" notopic="" />
+      <apidata name="Certificate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </containers>
+      <file name="bec73766-c335-fcca-89d0-7235866e2314" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </containers>
+      <file name="79add116-f76d-9e1f-be47-ae64706c5220" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType.WEP">
+      <topicdata group="api" notopic="" />
+      <apidata name="WEP" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </containers>
+      <file name="2c5c01d3-7822-b8a6-1c4e-71d305f77f1b" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType.WPA">
+      <topicdata group="api" notopic="" />
+      <apidata name="WPA" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </containers>
+      <file name="14b5d9f5-fa7f-a6ad-14ed-6061a5cc12de" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType.WPAPSK">
+      <topicdata group="api" notopic="" />
+      <apidata name="WPAPSK" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.EncryptionType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </containers>
+      <file name="160399e4-8017-5324-4e76-a13297ebac43" />
+    </api>
+    <api id="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.RadioType">
+      <topicdata group="api" />
+      <apidata name="RadioType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.RadioType.a" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.RadioType.b" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.RadioType.g" />
+        <element api="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.RadioType.n" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="8e250438-f944-274a-568f-9ea8edf08f73" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.RadioType.a">
+      <topicdata group="api" notopic="" />
+      <apidata name="a" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.RadioType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.RadioType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </containers>
+      <file name="d511e943-209c-d145-2de3-8bcc1b344287" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.RadioType.b">
+      <topicdata group="api" notopic="" />
+      <apidata name="b" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.RadioType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.RadioType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </containers>
+      <file name="7925c285-31b7-c732-d988-e9bedf237936" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.RadioType.g">
+      <topicdata group="api" notopic="" />
+      <apidata name="g" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.RadioType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.RadioType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </containers>
+      <file name="af803155-7416-4898-5030-94bf4c2a88e0" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.RadioType.n">
+      <topicdata group="api" notopic="" />
+      <apidata name="n" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.RadioType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net" module="Microsoft.SPOT.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.NetworkInformation" />
+        <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211.RadioType" ref="false">
+          <type api="T:Microsoft.SPOT.Net.NetworkInformation.Wireless80211" ref="true" />
+        </type>
+      </containers>
+      <file name="3459ffda-d1c5-1c2a-eb16-685813fb364d" />
+    </api>
+  </apis>
+</reflection>

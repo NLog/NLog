@@ -1,0 +1,3555 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Foundation.Metadata">
+      <topicdata group="api" />
+      <apidata name="Windows.Foundation.Metadata" group="namespace" />
+      <elements>
+        <element api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" />
+        <element api="T:Windows.Foundation.Metadata.VariantAttribute" />
+        <element api="T:Windows.Foundation.Metadata.HasVariantAttribute" />
+        <element api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" />
+        <element api="T:Windows.Foundation.Metadata.MuseAttribute" />
+        <element api="T:Windows.Foundation.Metadata.GCPressureAmount" />
+        <element api="T:Windows.Foundation.Metadata.GCPressureAttribute" />
+        <element api="T:Windows.Foundation.Metadata.ActivatableAttribute" />
+        <element api="T:Windows.Foundation.Metadata.VersionAttribute" />
+        <element api="T:Windows.Foundation.Metadata.Platform" />
+        <element api="T:Windows.Foundation.Metadata.AllowMultipleAttribute" />
+        <element api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" />
+        <element api="T:Windows.Foundation.Metadata.AttributeTargets" />
+        <element api="T:Windows.Foundation.Metadata.DefaultOverloadAttribute" />
+        <element api="T:Windows.Foundation.Metadata.DefaultAttribute" />
+        <element api="T:Windows.Foundation.Metadata.GuidAttribute" />
+        <element api="T:Windows.Foundation.Metadata.ComposableAttribute" />
+        <element api="T:Windows.Foundation.Metadata.CompositionType" />
+        <element api="T:Windows.Foundation.Metadata.OverloadAttribute" />
+        <element api="T:Windows.Foundation.Metadata.StaticAttribute" />
+        <element api="T:Windows.Foundation.Metadata.OverridableAttribute" />
+        <element api="T:Windows.Foundation.Metadata.ProtectedAttribute" />
+        <element api="T:Windows.Foundation.Metadata.ThreadingAttribute" />
+        <element api="T:Windows.Foundation.Metadata.ThreadingModel" />
+        <element api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" />
+        <element api="T:Windows.Foundation.Metadata.MarshalingType" />
+        <element api="T:Windows.Foundation.Metadata.DeprecatedAttribute" />
+        <element api="T:Windows.Foundation.Metadata.DeprecationType" />
+        <element api="T:Windows.Foundation.Metadata.PlatformAttribute" />
+        <element api="T:Windows.Foundation.Metadata.ExclusiveToAttribute" />
+        <element api="T:Windows.Foundation.Metadata.LengthIsAttribute" />
+        <element api="T:Windows.Foundation.Metadata.RangeAttribute" />
+      </elements>
+      <file name="f79041cf-2fab-8737-9308-1680ad4640da" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.ActivatableAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.ActivatableAttribute" />
+      <apidata name="ActivatableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="RuntimeClass" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AllowMultipleAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a0428d95-2e5e-a33b-16f1-76d060db3c64" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.ActivatableAttribute">
+      <topicdata name="ActivatableAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.ActivatableAttribute" />
+      <apidata name="ActivatableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Foundation.Metadata.ActivatableAttribute.#ctor">
+          <element api="M:Windows.Foundation.Metadata.ActivatableAttribute.#ctor(System.UInt32)" />
+          <element api="M:Windows.Foundation.Metadata.ActivatableAttribute.#ctor(System.Type,System.UInt32)" />
+          <element api="M:Windows.Foundation.Metadata.ActivatableAttribute.#ctor(System.UInt32,Windows.Foundation.Metadata.Platform)" />
+          <element api="M:Windows.Foundation.Metadata.ActivatableAttribute.#ctor(System.Type,System.UInt32,Windows.Foundation.Metadata.Platform)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" />
+      </containers>
+      <file name="644cdd26-c358-4c3d-1aa6-195ac7bb610b" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.ActivatableAttribute">
+      <topicdata name="ActivatableAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.ActivatableAttribute" />
+      <apidata name="ActivatableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" />
+      </containers>
+      <file name="b33ca917-71ef-a2c3-a280-98fa43b607e3" />
+    </api>
+    <api id="Overload:Windows.Foundation.Metadata.ActivatableAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.ActivatableAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.Foundation.Metadata.ActivatableAttribute.#ctor(System.UInt32)" />
+        <element api="M:Windows.Foundation.Metadata.ActivatableAttribute.#ctor(System.Type,System.UInt32)" />
+        <element api="M:Windows.Foundation.Metadata.ActivatableAttribute.#ctor(System.UInt32,Windows.Foundation.Metadata.Platform)" />
+        <element api="M:Windows.Foundation.Metadata.ActivatableAttribute.#ctor(System.Type,System.UInt32,Windows.Foundation.Metadata.Platform)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+      </containers>
+      <file name="1b5efd77-55a4-da5c-953f-1f9a07eb3d8a" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.ActivatableAttribute.#ctor(System.Type,System.UInt32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Foundation.Metadata.ActivatableAttribute.#ctor" />
+      <parameters>
+        <parameter name="type" in="true">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="version" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+      </containers>
+      <file name="6d3864cc-844f-11ac-c5a3-bc65642744c1" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.ActivatableAttribute.#ctor(System.Type,System.UInt32,Windows.Foundation.Metadata.Platform)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Foundation.Metadata.ActivatableAttribute.#ctor" />
+      <parameters>
+        <parameter name="type" in="true">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="version" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="platform" in="true">
+          <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+      </containers>
+      <file name="7fb18392-01f1-29b8-d36d-9188dc83a012" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.ActivatableAttribute.#ctor(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Foundation.Metadata.ActivatableAttribute.#ctor" />
+      <parameters>
+        <parameter name="version" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+      </containers>
+      <file name="7c0f599a-b6fe-640e-3001-767ca761f7c3" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.ActivatableAttribute.#ctor(System.UInt32,Windows.Foundation.Metadata.Platform)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Foundation.Metadata.ActivatableAttribute.#ctor" />
+      <parameters>
+        <parameter name="version" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="platform" in="true">
+          <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+      </containers>
+      <file name="0026fc93-343d-b016-6a8f-e4a90ea32cb8" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.AllowMultipleAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.AllowMultipleAttribute" />
+      <apidata name="AllowMultipleAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.AllowMultipleAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="RuntimeClass" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="cec07836-01fb-4fdf-c959-dc045284382a" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.AllowMultipleAttribute">
+      <topicdata name="AllowMultipleAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.AllowMultipleAttribute" />
+      <apidata name="AllowMultipleAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.AllowMultipleAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.AllowMultipleAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.AllowMultipleAttribute" />
+      </containers>
+      <file name="65743fa8-29ee-b42f-46bc-96483b93acd4" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.AllowMultipleAttribute">
+      <topicdata name="AllowMultipleAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.AllowMultipleAttribute" />
+      <apidata name="AllowMultipleAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.AllowMultipleAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.AllowMultipleAttribute" />
+      </containers>
+      <file name="63948f19-3f75-26b7-a794-dc10e5354e55" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.AllowMultipleAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.AllowMultipleAttribute" ref="true" />
+      </containers>
+      <file name="9993de72-40ac-112e-9d41-f596c226cbd0" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.AttributeTargets">
+      <topicdata group="api" />
+      <apidata name="AttributeTargets" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.Foundation.Metadata.AttributeTargets.All" />
+        <element api="F:Windows.Foundation.Metadata.AttributeTargets.Delegate" />
+        <element api="F:Windows.Foundation.Metadata.AttributeTargets.Enum" />
+        <element api="F:Windows.Foundation.Metadata.AttributeTargets.Event" />
+        <element api="F:Windows.Foundation.Metadata.AttributeTargets.Field" />
+        <element api="F:Windows.Foundation.Metadata.AttributeTargets.Interface" />
+        <element api="F:Windows.Foundation.Metadata.AttributeTargets.Method" />
+        <element api="F:Windows.Foundation.Metadata.AttributeTargets.Parameter" />
+        <element api="F:Windows.Foundation.Metadata.AttributeTargets.Property" />
+        <element api="F:Windows.Foundation.Metadata.AttributeTargets.RuntimeClass" />
+        <element api="F:Windows.Foundation.Metadata.AttributeTargets.Struct" />
+        <element api="F:Windows.Foundation.Metadata.AttributeTargets.InterfaceImpl" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="cdba72df-5637-8689-3398-335bd6667aa0" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.AttributeTargets.All">
+      <topicdata group="api" notopic="" />
+      <apidata name="All" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </returns>
+      <value>4294967295</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </containers>
+      <file name="79189d24-7878-4ed7-d3d6-589beb634887" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.AttributeTargets.Delegate">
+      <topicdata group="api" notopic="" />
+      <apidata name="Delegate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </containers>
+      <file name="220f4938-0967-9dcd-e697-65e2eb85e5a2" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.AttributeTargets.Enum">
+      <topicdata group="api" notopic="" />
+      <apidata name="Enum" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </containers>
+      <file name="1fd2279a-8d1a-9d07-bbaf-e7ad66e58c8b" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.AttributeTargets.Event">
+      <topicdata group="api" notopic="" />
+      <apidata name="Event" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </containers>
+      <file name="f14993a7-9e0c-74e2-8619-34570f5c811d" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.AttributeTargets.Field">
+      <topicdata group="api" notopic="" />
+      <apidata name="Field" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </containers>
+      <file name="a9f2ad26-2951-5cf6-ce84-d18129397974" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.AttributeTargets.Interface">
+      <topicdata group="api" notopic="" />
+      <apidata name="Interface" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </containers>
+      <file name="6976733e-113f-6707-4480-99f3c3be1f6b" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.AttributeTargets.InterfaceImpl">
+      <topicdata group="api" notopic="" />
+      <apidata name="InterfaceImpl" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </returns>
+      <value>2048</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </containers>
+      <file name="4e943683-baa6-32b8-c35a-d71edd96cf35" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.AttributeTargets.Method">
+      <topicdata group="api" notopic="" />
+      <apidata name="Method" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </returns>
+      <value>64</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </containers>
+      <file name="3b847501-548c-88be-4090-ccc0829c9623" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.AttributeTargets.Parameter">
+      <topicdata group="api" notopic="" />
+      <apidata name="Parameter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </returns>
+      <value>128</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </containers>
+      <file name="9920e105-c0ea-600b-a64c-a95adee616b3" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.AttributeTargets.Property">
+      <topicdata group="api" notopic="" />
+      <apidata name="Property" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </returns>
+      <value>256</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </containers>
+      <file name="9ddd9623-6b26-1fe8-7eb7-2d60362389b6" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.AttributeTargets.RuntimeClass">
+      <topicdata group="api" notopic="" />
+      <apidata name="RuntimeClass" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </returns>
+      <value>512</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </containers>
+      <file name="99de7c0d-6cd9-1797-c71a-4aef90356393" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.AttributeTargets.Struct">
+      <topicdata group="api" notopic="" />
+      <apidata name="Struct" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </returns>
+      <value>1024</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+      </containers>
+      <file name="bb4509a3-7458-36ed-364b-565cced29867" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.AttributeUsageAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.AttributeUsageAttribute" />
+      <apidata name="AttributeUsageAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="RuntimeClass" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7dfc2dc0-6683-c441-47c1-a237e84ea5fb" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.AttributeUsageAttribute">
+      <topicdata name="AttributeUsageAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.AttributeUsageAttribute" />
+      <apidata name="AttributeUsageAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.AttributeUsageAttribute.#ctor(Windows.Foundation.Metadata.AttributeTargets)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" />
+      </containers>
+      <file name="3b3b7af6-377a-ef3b-a473-b3aad62abd51" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.AttributeUsageAttribute">
+      <topicdata name="AttributeUsageAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.AttributeUsageAttribute" />
+      <apidata name="AttributeUsageAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" />
+      </containers>
+      <file name="cf192223-32a7-5ca4-f71a-f6ddfa084eaa" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.AttributeUsageAttribute.#ctor(Windows.Foundation.Metadata.AttributeTargets)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="A_0" in="true">
+          <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+      </containers>
+      <file name="7a0e05b7-8d66-fb2c-a15f-58d70bb6535f" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.ComposableAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.ComposableAttribute" />
+      <apidata name="ComposableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AllowMultipleAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="RuntimeClass" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5ea2516c-eff1-a602-b1b8-bff443fb5e37" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.ComposableAttribute">
+      <topicdata name="ComposableAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.ComposableAttribute" />
+      <apidata name="ComposableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Foundation.Metadata.ComposableAttribute.#ctor">
+          <element api="M:Windows.Foundation.Metadata.ComposableAttribute.#ctor(System.Type,Windows.Foundation.Metadata.CompositionType,System.UInt32)" />
+          <element api="M:Windows.Foundation.Metadata.ComposableAttribute.#ctor(System.Type,Windows.Foundation.Metadata.CompositionType,System.UInt32,Windows.Foundation.Metadata.Platform)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ComposableAttribute" />
+      </containers>
+      <file name="2e369ae0-504b-8a3e-8102-9b6edba83606" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.ComposableAttribute">
+      <topicdata name="ComposableAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.ComposableAttribute" />
+      <apidata name="ComposableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ComposableAttribute" />
+      </containers>
+      <file name="3b1baf3f-009c-f04b-9477-d5be0d673586" />
+    </api>
+    <api id="Overload:Windows.Foundation.Metadata.ComposableAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.ComposableAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.Foundation.Metadata.ComposableAttribute.#ctor(System.Type,Windows.Foundation.Metadata.CompositionType,System.UInt32)" />
+        <element api="M:Windows.Foundation.Metadata.ComposableAttribute.#ctor(System.Type,Windows.Foundation.Metadata.CompositionType,System.UInt32,Windows.Foundation.Metadata.Platform)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ComposableAttribute" ref="true" />
+      </containers>
+      <file name="3734ac1e-22e8-cbea-2564-9483e1920a23" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.ComposableAttribute.#ctor(System.Type,Windows.Foundation.Metadata.CompositionType,System.UInt32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Foundation.Metadata.ComposableAttribute.#ctor" />
+      <parameters>
+        <parameter name="type" in="true">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="compositionType" in="true">
+          <type api="T:Windows.Foundation.Metadata.CompositionType" ref="false" />
+        </parameter>
+        <parameter name="version" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ComposableAttribute" ref="true" />
+      </containers>
+      <file name="e3bc5295-f6d2-647d-156b-1d610b7a6801" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.ComposableAttribute.#ctor(System.Type,Windows.Foundation.Metadata.CompositionType,System.UInt32,Windows.Foundation.Metadata.Platform)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Foundation.Metadata.ComposableAttribute.#ctor" />
+      <parameters>
+        <parameter name="type" in="true">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="compositionType" in="true">
+          <type api="T:Windows.Foundation.Metadata.CompositionType" ref="false" />
+        </parameter>
+        <parameter name="version" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="platform" in="true">
+          <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ComposableAttribute" ref="true" />
+      </containers>
+      <file name="9d1f3ea2-dbec-e6b3-c8f9-42f1829f62af" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.CompositionType">
+      <topicdata group="api" />
+      <apidata name="CompositionType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Foundation.Metadata.CompositionType.Protected" />
+        <element api="F:Windows.Foundation.Metadata.CompositionType.Public" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4e93aa87-445f-e5fd-57c9-0183388a2ba8" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.CompositionType.Protected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Protected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.CompositionType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.CompositionType" ref="false" />
+      </containers>
+      <file name="1ef13e39-7186-3c35-b736-ad4bfdd89445" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.CompositionType.Public">
+      <topicdata group="api" notopic="" />
+      <apidata name="Public" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.CompositionType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.CompositionType" ref="false" />
+      </containers>
+      <file name="16c9a130-08fb-21e4-b225-25990d969927" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.DefaultAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.DefaultAttribute" />
+      <apidata name="DefaultAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.DefaultAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="InterfaceImpl" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7ce03b66-97de-1bf1-bd2f-8454c53fd761" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.DefaultAttribute">
+      <topicdata name="DefaultAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.DefaultAttribute" />
+      <apidata name="DefaultAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.DefaultAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.DefaultAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.DefaultAttribute" />
+      </containers>
+      <file name="2754c6a5-213c-e314-2af0-4678b657df21" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.DefaultAttribute">
+      <topicdata name="DefaultAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.DefaultAttribute" />
+      <apidata name="DefaultAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.DefaultAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.DefaultAttribute" />
+      </containers>
+      <file name="5ca4df6a-8d15-7196-945b-1ad4417b8c36" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.DefaultAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.DefaultAttribute" ref="true" />
+      </containers>
+      <file name="1c929ab5-3445-9c8b-5593-27983b9c1ede" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.DefaultOverloadAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.DefaultOverloadAttribute" />
+      <apidata name="DefaultOverloadAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.DefaultOverloadAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Method" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e2447770-dda3-037b-c9a7-af2b8e41cad0" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.DefaultOverloadAttribute">
+      <topicdata name="DefaultOverloadAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.DefaultOverloadAttribute" />
+      <apidata name="DefaultOverloadAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.DefaultOverloadAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.DefaultOverloadAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.DefaultOverloadAttribute" />
+      </containers>
+      <file name="72babcbe-1508-1e8b-cc28-c82740dfbfd6" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.DefaultOverloadAttribute">
+      <topicdata name="DefaultOverloadAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.DefaultOverloadAttribute" />
+      <apidata name="DefaultOverloadAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.DefaultOverloadAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.DefaultOverloadAttribute" />
+      </containers>
+      <file name="8546ca11-963d-55b3-9763-648db78691f1" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.DefaultOverloadAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.DefaultOverloadAttribute" ref="true" />
+      </containers>
+      <file name="178d86b6-1c8c-e9d4-c340-844b359bb204" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.DeprecatedAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.DeprecatedAttribute" />
+      <apidata name="DeprecatedAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Delegate" />
+              <field name="Enum" />
+              <field name="Event" />
+              <field name="Field" />
+              <field name="Interface" />
+              <field name="Method" />
+              <field name="Property" />
+              <field name="RuntimeClass" />
+              <field name="Struct" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AllowMultipleAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="65cbb6a7-bcc8-f3d6-047a-5ed6094819f8" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.DeprecatedAttribute">
+      <topicdata name="DeprecatedAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.DeprecatedAttribute" />
+      <apidata name="DeprecatedAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Foundation.Metadata.DeprecatedAttribute.#ctor">
+          <element api="M:Windows.Foundation.Metadata.DeprecatedAttribute.#ctor(System.String,Windows.Foundation.Metadata.DeprecationType,System.UInt32)" />
+          <element api="M:Windows.Foundation.Metadata.DeprecatedAttribute.#ctor(System.String,Windows.Foundation.Metadata.DeprecationType,System.UInt32,Windows.Foundation.Metadata.Platform)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" />
+      </containers>
+      <file name="6ed84c2c-ddc1-b246-dc91-996716644692" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.DeprecatedAttribute">
+      <topicdata name="DeprecatedAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.DeprecatedAttribute" />
+      <apidata name="DeprecatedAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" />
+      </containers>
+      <file name="2c633ff6-2cfe-70d9-c034-0a9b9e92b2a3" />
+    </api>
+    <api id="Overload:Windows.Foundation.Metadata.DeprecatedAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.DeprecatedAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.Foundation.Metadata.DeprecatedAttribute.#ctor(System.String,Windows.Foundation.Metadata.DeprecationType,System.UInt32)" />
+        <element api="M:Windows.Foundation.Metadata.DeprecatedAttribute.#ctor(System.String,Windows.Foundation.Metadata.DeprecationType,System.UInt32,Windows.Foundation.Metadata.Platform)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+      </containers>
+      <file name="837bcabc-3b97-ca17-8f70-0e760e1f101e" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.DeprecatedAttribute.#ctor(System.String,Windows.Foundation.Metadata.DeprecationType,System.UInt32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Foundation.Metadata.DeprecatedAttribute.#ctor" />
+      <parameters>
+        <parameter name="message" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="type" in="true">
+          <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+        </parameter>
+        <parameter name="version" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+      </containers>
+      <file name="e0673c96-3484-2a85-9385-0be473208a58" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.DeprecatedAttribute.#ctor(System.String,Windows.Foundation.Metadata.DeprecationType,System.UInt32,Windows.Foundation.Metadata.Platform)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Foundation.Metadata.DeprecatedAttribute.#ctor" />
+      <parameters>
+        <parameter name="message" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="type" in="true">
+          <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+        </parameter>
+        <parameter name="version" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="platform" in="true">
+          <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+      </containers>
+      <file name="c6fb0a96-a1a8-4b03-c119-5d1729afc93d" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.DeprecationType">
+      <topicdata group="api" />
+      <apidata name="DeprecationType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Foundation.Metadata.DeprecationType.Deprecate" />
+        <element api="F:Windows.Foundation.Metadata.DeprecationType.Remove" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="029189fc-8674-f008-6c00-2f08c3527ed9" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.DeprecationType.Deprecate">
+      <topicdata group="api" notopic="" />
+      <apidata name="Deprecate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+      </containers>
+      <file name="bb1ff637-c26a-b152-83bf-cb6f9cd49866" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.DeprecationType.Remove">
+      <topicdata group="api" notopic="" />
+      <apidata name="Remove" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+      </containers>
+      <file name="5f9b8081-7586-a9ba-254f-60fe79243d6c" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.DualApiPartitionAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.DualApiPartitionAttribute" />
+      <apidata name="DualApiPartitionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.DualApiPartitionAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="RuntimeClass" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="72bcb99c-0834-2326-a02d-43cdfbfcb043" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.DualApiPartitionAttribute">
+      <topicdata name="DualApiPartitionAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" />
+      <apidata name="DualApiPartitionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.DualApiPartitionAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.DualApiPartitionAttribute.#ctor" />
+        <element api="F:Windows.Foundation.Metadata.DualApiPartitionAttribute.version" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" />
+      </containers>
+      <file name="897fabf4-7614-45d6-2cd6-843ee2828f72" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.DualApiPartitionAttribute">
+      <topicdata name="DualApiPartitionAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" />
+      <apidata name="DualApiPartitionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.DualApiPartitionAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" />
+      </containers>
+      <file name="aea6a2bf-bee6-479d-7c44-f168fd161d43" />
+    </api>
+    <api id="Fields.T:Windows.Foundation.Metadata.DualApiPartitionAttribute">
+      <topicdata name="DualApiPartitionAttribute" group="list" subgroup="Fields" typeTopicId="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" />
+      <apidata name="DualApiPartitionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.DualApiPartitionAttribute.#ctor" />
+      <elements>
+        <element api="F:Windows.Foundation.Metadata.DualApiPartitionAttribute.version" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" />
+      </containers>
+      <file name="10dc94f1-544e-99b4-4268-9d92edf1acfe" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.DualApiPartitionAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+      </containers>
+      <file name="0cfd4749-1fa2-bbe6-be47-73b65db23bda" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.DualApiPartitionAttribute.version">
+      <topicdata group="api" />
+      <apidata name="version" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+      </containers>
+      <file name="e027913c-2b3b-4ba4-07f4-2baee222a8e3" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.ExclusiveToAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.ExclusiveToAttribute" />
+      <apidata name="ExclusiveToAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Interface" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="22dd99fe-a3f6-f143-a172-202acda30e9d" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.ExclusiveToAttribute">
+      <topicdata name="ExclusiveToAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.ExclusiveToAttribute" />
+      <apidata name="ExclusiveToAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.ExclusiveToAttribute.#ctor(System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ExclusiveToAttribute" />
+      </containers>
+      <file name="e87d7f02-8107-22aa-2206-7a3f38233502" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.ExclusiveToAttribute">
+      <topicdata name="ExclusiveToAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.ExclusiveToAttribute" />
+      <apidata name="ExclusiveToAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ExclusiveToAttribute" />
+      </containers>
+      <file name="a038bce8-3f5c-1cb5-413b-2565b6813345" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.ExclusiveToAttribute.#ctor(System.Type)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="typeName" in="true">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ExclusiveToAttribute" ref="true" />
+      </containers>
+      <file name="4c9ffb75-bcb9-d24c-73fc-8b21b9289610" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.GCPressureAmount">
+      <topicdata group="api" />
+      <apidata name="GCPressureAmount" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Foundation.Metadata.GCPressureAmount.Low" />
+        <element api="F:Windows.Foundation.Metadata.GCPressureAmount.Medium" />
+        <element api="F:Windows.Foundation.Metadata.GCPressureAmount.High" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d5bbaa11-9fcb-2bb2-265a-1fdbe6e49773" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.GCPressureAmount.High">
+      <topicdata group="api" notopic="" />
+      <apidata name="High" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.GCPressureAmount" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.GCPressureAmount" ref="false" />
+      </containers>
+      <file name="853b6596-3312-0e39-c198-1a4265ad90e1" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.GCPressureAmount.Low">
+      <topicdata group="api" notopic="" />
+      <apidata name="Low" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.GCPressureAmount" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.GCPressureAmount" ref="false" />
+      </containers>
+      <file name="415297da-d9cf-7d9c-f999-058365f14df0" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.GCPressureAmount.Medium">
+      <topicdata group="api" notopic="" />
+      <apidata name="Medium" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.GCPressureAmount" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.GCPressureAmount" ref="false" />
+      </containers>
+      <file name="6d229db6-89b1-3d85-b071-d5a635800300" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.GCPressureAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.GCPressureAttribute" />
+      <apidata name="GCPressureAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.GCPressureAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="RuntimeClass" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="69de343d-1320-13e4-b6f1-0d7abccf6a04" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.GCPressureAttribute">
+      <topicdata name="GCPressureAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.GCPressureAttribute" />
+      <apidata name="GCPressureAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.GCPressureAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.GCPressureAttribute.#ctor" />
+        <element api="F:Windows.Foundation.Metadata.GCPressureAttribute.amount" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.GCPressureAttribute" />
+      </containers>
+      <file name="6e940521-b74a-e3f7-1eec-77bddd2b4740" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.GCPressureAttribute">
+      <topicdata name="GCPressureAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.GCPressureAttribute" />
+      <apidata name="GCPressureAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.GCPressureAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.GCPressureAttribute" />
+      </containers>
+      <file name="57541525-f168-3205-4845-49d460205674" />
+    </api>
+    <api id="Fields.T:Windows.Foundation.Metadata.GCPressureAttribute">
+      <topicdata name="GCPressureAttribute" group="list" subgroup="Fields" typeTopicId="T:Windows.Foundation.Metadata.GCPressureAttribute" />
+      <apidata name="GCPressureAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.GCPressureAttribute.#ctor" />
+      <elements>
+        <element api="F:Windows.Foundation.Metadata.GCPressureAttribute.amount" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.GCPressureAttribute" />
+      </containers>
+      <file name="3c27db8e-76d4-0d0c-5978-84226c7ca098" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.GCPressureAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.GCPressureAttribute" ref="true" />
+      </containers>
+      <file name="729b355f-eb05-f877-6977-bc049bec09ba" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.GCPressureAttribute.amount">
+      <topicdata group="api" />
+      <apidata name="amount" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.GCPressureAmount" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.GCPressureAttribute" ref="true" />
+      </containers>
+      <file name="564c2a83-de99-861f-4637-49e4765bd8fd" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.GuidAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.GuidAttribute" />
+      <apidata name="GuidAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Delegate" />
+              <field name="Interface" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="87854788-c2b8-0858-9c3c-9ef4937e7a8e" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.GuidAttribute">
+      <topicdata name="GuidAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.GuidAttribute" />
+      <apidata name="GuidAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.GuidAttribute.#ctor(System.UInt32,System.UInt16,System.UInt16,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.GuidAttribute" />
+      </containers>
+      <file name="f99dea00-5bfd-aa60-dd4f-18b0865fcb3a" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.GuidAttribute">
+      <topicdata name="GuidAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.GuidAttribute" />
+      <apidata name="GuidAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.GuidAttribute" />
+      </containers>
+      <file name="fcd80cda-81bb-c4ca-1046-3ec419fe7c90" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.GuidAttribute.#ctor(System.UInt32,System.UInt16,System.UInt16,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="a" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="b" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+        <parameter name="c" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+        <parameter name="d" in="true">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="e" in="true">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="f" in="true">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="g" in="true">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="h" in="true">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="i" in="true">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="j" in="true">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="k" in="true">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+      </containers>
+      <file name="38a6fb4e-9f1b-abfb-9104-f71a3d438f2b" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.HasVariantAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.HasVariantAttribute" />
+      <apidata name="HasVariantAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.HasVariantAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="All" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="84263d4e-5177-e5b4-a4ca-27b862c98ab5" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.HasVariantAttribute">
+      <topicdata name="HasVariantAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.HasVariantAttribute" />
+      <apidata name="HasVariantAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.HasVariantAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.HasVariantAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.HasVariantAttribute" />
+      </containers>
+      <file name="c28f6118-785d-31f8-23e2-0a1e59f733cd" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.HasVariantAttribute">
+      <topicdata name="HasVariantAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.HasVariantAttribute" />
+      <apidata name="HasVariantAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.HasVariantAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.HasVariantAttribute" />
+      </containers>
+      <file name="bd20d721-7c4b-d1da-66db-56b3de718bf4" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.HasVariantAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.HasVariantAttribute" ref="true" />
+      </containers>
+      <file name="b1f74f5f-7a6f-2bc3-39f2-55baa6e6f0e1" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.LengthIsAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.LengthIsAttribute" />
+      <apidata name="LengthIsAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Parameter" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8e6df9b8-9b2b-bada-2c95-481e851c1de9" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.LengthIsAttribute">
+      <topicdata name="LengthIsAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.LengthIsAttribute" />
+      <apidata name="LengthIsAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.LengthIsAttribute.#ctor(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.LengthIsAttribute" />
+      </containers>
+      <file name="ee76e476-0f31-7074-6ff3-27bf81f78018" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.LengthIsAttribute">
+      <topicdata name="LengthIsAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.LengthIsAttribute" />
+      <apidata name="LengthIsAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.LengthIsAttribute" />
+      </containers>
+      <file name="bf6a276c-79dc-edcb-63ad-d437cc20b995" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.LengthIsAttribute.#ctor(System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="indexLengthParameter" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.LengthIsAttribute" ref="true" />
+      </containers>
+      <file name="d246df9f-e7f6-4449-c260-7574f7d6be28" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" />
+      <apidata name="MarshalingBehaviorAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="RuntimeClass" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="89b5b294-f805-13c7-a6b0-a65138184e19" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute">
+      <topicdata name="MarshalingBehaviorAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" />
+      <apidata name="MarshalingBehaviorAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.MarshalingBehaviorAttribute.#ctor(Windows.Foundation.Metadata.MarshalingType)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" />
+      </containers>
+      <file name="d8f0528d-2c63-a8ff-b17b-52fdb52c5910" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute">
+      <topicdata name="MarshalingBehaviorAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" />
+      <apidata name="MarshalingBehaviorAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" />
+      </containers>
+      <file name="4fdbf3e2-2cf5-c517-53b2-f9f16c68cb5a" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.MarshalingBehaviorAttribute.#ctor(Windows.Foundation.Metadata.MarshalingType)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="behavior" in="true">
+          <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+      </containers>
+      <file name="c722ac6e-3cfe-96d1-8737-663dcd95e667" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.MarshalingType">
+      <topicdata group="api" />
+      <apidata name="MarshalingType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Foundation.Metadata.MarshalingType.None" />
+        <element api="F:Windows.Foundation.Metadata.MarshalingType.Agile" />
+        <element api="F:Windows.Foundation.Metadata.MarshalingType.Standard" />
+        <element api="F:Windows.Foundation.Metadata.MarshalingType.InvalidMarshaling" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="396bb35d-3f55-1a36-3b38-f4ef56ebc49b" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.MarshalingType.Agile">
+      <topicdata group="api" notopic="" />
+      <apidata name="Agile" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+      </containers>
+      <file name="3e865834-5f18-fff5-7a23-41bbf3abc34d" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.MarshalingType.InvalidMarshaling">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidMarshaling" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+      </containers>
+      <file name="ba98809b-59d8-3ff3-623a-f05829011fd3" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.MarshalingType.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+      </containers>
+      <file name="c34d2950-d980-0256-849d-0059dad49646" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.MarshalingType.Standard">
+      <topicdata group="api" notopic="" />
+      <apidata name="Standard" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+      </containers>
+      <file name="3cb24773-694c-f105-c384-d76437bdc65e" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.MuseAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.MuseAttribute" />
+      <apidata name="MuseAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.MuseAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="RuntimeClass" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="16a21397-f1a3-d072-08b9-62af0f3c538e" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.MuseAttribute">
+      <topicdata name="MuseAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.MuseAttribute" />
+      <apidata name="MuseAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.MuseAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.MuseAttribute.#ctor" />
+        <element api="F:Windows.Foundation.Metadata.MuseAttribute.Version" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.MuseAttribute" />
+      </containers>
+      <file name="3ab7df78-ac7f-00a0-1c57-929d8b50b2e4" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.MuseAttribute">
+      <topicdata name="MuseAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.MuseAttribute" />
+      <apidata name="MuseAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.MuseAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.MuseAttribute" />
+      </containers>
+      <file name="1a6169e3-ad88-1b09-d617-d4bb197d4e01" />
+    </api>
+    <api id="Fields.T:Windows.Foundation.Metadata.MuseAttribute">
+      <topicdata name="MuseAttribute" group="list" subgroup="Fields" typeTopicId="T:Windows.Foundation.Metadata.MuseAttribute" />
+      <apidata name="MuseAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.MuseAttribute.#ctor" />
+      <elements>
+        <element api="F:Windows.Foundation.Metadata.MuseAttribute.Version" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.MuseAttribute" />
+      </containers>
+      <file name="40e409d0-bc4a-10b0-e469-469166a34b23" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.MuseAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+      </containers>
+      <file name="4aef3934-57cc-4c2f-41ed-ca603aa886dd" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.MuseAttribute.Version">
+      <topicdata group="api" />
+      <apidata name="Version" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+      </containers>
+      <file name="bee2ce5e-c7bf-d827-f81c-e631d19a6cc2" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.OverloadAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.OverloadAttribute" />
+      <apidata name="OverloadAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Method" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0863da3f-ae7c-6769-b3d6-a36a63d5daeb" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.OverloadAttribute">
+      <topicdata name="OverloadAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.OverloadAttribute" />
+      <apidata name="OverloadAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.OverloadAttribute.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.OverloadAttribute" />
+      </containers>
+      <file name="b4dde664-6c10-fd95-e6c4-7bfdcb6e639e" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.OverloadAttribute">
+      <topicdata name="OverloadAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.OverloadAttribute" />
+      <apidata name="OverloadAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.OverloadAttribute" />
+      </containers>
+      <file name="f95e1b51-1d4a-59cd-73d2-ecce5c8bf9de" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.OverloadAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="method" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+      </containers>
+      <file name="79ecd59d-6dfb-8171-6bd1-a797d3de5e16" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.OverridableAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.OverridableAttribute" />
+      <apidata name="OverridableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.OverridableAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="InterfaceImpl" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e1edd629-d315-ae86-61b6-5d6f287dab11" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.OverridableAttribute">
+      <topicdata name="OverridableAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.OverridableAttribute" />
+      <apidata name="OverridableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.OverridableAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.OverridableAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.OverridableAttribute" />
+      </containers>
+      <file name="7992bfdd-e02c-f440-9015-5afb05fc9b0b" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.OverridableAttribute">
+      <topicdata name="OverridableAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.OverridableAttribute" />
+      <apidata name="OverridableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.OverridableAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.OverridableAttribute" />
+      </containers>
+      <file name="626db4a3-eb19-1799-2e1b-5ec97e380d21" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.OverridableAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.OverridableAttribute" ref="true" />
+      </containers>
+      <file name="e56c8ea0-2914-fe5c-4956-7f6fe883f601" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.Platform">
+      <topicdata group="api" />
+      <apidata name="Platform" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Foundation.Metadata.Platform.Windows" />
+        <element api="F:Windows.Foundation.Metadata.Platform.WindowsPhone" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="541d114f-9df4-9276-d744-e06e462fa303" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.Platform.Windows">
+      <topicdata group="api" notopic="" />
+      <apidata name="Windows" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+      </containers>
+      <file name="deb7ed48-e896-ff3b-5f4b-560b23b13468" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.Platform.WindowsPhone">
+      <topicdata group="api" notopic="" />
+      <apidata name="WindowsPhone" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+      </containers>
+      <file name="f64ecb72-0328-962e-63c9-a049383ed85c" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.PlatformAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.PlatformAttribute" />
+      <apidata name="PlatformAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0ba084e0-c421-aecb-ff57-559646ec9143" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.PlatformAttribute">
+      <topicdata name="PlatformAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.PlatformAttribute" />
+      <apidata name="PlatformAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.PlatformAttribute.#ctor(Windows.Foundation.Metadata.Platform)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.PlatformAttribute" />
+      </containers>
+      <file name="07b3aae4-8dc9-8fce-d9bb-db6442be97f1" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.PlatformAttribute">
+      <topicdata name="PlatformAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.PlatformAttribute" />
+      <apidata name="PlatformAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.PlatformAttribute" />
+      </containers>
+      <file name="db9d6fb9-d53d-f71b-55d6-b716f738aa02" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.PlatformAttribute.#ctor(Windows.Foundation.Metadata.Platform)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="platform" in="true">
+          <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+      </containers>
+      <file name="51eeefef-6c32-7d4a-ccca-0a8ba69d3bba" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.ProtectedAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.ProtectedAttribute" />
+      <apidata name="ProtectedAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.ProtectedAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="InterfaceImpl" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7ee96c01-85ea-7ee6-ef97-daeeeb960f68" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.ProtectedAttribute">
+      <topicdata name="ProtectedAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.ProtectedAttribute" />
+      <apidata name="ProtectedAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.ProtectedAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.ProtectedAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ProtectedAttribute" />
+      </containers>
+      <file name="64a85644-f19c-028c-674e-f46ea4efe022" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.ProtectedAttribute">
+      <topicdata name="ProtectedAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.ProtectedAttribute" />
+      <apidata name="ProtectedAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.ProtectedAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ProtectedAttribute" />
+      </containers>
+      <file name="eab513af-5036-b079-e9d7-73c18358efd5" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.ProtectedAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ProtectedAttribute" ref="true" />
+      </containers>
+      <file name="954e2461-afda-2211-ff1c-0ae73999e64f" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.RangeAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.RangeAttribute" />
+      <apidata name="RangeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Parameter" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9b6fd26b-460d-53f5-f34f-7d0c3156a0f8" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.RangeAttribute">
+      <topicdata name="RangeAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.RangeAttribute" />
+      <apidata name="RangeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.RangeAttribute.#ctor(System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.RangeAttribute" />
+      </containers>
+      <file name="ab71a917-e074-bdd0-9e51-6c79a179eee5" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.RangeAttribute">
+      <topicdata name="RangeAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.RangeAttribute" />
+      <apidata name="RangeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.RangeAttribute" />
+      </containers>
+      <file name="1856c13f-5cc0-926f-9059-21ef3fbf9656" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.RangeAttribute.#ctor(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="minValue" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="maxValue" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.RangeAttribute" ref="true" />
+      </containers>
+      <file name="580b635f-e056-f2ad-823b-813c565c8dc3" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.StaticAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.StaticAttribute" />
+      <apidata name="StaticAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AllowMultipleAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="RuntimeClass" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e4879ed5-51ee-f82e-1b39-6477a6dbec85" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.StaticAttribute">
+      <topicdata name="StaticAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.StaticAttribute" />
+      <apidata name="StaticAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Foundation.Metadata.StaticAttribute.#ctor">
+          <element api="M:Windows.Foundation.Metadata.StaticAttribute.#ctor(System.Type,System.UInt32)" />
+          <element api="M:Windows.Foundation.Metadata.StaticAttribute.#ctor(System.Type,System.UInt32,Windows.Foundation.Metadata.Platform)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.StaticAttribute" />
+      </containers>
+      <file name="ad4f19e1-6053-b823-f28a-1a98d53cb130" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.StaticAttribute">
+      <topicdata name="StaticAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.StaticAttribute" />
+      <apidata name="StaticAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.StaticAttribute" />
+      </containers>
+      <file name="1020f187-422c-9d90-18e5-850482b79407" />
+    </api>
+    <api id="Overload:Windows.Foundation.Metadata.StaticAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.StaticAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.Foundation.Metadata.StaticAttribute.#ctor(System.Type,System.UInt32)" />
+        <element api="M:Windows.Foundation.Metadata.StaticAttribute.#ctor(System.Type,System.UInt32,Windows.Foundation.Metadata.Platform)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.StaticAttribute" ref="true" />
+      </containers>
+      <file name="181634ae-9a38-886e-3815-8ff8346ea229" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.StaticAttribute.#ctor(System.Type,System.UInt32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Foundation.Metadata.StaticAttribute.#ctor" />
+      <parameters>
+        <parameter name="type" in="true">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="version" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.StaticAttribute" ref="true" />
+      </containers>
+      <file name="a997fe51-5c52-6e6c-a0f2-d1326b7e1a5c" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.StaticAttribute.#ctor(System.Type,System.UInt32,Windows.Foundation.Metadata.Platform)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Foundation.Metadata.StaticAttribute.#ctor" />
+      <parameters>
+        <parameter name="type" in="true">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="version" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="platform" in="true">
+          <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.StaticAttribute" ref="true" />
+      </containers>
+      <file name="49757a80-5c0b-2b69-3592-af74789ffa3f" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.ThreadingAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.ThreadingAttribute" />
+      <apidata name="ThreadingAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="RuntimeClass" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8b5e82a8-d77d-6b4a-c716-4de187f29e83" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.ThreadingAttribute">
+      <topicdata name="ThreadingAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.ThreadingAttribute" />
+      <apidata name="ThreadingAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.ThreadingAttribute.#ctor(Windows.Foundation.Metadata.ThreadingModel)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" />
+      </containers>
+      <file name="a64f3a8e-786d-f18f-9ff5-418e1f6f21b6" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.ThreadingAttribute">
+      <topicdata name="ThreadingAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.ThreadingAttribute" />
+      <apidata name="ThreadingAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" />
+      </containers>
+      <file name="c1d06352-0ced-f3dc-a937-cbce0983013d" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.ThreadingAttribute.#ctor(Windows.Foundation.Metadata.ThreadingModel)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="model" in="true">
+          <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+      </containers>
+      <file name="0e18e702-2359-8d95-53c3-588314e0a4fc" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.ThreadingModel">
+      <topicdata group="api" />
+      <apidata name="ThreadingModel" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Foundation.Metadata.ThreadingModel.STA" />
+        <element api="F:Windows.Foundation.Metadata.ThreadingModel.MTA" />
+        <element api="F:Windows.Foundation.Metadata.ThreadingModel.Both" />
+        <element api="F:Windows.Foundation.Metadata.ThreadingModel.InvalidThreading" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="527bc79b-3b6c-8bc0-fcac-78910f6c5315" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.ThreadingModel.Both">
+      <topicdata group="api" notopic="" />
+      <apidata name="Both" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+      </containers>
+      <file name="76a5f4bd-0e0f-9e8c-2873-c15ae2d0d7f0" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.ThreadingModel.InvalidThreading">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidThreading" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+      </containers>
+      <file name="b55d2135-65df-2fec-115a-5e6e8ce4641a" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.ThreadingModel.MTA">
+      <topicdata group="api" notopic="" />
+      <apidata name="MTA" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+      </containers>
+      <file name="a1ff56ea-4db8-6ca0-29fd-2473980dcbae" />
+    </api>
+    <api id="F:Windows.Foundation.Metadata.ThreadingModel.STA">
+      <topicdata group="api" notopic="" />
+      <apidata name="STA" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+      </containers>
+      <file name="11dfe7b1-9aa5-f94e-39c6-6eab5cc7d5d1" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.VariantAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.VariantAttribute" />
+      <apidata name="VariantAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.VariantAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Parameter" />
+              <field name="Property" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fbe6382c-2df2-f3c8-fcfd-d621bf22da67" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.VariantAttribute">
+      <topicdata name="VariantAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.VariantAttribute" />
+      <apidata name="VariantAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.VariantAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.VariantAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.VariantAttribute" />
+      </containers>
+      <file name="dab7cd7c-9572-c5d7-fdc3-0702402c4482" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.VariantAttribute">
+      <topicdata name="VariantAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.VariantAttribute" />
+      <apidata name="VariantAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.VariantAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.VariantAttribute" />
+      </containers>
+      <file name="073cd571-1a50-1dd4-29e7-a2df5dd88463" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.VariantAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.VariantAttribute" ref="true" />
+      </containers>
+      <file name="09d52fd2-c20a-58ae-02cf-71e946cfb17e" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.VersionAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.VersionAttribute" />
+      <apidata name="VersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AllowMultipleAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Delegate" />
+              <field name="Enum" />
+              <field name="Event" />
+              <field name="Field" />
+              <field name="Interface" />
+              <field name="Method" />
+              <field name="Property" />
+              <field name="RuntimeClass" />
+              <field name="Struct" />
+              <field name="InterfaceImpl" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="61e83e93-f5d2-e890-d717-08a57b0e5d58" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.VersionAttribute">
+      <topicdata name="VersionAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.VersionAttribute" />
+      <apidata name="VersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Foundation.Metadata.VersionAttribute.#ctor">
+          <element api="M:Windows.Foundation.Metadata.VersionAttribute.#ctor(System.UInt32)" />
+          <element api="M:Windows.Foundation.Metadata.VersionAttribute.#ctor(System.UInt32,Windows.Foundation.Metadata.Platform)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.VersionAttribute" />
+      </containers>
+      <file name="4ba95d88-49d5-ee99-2617-f56297eedc75" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.VersionAttribute">
+      <topicdata name="VersionAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.VersionAttribute" />
+      <apidata name="VersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.VersionAttribute" />
+      </containers>
+      <file name="61b6c332-9ae2-07c3-7d97-1be199ad3231" />
+    </api>
+    <api id="Overload:Windows.Foundation.Metadata.VersionAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.VersionAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.Foundation.Metadata.VersionAttribute.#ctor(System.UInt32)" />
+        <element api="M:Windows.Foundation.Metadata.VersionAttribute.#ctor(System.UInt32,Windows.Foundation.Metadata.Platform)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+      </containers>
+      <file name="e4ae834f-2c3e-006e-914e-61fa029d572f" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.VersionAttribute.#ctor(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Foundation.Metadata.VersionAttribute.#ctor" />
+      <parameters>
+        <parameter name="version" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+      </containers>
+      <file name="9bcfc94f-780f-7ff8-c6e5-a210c3c20d51" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.VersionAttribute.#ctor(System.UInt32,Windows.Foundation.Metadata.Platform)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Foundation.Metadata.VersionAttribute.#ctor" />
+      <parameters>
+        <parameter name="version" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="platform" in="true">
+          <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+      </containers>
+      <file name="76fc3fe7-406e-9a77-cdfa-3f89d08312a1" />
+    </api>
+    <api id="T:Windows.Foundation.Metadata.WebHostHiddenAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Metadata.WebHostHiddenAttribute" />
+      <apidata name="WebHostHiddenAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.WebHostHiddenAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Delegate" />
+              <field name="Enum" />
+              <field name="Interface" />
+              <field name="RuntimeClass" />
+              <field name="Struct" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c9dd1e11-ed76-4cdd-51b1-318e5533ed71" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Metadata.WebHostHiddenAttribute">
+      <topicdata name="WebHostHiddenAttribute" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" />
+      <apidata name="WebHostHiddenAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.WebHostHiddenAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Metadata.WebHostHiddenAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" />
+      </containers>
+      <file name="ede7369f-2aca-a7e0-53ba-f96fb9950a02" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Metadata.WebHostHiddenAttribute">
+      <topicdata name="WebHostHiddenAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" />
+      <apidata name="WebHostHiddenAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Metadata.WebHostHiddenAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" />
+      </containers>
+      <file name="ce4a0980-5276-ad1c-c5b3-3fc576338dbb" />
+    </api>
+    <api id="M:Windows.Foundation.Metadata.WebHostHiddenAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Metadata" />
+        <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+      </containers>
+      <file name="5531d7db-cdb3-b95f-ed06-2c9d5261376a" />
+    </api>
+  </apis>
+</reflection>

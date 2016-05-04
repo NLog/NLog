@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -67,6 +67,21 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(10000, targetWrapper.QueueLimit);
             Assert.Equal(50, targetWrapper.TimeToSleepBetweenBatches);
             Assert.Equal(100, targetWrapper.BatchSize);
+        }
+
+        /// <summary>
+        /// Test for https://github.com/NLog/NLog/issues/1069
+        /// </summary>
+        [Fact]
+        public void AsyncTargetWrapperInitTest_WhenTimeToSleepBetweenBatchesIsEqualToZero_ShouldThrowNLogConfigurationException() {
+            LogManager.ThrowConfigExceptions = true;
+
+            var myTarget = new MyTarget();
+            var targetWrapper = new AsyncTargetWrapper() {
+                WrappedTarget = myTarget,
+                TimeToSleepBetweenBatches = 0,
+            };
+            Assert.Throws<NLogConfigurationException>(() => targetWrapper.Initialize(null));
         }
 
         [Fact]

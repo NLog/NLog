@@ -1,0 +1,2658 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.Appointments">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.Appointments" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.Appointments.Appointment" />
+        <element api="T:Windows.ApplicationModel.Appointments.AppointmentSensitivity" />
+        <element api="T:Windows.ApplicationModel.Appointments.AppointmentBusyStatus" />
+        <element api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse" />
+        <element api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantRole" />
+        <element api="T:Windows.ApplicationModel.Appointments.IAppointmentParticipant" />
+        <element api="T:Windows.ApplicationModel.Appointments.AppointmentOrganizer" />
+        <element api="T:Windows.ApplicationModel.Appointments.AppointmentInvitee" />
+        <element api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit" />
+        <element api="T:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek" />
+        <element api="T:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth" />
+        <element api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrence" />
+        <element api="T:Windows.ApplicationModel.Appointments.AppointmentManager" />
+      </elements>
+      <file name="85d88739-0913-6e6f-1010-617dae23607c" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Appointments.Appointment">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Appointments.Appointment" />
+      <apidata name="Appointment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Appointments.Appointment.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Appointments.IAppointment" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4c64b43f-df7a-7a93-e6ec-4573246f025a" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Appointments.Appointment">
+      <topicdata name="Appointment" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Appointments.Appointment" />
+      <apidata name="Appointment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Appointments.Appointment.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Appointments.Appointment.#ctor" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.AllDay" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.BusyStatus" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Details" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Duration" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Invitees" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Location" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Organizer" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Recurrence" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Reminder" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Sensitivity" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.StartTime" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Subject" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Uri" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.Appointment" />
+      </containers>
+      <file name="bfe50c39-b847-df9d-e894-09e4a55961b3" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Appointments.Appointment">
+      <topicdata name="Appointment" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Appointments.Appointment" />
+      <apidata name="Appointment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Appointments.Appointment.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.Appointment" />
+      </containers>
+      <file name="2967484d-7387-529b-00f5-d67c84cd563a" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Appointments.Appointment">
+      <topicdata name="Appointment" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Appointments.Appointment" />
+      <apidata name="Appointment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Appointments.Appointment.#ctor" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.AllDay" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.BusyStatus" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Details" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Duration" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Invitees" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Location" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Organizer" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Recurrence" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Reminder" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Sensitivity" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.StartTime" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Subject" />
+        <element api="P:Windows.ApplicationModel.Appointments.Appointment.Uri" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.Appointment" />
+      </containers>
+      <file name="fad21f84-7251-2db0-f71e-fd787eab15fb" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Appointments.Appointment.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.Appointment" ref="true" />
+      </containers>
+      <file name="3a8c2923-7633-631d-95f1-1925ee3e5802" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.Appointment.AllDay">
+      <topicdata group="api" />
+      <apidata name="AllDay" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AllDay" />
+      <setter name="set_AllDay" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.Appointment" ref="true" />
+      </containers>
+      <file name="5e9d7b6e-7e58-0a76-5558-26f828cc5eea" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.Appointment.BusyStatus">
+      <topicdata group="api" />
+      <apidata name="BusyStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BusyStatus" />
+      <setter name="set_BusyStatus" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentBusyStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.Appointment" ref="true" />
+      </containers>
+      <file name="e04a1efb-ebbb-6e56-54bd-e57330830ec1" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.Appointment.Details">
+      <topicdata group="api" />
+      <apidata name="Details" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Details" />
+      <setter name="set_Details" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.Appointment" ref="true" />
+      </containers>
+      <file name="85ea517c-e5a6-b8b0-2123-4d291c744774" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.Appointment.Duration">
+      <topicdata group="api" />
+      <apidata name="Duration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Duration" />
+      <setter name="set_Duration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.Appointment" ref="true" />
+      </containers>
+      <file name="4474ec53-a149-4f9d-140c-5979a96118bd" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.Appointment.Invitees">
+      <topicdata group="api" />
+      <apidata name="Invitees" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Invitees" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Appointments.AppointmentInvitee" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.Appointment" ref="true" />
+      </containers>
+      <file name="3e1a0675-0dc7-41c4-7e67-b27a1dadc17a" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.Appointment.Location">
+      <topicdata group="api" />
+      <apidata name="Location" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Location" />
+      <setter name="set_Location" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.Appointment" ref="true" />
+      </containers>
+      <file name="36e9565e-fa05-ff40-bcb6-49bfc2b97979" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.Appointment.Organizer">
+      <topicdata group="api" />
+      <apidata name="Organizer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Organizer" />
+      <setter name="set_Organizer" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentOrganizer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.Appointment" ref="true" />
+      </containers>
+      <file name="7b335713-76f6-f751-3614-583c401822db" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.Appointment.Recurrence">
+      <topicdata group="api" />
+      <apidata name="Recurrence" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Recurrence" />
+      <setter name="set_Recurrence" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrence" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.Appointment" ref="true" />
+      </containers>
+      <file name="da4a0e00-33ef-0172-a7c8-120db56e3680" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.Appointment.Reminder">
+      <topicdata group="api" />
+      <apidata name="Reminder" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Reminder" />
+      <setter name="set_Reminder" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.TimeSpan" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.Appointment" ref="true" />
+      </containers>
+      <file name="c2e808e9-db54-f0ba-6a79-5ce3c8b5ddb9" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.Appointment.Sensitivity">
+      <topicdata group="api" />
+      <apidata name="Sensitivity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Sensitivity" />
+      <setter name="set_Sensitivity" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentSensitivity" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.Appointment" ref="true" />
+      </containers>
+      <file name="a3e9aefc-4ccd-57f8-6dfd-412f556a56e4" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.Appointment.StartTime">
+      <topicdata group="api" />
+      <apidata name="StartTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_StartTime" />
+      <setter name="set_StartTime" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.Appointment" ref="true" />
+      </containers>
+      <file name="d95f4fe8-5339-7ba7-9328-4e21fd9a65f2" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.Appointment.Subject">
+      <topicdata group="api" />
+      <apidata name="Subject" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Subject" />
+      <setter name="set_Subject" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.Appointment" ref="true" />
+      </containers>
+      <file name="65ae3108-f66e-554e-6f38-f3057efbed63" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.Appointment.Uri">
+      <topicdata group="api" />
+      <apidata name="Uri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Uri" />
+      <setter name="set_Uri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.Appointment" ref="true" />
+      </containers>
+      <file name="42ccf18c-ea9e-13ca-d879-f672788a8ee1" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Appointments.AppointmentBusyStatus">
+      <topicdata group="api" />
+      <apidata name="AppointmentBusyStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentBusyStatus.Busy" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentBusyStatus.Tentative" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentBusyStatus.Free" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentBusyStatus.OutOfOffice" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentBusyStatus.WorkingElsewhere" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1dc2f49a-8fd8-f243-1709-dcbe3e9e95d1" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentBusyStatus.Busy">
+      <topicdata group="api" notopic="" />
+      <apidata name="Busy" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentBusyStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentBusyStatus" ref="false" />
+      </containers>
+      <file name="51f057b4-68a8-9a87-81c8-6f2f55c2fcc3" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentBusyStatus.Free">
+      <topicdata group="api" notopic="" />
+      <apidata name="Free" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentBusyStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentBusyStatus" ref="false" />
+      </containers>
+      <file name="92d1191e-3a87-a735-fdca-bf10a8ba503d" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentBusyStatus.OutOfOffice">
+      <topicdata group="api" notopic="" />
+      <apidata name="OutOfOffice" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentBusyStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentBusyStatus" ref="false" />
+      </containers>
+      <file name="247cd0cf-0c52-2bfb-8e0d-35b8494d3bab" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentBusyStatus.Tentative">
+      <topicdata group="api" notopic="" />
+      <apidata name="Tentative" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentBusyStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentBusyStatus" ref="false" />
+      </containers>
+      <file name="747f56c0-449b-7dc8-8f69-8808f9be7ef4" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentBusyStatus.WorkingElsewhere">
+      <topicdata group="api" notopic="" />
+      <apidata name="WorkingElsewhere" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentBusyStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentBusyStatus" ref="false" />
+      </containers>
+      <file name="7726c348-7a39-0870-c6e5-3da1d55a88de" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek">
+      <topicdata group="api" />
+      <apidata name="AppointmentDaysOfWeek" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek.None" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek.Sunday" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek.Monday" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek.Tuesday" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek.Wednesday" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek.Thursday" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek.Friday" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek.Saturday" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="99911ead-e90d-9f15-ede8-4eba373eff3a" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek.Friday">
+      <topicdata group="api" notopic="" />
+      <apidata name="Friday" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek" ref="false" />
+      </containers>
+      <file name="1c262ecb-7b10-ddfd-ff9a-5c5b2015c28f" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek.Monday">
+      <topicdata group="api" notopic="" />
+      <apidata name="Monday" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek" ref="false" />
+      </containers>
+      <file name="c49a2113-44be-ea7f-3995-d37796fb8b60" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek" ref="false" />
+      </containers>
+      <file name="09030495-e5c8-c1b5-0db8-ff599b2eb31f" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek.Saturday">
+      <topicdata group="api" notopic="" />
+      <apidata name="Saturday" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek" ref="false" />
+      </returns>
+      <value>64</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek" ref="false" />
+      </containers>
+      <file name="9315f310-1064-a2b5-0d99-1d63f420234e" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek.Sunday">
+      <topicdata group="api" notopic="" />
+      <apidata name="Sunday" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek" ref="false" />
+      </containers>
+      <file name="3e43d5e5-95fd-8638-d6be-e7a56a6cf264" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek.Thursday">
+      <topicdata group="api" notopic="" />
+      <apidata name="Thursday" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek" ref="false" />
+      </containers>
+      <file name="d7abc5ba-7a51-1973-6a76-0c44e6b3bff2" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek.Tuesday">
+      <topicdata group="api" notopic="" />
+      <apidata name="Tuesday" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek" ref="false" />
+      </containers>
+      <file name="de694f69-ef9a-ee6e-b686-afe5ef0aba70" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek.Wednesday">
+      <topicdata group="api" notopic="" />
+      <apidata name="Wednesday" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek" ref="false" />
+      </containers>
+      <file name="059a51f1-1873-aa32-3a70-92ec73ed2cea" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Appointments.AppointmentInvitee">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Appointments.AppointmentInvitee" />
+      <apidata name="AppointmentInvitee" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Appointments.AppointmentInvitee.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Appointments.IAppointmentInvitee" ref="true" />
+        <type api="T:Windows.ApplicationModel.Appointments.IAppointmentParticipant" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5e63bd95-054f-1e4b-604a-bdabb9181f1d" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Appointments.AppointmentInvitee">
+      <topicdata name="AppointmentInvitee" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Appointments.AppointmentInvitee" />
+      <apidata name="AppointmentInvitee" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Appointments.AppointmentInvitee.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Appointments.AppointmentInvitee.#ctor" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentInvitee.Address" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentInvitee.DisplayName" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentInvitee.Response" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentInvitee.Role" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentInvitee" />
+      </containers>
+      <file name="2dbb30d5-1500-351e-981e-c1984a9574ec" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Appointments.AppointmentInvitee">
+      <topicdata name="AppointmentInvitee" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Appointments.AppointmentInvitee" />
+      <apidata name="AppointmentInvitee" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Appointments.AppointmentInvitee.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentInvitee" />
+      </containers>
+      <file name="750ce245-2d73-b2f8-eab4-c6adf4770368" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Appointments.AppointmentInvitee">
+      <topicdata name="AppointmentInvitee" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Appointments.AppointmentInvitee" />
+      <apidata name="AppointmentInvitee" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Appointments.AppointmentInvitee.#ctor" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentInvitee.Address" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentInvitee.DisplayName" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentInvitee.Response" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentInvitee.Role" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentInvitee" />
+      </containers>
+      <file name="8dad6fd4-2803-2bb8-716f-3c2079c4b75d" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Appointments.AppointmentInvitee.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentInvitee" ref="true" />
+      </containers>
+      <file name="a12e921c-5a53-a2a8-de40-fb48c02a5a58" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.AppointmentInvitee.Address">
+      <topicdata group="api" />
+      <apidata name="Address" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Address" />
+      <setter name="set_Address" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.ApplicationModel.Appointments.IAppointmentParticipant.Address">
+          <type api="T:Windows.ApplicationModel.Appointments.IAppointmentParticipant" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentInvitee" ref="true" />
+      </containers>
+      <file name="bd455839-4a24-27a2-4ada-08dcb9322dd9" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.AppointmentInvitee.DisplayName">
+      <topicdata group="api" />
+      <apidata name="DisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DisplayName" />
+      <setter name="set_DisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.ApplicationModel.Appointments.IAppointmentParticipant.DisplayName">
+          <type api="T:Windows.ApplicationModel.Appointments.IAppointmentParticipant" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentInvitee" ref="true" />
+      </containers>
+      <file name="34bd495b-0f46-0b9c-877b-f228bbaa9584" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.AppointmentInvitee.Response">
+      <topicdata group="api" />
+      <apidata name="Response" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Response" />
+      <setter name="set_Response" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentInvitee" ref="true" />
+      </containers>
+      <file name="7ccfaa87-daa0-bc9c-6ca1-2253cf9ad145" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.AppointmentInvitee.Role">
+      <topicdata group="api" />
+      <apidata name="Role" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Role" />
+      <setter name="set_Role" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantRole" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentInvitee" ref="true" />
+      </containers>
+      <file name="53693065-7f00-c600-28ab-6ff33192ef5d" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Appointments.AppointmentManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Appointments.AppointmentManager" />
+      <apidata name="AppointmentManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="856499ba-fd83-df3a-3b6a-6f3a449b3afd" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Appointments.AppointmentManager">
+      <topicdata name="AppointmentManager" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Appointments.AppointmentManager" />
+      <apidata name="AppointmentManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.ApplicationModel.Appointments.AppointmentManager.ShowAddAppointmentAsync">
+          <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowAddAppointmentAsync(Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect)" />
+          <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowAddAppointmentAsync(Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+        </element>
+        <element api="Overload:Windows.ApplicationModel.Appointments.AppointmentManager.ShowRemoveAppointmentAsync">
+          <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowRemoveAppointmentAsync(System.String,Windows.Foundation.Rect)" />
+          <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowRemoveAppointmentAsync(System.String,Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+          <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowRemoveAppointmentAsync(System.String,Windows.Foundation.Rect,Windows.UI.Popups.Placement,Windows.Foundation.DateTime)" />
+        </element>
+        <element api="Overload:Windows.ApplicationModel.Appointments.AppointmentManager.ShowReplaceAppointmentAsync">
+          <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowReplaceAppointmentAsync(System.String,Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect)" />
+          <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowReplaceAppointmentAsync(System.String,Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+          <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowReplaceAppointmentAsync(System.String,Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect,Windows.UI.Popups.Placement,Windows.Foundation.DateTime)" />
+        </element>
+        <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowTimeFrameAsync(Windows.Foundation.DateTime,Windows.Foundation.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentManager" />
+      </containers>
+      <file name="5ce9ee64-e6c8-51d2-2878-d7a71fe163c1" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Appointments.AppointmentManager">
+      <topicdata name="AppointmentManager" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Appointments.AppointmentManager" />
+      <apidata name="AppointmentManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.ApplicationModel.Appointments.AppointmentManager.ShowAddAppointmentAsync">
+          <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowAddAppointmentAsync(Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect)" />
+          <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowAddAppointmentAsync(Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+        </element>
+        <element api="Overload:Windows.ApplicationModel.Appointments.AppointmentManager.ShowRemoveAppointmentAsync">
+          <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowRemoveAppointmentAsync(System.String,Windows.Foundation.Rect)" />
+          <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowRemoveAppointmentAsync(System.String,Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+          <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowRemoveAppointmentAsync(System.String,Windows.Foundation.Rect,Windows.UI.Popups.Placement,Windows.Foundation.DateTime)" />
+        </element>
+        <element api="Overload:Windows.ApplicationModel.Appointments.AppointmentManager.ShowReplaceAppointmentAsync">
+          <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowReplaceAppointmentAsync(System.String,Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect)" />
+          <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowReplaceAppointmentAsync(System.String,Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+          <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowReplaceAppointmentAsync(System.String,Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect,Windows.UI.Popups.Placement,Windows.Foundation.DateTime)" />
+        </element>
+        <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowTimeFrameAsync(Windows.Foundation.DateTime,Windows.Foundation.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentManager" />
+      </containers>
+      <file name="76d806bb-62aa-4fd1-b56e-21416c4e0c64" />
+    </api>
+    <api id="Overload:Windows.ApplicationModel.Appointments.AppointmentManager.ShowAddAppointmentAsync">
+      <topicdata name="ShowAddAppointmentAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Appointments.AppointmentManager" />
+      <apidata name="ShowAddAppointmentAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowAddAppointmentAsync(Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect)" />
+        <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowAddAppointmentAsync(Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentManager" ref="true" />
+      </containers>
+      <file name="7847f8a6-b5b3-9cbc-a980-4c03d65373ba" />
+    </api>
+    <api id="Overload:Windows.ApplicationModel.Appointments.AppointmentManager.ShowRemoveAppointmentAsync">
+      <topicdata name="ShowRemoveAppointmentAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Appointments.AppointmentManager" />
+      <apidata name="ShowRemoveAppointmentAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowRemoveAppointmentAsync(System.String,Windows.Foundation.Rect)" />
+        <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowRemoveAppointmentAsync(System.String,Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+        <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowRemoveAppointmentAsync(System.String,Windows.Foundation.Rect,Windows.UI.Popups.Placement,Windows.Foundation.DateTime)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentManager" ref="true" />
+      </containers>
+      <file name="73a7ce0b-aa8c-726b-3417-07ac78a93ad7" />
+    </api>
+    <api id="Overload:Windows.ApplicationModel.Appointments.AppointmentManager.ShowReplaceAppointmentAsync">
+      <topicdata name="ShowReplaceAppointmentAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Appointments.AppointmentManager" />
+      <apidata name="ShowReplaceAppointmentAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowReplaceAppointmentAsync(System.String,Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect)" />
+        <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowReplaceAppointmentAsync(System.String,Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+        <element api="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowReplaceAppointmentAsync(System.String,Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect,Windows.UI.Popups.Placement,Windows.Foundation.DateTime)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentManager" ref="true" />
+      </containers>
+      <file name="ab601f57-c4e6-de39-e068-64b8c2f86374" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowAddAppointmentAsync(Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect)">
+      <topicdata group="api" />
+      <apidata name="ShowAddAppointmentAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.ApplicationModel.Appointments.AppointmentManager.ShowAddAppointmentAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="appointment" in="true">
+          <type api="T:Windows.ApplicationModel.Appointments.Appointment" ref="true" />
+        </parameter>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ShowAddAppointmentAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="29f4f939-276b-cdc9-d113-f4fd230fc12f" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowAddAppointmentAsync(Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect,Windows.UI.Popups.Placement)">
+      <topicdata group="api" />
+      <apidata name="ShowAddAppointmentAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.ApplicationModel.Appointments.AppointmentManager.ShowAddAppointmentAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="appointment" in="true">
+          <type api="T:Windows.ApplicationModel.Appointments.Appointment" ref="true" />
+        </parameter>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+        <parameter name="preferredPlacement" in="true">
+          <type api="T:Windows.UI.Popups.Placement" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ShowAddAppointmentWithPlacementAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7d200ab9-acec-c315-c0dc-979953af0604" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowRemoveAppointmentAsync(System.String,Windows.Foundation.Rect)">
+      <topicdata group="api" />
+      <apidata name="ShowRemoveAppointmentAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.ApplicationModel.Appointments.AppointmentManager.ShowRemoveAppointmentAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="appointmentId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ShowRemoveAppointmentAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f9f614a1-d7e4-8149-7db4-492ee7de8fc7" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowRemoveAppointmentAsync(System.String,Windows.Foundation.Rect,Windows.UI.Popups.Placement)">
+      <topicdata group="api" />
+      <apidata name="ShowRemoveAppointmentAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.ApplicationModel.Appointments.AppointmentManager.ShowRemoveAppointmentAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="appointmentId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+        <parameter name="preferredPlacement" in="true">
+          <type api="T:Windows.UI.Popups.Placement" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ShowRemoveAppointmentWithPlacementAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ed1367d0-ccaf-5a90-c121-e72398c5061f" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowRemoveAppointmentAsync(System.String,Windows.Foundation.Rect,Windows.UI.Popups.Placement,Windows.Foundation.DateTime)">
+      <topicdata group="api" />
+      <apidata name="ShowRemoveAppointmentAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.ApplicationModel.Appointments.AppointmentManager.ShowRemoveAppointmentAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="appointmentId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+        <parameter name="preferredPlacement" in="true">
+          <type api="T:Windows.UI.Popups.Placement" ref="false" />
+        </parameter>
+        <parameter name="instanceStartDate" in="true">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ShowRemoveAppointmentWithPlacementAndDateAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="98903024-ca08-cdec-b1a9-734be2e8b69c" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowReplaceAppointmentAsync(System.String,Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect)">
+      <topicdata group="api" />
+      <apidata name="ShowReplaceAppointmentAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.ApplicationModel.Appointments.AppointmentManager.ShowReplaceAppointmentAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="appointmentId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="appointment" in="true">
+          <type api="T:Windows.ApplicationModel.Appointments.Appointment" ref="true" />
+        </parameter>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ShowReplaceAppointmentAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3b91e804-8b11-f66f-c03e-79d6debc1088" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowReplaceAppointmentAsync(System.String,Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect,Windows.UI.Popups.Placement)">
+      <topicdata group="api" />
+      <apidata name="ShowReplaceAppointmentAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.ApplicationModel.Appointments.AppointmentManager.ShowReplaceAppointmentAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="appointmentId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="appointment" in="true">
+          <type api="T:Windows.ApplicationModel.Appointments.Appointment" ref="true" />
+        </parameter>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+        <parameter name="preferredPlacement" in="true">
+          <type api="T:Windows.UI.Popups.Placement" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ShowReplaceAppointmentWithPlacementAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9bd25dd3-c6e7-5ef1-ba85-e4546203f8aa" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowReplaceAppointmentAsync(System.String,Windows.ApplicationModel.Appointments.Appointment,Windows.Foundation.Rect,Windows.UI.Popups.Placement,Windows.Foundation.DateTime)">
+      <topicdata group="api" />
+      <apidata name="ShowReplaceAppointmentAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.ApplicationModel.Appointments.AppointmentManager.ShowReplaceAppointmentAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="appointmentId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="appointment" in="true">
+          <type api="T:Windows.ApplicationModel.Appointments.Appointment" ref="true" />
+        </parameter>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+        <parameter name="preferredPlacement" in="true">
+          <type api="T:Windows.UI.Popups.Placement" ref="false" />
+        </parameter>
+        <parameter name="instanceStartDate" in="true">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ShowReplaceAppointmentWithPlacementAndDateAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5ef61da0-fc1a-fe1d-9ffd-d54ecf5bb473" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Appointments.AppointmentManager.ShowTimeFrameAsync(Windows.Foundation.DateTime,Windows.Foundation.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="ShowTimeFrameAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="timeToShow" in="true">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+        <parameter name="duration" in="true">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentManager" ref="true" />
+      </containers>
+      <file name="a0f4df28-54b8-9362-e83d-4cea89a70eb7" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Appointments.AppointmentOrganizer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Appointments.AppointmentOrganizer" />
+      <apidata name="AppointmentOrganizer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Appointments.AppointmentOrganizer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Appointments.IAppointmentParticipant" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3837083d-1971-4de4-6760-877478198540" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Appointments.AppointmentOrganizer">
+      <topicdata name="AppointmentOrganizer" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Appointments.AppointmentOrganizer" />
+      <apidata name="AppointmentOrganizer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Appointments.AppointmentOrganizer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Appointments.AppointmentOrganizer.#ctor" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentOrganizer.Address" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentOrganizer.DisplayName" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentOrganizer" />
+      </containers>
+      <file name="4ebad790-e66c-4e35-59f4-5e27e0e2f6ed" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Appointments.AppointmentOrganizer">
+      <topicdata name="AppointmentOrganizer" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Appointments.AppointmentOrganizer" />
+      <apidata name="AppointmentOrganizer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Appointments.AppointmentOrganizer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentOrganizer" />
+      </containers>
+      <file name="ea664361-3fce-476d-d373-4ea30f5d7867" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Appointments.AppointmentOrganizer">
+      <topicdata name="AppointmentOrganizer" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Appointments.AppointmentOrganizer" />
+      <apidata name="AppointmentOrganizer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Appointments.AppointmentOrganizer.#ctor" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentOrganizer.Address" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentOrganizer.DisplayName" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentOrganizer" />
+      </containers>
+      <file name="bb6fef71-697c-379d-2a3a-a0fbdf9db8fa" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Appointments.AppointmentOrganizer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentOrganizer" ref="true" />
+      </containers>
+      <file name="a0db9c88-7f9b-e43f-3e61-e9e1da072ca3" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.AppointmentOrganizer.Address">
+      <topicdata group="api" />
+      <apidata name="Address" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Address" />
+      <setter name="set_Address" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.ApplicationModel.Appointments.IAppointmentParticipant.Address">
+          <type api="T:Windows.ApplicationModel.Appointments.IAppointmentParticipant" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentOrganizer" ref="true" />
+      </containers>
+      <file name="0f28b192-489c-0361-c72d-af40e319adb9" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.AppointmentOrganizer.DisplayName">
+      <topicdata group="api" />
+      <apidata name="DisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DisplayName" />
+      <setter name="set_DisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.ApplicationModel.Appointments.IAppointmentParticipant.DisplayName">
+          <type api="T:Windows.ApplicationModel.Appointments.IAppointmentParticipant" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentOrganizer" ref="true" />
+      </containers>
+      <file name="0f60c268-0058-091d-a9d4-5e60dbbe783c" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse">
+      <topicdata group="api" />
+      <apidata name="AppointmentParticipantResponse" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse.None" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse.Tentative" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse.Accepted" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse.Declined" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse.Unknown" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="995cead4-b2c2-db03-e908-86055b999684" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse.Accepted">
+      <topicdata group="api" notopic="" />
+      <apidata name="Accepted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse" ref="false" />
+      </containers>
+      <file name="09c68057-71f8-f2b2-ed29-c48685e011d1" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse.Declined">
+      <topicdata group="api" notopic="" />
+      <apidata name="Declined" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse" ref="false" />
+      </containers>
+      <file name="853f3d9c-0415-edf8-6527-23d3ad09971a" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse" ref="false" />
+      </containers>
+      <file name="7c558294-1d5e-30a7-893b-d7811d554fb5" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse.Tentative">
+      <topicdata group="api" notopic="" />
+      <apidata name="Tentative" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse" ref="false" />
+      </containers>
+      <file name="37d9c20a-89f1-4343-bae3-d859b417d5c6" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantResponse" ref="false" />
+      </containers>
+      <file name="34a4fb02-d1d5-f626-a9d8-26e052a4265a" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Appointments.AppointmentParticipantRole">
+      <topicdata group="api" />
+      <apidata name="AppointmentParticipantRole" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentParticipantRole.RequiredAttendee" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentParticipantRole.OptionalAttendee" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentParticipantRole.Resource" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0ae58061-28b6-bf17-eed9-075040a164eb" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentParticipantRole.OptionalAttendee">
+      <topicdata group="api" notopic="" />
+      <apidata name="OptionalAttendee" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantRole" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantRole" ref="false" />
+      </containers>
+      <file name="3129330e-490d-d271-2195-1e8c297f3638" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentParticipantRole.RequiredAttendee">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequiredAttendee" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantRole" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantRole" ref="false" />
+      </containers>
+      <file name="2bbc60a6-a58e-1a85-2595-1b39af218dcd" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentParticipantRole.Resource">
+      <topicdata group="api" notopic="" />
+      <apidata name="Resource" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantRole" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentParticipantRole" ref="false" />
+      </containers>
+      <file name="726e75c6-654c-db46-c240-a4c7e17ed76d" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Appointments.AppointmentRecurrence">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Appointments.AppointmentRecurrence" />
+      <apidata name="AppointmentRecurrence" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Appointments.AppointmentRecurrence.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Appointments.IAppointmentRecurrence" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b68da1af-c65b-26f6-88e7-ebeba3b93b14" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Appointments.AppointmentRecurrence">
+      <topicdata name="AppointmentRecurrence" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Appointments.AppointmentRecurrence" />
+      <apidata name="AppointmentRecurrence" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Appointments.AppointmentRecurrence.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Appointments.AppointmentRecurrence.#ctor" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.Day" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.DaysOfWeek" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.Interval" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.Month" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.Occurrences" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.Unit" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.Until" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.WeekOfMonth" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrence" />
+      </containers>
+      <file name="f4084f10-bb4f-889e-e6dc-a69d91d0b1a9" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Appointments.AppointmentRecurrence">
+      <topicdata name="AppointmentRecurrence" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Appointments.AppointmentRecurrence" />
+      <apidata name="AppointmentRecurrence" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Appointments.AppointmentRecurrence.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrence" />
+      </containers>
+      <file name="09585763-17eb-a0c7-065f-a8021306f86c" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Appointments.AppointmentRecurrence">
+      <topicdata name="AppointmentRecurrence" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Appointments.AppointmentRecurrence" />
+      <apidata name="AppointmentRecurrence" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Appointments.AppointmentRecurrence.#ctor" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.Day" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.DaysOfWeek" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.Interval" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.Month" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.Occurrences" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.Unit" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.Until" />
+        <element api="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.WeekOfMonth" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrence" />
+      </containers>
+      <file name="519c316c-1da4-4425-39d8-2315b447a642" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Appointments.AppointmentRecurrence.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrence" ref="true" />
+      </containers>
+      <file name="a6c9fd25-2ac7-d5fd-af5b-74186fa64e49" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.Day">
+      <topicdata group="api" />
+      <apidata name="Day" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Day" />
+      <setter name="set_Day" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrence" ref="true" />
+      </containers>
+      <file name="dd08dcd1-f485-5f19-f393-3422f90a11d8" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.DaysOfWeek">
+      <topicdata group="api" />
+      <apidata name="DaysOfWeek" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DaysOfWeek" />
+      <setter name="set_DaysOfWeek" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrence" ref="true" />
+      </containers>
+      <file name="510b95ff-aec0-e5dd-ea48-17ae37798379" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.Interval">
+      <topicdata group="api" />
+      <apidata name="Interval" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Interval" />
+      <setter name="set_Interval" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrence" ref="true" />
+      </containers>
+      <file name="c6c00d49-885c-c1fd-c1dd-d0b5dfe8c4be" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.Month">
+      <topicdata group="api" />
+      <apidata name="Month" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Month" />
+      <setter name="set_Month" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrence" ref="true" />
+      </containers>
+      <file name="e83c7c4f-1115-cd5b-14b6-2e1806922c3c" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.Occurrences">
+      <topicdata group="api" />
+      <apidata name="Occurrences" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Occurrences" />
+      <setter name="set_Occurrences" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrence" ref="true" />
+      </containers>
+      <file name="cfa24967-1f61-38d0-fb8c-d19c58bd57d1" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.Unit">
+      <topicdata group="api" />
+      <apidata name="Unit" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Unit" />
+      <setter name="set_Unit" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrence" ref="true" />
+      </containers>
+      <file name="4a7418ed-9a4d-7b30-8be9-6aae4eab85b1" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.Until">
+      <topicdata group="api" />
+      <apidata name="Until" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Until" />
+      <setter name="set_Until" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.DateTimeOffset" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrence" ref="true" />
+      </containers>
+      <file name="87fd5a17-5248-3424-92e5-1dbb74f99634" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.AppointmentRecurrence.WeekOfMonth">
+      <topicdata group="api" />
+      <apidata name="WeekOfMonth" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_WeekOfMonth" />
+      <setter name="set_WeekOfMonth" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrence" ref="true" />
+      </containers>
+      <file name="a0194d96-b8b8-6758-bda4-b7ca573de042" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit">
+      <topicdata group="api" />
+      <apidata name="AppointmentRecurrenceUnit" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit.Daily" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit.Weekly" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit.Monthly" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit.MonthlyOnDay" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit.Yearly" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit.YearlyOnDay" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="eae02a01-d2eb-9450-6f64-661a94e2faed" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit.Daily">
+      <topicdata group="api" notopic="" />
+      <apidata name="Daily" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit" ref="false" />
+      </containers>
+      <file name="68a0a85c-f4e3-4926-7a93-281e6193957f" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit.Monthly">
+      <topicdata group="api" notopic="" />
+      <apidata name="Monthly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit" ref="false" />
+      </containers>
+      <file name="23aceb27-4c85-beb7-2797-a5dc773b97b9" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit.MonthlyOnDay">
+      <topicdata group="api" notopic="" />
+      <apidata name="MonthlyOnDay" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit" ref="false" />
+      </containers>
+      <file name="c7101d02-35ca-0df7-6990-28b854cc24f9" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit.Weekly">
+      <topicdata group="api" notopic="" />
+      <apidata name="Weekly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit" ref="false" />
+      </containers>
+      <file name="4bc369a4-1e7e-ac95-e889-016eca579996" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit.Yearly">
+      <topicdata group="api" notopic="" />
+      <apidata name="Yearly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit" ref="false" />
+      </containers>
+      <file name="f70b76dd-d7d3-9487-12c4-c91d8589dcb3" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit.YearlyOnDay">
+      <topicdata group="api" notopic="" />
+      <apidata name="YearlyOnDay" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit" ref="false" />
+      </containers>
+      <file name="a5fb4643-6248-7eb0-8e15-d955661d60b5" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Appointments.AppointmentSensitivity">
+      <topicdata group="api" />
+      <apidata name="AppointmentSensitivity" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentSensitivity.Public" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentSensitivity.Private" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fa371e4b-8eef-f16e-d6da-c0c7222fbbb0" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentSensitivity.Private">
+      <topicdata group="api" notopic="" />
+      <apidata name="Private" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentSensitivity" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentSensitivity" ref="false" />
+      </containers>
+      <file name="96e6fe10-2eb5-ae37-6e39-fe6d6b091bb0" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentSensitivity.Public">
+      <topicdata group="api" notopic="" />
+      <apidata name="Public" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentSensitivity" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentSensitivity" ref="false" />
+      </containers>
+      <file name="8f716e14-0a08-e07b-4815-bbebc476599e" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth">
+      <topicdata group="api" />
+      <apidata name="AppointmentWeekOfMonth" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth.First" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth.Second" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth.Third" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth.Fourth" />
+        <element api="F:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth.Last" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="07de00ba-7fc9-78a2-9a9c-93589127ebaf" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth.First">
+      <topicdata group="api" notopic="" />
+      <apidata name="First" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth" ref="false" />
+      </containers>
+      <file name="00b249a4-e094-6127-7c75-68ea776eace3" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth.Fourth">
+      <topicdata group="api" notopic="" />
+      <apidata name="Fourth" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth" ref="false" />
+      </containers>
+      <file name="fb1ce73a-658a-5bdc-7ba1-6fb8970d83f7" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth.Last">
+      <topicdata group="api" notopic="" />
+      <apidata name="Last" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth" ref="false" />
+      </containers>
+      <file name="998710eb-9d73-4612-28c6-28231f9cf717" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth.Second">
+      <topicdata group="api" notopic="" />
+      <apidata name="Second" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth" ref="false" />
+      </containers>
+      <file name="27d61ace-baa7-d982-c6a4-6da916db2210" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth.Third">
+      <topicdata group="api" notopic="" />
+      <apidata name="Third" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth" ref="false" />
+      </containers>
+      <file name="55102ef4-1e0f-836f-95a0-149302a27335" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Appointments.IAppointmentParticipant">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Appointments.IAppointmentParticipant" />
+      <apidata name="IAppointmentParticipant" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentOrganizer" ref="true" />
+        <type api="T:Windows.ApplicationModel.Appointments.AppointmentInvitee" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>1633560834</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>38680</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18043</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>131</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>251</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>178</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>147</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>161</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>145</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>33</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>222</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b523daaa-88ab-d7cc-1269-cf3a3dd3b55f" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Appointments.IAppointmentParticipant">
+      <topicdata name="IAppointmentParticipant" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Appointments.IAppointmentParticipant" />
+      <apidata name="IAppointmentParticipant" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Appointments.IAppointmentParticipant.Address" />
+        <element api="P:Windows.ApplicationModel.Appointments.IAppointmentParticipant.DisplayName" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.IAppointmentParticipant" />
+      </containers>
+      <file name="8182e003-983c-3d56-4256-eecfb06c237c" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Appointments.IAppointmentParticipant">
+      <topicdata name="IAppointmentParticipant" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Appointments.IAppointmentParticipant" />
+      <apidata name="IAppointmentParticipant" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Appointments.IAppointmentParticipant.Address" />
+        <element api="P:Windows.ApplicationModel.Appointments.IAppointmentParticipant.DisplayName" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.IAppointmentParticipant" />
+      </containers>
+      <file name="ba777891-7d6b-57ca-2dfe-fb9c2a6676f6" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.IAppointmentParticipant.Address">
+      <topicdata group="api" />
+      <apidata name="Address" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Address" />
+      <setter name="set_Address" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.IAppointmentParticipant" ref="true" />
+      </containers>
+      <file name="f9de05a0-acb8-bafa-6cc3-bb4d4464a833" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Appointments.IAppointmentParticipant.DisplayName">
+      <topicdata group="api" />
+      <apidata name="DisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DisplayName" />
+      <setter name="set_DisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Appointments" />
+        <type api="T:Windows.ApplicationModel.Appointments.IAppointmentParticipant" ref="true" />
+      </containers>
+      <file name="e4e3a880-9493-98e5-eec8-dcdf70dbecfd" />
+    </api>
+  </apis>
+</reflection>

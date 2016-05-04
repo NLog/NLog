@@ -1,0 +1,2060 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Text">
+      <topicdata group="api" />
+      <apidata name="System.Text" group="namespace" />
+      <elements>
+        <element api="T:System.Text.Decoder" />
+        <element api="T:System.Text.Encoding" />
+        <element api="T:System.Text.StringBuilder" />
+        <element api="T:System.Text.UTF8Encoding" />
+      </elements>
+      <file name="c8d04d47-f19c-9ec5-5983-7fc0d513a2d0" />
+    </api>
+    <api id="T:System.Text.Decoder">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Text.Decoder" />
+      <apidata name="Decoder" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+      </containers>
+      <file name="5762f758-0c70-fa46-3f73-714cd383b1b6" />
+    </api>
+    <api id="AllMembers.T:System.Text.Decoder">
+      <topicdata name="Decoder" group="list" subgroup="members" typeTopicId="T:System.Text.Decoder" />
+      <apidata name="Decoder" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Text.Decoder.#ctor" />
+        <element api="M:System.Text.Decoder.Convert(System.Byte[],System.Int32,System.Int32,System.Char[],System.Int32,System.Int32,System.Boolean,System.Int32@,System.Int32@,System.Boolean@)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.Decoder" />
+      </containers>
+      <file name="ff1b92ea-e4fb-b559-bcfd-33288cd87d50" />
+    </api>
+    <api id="Methods.T:System.Text.Decoder">
+      <topicdata name="Decoder" group="list" subgroup="Methods" typeTopicId="T:System.Text.Decoder" />
+      <apidata name="Decoder" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Text.Decoder.Convert(System.Byte[],System.Int32,System.Int32,System.Char[],System.Int32,System.Int32,System.Boolean,System.Int32@,System.Int32@,System.Boolean@)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.Decoder" />
+      </containers>
+      <file name="7b5e7540-ea3c-3a1c-1f20-96e9fb2f19b2" />
+    </api>
+    <api id="M:System.Text.Decoder.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.Decoder" ref="true" />
+      </containers>
+      <file name="507f66bf-e9b1-8795-e1cc-6091015f6b7f" />
+    </api>
+    <api id="M:System.Text.Decoder.Convert(System.Byte[],System.Int32,System.Int32,System.Char[],System.Int32,System.Int32,System.Boolean,System.Int32@,System.Int32@,System.Boolean@)">
+      <topicdata group="api" />
+      <apidata name="Convert" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="bytes">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="byteIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="byteCount">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="chars">
+          <arrayOf rank="1">
+            <type api="T:System.Char" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="charIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="charCount">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="flush">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="bytesUsed" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="charsUsed" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="completed" out="true">
+          <referenceTo>
+            <type api="T:System.Boolean" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.Decoder" ref="true" />
+      </containers>
+      <file name="bed26779-6ab4-36fb-f4fd-0b50049aa06b" />
+    </api>
+    <api id="T:System.Text.Encoding">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Text.Encoding" />
+      <apidata name="Encoding" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Text.UTF8Encoding" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+      </containers>
+      <file name="c590603b-8901-253c-78bf-171950a57438" />
+    </api>
+    <api id="AllMembers.T:System.Text.Encoding">
+      <topicdata name="Encoding" group="list" subgroup="members" typeTopicId="T:System.Text.Encoding" />
+      <apidata name="Encoding" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Text.Encoding.#ctor" />
+        <element api="Overload:System.Text.Encoding.GetBytes">
+          <element api="M:System.Text.Encoding.GetBytes(System.String)" />
+          <element api="M:System.Text.Encoding.GetBytes(System.String,System.Int32,System.Int32,System.Byte[],System.Int32)" />
+        </element>
+        <element api="Overload:System.Text.Encoding.GetChars">
+          <element api="M:System.Text.Encoding.GetChars(System.Byte[])" />
+          <element api="M:System.Text.Encoding.GetChars(System.Byte[],System.Int32,System.Int32)" />
+        </element>
+        <element api="M:System.Text.Encoding.GetDecoder" />
+        <element api="P:System.Text.Encoding.UTF8" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.Encoding" />
+      </containers>
+      <file name="25e51dd8-64ba-7c28-5e55-77094f4c834c" />
+    </api>
+    <api id="Methods.T:System.Text.Encoding">
+      <topicdata name="Encoding" group="list" subgroup="Methods" typeTopicId="T:System.Text.Encoding" />
+      <apidata name="Encoding" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Text.Encoding.GetBytes">
+          <element api="M:System.Text.Encoding.GetBytes(System.String)" />
+          <element api="M:System.Text.Encoding.GetBytes(System.String,System.Int32,System.Int32,System.Byte[],System.Int32)" />
+        </element>
+        <element api="Overload:System.Text.Encoding.GetChars">
+          <element api="M:System.Text.Encoding.GetChars(System.Byte[])" />
+          <element api="M:System.Text.Encoding.GetChars(System.Byte[],System.Int32,System.Int32)" />
+        </element>
+        <element api="M:System.Text.Encoding.GetDecoder" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.Encoding" />
+      </containers>
+      <file name="0a90e055-0279-d3ce-5e39-89eb6f562834" />
+    </api>
+    <api id="Properties.T:System.Text.Encoding">
+      <topicdata name="Encoding" group="list" subgroup="Properties" typeTopicId="T:System.Text.Encoding" />
+      <apidata name="Encoding" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="true" />
+      <elements>
+        <element api="P:System.Text.Encoding.UTF8" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.Encoding" />
+      </containers>
+      <file name="329ca1ee-cab8-31f4-d472-f70a2b2c42fd" />
+    </api>
+    <api id="Overload:System.Text.Encoding.GetBytes">
+      <topicdata name="GetBytes" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Text.Encoding" />
+      <apidata name="GetBytes" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Text.Encoding.GetBytes(System.String)" />
+        <element api="M:System.Text.Encoding.GetBytes(System.String,System.Int32,System.Int32,System.Byte[],System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.Encoding" ref="true" />
+      </containers>
+      <file name="f6c16371-a604-4e89-1a6c-4de84bca582d" />
+    </api>
+    <api id="Overload:System.Text.Encoding.GetChars">
+      <topicdata name="GetChars" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Text.Encoding" />
+      <apidata name="GetChars" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Text.Encoding.GetChars(System.Byte[])" />
+        <element api="M:System.Text.Encoding.GetChars(System.Byte[],System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.Encoding" ref="true" />
+      </containers>
+      <file name="ce0efee0-fad5-6243-1c86-5ae440382d15" />
+    </api>
+    <api id="M:System.Text.Encoding.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.Encoding" ref="true" />
+      </containers>
+      <file name="d95ab42b-0ea4-feb2-83a8-5c2d6d206739" />
+    </api>
+    <api id="M:System.Text.Encoding.GetBytes(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetBytes" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.Encoding.GetBytes" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="s">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.Encoding" ref="true" />
+      </containers>
+      <file name="c6d2f283-2df2-a9b1-a45a-d70ab4148f7e" />
+    </api>
+    <api id="M:System.Text.Encoding.GetBytes(System.String,System.Int32,System.Int32,System.Byte[],System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GetBytes" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.Encoding.GetBytes" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="s">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="charIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="charCount">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="bytes">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="byteIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.Encoding" ref="true" />
+      </containers>
+      <file name="820b001a-c3fa-b2a5-9c80-9f3c33acdd93" />
+    </api>
+    <api id="M:System.Text.Encoding.GetChars(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="GetChars" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.Encoding.GetChars" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="bytes">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Char" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.Encoding" ref="true" />
+      </containers>
+      <file name="a01b3110-5dd7-86f7-4d12-0a9706800d1b" />
+    </api>
+    <api id="M:System.Text.Encoding.GetChars(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GetChars" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.Encoding.GetChars" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="bytes">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="byteIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="byteCount">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Char" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.Encoding" ref="true" />
+      </containers>
+      <file name="f5d25c8d-b6e0-c246-efc7-052cd39be913" />
+    </api>
+    <api id="M:System.Text.Encoding.GetDecoder">
+      <topicdata group="api" />
+      <apidata name="GetDecoder" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Text.Decoder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.Encoding" ref="true" />
+      </containers>
+      <file name="c0d597e6-df58-e869-2ca1-0c69973c926c" />
+    </api>
+    <api id="P:System.Text.Encoding.UTF8">
+      <topicdata group="api" />
+      <apidata name="UTF8" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_UTF8" />
+      <returns>
+        <type api="T:System.Text.Encoding" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.Encoding" ref="true" />
+      </containers>
+      <file name="0ab90ea1-883d-0045-ef97-7fc4b30fadc1" />
+    </api>
+    <api id="T:System.Text.StringBuilder">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Text.StringBuilder" />
+      <apidata name="StringBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Text.StringBuilder.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+      </containers>
+      <file name="e40ef6ad-bd6e-9f29-7864-b942e37be11f" />
+    </api>
+    <api id="AllMembers.T:System.Text.StringBuilder">
+      <topicdata name="StringBuilder" group="list" subgroup="members" typeTopicId="T:System.Text.StringBuilder" />
+      <apidata name="StringBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Text.StringBuilder.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="Overload:System.Text.StringBuilder.#ctor">
+          <element api="M:System.Text.StringBuilder.#ctor" />
+          <element api="M:System.Text.StringBuilder.#ctor(System.Int32)" />
+          <element api="M:System.Text.StringBuilder.#ctor(System.String)" />
+          <element api="M:System.Text.StringBuilder.#ctor(System.Int32,System.Int32)" />
+          <element api="M:System.Text.StringBuilder.#ctor(System.String,System.Int32)" />
+          <element api="M:System.Text.StringBuilder.#ctor(System.String,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="Overload:System.Text.StringBuilder.Append">
+          <element api="M:System.Text.StringBuilder.Append(System.Boolean)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Byte)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Char)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Char[])" />
+          <element api="M:System.Text.StringBuilder.Append(System.Double)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Int16)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Int32)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Int64)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Object)" />
+          <element api="M:System.Text.StringBuilder.Append(System.SByte)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Single)" />
+          <element api="M:System.Text.StringBuilder.Append(System.String)" />
+          <element api="M:System.Text.StringBuilder.Append(System.UInt16)" />
+          <element api="M:System.Text.StringBuilder.Append(System.UInt32)" />
+          <element api="M:System.Text.StringBuilder.Append(System.UInt64)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Char,System.Int32)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Char[],System.Int32,System.Int32)" />
+          <element api="M:System.Text.StringBuilder.Append(System.String,System.Int32,System.Int32)" />
+        </element>
+        <element api="Overload:System.Text.StringBuilder.AppendLine">
+          <element api="M:System.Text.StringBuilder.AppendLine" />
+          <element api="M:System.Text.StringBuilder.AppendLine(System.String)" />
+        </element>
+        <element api="P:System.Text.StringBuilder.Capacity" />
+        <element api="M:System.Text.StringBuilder.Clear" />
+        <element api="Overload:System.Text.StringBuilder.Insert">
+          <element api="M:System.Text.StringBuilder.Insert(System.Int32,System.String,System.Int32)" />
+          <element api="M:System.Text.StringBuilder.Insert(System.Int32,System.Char[],System.Int32,System.Int32)" />
+        </element>
+        <element api="P:System.Text.StringBuilder.Item(System.Int32)" />
+        <element api="P:System.Text.StringBuilder.Length" />
+        <element api="P:System.Text.StringBuilder.MaxCapacity" />
+        <element api="M:System.Text.StringBuilder.Remove(System.Int32,System.Int32)" />
+        <element api="Overload:System.Text.StringBuilder.Replace">
+          <element api="M:System.Text.StringBuilder.Replace(System.Char,System.Char)" />
+          <element api="M:System.Text.StringBuilder.Replace(System.String,System.String)" />
+          <element api="M:System.Text.StringBuilder.Replace(System.Char,System.Char,System.Int32,System.Int32)" />
+          <element api="M:System.Text.StringBuilder.Replace(System.String,System.String,System.Int32,System.Int32)" />
+        </element>
+        <element api="Overload:System.Text.StringBuilder.ToString">
+          <element api="M:System.Text.StringBuilder.ToString" />
+          <element api="M:System.Text.StringBuilder.ToString(System.Int32,System.Int32)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" />
+      </containers>
+      <file name="aa02f9d8-ff58-e09d-fa24-4ead7f57befc" />
+    </api>
+    <api id="Methods.T:System.Text.StringBuilder">
+      <topicdata name="StringBuilder" group="list" subgroup="Methods" typeTopicId="T:System.Text.StringBuilder" />
+      <apidata name="StringBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Text.StringBuilder.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="Overload:System.Text.StringBuilder.Append">
+          <element api="M:System.Text.StringBuilder.Append(System.Boolean)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Byte)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Char)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Char[])" />
+          <element api="M:System.Text.StringBuilder.Append(System.Double)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Int16)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Int32)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Int64)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Object)" />
+          <element api="M:System.Text.StringBuilder.Append(System.SByte)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Single)" />
+          <element api="M:System.Text.StringBuilder.Append(System.String)" />
+          <element api="M:System.Text.StringBuilder.Append(System.UInt16)" />
+          <element api="M:System.Text.StringBuilder.Append(System.UInt32)" />
+          <element api="M:System.Text.StringBuilder.Append(System.UInt64)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Char,System.Int32)" />
+          <element api="M:System.Text.StringBuilder.Append(System.Char[],System.Int32,System.Int32)" />
+          <element api="M:System.Text.StringBuilder.Append(System.String,System.Int32,System.Int32)" />
+        </element>
+        <element api="Overload:System.Text.StringBuilder.AppendLine">
+          <element api="M:System.Text.StringBuilder.AppendLine" />
+          <element api="M:System.Text.StringBuilder.AppendLine(System.String)" />
+        </element>
+        <element api="M:System.Text.StringBuilder.Clear" />
+        <element api="Overload:System.Text.StringBuilder.Insert">
+          <element api="M:System.Text.StringBuilder.Insert(System.Int32,System.String,System.Int32)" />
+          <element api="M:System.Text.StringBuilder.Insert(System.Int32,System.Char[],System.Int32,System.Int32)" />
+        </element>
+        <element api="M:System.Text.StringBuilder.Remove(System.Int32,System.Int32)" />
+        <element api="Overload:System.Text.StringBuilder.Replace">
+          <element api="M:System.Text.StringBuilder.Replace(System.Char,System.Char)" />
+          <element api="M:System.Text.StringBuilder.Replace(System.String,System.String)" />
+          <element api="M:System.Text.StringBuilder.Replace(System.Char,System.Char,System.Int32,System.Int32)" />
+          <element api="M:System.Text.StringBuilder.Replace(System.String,System.String,System.Int32,System.Int32)" />
+        </element>
+        <element api="Overload:System.Text.StringBuilder.ToString">
+          <element api="M:System.Text.StringBuilder.ToString" />
+          <element api="M:System.Text.StringBuilder.ToString(System.Int32,System.Int32)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" />
+      </containers>
+      <file name="c12ecfa9-4074-da0b-0e61-ef6e4f5db16e" />
+    </api>
+    <api id="Properties.T:System.Text.StringBuilder">
+      <topicdata name="StringBuilder" group="list" subgroup="Properties" typeTopicId="T:System.Text.StringBuilder" />
+      <apidata name="StringBuilder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Text.StringBuilder.#ctor" />
+      <elements>
+        <element api="P:System.Text.StringBuilder.Capacity" />
+        <element api="P:System.Text.StringBuilder.Item(System.Int32)" />
+        <element api="P:System.Text.StringBuilder.Length" />
+        <element api="P:System.Text.StringBuilder.MaxCapacity" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" />
+      </containers>
+      <file name="f2c7c5a9-53a8-7be9-86b7-c17c14769cf6" />
+    </api>
+    <api id="Overload:System.Text.StringBuilder.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Text.StringBuilder" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Text.StringBuilder.#ctor" />
+        <element api="M:System.Text.StringBuilder.#ctor(System.Int32)" />
+        <element api="M:System.Text.StringBuilder.#ctor(System.String)" />
+        <element api="M:System.Text.StringBuilder.#ctor(System.Int32,System.Int32)" />
+        <element api="M:System.Text.StringBuilder.#ctor(System.String,System.Int32)" />
+        <element api="M:System.Text.StringBuilder.#ctor(System.String,System.Int32,System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="e4298351-058f-fade-bc37-275dd7ff4b7b" />
+    </api>
+    <api id="Overload:System.Text.StringBuilder.Append">
+      <topicdata name="Append" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Text.StringBuilder" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Text.StringBuilder.Append(System.Boolean)" />
+        <element api="M:System.Text.StringBuilder.Append(System.Byte)" />
+        <element api="M:System.Text.StringBuilder.Append(System.Char)" />
+        <element api="M:System.Text.StringBuilder.Append(System.Char[])" />
+        <element api="M:System.Text.StringBuilder.Append(System.Double)" />
+        <element api="M:System.Text.StringBuilder.Append(System.Int16)" />
+        <element api="M:System.Text.StringBuilder.Append(System.Int32)" />
+        <element api="M:System.Text.StringBuilder.Append(System.Int64)" />
+        <element api="M:System.Text.StringBuilder.Append(System.Object)" />
+        <element api="M:System.Text.StringBuilder.Append(System.SByte)" />
+        <element api="M:System.Text.StringBuilder.Append(System.Single)" />
+        <element api="M:System.Text.StringBuilder.Append(System.String)" />
+        <element api="M:System.Text.StringBuilder.Append(System.UInt16)" />
+        <element api="M:System.Text.StringBuilder.Append(System.UInt32)" />
+        <element api="M:System.Text.StringBuilder.Append(System.UInt64)" />
+        <element api="M:System.Text.StringBuilder.Append(System.Char,System.Int32)" />
+        <element api="M:System.Text.StringBuilder.Append(System.Char[],System.Int32,System.Int32)" />
+        <element api="M:System.Text.StringBuilder.Append(System.String,System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="db3727d2-5d5b-fece-701d-4c6b5ad60110" />
+    </api>
+    <api id="Overload:System.Text.StringBuilder.AppendLine">
+      <topicdata name="AppendLine" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Text.StringBuilder" />
+      <apidata name="AppendLine" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Text.StringBuilder.AppendLine" />
+        <element api="M:System.Text.StringBuilder.AppendLine(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="39527039-0182-5e5c-c11a-13b72738804a" />
+    </api>
+    <api id="Overload:System.Text.StringBuilder.Insert">
+      <topicdata name="Insert" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Text.StringBuilder" />
+      <apidata name="Insert" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Text.StringBuilder.Insert(System.Int32,System.String,System.Int32)" />
+        <element api="M:System.Text.StringBuilder.Insert(System.Int32,System.Char[],System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="e539fc88-eb22-723e-3199-82f542127922" />
+    </api>
+    <api id="Overload:System.Text.StringBuilder.Replace">
+      <topicdata name="Replace" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Text.StringBuilder" />
+      <apidata name="Replace" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Text.StringBuilder.Replace(System.Char,System.Char)" />
+        <element api="M:System.Text.StringBuilder.Replace(System.String,System.String)" />
+        <element api="M:System.Text.StringBuilder.Replace(System.Char,System.Char,System.Int32,System.Int32)" />
+        <element api="M:System.Text.StringBuilder.Replace(System.String,System.String,System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="8da3ba95-5230-6367-21ed-8ad286f4e9cf" />
+    </api>
+    <api id="Overload:System.Text.StringBuilder.ToString">
+      <topicdata name="ToString" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Text.StringBuilder" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Text.StringBuilder.ToString" />
+        <element api="M:System.Text.StringBuilder.ToString(System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="857a6a4d-7ce5-c215-6864-cbbbd3a4ce04" />
+    </api>
+    <api id="M:System.Text.StringBuilder.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Text.StringBuilder.#ctor" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="47cf450a-0e4b-f509-81fe-008396077e31" />
+    </api>
+    <api id="M:System.Text.StringBuilder.#ctor(System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Text.StringBuilder.#ctor" />
+      <parameters>
+        <parameter name="capacity">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="e884b254-c2c4-376d-7870-6c97c58458ae" />
+    </api>
+    <api id="M:System.Text.StringBuilder.#ctor(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Text.StringBuilder.#ctor" />
+      <parameters>
+        <parameter name="capacity">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="maxCapacity">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="ed9dde62-26d7-79cd-2337-d76931e7f2ee" />
+    </api>
+    <api id="M:System.Text.StringBuilder.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Text.StringBuilder.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="86c01518-4ad7-6278-ec8d-fdae8a955da4" />
+    </api>
+    <api id="M:System.Text.StringBuilder.#ctor(System.String,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Text.StringBuilder.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="capacity">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="e073f17d-41a0-a347-482b-60ba71d899db" />
+    </api>
+    <api id="M:System.Text.StringBuilder.#ctor(System.String,System.Int32,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Text.StringBuilder.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="startIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="length">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="capacity">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="8b8a397c-7708-1445-3bcf-c47c2fe6ef48" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Append(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Append" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="3d719b2b-ff55-8b7e-abdc-048c9bad671e" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Append(System.Byte)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Append" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="16e24ceb-57f3-2595-5b6c-559de28f2c7e" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Append(System.Char)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Append" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Char" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="8dc7e7a2-8085-a57d-c503-0cb4c484d4d6" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Append(System.Char,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Append" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Char" ref="false" />
+        </parameter>
+        <parameter name="repeatCount">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="343e88a0-2e54-53e4-c295-7f8885d632c3" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Append(System.Char[])">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Append" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <arrayOf rank="1">
+            <type api="T:System.Char" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="b75ce5e9-1029-f8a8-d3a9-70f5ce0120d1" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Append(System.Char[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Append" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <arrayOf rank="1">
+            <type api="T:System.Char" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="startIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="charCount">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="d3dc5efa-3dd0-e127-4027-ffcb4b26a253" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Append(System.Double)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Append" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="feb2efed-3fec-7629-f8dd-ce85b79553e9" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Append(System.Int16)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Append" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int16" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="d7963993-e6fe-0063-c8a1-cdbbce07248f" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Append(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Append" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="89465fd5-572b-944e-7b4e-859fb47218dd" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Append(System.Int64)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Append" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="9014cf87-3d37-4ba6-8385-b594f811d40c" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Append(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Append" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="28cb8576-64f3-6681-da0d-c1e77a625ace" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Append(System.SByte)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Append" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.SByte" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="6f731402-7831-d47a-c34f-245e99495d45" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Append(System.Single)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Append" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Single" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="dc51faf1-a70d-12c9-04b2-992e147ec67b" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Append(System.String)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Append" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="3cefeae8-1136-bc84-d4da-56e9683bff73" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Append(System.String,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Append" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="startIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="2fc4486d-8269-03ca-1f75-ccdeb122e610" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Append(System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Append" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="8de1d2cd-dc97-2cb3-f8ed-9ec571d8f598" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Append(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Append" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="4c14d7ac-0b24-b085-695d-5233833695cc" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Append(System.UInt64)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Append" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.UInt64" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="bed19659-8787-4bba-09cb-cc21f5bfe8cc" />
+    </api>
+    <api id="M:System.Text.StringBuilder.AppendLine">
+      <topicdata group="api" />
+      <apidata name="AppendLine" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.AppendLine" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="984755c0-05fe-4fba-75b0-a49b5e35c82f" />
+    </api>
+    <api id="M:System.Text.StringBuilder.AppendLine(System.String)">
+      <topicdata group="api" />
+      <apidata name="AppendLine" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.AppendLine" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="str">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="5975bc73-cb6a-77ac-a60f-dc1882ea26df" />
+    </api>
+    <api id="P:System.Text.StringBuilder.Capacity">
+      <topicdata group="api" />
+      <apidata name="Capacity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Capacity" />
+      <setter name="set_Capacity" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="d4cc2975-df40-2053-d8b2-a31249097f45" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="c7faba12-94fd-fd81-5b97-c765423f198f" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Insert(System.Int32,System.Char[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Insert" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Insert" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="value">
+          <arrayOf rank="1">
+            <type api="T:System.Char" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="startIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="charCount">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="b93c4f64-4af8-ded2-4fe7-a67125e30f64" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Insert(System.Int32,System.String,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Insert" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Insert" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="0a62c74f-11b6-0983-0199-16b34ba2c513" />
+    </api>
+    <api id="P:System.Text.StringBuilder.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Char" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="979f3f29-1fa9-e17a-f301-d127a64ed751" />
+    </api>
+    <api id="P:System.Text.StringBuilder.Length">
+      <topicdata group="api" />
+      <apidata name="Length" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Length" />
+      <setter name="set_Length" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="bd29777d-ad88-53ac-d92b-f0a2c844ff12" />
+    </api>
+    <api id="P:System.Text.StringBuilder.MaxCapacity">
+      <topicdata group="api" />
+      <apidata name="MaxCapacity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MaxCapacity" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="ce6eaca4-050c-d376-0472-22456511bbea" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Remove(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="length">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="229a61db-b3e1-12d9-b6a2-e797bedaa9db" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Replace(System.Char,System.Char)">
+      <topicdata group="api" />
+      <apidata name="Replace" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Replace" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="oldChar">
+          <type api="T:System.Char" ref="false" />
+        </parameter>
+        <parameter name="newChar">
+          <type api="T:System.Char" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="b4abb498-6b5f-7212-baa8-17737ea0578c" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Replace(System.Char,System.Char,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Replace" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Replace" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="oldChar">
+          <type api="T:System.Char" ref="false" />
+        </parameter>
+        <parameter name="newChar">
+          <type api="T:System.Char" ref="false" />
+        </parameter>
+        <parameter name="startIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="9ca9b199-68f6-7447-4f50-6a7d1de9339a" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Replace(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="Replace" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Replace" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="oldValue">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="newValue">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="bfdad9c7-ac51-3cc2-7983-537c93ee2a97" />
+    </api>
+    <api id="M:System.Text.StringBuilder.Replace(System.String,System.String,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Replace" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.Replace" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="oldValue">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="newValue">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="startIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="715a928c-a763-ba41-3d07-2624cf5ce3fb" />
+    </api>
+    <api id="M:System.Text.StringBuilder.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.ToString" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="49da975a-58a1-c9a3-218e-4c7ed7fba644" />
+    </api>
+    <api id="M:System.Text.StringBuilder.ToString(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.StringBuilder.ToString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="length">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.StringBuilder" ref="true" />
+      </containers>
+      <file name="2ddab55a-c5ed-50f8-1a6f-5301190788dc" />
+    </api>
+    <api id="T:System.Text.UTF8Encoding">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Text.UTF8Encoding" />
+      <apidata name="UTF8Encoding" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Text.UTF8Encoding.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Text.Encoding" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+      </containers>
+      <file name="561ad0ab-6749-6c7f-3a5b-8882458fb181" />
+    </api>
+    <api id="AllMembers.T:System.Text.UTF8Encoding">
+      <topicdata name="UTF8Encoding" group="list" subgroup="members" typeTopicId="T:System.Text.UTF8Encoding" />
+      <apidata name="UTF8Encoding" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Text.UTF8Encoding.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Text.UTF8Encoding.#ctor" />
+        <element api="Overload:System.Text.UTF8Encoding.GetBytes">
+          <element api="M:System.Text.UTF8Encoding.GetBytes(System.String)" />
+          <element api="M:System.Text.UTF8Encoding.GetBytes(System.String,System.Int32,System.Int32,System.Byte[],System.Int32)" />
+        </element>
+        <element api="Overload:System.Text.UTF8Encoding.GetChars">
+          <element api="M:System.Text.UTF8Encoding.GetChars(System.Byte[])" />
+          <element api="M:System.Text.UTF8Encoding.GetChars(System.Byte[],System.Int32,System.Int32)" />
+        </element>
+        <element api="M:System.Text.UTF8Encoding.GetDecoder" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.UTF8Encoding" />
+      </containers>
+      <file name="e6c6e284-c684-eca0-0e10-8b227271855e" />
+    </api>
+    <api id="Methods.T:System.Text.UTF8Encoding">
+      <topicdata name="UTF8Encoding" group="list" subgroup="Methods" typeTopicId="T:System.Text.UTF8Encoding" />
+      <apidata name="UTF8Encoding" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Text.UTF8Encoding.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Text.UTF8Encoding.GetBytes">
+          <element api="M:System.Text.UTF8Encoding.GetBytes(System.String)" />
+          <element api="M:System.Text.UTF8Encoding.GetBytes(System.String,System.Int32,System.Int32,System.Byte[],System.Int32)" />
+        </element>
+        <element api="Overload:System.Text.UTF8Encoding.GetChars">
+          <element api="M:System.Text.UTF8Encoding.GetChars(System.Byte[])" />
+          <element api="M:System.Text.UTF8Encoding.GetChars(System.Byte[],System.Int32,System.Int32)" />
+        </element>
+        <element api="M:System.Text.UTF8Encoding.GetDecoder" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.UTF8Encoding" />
+      </containers>
+      <file name="2720b3c0-eb67-fcc5-bb9a-0efc1debfb8b" />
+    </api>
+    <api id="Overload:System.Text.UTF8Encoding.GetBytes">
+      <topicdata name="GetBytes" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Text.UTF8Encoding" />
+      <apidata name="GetBytes" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Text.UTF8Encoding.GetBytes(System.String)" />
+        <element api="M:System.Text.UTF8Encoding.GetBytes(System.String,System.Int32,System.Int32,System.Byte[],System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.UTF8Encoding" ref="true" />
+      </containers>
+      <file name="fd5c4a39-faa6-4491-3c51-6fd2a2439776" />
+    </api>
+    <api id="Overload:System.Text.UTF8Encoding.GetChars">
+      <topicdata name="GetChars" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Text.UTF8Encoding" />
+      <apidata name="GetChars" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Text.UTF8Encoding.GetChars(System.Byte[])" />
+        <element api="M:System.Text.UTF8Encoding.GetChars(System.Byte[],System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.UTF8Encoding" ref="true" />
+      </containers>
+      <file name="8d952136-0814-0222-3965-276e6e913a12" />
+    </api>
+    <api id="M:System.Text.UTF8Encoding.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.UTF8Encoding" ref="true" />
+      </containers>
+      <file name="d08cd691-d077-3970-b8ef-bafd7456ebed" />
+    </api>
+    <api id="M:System.Text.UTF8Encoding.GetBytes(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetBytes" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.UTF8Encoding.GetBytes" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Text.Encoding.GetBytes(System.String)">
+          <type api="T:System.Text.Encoding" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="s">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.UTF8Encoding" ref="true" />
+      </containers>
+      <file name="351b5927-4b0e-77f9-e491-e585990b19db" />
+    </api>
+    <api id="M:System.Text.UTF8Encoding.GetBytes(System.String,System.Int32,System.Int32,System.Byte[],System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GetBytes" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.UTF8Encoding.GetBytes" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Text.Encoding.GetBytes(System.String,System.Int32,System.Int32,System.Byte[],System.Int32)">
+          <type api="T:System.Text.Encoding" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="s">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="charIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="charCount">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="bytes">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="byteIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.UTF8Encoding" ref="true" />
+      </containers>
+      <file name="0e6acb50-9a53-f540-d6cb-79f3e63dd982" />
+    </api>
+    <api id="M:System.Text.UTF8Encoding.GetChars(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="GetChars" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.UTF8Encoding.GetChars" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Text.Encoding.GetChars(System.Byte[])">
+          <type api="T:System.Text.Encoding" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="bytes">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Char" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.UTF8Encoding" ref="true" />
+      </containers>
+      <file name="9cd24159-2357-11e5-cfde-1557e0f63dd2" />
+    </api>
+    <api id="M:System.Text.UTF8Encoding.GetChars(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GetChars" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Text.UTF8Encoding.GetChars" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Text.Encoding.GetChars(System.Byte[],System.Int32,System.Int32)">
+          <type api="T:System.Text.Encoding" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="bytes">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="byteIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="byteCount">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Char" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.UTF8Encoding" ref="true" />
+      </containers>
+      <file name="7942e1c0-6822-6b90-9ad7-35758f3e4b95" />
+    </api>
+    <api id="M:System.Text.UTF8Encoding.GetDecoder">
+      <topicdata group="api" />
+      <apidata name="GetDecoder" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Text.Encoding.GetDecoder">
+          <type api="T:System.Text.Encoding" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Text.Decoder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Text" />
+        <type api="T:System.Text.UTF8Encoding" ref="true" />
+      </containers>
+      <file name="7b7e13fb-a8e9-64a1-a875-9f8b8a483879" />
+    </api>
+  </apis>
+</reflection>

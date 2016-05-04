@@ -1,0 +1,3730 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Data.Common">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.Common</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.Common</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.Common</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00 built by: PROJECTKREL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.Data.SqlClient">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.SqlClient</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.SqlClient</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.SqlClient</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00 built by: PROJECTKREL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Data">
+      <topicdata group="api" />
+      <apidata name="System.Data" group="namespace" />
+      <elements>
+        <element api="T:System.Data.CommandBehavior" />
+        <element api="T:System.Data.CommandType" />
+        <element api="T:System.Data.ConnectionState" />
+        <element api="T:System.Data.DbType" />
+        <element api="T:System.Data.IsolationLevel" />
+        <element api="T:System.Data.ParameterDirection" />
+        <element api="T:System.Data.StateChangeEventArgs" />
+        <element api="T:System.Data.StateChangeEventHandler" />
+        <element api="T:System.Data.UpdateRowSource" />
+        <element api="T:System.Data.SqlDbType" />
+        <element api="T:System.Data.StatementCompletedEventArgs" />
+        <element api="T:System.Data.StatementCompletedEventHandler" />
+      </elements>
+      <file name="03ab2fb0-c3f0-6037-a195-d971e69674f0" />
+    </api>
+    <api id="T:System.Data.CommandBehavior">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.CommandBehavior" />
+      <apidata name="CommandBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="da116b77-8153-0911-60bf-a3b68bbb10f0" />
+    </api>
+    <api id="AllMembers.T:System.Data.CommandBehavior">
+      <topicdata name="CommandBehavior" group="list" subgroup="members" typeTopicId="T:System.Data.CommandBehavior" />
+      <apidata name="CommandBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Data.CommandBehavior.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.Data.CommandBehavior.CloseConnection" />
+        <element api="F:System.Data.CommandBehavior.Default" />
+        <element api="F:System.Data.CommandBehavior.KeyInfo" />
+        <element api="F:System.Data.CommandBehavior.SchemaOnly" />
+        <element api="F:System.Data.CommandBehavior.SequentialAccess" />
+        <element api="F:System.Data.CommandBehavior.SingleResult" />
+        <element api="F:System.Data.CommandBehavior.SingleRow" />
+        <element api="F:System.Data.CommandBehavior.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.CommandBehavior" />
+      </containers>
+      <file name="a183281a-365a-6a20-6d97-4d86e2add3cc" />
+    </api>
+    <api id="Methods.T:System.Data.CommandBehavior">
+      <topicdata name="CommandBehavior" group="list" subgroup="Methods" typeTopicId="T:System.Data.CommandBehavior" />
+      <apidata name="CommandBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Data.CommandBehavior.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.CommandBehavior" />
+      </containers>
+      <file name="bd833133-9408-5d59-283f-b46f296fe357" />
+    </api>
+    <api id="Fields.T:System.Data.CommandBehavior">
+      <topicdata name="CommandBehavior" group="list" subgroup="Fields" typeTopicId="T:System.Data.CommandBehavior" />
+      <apidata name="CommandBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Data.CommandBehavior.CloseConnection" />
+        <element api="F:System.Data.CommandBehavior.Default" />
+        <element api="F:System.Data.CommandBehavior.KeyInfo" />
+        <element api="F:System.Data.CommandBehavior.SchemaOnly" />
+        <element api="F:System.Data.CommandBehavior.SequentialAccess" />
+        <element api="F:System.Data.CommandBehavior.SingleResult" />
+        <element api="F:System.Data.CommandBehavior.SingleRow" />
+        <element api="F:System.Data.CommandBehavior.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.CommandBehavior" />
+      </containers>
+      <file name="045aac45-ac30-cb4e-64cd-bac6689c451d" />
+    </api>
+    <api id="F:System.Data.CommandBehavior.CloseConnection">
+      <topicdata group="api" />
+      <apidata name="CloseConnection" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.CommandBehavior" ref="true" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.CommandBehavior" ref="true" />
+      </containers>
+      <file name="33fc514d-ba43-7962-49ab-0c2ea46fca90" />
+    </api>
+    <api id="F:System.Data.CommandBehavior.Default">
+      <topicdata group="api" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.CommandBehavior" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.CommandBehavior" ref="true" />
+      </containers>
+      <file name="ee14fe38-03f5-dfb5-c1b3-85acebd54a1f" />
+    </api>
+    <api id="F:System.Data.CommandBehavior.KeyInfo">
+      <topicdata group="api" />
+      <apidata name="KeyInfo" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.CommandBehavior" ref="true" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.CommandBehavior" ref="true" />
+      </containers>
+      <file name="134a15e1-6fa6-9902-dd68-1a0f370b6603" />
+    </api>
+    <api id="F:System.Data.CommandBehavior.SchemaOnly">
+      <topicdata group="api" />
+      <apidata name="SchemaOnly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.CommandBehavior" ref="true" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.CommandBehavior" ref="true" />
+      </containers>
+      <file name="22a28608-0396-31db-71ab-f0921563818a" />
+    </api>
+    <api id="F:System.Data.CommandBehavior.SequentialAccess">
+      <topicdata group="api" />
+      <apidata name="SequentialAccess" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.CommandBehavior" ref="true" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.CommandBehavior" ref="true" />
+      </containers>
+      <file name="8e9fce59-ea62-7c3c-e43d-2b07fb49a242" />
+    </api>
+    <api id="F:System.Data.CommandBehavior.SingleResult">
+      <topicdata group="api" />
+      <apidata name="SingleResult" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.CommandBehavior" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.CommandBehavior" ref="true" />
+      </containers>
+      <file name="7bc5c456-7077-03c5-1fcf-5a0621892007" />
+    </api>
+    <api id="F:System.Data.CommandBehavior.SingleRow">
+      <topicdata group="api" />
+      <apidata name="SingleRow" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.CommandBehavior" ref="true" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.CommandBehavior" ref="true" />
+      </containers>
+      <file name="676f12c2-fae4-f2dd-305d-6015ddd1ba3f" />
+    </api>
+    <api id="F:System.Data.CommandBehavior.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.CommandBehavior" ref="true" />
+      </containers>
+      <file name="e11794af-62b0-69f2-033c-01aaf568f2db" />
+    </api>
+    <api id="T:System.Data.CommandType">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.CommandType" />
+      <apidata name="CommandType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+      </containers>
+      <file name="c967762a-2d62-0f58-6ffb-eadb3a8926f2" />
+    </api>
+    <api id="AllMembers.T:System.Data.CommandType">
+      <topicdata name="CommandType" group="list" subgroup="members" typeTopicId="T:System.Data.CommandType" />
+      <apidata name="CommandType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Data.CommandType.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.Data.CommandType.StoredProcedure" />
+        <element api="F:System.Data.CommandType.TableDirect" />
+        <element api="F:System.Data.CommandType.Text" />
+        <element api="F:System.Data.CommandType.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.CommandType" />
+      </containers>
+      <file name="d10fc7a0-68d5-b0c9-f2b2-a8826c0759c0" />
+    </api>
+    <api id="Methods.T:System.Data.CommandType">
+      <topicdata name="CommandType" group="list" subgroup="Methods" typeTopicId="T:System.Data.CommandType" />
+      <apidata name="CommandType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Data.CommandType.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.CommandType" />
+      </containers>
+      <file name="3ec9cc21-1390-f44a-5db7-151cf85b61b2" />
+    </api>
+    <api id="Fields.T:System.Data.CommandType">
+      <topicdata name="CommandType" group="list" subgroup="Fields" typeTopicId="T:System.Data.CommandType" />
+      <apidata name="CommandType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Data.CommandType.StoredProcedure" />
+        <element api="F:System.Data.CommandType.TableDirect" />
+        <element api="F:System.Data.CommandType.Text" />
+        <element api="F:System.Data.CommandType.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.CommandType" />
+      </containers>
+      <file name="5ce02147-67c6-8805-4e1b-c9da95e60f16" />
+    </api>
+    <api id="F:System.Data.CommandType.StoredProcedure">
+      <topicdata group="api" />
+      <apidata name="StoredProcedure" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.CommandType" ref="true" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.CommandType" ref="true" />
+      </containers>
+      <file name="0a545247-0baf-7a8e-ed58-d0dbc973d4cb" />
+    </api>
+    <api id="F:System.Data.CommandType.TableDirect">
+      <topicdata group="api" />
+      <apidata name="TableDirect" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.CommandType" ref="true" />
+      </returns>
+      <value>512</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.CommandType" ref="true" />
+      </containers>
+      <file name="3d3c61e5-70c0-a091-a266-b3254c54854b" />
+    </api>
+    <api id="F:System.Data.CommandType.Text">
+      <topicdata group="api" />
+      <apidata name="Text" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.CommandType" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.CommandType" ref="true" />
+      </containers>
+      <file name="7934c651-8647-478b-1182-1c34b08b1945" />
+    </api>
+    <api id="F:System.Data.CommandType.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.CommandType" ref="true" />
+      </containers>
+      <file name="3268f62e-3b46-271e-cfb2-5616a3b6c9da" />
+    </api>
+    <api id="T:System.Data.ConnectionState">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.ConnectionState" />
+      <apidata name="ConnectionState" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e167ae1d-572c-5228-7783-58231f54a0d6" />
+    </api>
+    <api id="AllMembers.T:System.Data.ConnectionState">
+      <topicdata name="ConnectionState" group="list" subgroup="members" typeTopicId="T:System.Data.ConnectionState" />
+      <apidata name="ConnectionState" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Data.ConnectionState.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.Data.ConnectionState.Broken" />
+        <element api="F:System.Data.ConnectionState.Closed" />
+        <element api="F:System.Data.ConnectionState.Connecting" />
+        <element api="F:System.Data.ConnectionState.Executing" />
+        <element api="F:System.Data.ConnectionState.Fetching" />
+        <element api="F:System.Data.ConnectionState.Open" />
+        <element api="F:System.Data.ConnectionState.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.ConnectionState" />
+      </containers>
+      <file name="9d35be07-a615-eab3-8732-3adbd3d4e7e8" />
+    </api>
+    <api id="Methods.T:System.Data.ConnectionState">
+      <topicdata name="ConnectionState" group="list" subgroup="Methods" typeTopicId="T:System.Data.ConnectionState" />
+      <apidata name="ConnectionState" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Data.ConnectionState.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.ConnectionState" />
+      </containers>
+      <file name="38e00fc7-2b37-a3ee-6d9c-7329f1c6d9ec" />
+    </api>
+    <api id="Fields.T:System.Data.ConnectionState">
+      <topicdata name="ConnectionState" group="list" subgroup="Fields" typeTopicId="T:System.Data.ConnectionState" />
+      <apidata name="ConnectionState" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Data.ConnectionState.Broken" />
+        <element api="F:System.Data.ConnectionState.Closed" />
+        <element api="F:System.Data.ConnectionState.Connecting" />
+        <element api="F:System.Data.ConnectionState.Executing" />
+        <element api="F:System.Data.ConnectionState.Fetching" />
+        <element api="F:System.Data.ConnectionState.Open" />
+        <element api="F:System.Data.ConnectionState.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.ConnectionState" />
+      </containers>
+      <file name="d7dfe9ca-f81f-e1ba-8011-9c8ee4fb8230" />
+    </api>
+    <api id="F:System.Data.ConnectionState.Broken">
+      <topicdata group="api" />
+      <apidata name="Broken" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.ConnectionState" ref="true" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.ConnectionState" ref="true" />
+      </containers>
+      <file name="14623ff0-4327-67cf-0e2c-e7741a70cc7e" />
+    </api>
+    <api id="F:System.Data.ConnectionState.Closed">
+      <topicdata group="api" />
+      <apidata name="Closed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.ConnectionState" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.ConnectionState" ref="true" />
+      </containers>
+      <file name="8d4082d4-82f0-dcbf-f53a-6147a9bf1a93" />
+    </api>
+    <api id="F:System.Data.ConnectionState.Connecting">
+      <topicdata group="api" />
+      <apidata name="Connecting" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.ConnectionState" ref="true" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.ConnectionState" ref="true" />
+      </containers>
+      <file name="ac651266-8961-dc68-436d-9d1faec65c9c" />
+    </api>
+    <api id="F:System.Data.ConnectionState.Executing">
+      <topicdata group="api" />
+      <apidata name="Executing" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.ConnectionState" ref="true" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.ConnectionState" ref="true" />
+      </containers>
+      <file name="fc5a7af9-afa9-35dd-5e35-6e2d5afbfccf" />
+    </api>
+    <api id="F:System.Data.ConnectionState.Fetching">
+      <topicdata group="api" />
+      <apidata name="Fetching" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.ConnectionState" ref="true" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.ConnectionState" ref="true" />
+      </containers>
+      <file name="f69b961f-ba23-f4eb-6405-db2cacf52d58" />
+    </api>
+    <api id="F:System.Data.ConnectionState.Open">
+      <topicdata group="api" />
+      <apidata name="Open" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.ConnectionState" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.ConnectionState" ref="true" />
+      </containers>
+      <file name="a61c292b-250b-6413-1c44-66bd95503d55" />
+    </api>
+    <api id="F:System.Data.ConnectionState.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.ConnectionState" ref="true" />
+      </containers>
+      <file name="678775ba-9d47-785b-37f2-3fa4a6a74a91" />
+    </api>
+    <api id="T:System.Data.DbType">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.DbType" />
+      <apidata name="DbType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+      </containers>
+      <file name="15e8db6a-1ac6-1fd4-a8f1-aa0db06d949b" />
+    </api>
+    <api id="AllMembers.T:System.Data.DbType">
+      <topicdata name="DbType" group="list" subgroup="members" typeTopicId="T:System.Data.DbType" />
+      <apidata name="DbType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Data.DbType.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.Data.DbType.AnsiString" />
+        <element api="F:System.Data.DbType.AnsiStringFixedLength" />
+        <element api="F:System.Data.DbType.Binary" />
+        <element api="F:System.Data.DbType.Boolean" />
+        <element api="F:System.Data.DbType.Byte" />
+        <element api="F:System.Data.DbType.Currency" />
+        <element api="F:System.Data.DbType.Date" />
+        <element api="F:System.Data.DbType.DateTime" />
+        <element api="F:System.Data.DbType.DateTime2" />
+        <element api="F:System.Data.DbType.DateTimeOffset" />
+        <element api="F:System.Data.DbType.Decimal" />
+        <element api="F:System.Data.DbType.Double" />
+        <element api="F:System.Data.DbType.Guid" />
+        <element api="F:System.Data.DbType.Int16" />
+        <element api="F:System.Data.DbType.Int32" />
+        <element api="F:System.Data.DbType.Int64" />
+        <element api="F:System.Data.DbType.Object" />
+        <element api="F:System.Data.DbType.SByte" />
+        <element api="F:System.Data.DbType.Single" />
+        <element api="F:System.Data.DbType.String" />
+        <element api="F:System.Data.DbType.StringFixedLength" />
+        <element api="F:System.Data.DbType.Time" />
+        <element api="F:System.Data.DbType.UInt16" />
+        <element api="F:System.Data.DbType.UInt32" />
+        <element api="F:System.Data.DbType.UInt64" />
+        <element api="F:System.Data.DbType.value__" />
+        <element api="F:System.Data.DbType.VarNumeric" />
+        <element api="F:System.Data.DbType.Xml" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" />
+      </containers>
+      <file name="0ae071ce-2a0c-8d38-c2cd-1d3a69d9709d" />
+    </api>
+    <api id="Methods.T:System.Data.DbType">
+      <topicdata name="DbType" group="list" subgroup="Methods" typeTopicId="T:System.Data.DbType" />
+      <apidata name="DbType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Data.DbType.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" />
+      </containers>
+      <file name="e07bb2fe-2504-29f1-e3da-1a6e584d7ea0" />
+    </api>
+    <api id="Fields.T:System.Data.DbType">
+      <topicdata name="DbType" group="list" subgroup="Fields" typeTopicId="T:System.Data.DbType" />
+      <apidata name="DbType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Data.DbType.AnsiString" />
+        <element api="F:System.Data.DbType.AnsiStringFixedLength" />
+        <element api="F:System.Data.DbType.Binary" />
+        <element api="F:System.Data.DbType.Boolean" />
+        <element api="F:System.Data.DbType.Byte" />
+        <element api="F:System.Data.DbType.Currency" />
+        <element api="F:System.Data.DbType.Date" />
+        <element api="F:System.Data.DbType.DateTime" />
+        <element api="F:System.Data.DbType.DateTime2" />
+        <element api="F:System.Data.DbType.DateTimeOffset" />
+        <element api="F:System.Data.DbType.Decimal" />
+        <element api="F:System.Data.DbType.Double" />
+        <element api="F:System.Data.DbType.Guid" />
+        <element api="F:System.Data.DbType.Int16" />
+        <element api="F:System.Data.DbType.Int32" />
+        <element api="F:System.Data.DbType.Int64" />
+        <element api="F:System.Data.DbType.Object" />
+        <element api="F:System.Data.DbType.SByte" />
+        <element api="F:System.Data.DbType.Single" />
+        <element api="F:System.Data.DbType.String" />
+        <element api="F:System.Data.DbType.StringFixedLength" />
+        <element api="F:System.Data.DbType.Time" />
+        <element api="F:System.Data.DbType.UInt16" />
+        <element api="F:System.Data.DbType.UInt32" />
+        <element api="F:System.Data.DbType.UInt64" />
+        <element api="F:System.Data.DbType.value__" />
+        <element api="F:System.Data.DbType.VarNumeric" />
+        <element api="F:System.Data.DbType.Xml" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" />
+      </containers>
+      <file name="7938cf2b-d1c0-7d5a-bf9d-d12853bc5a9a" />
+    </api>
+    <api id="F:System.Data.DbType.AnsiString">
+      <topicdata group="api" />
+      <apidata name="AnsiString" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="78d7fb14-3cdf-1ac3-8700-86e49a205cfd" />
+    </api>
+    <api id="F:System.Data.DbType.AnsiStringFixedLength">
+      <topicdata group="api" />
+      <apidata name="AnsiStringFixedLength" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>22</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="040748f0-43ee-4873-930a-6240ca0016e2" />
+    </api>
+    <api id="F:System.Data.DbType.Binary">
+      <topicdata group="api" />
+      <apidata name="Binary" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="ac9a5ad0-c364-4499-c821-910aaf86d28e" />
+    </api>
+    <api id="F:System.Data.DbType.Boolean">
+      <topicdata group="api" />
+      <apidata name="Boolean" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="549ac2e7-8705-5b43-e058-f84f690662e0" />
+    </api>
+    <api id="F:System.Data.DbType.Byte">
+      <topicdata group="api" />
+      <apidata name="Byte" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="400db5e8-c597-d0d7-baed-5f6fb04da745" />
+    </api>
+    <api id="F:System.Data.DbType.Currency">
+      <topicdata group="api" />
+      <apidata name="Currency" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="382e1bcf-61b3-ee67-5c75-cec054835d57" />
+    </api>
+    <api id="F:System.Data.DbType.Date">
+      <topicdata group="api" />
+      <apidata name="Date" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="dfa5a634-e2da-e6b5-d6bc-a61628ceee32" />
+    </api>
+    <api id="F:System.Data.DbType.DateTime">
+      <topicdata group="api" />
+      <apidata name="DateTime" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="049634cd-a742-d1f1-6c1d-ea859be25af6" />
+    </api>
+    <api id="F:System.Data.DbType.DateTime2">
+      <topicdata group="api" />
+      <apidata name="DateTime2" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>26</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="20a1d6eb-248b-8d50-3f64-a1d39736a023" />
+    </api>
+    <api id="F:System.Data.DbType.DateTimeOffset">
+      <topicdata group="api" />
+      <apidata name="DateTimeOffset" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>27</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="54935f82-02c4-3ef8-f581-5037448de1be" />
+    </api>
+    <api id="F:System.Data.DbType.Decimal">
+      <topicdata group="api" />
+      <apidata name="Decimal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="5e4bb347-55da-3f22-6000-16be33860095" />
+    </api>
+    <api id="F:System.Data.DbType.Double">
+      <topicdata group="api" />
+      <apidata name="Double" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="e8c75567-2516-c069-4373-9753a1ff305d" />
+    </api>
+    <api id="F:System.Data.DbType.Guid">
+      <topicdata group="api" />
+      <apidata name="Guid" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="bfa768cd-6b4a-ac93-ca56-a69ccbee9cff" />
+    </api>
+    <api id="F:System.Data.DbType.Int16">
+      <topicdata group="api" />
+      <apidata name="Int16" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="1d1a8781-6627-6e0c-c9b2-ea3cafd22b12" />
+    </api>
+    <api id="F:System.Data.DbType.Int32">
+      <topicdata group="api" />
+      <apidata name="Int32" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="544a4f36-1bf3-334c-8ec2-b2f6fe5a9868" />
+    </api>
+    <api id="F:System.Data.DbType.Int64">
+      <topicdata group="api" />
+      <apidata name="Int64" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="7cbe20e9-693d-c65a-1846-04c7a36f19d3" />
+    </api>
+    <api id="F:System.Data.DbType.Object">
+      <topicdata group="api" />
+      <apidata name="Object" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>13</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="638ff555-92e8-8550-acf9-8bc4f89cca38" />
+    </api>
+    <api id="F:System.Data.DbType.SByte">
+      <topicdata group="api" />
+      <apidata name="SByte" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>14</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="7e07e215-ede0-25fc-10a9-f071d4e70fcc" />
+    </api>
+    <api id="F:System.Data.DbType.Single">
+      <topicdata group="api" />
+      <apidata name="Single" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>15</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="4e2af915-042f-9110-04e5-8a69fd3fc870" />
+    </api>
+    <api id="F:System.Data.DbType.String">
+      <topicdata group="api" />
+      <apidata name="String" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="cece8397-c0a8-7a66-bbcd-40cb4b1f5da9" />
+    </api>
+    <api id="F:System.Data.DbType.StringFixedLength">
+      <topicdata group="api" />
+      <apidata name="StringFixedLength" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>23</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="fc4c942b-a5e8-df67-38a2-ad8dea3cd61e" />
+    </api>
+    <api id="F:System.Data.DbType.Time">
+      <topicdata group="api" />
+      <apidata name="Time" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>17</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="ff3e9481-d05a-173a-9a9e-c3ff5ae7266b" />
+    </api>
+    <api id="F:System.Data.DbType.UInt16">
+      <topicdata group="api" />
+      <apidata name="UInt16" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>18</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="cc6a47bc-3ade-e644-0150-ed2da6a72d72" />
+    </api>
+    <api id="F:System.Data.DbType.UInt32">
+      <topicdata group="api" />
+      <apidata name="UInt32" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>19</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="adb58100-57d8-fc83-a8d7-29761584c38e" />
+    </api>
+    <api id="F:System.Data.DbType.UInt64">
+      <topicdata group="api" />
+      <apidata name="UInt64" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>20</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="d49e7630-9514-6501-e5eb-3188671becbb" />
+    </api>
+    <api id="F:System.Data.DbType.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="d0449564-9707-583a-0f44-beffca55e670" />
+    </api>
+    <api id="F:System.Data.DbType.VarNumeric">
+      <topicdata group="api" />
+      <apidata name="VarNumeric" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>21</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="ef9e4709-d2a9-b57d-7adf-36ce4928d644" />
+    </api>
+    <api id="F:System.Data.DbType.Xml">
+      <topicdata group="api" />
+      <apidata name="Xml" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.DbType" ref="true" />
+      </returns>
+      <value>25</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.DbType" ref="true" />
+      </containers>
+      <file name="f8003b9d-4eb1-3d46-c78a-6d1e297ede9d" />
+    </api>
+    <api id="T:System.Data.IsolationLevel">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.IsolationLevel" />
+      <apidata name="IsolationLevel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+      </containers>
+      <file name="83ccf7cb-7ed6-be54-1601-710a22b45ce7" />
+    </api>
+    <api id="AllMembers.T:System.Data.IsolationLevel">
+      <topicdata name="IsolationLevel" group="list" subgroup="members" typeTopicId="T:System.Data.IsolationLevel" />
+      <apidata name="IsolationLevel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Data.IsolationLevel.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.Data.IsolationLevel.Chaos" />
+        <element api="F:System.Data.IsolationLevel.ReadCommitted" />
+        <element api="F:System.Data.IsolationLevel.ReadUncommitted" />
+        <element api="F:System.Data.IsolationLevel.RepeatableRead" />
+        <element api="F:System.Data.IsolationLevel.Serializable" />
+        <element api="F:System.Data.IsolationLevel.Snapshot" />
+        <element api="F:System.Data.IsolationLevel.Unspecified" />
+        <element api="F:System.Data.IsolationLevel.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.IsolationLevel" />
+      </containers>
+      <file name="1e351cee-9022-5721-cb64-081e2d5aea72" />
+    </api>
+    <api id="Methods.T:System.Data.IsolationLevel">
+      <topicdata name="IsolationLevel" group="list" subgroup="Methods" typeTopicId="T:System.Data.IsolationLevel" />
+      <apidata name="IsolationLevel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Data.IsolationLevel.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.IsolationLevel" />
+      </containers>
+      <file name="78dd5bd1-0c55-b982-9619-0a450affd345" />
+    </api>
+    <api id="Fields.T:System.Data.IsolationLevel">
+      <topicdata name="IsolationLevel" group="list" subgroup="Fields" typeTopicId="T:System.Data.IsolationLevel" />
+      <apidata name="IsolationLevel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Data.IsolationLevel.Chaos" />
+        <element api="F:System.Data.IsolationLevel.ReadCommitted" />
+        <element api="F:System.Data.IsolationLevel.ReadUncommitted" />
+        <element api="F:System.Data.IsolationLevel.RepeatableRead" />
+        <element api="F:System.Data.IsolationLevel.Serializable" />
+        <element api="F:System.Data.IsolationLevel.Snapshot" />
+        <element api="F:System.Data.IsolationLevel.Unspecified" />
+        <element api="F:System.Data.IsolationLevel.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.IsolationLevel" />
+      </containers>
+      <file name="04ba3158-5ac8-01d8-00c4-536081ccfd70" />
+    </api>
+    <api id="F:System.Data.IsolationLevel.Chaos">
+      <topicdata group="api" />
+      <apidata name="Chaos" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.IsolationLevel" ref="true" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.IsolationLevel" ref="true" />
+      </containers>
+      <file name="9c0d8fe6-15eb-c350-b541-f08a70941599" />
+    </api>
+    <api id="F:System.Data.IsolationLevel.ReadCommitted">
+      <topicdata group="api" />
+      <apidata name="ReadCommitted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.IsolationLevel" ref="true" />
+      </returns>
+      <value>4096</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.IsolationLevel" ref="true" />
+      </containers>
+      <file name="8355b459-f3d9-4ff6-2108-fb6495b4fbc1" />
+    </api>
+    <api id="F:System.Data.IsolationLevel.ReadUncommitted">
+      <topicdata group="api" />
+      <apidata name="ReadUncommitted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.IsolationLevel" ref="true" />
+      </returns>
+      <value>256</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.IsolationLevel" ref="true" />
+      </containers>
+      <file name="eb3515d7-cde1-0702-41d4-e071abd15964" />
+    </api>
+    <api id="F:System.Data.IsolationLevel.RepeatableRead">
+      <topicdata group="api" />
+      <apidata name="RepeatableRead" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.IsolationLevel" ref="true" />
+      </returns>
+      <value>65536</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.IsolationLevel" ref="true" />
+      </containers>
+      <file name="0bb2e18e-9ee7-efcf-f4f8-628b5c06447d" />
+    </api>
+    <api id="F:System.Data.IsolationLevel.Serializable">
+      <topicdata group="api" />
+      <apidata name="Serializable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.IsolationLevel" ref="true" />
+      </returns>
+      <value>1048576</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.IsolationLevel" ref="true" />
+      </containers>
+      <file name="4d5101bd-fa0d-9f5c-ac3b-65b73ab66882" />
+    </api>
+    <api id="F:System.Data.IsolationLevel.Snapshot">
+      <topicdata group="api" />
+      <apidata name="Snapshot" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.IsolationLevel" ref="true" />
+      </returns>
+      <value>16777216</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.IsolationLevel" ref="true" />
+      </containers>
+      <file name="b0f67862-754e-605c-2bb2-c70a7293c321" />
+    </api>
+    <api id="F:System.Data.IsolationLevel.Unspecified">
+      <topicdata group="api" />
+      <apidata name="Unspecified" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.IsolationLevel" ref="true" />
+      </returns>
+      <value>-1</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.IsolationLevel" ref="true" />
+      </containers>
+      <file name="79c82ab1-ef78-f759-65fd-bc4c7ae1b4ea" />
+    </api>
+    <api id="F:System.Data.IsolationLevel.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.IsolationLevel" ref="true" />
+      </containers>
+      <file name="fc61c700-acf2-faec-9477-3645934b7e63" />
+    </api>
+    <api id="T:System.Data.ParameterDirection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.ParameterDirection" />
+      <apidata name="ParameterDirection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+      </containers>
+      <file name="56d4ded4-dc21-dc37-9b0d-c874eedf2bb2" />
+    </api>
+    <api id="AllMembers.T:System.Data.ParameterDirection">
+      <topicdata name="ParameterDirection" group="list" subgroup="members" typeTopicId="T:System.Data.ParameterDirection" />
+      <apidata name="ParameterDirection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Data.ParameterDirection.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.Data.ParameterDirection.Input" />
+        <element api="F:System.Data.ParameterDirection.InputOutput" />
+        <element api="F:System.Data.ParameterDirection.Output" />
+        <element api="F:System.Data.ParameterDirection.ReturnValue" />
+        <element api="F:System.Data.ParameterDirection.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.ParameterDirection" />
+      </containers>
+      <file name="e2ae19bc-c84e-cda4-acea-39b0e4c4dee0" />
+    </api>
+    <api id="Methods.T:System.Data.ParameterDirection">
+      <topicdata name="ParameterDirection" group="list" subgroup="Methods" typeTopicId="T:System.Data.ParameterDirection" />
+      <apidata name="ParameterDirection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Data.ParameterDirection.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.ParameterDirection" />
+      </containers>
+      <file name="e1ce78f7-37f0-36e3-dc2a-11d3f90c1a22" />
+    </api>
+    <api id="Fields.T:System.Data.ParameterDirection">
+      <topicdata name="ParameterDirection" group="list" subgroup="Fields" typeTopicId="T:System.Data.ParameterDirection" />
+      <apidata name="ParameterDirection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Data.ParameterDirection.Input" />
+        <element api="F:System.Data.ParameterDirection.InputOutput" />
+        <element api="F:System.Data.ParameterDirection.Output" />
+        <element api="F:System.Data.ParameterDirection.ReturnValue" />
+        <element api="F:System.Data.ParameterDirection.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.ParameterDirection" />
+      </containers>
+      <file name="8046e415-42c2-8e00-2053-d98e3cd8d860" />
+    </api>
+    <api id="F:System.Data.ParameterDirection.Input">
+      <topicdata group="api" />
+      <apidata name="Input" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.ParameterDirection" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.ParameterDirection" ref="true" />
+      </containers>
+      <file name="6091d5ca-7928-7b8b-7e64-53d63c299d0c" />
+    </api>
+    <api id="F:System.Data.ParameterDirection.InputOutput">
+      <topicdata group="api" />
+      <apidata name="InputOutput" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.ParameterDirection" ref="true" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.ParameterDirection" ref="true" />
+      </containers>
+      <file name="a0a7e740-1c8f-e8b5-204c-21f86cb13692" />
+    </api>
+    <api id="F:System.Data.ParameterDirection.Output">
+      <topicdata group="api" />
+      <apidata name="Output" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.ParameterDirection" ref="true" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.ParameterDirection" ref="true" />
+      </containers>
+      <file name="edf80bfe-1572-aff9-18b7-867db89aeb13" />
+    </api>
+    <api id="F:System.Data.ParameterDirection.ReturnValue">
+      <topicdata group="api" />
+      <apidata name="ReturnValue" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.ParameterDirection" ref="true" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.ParameterDirection" ref="true" />
+      </containers>
+      <file name="417b8b93-3504-ebaf-a513-9ba8bcf1a14f" />
+    </api>
+    <api id="F:System.Data.ParameterDirection.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.ParameterDirection" ref="true" />
+      </containers>
+      <file name="f3c9d154-9316-005c-6f77-43003e18276b" />
+    </api>
+    <api id="T:System.Data.SqlDbType">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.SqlDbType" />
+      <apidata name="SqlDbType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+      </containers>
+      <file name="eff59424-cdf6-8afe-1754-a0142b39b170" />
+    </api>
+    <api id="AllMembers.T:System.Data.SqlDbType">
+      <topicdata name="SqlDbType" group="list" subgroup="members" typeTopicId="T:System.Data.SqlDbType" />
+      <apidata name="SqlDbType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Data.SqlDbType.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.Data.SqlDbType.BigInt" />
+        <element api="F:System.Data.SqlDbType.Binary" />
+        <element api="F:System.Data.SqlDbType.Bit" />
+        <element api="F:System.Data.SqlDbType.Char" />
+        <element api="F:System.Data.SqlDbType.Date" />
+        <element api="F:System.Data.SqlDbType.DateTime" />
+        <element api="F:System.Data.SqlDbType.DateTime2" />
+        <element api="F:System.Data.SqlDbType.DateTimeOffset" />
+        <element api="F:System.Data.SqlDbType.Decimal" />
+        <element api="F:System.Data.SqlDbType.Float" />
+        <element api="F:System.Data.SqlDbType.Image" />
+        <element api="F:System.Data.SqlDbType.Int" />
+        <element api="F:System.Data.SqlDbType.Money" />
+        <element api="F:System.Data.SqlDbType.NChar" />
+        <element api="F:System.Data.SqlDbType.NText" />
+        <element api="F:System.Data.SqlDbType.NVarChar" />
+        <element api="F:System.Data.SqlDbType.Real" />
+        <element api="F:System.Data.SqlDbType.SmallDateTime" />
+        <element api="F:System.Data.SqlDbType.SmallInt" />
+        <element api="F:System.Data.SqlDbType.SmallMoney" />
+        <element api="F:System.Data.SqlDbType.Structured" />
+        <element api="F:System.Data.SqlDbType.Text" />
+        <element api="F:System.Data.SqlDbType.Time" />
+        <element api="F:System.Data.SqlDbType.Timestamp" />
+        <element api="F:System.Data.SqlDbType.TinyInt" />
+        <element api="F:System.Data.SqlDbType.Udt" />
+        <element api="F:System.Data.SqlDbType.UniqueIdentifier" />
+        <element api="F:System.Data.SqlDbType.value__" />
+        <element api="F:System.Data.SqlDbType.VarBinary" />
+        <element api="F:System.Data.SqlDbType.VarChar" />
+        <element api="F:System.Data.SqlDbType.Variant" />
+        <element api="F:System.Data.SqlDbType.Xml" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" />
+      </containers>
+      <file name="393a2f47-6c3d-c868-a6f5-fad1dea85225" />
+    </api>
+    <api id="Methods.T:System.Data.SqlDbType">
+      <topicdata name="SqlDbType" group="list" subgroup="Methods" typeTopicId="T:System.Data.SqlDbType" />
+      <apidata name="SqlDbType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Data.SqlDbType.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" />
+      </containers>
+      <file name="c5024c12-065f-378c-8d5d-7aa99f97fd88" />
+    </api>
+    <api id="Fields.T:System.Data.SqlDbType">
+      <topicdata name="SqlDbType" group="list" subgroup="Fields" typeTopicId="T:System.Data.SqlDbType" />
+      <apidata name="SqlDbType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Data.SqlDbType.BigInt" />
+        <element api="F:System.Data.SqlDbType.Binary" />
+        <element api="F:System.Data.SqlDbType.Bit" />
+        <element api="F:System.Data.SqlDbType.Char" />
+        <element api="F:System.Data.SqlDbType.Date" />
+        <element api="F:System.Data.SqlDbType.DateTime" />
+        <element api="F:System.Data.SqlDbType.DateTime2" />
+        <element api="F:System.Data.SqlDbType.DateTimeOffset" />
+        <element api="F:System.Data.SqlDbType.Decimal" />
+        <element api="F:System.Data.SqlDbType.Float" />
+        <element api="F:System.Data.SqlDbType.Image" />
+        <element api="F:System.Data.SqlDbType.Int" />
+        <element api="F:System.Data.SqlDbType.Money" />
+        <element api="F:System.Data.SqlDbType.NChar" />
+        <element api="F:System.Data.SqlDbType.NText" />
+        <element api="F:System.Data.SqlDbType.NVarChar" />
+        <element api="F:System.Data.SqlDbType.Real" />
+        <element api="F:System.Data.SqlDbType.SmallDateTime" />
+        <element api="F:System.Data.SqlDbType.SmallInt" />
+        <element api="F:System.Data.SqlDbType.SmallMoney" />
+        <element api="F:System.Data.SqlDbType.Structured" />
+        <element api="F:System.Data.SqlDbType.Text" />
+        <element api="F:System.Data.SqlDbType.Time" />
+        <element api="F:System.Data.SqlDbType.Timestamp" />
+        <element api="F:System.Data.SqlDbType.TinyInt" />
+        <element api="F:System.Data.SqlDbType.Udt" />
+        <element api="F:System.Data.SqlDbType.UniqueIdentifier" />
+        <element api="F:System.Data.SqlDbType.value__" />
+        <element api="F:System.Data.SqlDbType.VarBinary" />
+        <element api="F:System.Data.SqlDbType.VarChar" />
+        <element api="F:System.Data.SqlDbType.Variant" />
+        <element api="F:System.Data.SqlDbType.Xml" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" />
+      </containers>
+      <file name="06944f65-7b91-f15e-ff66-1d9854991fe5" />
+    </api>
+    <api id="F:System.Data.SqlDbType.BigInt">
+      <topicdata group="api" />
+      <apidata name="BigInt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="6ecef06e-2be4-337d-f0ab-7fcf4dcdd0ee" />
+    </api>
+    <api id="F:System.Data.SqlDbType.Binary">
+      <topicdata group="api" />
+      <apidata name="Binary" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="e632caa2-828a-64c7-5ceb-e3472c8c31b3" />
+    </api>
+    <api id="F:System.Data.SqlDbType.Bit">
+      <topicdata group="api" />
+      <apidata name="Bit" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="2ac5a484-0274-c3d7-c57d-48a396df183a" />
+    </api>
+    <api id="F:System.Data.SqlDbType.Char">
+      <topicdata group="api" />
+      <apidata name="Char" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="6a669fb7-8d1b-8b0a-4747-5df0e9a94e1f" />
+    </api>
+    <api id="F:System.Data.SqlDbType.Date">
+      <topicdata group="api" />
+      <apidata name="Date" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>31</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="73c959da-1836-c21a-edbe-c61a4c0cbfed" />
+    </api>
+    <api id="F:System.Data.SqlDbType.DateTime">
+      <topicdata group="api" />
+      <apidata name="DateTime" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="c3d9b597-eb4d-47cd-4e4f-a2f3918ea89c" />
+    </api>
+    <api id="F:System.Data.SqlDbType.DateTime2">
+      <topicdata group="api" />
+      <apidata name="DateTime2" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>33</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="4ec0814a-2771-8b0f-ef6c-9ef213f32c0b" />
+    </api>
+    <api id="F:System.Data.SqlDbType.DateTimeOffset">
+      <topicdata group="api" />
+      <apidata name="DateTimeOffset" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>34</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="bb1ee9a1-d37a-0ade-0167-c1b5217a2e7f" />
+    </api>
+    <api id="F:System.Data.SqlDbType.Decimal">
+      <topicdata group="api" />
+      <apidata name="Decimal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="67cf5975-3a42-760f-ae8e-2c2cbc4bffd2" />
+    </api>
+    <api id="F:System.Data.SqlDbType.Float">
+      <topicdata group="api" />
+      <apidata name="Float" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="d5ab165f-1e83-f124-d2c3-4ebca85f1b3c" />
+    </api>
+    <api id="F:System.Data.SqlDbType.Image">
+      <topicdata group="api" />
+      <apidata name="Image" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="268cb807-18fc-e120-118b-d94aaf188b29" />
+    </api>
+    <api id="F:System.Data.SqlDbType.Int">
+      <topicdata group="api" />
+      <apidata name="Int" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="1ca106c5-b795-4fb4-9cd2-4129c03863a9" />
+    </api>
+    <api id="F:System.Data.SqlDbType.Money">
+      <topicdata group="api" />
+      <apidata name="Money" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="4a9c16e6-a23c-7569-5723-6c24c48197c3" />
+    </api>
+    <api id="F:System.Data.SqlDbType.NChar">
+      <topicdata group="api" />
+      <apidata name="NChar" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="e2cf9f85-ac26-774a-0037-7271919e7e45" />
+    </api>
+    <api id="F:System.Data.SqlDbType.NText">
+      <topicdata group="api" />
+      <apidata name="NText" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="148d442a-e2b4-b03b-ddfc-01146abd2cb7" />
+    </api>
+    <api id="F:System.Data.SqlDbType.NVarChar">
+      <topicdata group="api" />
+      <apidata name="NVarChar" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="da6538b7-c6a7-b701-66ad-c4fc60a74d7c" />
+    </api>
+    <api id="F:System.Data.SqlDbType.Real">
+      <topicdata group="api" />
+      <apidata name="Real" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>13</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="73b8849a-a238-ad48-4f3f-c3b0dde9e40a" />
+    </api>
+    <api id="F:System.Data.SqlDbType.SmallDateTime">
+      <topicdata group="api" />
+      <apidata name="SmallDateTime" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>15</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="edf5070b-b60b-3694-05d3-09c73ac9f039" />
+    </api>
+    <api id="F:System.Data.SqlDbType.SmallInt">
+      <topicdata group="api" />
+      <apidata name="SmallInt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="b5410d11-b449-a6e6-a275-a482fdd046c1" />
+    </api>
+    <api id="F:System.Data.SqlDbType.SmallMoney">
+      <topicdata group="api" />
+      <apidata name="SmallMoney" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>17</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="cbf14646-d8f2-1979-3cb7-cd2282b70e85" />
+    </api>
+    <api id="F:System.Data.SqlDbType.Structured">
+      <topicdata group="api" />
+      <apidata name="Structured" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>30</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="7cb8d4ce-41da-e14c-e6f5-1e910d3fc07a" />
+    </api>
+    <api id="F:System.Data.SqlDbType.Text">
+      <topicdata group="api" />
+      <apidata name="Text" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>18</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="f6f13dc2-4ca9-ad2b-ec4a-0cb3480f0dd1" />
+    </api>
+    <api id="F:System.Data.SqlDbType.Time">
+      <topicdata group="api" />
+      <apidata name="Time" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="34371439-7bcf-8379-9f59-a78d7f09d84e" />
+    </api>
+    <api id="F:System.Data.SqlDbType.Timestamp">
+      <topicdata group="api" />
+      <apidata name="Timestamp" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>19</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="a819e05a-bda5-56cb-0e41-82253bca66a6" />
+    </api>
+    <api id="F:System.Data.SqlDbType.TinyInt">
+      <topicdata group="api" />
+      <apidata name="TinyInt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>20</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="853fd76d-84a5-5223-280e-1f25cc689f4f" />
+    </api>
+    <api id="F:System.Data.SqlDbType.Udt">
+      <topicdata group="api" />
+      <apidata name="Udt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>29</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="9e581d03-f98d-b94f-ca19-b87d3e45c011" />
+    </api>
+    <api id="F:System.Data.SqlDbType.UniqueIdentifier">
+      <topicdata group="api" />
+      <apidata name="UniqueIdentifier" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>14</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="38cd52c1-b645-5240-523a-6c6cf052a0a4" />
+    </api>
+    <api id="F:System.Data.SqlDbType.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="fbf681b7-19ed-1e53-f92a-1a9aa2484a40" />
+    </api>
+    <api id="F:System.Data.SqlDbType.VarBinary">
+      <topicdata group="api" />
+      <apidata name="VarBinary" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>21</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="34399b2a-0803-cf10-f249-a22e47a4abe3" />
+    </api>
+    <api id="F:System.Data.SqlDbType.VarChar">
+      <topicdata group="api" />
+      <apidata name="VarChar" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>22</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="d3941909-3de7-ce8a-301f-666c27ec3147" />
+    </api>
+    <api id="F:System.Data.SqlDbType.Variant">
+      <topicdata group="api" />
+      <apidata name="Variant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>23</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="3feff3be-cd07-2932-4292-f3c81d45040d" />
+    </api>
+    <api id="F:System.Data.SqlDbType.Xml">
+      <topicdata group="api" />
+      <apidata name="Xml" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </returns>
+      <value>25</value>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.SqlDbType" ref="true" />
+      </containers>
+      <file name="fabad733-4cb2-c4a7-9bda-27788d29dbc9" />
+    </api>
+    <api id="T:System.Data.StateChangeEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.StateChangeEventArgs" />
+      <apidata name="StateChangeEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+      </containers>
+      <file name="a044a945-adc1-70fd-3ac5-f6ed16a02913" />
+    </api>
+    <api id="AllMembers.T:System.Data.StateChangeEventArgs">
+      <topicdata name="StateChangeEventArgs" group="list" subgroup="members" typeTopicId="T:System.Data.StateChangeEventArgs" />
+      <apidata name="StateChangeEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Data.StateChangeEventArgs.#ctor(System.Data.ConnectionState,System.Data.ConnectionState)" />
+        <element api="P:System.Data.StateChangeEventArgs.CurrentState" />
+        <element api="P:System.Data.StateChangeEventArgs.OriginalState" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StateChangeEventArgs" />
+      </containers>
+      <file name="d98fda58-4391-e353-afa5-50750cac99a1" />
+    </api>
+    <api id="Methods.T:System.Data.StateChangeEventArgs">
+      <topicdata name="StateChangeEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Data.StateChangeEventArgs" />
+      <apidata name="StateChangeEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StateChangeEventArgs" />
+      </containers>
+      <file name="d1203447-649f-1e60-09d3-b6baed0534f6" />
+    </api>
+    <api id="Properties.T:System.Data.StateChangeEventArgs">
+      <topicdata name="StateChangeEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Data.StateChangeEventArgs" />
+      <apidata name="StateChangeEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Data.StateChangeEventArgs.CurrentState" />
+        <element api="P:System.Data.StateChangeEventArgs.OriginalState" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StateChangeEventArgs" />
+      </containers>
+      <file name="77d2da6b-ef47-5e4b-c551-f69fbeeafde4" />
+    </api>
+    <api id="M:System.Data.StateChangeEventArgs.#ctor(System.Data.ConnectionState,System.Data.ConnectionState)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="originalState">
+          <type api="T:System.Data.ConnectionState" ref="true" />
+        </parameter>
+        <parameter name="currentState">
+          <type api="T:System.Data.ConnectionState" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StateChangeEventArgs" ref="true" />
+      </containers>
+      <file name="d787a88f-5a04-978e-1974-d8dd9ce6f511" />
+    </api>
+    <api id="P:System.Data.StateChangeEventArgs.CurrentState">
+      <topicdata group="api" />
+      <apidata name="CurrentState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CurrentState" />
+      <returns>
+        <type api="T:System.Data.ConnectionState" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StateChangeEventArgs" ref="true" />
+      </containers>
+      <file name="943413d6-4be1-c150-90d4-632c390876a1" />
+    </api>
+    <api id="P:System.Data.StateChangeEventArgs.OriginalState">
+      <topicdata group="api" />
+      <apidata name="OriginalState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OriginalState" />
+      <returns>
+        <type api="T:System.Data.ConnectionState" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StateChangeEventArgs" ref="true" />
+      </containers>
+      <file name="ab016d80-b316-b38f-6abb-bf1847ed91ba" />
+    </api>
+    <api id="T:System.Data.StateChangeEventHandler">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.StateChangeEventHandler" />
+      <apidata name="StateChangeEventHandler" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.MulticastDelegate" ref="true" />
+          <type api="T:System.Delegate" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+      </containers>
+      <file name="097b5a66-f0ad-2ef4-1e6c-b93dd362f3cd" />
+    </api>
+    <api id="AllMembers.T:System.Data.StateChangeEventHandler">
+      <topicdata name="StateChangeEventHandler" group="list" subgroup="members" typeTopicId="T:System.Data.StateChangeEventHandler" />
+      <apidata name="StateChangeEventHandler" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Delegate.DynamicInvoke(System.Object[])" />
+        <element api="P:System.Delegate.Target" />
+        <element api="M:System.MulticastDelegate.Equals(System.Object)" />
+        <element api="M:System.MulticastDelegate.GetHashCode" />
+        <element api="M:System.MulticastDelegate.GetInvocationList" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Reflection.RuntimeReflectionExtensions.GetMethodInfo(System.Delegate)" source="extension">
+          <apidata name="GetMethodInfo" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Reflection.MethodInfo" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Reflection.Extensions" module="System.Reflection.Extensions" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Reflection" />
+            <type api="T:System.Reflection.RuntimeReflectionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Data.StateChangeEventHandler.#ctor(System.Object,System.IntPtr)" />
+        <element api="M:System.Data.StateChangeEventHandler.BeginInvoke(System.Object,System.Data.StateChangeEventArgs,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Data.StateChangeEventHandler.EndInvoke(System.IAsyncResult)" />
+        <element api="M:System.Data.StateChangeEventHandler.Invoke(System.Object,System.Data.StateChangeEventArgs)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StateChangeEventHandler" />
+      </containers>
+      <file name="27bb7301-2d26-cc20-04fc-a4db19290050" />
+    </api>
+    <api id="Methods.T:System.Data.StateChangeEventHandler">
+      <topicdata name="StateChangeEventHandler" group="list" subgroup="Methods" typeTopicId="T:System.Data.StateChangeEventHandler" />
+      <apidata name="StateChangeEventHandler" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Delegate.DynamicInvoke(System.Object[])" />
+        <element api="M:System.MulticastDelegate.Equals(System.Object)" />
+        <element api="M:System.MulticastDelegate.GetHashCode" />
+        <element api="M:System.MulticastDelegate.GetInvocationList" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Reflection.RuntimeReflectionExtensions.GetMethodInfo(System.Delegate)" source="extension">
+          <apidata name="GetMethodInfo" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Reflection.MethodInfo" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Reflection.Extensions" module="System.Reflection.Extensions" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Reflection" />
+            <type api="T:System.Reflection.RuntimeReflectionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Data.StateChangeEventHandler.BeginInvoke(System.Object,System.Data.StateChangeEventArgs,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Data.StateChangeEventHandler.EndInvoke(System.IAsyncResult)" />
+        <element api="M:System.Data.StateChangeEventHandler.Invoke(System.Object,System.Data.StateChangeEventArgs)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StateChangeEventHandler" />
+      </containers>
+      <file name="85ecd6eb-e0b0-7c97-de42-de3f50e8db8d" />
+    </api>
+    <api id="Properties.T:System.Data.StateChangeEventHandler">
+      <topicdata name="StateChangeEventHandler" group="list" subgroup="Properties" typeTopicId="T:System.Data.StateChangeEventHandler" />
+      <apidata name="StateChangeEventHandler" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Delegate.Target" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StateChangeEventHandler" />
+      </containers>
+      <file name="f1a732fe-8d28-cfe8-bcb6-f1d95a32c77e" />
+    </api>
+    <api id="M:System.Data.StateChangeEventHandler.#ctor(System.Object,System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="object">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="method">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StateChangeEventHandler" ref="true" />
+      </containers>
+      <file name="b32e933c-dee1-c51a-80fa-c0d00a581ec2" />
+    </api>
+    <api id="M:System.Data.StateChangeEventHandler.BeginInvoke(System.Object,System.Data.StateChangeEventArgs,System.AsyncCallback,System.Object)">
+      <topicdata group="api" />
+      <apidata name="BeginInvoke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Data.StateChangeEventArgs" ref="true" />
+        </parameter>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="object">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StateChangeEventHandler" ref="true" />
+      </containers>
+      <file name="dfdd0a13-e35d-6573-b83f-92c7f87e9340" />
+    </api>
+    <api id="M:System.Data.StateChangeEventHandler.EndInvoke(System.IAsyncResult)">
+      <topicdata group="api" />
+      <apidata name="EndInvoke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StateChangeEventHandler" ref="true" />
+      </containers>
+      <file name="bbbec0b4-26b3-732e-aeac-750507dcfc67" />
+    </api>
+    <api id="M:System.Data.StateChangeEventHandler.Invoke(System.Object,System.Data.StateChangeEventArgs)">
+      <topicdata group="api" />
+      <apidata name="Invoke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Data.StateChangeEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StateChangeEventHandler" ref="true" />
+      </containers>
+      <file name="bf33fd92-6c0f-ad91-b81d-7ad78627f3c4" />
+    </api>
+    <api id="T:System.Data.StatementCompletedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.StatementCompletedEventArgs" />
+      <apidata name="StatementCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+      </containers>
+      <file name="d5c77d76-7db5-c1ed-8855-2716f0648ec3" />
+    </api>
+    <api id="AllMembers.T:System.Data.StatementCompletedEventArgs">
+      <topicdata name="StatementCompletedEventArgs" group="list" subgroup="members" typeTopicId="T:System.Data.StatementCompletedEventArgs" />
+      <apidata name="StatementCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Data.StatementCompletedEventArgs.#ctor(System.Int32)" />
+        <element api="P:System.Data.StatementCompletedEventArgs.RecordCount" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StatementCompletedEventArgs" />
+      </containers>
+      <file name="6949d2ed-180d-5e98-ad1e-0bcdba6b4b69" />
+    </api>
+    <api id="Methods.T:System.Data.StatementCompletedEventArgs">
+      <topicdata name="StatementCompletedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Data.StatementCompletedEventArgs" />
+      <apidata name="StatementCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StatementCompletedEventArgs" />
+      </containers>
+      <file name="a8202bbb-bb68-ef8f-891d-51782b9f4f30" />
+    </api>
+    <api id="Properties.T:System.Data.StatementCompletedEventArgs">
+      <topicdata name="StatementCompletedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Data.StatementCompletedEventArgs" />
+      <apidata name="StatementCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Data.StatementCompletedEventArgs.RecordCount" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StatementCompletedEventArgs" />
+      </containers>
+      <file name="bd025bd8-c2dd-576e-eac4-5b4cbab7c0df" />
+    </api>
+    <api id="M:System.Data.StatementCompletedEventArgs.#ctor(System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="recordCount">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StatementCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="37148c11-52c9-d3a4-f96a-fec242d36adf" />
+    </api>
+    <api id="P:System.Data.StatementCompletedEventArgs.RecordCount">
+      <topicdata group="api" />
+      <apidata name="RecordCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RecordCount" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StatementCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="93711167-0d1e-bfbd-7471-d7a83c472fa1" />
+    </api>
+    <api id="T:System.Data.StatementCompletedEventHandler">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.StatementCompletedEventHandler" />
+      <apidata name="StatementCompletedEventHandler" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.MulticastDelegate" ref="true" />
+          <type api="T:System.Delegate" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+      </containers>
+      <file name="61134037-1aec-82f0-f9e0-031a2d6c4992" />
+    </api>
+    <api id="AllMembers.T:System.Data.StatementCompletedEventHandler">
+      <topicdata name="StatementCompletedEventHandler" group="list" subgroup="members" typeTopicId="T:System.Data.StatementCompletedEventHandler" />
+      <apidata name="StatementCompletedEventHandler" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Delegate.DynamicInvoke(System.Object[])" />
+        <element api="P:System.Delegate.Target" />
+        <element api="M:System.MulticastDelegate.Equals(System.Object)" />
+        <element api="M:System.MulticastDelegate.GetHashCode" />
+        <element api="M:System.MulticastDelegate.GetInvocationList" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Reflection.RuntimeReflectionExtensions.GetMethodInfo(System.Delegate)" source="extension">
+          <apidata name="GetMethodInfo" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Reflection.MethodInfo" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Reflection.Extensions" module="System.Reflection.Extensions" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Reflection" />
+            <type api="T:System.Reflection.RuntimeReflectionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Data.StatementCompletedEventHandler.#ctor(System.Object,System.IntPtr)" />
+        <element api="M:System.Data.StatementCompletedEventHandler.BeginInvoke(System.Object,System.Data.StatementCompletedEventArgs,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Data.StatementCompletedEventHandler.EndInvoke(System.IAsyncResult)" />
+        <element api="M:System.Data.StatementCompletedEventHandler.Invoke(System.Object,System.Data.StatementCompletedEventArgs)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StatementCompletedEventHandler" />
+      </containers>
+      <file name="5470cce7-70d6-20b9-1625-f2f63e624ba0" />
+    </api>
+    <api id="Methods.T:System.Data.StatementCompletedEventHandler">
+      <topicdata name="StatementCompletedEventHandler" group="list" subgroup="Methods" typeTopicId="T:System.Data.StatementCompletedEventHandler" />
+      <apidata name="StatementCompletedEventHandler" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Delegate.DynamicInvoke(System.Object[])" />
+        <element api="M:System.MulticastDelegate.Equals(System.Object)" />
+        <element api="M:System.MulticastDelegate.GetHashCode" />
+        <element api="M:System.MulticastDelegate.GetInvocationList" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Reflection.RuntimeReflectionExtensions.GetMethodInfo(System.Delegate)" source="extension">
+          <apidata name="GetMethodInfo" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Reflection.MethodInfo" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Reflection.Extensions" module="System.Reflection.Extensions" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Reflection" />
+            <type api="T:System.Reflection.RuntimeReflectionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Data.StatementCompletedEventHandler.BeginInvoke(System.Object,System.Data.StatementCompletedEventArgs,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Data.StatementCompletedEventHandler.EndInvoke(System.IAsyncResult)" />
+        <element api="M:System.Data.StatementCompletedEventHandler.Invoke(System.Object,System.Data.StatementCompletedEventArgs)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StatementCompletedEventHandler" />
+      </containers>
+      <file name="2b9448dc-06cf-0d88-e68a-a3a823c1e423" />
+    </api>
+    <api id="Properties.T:System.Data.StatementCompletedEventHandler">
+      <topicdata name="StatementCompletedEventHandler" group="list" subgroup="Properties" typeTopicId="T:System.Data.StatementCompletedEventHandler" />
+      <apidata name="StatementCompletedEventHandler" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Delegate.Target" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StatementCompletedEventHandler" />
+      </containers>
+      <file name="1ed8f383-86b3-41af-ba48-322b94d1b042" />
+    </api>
+    <api id="M:System.Data.StatementCompletedEventHandler.#ctor(System.Object,System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="object">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="method">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StatementCompletedEventHandler" ref="true" />
+      </containers>
+      <file name="e647b7d0-da64-b605-d715-a83d370e2b76" />
+    </api>
+    <api id="M:System.Data.StatementCompletedEventHandler.BeginInvoke(System.Object,System.Data.StatementCompletedEventArgs,System.AsyncCallback,System.Object)">
+      <topicdata group="api" />
+      <apidata name="BeginInvoke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Data.StatementCompletedEventArgs" ref="true" />
+        </parameter>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="object">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StatementCompletedEventHandler" ref="true" />
+      </containers>
+      <file name="c7b49541-da22-e0de-5e9d-813cc7a3502d" />
+    </api>
+    <api id="M:System.Data.StatementCompletedEventHandler.EndInvoke(System.IAsyncResult)">
+      <topicdata group="api" />
+      <apidata name="EndInvoke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StatementCompletedEventHandler" ref="true" />
+      </containers>
+      <file name="86b121a7-2002-5d13-fc6e-754554f635c6" />
+    </api>
+    <api id="M:System.Data.StatementCompletedEventHandler.Invoke(System.Object,System.Data.StatementCompletedEventArgs)">
+      <topicdata group="api" />
+      <apidata name="Invoke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Data.StatementCompletedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.SqlClient" module="System.Data.SqlClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.StatementCompletedEventHandler" ref="true" />
+      </containers>
+      <file name="daf9bc4f-2a39-2101-c04b-39922317e0d1" />
+    </api>
+    <api id="T:System.Data.UpdateRowSource">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.UpdateRowSource" />
+      <apidata name="UpdateRowSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+      </containers>
+      <file name="f6101fa5-6a42-f990-dcd6-31938a8a04b2" />
+    </api>
+    <api id="AllMembers.T:System.Data.UpdateRowSource">
+      <topicdata name="UpdateRowSource" group="list" subgroup="members" typeTopicId="T:System.Data.UpdateRowSource" />
+      <apidata name="UpdateRowSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Data.UpdateRowSource.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.Data.UpdateRowSource.Both" />
+        <element api="F:System.Data.UpdateRowSource.FirstReturnedRecord" />
+        <element api="F:System.Data.UpdateRowSource.None" />
+        <element api="F:System.Data.UpdateRowSource.OutputParameters" />
+        <element api="F:System.Data.UpdateRowSource.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.UpdateRowSource" />
+      </containers>
+      <file name="ce118980-f9e5-9a61-7eec-441aa93ecce0" />
+    </api>
+    <api id="Methods.T:System.Data.UpdateRowSource">
+      <topicdata name="UpdateRowSource" group="list" subgroup="Methods" typeTopicId="T:System.Data.UpdateRowSource" />
+      <apidata name="UpdateRowSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Data.UpdateRowSource.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.UpdateRowSource" />
+      </containers>
+      <file name="773417c0-4bf9-b6a7-5c41-baeabb6dad25" />
+    </api>
+    <api id="Fields.T:System.Data.UpdateRowSource">
+      <topicdata name="UpdateRowSource" group="list" subgroup="Fields" typeTopicId="T:System.Data.UpdateRowSource" />
+      <apidata name="UpdateRowSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Data.UpdateRowSource.Both" />
+        <element api="F:System.Data.UpdateRowSource.FirstReturnedRecord" />
+        <element api="F:System.Data.UpdateRowSource.None" />
+        <element api="F:System.Data.UpdateRowSource.OutputParameters" />
+        <element api="F:System.Data.UpdateRowSource.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.UpdateRowSource" />
+      </containers>
+      <file name="245c43d3-4049-8994-c329-1d0e7a658d88" />
+    </api>
+    <api id="F:System.Data.UpdateRowSource.Both">
+      <topicdata group="api" />
+      <apidata name="Both" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.UpdateRowSource" ref="true" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.UpdateRowSource" ref="true" />
+      </containers>
+      <file name="ca2c4ed1-870d-fcf0-c3ce-ef395a634f94" />
+    </api>
+    <api id="F:System.Data.UpdateRowSource.FirstReturnedRecord">
+      <topicdata group="api" />
+      <apidata name="FirstReturnedRecord" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.UpdateRowSource" ref="true" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.UpdateRowSource" ref="true" />
+      </containers>
+      <file name="af70b6e1-e1c1-18f2-d121-492e2338fd87" />
+    </api>
+    <api id="F:System.Data.UpdateRowSource.None">
+      <topicdata group="api" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.UpdateRowSource" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.UpdateRowSource" ref="true" />
+      </containers>
+      <file name="a2594f58-7fd9-d444-76db-d23df68b3f4c" />
+    </api>
+    <api id="F:System.Data.UpdateRowSource.OutputParameters">
+      <topicdata group="api" />
+      <apidata name="OutputParameters" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.UpdateRowSource" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.UpdateRowSource" ref="true" />
+      </containers>
+      <file name="d4c6beda-4081-b2ee-10e3-6bcd738b7e06" />
+    </api>
+    <api id="F:System.Data.UpdateRowSource.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Common" module="System.Data.Common" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Data" />
+        <type api="T:System.Data.UpdateRowSource" ref="true" />
+      </containers>
+      <file name="5cbef45b-64e5-1744-f5a1-b3b9ebede9a8" />
+    </api>
+  </apis>
+</reflection>

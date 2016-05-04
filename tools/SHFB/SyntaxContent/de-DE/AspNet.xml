@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- Syntax section and code example title.  Add one for the primary ID and one for each alternate ID. -->
+	<item id="devlang_ASP.NET">ASP.NET</item>
+	<item id="devlang_AspNet">ASP.NET</item>
+	<item id="devlang_asp">ASP.NET</item>
+
+	<!-- Development language metadata values.  Add one for the primary ID and one for each alternate ID.  -->
+	<item id="metaLang_ASP.NET">ASP.NET</item>
+	<item id="metaLang_AspNet">ASP.NET</item>
+	<item id="metaLang_asp">ASP.NET</item>
+</content>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- DO NOT COPY THIS FILE TO THE VISUAL STUDIO XML SCHEMA CACHE -->
+<!-- This is a copy of the xml.xsd schema file from Visual Studio.  It is here for the MAML developerStructure.xsd
+     schema file to reference for development. -->
+<!--
+  Copyright 2001 World Wide Web Consortium, (Massachusetts Institute of Technology, European Research
+  Consortium for Informatics and Mathematics, Keio University). All Rights Reserved.
+  http://www.w3.org/Consortium/Legal/2002/copyright-documents-20021231"
+  
+  This schema is copied from http://www.w3.org/2001/xml.xsd.
+-->
+<xs:schema targetNamespace="http://www.w3.org/XML/1998/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema" xml:lang="en">
+  <xs:attribute name="lang" type="xs:language">
+  </xs:attribute>
+
+  <xs:attribute name="space">
+    <xs:simpleType>
+      <xs:restriction base="xs:NCName">
+        <xs:enumeration value="default"/>
+        <xs:enumeration value="preserve"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+
+  <xs:attribute name="base" type="xs:anyURI">
+    <xs:annotation>
+      <xs:documentation source="http://www.w3.org/TR/xmlbase/"></xs:documentation>
+    </xs:annotation>
+  </xs:attribute>
+
+  <xs:attribute name="id" type="xs:ID">
+    <xs:annotation>
+      <xs:documentation source="http://www.w3.org/TR/xml-id/"></xs:documentation>
+    </xs:annotation>
+  </xs:attribute>
+
+  <xs:attributeGroup name="specialAttrs">
+    <xs:attribute ref="xml:base"/>
+    <xs:attribute ref="xml:lang"/>
+    <xs:attribute ref="xml:space"/>
+  </xs:attributeGroup>
+
+</xs:schema>

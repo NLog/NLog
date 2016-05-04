@@ -1,0 +1,1494 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Phone">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Phone Core Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Phone</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>969e33fe-1289-4bc2-863a-c848bb476cc0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Phone.BackgroundTransfer">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Phone.BackgroundTransfer" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs" />
+        <element api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" />
+        <element api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService" />
+        <element api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" />
+        <element api="T:Microsoft.Phone.BackgroundTransfer.TransferPreferences" />
+        <element api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferInternalException" />
+      </elements>
+      <file name="759032f9-c761-8177-552e-8631998e1a68" />
+    </api>
+    <api id="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs" />
+      <apidata name="BackgroundTransferEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+      </containers>
+      <file name="366aa277-67e2-dbab-16e3-b3590c1bfd2e" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs">
+      <topicdata name="BackgroundTransferEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs" />
+      <apidata name="BackgroundTransferEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs.#ctor(Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest)" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs.Request" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs" />
+      </containers>
+      <file name="0bc14b77-0502-fb46-672c-aece2aed8516" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs">
+      <topicdata name="BackgroundTransferEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs" />
+      <apidata name="BackgroundTransferEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs" />
+      </containers>
+      <file name="cacfcd67-9de7-ed45-ab2c-3c4b273a9cae" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs">
+      <topicdata name="BackgroundTransferEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs" />
+      <apidata name="BackgroundTransferEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs.Request" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs" />
+      </containers>
+      <file name="2c037202-c433-2e26-3eed-88af0931a7d8" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs.#ctor(Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="request">
+          <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs" ref="true" />
+      </containers>
+      <file name="486f95a2-5fe8-cd6d-82c9-2cb9f10f8969" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs.Request">
+      <topicdata group="api" />
+      <apidata name="Request" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Request" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs" ref="true" />
+      </containers>
+      <file name="c3c7785e-5657-0c5c-3bd6-6338c027791f" />
+    </api>
+    <api id="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferInternalException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferInternalException" />
+      <apidata name="BackgroundTransferInternalException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.SystemException" ref="true" />
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+      </containers>
+      <file name="bcfa1070-2de9-1b66-1c7b-c0a02b806bc4" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferInternalException">
+      <topicdata name="BackgroundTransferInternalException" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferInternalException" />
+      <apidata name="BackgroundTransferInternalException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferInternalException" />
+      </containers>
+      <file name="ada9e8b8-51d8-ee43-c293-d051719c1c3e" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferInternalException">
+      <topicdata name="BackgroundTransferInternalException" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferInternalException" />
+      <apidata name="BackgroundTransferInternalException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferInternalException" />
+      </containers>
+      <file name="9d0e37b8-43ba-7051-4b12-0d41cae7f171" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferInternalException">
+      <topicdata name="BackgroundTransferInternalException" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferInternalException" />
+      <apidata name="BackgroundTransferInternalException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferInternalException" />
+      </containers>
+      <file name="bc2f30ce-1b8f-c565-40a4-f40fbd637101" />
+    </api>
+    <api id="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" />
+      <apidata name="BackgroundTransferRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+      </containers>
+      <file name="665421fa-4369-002c-68f2-8b5982731b86" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest">
+      <topicdata name="BackgroundTransferRequest" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" />
+      <apidata name="BackgroundTransferRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.#ctor">
+          <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.#ctor(System.Uri)" />
+          <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.#ctor(System.Uri,System.Uri)" />
+        </element>
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.BytesReceived" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.BytesSent" />
+        <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Dispose" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.DownloadLocation" />
+        <element api="Overload:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Equals">
+          <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Equals(Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest)" />
+          <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Equals(System.Object)" />
+        </element>
+        <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.GetHashCode" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Headers" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Method" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.RequestId" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.RequestUri" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.StatusCode" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Tag" />
+        <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.ToString" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TotalBytesToReceive" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TotalBytesToSend" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TransferError" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TransferPreferences" />
+        <element api="E:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TransferProgressChanged" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TransferStatus" />
+        <element api="E:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TransferStatusChanged" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.UploadLocation" />
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" />
+      </containers>
+      <file name="2aacd050-b55d-e3f2-d78d-4a5463be7d35" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest">
+      <topicdata name="BackgroundTransferRequest" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" />
+      <apidata name="BackgroundTransferRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Dispose" />
+        <element api="Overload:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Equals">
+          <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Equals(Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest)" />
+          <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Equals(System.Object)" />
+        </element>
+        <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.GetHashCode" />
+        <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.ToString" />
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" />
+      </containers>
+      <file name="381046ae-47b7-f7f5-12a2-58c49223bd02" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest">
+      <topicdata name="BackgroundTransferRequest" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" />
+      <apidata name="BackgroundTransferRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.BytesReceived" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.BytesSent" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.DownloadLocation" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Headers" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Method" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.RequestId" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.RequestUri" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.StatusCode" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Tag" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TotalBytesToReceive" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TotalBytesToSend" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TransferError" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TransferPreferences" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TransferStatus" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.UploadLocation" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" />
+      </containers>
+      <file name="4d7a72e7-ac33-8e1d-4535-3886c91fa0b9" />
+    </api>
+    <api id="Events.T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest">
+      <topicdata name="BackgroundTransferRequest" group="list" subgroup="Events" typeTopicId="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" />
+      <apidata name="BackgroundTransferRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TransferProgressChanged" />
+        <element api="E:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TransferStatusChanged" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" />
+      </containers>
+      <file name="1d3dacd1-72fc-9520-eeb8-ff5a4f95332a" />
+    </api>
+    <api id="Overload:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.#ctor(System.Uri)" />
+        <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.#ctor(System.Uri,System.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="3c0663f2-4583-fb4f-4be8-b5d157d7d10e" />
+    </api>
+    <api id="Overload:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Equals">
+      <topicdata name="Equals" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Equals(Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest)" />
+        <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Equals(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="5f7b0eef-2dd7-ac4e-c86a-3ec8f340b5c8" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.#ctor(System.Uri)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.#ctor" />
+      <parameters>
+        <parameter name="requestUri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="f3145494-f8aa-b4a0-3c56-ed72519d692e" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.#ctor(System.Uri,System.Uri)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.#ctor" />
+      <parameters>
+        <parameter name="requestUri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="downloadLocation">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="c40d637c-77f3-4639-4abd-967610b9893d" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.BytesReceived">
+      <topicdata group="api" />
+      <apidata name="BytesReceived" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BytesReceived" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="e11c2441-05f0-2e51-f58b-c2e72f512364" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.BytesSent">
+      <topicdata group="api" />
+      <apidata name="BytesSent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BytesSent" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="7c17a91b-ac33-f373-7211-fb354ea02bc2" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="f2945752-f6c4-c69f-cc55-03a4e92ab54e" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.DownloadLocation">
+      <topicdata group="api" />
+      <apidata name="DownloadLocation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DownloadLocation" />
+      <setter name="set_DownloadLocation" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="8e9b7c71-89ff-9639-75b3-c671ed8b45dc" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Equals(Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Equals" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="other">
+          <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="510869a6-779a-06f7-1a02-d75a28b16e2b" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Equals" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Equals(System.Object)">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="other">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="3616d3cb-2b1a-3502-d780-7f04757e84f2" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.GetHashCode">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="d42156c9-4559-6ce3-4504-6c5d7670a9da" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Headers">
+      <topicdata group="api" />
+      <apidata name="Headers" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Headers" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="117f5e12-2afd-ad05-4a39-85a5b777f300" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Method">
+      <topicdata group="api" />
+      <apidata name="Method" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Method" />
+      <setter name="set_Method" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="25f9f073-17f0-457f-0062-f969efaa7b02" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.RequestId">
+      <topicdata group="api" />
+      <apidata name="RequestId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RequestId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="98527a9f-9f04-942e-b533-32cfde49aa61" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.RequestUri">
+      <topicdata group="api" />
+      <apidata name="RequestUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RequestUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="d36a9f94-83ff-871c-225d-7b7075f42394" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.StatusCode">
+      <topicdata group="api" />
+      <apidata name="StatusCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_StatusCode" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="deb33860-9928-0666-2acb-aca65f60b128" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.Tag">
+      <topicdata group="api" />
+      <apidata name="Tag" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Tag" />
+      <setter name="set_Tag" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="e933d7d0-800f-d868-22c5-e150c41de0cc" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="73cc1fb1-e7a9-42cb-fa93-ee12b0c5ff4e" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TotalBytesToReceive">
+      <topicdata group="api" />
+      <apidata name="TotalBytesToReceive" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TotalBytesToReceive" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="6b920da4-1fe6-f23f-86a3-f752fd4ecd9e" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TotalBytesToSend">
+      <topicdata group="api" />
+      <apidata name="TotalBytesToSend" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TotalBytesToSend" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="ef24e9bb-79ee-3b45-5961-11ce6e8b9025" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TransferError">
+      <topicdata group="api" />
+      <apidata name="TransferError" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TransferError" />
+      <returns>
+        <type api="T:System.Exception" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="04d2a75c-6243-cab7-1e0a-f8500ff06852" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TransferPreferences">
+      <topicdata group="api" />
+      <apidata name="TransferPreferences" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TransferPreferences" />
+      <setter name="set_TransferPreferences" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferPreferences" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="db1fee18-e80d-4a97-845a-b8a08a335a4b" />
+    </api>
+    <api id="E:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TransferProgressChanged">
+      <topicdata group="api" />
+      <apidata name="TransferProgressChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_TransferProgressChanged" />
+      <remover name="remove_TransferProgressChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="2c190414-0ff1-518b-9424-cbc999436a02" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TransferStatus">
+      <topicdata group="api" />
+      <apidata name="TransferStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TransferStatus" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="3a2be974-b791-98fa-f164-f322642e3707" />
+    </api>
+    <api id="E:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.TransferStatusChanged">
+      <topicdata group="api" />
+      <apidata name="TransferStatusChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_TransferStatusChanged" />
+      <remover name="remove_TransferStatusChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="a405f855-582b-6efa-0b5b-a873b6b8e436" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest.UploadLocation">
+      <topicdata group="api" />
+      <apidata name="UploadLocation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UploadLocation" />
+      <setter name="set_UploadLocation" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </containers>
+      <file name="3547f7c3-05e7-6203-3171-926c8d43dcae" />
+    </api>
+    <api id="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService" />
+      <apidata name="BackgroundTransferService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+      </containers>
+      <file name="dc823340-c310-0c11-d30a-0ab86d09bc55" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService">
+      <topicdata name="BackgroundTransferService" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService" />
+      <apidata name="BackgroundTransferService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService.Add(Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest)" />
+        <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService.Find(System.String)" />
+        <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService.Remove(Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest)" />
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService.Requests" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService" />
+      </containers>
+      <file name="b3ae8595-cb86-f911-cb3b-1c4c0b0505ea" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService">
+      <topicdata name="BackgroundTransferService" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService" />
+      <apidata name="BackgroundTransferService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService.Add(Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest)" />
+        <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService.Find(System.String)" />
+        <element api="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService.Remove(Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService" />
+      </containers>
+      <file name="8e7cb401-202f-762d-73bc-7b707b720d66" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService">
+      <topicdata name="BackgroundTransferService" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService" />
+      <apidata name="BackgroundTransferService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService.Requests" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService" />
+      </containers>
+      <file name="95ab64fe-c0f4-394b-7d6a-1e6e5eabce35" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService.Add(Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="request">
+          <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService" ref="true" />
+      </containers>
+      <file name="61dcb874-4eb2-d783-9000-94237d5bb721" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService.Find(System.String)">
+      <topicdata group="api" />
+      <apidata name="Find" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="requestId">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService" ref="true" />
+      </containers>
+      <file name="ba2fa4a4-fd6f-a1c8-3d54-c307c1412fc3" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService.Remove(Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="request">
+          <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService" ref="true" />
+      </containers>
+      <file name="f8c03d76-a17c-7e7f-954c-d9438f30d184" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService.Requests">
+      <topicdata group="api" />
+      <apidata name="Requests" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Requests" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferRequest" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.BackgroundTransferService" ref="true" />
+      </containers>
+      <file name="160d4b5b-78d6-f375-b892-4b66db4e36ac" />
+    </api>
+    <api id="T:Microsoft.Phone.BackgroundTransfer.TransferPreferences">
+      <topicdata group="api" />
+      <apidata name="TransferPreferences" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.BackgroundTransfer.TransferPreferences.None" />
+        <element api="F:Microsoft.Phone.BackgroundTransfer.TransferPreferences.AllowCellular" />
+        <element api="F:Microsoft.Phone.BackgroundTransfer.TransferPreferences.AllowBattery" />
+        <element api="F:Microsoft.Phone.BackgroundTransfer.TransferPreferences.AllowCellularAndBattery" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+      </containers>
+      <file name="f8bf4199-03a7-1ac6-64e9-247dcc295a9c" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundTransfer.TransferPreferences.AllowBattery">
+      <topicdata group="api" notopic="" />
+      <apidata name="AllowBattery" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferPreferences" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferPreferences" ref="false" />
+      </containers>
+      <file name="d5d97eb8-12b5-0503-5806-1f016228fa20" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundTransfer.TransferPreferences.AllowCellular">
+      <topicdata group="api" notopic="" />
+      <apidata name="AllowCellular" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferPreferences" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferPreferences" ref="false" />
+      </containers>
+      <file name="0ffd046b-1fe2-dea8-19c1-ebc9ddbc01df" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundTransfer.TransferPreferences.AllowCellularAndBattery">
+      <topicdata group="api" notopic="" />
+      <apidata name="AllowCellularAndBattery" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferPreferences" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferPreferences" ref="false" />
+      </containers>
+      <file name="20d0e7f1-31ae-2a3a-4213-d8a2abb52d41" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundTransfer.TransferPreferences.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferPreferences" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferPreferences" ref="false" />
+      </containers>
+      <file name="f8941c82-c726-e54f-160a-8f0c6c534c61" />
+    </api>
+    <api id="T:Microsoft.Phone.BackgroundTransfer.TransferStatus">
+      <topicdata group="api" />
+      <apidata name="TransferStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.None" />
+        <element api="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.Transferring" />
+        <element api="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.Waiting" />
+        <element api="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.WaitingForWiFi" />
+        <element api="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.WaitingForExternalPower" />
+        <element api="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.WaitingForExternalPowerDueToBatterySaverMode" />
+        <element api="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.WaitingForNonVoiceBlockingNetwork" />
+        <element api="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.Paused" />
+        <element api="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.Completed" />
+        <element api="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.Unknown" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+      </containers>
+      <file name="9071c3fc-a946-e9a0-9fba-f32b42253e4b" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.Completed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Completed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </containers>
+      <file name="3e09ad4a-a213-3381-10ab-17fa60465ab5" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </containers>
+      <file name="8776a858-c2ce-3203-6b6e-963093f5724f" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.Paused">
+      <topicdata group="api" notopic="" />
+      <apidata name="Paused" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </containers>
+      <file name="8cc007f4-f042-9ab6-e85f-a4c58514901c" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.Transferring">
+      <topicdata group="api" notopic="" />
+      <apidata name="Transferring" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </containers>
+      <file name="4b782d99-ca85-ea80-af52-ee7d142d6aa7" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </containers>
+      <file name="a3d6c3dd-a2f7-01e5-4d4f-b8aacd97c8fd" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.Waiting">
+      <topicdata group="api" notopic="" />
+      <apidata name="Waiting" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </containers>
+      <file name="e409c5db-c204-a621-8c48-8fee4b4a4b6f" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.WaitingForExternalPower">
+      <topicdata group="api" notopic="" />
+      <apidata name="WaitingForExternalPower" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </containers>
+      <file name="073b0cab-5cf5-ee3e-fb73-2f5d71736d90" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.WaitingForExternalPowerDueToBatterySaverMode">
+      <topicdata group="api" notopic="" />
+      <apidata name="WaitingForExternalPowerDueToBatterySaverMode" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </containers>
+      <file name="b89f8a0c-77c5-2280-25e5-bcbe783fff97" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.WaitingForNonVoiceBlockingNetwork">
+      <topicdata group="api" notopic="" />
+      <apidata name="WaitingForNonVoiceBlockingNetwork" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </containers>
+      <file name="347f464f-a513-4081-cc04-ee1c5ba799fb" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundTransfer.TransferStatus.WaitingForWiFi">
+      <topicdata group="api" notopic="" />
+      <apidata name="WaitingForWiFi" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundTransfer" />
+        <type api="T:Microsoft.Phone.BackgroundTransfer.TransferStatus" ref="false" />
+      </containers>
+      <file name="0b8ed842-8a69-d7c1-1ab6-8388246f7010" />
+    </api>
+  </apis>
+</reflection>

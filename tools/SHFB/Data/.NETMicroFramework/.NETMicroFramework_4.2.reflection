@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ReflectionDataSet Platform=".NETMicroFramework" Version="4.2" Title=".NET Micro Framework 4.2">
+  <AssemblyLocations>
+    <Location Path="%ProgramFiles(x86)%\Reference Assemblies\Microsoft\Framework\.NETMicroFramework\v4.2">
+      <AssemblyDetails Filename="MFDpwsClient.dll" Name="MFDpwsClient" Version="4.2.0.0" />
+      <AssemblyDetails Filename="MFDpwsDevice.dll" Name="MFDpwsDevice" Version="4.2.0.0" />
+      <AssemblyDetails Filename="MFDpwsExtensions.dll" Name="MFDpwsExtensions" Version="4.2.0.0" />
+      <AssemblyDetails Filename="MFWsStack.dll" Name="MFWsStack" Version="4.2.0.0" />
+      <AssemblyDetails Filename="Microsoft.SPOT.Graphics.dll" Name="Microsoft.SPOT.Graphics" Version="4.2.0.0" />
+      <AssemblyDetails Filename="Microsoft.SPOT.Hardware.dll" Name="Microsoft.SPOT.Hardware" Version="4.2.0.0" />
+      <AssemblyDetails Filename="Microsoft.SPOT.Hardware.OneWire.dll" Name="Microsoft.SPOT.Hardware.OneWire" Version="4.2.0.0" />
+      <AssemblyDetails Filename="Microsoft.SPOT.Hardware.PWM.dll" Name="Microsoft.SPOT.Hardware.PWM" Version="4.2.0.1" />
+      <AssemblyDetails Filename="Microsoft.SPOT.Hardware.SerialPort.dll" Name="Microsoft.SPOT.Hardware.SerialPort" Version="4.2.0.0" />
+      <AssemblyDetails Filename="Microsoft.SPOT.Hardware.Usb.dll" Name="Microsoft.SPOT.Hardware.Usb" Version="4.2.0.0" />
+      <AssemblyDetails Filename="Microsoft.SPOT.Ink.dll" Name="Microsoft.SPOT.Ink" Version="4.2.0.0" />
+      <AssemblyDetails Filename="Microsoft.SPOT.IO.dll" Name="Microsoft.SPOT.IO" Version="4.2.0.0" />
+      <AssemblyDetails Filename="Microsoft.SPOT.Native.dll" Name="Microsoft.SPOT.Native" Version="4.2.0.0" />
+      <AssemblyDetails Filename="Microsoft.SPOT.Net.dll" Name="Microsoft.SPOT.Net" Version="4.2.0.0" />
+      <AssemblyDetails Filename="Microsoft.SPOT.Net.Security.dll" Name="Microsoft.SPOT.Net.Security" Version="4.2.0.0" />
+      <AssemblyDetails Filename="Microsoft.SPOT.Security.PKCS11.dll" Name="Microsoft.SPOT.Security.PKCS11" Version="4.2.0.0" />
+      <AssemblyDetails Filename="Microsoft.SPOT.Time.dll" Name="Microsoft.SPOT.Time" Version="4.2.0.0" />
+      <AssemblyDetails Filename="Microsoft.SPOT.TinyCore.dll" Name="Microsoft.SPOT.TinyCore" Version="4.2.0.0" />
+      <AssemblyDetails Filename="Microsoft.SPOT.Touch.dll" Name="Microsoft.SPOT.Touch" Version="4.2.0.0" />
+      <AssemblyDetails Filename="Microsoft.SPOT.Update.dll" Name="Microsoft.SPOT.Update" Version="4.2.0.0" />
+      <AssemblyDetails Filename="Microsoft.VisualBasic.dll" Name="Microsoft.VisualBasic" Version="1.0.0.0" />
+      <AssemblyDetails Filename="mscorlib.dll" Name="mscorlib" Version="4.2.0.0" />
+      <AssemblyDetails Filename="System.dll" Name="System" Version="4.2.0.0" />
+      <AssemblyDetails Filename="System.Ftp.dll" Name="System.Ftp" Version="4.2.0.0" />
+      <AssemblyDetails Filename="System.Http.dll" Name="System.Http" Version="4.2.0.0" />
+      <AssemblyDetails Filename="System.IO.dll" Name="System.IO" Version="4.2.0.0" />
+      <AssemblyDetails Filename="System.Net.Security.dll" Name="System.Net.Security" Version="4.2.0.0" />
+      <AssemblyDetails Filename="System.Security.dll" Name="System.Security" Version="4.2.0.0" />
+      <AssemblyDetails Filename="System.Text.RegularExpressions.dll" Name="System.Text.RegularExpressions" Version="0.0.0.0" />
+      <AssemblyDetails Filename="System.Xml.dll" Name="System.Xml" Version="4.2.0.0" />
+      <AssemblyDetails Filename="System.Xml.Legacy.dll" Name="System.Xml.Legacy" Version="4.2.0.0" />
+    </Location>
+  </AssemblyLocations>
+</ReflectionDataSet>

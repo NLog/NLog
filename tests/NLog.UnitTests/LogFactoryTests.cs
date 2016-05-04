@@ -1,5 +1,5 @@
-﻿// 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// 
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -233,6 +233,31 @@ namespace NLog.UnitTests
                     <logger name='*' minlevel='Debug' writeto='f1'></logger>
                 </rules>
             </nlog>");
+        }
+
+        [Fact]
+        public void ValueWithVariableMustNotCauseInfiniteRecursion()
+        {
+            LogManager.Configuration = null;
+            
+            File.WriteAllText("NLog.config", @"
+            <nlog>
+                <variable name='dir' value='c:\mylogs' />
+                <targets>
+                    <target name='f' type='file' fileName='${var:dir}\test.log' />
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='f' />
+                </rules>
+            </nlog>");
+            try
+            {
+                LogManager.Configuration.ToString();
+            }
+            finally
+            {
+                File.Delete("NLog.config");
+            }
         }
         
         [Fact]

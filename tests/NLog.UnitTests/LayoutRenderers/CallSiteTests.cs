@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,16 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Runtime.CompilerServices;
 using NLog.Config;
+using NLog.Internal;
+using NLog.Layouts;
 using NLog.Targets;
+using System.Runtime.CompilerServices;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
+    using System.IO;
     using System.Reflection;
     using System.Threading;
-    using System.IO;
     using System.Threading.Tasks;
     using Xunit;
 
@@ -78,7 +80,7 @@ namespace NLog.UnitTests.LayoutRenderers
             // compile code and generate assembly
             System.CodeDom.Compiler.CompilerResults results = provider.CompileAssemblyFromSource(parameters, code);
 
-            Assert.False(results.Errors.HasErrors,"Compiler errors: " + string.Join(";", results.Errors));
+            Assert.False(results.Errors.HasErrors, "Compiler errors: " + string.Join(";", results.Errors));
 
             // create nlog configuration
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -162,6 +164,26 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Debug("msg");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
+        }
+
+        [Fact]
+        public void MethodNameInChainTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug' type='Debug' layout='${message}' />
+                    <target name='debug2' type='Debug' layout='${callsite} ${message}' />
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug,debug2' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg2");
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            AssertDebugLastMessage("debug2", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg2");
         }
 
         [Fact]
@@ -526,6 +548,70 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 
+        [Fact]
+        public void CheckStackTraceUsageForTwoRules()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug' type='Debug' layout='${message}' />
+                    <target name='debug2' type='Debug' layout='${callsite} ${message}' />
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug2' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug2", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CheckStackTraceUsageForTwoRules msg");
+        }
+
+
+        [Fact]
+        public void CheckStackTraceUsageForTwoRules_chained()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug' type='Debug' layout='${message}' />
+                    <target name='debug2' type='Debug' layout='${callsite} ${message}' />
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug,debug2' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug2", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CheckStackTraceUsageForTwoRules_chained msg");
+        }
+
+
+        [Fact]
+        public void CheckStackTraceUsageForMultipleRules()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug' type='Debug' layout='${message}' />
+                    <target name='debug2' type='Debug' layout='${callsite} ${message}' />
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug,debug2' />
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug2", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CheckStackTraceUsageForMultipleRules msg");
+        }
+
 
         #region Compositio unit test
 
@@ -851,7 +937,29 @@ namespace NLog.UnitTests.LayoutRenderers
                 return new NLogLogger(log);
             }
         }
-      
+
+        /// <summary>
+        /// If some calls got inlined, we can't find LoggerType anymore. We should fallback if loggerType can be found
+        /// 
+        /// Example of those stacktraces:
+        ///    at NLog.LoggerImpl.Write(Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory) in c:\temp\NLog\src\NLog\LoggerImpl.cs:line 68
+        ///    at NLog.UnitTests.LayoutRenderers.NLogLogger.ErrorWithoutLoggerTypeArg(String message) in c:\temp\NLog\tests\NLog.UnitTests\LayoutRenderers\CallSiteTests.cs:line 989
+        ///    at NLog.UnitTests.LayoutRenderers.CallSiteTests.TestCallsiteWhileCallsGotInlined() in c:\temp\NLog\tests\NLog.UnitTests\LayoutRenderers\CallSiteTests.cs:line 893
+        /// 
+        /// </summary>
+        [Fact]
+        public void CallSiteShouldWorkEvenInlined()
+        {
+            Type loggerType = typeof(Logger);
+            var stacktrace = StackTraceUsageUtils.GetWriteStackTrace(loggerType);
+            var index = LoggerImpl.FindCallingMethodOnStackTrace(stacktrace, loggerType);
+            var logEvent = new LogEventInfo(LogLevel.Error, "logger1", "message1");
+            logEvent.SetStackTrace(stacktrace, index);
+            Layout l = "${callsite}";
+            var callSite = l.Render(logEvent);
+            Assert.Equal("NLog.UnitTests.LayoutRenderers.CallSiteTests.CallSiteShouldWorkEvenInlined", callSite);
+        }
+
     }
 
     /// <summary>

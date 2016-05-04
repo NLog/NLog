@@ -1,0 +1,2531 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Web.Http.Diagnostics">
+      <topicdata group="api" />
+      <apidata name="Windows.Web.Http.Diagnostics" group="namespace" />
+      <elements>
+        <element api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" />
+        <element api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" />
+        <element api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation" />
+        <element api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs" />
+        <element api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs" />
+        <element api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps" />
+        <element api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs" />
+        <element api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider" />
+      </elements>
+      <file name="5a89a36c-17a1-ce3d-4f79-1e6551d2b03a" />
+    </api>
+    <api id="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider" />
+      <apidata name="HttpDiagnosticProvider" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ea5e282f-b35f-c36c-8b77-d4f4b014b74c" />
+    </api>
+    <api id="AllMembers.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider">
+      <topicdata name="HttpDiagnosticProvider" group="list" subgroup="members" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider" />
+      <apidata name="HttpDiagnosticProvider" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider.CreateFromProcessDiagnosticInfo(Windows.System.Diagnostics.ProcessDiagnosticInfo)" />
+        <element api="E:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider.RequestResponseCompleted" />
+        <element api="E:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider.RequestSent" />
+        <element api="E:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider.ResponseReceived" />
+        <element api="M:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider.Start" />
+        <element api="M:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider.Stop" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider" />
+      </containers>
+      <file name="791c1275-1920-395b-e0da-15663a3faa2e" />
+    </api>
+    <api id="Methods.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider">
+      <topicdata name="HttpDiagnosticProvider" group="list" subgroup="Methods" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider" />
+      <apidata name="HttpDiagnosticProvider" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider.CreateFromProcessDiagnosticInfo(Windows.System.Diagnostics.ProcessDiagnosticInfo)" />
+        <element api="M:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider.Start" />
+        <element api="M:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider.Stop" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider" />
+      </containers>
+      <file name="41a1abd4-a56b-07c6-1f91-e840d86ac3fb" />
+    </api>
+    <api id="Events.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider">
+      <topicdata name="HttpDiagnosticProvider" group="list" subgroup="Events" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider" />
+      <apidata name="HttpDiagnosticProvider" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider.RequestResponseCompleted" />
+        <element api="E:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider.RequestSent" />
+        <element api="E:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider.ResponseReceived" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider" />
+      </containers>
+      <file name="be9cbc89-968e-f56d-62bb-a68d2d38c91e" />
+    </api>
+    <api id="M:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider.CreateFromProcessDiagnosticInfo(Windows.System.Diagnostics.ProcessDiagnosticInfo)">
+      <topicdata group="api" />
+      <apidata name="CreateFromProcessDiagnosticInfo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="processDiagnosticInfo" in="true">
+          <type api="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider" ref="true" />
+      </containers>
+      <file name="be8055e6-6ea0-113f-2fa4-a064255afb22" />
+    </api>
+    <api id="E:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider.RequestResponseCompleted">
+      <topicdata group="api" />
+      <apidata name="RequestResponseCompleted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_RequestResponseCompleted" />
+      <remover name="remove_RequestResponseCompleted" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider" ref="true" />
+            <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider" ref="true" />
+      </containers>
+      <file name="fb155787-2d43-113b-9b81-6084cfa35349" />
+    </api>
+    <api id="E:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider.RequestSent">
+      <topicdata group="api" />
+      <apidata name="RequestSent" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_RequestSent" />
+      <remover name="remove_RequestSent" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider" ref="true" />
+            <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider" ref="true" />
+      </containers>
+      <file name="f86a2f2b-046f-4117-5f3a-bcdef2f4d005" />
+    </api>
+    <api id="E:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider.ResponseReceived">
+      <topicdata group="api" />
+      <apidata name="ResponseReceived" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ResponseReceived" />
+      <remover name="remove_ResponseReceived" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider" ref="true" />
+            <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider" ref="true" />
+      </containers>
+      <file name="5883b943-6fd1-4003-fd31-1d31ad3249ca" />
+    </api>
+    <api id="M:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider.Start">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider" ref="true" />
+      </containers>
+      <file name="800a2832-5a70-2f01-9883-a2dff1931858" />
+    </api>
+    <api id="M:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider.Stop">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProvider" ref="true" />
+      </containers>
+      <file name="4cf63e81-a6eb-d83f-3f06-bb4623cbe928" />
+    </api>
+    <api id="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs" />
+      <apidata name="HttpDiagnosticProviderRequestResponseCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="cc27dcfe-bca3-cc6a-e3bb-3b3575440b5b" />
+    </api>
+    <api id="AllMembers.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs">
+      <topicdata name="HttpDiagnosticProviderRequestResponseCompletedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs" />
+      <apidata name="HttpDiagnosticProviderRequestResponseCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.ActivityId" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.Initiator" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.ProcessId" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.RequestedUri" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.SourceLocations" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.ThreadId" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.Timestamps" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs" />
+      </containers>
+      <file name="653c3b33-aaaf-093a-fe9a-9eaabb274c97" />
+    </api>
+    <api id="Methods.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs">
+      <topicdata name="HttpDiagnosticProviderRequestResponseCompletedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs" />
+      <apidata name="HttpDiagnosticProviderRequestResponseCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs" />
+      </containers>
+      <file name="7ae411b1-0052-4c28-670e-ae6ea5f8431a" />
+    </api>
+    <api id="Properties.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs">
+      <topicdata name="HttpDiagnosticProviderRequestResponseCompletedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs" />
+      <apidata name="HttpDiagnosticProviderRequestResponseCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.ActivityId" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.Initiator" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.ProcessId" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.RequestedUri" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.SourceLocations" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.ThreadId" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.Timestamps" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs" />
+      </containers>
+      <file name="78ae0010-315d-c4c5-e73b-09ac66fd956b" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.ActivityId">
+      <topicdata group="api" />
+      <apidata name="ActivityId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ActivityId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="3f713118-3dfd-02f1-3be2-4401808038ac" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.Initiator">
+      <topicdata group="api" />
+      <apidata name="Initiator" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Initiator" />
+      <returns>
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="ae871973-be1b-80cc-8059-4909dd5baed8" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.ProcessId">
+      <topicdata group="api" />
+      <apidata name="ProcessId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ProcessId" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="b828dc46-20e2-66e3-4c70-c50aac0b9678" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.RequestedUri">
+      <topicdata group="api" />
+      <apidata name="RequestedUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RequestedUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="8bcba4df-0fcf-61a6-1250-466f1539be84" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.SourceLocations">
+      <topicdata group="api" />
+      <apidata name="SourceLocations" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SourceLocations" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="55fc4f90-51b0-9f52-d361-080eddb9ec55" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.ThreadId">
+      <topicdata group="api" />
+      <apidata name="ThreadId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ThreadId" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="9347be96-1d5c-d9d4-2f81-c6193aefc351" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs.Timestamps">
+      <topicdata group="api" />
+      <apidata name="Timestamps" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Timestamps" />
+      <returns>
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="1f79be05-d8f4-af4f-2336-5f6d42301f22" />
+    </api>
+    <api id="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps" />
+      <apidata name="HttpDiagnosticProviderRequestResponseTimestamps" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="65b7a67b-8b75-5699-1986-9ad29ef23c2a" />
+    </api>
+    <api id="AllMembers.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps">
+      <topicdata name="HttpDiagnosticProviderRequestResponseTimestamps" group="list" subgroup="members" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps" />
+      <apidata name="HttpDiagnosticProviderRequestResponseTimestamps" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.CacheCheckedTimestamp" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.ConnectionCompletedTimestamp" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.ConnectionInitiatedTimestamp" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.NameResolvedTimestamp" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.RequestCompletedTimestamp" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.RequestSentTimestamp" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.ResponseCompletedTimestamp" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.ResponseReceivedTimestamp" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.SslNegotiatedTimestamp" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps" />
+      </containers>
+      <file name="e925acef-eb0c-aa52-d919-0341784a13ad" />
+    </api>
+    <api id="Methods.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps">
+      <topicdata name="HttpDiagnosticProviderRequestResponseTimestamps" group="list" subgroup="Methods" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps" />
+      <apidata name="HttpDiagnosticProviderRequestResponseTimestamps" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps" />
+      </containers>
+      <file name="4418400d-a2db-6442-93b0-2975005f06f1" />
+    </api>
+    <api id="Properties.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps">
+      <topicdata name="HttpDiagnosticProviderRequestResponseTimestamps" group="list" subgroup="Properties" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps" />
+      <apidata name="HttpDiagnosticProviderRequestResponseTimestamps" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.CacheCheckedTimestamp" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.ConnectionCompletedTimestamp" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.ConnectionInitiatedTimestamp" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.NameResolvedTimestamp" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.RequestCompletedTimestamp" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.RequestSentTimestamp" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.ResponseCompletedTimestamp" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.ResponseReceivedTimestamp" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.SslNegotiatedTimestamp" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps" />
+      </containers>
+      <file name="a94cf34c-7f72-2af7-ba2d-e93ac8b2b366" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.CacheCheckedTimestamp">
+      <topicdata group="api" />
+      <apidata name="CacheCheckedTimestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CacheCheckedTimestamp" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.DateTimeOffset" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps" ref="true" />
+      </containers>
+      <file name="41b1f92a-5123-34b5-db31-abb2bbf62f15" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.ConnectionCompletedTimestamp">
+      <topicdata group="api" />
+      <apidata name="ConnectionCompletedTimestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ConnectionCompletedTimestamp" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.DateTimeOffset" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps" ref="true" />
+      </containers>
+      <file name="d5320e6e-b041-ebfc-0f28-68c795eadd21" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.ConnectionInitiatedTimestamp">
+      <topicdata group="api" />
+      <apidata name="ConnectionInitiatedTimestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ConnectionInitiatedTimestamp" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.DateTimeOffset" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps" ref="true" />
+      </containers>
+      <file name="4da5989a-667a-2ce0-c0bc-83017d318ae1" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.NameResolvedTimestamp">
+      <topicdata group="api" />
+      <apidata name="NameResolvedTimestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NameResolvedTimestamp" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.DateTimeOffset" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps" ref="true" />
+      </containers>
+      <file name="bf3c3f6e-6e60-a0c6-4889-748b8cbf4534" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.RequestCompletedTimestamp">
+      <topicdata group="api" />
+      <apidata name="RequestCompletedTimestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RequestCompletedTimestamp" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.DateTimeOffset" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps" ref="true" />
+      </containers>
+      <file name="4e63cf9e-4ece-9871-f05d-9baec9488c70" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.RequestSentTimestamp">
+      <topicdata group="api" />
+      <apidata name="RequestSentTimestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RequestSentTimestamp" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.DateTimeOffset" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps" ref="true" />
+      </containers>
+      <file name="f4eb28bb-1d64-5aed-59d9-095ffbe526d3" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.ResponseCompletedTimestamp">
+      <topicdata group="api" />
+      <apidata name="ResponseCompletedTimestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResponseCompletedTimestamp" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.DateTimeOffset" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps" ref="true" />
+      </containers>
+      <file name="98dc8b34-630d-27d3-f2ba-1bc61d164d41" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.ResponseReceivedTimestamp">
+      <topicdata group="api" />
+      <apidata name="ResponseReceivedTimestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResponseReceivedTimestamp" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.DateTimeOffset" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps" ref="true" />
+      </containers>
+      <file name="c8759909-24da-7597-aefe-cf79e4f71f67" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps.SslNegotiatedTimestamp">
+      <topicdata group="api" />
+      <apidata name="SslNegotiatedTimestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SslNegotiatedTimestamp" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.DateTimeOffset" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps" ref="true" />
+      </containers>
+      <file name="7643755d-b2a1-a766-c842-91fa7a1a4e64" />
+    </api>
+    <api id="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs" />
+      <apidata name="HttpDiagnosticProviderRequestSentEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="61df0841-74e6-96ee-f0d4-e63f3579ce53" />
+    </api>
+    <api id="AllMembers.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs">
+      <topicdata name="HttpDiagnosticProviderRequestSentEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs" />
+      <apidata name="HttpDiagnosticProviderRequestSentEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.ActivityId" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.Initiator" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.Message" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.ProcessId" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.SourceLocations" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.ThreadId" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.Timestamp" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs" />
+      </containers>
+      <file name="da64a15b-6da4-aaaa-670a-502389b38970" />
+    </api>
+    <api id="Methods.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs">
+      <topicdata name="HttpDiagnosticProviderRequestSentEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs" />
+      <apidata name="HttpDiagnosticProviderRequestSentEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs" />
+      </containers>
+      <file name="97c20434-2664-3ba2-3192-ffbc5cf8caa2" />
+    </api>
+    <api id="Properties.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs">
+      <topicdata name="HttpDiagnosticProviderRequestSentEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs" />
+      <apidata name="HttpDiagnosticProviderRequestSentEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.ActivityId" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.Initiator" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.Message" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.ProcessId" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.SourceLocations" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.ThreadId" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.Timestamp" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs" />
+      </containers>
+      <file name="2b607740-6b93-f551-7f64-aae4b2fac48b" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.ActivityId">
+      <topicdata group="api" />
+      <apidata name="ActivityId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ActivityId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs" ref="true" />
+      </containers>
+      <file name="f3229f24-51d8-e47c-3f48-90ff80f33762" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.Initiator">
+      <topicdata group="api" />
+      <apidata name="Initiator" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Initiator" />
+      <returns>
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs" ref="true" />
+      </containers>
+      <file name="8d99931c-a8fb-e097-69a9-065a6add4b50" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.Message">
+      <topicdata group="api" />
+      <apidata name="Message" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Message" />
+      <returns>
+        <type api="T:Windows.Web.Http.HttpRequestMessage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs" ref="true" />
+      </containers>
+      <file name="cf44dfc6-e0a0-405f-8ae8-59e287bf294a" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.ProcessId">
+      <topicdata group="api" />
+      <apidata name="ProcessId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ProcessId" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs" ref="true" />
+      </containers>
+      <file name="703d72fa-a8de-b918-26fe-99a152a7620e" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.SourceLocations">
+      <topicdata group="api" />
+      <apidata name="SourceLocations" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SourceLocations" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs" ref="true" />
+      </containers>
+      <file name="42b72f25-f46c-80b6-8a60-af49b2e8f937" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.ThreadId">
+      <topicdata group="api" />
+      <apidata name="ThreadId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ThreadId" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs" ref="true" />
+      </containers>
+      <file name="abea666f-45bd-9905-6bc1-5668c4d25065" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs.Timestamp">
+      <topicdata group="api" />
+      <apidata name="Timestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Timestamp" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestSentEventArgs" ref="true" />
+      </containers>
+      <file name="06a6e27c-2963-812f-4255-7e5e69c36b44" />
+    </api>
+    <api id="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs" />
+      <apidata name="HttpDiagnosticProviderResponseReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7b29761e-e8bd-0de8-ef7e-316b1d55f105" />
+    </api>
+    <api id="AllMembers.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs">
+      <topicdata name="HttpDiagnosticProviderResponseReceivedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs" />
+      <apidata name="HttpDiagnosticProviderResponseReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs.ActivityId" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs.Message" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs.Timestamp" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs" />
+      </containers>
+      <file name="8e61e446-cc0b-0958-1cfb-f3f3ac7931fc" />
+    </api>
+    <api id="Methods.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs">
+      <topicdata name="HttpDiagnosticProviderResponseReceivedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs" />
+      <apidata name="HttpDiagnosticProviderResponseReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs" />
+      </containers>
+      <file name="3bdd0a79-1a1f-55fa-ccf2-34c47dda01b1" />
+    </api>
+    <api id="Properties.T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs">
+      <topicdata name="HttpDiagnosticProviderResponseReceivedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs" />
+      <apidata name="HttpDiagnosticProviderResponseReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs.ActivityId" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs.Message" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs.Timestamp" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs" />
+      </containers>
+      <file name="1bf91d7f-5c91-a7c4-5048-441904739a02" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs.ActivityId">
+      <topicdata group="api" />
+      <apidata name="ActivityId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ActivityId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="0e8271d9-ac20-8e9a-2a15-0d4aa4b2c9e2" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs.Message">
+      <topicdata group="api" />
+      <apidata name="Message" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Message" />
+      <returns>
+        <type api="T:Windows.Web.Http.HttpResponseMessage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="68c887c0-7687-b6d7-7ad5-43915bc8f5cb" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs.Timestamp">
+      <topicdata group="api" />
+      <apidata name="Timestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Timestamp" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticProviderResponseReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="13c66fef-d3ef-37fb-9535-fc8f1d64be5a" />
+    </api>
+    <api id="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator">
+      <topicdata group="api" />
+      <apidata name="HttpDiagnosticRequestInitiator" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.ParsedElement" />
+        <element api="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.Script" />
+        <element api="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.Image" />
+        <element api="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.Link" />
+        <element api="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.Style" />
+        <element api="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.XmlHttpRequest" />
+        <element api="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.Media" />
+        <element api="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.HtmlDownload" />
+        <element api="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.Prefetch" />
+        <element api="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.Other" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8af70c47-5d49-95d3-4248-d925eb13cb77" />
+    </api>
+    <api id="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.HtmlDownload">
+      <topicdata group="api" notopic="" />
+      <apidata name="HtmlDownload" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </containers>
+      <file name="c8ef8493-6f08-f2aa-4868-eeb0072c614c" />
+    </api>
+    <api id="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.Image">
+      <topicdata group="api" notopic="" />
+      <apidata name="Image" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </containers>
+      <file name="a11a7cec-f0d4-45b2-095e-f1b1d44990bb" />
+    </api>
+    <api id="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.Link">
+      <topicdata group="api" notopic="" />
+      <apidata name="Link" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </containers>
+      <file name="04c11b74-e27c-b140-3897-19e5f2da42db" />
+    </api>
+    <api id="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.Media">
+      <topicdata group="api" notopic="" />
+      <apidata name="Media" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </containers>
+      <file name="64d2b601-5df5-1695-7af6-82bc2d122a68" />
+    </api>
+    <api id="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.Other">
+      <topicdata group="api" notopic="" />
+      <apidata name="Other" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </containers>
+      <file name="da5fa2a8-85b1-9a75-5607-e34a2f7e2ecd" />
+    </api>
+    <api id="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.ParsedElement">
+      <topicdata group="api" notopic="" />
+      <apidata name="ParsedElement" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </containers>
+      <file name="20e79012-0de6-469e-a569-3a21e664e6c8" />
+    </api>
+    <api id="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.Prefetch">
+      <topicdata group="api" notopic="" />
+      <apidata name="Prefetch" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </containers>
+      <file name="5446a5d7-0d27-0a29-105b-34ead332b6f9" />
+    </api>
+    <api id="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.Script">
+      <topicdata group="api" notopic="" />
+      <apidata name="Script" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </containers>
+      <file name="8b34f414-9c55-ac50-488c-d7aac89196ce" />
+    </api>
+    <api id="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.Style">
+      <topicdata group="api" notopic="" />
+      <apidata name="Style" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </containers>
+      <file name="9a455f1f-5323-17a4-e446-94a567b18b04" />
+    </api>
+    <api id="F:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator.XmlHttpRequest">
+      <topicdata group="api" notopic="" />
+      <apidata name="XmlHttpRequest" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator" ref="false" />
+      </containers>
+      <file name="cfcef441-0c73-8423-0d2a-38371d714e0d" />
+    </api>
+    <api id="T:Windows.Web.Http.Diagnostics.HttpDiagnosticsContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" />
+      <apidata name="HttpDiagnosticsContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ApiContractAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7ac8e5c5-86c1-51a2-c505-0cbb67e268d7" />
+    </api>
+    <api id="AllMembers.T:Windows.Web.Http.Diagnostics.HttpDiagnosticsContract">
+      <topicdata name="HttpDiagnosticsContract" group="list" subgroup="members" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" />
+      <apidata name="HttpDiagnosticsContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" />
+      </containers>
+      <file name="3d7655b9-5a13-366a-4093-f4ace9d6fbd9" />
+    </api>
+    <api id="Methods.T:Windows.Web.Http.Diagnostics.HttpDiagnosticsContract">
+      <topicdata name="HttpDiagnosticsContract" group="list" subgroup="Methods" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" />
+      <apidata name="HttpDiagnosticsContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" />
+      </containers>
+      <file name="0cc99a55-f871-d388-b8a2-748bbc1b13cf" />
+    </api>
+    <api id="T:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation" />
+      <apidata name="HttpDiagnosticSourceLocation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="53f1f879-7098-329c-6493-309dd799c5c8" />
+    </api>
+    <api id="AllMembers.T:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation">
+      <topicdata name="HttpDiagnosticSourceLocation" group="list" subgroup="members" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation" />
+      <apidata name="HttpDiagnosticSourceLocation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation.ColumnNumber" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation.LineNumber" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation.SourceUri" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation" />
+      </containers>
+      <file name="ca514d29-5047-a14b-9d26-9146da00ab50" />
+    </api>
+    <api id="Methods.T:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation">
+      <topicdata name="HttpDiagnosticSourceLocation" group="list" subgroup="Methods" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation" />
+      <apidata name="HttpDiagnosticSourceLocation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation" />
+      </containers>
+      <file name="cdfc4ad7-df12-c0f3-02ba-f46d516971e9" />
+    </api>
+    <api id="Properties.T:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation">
+      <topicdata name="HttpDiagnosticSourceLocation" group="list" subgroup="Properties" typeTopicId="T:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation" />
+      <apidata name="HttpDiagnosticSourceLocation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation.ColumnNumber" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation.LineNumber" />
+        <element api="P:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation.SourceUri" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation" />
+      </containers>
+      <file name="5c0dfe66-0ae8-6421-df69-3b7c1a5a25ef" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation.ColumnNumber">
+      <topicdata group="api" />
+      <apidata name="ColumnNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ColumnNumber" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation" ref="true" />
+      </containers>
+      <file name="aa19a736-583a-5876-bf2b-32296b7a08e5" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation.LineNumber">
+      <topicdata group="api" />
+      <apidata name="LineNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_LineNumber" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation" ref="true" />
+      </containers>
+      <file name="a3f2aa7f-f6fa-ddf1-b198-eef21ed60df3" />
+    </api>
+    <api id="P:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation.SourceUri">
+      <topicdata group="api" />
+      <apidata name="SourceUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SourceUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" module="Windows.Web.Http.Diagnostics.HttpDiagnosticsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Diagnostics" />
+        <type api="T:Windows.Web.Http.Diagnostics.HttpDiagnosticSourceLocation" ref="true" />
+      </containers>
+      <file name="7a4682ae-c1d5-b4c9-3b76-3acbee94b708" />
+    </api>
+  </apis>
+</reflection>

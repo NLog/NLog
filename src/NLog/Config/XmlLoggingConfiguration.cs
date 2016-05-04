@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -63,6 +63,14 @@ namespace NLog.Config
     ///<remarks>This class is thread-safe.<c>.ToList()</c> is used for that purpose.</remarks>
     public class XmlLoggingConfiguration : LoggingConfiguration
     {
+#if __ANDROID__
+
+        /// <summary>
+        /// Prefix for assets in Xamarin Android
+        /// </summary>
+        internal const string AssetsPrefix = "assets/";
+#endif
+
         #region private fields
 
         private readonly Dictionary<string, bool> fileMustAutoReloadLookup = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
@@ -134,11 +142,10 @@ namespace NLog.Config
                 fileName = fileName.Trim();
 #if __ANDROID__
                 //suport loading config from special assets folder in nlog.config
-                const string assetsPrefix = "assets/";
-                if (fileName.StartsWith(assetsPrefix, StringComparison.OrdinalIgnoreCase))
+                if (fileName.StartsWith(AssetsPrefix, StringComparison.OrdinalIgnoreCase))
                 {
                     //remove prefix
-                    fileName = fileName.Substring(assetsPrefix.Length);
+                    fileName = fileName.Substring(AssetsPrefix.Length);
                     Stream stream = Android.App.Application.Context.Assets.Open(fileName);
                     return XmlReader.Create(stream);
                 }
@@ -506,6 +513,10 @@ namespace NLog.Config
             {
                 this.DefaultCultureInfo = CultureInfo.InvariantCulture;
             }
+
+            //check loglevel as first, as other properties could write (indirect) to the internal log.
+            InternalLogger.LogLevel = LogLevel.FromString(nlogElement.GetOptionalAttribute("internalLogLevel", InternalLogger.LogLevel.Name));
+
 #pragma warning disable 618
             this.ExceptionLoggingOldStyle = nlogElement.GetOptionalBooleanAttribute("exceptionLoggingOldStyle", false);
 #pragma warning restore 618
@@ -515,11 +526,15 @@ namespace NLog.Config
                 this.fileMustAutoReloadLookup[GetFileLookupKey(filePath)] = autoReload;
 
             logFactory.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", logFactory.ThrowExceptions);
-            LogManager.ThrowConfigExceptions = nlogElement.GetOptionalBooleanAttribute("throwConfigExceptions", LogManager.ThrowConfigExceptions);
+            logFactory.ThrowConfigExceptions = nlogElement.GetOptionalBooleanAttribute("throwConfigExceptions", logFactory.ThrowConfigExceptions);
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);
             InternalLogger.LogToConsoleError = nlogElement.GetOptionalBooleanAttribute("internalLogToConsoleError", InternalLogger.LogToConsoleError);
             InternalLogger.LogFile = nlogElement.GetOptionalAttribute("internalLogFile", InternalLogger.LogFile);
-            InternalLogger.LogLevel = LogLevel.FromString(nlogElement.GetOptionalAttribute("internalLogLevel", InternalLogger.LogLevel.Name));
+            
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+            InternalLogger.LogToTrace = nlogElement.GetOptionalBooleanAttribute("internalLogToTrace", InternalLogger.LogToTrace);
+#endif
+            InternalLogger.IncludeTimestamp = nlogElement.GetOptionalBooleanAttribute("internalLogIncludeTimestamp", InternalLogger.IncludeTimestamp);
             logFactory.GlobalThreshold = LogLevel.FromString(nlogElement.GetOptionalAttribute("globalThreshold", logFactory.GlobalThreshold.Name));
 
             var children = nlogElement.Children.ToList();
@@ -1055,6 +1070,11 @@ namespace NLog.Config
                 return;
             }
 
+            if (this.SetItemFromElement(o, element))
+            {
+                return;
+            }
+
             PropertyHelper.SetPropertyFromString(o, element.LocalName, this.ExpandSimpleVariables(element.Value), this.ConfigurationItemFactory);
         }
 
@@ -1126,6 +1146,25 @@ namespace NLog.Config
             }
 
             return false;
+        }
+
+        private bool SetItemFromElement(object o, NLogXmlElement element)
+        {
+            if (element.Value != null)
+                return false;
+
+            string name = element.LocalName;
+
+            PropertyInfo propInfo;
+            if (!PropertyHelper.TryGetPropertyInfo(o, name, out propInfo))
+            {
+                return false;
+            }
+
+            object item = propInfo.GetValue(o, null);
+            this.ConfigureObjectFromAttributes(item, element, true);
+            this.ConfigureObjectFromElement(item, element);
+            return true;
         }
 
         private void ConfigureObjectFromElement(object targetObject, NLogXmlElement element)

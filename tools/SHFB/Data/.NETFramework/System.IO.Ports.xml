@@ -1,0 +1,2858 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.IO.Ports">
+      <topicdata group="api" />
+      <apidata name="System.IO.Ports" group="namespace" />
+      <elements>
+        <element api="T:System.IO.Ports.Handshake" />
+        <element api="T:System.IO.Ports.Parity" />
+        <element api="T:System.IO.Ports.SerialError" />
+        <element api="T:System.IO.Ports.SerialErrorReceivedEventArgs" />
+        <element api="T:System.IO.Ports.SerialErrorReceivedEventHandler" />
+        <element api="T:System.IO.Ports.SerialPinChange" />
+        <element api="T:System.IO.Ports.SerialPinChangedEventArgs" />
+        <element api="T:System.IO.Ports.SerialPinChangedEventHandler" />
+        <element api="T:System.IO.Ports.SerialPort" />
+        <element api="T:System.IO.Ports.SerialData" />
+        <element api="T:System.IO.Ports.SerialDataReceivedEventArgs" />
+        <element api="T:System.IO.Ports.SerialDataReceivedEventHandler" />
+        <element api="T:System.IO.Ports.StopBits" />
+      </elements>
+      <file name="a307fb44-0b20-5203-0242-ba2137e67bd4" />
+    </api>
+    <api id="T:System.IO.Ports.Handshake">
+      <topicdata group="api" />
+      <apidata name="Handshake" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.IO.Ports.Handshake.None" />
+        <element api="F:System.IO.Ports.Handshake.XOnXOff" />
+        <element api="F:System.IO.Ports.Handshake.RequestToSend" />
+        <element api="F:System.IO.Ports.Handshake.RequestToSendXOnXOff" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="480b9be1-7bf0-e31f-8159-fd65a1b76db8" />
+    </api>
+    <api id="F:System.IO.Ports.Handshake.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.Handshake" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Handshake" ref="false" />
+      </containers>
+      <file name="6fc8a34d-d2e4-d32a-a07d-08707e29c41f" />
+    </api>
+    <api id="F:System.IO.Ports.Handshake.RequestToSend">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestToSend" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.Handshake" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Handshake" ref="false" />
+      </containers>
+      <file name="dab0dc85-982b-64dc-b287-d785b11aaa22" />
+    </api>
+    <api id="F:System.IO.Ports.Handshake.RequestToSendXOnXOff">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestToSendXOnXOff" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.Handshake" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Handshake" ref="false" />
+      </containers>
+      <file name="03f2bc36-2bd3-d178-3a33-f29ae168cbe5" />
+    </api>
+    <api id="F:System.IO.Ports.Handshake.XOnXOff">
+      <topicdata group="api" notopic="" />
+      <apidata name="XOnXOff" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.Handshake" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Handshake" ref="false" />
+      </containers>
+      <file name="81fd0ee1-1d95-4f4d-582b-fd0327ab5d3d" />
+    </api>
+    <api id="T:System.IO.Ports.Parity">
+      <topicdata group="api" />
+      <apidata name="Parity" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.IO.Ports.Parity.None" />
+        <element api="F:System.IO.Ports.Parity.Odd" />
+        <element api="F:System.IO.Ports.Parity.Even" />
+        <element api="F:System.IO.Ports.Parity.Mark" />
+        <element api="F:System.IO.Ports.Parity.Space" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="8f3ee699-9008-45dc-3e96-b0bfb42002ff" />
+    </api>
+    <api id="F:System.IO.Ports.Parity.Even">
+      <topicdata group="api" notopic="" />
+      <apidata name="Even" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </containers>
+      <file name="333e8c3a-9c05-9813-9e7a-280caee713b4" />
+    </api>
+    <api id="F:System.IO.Ports.Parity.Mark">
+      <topicdata group="api" notopic="" />
+      <apidata name="Mark" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </containers>
+      <file name="87a53b1a-b57c-ad49-91a9-0579430ce846" />
+    </api>
+    <api id="F:System.IO.Ports.Parity.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </containers>
+      <file name="1555851d-5d38-3987-0570-1a5db4aba3f8" />
+    </api>
+    <api id="F:System.IO.Ports.Parity.Odd">
+      <topicdata group="api" notopic="" />
+      <apidata name="Odd" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </containers>
+      <file name="1d81999e-0d7b-ec34-1a67-4e866ada9797" />
+    </api>
+    <api id="F:System.IO.Ports.Parity.Space">
+      <topicdata group="api" notopic="" />
+      <apidata name="Space" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </containers>
+      <file name="31797e13-ba6a-c27f-b86d-e693295f4c31" />
+    </api>
+    <api id="T:System.IO.Ports.SerialData">
+      <topicdata group="api" />
+      <apidata name="SerialData" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.IO.Ports.SerialData.Chars" />
+        <element api="F:System.IO.Ports.SerialData.Eof" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="e6f906cb-313b-d623-1039-f69f2c971e87" />
+    </api>
+    <api id="F:System.IO.Ports.SerialData.Chars">
+      <topicdata group="api" notopic="" />
+      <apidata name="Chars" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialData" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialData" ref="false" />
+      </containers>
+      <file name="f1466994-5c7a-10ef-32c8-8317b14a3a32" />
+    </api>
+    <api id="F:System.IO.Ports.SerialData.Eof">
+      <topicdata group="api" notopic="" />
+      <apidata name="Eof" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialData" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialData" ref="false" />
+      </containers>
+      <file name="f759a77e-c14c-d288-ecea-8b184e7cca2e" />
+    </api>
+    <api id="T:System.IO.Ports.SerialDataReceivedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.Ports.SerialDataReceivedEventArgs" />
+      <apidata name="SerialDataReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="b50b26c2-f751-570f-cdc2-ac4b7768ddde" />
+    </api>
+    <api id="AllMembers.T:System.IO.Ports.SerialDataReceivedEventArgs">
+      <topicdata name="SerialDataReceivedEventArgs" group="list" subgroup="members" typeTopicId="T:System.IO.Ports.SerialDataReceivedEventArgs" />
+      <apidata name="SerialDataReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.IO.Ports.SerialDataReceivedEventArgs.EventType" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialDataReceivedEventArgs" />
+      </containers>
+      <file name="9d255181-21aa-be6c-7264-c2272b8a40e0" />
+    </api>
+    <api id="Methods.T:System.IO.Ports.SerialDataReceivedEventArgs">
+      <topicdata name="SerialDataReceivedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.IO.Ports.SerialDataReceivedEventArgs" />
+      <apidata name="SerialDataReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialDataReceivedEventArgs" />
+      </containers>
+      <file name="3dec7087-6dcb-cb24-8396-c787d92020e3" />
+    </api>
+    <api id="Properties.T:System.IO.Ports.SerialDataReceivedEventArgs">
+      <topicdata name="SerialDataReceivedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.IO.Ports.SerialDataReceivedEventArgs" />
+      <apidata name="SerialDataReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.IO.Ports.SerialDataReceivedEventArgs.EventType" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialDataReceivedEventArgs" />
+      </containers>
+      <file name="5c20de76-f310-1515-5872-9b851b8df539" />
+    </api>
+    <api id="P:System.IO.Ports.SerialDataReceivedEventArgs.EventType">
+      <topicdata group="api" />
+      <apidata name="EventType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EventType" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialData" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialDataReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="105548b6-da7a-c80c-26ff-ed4ff11ee9c4" />
+    </api>
+    <api id="T:System.IO.Ports.SerialDataReceivedEventHandler">
+      <topicdata group="api" />
+      <apidata name="SerialDataReceivedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.IO.Ports.SerialDataReceivedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="187787df-44ab-96d5-c666-d86e2536fa47" />
+    </api>
+    <api id="T:System.IO.Ports.SerialError">
+      <topicdata group="api" />
+      <apidata name="SerialError" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.IO.Ports.SerialError.TXFull" />
+        <element api="F:System.IO.Ports.SerialError.RXOver" />
+        <element api="F:System.IO.Ports.SerialError.Overrun" />
+        <element api="F:System.IO.Ports.SerialError.RXParity" />
+        <element api="F:System.IO.Ports.SerialError.Frame" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="098146a8-11bc-7e4b-61cf-ae50a538c939" />
+    </api>
+    <api id="F:System.IO.Ports.SerialError.Frame">
+      <topicdata group="api" notopic="" />
+      <apidata name="Frame" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </containers>
+      <file name="ba6ce111-3596-5989-0095-f1edb3cc4626" />
+    </api>
+    <api id="F:System.IO.Ports.SerialError.Overrun">
+      <topicdata group="api" notopic="" />
+      <apidata name="Overrun" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </containers>
+      <file name="c276770c-8c13-5c46-7681-32d5162ee8ee" />
+    </api>
+    <api id="F:System.IO.Ports.SerialError.RXOver">
+      <topicdata group="api" notopic="" />
+      <apidata name="RXOver" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </containers>
+      <file name="f77d5ca6-946b-0257-41f2-ebadecfafde0" />
+    </api>
+    <api id="F:System.IO.Ports.SerialError.RXParity">
+      <topicdata group="api" notopic="" />
+      <apidata name="RXParity" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </containers>
+      <file name="b16dd48d-53f8-c7ef-19d7-72846a864d3c" />
+    </api>
+    <api id="F:System.IO.Ports.SerialError.TXFull">
+      <topicdata group="api" notopic="" />
+      <apidata name="TXFull" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </returns>
+      <value>256</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </containers>
+      <file name="bf28b8c6-e229-cf3b-a7ff-8b55042ad72d" />
+    </api>
+    <api id="T:System.IO.Ports.SerialErrorReceivedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.Ports.SerialErrorReceivedEventArgs" />
+      <apidata name="SerialErrorReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="3b60b5d4-4037-78b2-eadd-407c64322151" />
+    </api>
+    <api id="AllMembers.T:System.IO.Ports.SerialErrorReceivedEventArgs">
+      <topicdata name="SerialErrorReceivedEventArgs" group="list" subgroup="members" typeTopicId="T:System.IO.Ports.SerialErrorReceivedEventArgs" />
+      <apidata name="SerialErrorReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.IO.Ports.SerialErrorReceivedEventArgs.EventType" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialErrorReceivedEventArgs" />
+      </containers>
+      <file name="e419bccf-92df-39fd-7681-611360810a7c" />
+    </api>
+    <api id="Methods.T:System.IO.Ports.SerialErrorReceivedEventArgs">
+      <topicdata name="SerialErrorReceivedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.IO.Ports.SerialErrorReceivedEventArgs" />
+      <apidata name="SerialErrorReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialErrorReceivedEventArgs" />
+      </containers>
+      <file name="baa28174-6052-8c05-81ba-6f7ab451c707" />
+    </api>
+    <api id="Properties.T:System.IO.Ports.SerialErrorReceivedEventArgs">
+      <topicdata name="SerialErrorReceivedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.IO.Ports.SerialErrorReceivedEventArgs" />
+      <apidata name="SerialErrorReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.IO.Ports.SerialErrorReceivedEventArgs.EventType" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialErrorReceivedEventArgs" />
+      </containers>
+      <file name="8261229b-1ce2-b84c-bc1c-aa561c82d6e4" />
+    </api>
+    <api id="P:System.IO.Ports.SerialErrorReceivedEventArgs.EventType">
+      <topicdata group="api" />
+      <apidata name="EventType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EventType" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialErrorReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="45a5567c-47f6-c344-f684-ee500cd17471" />
+    </api>
+    <api id="T:System.IO.Ports.SerialErrorReceivedEventHandler">
+      <topicdata group="api" />
+      <apidata name="SerialErrorReceivedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.IO.Ports.SerialErrorReceivedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="a22bc45f-9ff6-1c49-1771-b3c5e3287d5a" />
+    </api>
+    <api id="T:System.IO.Ports.SerialPinChange">
+      <topicdata group="api" />
+      <apidata name="SerialPinChange" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.IO.Ports.SerialPinChange.CtsChanged" />
+        <element api="F:System.IO.Ports.SerialPinChange.DsrChanged" />
+        <element api="F:System.IO.Ports.SerialPinChange.CDChanged" />
+        <element api="F:System.IO.Ports.SerialPinChange.Ring" />
+        <element api="F:System.IO.Ports.SerialPinChange.Break" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="317bb7f0-eb80-deff-6b5a-7626d847e3f2" />
+    </api>
+    <api id="F:System.IO.Ports.SerialPinChange.Break">
+      <topicdata group="api" notopic="" />
+      <apidata name="Break" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialPinChange" ref="false" />
+      </returns>
+      <value>64</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPinChange" ref="false" />
+      </containers>
+      <file name="8c08485e-f636-b1c7-d07b-a5cccd58f407" />
+    </api>
+    <api id="F:System.IO.Ports.SerialPinChange.CDChanged">
+      <topicdata group="api" notopic="" />
+      <apidata name="CDChanged" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialPinChange" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPinChange" ref="false" />
+      </containers>
+      <file name="09361934-1e4d-855c-7688-b2ab2306de80" />
+    </api>
+    <api id="F:System.IO.Ports.SerialPinChange.CtsChanged">
+      <topicdata group="api" notopic="" />
+      <apidata name="CtsChanged" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialPinChange" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPinChange" ref="false" />
+      </containers>
+      <file name="8e97e896-246a-9d57-c3f8-0bb1727c6b4d" />
+    </api>
+    <api id="F:System.IO.Ports.SerialPinChange.DsrChanged">
+      <topicdata group="api" notopic="" />
+      <apidata name="DsrChanged" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialPinChange" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPinChange" ref="false" />
+      </containers>
+      <file name="05a378dd-be7b-d9bf-0c76-ec4338534f87" />
+    </api>
+    <api id="F:System.IO.Ports.SerialPinChange.Ring">
+      <topicdata group="api" notopic="" />
+      <apidata name="Ring" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialPinChange" ref="false" />
+      </returns>
+      <value>256</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPinChange" ref="false" />
+      </containers>
+      <file name="f6550404-1a93-e932-6122-00f1cc7647cf" />
+    </api>
+    <api id="T:System.IO.Ports.SerialPinChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.Ports.SerialPinChangedEventArgs" />
+      <apidata name="SerialPinChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="307c4ecd-5ae1-f245-55d6-34dbbe562d4c" />
+    </api>
+    <api id="AllMembers.T:System.IO.Ports.SerialPinChangedEventArgs">
+      <topicdata name="SerialPinChangedEventArgs" group="list" subgroup="members" typeTopicId="T:System.IO.Ports.SerialPinChangedEventArgs" />
+      <apidata name="SerialPinChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.IO.Ports.SerialPinChangedEventArgs.EventType" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPinChangedEventArgs" />
+      </containers>
+      <file name="483f1c63-c996-537a-2258-b689754ec6cd" />
+    </api>
+    <api id="Methods.T:System.IO.Ports.SerialPinChangedEventArgs">
+      <topicdata name="SerialPinChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.IO.Ports.SerialPinChangedEventArgs" />
+      <apidata name="SerialPinChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPinChangedEventArgs" />
+      </containers>
+      <file name="da770083-605b-b30f-f66f-88e897f6c55d" />
+    </api>
+    <api id="Properties.T:System.IO.Ports.SerialPinChangedEventArgs">
+      <topicdata name="SerialPinChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.IO.Ports.SerialPinChangedEventArgs" />
+      <apidata name="SerialPinChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.IO.Ports.SerialPinChangedEventArgs.EventType" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPinChangedEventArgs" />
+      </containers>
+      <file name="ee88a22e-62c8-8202-3efc-4400d10f2b88" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPinChangedEventArgs.EventType">
+      <topicdata group="api" />
+      <apidata name="EventType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EventType" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialPinChange" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPinChangedEventArgs" ref="true" />
+      </containers>
+      <file name="ab78e75b-09a7-fb36-d7d1-513d6fa5553a" />
+    </api>
+    <api id="T:System.IO.Ports.SerialPinChangedEventHandler">
+      <topicdata group="api" />
+      <apidata name="SerialPinChangedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.IO.Ports.SerialPinChangedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="b98d6841-02b9-85ac-c357-da650022fde6" />
+    </api>
+    <api id="T:System.IO.Ports.SerialPort">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.Ports.SerialPort" />
+      <apidata name="SerialPort" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IO.Ports.SerialPort.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.Component" ref="true" />
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="18320aae-c9c6-fef7-d437-56d8dacd9219" />
+    </api>
+    <api id="AllMembers.T:System.IO.Ports.SerialPort">
+      <topicdata name="SerialPort" group="list" subgroup="members" typeTopicId="T:System.IO.Ports.SerialPort" />
+      <apidata name="SerialPort" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IO.Ports.SerialPort.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.IO.Ports.SerialPort.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="P:System.ComponentModel.Component.CanRaiseEvents" />
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="Overload:System.IO.Ports.SerialPort.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.IO.Ports.SerialPort.Dispose(System.Boolean)" />
+        </element>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="P:System.ComponentModel.Component.Site" />
+        <element api="M:System.ComponentModel.Component.ToString" />
+        <element api="Overload:System.IO.Ports.SerialPort.#ctor">
+          <element api="M:System.IO.Ports.SerialPort.#ctor" />
+          <element api="M:System.IO.Ports.SerialPort.#ctor(System.ComponentModel.IContainer)" />
+          <element api="M:System.IO.Ports.SerialPort.#ctor(System.String)" />
+          <element api="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32)" />
+          <element api="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity)" />
+          <element api="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity,System.Int32)" />
+          <element api="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity,System.Int32,System.IO.Ports.StopBits)" />
+        </element>
+        <element api="P:System.IO.Ports.SerialPort.BaseStream" />
+        <element api="P:System.IO.Ports.SerialPort.BaudRate" />
+        <element api="P:System.IO.Ports.SerialPort.BreakState" />
+        <element api="P:System.IO.Ports.SerialPort.BytesToRead" />
+        <element api="P:System.IO.Ports.SerialPort.BytesToWrite" />
+        <element api="P:System.IO.Ports.SerialPort.CDHolding" />
+        <element api="M:System.IO.Ports.SerialPort.Close" />
+        <element api="P:System.IO.Ports.SerialPort.CtsHolding" />
+        <element api="P:System.IO.Ports.SerialPort.DataBits" />
+        <element api="E:System.IO.Ports.SerialPort.DataReceived" />
+        <element api="M:System.IO.Ports.SerialPort.DiscardInBuffer" />
+        <element api="P:System.IO.Ports.SerialPort.DiscardNull" />
+        <element api="M:System.IO.Ports.SerialPort.DiscardOutBuffer" />
+        <element api="P:System.IO.Ports.SerialPort.DsrHolding" />
+        <element api="P:System.IO.Ports.SerialPort.DtrEnable" />
+        <element api="P:System.IO.Ports.SerialPort.Encoding" />
+        <element api="E:System.IO.Ports.SerialPort.ErrorReceived" />
+        <element api="M:System.IO.Ports.SerialPort.GetPortNames" />
+        <element api="P:System.IO.Ports.SerialPort.Handshake" />
+        <element api="F:System.IO.Ports.SerialPort.InfiniteTimeout" />
+        <element api="P:System.IO.Ports.SerialPort.IsOpen" />
+        <element api="P:System.IO.Ports.SerialPort.NewLine" />
+        <element api="M:System.IO.Ports.SerialPort.Open" />
+        <element api="P:System.IO.Ports.SerialPort.Parity" />
+        <element api="P:System.IO.Ports.SerialPort.ParityReplace" />
+        <element api="E:System.IO.Ports.SerialPort.PinChanged" />
+        <element api="P:System.IO.Ports.SerialPort.PortName" />
+        <element api="Overload:System.IO.Ports.SerialPort.Read">
+          <element api="M:System.IO.Ports.SerialPort.Read(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.Ports.SerialPort.Read(System.Char[],System.Int32,System.Int32)" />
+        </element>
+        <element api="P:System.IO.Ports.SerialPort.ReadBufferSize" />
+        <element api="M:System.IO.Ports.SerialPort.ReadByte" />
+        <element api="M:System.IO.Ports.SerialPort.ReadChar" />
+        <element api="M:System.IO.Ports.SerialPort.ReadExisting" />
+        <element api="M:System.IO.Ports.SerialPort.ReadLine" />
+        <element api="P:System.IO.Ports.SerialPort.ReadTimeout" />
+        <element api="M:System.IO.Ports.SerialPort.ReadTo(System.String)" />
+        <element api="P:System.IO.Ports.SerialPort.ReceivedBytesThreshold" />
+        <element api="P:System.IO.Ports.SerialPort.RtsEnable" />
+        <element api="P:System.IO.Ports.SerialPort.StopBits" />
+        <element api="Overload:System.IO.Ports.SerialPort.Write">
+          <element api="M:System.IO.Ports.SerialPort.Write(System.String)" />
+          <element api="M:System.IO.Ports.SerialPort.Write(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.Ports.SerialPort.Write(System.Char[],System.Int32,System.Int32)" />
+        </element>
+        <element api="P:System.IO.Ports.SerialPort.WriteBufferSize" />
+        <element api="M:System.IO.Ports.SerialPort.WriteLine(System.String)" />
+        <element api="P:System.IO.Ports.SerialPort.WriteTimeout" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" />
+      </containers>
+      <file name="b13732c0-a8e3-88cc-7284-1b17a55fca56" />
+    </api>
+    <api id="Methods.T:System.IO.Ports.SerialPort">
+      <topicdata name="SerialPort" group="list" subgroup="Methods" typeTopicId="T:System.IO.Ports.SerialPort" />
+      <apidata name="SerialPort" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IO.Ports.SerialPort.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.IO.Ports.SerialPort.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="Overload:System.IO.Ports.SerialPort.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.IO.Ports.SerialPort.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="M:System.ComponentModel.Component.ToString" />
+        <element api="M:System.IO.Ports.SerialPort.Close" />
+        <element api="M:System.IO.Ports.SerialPort.DiscardInBuffer" />
+        <element api="M:System.IO.Ports.SerialPort.DiscardOutBuffer" />
+        <element api="M:System.IO.Ports.SerialPort.GetPortNames" />
+        <element api="M:System.IO.Ports.SerialPort.Open" />
+        <element api="Overload:System.IO.Ports.SerialPort.Read">
+          <element api="M:System.IO.Ports.SerialPort.Read(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.Ports.SerialPort.Read(System.Char[],System.Int32,System.Int32)" />
+        </element>
+        <element api="M:System.IO.Ports.SerialPort.ReadByte" />
+        <element api="M:System.IO.Ports.SerialPort.ReadChar" />
+        <element api="M:System.IO.Ports.SerialPort.ReadExisting" />
+        <element api="M:System.IO.Ports.SerialPort.ReadLine" />
+        <element api="M:System.IO.Ports.SerialPort.ReadTo(System.String)" />
+        <element api="Overload:System.IO.Ports.SerialPort.Write">
+          <element api="M:System.IO.Ports.SerialPort.Write(System.String)" />
+          <element api="M:System.IO.Ports.SerialPort.Write(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.Ports.SerialPort.Write(System.Char[],System.Int32,System.Int32)" />
+        </element>
+        <element api="M:System.IO.Ports.SerialPort.WriteLine(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" />
+      </containers>
+      <file name="2e78a4e1-9765-f92a-da48-be02514f72c5" />
+    </api>
+    <api id="Properties.T:System.IO.Ports.SerialPort">
+      <topicdata name="SerialPort" group="list" subgroup="Properties" typeTopicId="T:System.IO.Ports.SerialPort" />
+      <apidata name="SerialPort" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IO.Ports.SerialPort.#ctor" />
+      <elements>
+        <element api="P:System.ComponentModel.Component.CanRaiseEvents" />
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="P:System.ComponentModel.Component.Site" />
+        <element api="P:System.IO.Ports.SerialPort.BaseStream" />
+        <element api="P:System.IO.Ports.SerialPort.BaudRate" />
+        <element api="P:System.IO.Ports.SerialPort.BreakState" />
+        <element api="P:System.IO.Ports.SerialPort.BytesToRead" />
+        <element api="P:System.IO.Ports.SerialPort.BytesToWrite" />
+        <element api="P:System.IO.Ports.SerialPort.CDHolding" />
+        <element api="P:System.IO.Ports.SerialPort.CtsHolding" />
+        <element api="P:System.IO.Ports.SerialPort.DataBits" />
+        <element api="P:System.IO.Ports.SerialPort.DiscardNull" />
+        <element api="P:System.IO.Ports.SerialPort.DsrHolding" />
+        <element api="P:System.IO.Ports.SerialPort.DtrEnable" />
+        <element api="P:System.IO.Ports.SerialPort.Encoding" />
+        <element api="P:System.IO.Ports.SerialPort.Handshake" />
+        <element api="P:System.IO.Ports.SerialPort.IsOpen" />
+        <element api="P:System.IO.Ports.SerialPort.NewLine" />
+        <element api="P:System.IO.Ports.SerialPort.Parity" />
+        <element api="P:System.IO.Ports.SerialPort.ParityReplace" />
+        <element api="P:System.IO.Ports.SerialPort.PortName" />
+        <element api="P:System.IO.Ports.SerialPort.ReadBufferSize" />
+        <element api="P:System.IO.Ports.SerialPort.ReadTimeout" />
+        <element api="P:System.IO.Ports.SerialPort.ReceivedBytesThreshold" />
+        <element api="P:System.IO.Ports.SerialPort.RtsEnable" />
+        <element api="P:System.IO.Ports.SerialPort.StopBits" />
+        <element api="P:System.IO.Ports.SerialPort.WriteBufferSize" />
+        <element api="P:System.IO.Ports.SerialPort.WriteTimeout" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" />
+      </containers>
+      <file name="de9ddd31-e408-105c-d402-866fb5a2b7b7" />
+    </api>
+    <api id="Events.T:System.IO.Ports.SerialPort">
+      <topicdata name="SerialPort" group="list" subgroup="Events" typeTopicId="T:System.IO.Ports.SerialPort" />
+      <apidata name="SerialPort" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IO.Ports.SerialPort.#ctor" />
+      <elements>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+        <element api="E:System.IO.Ports.SerialPort.DataReceived" />
+        <element api="E:System.IO.Ports.SerialPort.ErrorReceived" />
+        <element api="E:System.IO.Ports.SerialPort.PinChanged" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" />
+      </containers>
+      <file name="8dbd468a-6ded-290e-316b-52814b3e6579" />
+    </api>
+    <api id="Fields.T:System.IO.Ports.SerialPort">
+      <topicdata name="SerialPort" group="list" subgroup="Fields" typeTopicId="T:System.IO.Ports.SerialPort" />
+      <apidata name="SerialPort" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IO.Ports.SerialPort.#ctor" />
+      <elements>
+        <element api="F:System.IO.Ports.SerialPort.InfiniteTimeout" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" />
+      </containers>
+      <file name="814abc58-7dc9-bf0b-32d8-e012538b039e" />
+    </api>
+    <api id="Overload:System.IO.Ports.SerialPort.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.Ports.SerialPort" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.Component.Dispose" />
+        <element api="M:System.IO.Ports.SerialPort.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="ef8132fe-a1e9-60a3-3c72-f9a794beb423" />
+    </api>
+    <api id="Overload:System.IO.Ports.SerialPort.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.Ports.SerialPort" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.IO.Ports.SerialPort.#ctor" />
+        <element api="M:System.IO.Ports.SerialPort.#ctor(System.ComponentModel.IContainer)" />
+        <element api="M:System.IO.Ports.SerialPort.#ctor(System.String)" />
+        <element api="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32)" />
+        <element api="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity)" />
+        <element api="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity,System.Int32)" />
+        <element api="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity,System.Int32,System.IO.Ports.StopBits)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="a92edff7-06a9-def0-dd0b-9f77eb1276c5" />
+    </api>
+    <api id="Overload:System.IO.Ports.SerialPort.Read">
+      <topicdata name="Read" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.Ports.SerialPort" />
+      <apidata name="Read" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.Ports.SerialPort.Read(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.IO.Ports.SerialPort.Read(System.Char[],System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="7ec55bd8-3f02-e148-5aca-bb3a8e9e96cd" />
+    </api>
+    <api id="Overload:System.IO.Ports.SerialPort.Write">
+      <topicdata name="Write" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.Ports.SerialPort" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.Ports.SerialPort.Write(System.String)" />
+        <element api="M:System.IO.Ports.SerialPort.Write(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.IO.Ports.SerialPort.Write(System.Char[],System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="1b0bf066-f831-ce0b-ee12-c929998dbdb9" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Ports.SerialPort.#ctor" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="dce95287-4a74-f77a-9ecf-8aef7655691d" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.#ctor(System.ComponentModel.IContainer)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Ports.SerialPort.#ctor" />
+      <parameters>
+        <parameter name="container">
+          <type api="T:System.ComponentModel.IContainer" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="5493d56e-b917-3c2a-fe6f-e5740254693a" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Ports.SerialPort.#ctor" />
+      <parameters>
+        <parameter name="portName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="d668f8e3-e76c-d2fa-98da-342711c65510" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Ports.SerialPort.#ctor" />
+      <parameters>
+        <parameter name="portName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="baudRate">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="02e1835c-3102-3ab5-dbc7-9bf3128345a4" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Ports.SerialPort.#ctor" />
+      <parameters>
+        <parameter name="portName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="baudRate">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="parity">
+          <type api="T:System.IO.Ports.Parity" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="bf6cc1a2-78cc-f80d-6c8a-ddc4c7d555f0" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Ports.SerialPort.#ctor" />
+      <parameters>
+        <parameter name="portName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="baudRate">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="parity">
+          <type api="T:System.IO.Ports.Parity" ref="false" />
+        </parameter>
+        <parameter name="dataBits">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="01a7cb07-4bb6-29fb-c996-793100352f8e" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity,System.Int32,System.IO.Ports.StopBits)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Ports.SerialPort.#ctor" />
+      <parameters>
+        <parameter name="portName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="baudRate">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="parity">
+          <type api="T:System.IO.Ports.Parity" ref="false" />
+        </parameter>
+        <parameter name="dataBits">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="stopBits">
+          <type api="T:System.IO.Ports.StopBits" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="2cfa7d00-1faf-9a6e-43d8-0cf684e23205" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.BaseStream">
+      <topicdata group="api" />
+      <apidata name="BaseStream" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BaseStream" />
+      <returns>
+        <type api="T:System.IO.Stream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9e552dde-7ad7-eee0-9986-b648554f9963" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.BaudRate">
+      <topicdata group="api" />
+      <apidata name="BaudRate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BaudRate" />
+      <setter name="set_BaudRate" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>9600</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="638e5c0f-84d4-e128-0c86-2e8db6c884db" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.BreakState">
+      <topicdata group="api" />
+      <apidata name="BreakState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BreakState" />
+      <setter name="set_BreakState" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bf5753f9-d348-3a4f-ca1c-41f72980e847" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.BytesToRead">
+      <topicdata group="api" />
+      <apidata name="BytesToRead" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BytesToRead" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a18c4c67-4c58-c6fe-a288-fde130b39ade" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.BytesToWrite">
+      <topicdata group="api" />
+      <apidata name="BytesToWrite" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BytesToWrite" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e58e264e-f99c-31a3-938a-de9d0cd29b1b" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.CDHolding">
+      <topicdata group="api" />
+      <apidata name="CDHolding" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CDHolding" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="07c93873-c059-bca3-a474-bed52a728eec" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="f1120ecf-510c-c6fc-7b6d-eb2a1e35b747" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.CtsHolding">
+      <topicdata group="api" />
+      <apidata name="CtsHolding" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CtsHolding" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b43cc5f4-c494-cbc5-5296-50276585602f" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.DataBits">
+      <topicdata group="api" />
+      <apidata name="DataBits" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DataBits" />
+      <setter name="set_DataBits" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>8</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="963e276f-cbb6-4dfb-6ed3-2e5b86d0201e" />
+    </api>
+    <api id="E:System.IO.Ports.SerialPort.DataReceived">
+      <topicdata group="api" />
+      <apidata name="DataReceived" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_DataReceived" />
+      <remover name="remove_DataReceived" />
+      <eventhandler>
+        <type api="T:System.IO.Ports.SerialDataReceivedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.IO.Ports.SerialDataReceivedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="504dc565-248b-24bc-9baa-50a33d72e819" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.DiscardInBuffer">
+      <topicdata group="api" />
+      <apidata name="DiscardInBuffer" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="45d10db7-6613-20b9-a7e1-0a876d572c28" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.DiscardNull">
+      <topicdata group="api" />
+      <apidata name="DiscardNull" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DiscardNull" />
+      <setter name="set_DiscardNull" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7a6b02d6-0a17-73cf-b953-520975edc6c6" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.DiscardOutBuffer">
+      <topicdata group="api" />
+      <apidata name="DiscardOutBuffer" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="2b4966f7-b824-61c1-e337-5f291452f055" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.IO.Ports.SerialPort.Dispose" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.Component.Dispose(System.Boolean)">
+          <type api="T:System.ComponentModel.Component" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="f061e863-2b9c-7248-29b8-a5a1ff0f08f8" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.DsrHolding">
+      <topicdata group="api" />
+      <apidata name="DsrHolding" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DsrHolding" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2439c3cd-2aae-466a-479a-3a98ab563a3d" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.DtrEnable">
+      <topicdata group="api" />
+      <apidata name="DtrEnable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DtrEnable" />
+      <setter name="set_DtrEnable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3a0c210e-4967-0955-b8cd-cfa7f6fe37b8" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.Encoding">
+      <topicdata group="api" />
+      <apidata name="Encoding" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Encoding" />
+      <setter name="set_Encoding" />
+      <returns>
+        <type api="T:System.Text.Encoding" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b0da817a-ebf1-cbd8-9e3b-628d7b65373b" />
+    </api>
+    <api id="E:System.IO.Ports.SerialPort.ErrorReceived">
+      <topicdata group="api" />
+      <apidata name="ErrorReceived" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ErrorReceived" />
+      <remover name="remove_ErrorReceived" />
+      <eventhandler>
+        <type api="T:System.IO.Ports.SerialErrorReceivedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.IO.Ports.SerialErrorReceivedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="c0e0127b-ff4f-82fa-4bbe-b2b23e50b4fc" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.GetPortNames">
+      <topicdata group="api" />
+      <apidata name="GetPortNames" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="bf9a8f6e-f4a6-efbd-2b4b-bcc0a374d70a" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.Handshake">
+      <topicdata group="api" />
+      <apidata name="Handshake" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Handshake" />
+      <setter name="set_Handshake" />
+      <returns>
+        <type api="T:System.IO.Ports.Handshake" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.IO.Ports.Handshake" ref="false" />
+            <enumValue>
+              <field name="None" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="dc911c9e-5054-41ef-b498-695094ba9c96" />
+    </api>
+    <api id="F:System.IO.Ports.SerialPort.InfiniteTimeout">
+      <topicdata group="api" />
+      <apidata name="InfiniteTimeout" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>-1</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="c9c80183-104c-2bcb-6396-a11596dcdce8" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.IsOpen">
+      <topicdata group="api" />
+      <apidata name="IsOpen" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsOpen" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="04822eda-4bb0-c88a-d646-1320352ced7c" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.NewLine">
+      <topicdata group="api" />
+      <apidata name="NewLine" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NewLine" />
+      <setter name="set_NewLine" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="26d0b8b9-799e-b7fc-46a9-3a60da951102" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.Open">
+      <topicdata group="api" />
+      <apidata name="Open" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="654aafa9-5768-6b3b-0dbd-208e559c49d8" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.Parity">
+      <topicdata group="api" />
+      <apidata name="Parity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Parity" />
+      <setter name="set_Parity" />
+      <returns>
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.IO.Ports.Parity" ref="false" />
+            <enumValue>
+              <field name="None" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3309e11c-81de-258f-e253-a57639615bf7" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.ParityReplace">
+      <topicdata group="api" />
+      <apidata name="ParityReplace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ParityReplace" />
+      <setter name="set_ParityReplace" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>63</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="00af9268-79bd-3cfa-2e99-c97a6ef92b6c" />
+    </api>
+    <api id="E:System.IO.Ports.SerialPort.PinChanged">
+      <topicdata group="api" />
+      <apidata name="PinChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PinChanged" />
+      <remover name="remove_PinChanged" />
+      <eventhandler>
+        <type api="T:System.IO.Ports.SerialPinChangedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.IO.Ports.SerialPinChangedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="7cc20405-b41a-2d0c-6eca-cb0529a6d7b1" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.PortName">
+      <topicdata group="api" />
+      <apidata name="PortName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PortName" />
+      <setter name="set_PortName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>COM1</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2ac201cd-7d00-72e5-6c6b-ea21da542af0" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.Read(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Read" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.Ports.SerialPort.Read" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="f3bdb214-ac1f-9d5a-6ff2-9ef888a77128" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.Read(System.Char[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Read" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.Ports.SerialPort.Read" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Char" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="30f8de16-0757-74d0-ffbd-37daef555c26" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.ReadBufferSize">
+      <topicdata group="api" />
+      <apidata name="ReadBufferSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ReadBufferSize" />
+      <setter name="set_ReadBufferSize" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>4096</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2442e270-6638-081d-977e-62dc509dea6c" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.ReadByte">
+      <topicdata group="api" />
+      <apidata name="ReadByte" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="1cf1c884-2bd1-3021-d1d1-ad3344df6cf9" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.ReadChar">
+      <topicdata group="api" />
+      <apidata name="ReadChar" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="668847df-25c1-37a7-c255-349994882ff4" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.ReadExisting">
+      <topicdata group="api" />
+      <apidata name="ReadExisting" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="bcf772dc-b00c-607f-b597-0241a447c981" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.ReadLine">
+      <topicdata group="api" />
+      <apidata name="ReadLine" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="426bdded-45dd-3b1e-688b-85d4647f6fbe" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.ReadTimeout">
+      <topicdata group="api" />
+      <apidata name="ReadTimeout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ReadTimeout" />
+      <setter name="set_ReadTimeout" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-1</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d7e1e33a-b931-b74c-b29c-2870d1f8b95e" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.ReadTo(System.String)">
+      <topicdata group="api" />
+      <apidata name="ReadTo" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="ee24e1b9-c59b-dd80-b5b0-fe8719927214" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.ReceivedBytesThreshold">
+      <topicdata group="api" />
+      <apidata name="ReceivedBytesThreshold" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ReceivedBytesThreshold" />
+      <setter name="set_ReceivedBytesThreshold" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>1</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="edac650b-9d50-6f02-54f2-a87a923a23c7" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.RtsEnable">
+      <topicdata group="api" />
+      <apidata name="RtsEnable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RtsEnable" />
+      <setter name="set_RtsEnable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3eb21a30-0610-6e09-b0d9-f6322dca92b3" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.StopBits">
+      <topicdata group="api" />
+      <apidata name="StopBits" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_StopBits" />
+      <setter name="set_StopBits" />
+      <returns>
+        <type api="T:System.IO.Ports.StopBits" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.IO.Ports.StopBits" ref="false" />
+            <enumValue>
+              <field name="One" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8254f1be-d613-d88e-ecae-59b7eabe4be2" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.Write(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.Ports.SerialPort.Write" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="b5e9b9cc-d700-912f-25ce-7c782a3462a6" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.Write(System.Char[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.Ports.SerialPort.Write" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Char" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="fd4dfe1f-0656-c6bc-c038-7fc3da75ff8c" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.Write(System.String)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.Ports.SerialPort.Write" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="text">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="8b9ea096-3da7-c461-f8a9-dbb88abc2e0c" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.WriteBufferSize">
+      <topicdata group="api" />
+      <apidata name="WriteBufferSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_WriteBufferSize" />
+      <setter name="set_WriteBufferSize" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>2048</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8b6e280f-3a4e-9a36-54eb-039483b33d9e" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.WriteLine(System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteLine" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="text">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="1586bd5e-3404-1fd5-6d35-a9fd094404f1" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.WriteTimeout">
+      <topicdata group="api" />
+      <apidata name="WriteTimeout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_WriteTimeout" />
+      <setter name="set_WriteTimeout" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-1</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="89637650-57d7-f0b8-de27-44ac0e3c069d" />
+    </api>
+    <api id="T:System.IO.Ports.StopBits">
+      <topicdata group="api" />
+      <apidata name="StopBits" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.IO.Ports.StopBits.None" />
+        <element api="F:System.IO.Ports.StopBits.One" />
+        <element api="F:System.IO.Ports.StopBits.Two" />
+        <element api="F:System.IO.Ports.StopBits.OnePointFive" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="ac01dd2c-2ecf-ba15-3795-375ae427b726" />
+    </api>
+    <api id="F:System.IO.Ports.StopBits.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.StopBits" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.StopBits" ref="false" />
+      </containers>
+      <file name="edae5f63-a9a5-49d1-b451-a37fcce6d817" />
+    </api>
+    <api id="F:System.IO.Ports.StopBits.One">
+      <topicdata group="api" notopic="" />
+      <apidata name="One" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.StopBits" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.StopBits" ref="false" />
+      </containers>
+      <file name="a85050b2-96a9-673e-2d27-ed20792c811b" />
+    </api>
+    <api id="F:System.IO.Ports.StopBits.OnePointFive">
+      <topicdata group="api" notopic="" />
+      <apidata name="OnePointFive" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.StopBits" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.StopBits" ref="false" />
+      </containers>
+      <file name="c6a2a4e6-2b57-f9d4-87ed-06ba942ffaa8" />
+    </api>
+    <api id="F:System.IO.Ports.StopBits.Two">
+      <topicdata group="api" notopic="" />
+      <apidata name="Two" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.StopBits" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.StopBits" ref="false" />
+      </containers>
+      <file name="38f8ea3b-c3c7-4e82-5037-adf7168d84e8" />
+    </api>
+  </apis>
+</reflection>

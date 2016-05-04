@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- Translations provided by Alex Sherman, verifications Sergey Zhurikhin -->
+
+	<!-- Syntax section and code example title.  Add one for the primary ID and one for each alternate ID. -->
+  <item id="devlang_JScript">JScript</item>
+  <item id="devlang_jscript#">JScript</item>
+  <item id="devlang_jsc">JScript</item>
+  <item id="devlang_jscript.net">JScript</item>
+  <item id="devlang_kbjscript">JScript</item>
+
+	<!-- Development language metadata values.  Add one for the primary ID and one for each alternate ID.  -->
+  <item id="metaLang_JScript">JScript</item>
+  <item id="metaLang_jscript#">JScript</item>
+  <item id="metaLang_jsc">JScript</item>
+  <item id="metaLang_jscript.net">JScript</item>
+  <item id="metaLang_kbjscript">JScript</item>
+
+	<!-- JScript syntax section messages -->
+	<item id="UnsupportedUnsafe_JScript">JScript не поддерживает интерфейсы API, которые принимают или возвращают небезопасные типы.</item>
+	<item id="UnsupportedGeneric_JScript">JScript не поддерживает универсальные типы и методы.</item>
+	<item id="UnsupportedExplicit_Jscript">JScript не поддерживает явные реализации интерфейса.</item>
+	<item id="UnsupportedOperator_JScript">JScript не поддерживает перегруженные операторы.</item>
+	<item id="UnsupportedEvent_JScript">JScript не поддерживает события.</item>
+	<item id="UnsupportedDelegate_JScript">JScript не поддерживает делегаты.</item>
+	<item id="UnsupportedStructure_JScript">JScript поддерживает использование структур, но не объявление новых структур.</item>
+	<item id="UnsupportedIndex_JScript">JScript не поддерживает индексированные свойства.</item>
+	<item id="UnsupportedCast_JScript">JScript не поддерживает объявление новых операторов приведения.</item>
+	<item id="UnsupportedStaticConstructor_JScript">JScript не поддерживает статические конструкторы.</item>
+	<item id="UnsupportedVarargs_JScript">JScript не поддерживает методы, использующие аргументы переменной длины
+(<span class="code">varargs</span>).  Компилятор автоматически разрешает вызовы этого метода в такой же метод,
+использующий массив параметров.</item>
+
+</content>

@@ -1,0 +1,1511 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Input">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Input" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Input.PointerDeviceType" />
+        <element api="T:Windows.Devices.Input.PointerDeviceUsage" />
+        <element api="T:Windows.Devices.Input.MouseDelta" />
+        <element api="T:Windows.Devices.Input.PointerDevice" />
+        <element api="T:Windows.Devices.Input.MouseDevice" />
+        <element api="T:Windows.Devices.Input.MouseEventArgs" />
+        <element api="T:Windows.Devices.Input.MouseCapabilities" />
+        <element api="T:Windows.Devices.Input.KeyboardCapabilities" />
+        <element api="T:Windows.Devices.Input.TouchCapabilities" />
+      </elements>
+      <file name="2472b5f7-dd6e-8155-1a36-c485281e789f" />
+    </api>
+    <api id="T:Windows.Devices.Input.KeyboardCapabilities">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Input.KeyboardCapabilities" />
+      <apidata name="KeyboardCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.Input.KeyboardCapabilities.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Input.IKeyboardCapabilities" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="213dbb82-4d74-d6b2-e6b5-b5aa1f513971" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Input.KeyboardCapabilities">
+      <topicdata name="KeyboardCapabilities" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Input.KeyboardCapabilities" />
+      <apidata name="KeyboardCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.Input.KeyboardCapabilities.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Input.KeyboardCapabilities.#ctor" />
+        <element api="P:Windows.Devices.Input.KeyboardCapabilities.KeyboardPresent" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.KeyboardCapabilities" />
+      </containers>
+      <file name="6afe7efe-3942-b162-ab51-374956eff12c" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Input.KeyboardCapabilities">
+      <topicdata name="KeyboardCapabilities" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Input.KeyboardCapabilities" />
+      <apidata name="KeyboardCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.Input.KeyboardCapabilities.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.KeyboardCapabilities" />
+      </containers>
+      <file name="c58fec67-d881-8b06-a42a-6572c31f478e" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Input.KeyboardCapabilities">
+      <topicdata name="KeyboardCapabilities" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Input.KeyboardCapabilities" />
+      <apidata name="KeyboardCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.Input.KeyboardCapabilities.#ctor" />
+      <elements>
+        <element api="P:Windows.Devices.Input.KeyboardCapabilities.KeyboardPresent" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.KeyboardCapabilities" />
+      </containers>
+      <file name="0ff7fed1-d6d2-07c4-6f2d-9dcdb263cd80" />
+    </api>
+    <api id="M:Windows.Devices.Input.KeyboardCapabilities.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.KeyboardCapabilities" ref="true" />
+      </containers>
+      <file name="36f6a819-70bc-d29c-ea9b-9669dda747e8" />
+    </api>
+    <api id="P:Windows.Devices.Input.KeyboardCapabilities.KeyboardPresent">
+      <topicdata group="api" />
+      <apidata name="KeyboardPresent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_KeyboardPresent" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.KeyboardCapabilities" ref="true" />
+      </containers>
+      <file name="5cf0951e-5111-0947-c83e-64a174e1a98b" />
+    </api>
+    <api id="T:Windows.Devices.Input.MouseCapabilities">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Input.MouseCapabilities" />
+      <apidata name="MouseCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.Input.MouseCapabilities.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Input.IMouseCapabilities" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b4f55f99-9e0b-fe42-c6c9-e7c8a342d76d" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Input.MouseCapabilities">
+      <topicdata name="MouseCapabilities" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Input.MouseCapabilities" />
+      <apidata name="MouseCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.Input.MouseCapabilities.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Input.MouseCapabilities.#ctor" />
+        <element api="P:Windows.Devices.Input.MouseCapabilities.HorizontalWheelPresent" />
+        <element api="P:Windows.Devices.Input.MouseCapabilities.MousePresent" />
+        <element api="P:Windows.Devices.Input.MouseCapabilities.NumberOfButtons" />
+        <element api="P:Windows.Devices.Input.MouseCapabilities.SwapButtons" />
+        <element api="P:Windows.Devices.Input.MouseCapabilities.VerticalWheelPresent" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseCapabilities" />
+      </containers>
+      <file name="d5f391b7-a21b-08fd-93f8-709af44d5be8" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Input.MouseCapabilities">
+      <topicdata name="MouseCapabilities" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Input.MouseCapabilities" />
+      <apidata name="MouseCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.Input.MouseCapabilities.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseCapabilities" />
+      </containers>
+      <file name="020e9064-2d9c-bb08-163d-fe339204d820" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Input.MouseCapabilities">
+      <topicdata name="MouseCapabilities" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Input.MouseCapabilities" />
+      <apidata name="MouseCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.Input.MouseCapabilities.#ctor" />
+      <elements>
+        <element api="P:Windows.Devices.Input.MouseCapabilities.HorizontalWheelPresent" />
+        <element api="P:Windows.Devices.Input.MouseCapabilities.MousePresent" />
+        <element api="P:Windows.Devices.Input.MouseCapabilities.NumberOfButtons" />
+        <element api="P:Windows.Devices.Input.MouseCapabilities.SwapButtons" />
+        <element api="P:Windows.Devices.Input.MouseCapabilities.VerticalWheelPresent" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseCapabilities" />
+      </containers>
+      <file name="4abd032d-49c3-830c-b95c-b8ef8e29cbf4" />
+    </api>
+    <api id="M:Windows.Devices.Input.MouseCapabilities.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseCapabilities" ref="true" />
+      </containers>
+      <file name="cde0dc24-047a-c9bc-6b3a-f57d7484e2e6" />
+    </api>
+    <api id="P:Windows.Devices.Input.MouseCapabilities.HorizontalWheelPresent">
+      <topicdata group="api" />
+      <apidata name="HorizontalWheelPresent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_HorizontalWheelPresent" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseCapabilities" ref="true" />
+      </containers>
+      <file name="9345035d-6973-7636-5ee6-d5fca9801bc9" />
+    </api>
+    <api id="P:Windows.Devices.Input.MouseCapabilities.MousePresent">
+      <topicdata group="api" />
+      <apidata name="MousePresent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MousePresent" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseCapabilities" ref="true" />
+      </containers>
+      <file name="f57039b3-76f3-65db-00b6-46ec3568b8bd" />
+    </api>
+    <api id="P:Windows.Devices.Input.MouseCapabilities.NumberOfButtons">
+      <topicdata group="api" />
+      <apidata name="NumberOfButtons" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NumberOfButtons" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseCapabilities" ref="true" />
+      </containers>
+      <file name="7460219c-1beb-283c-eab1-db0330d88b8d" />
+    </api>
+    <api id="P:Windows.Devices.Input.MouseCapabilities.SwapButtons">
+      <topicdata group="api" />
+      <apidata name="SwapButtons" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SwapButtons" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseCapabilities" ref="true" />
+      </containers>
+      <file name="8bfc0161-d216-4f7c-e297-feefd83e9931" />
+    </api>
+    <api id="P:Windows.Devices.Input.MouseCapabilities.VerticalWheelPresent">
+      <topicdata group="api" />
+      <apidata name="VerticalWheelPresent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_VerticalWheelPresent" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseCapabilities" ref="true" />
+      </containers>
+      <file name="d9989cf0-a40a-c12c-194e-c570d4f93ae4" />
+    </api>
+    <api id="T:Windows.Devices.Input.MouseDelta">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Input.MouseDelta" />
+      <apidata name="MouseDelta" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8acdd58f-6f31-0065-eb73-9b60979145e7" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Input.MouseDelta">
+      <topicdata name="MouseDelta" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Input.MouseDelta" />
+      <apidata name="MouseDelta" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="F:Windows.Devices.Input.MouseDelta.X" />
+        <element api="F:Windows.Devices.Input.MouseDelta.Y" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseDelta" />
+      </containers>
+      <file name="93a2380d-926f-72e7-d536-df4d50f2469d" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Input.MouseDelta">
+      <topicdata name="MouseDelta" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Input.MouseDelta" />
+      <apidata name="MouseDelta" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseDelta" />
+      </containers>
+      <file name="0f0cc4f3-82b7-c00a-3dd9-e39e41b4afe1" />
+    </api>
+    <api id="Fields.T:Windows.Devices.Input.MouseDelta">
+      <topicdata name="MouseDelta" group="list" subgroup="Fields" typeTopicId="T:Windows.Devices.Input.MouseDelta" />
+      <apidata name="MouseDelta" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="F:Windows.Devices.Input.MouseDelta.X" />
+        <element api="F:Windows.Devices.Input.MouseDelta.Y" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseDelta" />
+      </containers>
+      <file name="a3d967d1-e4e3-c1a8-cba2-26cc8f2e9571" />
+    </api>
+    <api id="F:Windows.Devices.Input.MouseDelta.X">
+      <topicdata group="api" />
+      <apidata name="X" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseDelta" ref="false" />
+      </containers>
+      <file name="d024acd1-c565-0414-e2f1-f126af83df0e" />
+    </api>
+    <api id="F:Windows.Devices.Input.MouseDelta.Y">
+      <topicdata group="api" />
+      <apidata name="Y" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseDelta" ref="false" />
+      </containers>
+      <file name="6bdd0aa3-deb2-b6b9-217f-01dc2294fe21" />
+    </api>
+    <api id="T:Windows.Devices.Input.MouseDevice">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Input.MouseDevice" />
+      <apidata name="MouseDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Input.IMouseDevice" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3ac3eafa-b039-61a4-0dc5-497aed772714" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Input.MouseDevice">
+      <topicdata name="MouseDevice" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Input.MouseDevice" />
+      <apidata name="MouseDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Input.MouseDevice.GetForCurrentView" />
+        <element api="E:Windows.Devices.Input.MouseDevice.MouseMoved" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseDevice" />
+      </containers>
+      <file name="17bcfae9-e6dc-eaa5-de71-9aa709ffe628" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Input.MouseDevice">
+      <topicdata name="MouseDevice" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Input.MouseDevice" />
+      <apidata name="MouseDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Input.MouseDevice.GetForCurrentView" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseDevice" />
+      </containers>
+      <file name="d7379ac5-3817-5e33-95d8-b63e69d7cb3a" />
+    </api>
+    <api id="Events.T:Windows.Devices.Input.MouseDevice">
+      <topicdata name="MouseDevice" group="list" subgroup="Events" typeTopicId="T:Windows.Devices.Input.MouseDevice" />
+      <apidata name="MouseDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Devices.Input.MouseDevice.MouseMoved" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseDevice" />
+      </containers>
+      <file name="28796460-fc01-17e4-0dd4-4d6de93d9efa" />
+    </api>
+    <api id="M:Windows.Devices.Input.MouseDevice.GetForCurrentView">
+      <topicdata group="api" />
+      <apidata name="GetForCurrentView" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Devices.Input.MouseDevice" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseDevice" ref="true" />
+      </containers>
+      <file name="49fbcd46-4159-ce3f-5ff5-afcf8ce7a937" />
+    </api>
+    <api id="E:Windows.Devices.Input.MouseDevice.MouseMoved">
+      <topicdata group="api" />
+      <apidata name="MouseMoved" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_MouseMoved" />
+      <remover name="remove_MouseMoved" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Input.MouseDevice" ref="true" />
+            <type api="T:Windows.Devices.Input.MouseEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseDevice" ref="true" />
+      </containers>
+      <file name="331779ac-805f-fafa-d773-40d52bfb21b5" />
+    </api>
+    <api id="T:Windows.Devices.Input.MouseEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Input.MouseEventArgs" />
+      <apidata name="MouseEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Input.IMouseEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="941cce2e-49ba-f277-861d-26e8223fd0f4" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Input.MouseEventArgs">
+      <topicdata name="MouseEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Input.MouseEventArgs" />
+      <apidata name="MouseEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.Input.MouseEventArgs.MouseDelta" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseEventArgs" />
+      </containers>
+      <file name="1ba92371-8558-c577-5526-a284596acb94" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Input.MouseEventArgs">
+      <topicdata name="MouseEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Input.MouseEventArgs" />
+      <apidata name="MouseEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseEventArgs" />
+      </containers>
+      <file name="9a2f712e-b1c8-3c97-769e-d29ab406e5bf" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Input.MouseEventArgs">
+      <topicdata name="MouseEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Input.MouseEventArgs" />
+      <apidata name="MouseEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Input.MouseEventArgs.MouseDelta" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseEventArgs" />
+      </containers>
+      <file name="a80e585a-49eb-58e4-ed11-993e0cd47838" />
+    </api>
+    <api id="P:Windows.Devices.Input.MouseEventArgs.MouseDelta">
+      <topicdata group="api" />
+      <apidata name="MouseDelta" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MouseDelta" />
+      <returns>
+        <type api="T:Windows.Devices.Input.MouseDelta" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.MouseEventArgs" ref="true" />
+      </containers>
+      <file name="8721edf7-ebac-96c8-5f93-c629e5e87c45" />
+    </api>
+    <api id="T:Windows.Devices.Input.PointerDevice">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Input.PointerDevice" />
+      <apidata name="PointerDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Input.IPointerDevice" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="None" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="268fe15b-b43a-be29-202a-dd97792273e4" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Input.PointerDevice">
+      <topicdata name="PointerDevice" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Input.PointerDevice" />
+      <apidata name="PointerDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Input.PointerDevice.GetPointerDevice(System.UInt32)" />
+        <element api="M:Windows.Devices.Input.PointerDevice.GetPointerDevices" />
+        <element api="P:Windows.Devices.Input.PointerDevice.IsIntegrated" />
+        <element api="P:Windows.Devices.Input.PointerDevice.MaxContacts" />
+        <element api="P:Windows.Devices.Input.PointerDevice.PhysicalDeviceRect" />
+        <element api="P:Windows.Devices.Input.PointerDevice.PointerDeviceType" />
+        <element api="P:Windows.Devices.Input.PointerDevice.ScreenRect" />
+        <element api="P:Windows.Devices.Input.PointerDevice.SupportedUsages" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDevice" />
+      </containers>
+      <file name="5d39b577-aed4-95bb-1fce-fba3b5f4ec75" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Input.PointerDevice">
+      <topicdata name="PointerDevice" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Input.PointerDevice" />
+      <apidata name="PointerDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Input.PointerDevice.GetPointerDevice(System.UInt32)" />
+        <element api="M:Windows.Devices.Input.PointerDevice.GetPointerDevices" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDevice" />
+      </containers>
+      <file name="b97d7e61-f8ff-e18f-8ff6-573799cdc364" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Input.PointerDevice">
+      <topicdata name="PointerDevice" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Input.PointerDevice" />
+      <apidata name="PointerDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Input.PointerDevice.IsIntegrated" />
+        <element api="P:Windows.Devices.Input.PointerDevice.MaxContacts" />
+        <element api="P:Windows.Devices.Input.PointerDevice.PhysicalDeviceRect" />
+        <element api="P:Windows.Devices.Input.PointerDevice.PointerDeviceType" />
+        <element api="P:Windows.Devices.Input.PointerDevice.ScreenRect" />
+        <element api="P:Windows.Devices.Input.PointerDevice.SupportedUsages" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDevice" />
+      </containers>
+      <file name="53801487-46bb-1620-c37b-6e9dad866f61" />
+    </api>
+    <api id="M:Windows.Devices.Input.PointerDevice.GetPointerDevice(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetPointerDevice" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="pointerId" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.Input.PointerDevice" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDevice" ref="true" />
+      </containers>
+      <file name="1d740627-884c-ab50-b2a9-7798e0e2c237" />
+    </api>
+    <api id="M:Windows.Devices.Input.PointerDevice.GetPointerDevices">
+      <topicdata group="api" />
+      <apidata name="GetPointerDevices" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Input.PointerDevice" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDevice" ref="true" />
+      </containers>
+      <file name="20ce207f-b696-0373-5edb-5740111590ab" />
+    </api>
+    <api id="P:Windows.Devices.Input.PointerDevice.IsIntegrated">
+      <topicdata group="api" />
+      <apidata name="IsIntegrated" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsIntegrated" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDevice" ref="true" />
+      </containers>
+      <file name="22b31151-8cf8-8875-cfc1-72ea681fe1ab" />
+    </api>
+    <api id="P:Windows.Devices.Input.PointerDevice.MaxContacts">
+      <topicdata group="api" />
+      <apidata name="MaxContacts" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MaxContacts" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDevice" ref="true" />
+      </containers>
+      <file name="ecaad9eb-b0c8-6f99-d0a1-24cd19b87c27" />
+    </api>
+    <api id="P:Windows.Devices.Input.PointerDevice.PhysicalDeviceRect">
+      <topicdata group="api" />
+      <apidata name="PhysicalDeviceRect" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PhysicalDeviceRect" />
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDevice" ref="true" />
+      </containers>
+      <file name="37fb0ffe-d0c1-c3ea-86f1-c2474e7df1b5" />
+    </api>
+    <api id="P:Windows.Devices.Input.PointerDevice.PointerDeviceType">
+      <topicdata group="api" />
+      <apidata name="PointerDeviceType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PointerDeviceType" />
+      <returns>
+        <type api="T:Windows.Devices.Input.PointerDeviceType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDevice" ref="true" />
+      </containers>
+      <file name="f065941b-937a-a8d3-a016-ab97f1ef99cd" />
+    </api>
+    <api id="P:Windows.Devices.Input.PointerDevice.ScreenRect">
+      <topicdata group="api" />
+      <apidata name="ScreenRect" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ScreenRect" />
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDevice" ref="true" />
+      </containers>
+      <file name="6fb09aff-ea03-a23d-a802-cc6667ef078e" />
+    </api>
+    <api id="P:Windows.Devices.Input.PointerDevice.SupportedUsages">
+      <topicdata group="api" />
+      <apidata name="SupportedUsages" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SupportedUsages" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Input.PointerDeviceUsage" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDevice" ref="true" />
+      </containers>
+      <file name="6dd5b400-7c43-37be-07c1-fa6f48ea68f8" />
+    </api>
+    <api id="T:Windows.Devices.Input.PointerDeviceType">
+      <topicdata group="api" />
+      <apidata name="PointerDeviceType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Input.PointerDeviceType.Touch" />
+        <element api="F:Windows.Devices.Input.PointerDeviceType.Pen" />
+        <element api="F:Windows.Devices.Input.PointerDeviceType.Mouse" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="90cba9f4-67fe-365c-e9c5-a285cea1b8f3" />
+    </api>
+    <api id="F:Windows.Devices.Input.PointerDeviceType.Mouse">
+      <topicdata group="api" notopic="" />
+      <apidata name="Mouse" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Input.PointerDeviceType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDeviceType" ref="false" />
+      </containers>
+      <file name="0b79a484-afa7-e6de-ce23-cfeccb06641d" />
+    </api>
+    <api id="F:Windows.Devices.Input.PointerDeviceType.Pen">
+      <topicdata group="api" notopic="" />
+      <apidata name="Pen" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Input.PointerDeviceType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDeviceType" ref="false" />
+      </containers>
+      <file name="345737bd-4560-6a3a-e189-a8042e1ce9e7" />
+    </api>
+    <api id="F:Windows.Devices.Input.PointerDeviceType.Touch">
+      <topicdata group="api" notopic="" />
+      <apidata name="Touch" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Input.PointerDeviceType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDeviceType" ref="false" />
+      </containers>
+      <file name="5a8a1af4-95e6-8779-d179-a0973c4f8ffb" />
+    </api>
+    <api id="T:Windows.Devices.Input.PointerDeviceUsage">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Input.PointerDeviceUsage" />
+      <apidata name="PointerDeviceUsage" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="753dfdd5-bbe3-a48a-4bd4-b68dda0503ec" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Input.PointerDeviceUsage">
+      <topicdata name="PointerDeviceUsage" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Input.PointerDeviceUsage" />
+      <apidata name="PointerDeviceUsage" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="F:Windows.Devices.Input.PointerDeviceUsage.MaxLogical" />
+        <element api="F:Windows.Devices.Input.PointerDeviceUsage.MaxPhysical" />
+        <element api="F:Windows.Devices.Input.PointerDeviceUsage.MinLogical" />
+        <element api="F:Windows.Devices.Input.PointerDeviceUsage.MinPhysical" />
+        <element api="F:Windows.Devices.Input.PointerDeviceUsage.PhysicalMultiplier" />
+        <element api="F:Windows.Devices.Input.PointerDeviceUsage.Unit" />
+        <element api="F:Windows.Devices.Input.PointerDeviceUsage.Usage" />
+        <element api="F:Windows.Devices.Input.PointerDeviceUsage.UsagePage" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDeviceUsage" />
+      </containers>
+      <file name="8bce385b-727d-dd11-ffb6-f1954aa08bda" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Input.PointerDeviceUsage">
+      <topicdata name="PointerDeviceUsage" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Input.PointerDeviceUsage" />
+      <apidata name="PointerDeviceUsage" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDeviceUsage" />
+      </containers>
+      <file name="94963f2b-d89a-813d-1405-4a850c781b5d" />
+    </api>
+    <api id="Fields.T:Windows.Devices.Input.PointerDeviceUsage">
+      <topicdata name="PointerDeviceUsage" group="list" subgroup="Fields" typeTopicId="T:Windows.Devices.Input.PointerDeviceUsage" />
+      <apidata name="PointerDeviceUsage" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="F:Windows.Devices.Input.PointerDeviceUsage.MaxLogical" />
+        <element api="F:Windows.Devices.Input.PointerDeviceUsage.MaxPhysical" />
+        <element api="F:Windows.Devices.Input.PointerDeviceUsage.MinLogical" />
+        <element api="F:Windows.Devices.Input.PointerDeviceUsage.MinPhysical" />
+        <element api="F:Windows.Devices.Input.PointerDeviceUsage.PhysicalMultiplier" />
+        <element api="F:Windows.Devices.Input.PointerDeviceUsage.Unit" />
+        <element api="F:Windows.Devices.Input.PointerDeviceUsage.Usage" />
+        <element api="F:Windows.Devices.Input.PointerDeviceUsage.UsagePage" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDeviceUsage" />
+      </containers>
+      <file name="048cda58-529f-0b80-ff3a-b3c5ab4c1710" />
+    </api>
+    <api id="F:Windows.Devices.Input.PointerDeviceUsage.MaxLogical">
+      <topicdata group="api" />
+      <apidata name="MaxLogical" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDeviceUsage" ref="false" />
+      </containers>
+      <file name="861f7a37-a044-3e3d-6273-9383aec9de46" />
+    </api>
+    <api id="F:Windows.Devices.Input.PointerDeviceUsage.MaxPhysical">
+      <topicdata group="api" />
+      <apidata name="MaxPhysical" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDeviceUsage" ref="false" />
+      </containers>
+      <file name="504fdd7a-3dbb-e56f-0ae7-2f5f24dc5e15" />
+    </api>
+    <api id="F:Windows.Devices.Input.PointerDeviceUsage.MinLogical">
+      <topicdata group="api" />
+      <apidata name="MinLogical" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDeviceUsage" ref="false" />
+      </containers>
+      <file name="3c8608f2-5b55-41e9-b43a-bb96b0f6780e" />
+    </api>
+    <api id="F:Windows.Devices.Input.PointerDeviceUsage.MinPhysical">
+      <topicdata group="api" />
+      <apidata name="MinPhysical" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDeviceUsage" ref="false" />
+      </containers>
+      <file name="9c732230-32b6-77a1-d6f6-12c8a91ecb77" />
+    </api>
+    <api id="F:Windows.Devices.Input.PointerDeviceUsage.PhysicalMultiplier">
+      <topicdata group="api" />
+      <apidata name="PhysicalMultiplier" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDeviceUsage" ref="false" />
+      </containers>
+      <file name="82b1b49b-b932-0271-45e4-cd4e37f17336" />
+    </api>
+    <api id="F:Windows.Devices.Input.PointerDeviceUsage.Unit">
+      <topicdata group="api" />
+      <apidata name="Unit" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDeviceUsage" ref="false" />
+      </containers>
+      <file name="6b7a04fd-79d3-b172-c1ab-b5b4c332dd29" />
+    </api>
+    <api id="F:Windows.Devices.Input.PointerDeviceUsage.Usage">
+      <topicdata group="api" />
+      <apidata name="Usage" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDeviceUsage" ref="false" />
+      </containers>
+      <file name="03b5bafc-8a80-aa57-cac7-e8b1399f13e3" />
+    </api>
+    <api id="F:Windows.Devices.Input.PointerDeviceUsage.UsagePage">
+      <topicdata group="api" />
+      <apidata name="UsagePage" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.PointerDeviceUsage" ref="false" />
+      </containers>
+      <file name="e54d36c1-687d-d73e-3021-d9ab26da83af" />
+    </api>
+    <api id="T:Windows.Devices.Input.TouchCapabilities">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Input.TouchCapabilities" />
+      <apidata name="TouchCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.Input.TouchCapabilities.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Input.ITouchCapabilities" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a7739500-702d-9c96-cbb3-1a6f4ecc77ba" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Input.TouchCapabilities">
+      <topicdata name="TouchCapabilities" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Input.TouchCapabilities" />
+      <apidata name="TouchCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.Input.TouchCapabilities.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Input.TouchCapabilities.#ctor" />
+        <element api="P:Windows.Devices.Input.TouchCapabilities.Contacts" />
+        <element api="P:Windows.Devices.Input.TouchCapabilities.TouchPresent" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.TouchCapabilities" />
+      </containers>
+      <file name="a4ff0ec4-c1aa-8347-b32d-09b057b255fb" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Input.TouchCapabilities">
+      <topicdata name="TouchCapabilities" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Input.TouchCapabilities" />
+      <apidata name="TouchCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.Input.TouchCapabilities.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.TouchCapabilities" />
+      </containers>
+      <file name="e9cb26b9-2424-0069-aa3b-3280c0d29203" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Input.TouchCapabilities">
+      <topicdata name="TouchCapabilities" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Input.TouchCapabilities" />
+      <apidata name="TouchCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.Input.TouchCapabilities.#ctor" />
+      <elements>
+        <element api="P:Windows.Devices.Input.TouchCapabilities.Contacts" />
+        <element api="P:Windows.Devices.Input.TouchCapabilities.TouchPresent" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.TouchCapabilities" />
+      </containers>
+      <file name="98f72650-d27f-2ce6-e628-88b72ef24765" />
+    </api>
+    <api id="M:Windows.Devices.Input.TouchCapabilities.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.TouchCapabilities" ref="true" />
+      </containers>
+      <file name="256fcffa-e937-ce75-b9f0-5b4ec4b39409" />
+    </api>
+    <api id="P:Windows.Devices.Input.TouchCapabilities.Contacts">
+      <topicdata group="api" />
+      <apidata name="Contacts" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Contacts" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.TouchCapabilities" ref="true" />
+      </containers>
+      <file name="eaa37eab-9235-3e46-2aec-40c9bd13921c" />
+    </api>
+    <api id="P:Windows.Devices.Input.TouchCapabilities.TouchPresent">
+      <topicdata group="api" />
+      <apidata name="TouchPresent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_TouchPresent" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Input" />
+        <type api="T:Windows.Devices.Input.TouchCapabilities" ref="true" />
+      </containers>
+      <file name="35f2a5e8-d476-5443-9cd5-597257501e83" />
+    </api>
+  </apis>
+</reflection>

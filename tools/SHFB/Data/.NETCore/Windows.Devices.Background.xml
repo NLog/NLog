@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Background">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Background" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Background.DeviceUseDetails" />
+        <element api="T:Windows.Devices.Background.DeviceServicingDetails" />
+      </elements>
+      <file name="40253e3c-1ec5-f3dd-5132-b319c83368d6" />
+    </api>
+    <api id="T:Windows.Devices.Background.DeviceServicingDetails">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Background.DeviceServicingDetails" />
+      <apidata name="DeviceServicingDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Background.IDeviceServicingDetails" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Background" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="41273d17-4bf3-8d5d-87e7-79715989c8e6" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Background.DeviceServicingDetails">
+      <topicdata name="DeviceServicingDetails" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Background.DeviceServicingDetails" />
+      <apidata name="DeviceServicingDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.Background.DeviceServicingDetails.Arguments" />
+        <element api="P:Windows.Devices.Background.DeviceServicingDetails.DeviceId" />
+        <element api="P:Windows.Devices.Background.DeviceServicingDetails.ExpectedDuration" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Background" />
+        <type api="T:Windows.Devices.Background.DeviceServicingDetails" />
+      </containers>
+      <file name="91bce854-2d02-08b8-35ca-99ed325f73a6" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Background.DeviceServicingDetails">
+      <topicdata name="DeviceServicingDetails" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Background.DeviceServicingDetails" />
+      <apidata name="DeviceServicingDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Background" />
+        <type api="T:Windows.Devices.Background.DeviceServicingDetails" />
+      </containers>
+      <file name="010e6046-bd6e-9c2b-8575-a551ea950b6c" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Background.DeviceServicingDetails">
+      <topicdata name="DeviceServicingDetails" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Background.DeviceServicingDetails" />
+      <apidata name="DeviceServicingDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Background.DeviceServicingDetails.Arguments" />
+        <element api="P:Windows.Devices.Background.DeviceServicingDetails.DeviceId" />
+        <element api="P:Windows.Devices.Background.DeviceServicingDetails.ExpectedDuration" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Background" />
+        <type api="T:Windows.Devices.Background.DeviceServicingDetails" />
+      </containers>
+      <file name="bf9fdc09-6910-5a9e-bdcc-358ca04052dd" />
+    </api>
+    <api id="P:Windows.Devices.Background.DeviceServicingDetails.Arguments">
+      <topicdata group="api" />
+      <apidata name="Arguments" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Arguments" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Background" />
+        <type api="T:Windows.Devices.Background.DeviceServicingDetails" ref="true" />
+      </containers>
+      <file name="d3e97088-c41c-d832-7fe5-6c77540cc378" />
+    </api>
+    <api id="P:Windows.Devices.Background.DeviceServicingDetails.DeviceId">
+      <topicdata group="api" />
+      <apidata name="DeviceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DeviceId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Background" />
+        <type api="T:Windows.Devices.Background.DeviceServicingDetails" ref="true" />
+      </containers>
+      <file name="a8f4885e-41f8-6f6a-7f4a-f4cad5dbf9ea" />
+    </api>
+    <api id="P:Windows.Devices.Background.DeviceServicingDetails.ExpectedDuration">
+      <topicdata group="api" />
+      <apidata name="ExpectedDuration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ExpectedDuration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Background" />
+        <type api="T:Windows.Devices.Background.DeviceServicingDetails" ref="true" />
+      </containers>
+      <file name="3edbbb48-c524-33f8-ee63-c85e942f8411" />
+    </api>
+    <api id="T:Windows.Devices.Background.DeviceUseDetails">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Background.DeviceUseDetails" />
+      <apidata name="DeviceUseDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Background.IDeviceUseDetails" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Background" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="104afac3-7007-1fa3-50b1-d65da6af1873" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Background.DeviceUseDetails">
+      <topicdata name="DeviceUseDetails" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Background.DeviceUseDetails" />
+      <apidata name="DeviceUseDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.Background.DeviceUseDetails.Arguments" />
+        <element api="P:Windows.Devices.Background.DeviceUseDetails.DeviceId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Background" />
+        <type api="T:Windows.Devices.Background.DeviceUseDetails" />
+      </containers>
+      <file name="c3c7fae9-adfa-2838-32b6-6ff398ba984e" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Background.DeviceUseDetails">
+      <topicdata name="DeviceUseDetails" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Background.DeviceUseDetails" />
+      <apidata name="DeviceUseDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Background" />
+        <type api="T:Windows.Devices.Background.DeviceUseDetails" />
+      </containers>
+      <file name="de86d4fd-23c9-3a22-a3cf-9e071f95d5c3" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Background.DeviceUseDetails">
+      <topicdata name="DeviceUseDetails" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Background.DeviceUseDetails" />
+      <apidata name="DeviceUseDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Background.DeviceUseDetails.Arguments" />
+        <element api="P:Windows.Devices.Background.DeviceUseDetails.DeviceId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Background" />
+        <type api="T:Windows.Devices.Background.DeviceUseDetails" />
+      </containers>
+      <file name="a5bfbb26-53a2-d73e-7415-aef6ef5a63c2" />
+    </api>
+    <api id="P:Windows.Devices.Background.DeviceUseDetails.Arguments">
+      <topicdata group="api" />
+      <apidata name="Arguments" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Arguments" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Background" />
+        <type api="T:Windows.Devices.Background.DeviceUseDetails" ref="true" />
+      </containers>
+      <file name="c7ac9d03-c8a5-3d03-1011-4d76a109cd56" />
+    </api>
+    <api id="P:Windows.Devices.Background.DeviceUseDetails.DeviceId">
+      <topicdata group="api" />
+      <apidata name="DeviceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DeviceId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Background" />
+        <type api="T:Windows.Devices.Background.DeviceUseDetails" ref="true" />
+      </containers>
+      <file name="ed4b3a27-b2cc-fa1e-f801-f5b6b55abfac" />
+    </api>
+  </apis>
+</reflection>

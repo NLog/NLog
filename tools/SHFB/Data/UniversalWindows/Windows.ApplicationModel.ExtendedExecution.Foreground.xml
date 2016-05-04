@@ -1,0 +1,883 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.ExtendedExecution.Foreground">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.ExtendedExecution.Foreground" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundResult" />
+        <element api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedReason" />
+        <element api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason" />
+        <element api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedEventArgs" />
+        <element api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession" />
+      </elements>
+      <file name="dc4f99a3-12d0-0b86-eae0-0195e4ec9eb7" />
+    </api>
+    <api id="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason">
+      <topicdata group="api" />
+      <apidata name="ExtendedExecutionForegroundReason" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason.Unspecified" />
+        <element api="F:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason.SavingData" />
+        <element api="F:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason.BackgroundAudio" />
+        <element api="F:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason.Unconstrained" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e37af237-2510-73eb-7769-cfaa210b32ad" />
+    </api>
+    <api id="F:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason.BackgroundAudio">
+      <topicdata group="api" notopic="" />
+      <apidata name="BackgroundAudio" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason" ref="false" />
+      </containers>
+      <file name="bd0af570-44d5-9358-51f8-36f76945e134" />
+    </api>
+    <api id="F:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason.SavingData">
+      <topicdata group="api" notopic="" />
+      <apidata name="SavingData" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason" ref="false" />
+      </containers>
+      <file name="f967af5d-26ad-d015-b285-5b088f0628d0" />
+    </api>
+    <api id="F:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason.Unconstrained">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unconstrained" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason" ref="false" />
+      </containers>
+      <file name="649dffae-dbf5-91f7-9cfe-22439db20924" />
+    </api>
+    <api id="F:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason.Unspecified">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unspecified" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason" ref="false" />
+      </containers>
+      <file name="840daa74-17d2-9a9c-4730-719399daa6e9" />
+    </api>
+    <api id="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundResult">
+      <topicdata group="api" />
+      <apidata name="ExtendedExecutionForegroundResult" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundResult.Allowed" />
+        <element api="F:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundResult.Denied" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b6cd4459-5698-f4d4-c610-620d7fc67733" />
+    </api>
+    <api id="F:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundResult.Allowed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Allowed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundResult" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundResult" ref="false" />
+      </containers>
+      <file name="2f1d747e-ddf9-03ca-8ee9-d4f674bab27c" />
+    </api>
+    <api id="F:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundResult.Denied">
+      <topicdata group="api" notopic="" />
+      <apidata name="Denied" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundResult" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundResult" ref="false" />
+      </containers>
+      <file name="3b8ae595-919a-5fda-d408-f2b678369c9e" />
+    </api>
+    <api id="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedEventArgs" />
+      <apidata name="ExtendedExecutionForegroundRevokedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="38d1425b-2de1-c6e2-a72d-5ecb0c56c7d7" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedEventArgs">
+      <topicdata name="ExtendedExecutionForegroundRevokedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedEventArgs" />
+      <apidata name="ExtendedExecutionForegroundRevokedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedEventArgs.Reason" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedEventArgs" />
+      </containers>
+      <file name="9c7f9055-e0c9-fbfa-48bc-8f5cd8925bec" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedEventArgs">
+      <topicdata name="ExtendedExecutionForegroundRevokedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedEventArgs" />
+      <apidata name="ExtendedExecutionForegroundRevokedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedEventArgs" />
+      </containers>
+      <file name="4b6a9409-7981-b98a-246c-90a3132005e0" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedEventArgs">
+      <topicdata name="ExtendedExecutionForegroundRevokedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedEventArgs" />
+      <apidata name="ExtendedExecutionForegroundRevokedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedEventArgs.Reason" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedEventArgs" />
+      </containers>
+      <file name="03bedb06-71fc-9945-4c73-ab17deb1f1a8" />
+    </api>
+    <api id="P:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedEventArgs.Reason">
+      <topicdata group="api" />
+      <apidata name="Reason" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Reason" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedReason" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedEventArgs" ref="true" />
+      </containers>
+      <file name="c49498e8-4be7-7f56-919f-fd6186276a90" />
+    </api>
+    <api id="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedReason">
+      <topicdata group="api" />
+      <apidata name="ExtendedExecutionForegroundRevokedReason" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedReason.Resumed" />
+        <element api="F:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedReason.SystemPolicy" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="55344042-8201-f04d-6897-74afbef42115" />
+    </api>
+    <api id="F:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedReason.Resumed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Resumed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedReason" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedReason" ref="false" />
+      </containers>
+      <file name="1c759353-3255-57f2-2234-1ef004fbe7a6" />
+    </api>
+    <api id="F:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedReason.SystemPolicy">
+      <topicdata group="api" notopic="" />
+      <apidata name="SystemPolicy" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedReason" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedReason" ref="false" />
+      </containers>
+      <file name="186777c3-4bc4-b9c4-8ee9-1f7ee93fe8ff" />
+    </api>
+    <api id="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession" />
+      <apidata name="ExtendedExecutionForegroundSession" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="67a1b754-2d68-50bd-68a5-6905063823e3" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession">
+      <topicdata name="ExtendedExecutionForegroundSession" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession" />
+      <apidata name="ExtendedExecutionForegroundSession" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.#ctor" />
+        <element api="M:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.Close" />
+        <element api="P:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.Description" />
+        <element api="P:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.Reason" />
+        <element api="M:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.RequestExtensionAsync" />
+        <element api="E:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.Revoked" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession" />
+      </containers>
+      <file name="b8d995a4-18df-8f3b-2d51-67e9cf6019b6" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession">
+      <topicdata name="ExtendedExecutionForegroundSession" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession" />
+      <apidata name="ExtendedExecutionForegroundSession" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.Close" />
+        <element api="M:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.RequestExtensionAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession" />
+      </containers>
+      <file name="f755cc44-7e37-383f-76ef-4cef030c41ea" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession">
+      <topicdata name="ExtendedExecutionForegroundSession" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession" />
+      <apidata name="ExtendedExecutionForegroundSession" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.#ctor" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.Description" />
+        <element api="P:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.Reason" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession" />
+      </containers>
+      <file name="fa8b1e66-8af0-5f5e-b9df-b3f98218556d" />
+    </api>
+    <api id="Events.T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession">
+      <topicdata name="ExtendedExecutionForegroundSession" group="list" subgroup="Events" typeTopicId="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession" />
+      <apidata name="ExtendedExecutionForegroundSession" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.#ctor" />
+      <elements>
+        <element api="E:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.Revoked" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession" />
+      </containers>
+      <file name="66e8ab2c-5901-cd24-5686-4cad10edc9fb" />
+    </api>
+    <api id="M:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession" ref="true" />
+      </containers>
+      <file name="34a68722-2e66-111b-77a8-05468e076cb9" />
+    </api>
+    <api id="M:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession" ref="true" />
+      </containers>
+      <file name="87b12d63-c09d-e7b2-23f5-c991d70fecfe" />
+    </api>
+    <api id="P:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.Description">
+      <topicdata group="api" />
+      <apidata name="Description" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Description" />
+      <setter name="set_Description" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession" ref="true" />
+      </containers>
+      <file name="782a11e8-8268-7f64-c785-a71ab61a50a8" />
+    </api>
+    <api id="P:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.Reason">
+      <topicdata group="api" />
+      <apidata name="Reason" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Reason" />
+      <setter name="set_Reason" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession" ref="true" />
+      </containers>
+      <file name="3da9ea2a-ea06-f210-4214-5a35ab6c9266" />
+    </api>
+    <api id="M:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.RequestExtensionAsync">
+      <topicdata group="api" />
+      <apidata name="RequestExtensionAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundResult" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="89bf6162-1451-3d74-5ad0-a9a9f70a471d" />
+    </api>
+    <api id="E:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession.Revoked">
+      <topicdata group="api" />
+      <apidata name="Revoked" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Revoked" />
+      <remover name="remove_Revoked" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+            <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.ExtendedExecution.Foreground" />
+        <type api="T:Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession" ref="true" />
+      </containers>
+      <file name="58694a8e-26f8-7fd4-9b3d-11e9206c100c" />
+    </api>
+  </apis>
+</reflection>

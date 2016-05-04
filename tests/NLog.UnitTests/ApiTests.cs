@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -40,6 +40,9 @@ namespace NLog.UnitTests
     using NLog.Config;
     using Xunit;
 
+    /// <summary>
+    /// Test the characteristics of the API. Config of the API is testged in <see cref="NLog.UnitTests.Config.ConfigApiTests"/>
+    /// </summary>
     public class ApiTests : NLogTestBase
     {
         private Type[] allTypes;

@@ -1,0 +1,1944 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.SerialCommunication">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.SerialCommunication" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.SerialCommunication.SerialParity" />
+        <element api="T:Windows.Devices.SerialCommunication.SerialHandshake" />
+        <element api="T:Windows.Devices.SerialCommunication.SerialStopBitCount" />
+        <element api="T:Windows.Devices.SerialCommunication.SerialError" />
+        <element api="T:Windows.Devices.SerialCommunication.SerialPinChange" />
+        <element api="T:Windows.Devices.SerialCommunication.SerialDevice" />
+        <element api="T:Windows.Devices.SerialCommunication.ErrorReceivedEventArgs" />
+        <element api="T:Windows.Devices.SerialCommunication.PinChangedEventArgs" />
+      </elements>
+      <file name="17d5db3e-b908-022a-81d5-3aa7f01adfaa" />
+    </api>
+    <api id="T:Windows.Devices.SerialCommunication.ErrorReceivedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.SerialCommunication.ErrorReceivedEventArgs" />
+      <apidata name="ErrorReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5159a041-0aec-57f2-f6a5-dafca1ee9d5c" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.SerialCommunication.ErrorReceivedEventArgs">
+      <topicdata name="ErrorReceivedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Devices.SerialCommunication.ErrorReceivedEventArgs" />
+      <apidata name="ErrorReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.SerialCommunication.ErrorReceivedEventArgs.Error" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.ErrorReceivedEventArgs" />
+      </containers>
+      <file name="a76d449b-d7e7-ce7f-f93f-a1db7fbb7504" />
+    </api>
+    <api id="Methods.T:Windows.Devices.SerialCommunication.ErrorReceivedEventArgs">
+      <topicdata name="ErrorReceivedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.SerialCommunication.ErrorReceivedEventArgs" />
+      <apidata name="ErrorReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.ErrorReceivedEventArgs" />
+      </containers>
+      <file name="17c07d91-9627-c8e0-fda7-a262ec5a1981" />
+    </api>
+    <api id="Properties.T:Windows.Devices.SerialCommunication.ErrorReceivedEventArgs">
+      <topicdata name="ErrorReceivedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.SerialCommunication.ErrorReceivedEventArgs" />
+      <apidata name="ErrorReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.SerialCommunication.ErrorReceivedEventArgs.Error" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.ErrorReceivedEventArgs" />
+      </containers>
+      <file name="6371a879-3a50-2f93-84ff-cb8fbbb2e21b" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.ErrorReceivedEventArgs.Error">
+      <topicdata group="api" />
+      <apidata name="Error" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Error" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialError" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.ErrorReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="5960991d-f87f-88fd-06b3-e70bac6e3352" />
+    </api>
+    <api id="T:Windows.Devices.SerialCommunication.PinChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.SerialCommunication.PinChangedEventArgs" />
+      <apidata name="PinChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b5985e67-f2bb-8c6d-6527-bf0556313a99" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.SerialCommunication.PinChangedEventArgs">
+      <topicdata name="PinChangedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Devices.SerialCommunication.PinChangedEventArgs" />
+      <apidata name="PinChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.SerialCommunication.PinChangedEventArgs.PinChange" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.PinChangedEventArgs" />
+      </containers>
+      <file name="a8603518-d83f-afda-a512-153e8d18119b" />
+    </api>
+    <api id="Methods.T:Windows.Devices.SerialCommunication.PinChangedEventArgs">
+      <topicdata name="PinChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.SerialCommunication.PinChangedEventArgs" />
+      <apidata name="PinChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.PinChangedEventArgs" />
+      </containers>
+      <file name="f7e2307d-847d-3ac7-a973-bb196864faf3" />
+    </api>
+    <api id="Properties.T:Windows.Devices.SerialCommunication.PinChangedEventArgs">
+      <topicdata name="PinChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.SerialCommunication.PinChangedEventArgs" />
+      <apidata name="PinChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.SerialCommunication.PinChangedEventArgs.PinChange" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.PinChangedEventArgs" />
+      </containers>
+      <file name="94e366ac-f984-c04f-7036-d58916cb6338" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.PinChangedEventArgs.PinChange">
+      <topicdata group="api" />
+      <apidata name="PinChange" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PinChange" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialPinChange" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.PinChangedEventArgs" ref="true" />
+      </containers>
+      <file name="2d781fd6-ef5c-86d4-bf57-2b781f8fabdb" />
+    </api>
+    <api id="T:Windows.Devices.SerialCommunication.SerialDevice">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.SerialCommunication.SerialDevice" />
+      <apidata name="SerialDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="96ce1f9a-9251-fc67-a56c-d1203ceb76c4" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.SerialCommunication.SerialDevice">
+      <topicdata name="SerialDevice" group="list" subgroup="members" typeTopicId="T:Windows.Devices.SerialCommunication.SerialDevice" />
+      <apidata name="SerialDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.BaudRate" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.BreakSignalState" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.BytesReceived" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.CarrierDetectState" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.ClearToSendState" />
+        <element api="M:Windows.Devices.SerialCommunication.SerialDevice.Close" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.DataBits" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.DataSetReadyState" />
+        <element api="E:Windows.Devices.SerialCommunication.SerialDevice.ErrorReceived" />
+        <element api="M:Windows.Devices.SerialCommunication.SerialDevice.FromIdAsync(System.String)" />
+        <element api="Overload:Windows.Devices.SerialCommunication.SerialDevice.GetDeviceSelector">
+          <element api="M:Windows.Devices.SerialCommunication.SerialDevice.GetDeviceSelector" />
+          <element api="M:Windows.Devices.SerialCommunication.SerialDevice.GetDeviceSelector(System.String)" />
+        </element>
+        <element api="M:Windows.Devices.SerialCommunication.SerialDevice.GetDeviceSelectorFromUsbVidPid(System.UInt16,System.UInt16)" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.Handshake" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.InputStream" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.IsDataTerminalReadyEnabled" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.IsRequestToSendEnabled" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.OutputStream" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.Parity" />
+        <element api="E:Windows.Devices.SerialCommunication.SerialDevice.PinChanged" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.PortName" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.ReadTimeout" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.StopBits" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.UsbProductId" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.UsbVendorId" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.WriteTimeout" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" />
+      </containers>
+      <file name="55f72342-0629-2b58-a0bc-add5a7c596e8" />
+    </api>
+    <api id="Methods.T:Windows.Devices.SerialCommunication.SerialDevice">
+      <topicdata name="SerialDevice" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.SerialCommunication.SerialDevice" />
+      <apidata name="SerialDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.SerialCommunication.SerialDevice.Close" />
+        <element api="M:Windows.Devices.SerialCommunication.SerialDevice.FromIdAsync(System.String)" />
+        <element api="Overload:Windows.Devices.SerialCommunication.SerialDevice.GetDeviceSelector">
+          <element api="M:Windows.Devices.SerialCommunication.SerialDevice.GetDeviceSelector" />
+          <element api="M:Windows.Devices.SerialCommunication.SerialDevice.GetDeviceSelector(System.String)" />
+        </element>
+        <element api="M:Windows.Devices.SerialCommunication.SerialDevice.GetDeviceSelectorFromUsbVidPid(System.UInt16,System.UInt16)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" />
+      </containers>
+      <file name="d1d37ad2-953b-e969-d0ee-6d4fea2387c2" />
+    </api>
+    <api id="Properties.T:Windows.Devices.SerialCommunication.SerialDevice">
+      <topicdata name="SerialDevice" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.SerialCommunication.SerialDevice" />
+      <apidata name="SerialDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.BaudRate" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.BreakSignalState" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.BytesReceived" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.CarrierDetectState" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.ClearToSendState" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.DataBits" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.DataSetReadyState" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.Handshake" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.InputStream" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.IsDataTerminalReadyEnabled" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.IsRequestToSendEnabled" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.OutputStream" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.Parity" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.PortName" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.ReadTimeout" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.StopBits" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.UsbProductId" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.UsbVendorId" />
+        <element api="P:Windows.Devices.SerialCommunication.SerialDevice.WriteTimeout" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" />
+      </containers>
+      <file name="00749aff-3a6d-ac9f-4186-72021e0a000c" />
+    </api>
+    <api id="Events.T:Windows.Devices.SerialCommunication.SerialDevice">
+      <topicdata name="SerialDevice" group="list" subgroup="Events" typeTopicId="T:Windows.Devices.SerialCommunication.SerialDevice" />
+      <apidata name="SerialDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Devices.SerialCommunication.SerialDevice.ErrorReceived" />
+        <element api="E:Windows.Devices.SerialCommunication.SerialDevice.PinChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" />
+      </containers>
+      <file name="13f3d779-4617-39cc-cca3-b2a0fc9b9490" />
+    </api>
+    <api id="Overload:Windows.Devices.SerialCommunication.SerialDevice.GetDeviceSelector">
+      <topicdata name="GetDeviceSelector" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Devices.SerialCommunication.SerialDevice" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Devices.SerialCommunication.SerialDevice.GetDeviceSelector" />
+        <element api="M:Windows.Devices.SerialCommunication.SerialDevice.GetDeviceSelector(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="6a0786dc-40e4-7666-def7-ec5981335553" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.SerialDevice.BaudRate">
+      <topicdata group="api" />
+      <apidata name="BaudRate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BaudRate" />
+      <setter name="set_BaudRate" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="70833949-39f5-af35-99d5-efe6cb1ba954" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.SerialDevice.BreakSignalState">
+      <topicdata group="api" />
+      <apidata name="BreakSignalState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BreakSignalState" />
+      <setter name="set_BreakSignalState" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="4e03e23d-e247-a444-3d20-cfbfe643a271" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.SerialDevice.BytesReceived">
+      <topicdata group="api" />
+      <apidata name="BytesReceived" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_BytesReceived" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="cd4758cb-b1f9-905a-db95-1384dd5f4aee" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.SerialDevice.CarrierDetectState">
+      <topicdata group="api" />
+      <apidata name="CarrierDetectState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CarrierDetectState" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="d002b59b-2baf-0c2d-ecc9-71b39dc70512" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.SerialDevice.ClearToSendState">
+      <topicdata group="api" />
+      <apidata name="ClearToSendState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ClearToSendState" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="50411cf2-46c2-d4be-eaaf-8c1d2c3691c7" />
+    </api>
+    <api id="M:Windows.Devices.SerialCommunication.SerialDevice.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="b856208b-a9b8-4d2b-3ebd-a8020a5d953f" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.SerialDevice.DataBits">
+      <topicdata group="api" />
+      <apidata name="DataBits" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DataBits" />
+      <setter name="set_DataBits" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="c4e8130b-aacc-807a-ead2-e853702e8075" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.SerialDevice.DataSetReadyState">
+      <topicdata group="api" />
+      <apidata name="DataSetReadyState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DataSetReadyState" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="a5bfbe59-ee99-f137-e058-47f2d8071169" />
+    </api>
+    <api id="E:Windows.Devices.SerialCommunication.SerialDevice.ErrorReceived">
+      <topicdata group="api" />
+      <apidata name="ErrorReceived" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ErrorReceived" />
+      <remover name="remove_ErrorReceived" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+            <type api="T:Windows.Devices.SerialCommunication.ErrorReceivedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="01848ff7-1c2d-ecaa-b29a-c986ee0ad2e4" />
+    </api>
+    <api id="M:Windows.Devices.SerialCommunication.SerialDevice.FromIdAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="FromIdAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="6841e0d7-74c8-0376-75f6-3fe8cae10869" />
+    </api>
+    <api id="M:Windows.Devices.SerialCommunication.SerialDevice.GetDeviceSelector">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.SerialCommunication.SerialDevice.GetDeviceSelector" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetDeviceSelector</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="065c6ebd-4a8e-938c-dadb-51312141180c" />
+    </api>
+    <api id="M:Windows.Devices.SerialCommunication.SerialDevice.GetDeviceSelector(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.SerialCommunication.SerialDevice.GetDeviceSelector" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="portName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetDeviceSelectorFromPortName</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3476e86d-7727-6ada-2385-9b05df1f772a" />
+    </api>
+    <api id="M:Windows.Devices.SerialCommunication.SerialDevice.GetDeviceSelectorFromUsbVidPid(System.UInt16,System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelectorFromUsbVidPid" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="vendorId" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+        <parameter name="productId" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="7003302b-e345-84df-18fa-2b90cfec6b6f" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.SerialDevice.Handshake">
+      <topicdata group="api" />
+      <apidata name="Handshake" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Handshake" />
+      <setter name="set_Handshake" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialHandshake" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="04ed676c-3f76-d2f5-4ff3-579145f9cd6f" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.SerialDevice.InputStream">
+      <topicdata group="api" />
+      <apidata name="InputStream" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_InputStream" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="f962cd7a-90c0-1ac1-7386-1984f395baab" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.SerialDevice.IsDataTerminalReadyEnabled">
+      <topicdata group="api" />
+      <apidata name="IsDataTerminalReadyEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsDataTerminalReadyEnabled" />
+      <setter name="set_IsDataTerminalReadyEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="da01fa46-340b-5a94-3d6d-8b14aa1adbf9" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.SerialDevice.IsRequestToSendEnabled">
+      <topicdata group="api" />
+      <apidata name="IsRequestToSendEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsRequestToSendEnabled" />
+      <setter name="set_IsRequestToSendEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="2b940071-7e24-ef64-c154-4cc16d14def0" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.SerialDevice.OutputStream">
+      <topicdata group="api" />
+      <apidata name="OutputStream" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_OutputStream" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="ad85ccda-df43-bb29-4529-467077aecd76" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.SerialDevice.Parity">
+      <topicdata group="api" />
+      <apidata name="Parity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Parity" />
+      <setter name="set_Parity" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialParity" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="0c534081-1960-c1bb-69be-533f437199a5" />
+    </api>
+    <api id="E:Windows.Devices.SerialCommunication.SerialDevice.PinChanged">
+      <topicdata group="api" />
+      <apidata name="PinChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PinChanged" />
+      <remover name="remove_PinChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+            <type api="T:Windows.Devices.SerialCommunication.PinChangedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="9e5a5a1f-6d42-c2f6-3d6f-3ce5979470bc" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.SerialDevice.PortName">
+      <topicdata group="api" />
+      <apidata name="PortName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PortName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="cfc4b71a-3bb5-9bc3-afb0-632d4b2e78c5" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.SerialDevice.ReadTimeout">
+      <topicdata group="api" />
+      <apidata name="ReadTimeout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ReadTimeout" />
+      <setter name="set_ReadTimeout" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="916de36a-0463-ee1e-8797-ed46d9297f97" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.SerialDevice.StopBits">
+      <topicdata group="api" />
+      <apidata name="StopBits" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_StopBits" />
+      <setter name="set_StopBits" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialStopBitCount" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="3f71a4a0-d0a1-6ccb-3dd2-bb7e4c6feb11" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.SerialDevice.UsbProductId">
+      <topicdata group="api" />
+      <apidata name="UsbProductId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UsbProductId" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="9dfbedf6-fd58-d834-d59e-9c3b87ac6895" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.SerialDevice.UsbVendorId">
+      <topicdata group="api" />
+      <apidata name="UsbVendorId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UsbVendorId" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="6d515312-06c8-45e7-8c99-0b77d5df4f94" />
+    </api>
+    <api id="P:Windows.Devices.SerialCommunication.SerialDevice.WriteTimeout">
+      <topicdata group="api" />
+      <apidata name="WriteTimeout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_WriteTimeout" />
+      <setter name="set_WriteTimeout" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialDevice" ref="true" />
+      </containers>
+      <file name="13d6fc45-b654-5b5f-00f1-eb645f48a8c3" />
+    </api>
+    <api id="T:Windows.Devices.SerialCommunication.SerialError">
+      <topicdata group="api" />
+      <apidata name="SerialError" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.SerialCommunication.SerialError.Frame" />
+        <element api="F:Windows.Devices.SerialCommunication.SerialError.BufferOverrun" />
+        <element api="F:Windows.Devices.SerialCommunication.SerialError.ReceiveFull" />
+        <element api="F:Windows.Devices.SerialCommunication.SerialError.ReceiveParity" />
+        <element api="F:Windows.Devices.SerialCommunication.SerialError.TransmitFull" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2397b6b1-02e4-099e-8054-03a24da68711" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialError.BufferOverrun">
+      <topicdata group="api" notopic="" />
+      <apidata name="BufferOverrun" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialError" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialError" ref="false" />
+      </containers>
+      <file name="1db05fc0-986d-6515-50ff-dea9a3c4c9d2" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialError.Frame">
+      <topicdata group="api" notopic="" />
+      <apidata name="Frame" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialError" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialError" ref="false" />
+      </containers>
+      <file name="7506c86b-8f8b-ea53-31a9-f2c6c86b2108" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialError.ReceiveFull">
+      <topicdata group="api" notopic="" />
+      <apidata name="ReceiveFull" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialError" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialError" ref="false" />
+      </containers>
+      <file name="53543956-6dad-af19-8126-bc1893685c70" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialError.ReceiveParity">
+      <topicdata group="api" notopic="" />
+      <apidata name="ReceiveParity" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialError" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialError" ref="false" />
+      </containers>
+      <file name="f04aae52-ffdb-0b13-b82e-dc511851bdf0" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialError.TransmitFull">
+      <topicdata group="api" notopic="" />
+      <apidata name="TransmitFull" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialError" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialError" ref="false" />
+      </containers>
+      <file name="a60aa3b4-a86c-339f-a624-3b5c0f6d3bd1" />
+    </api>
+    <api id="T:Windows.Devices.SerialCommunication.SerialHandshake">
+      <topicdata group="api" />
+      <apidata name="SerialHandshake" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.SerialCommunication.SerialHandshake.None" />
+        <element api="F:Windows.Devices.SerialCommunication.SerialHandshake.RequestToSend" />
+        <element api="F:Windows.Devices.SerialCommunication.SerialHandshake.XOnXOff" />
+        <element api="F:Windows.Devices.SerialCommunication.SerialHandshake.RequestToSendXOnXOff" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2ebec38a-d084-86cf-19b2-19213b0338fe" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialHandshake.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialHandshake" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialHandshake" ref="false" />
+      </containers>
+      <file name="f814e66e-f804-b514-565a-8b0b6a6a7860" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialHandshake.RequestToSend">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestToSend" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialHandshake" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialHandshake" ref="false" />
+      </containers>
+      <file name="cf8f6f7a-1898-9f17-a092-a1b7687100f2" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialHandshake.RequestToSendXOnXOff">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestToSendXOnXOff" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialHandshake" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialHandshake" ref="false" />
+      </containers>
+      <file name="c1df588c-c282-9943-e861-5a7f49dd2f75" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialHandshake.XOnXOff">
+      <topicdata group="api" notopic="" />
+      <apidata name="XOnXOff" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialHandshake" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialHandshake" ref="false" />
+      </containers>
+      <file name="259a85d2-6e0b-a6b0-1cd5-da9be5020b5f" />
+    </api>
+    <api id="T:Windows.Devices.SerialCommunication.SerialParity">
+      <topicdata group="api" />
+      <apidata name="SerialParity" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.SerialCommunication.SerialParity.None" />
+        <element api="F:Windows.Devices.SerialCommunication.SerialParity.Odd" />
+        <element api="F:Windows.Devices.SerialCommunication.SerialParity.Even" />
+        <element api="F:Windows.Devices.SerialCommunication.SerialParity.Mark" />
+        <element api="F:Windows.Devices.SerialCommunication.SerialParity.Space" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="881be83d-475f-a487-e463-6db4a0bbc09e" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialParity.Even">
+      <topicdata group="api" notopic="" />
+      <apidata name="Even" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialParity" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialParity" ref="false" />
+      </containers>
+      <file name="1172d6c7-dd47-afce-c510-d4e7c1ff37f4" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialParity.Mark">
+      <topicdata group="api" notopic="" />
+      <apidata name="Mark" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialParity" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialParity" ref="false" />
+      </containers>
+      <file name="8d813e4c-4346-c140-296e-e145289332f3" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialParity.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialParity" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialParity" ref="false" />
+      </containers>
+      <file name="8432dc29-1a59-0ce5-72ad-76f4267a8945" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialParity.Odd">
+      <topicdata group="api" notopic="" />
+      <apidata name="Odd" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialParity" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialParity" ref="false" />
+      </containers>
+      <file name="98212228-c01f-210b-2ce9-8d07b16c5219" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialParity.Space">
+      <topicdata group="api" notopic="" />
+      <apidata name="Space" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialParity" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialParity" ref="false" />
+      </containers>
+      <file name="43501386-69cf-8666-2217-9f82e5b69ab6" />
+    </api>
+    <api id="T:Windows.Devices.SerialCommunication.SerialPinChange">
+      <topicdata group="api" />
+      <apidata name="SerialPinChange" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.SerialCommunication.SerialPinChange.BreakSignal" />
+        <element api="F:Windows.Devices.SerialCommunication.SerialPinChange.CarrierDetect" />
+        <element api="F:Windows.Devices.SerialCommunication.SerialPinChange.ClearToSend" />
+        <element api="F:Windows.Devices.SerialCommunication.SerialPinChange.DataSetReady" />
+        <element api="F:Windows.Devices.SerialCommunication.SerialPinChange.RingIndicator" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="19f3ce90-63ea-b01f-ba82-cd50933bcff2" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialPinChange.BreakSignal">
+      <topicdata group="api" notopic="" />
+      <apidata name="BreakSignal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialPinChange" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialPinChange" ref="false" />
+      </containers>
+      <file name="47125526-2f97-ac02-fdf4-e57add0be6b9" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialPinChange.CarrierDetect">
+      <topicdata group="api" notopic="" />
+      <apidata name="CarrierDetect" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialPinChange" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialPinChange" ref="false" />
+      </containers>
+      <file name="632546b1-cf14-1af2-7cdc-fd49bba3aed7" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialPinChange.ClearToSend">
+      <topicdata group="api" notopic="" />
+      <apidata name="ClearToSend" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialPinChange" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialPinChange" ref="false" />
+      </containers>
+      <file name="38651cbd-1f70-1988-8602-5da4da530de2" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialPinChange.DataSetReady">
+      <topicdata group="api" notopic="" />
+      <apidata name="DataSetReady" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialPinChange" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialPinChange" ref="false" />
+      </containers>
+      <file name="e6951f04-a5cc-90ba-0dbd-c5df9cb52b1c" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialPinChange.RingIndicator">
+      <topicdata group="api" notopic="" />
+      <apidata name="RingIndicator" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialPinChange" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialPinChange" ref="false" />
+      </containers>
+      <file name="9bcf8307-8e07-9790-f56d-0aa1d1a89baf" />
+    </api>
+    <api id="T:Windows.Devices.SerialCommunication.SerialStopBitCount">
+      <topicdata group="api" />
+      <apidata name="SerialStopBitCount" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.SerialCommunication.SerialStopBitCount.One" />
+        <element api="F:Windows.Devices.SerialCommunication.SerialStopBitCount.OnePointFive" />
+        <element api="F:Windows.Devices.SerialCommunication.SerialStopBitCount.Two" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="12754df8-b2ff-5f87-e9ef-9cfa8f07e94e" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialStopBitCount.One">
+      <topicdata group="api" notopic="" />
+      <apidata name="One" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialStopBitCount" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialStopBitCount" ref="false" />
+      </containers>
+      <file name="c9b17022-1fe6-1ad6-a98c-e82ae3449aa6" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialStopBitCount.OnePointFive">
+      <topicdata group="api" notopic="" />
+      <apidata name="OnePointFive" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialStopBitCount" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialStopBitCount" ref="false" />
+      </containers>
+      <file name="027da745-fba5-9ca8-5626-aef63ac6d8c0" />
+    </api>
+    <api id="F:Windows.Devices.SerialCommunication.SerialStopBitCount.Two">
+      <topicdata group="api" notopic="" />
+      <apidata name="Two" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SerialCommunication.SerialStopBitCount" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SerialCommunication" />
+        <type api="T:Windows.Devices.SerialCommunication.SerialStopBitCount" ref="false" />
+      </containers>
+      <file name="521ba62c-7aa3-8198-3904-51ce6ad05424" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,800 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Xaml">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xaml.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xaml.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xaml.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Xaml.Permissions">
+      <topicdata group="api" />
+      <apidata name="System.Xaml.Permissions" group="namespace" />
+      <elements>
+        <element api="T:System.Xaml.Permissions.XamlAccessLevel" />
+        <element api="T:System.Xaml.Permissions.XamlLoadPermission" />
+      </elements>
+      <file name="8ddd3a6f-7dcb-f5d3-63eb-ec6b256df521" />
+    </api>
+    <api id="T:System.Xaml.Permissions.XamlAccessLevel">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xaml.Permissions.XamlAccessLevel" />
+      <apidata name="XamlAccessLevel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+      </containers>
+      <file name="415edaf5-377a-6b90-d90b-a6eefb760758" />
+    </api>
+    <api id="AllMembers.T:System.Xaml.Permissions.XamlAccessLevel">
+      <topicdata name="XamlAccessLevel" group="list" subgroup="members" typeTopicId="T:System.Xaml.Permissions.XamlAccessLevel" />
+      <apidata name="XamlAccessLevel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Xaml.Permissions.XamlAccessLevel.AssemblyAccessTo">
+          <element api="M:System.Xaml.Permissions.XamlAccessLevel.AssemblyAccessTo(System.Reflection.Assembly)" />
+          <element api="M:System.Xaml.Permissions.XamlAccessLevel.AssemblyAccessTo(System.Reflection.AssemblyName)" />
+        </element>
+        <element api="P:System.Xaml.Permissions.XamlAccessLevel.AssemblyAccessToAssemblyName" />
+        <element api="Overload:System.Xaml.Permissions.XamlAccessLevel.PrivateAccessTo">
+          <element api="M:System.Xaml.Permissions.XamlAccessLevel.PrivateAccessTo(System.String)" />
+          <element api="M:System.Xaml.Permissions.XamlAccessLevel.PrivateAccessTo(System.Type)" />
+        </element>
+        <element api="P:System.Xaml.Permissions.XamlAccessLevel.PrivateAccessToTypeName" />
+      </elements>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlAccessLevel" />
+      </containers>
+      <file name="38c8b0ce-385b-2e63-4524-99b6ec292769" />
+    </api>
+    <api id="Methods.T:System.Xaml.Permissions.XamlAccessLevel">
+      <topicdata name="XamlAccessLevel" group="list" subgroup="Methods" typeTopicId="T:System.Xaml.Permissions.XamlAccessLevel" />
+      <apidata name="XamlAccessLevel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Xaml.Permissions.XamlAccessLevel.AssemblyAccessTo">
+          <element api="M:System.Xaml.Permissions.XamlAccessLevel.AssemblyAccessTo(System.Reflection.Assembly)" />
+          <element api="M:System.Xaml.Permissions.XamlAccessLevel.AssemblyAccessTo(System.Reflection.AssemblyName)" />
+        </element>
+        <element api="Overload:System.Xaml.Permissions.XamlAccessLevel.PrivateAccessTo">
+          <element api="M:System.Xaml.Permissions.XamlAccessLevel.PrivateAccessTo(System.String)" />
+          <element api="M:System.Xaml.Permissions.XamlAccessLevel.PrivateAccessTo(System.Type)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlAccessLevel" />
+      </containers>
+      <file name="04c34f9e-0319-5126-693b-a992e9e76a70" />
+    </api>
+    <api id="Properties.T:System.Xaml.Permissions.XamlAccessLevel">
+      <topicdata name="XamlAccessLevel" group="list" subgroup="Properties" typeTopicId="T:System.Xaml.Permissions.XamlAccessLevel" />
+      <apidata name="XamlAccessLevel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="P:System.Xaml.Permissions.XamlAccessLevel.AssemblyAccessToAssemblyName" />
+        <element api="P:System.Xaml.Permissions.XamlAccessLevel.PrivateAccessToTypeName" />
+      </elements>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlAccessLevel" />
+      </containers>
+      <file name="bc1bbafb-fa65-9723-7b36-56b3b3ff61f2" />
+    </api>
+    <api id="Overload:System.Xaml.Permissions.XamlAccessLevel.AssemblyAccessTo">
+      <topicdata name="AssemblyAccessTo" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Xaml.Permissions.XamlAccessLevel" />
+      <apidata name="AssemblyAccessTo" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Xaml.Permissions.XamlAccessLevel.AssemblyAccessTo(System.Reflection.Assembly)" />
+        <element api="M:System.Xaml.Permissions.XamlAccessLevel.AssemblyAccessTo(System.Reflection.AssemblyName)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlAccessLevel" ref="true" />
+      </containers>
+      <file name="4a6f3af7-d0ae-aa2f-29db-d7c4ba26bc7e" />
+    </api>
+    <api id="Overload:System.Xaml.Permissions.XamlAccessLevel.PrivateAccessTo">
+      <topicdata name="PrivateAccessTo" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Xaml.Permissions.XamlAccessLevel" />
+      <apidata name="PrivateAccessTo" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Xaml.Permissions.XamlAccessLevel.PrivateAccessTo(System.String)" />
+        <element api="M:System.Xaml.Permissions.XamlAccessLevel.PrivateAccessTo(System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlAccessLevel" ref="true" />
+      </containers>
+      <file name="a5a79fea-e3b4-3238-5e42-a269669981f3" />
+    </api>
+    <api id="M:System.Xaml.Permissions.XamlAccessLevel.AssemblyAccessTo(System.Reflection.Assembly)">
+      <topicdata group="api" />
+      <apidata name="AssemblyAccessTo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Xaml.Permissions.XamlAccessLevel.AssemblyAccessTo" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="assembly">
+          <type api="T:System.Reflection.Assembly" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xaml.Permissions.XamlAccessLevel" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlAccessLevel" ref="true" />
+      </containers>
+      <file name="bdec4293-4172-558f-5726-e0d5dd1fef13" />
+    </api>
+    <api id="M:System.Xaml.Permissions.XamlAccessLevel.AssemblyAccessTo(System.Reflection.AssemblyName)">
+      <topicdata group="api" />
+      <apidata name="AssemblyAccessTo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Xaml.Permissions.XamlAccessLevel.AssemblyAccessTo" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="assemblyName">
+          <type api="T:System.Reflection.AssemblyName" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xaml.Permissions.XamlAccessLevel" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlAccessLevel" ref="true" />
+      </containers>
+      <file name="cc13ed26-efa7-f8db-7ebf-d25b0bd3d8f7" />
+    </api>
+    <api id="P:System.Xaml.Permissions.XamlAccessLevel.AssemblyAccessToAssemblyName">
+      <topicdata group="api" />
+      <apidata name="AssemblyAccessToAssemblyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AssemblyAccessToAssemblyName" />
+      <returns>
+        <type api="T:System.Reflection.AssemblyName" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlAccessLevel" ref="true" />
+      </containers>
+      <file name="5e492950-b397-f14b-d1aa-464eae029500" />
+    </api>
+    <api id="M:System.Xaml.Permissions.XamlAccessLevel.PrivateAccessTo(System.String)">
+      <topicdata group="api" />
+      <apidata name="PrivateAccessTo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Xaml.Permissions.XamlAccessLevel.PrivateAccessTo" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="assemblyQualifiedTypeName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xaml.Permissions.XamlAccessLevel" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlAccessLevel" ref="true" />
+      </containers>
+      <file name="f4e3b543-41f0-9edd-0c66-957022bfd8cc" />
+    </api>
+    <api id="M:System.Xaml.Permissions.XamlAccessLevel.PrivateAccessTo(System.Type)">
+      <topicdata group="api" />
+      <apidata name="PrivateAccessTo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Xaml.Permissions.XamlAccessLevel.PrivateAccessTo" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xaml.Permissions.XamlAccessLevel" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlAccessLevel" ref="true" />
+      </containers>
+      <file name="27b3a1e4-74e8-7613-8198-b6fd3dae56cc" />
+    </api>
+    <api id="P:System.Xaml.Permissions.XamlAccessLevel.PrivateAccessToTypeName">
+      <topicdata group="api" />
+      <apidata name="PrivateAccessToTypeName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PrivateAccessToTypeName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlAccessLevel" ref="true" />
+      </containers>
+      <file name="78d28a5b-f9e1-1f25-d2d3-079d891f3911" />
+    </api>
+    <api id="T:System.Xaml.Permissions.XamlLoadPermission">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xaml.Permissions.XamlLoadPermission" />
+      <apidata name="XamlLoadPermission" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Security.CodeAccessPermission" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Security.Permissions.IUnrestrictedPermission" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+      </containers>
+      <file name="fc543ef1-b40e-28c3-2c61-5e882b6aa299" />
+    </api>
+    <api id="AllMembers.T:System.Xaml.Permissions.XamlLoadPermission">
+      <topicdata name="XamlLoadPermission" group="list" subgroup="members" typeTopicId="T:System.Xaml.Permissions.XamlLoadPermission" />
+      <apidata name="XamlLoadPermission" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Security.CodeAccessPermission.Assert" />
+        <element api="M:System.Security.CodeAccessPermission.Demand" />
+        <element api="M:System.Security.CodeAccessPermission.Deny" />
+        <element api="M:System.Security.CodeAccessPermission.Equals(System.Object)" />
+        <element api="M:System.Security.CodeAccessPermission.GetHashCode" />
+        <element api="M:System.Security.CodeAccessPermission.PermitOnly" />
+        <element api="M:System.Security.CodeAccessPermission.ToString" />
+        <element api="Overload:System.Xaml.Permissions.XamlLoadPermission.#ctor">
+          <element api="M:System.Xaml.Permissions.XamlLoadPermission.#ctor(System.Collections.Generic.IEnumerable{System.Xaml.Permissions.XamlAccessLevel})" />
+          <element api="M:System.Xaml.Permissions.XamlLoadPermission.#ctor(System.Security.Permissions.PermissionState)" />
+          <element api="M:System.Xaml.Permissions.XamlLoadPermission.#ctor(System.Xaml.Permissions.XamlAccessLevel)" />
+        </element>
+        <element api="P:System.Xaml.Permissions.XamlLoadPermission.AllowedAccess" />
+        <element api="M:System.Xaml.Permissions.XamlLoadPermission.Copy" />
+        <element api="M:System.Xaml.Permissions.XamlLoadPermission.FromXml(System.Security.SecurityElement)" />
+        <element api="M:System.Xaml.Permissions.XamlLoadPermission.Includes(System.Xaml.Permissions.XamlAccessLevel)" />
+        <element api="M:System.Xaml.Permissions.XamlLoadPermission.Intersect(System.Security.IPermission)" />
+        <element api="M:System.Xaml.Permissions.XamlLoadPermission.IsSubsetOf(System.Security.IPermission)" />
+        <element api="M:System.Xaml.Permissions.XamlLoadPermission.IsUnrestricted" />
+        <element api="M:System.Xaml.Permissions.XamlLoadPermission.ToXml" />
+        <element api="M:System.Xaml.Permissions.XamlLoadPermission.Union(System.Security.IPermission)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlLoadPermission" />
+      </containers>
+      <file name="495632b8-39f8-58ec-7815-753c2e685102" />
+    </api>
+    <api id="Methods.T:System.Xaml.Permissions.XamlLoadPermission">
+      <topicdata name="XamlLoadPermission" group="list" subgroup="Methods" typeTopicId="T:System.Xaml.Permissions.XamlLoadPermission" />
+      <apidata name="XamlLoadPermission" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Security.CodeAccessPermission.Assert" />
+        <element api="M:System.Security.CodeAccessPermission.Demand" />
+        <element api="M:System.Security.CodeAccessPermission.Deny" />
+        <element api="M:System.Security.CodeAccessPermission.Equals(System.Object)" />
+        <element api="M:System.Security.CodeAccessPermission.GetHashCode" />
+        <element api="M:System.Security.CodeAccessPermission.PermitOnly" />
+        <element api="M:System.Security.CodeAccessPermission.ToString" />
+        <element api="M:System.Xaml.Permissions.XamlLoadPermission.Copy" />
+        <element api="M:System.Xaml.Permissions.XamlLoadPermission.FromXml(System.Security.SecurityElement)" />
+        <element api="M:System.Xaml.Permissions.XamlLoadPermission.Includes(System.Xaml.Permissions.XamlAccessLevel)" />
+        <element api="M:System.Xaml.Permissions.XamlLoadPermission.Intersect(System.Security.IPermission)" />
+        <element api="M:System.Xaml.Permissions.XamlLoadPermission.IsSubsetOf(System.Security.IPermission)" />
+        <element api="M:System.Xaml.Permissions.XamlLoadPermission.IsUnrestricted" />
+        <element api="M:System.Xaml.Permissions.XamlLoadPermission.ToXml" />
+        <element api="M:System.Xaml.Permissions.XamlLoadPermission.Union(System.Security.IPermission)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlLoadPermission" />
+      </containers>
+      <file name="724e450f-8567-9386-fbb2-ee2a144487fb" />
+    </api>
+    <api id="Properties.T:System.Xaml.Permissions.XamlLoadPermission">
+      <topicdata name="XamlLoadPermission" group="list" subgroup="Properties" typeTopicId="T:System.Xaml.Permissions.XamlLoadPermission" />
+      <apidata name="XamlLoadPermission" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="P:System.Xaml.Permissions.XamlLoadPermission.AllowedAccess" />
+      </elements>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlLoadPermission" />
+      </containers>
+      <file name="3b8ded91-f863-7e20-ee2a-a4e7b88d44ed" />
+    </api>
+    <api id="Overload:System.Xaml.Permissions.XamlLoadPermission.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Xaml.Permissions.XamlLoadPermission" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Xaml.Permissions.XamlLoadPermission.#ctor(System.Collections.Generic.IEnumerable{System.Xaml.Permissions.XamlAccessLevel})" />
+        <element api="M:System.Xaml.Permissions.XamlLoadPermission.#ctor(System.Security.Permissions.PermissionState)" />
+        <element api="M:System.Xaml.Permissions.XamlLoadPermission.#ctor(System.Xaml.Permissions.XamlAccessLevel)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlLoadPermission" ref="true" />
+      </containers>
+      <file name="ad71ceef-adb0-ce46-580a-83ea0a357de8" />
+    </api>
+    <api id="M:System.Xaml.Permissions.XamlLoadPermission.#ctor(System.Collections.Generic.IEnumerable{System.Xaml.Permissions.XamlAccessLevel})">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xaml.Permissions.XamlLoadPermission.#ctor" />
+      <parameters>
+        <parameter name="allowedAccess">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Xaml.Permissions.XamlAccessLevel" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlLoadPermission" ref="true" />
+      </containers>
+      <file name="8bcc23e4-2494-b25f-281a-c1dbe5a1efe6" />
+    </api>
+    <api id="M:System.Xaml.Permissions.XamlLoadPermission.#ctor(System.Security.Permissions.PermissionState)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xaml.Permissions.XamlLoadPermission.#ctor" />
+      <parameters>
+        <parameter name="state">
+          <type api="T:System.Security.Permissions.PermissionState" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlLoadPermission" ref="true" />
+      </containers>
+      <file name="a1f2dede-688c-f692-e7eb-3e18e289f9ae" />
+    </api>
+    <api id="M:System.Xaml.Permissions.XamlLoadPermission.#ctor(System.Xaml.Permissions.XamlAccessLevel)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xaml.Permissions.XamlLoadPermission.#ctor" />
+      <parameters>
+        <parameter name="allowedAccess">
+          <type api="T:System.Xaml.Permissions.XamlAccessLevel" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlLoadPermission" ref="true" />
+      </containers>
+      <file name="e874dad0-0a1e-f304-3997-bf1795f10140" />
+    </api>
+    <api id="P:System.Xaml.Permissions.XamlLoadPermission.AllowedAccess">
+      <topicdata group="api" />
+      <apidata name="AllowedAccess" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AllowedAccess" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:System.Xaml.Permissions.XamlAccessLevel" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlLoadPermission" ref="true" />
+      </containers>
+      <file name="10a79243-a2ad-1ddd-db9d-2d57071d0054" />
+    </api>
+    <api id="M:System.Xaml.Permissions.XamlLoadPermission.Copy">
+      <topicdata group="api" />
+      <apidata name="Copy" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Security.CodeAccessPermission.Copy">
+          <type api="T:System.Security.CodeAccessPermission" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Security.IPermission" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Security.IPermission.Copy">
+          <type api="T:System.Security.IPermission" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlLoadPermission" ref="true" />
+      </containers>
+      <file name="af16760d-44de-d8d2-c699-ea694e083057" />
+    </api>
+    <api id="M:System.Xaml.Permissions.XamlLoadPermission.FromXml(System.Security.SecurityElement)">
+      <topicdata group="api" />
+      <apidata name="FromXml" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Security.CodeAccessPermission.FromXml(System.Security.SecurityElement)">
+          <type api="T:System.Security.CodeAccessPermission" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="elem">
+          <type api="T:System.Security.SecurityElement" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Security.ISecurityEncodable.FromXml(System.Security.SecurityElement)">
+          <type api="T:System.Security.ISecurityEncodable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlLoadPermission" ref="true" />
+      </containers>
+      <file name="d29d9496-41c9-3422-1d28-7483b3c1e320" />
+    </api>
+    <api id="M:System.Xaml.Permissions.XamlLoadPermission.Includes(System.Xaml.Permissions.XamlAccessLevel)">
+      <topicdata group="api" />
+      <apidata name="Includes" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="requestedAccess">
+          <type api="T:System.Xaml.Permissions.XamlAccessLevel" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlLoadPermission" ref="true" />
+      </containers>
+      <file name="85a0f0de-2a57-2f43-b110-0bef02d101d7" />
+    </api>
+    <api id="M:System.Xaml.Permissions.XamlLoadPermission.Intersect(System.Security.IPermission)">
+      <topicdata group="api" />
+      <apidata name="Intersect" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Security.CodeAccessPermission.Intersect(System.Security.IPermission)">
+          <type api="T:System.Security.CodeAccessPermission" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="target">
+          <type api="T:System.Security.IPermission" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Security.IPermission" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Security.IPermission.Intersect(System.Security.IPermission)">
+          <type api="T:System.Security.IPermission" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlLoadPermission" ref="true" />
+      </containers>
+      <file name="02c59132-85c6-ea9d-c705-2ca87412d07d" />
+    </api>
+    <api id="M:System.Xaml.Permissions.XamlLoadPermission.IsSubsetOf(System.Security.IPermission)">
+      <topicdata group="api" />
+      <apidata name="IsSubsetOf" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Security.CodeAccessPermission.IsSubsetOf(System.Security.IPermission)">
+          <type api="T:System.Security.CodeAccessPermission" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="target">
+          <type api="T:System.Security.IPermission" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Security.IPermission.IsSubsetOf(System.Security.IPermission)">
+          <type api="T:System.Security.IPermission" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlLoadPermission" ref="true" />
+      </containers>
+      <file name="947d6151-664a-e88b-154c-2b1cfd81b75e" />
+    </api>
+    <api id="M:System.Xaml.Permissions.XamlLoadPermission.IsUnrestricted">
+      <topicdata group="api" />
+      <apidata name="IsUnrestricted" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Security.Permissions.IUnrestrictedPermission.IsUnrestricted">
+          <type api="T:System.Security.Permissions.IUnrestrictedPermission" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlLoadPermission" ref="true" />
+      </containers>
+      <file name="463c669a-94da-c62a-e912-ad63c74d0fb6" />
+    </api>
+    <api id="M:System.Xaml.Permissions.XamlLoadPermission.ToXml">
+      <topicdata group="api" />
+      <apidata name="ToXml" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Security.CodeAccessPermission.ToXml">
+          <type api="T:System.Security.CodeAccessPermission" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Security.SecurityElement" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Security.ISecurityEncodable.ToXml">
+          <type api="T:System.Security.ISecurityEncodable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlLoadPermission" ref="true" />
+      </containers>
+      <file name="21407adb-493a-b73e-4c48-aa138b9e9284" />
+    </api>
+    <api id="M:System.Xaml.Permissions.XamlLoadPermission.Union(System.Security.IPermission)">
+      <topicdata group="api" />
+      <apidata name="Union" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Security.CodeAccessPermission.Union(System.Security.IPermission)">
+          <type api="T:System.Security.CodeAccessPermission" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="other">
+          <type api="T:System.Security.IPermission" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Security.IPermission" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Security.IPermission.Union(System.Security.IPermission)">
+          <type api="T:System.Security.IPermission" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Xaml" module="System.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Xaml.Permissions" />
+        <type api="T:System.Xaml.Permissions.XamlLoadPermission" ref="true" />
+      </containers>
+      <file name="a6001783-ebbd-50d9-dd36-d01609231c3f" />
+    </api>
+  </apis>
+</reflection>

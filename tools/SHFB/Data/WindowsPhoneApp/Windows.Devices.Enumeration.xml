@@ -1,0 +1,3246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Enumeration">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Enumeration" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Enumeration.DeviceConnectionChangeTriggerDetails" />
+        <element api="T:Windows.Devices.Enumeration.DeviceClass" />
+        <element api="T:Windows.Devices.Enumeration.DeviceWatcherStatus" />
+        <element api="T:Windows.Devices.Enumeration.DeviceThumbnail" />
+        <element api="T:Windows.Devices.Enumeration.Panel" />
+        <element api="T:Windows.Devices.Enumeration.EnclosureLocation" />
+        <element api="T:Windows.Devices.Enumeration.DeviceInformationUpdate" />
+        <element api="T:Windows.Devices.Enumeration.DeviceInformationCollection" />
+        <element api="T:Windows.Devices.Enumeration.DeviceWatcher" />
+        <element api="T:Windows.Devices.Enumeration.DeviceInformation" />
+        <element api="T:Windows.Devices.Enumeration.DeviceAccessStatus" />
+        <element api="T:Windows.Devices.Enumeration.DeviceAccessChangedEventArgs" />
+        <element api="T:Windows.Devices.Enumeration.DeviceAccessInformation" />
+      </elements>
+      <file name="dcf2be1a-1cd2-07cf-6751-7d17f0c68d5e" />
+    </api>
+    <api id="T:Windows.Devices.Enumeration.DeviceAccessChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Enumeration.DeviceAccessChangedEventArgs" />
+      <apidata name="DeviceAccessChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Enumeration.IDeviceAccessChangedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8b03fe25-99f1-0392-f51f-00d01ee54b3f" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Enumeration.DeviceAccessChangedEventArgs">
+      <topicdata name="DeviceAccessChangedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Enumeration.DeviceAccessChangedEventArgs" />
+      <apidata name="DeviceAccessChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.Enumeration.DeviceAccessChangedEventArgs.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessChangedEventArgs" />
+      </containers>
+      <file name="dc89c987-481c-103e-06af-e905bb5e431e" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Enumeration.DeviceAccessChangedEventArgs">
+      <topicdata name="DeviceAccessChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Enumeration.DeviceAccessChangedEventArgs" />
+      <apidata name="DeviceAccessChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessChangedEventArgs" />
+      </containers>
+      <file name="ee7cccb2-c95f-3373-d660-07d6f1e2e202" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Enumeration.DeviceAccessChangedEventArgs">
+      <topicdata name="DeviceAccessChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Enumeration.DeviceAccessChangedEventArgs" />
+      <apidata name="DeviceAccessChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Enumeration.DeviceAccessChangedEventArgs.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessChangedEventArgs" />
+      </containers>
+      <file name="c315fb5b-03cd-183c-58e5-e4e1d316ccae" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.DeviceAccessChangedEventArgs.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Status" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessChangedEventArgs" ref="true" />
+      </containers>
+      <file name="fd4de771-3024-3ba3-371a-7486592cac72" />
+    </api>
+    <api id="T:Windows.Devices.Enumeration.DeviceAccessInformation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Enumeration.DeviceAccessInformation" />
+      <apidata name="DeviceAccessInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Enumeration.IDeviceAccessInformation" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="598db840-8372-ac6c-ef79-118364bee45c" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Enumeration.DeviceAccessInformation">
+      <topicdata name="DeviceAccessInformation" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Enumeration.DeviceAccessInformation" />
+      <apidata name="DeviceAccessInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="E:Windows.Devices.Enumeration.DeviceAccessInformation.AccessChanged" />
+        <element api="M:Windows.Devices.Enumeration.DeviceAccessInformation.CreateFromDeviceClass(Windows.Devices.Enumeration.DeviceClass)" />
+        <element api="M:Windows.Devices.Enumeration.DeviceAccessInformation.CreateFromDeviceClassId(System.Guid)" />
+        <element api="M:Windows.Devices.Enumeration.DeviceAccessInformation.CreateFromId(System.String)" />
+        <element api="P:Windows.Devices.Enumeration.DeviceAccessInformation.CurrentStatus" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessInformation" />
+      </containers>
+      <file name="bbeeccdc-066a-ad4a-0f46-9bf28aff3152" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Enumeration.DeviceAccessInformation">
+      <topicdata name="DeviceAccessInformation" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Enumeration.DeviceAccessInformation" />
+      <apidata name="DeviceAccessInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Enumeration.DeviceAccessInformation.CreateFromDeviceClass(Windows.Devices.Enumeration.DeviceClass)" />
+        <element api="M:Windows.Devices.Enumeration.DeviceAccessInformation.CreateFromDeviceClassId(System.Guid)" />
+        <element api="M:Windows.Devices.Enumeration.DeviceAccessInformation.CreateFromId(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessInformation" />
+      </containers>
+      <file name="5df0e645-6f33-6c83-1740-e2a92b5712db" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Enumeration.DeviceAccessInformation">
+      <topicdata name="DeviceAccessInformation" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Enumeration.DeviceAccessInformation" />
+      <apidata name="DeviceAccessInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Enumeration.DeviceAccessInformation.CurrentStatus" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessInformation" />
+      </containers>
+      <file name="2a455afc-704b-77eb-f0fd-ce6bc2ba4067" />
+    </api>
+    <api id="Events.T:Windows.Devices.Enumeration.DeviceAccessInformation">
+      <topicdata name="DeviceAccessInformation" group="list" subgroup="Events" typeTopicId="T:Windows.Devices.Enumeration.DeviceAccessInformation" />
+      <apidata name="DeviceAccessInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Devices.Enumeration.DeviceAccessInformation.AccessChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessInformation" />
+      </containers>
+      <file name="5ea730b6-fe37-4020-43ed-78aabf79ffa2" />
+    </api>
+    <api id="E:Windows.Devices.Enumeration.DeviceAccessInformation.AccessChanged">
+      <topicdata group="api" />
+      <apidata name="AccessChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_AccessChanged" />
+      <remover name="remove_AccessChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.DeviceAccessInformation" ref="true" />
+            <type api="T:Windows.Devices.Enumeration.DeviceAccessChangedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessInformation" ref="true" />
+      </containers>
+      <file name="24bfe45b-923e-949d-2496-824fe41cc891" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceAccessInformation.CreateFromDeviceClass(Windows.Devices.Enumeration.DeviceClass)">
+      <topicdata group="api" />
+      <apidata name="CreateFromDeviceClass" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceClass" in="true">
+          <type api="T:Windows.Devices.Enumeration.DeviceClass" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessInformation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessInformation" ref="true" />
+      </containers>
+      <file name="7d1d6349-a745-bf56-dea6-977013a33757" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceAccessInformation.CreateFromDeviceClassId(System.Guid)">
+      <topicdata group="api" />
+      <apidata name="CreateFromDeviceClassId" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceClassId" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessInformation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessInformation" ref="true" />
+      </containers>
+      <file name="a3b879f7-c949-532d-43b9-bba8537afc37" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceAccessInformation.CreateFromId(System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateFromId" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessInformation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessInformation" ref="true" />
+      </containers>
+      <file name="69bb77fb-34dc-c937-46ec-03e8747b98af" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.DeviceAccessInformation.CurrentStatus">
+      <topicdata group="api" />
+      <apidata name="CurrentStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CurrentStatus" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessInformation" ref="true" />
+      </containers>
+      <file name="d34e1851-dc19-839d-5a5a-6aa6552fc809" />
+    </api>
+    <api id="T:Windows.Devices.Enumeration.DeviceAccessStatus">
+      <topicdata group="api" />
+      <apidata name="DeviceAccessStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Enumeration.DeviceAccessStatus.Unspecified" />
+        <element api="F:Windows.Devices.Enumeration.DeviceAccessStatus.Allowed" />
+        <element api="F:Windows.Devices.Enumeration.DeviceAccessStatus.DeniedByUser" />
+        <element api="F:Windows.Devices.Enumeration.DeviceAccessStatus.DeniedBySystem" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b3059b01-3a7e-cfa3-18ee-8d9e181c3f84" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.DeviceAccessStatus.Allowed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Allowed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessStatus" ref="false" />
+      </containers>
+      <file name="e92edcf3-a0fc-c940-dac6-1ea814a676ae" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.DeviceAccessStatus.DeniedBySystem">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeniedBySystem" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessStatus" ref="false" />
+      </containers>
+      <file name="b81b49a0-fdff-9e46-ab5b-1776e7d89503" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.DeviceAccessStatus.DeniedByUser">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeniedByUser" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessStatus" ref="false" />
+      </containers>
+      <file name="2691f64f-598e-9125-cb0f-94b445aad235" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.DeviceAccessStatus.Unspecified">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unspecified" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceAccessStatus" ref="false" />
+      </containers>
+      <file name="a92df9f0-754f-84e8-0df2-558cbd502037" />
+    </api>
+    <api id="T:Windows.Devices.Enumeration.DeviceClass">
+      <topicdata group="api" />
+      <apidata name="DeviceClass" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Enumeration.DeviceClass.All" />
+        <element api="F:Windows.Devices.Enumeration.DeviceClass.AudioCapture" />
+        <element api="F:Windows.Devices.Enumeration.DeviceClass.AudioRender" />
+        <element api="F:Windows.Devices.Enumeration.DeviceClass.PortableStorageDevice" />
+        <element api="F:Windows.Devices.Enumeration.DeviceClass.VideoCapture" />
+        <element api="F:Windows.Devices.Enumeration.DeviceClass.ImageScanner" />
+        <element api="F:Windows.Devices.Enumeration.DeviceClass.Location" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1ef3ef29-dcda-b18e-8005-8ac18a60e589" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.DeviceClass.All">
+      <topicdata group="api" notopic="" />
+      <apidata name="All" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceClass" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceClass" ref="false" />
+      </containers>
+      <file name="7827a607-c28e-2d80-d94a-eedc0ca7a2fe" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.DeviceClass.AudioCapture">
+      <topicdata group="api" notopic="" />
+      <apidata name="AudioCapture" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceClass" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceClass" ref="false" />
+      </containers>
+      <file name="c9f42203-c141-5989-e813-ddf0d062be81" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.DeviceClass.AudioRender">
+      <topicdata group="api" notopic="" />
+      <apidata name="AudioRender" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceClass" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceClass" ref="false" />
+      </containers>
+      <file name="6d166eef-d9dc-8c71-8c1f-0044bf00a9e4" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.DeviceClass.ImageScanner">
+      <topicdata group="api" notopic="" />
+      <apidata name="ImageScanner" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceClass" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceClass" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e8f2f3ee-22e8-4e72-ddee-0c9ecdbf2a74" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.DeviceClass.Location">
+      <topicdata group="api" notopic="" />
+      <apidata name="Location" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceClass" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceClass" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ffcbd31c-f272-c4c2-a4fd-8ad56bb8cbba" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.DeviceClass.PortableStorageDevice">
+      <topicdata group="api" notopic="" />
+      <apidata name="PortableStorageDevice" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceClass" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceClass" ref="false" />
+      </containers>
+      <file name="b53149ab-3372-189c-4fcc-ade902e911b7" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.DeviceClass.VideoCapture">
+      <topicdata group="api" notopic="" />
+      <apidata name="VideoCapture" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceClass" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceClass" ref="false" />
+      </containers>
+      <file name="aaf4cdfa-c762-fd13-071e-465e3a463b94" />
+    </api>
+    <api id="T:Windows.Devices.Enumeration.DeviceConnectionChangeTriggerDetails">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Enumeration.DeviceConnectionChangeTriggerDetails" />
+      <apidata name="DeviceConnectionChangeTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Enumeration.IDeviceConnectionChangeTriggerDetails" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5a347d4c-7a62-bd61-f6ce-b91ab8832815" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Enumeration.DeviceConnectionChangeTriggerDetails">
+      <topicdata name="DeviceConnectionChangeTriggerDetails" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Enumeration.DeviceConnectionChangeTriggerDetails" />
+      <apidata name="DeviceConnectionChangeTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.Enumeration.DeviceConnectionChangeTriggerDetails.DeviceId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceConnectionChangeTriggerDetails" />
+      </containers>
+      <file name="54b667e4-07eb-5dec-9b23-669bf04f585f" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Enumeration.DeviceConnectionChangeTriggerDetails">
+      <topicdata name="DeviceConnectionChangeTriggerDetails" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Enumeration.DeviceConnectionChangeTriggerDetails" />
+      <apidata name="DeviceConnectionChangeTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceConnectionChangeTriggerDetails" />
+      </containers>
+      <file name="90788a07-4e1f-6bcd-cb7d-e733de611982" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Enumeration.DeviceConnectionChangeTriggerDetails">
+      <topicdata name="DeviceConnectionChangeTriggerDetails" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Enumeration.DeviceConnectionChangeTriggerDetails" />
+      <apidata name="DeviceConnectionChangeTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Enumeration.DeviceConnectionChangeTriggerDetails.DeviceId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceConnectionChangeTriggerDetails" />
+      </containers>
+      <file name="6f875038-80f5-991b-7897-2cb88a15d872" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.DeviceConnectionChangeTriggerDetails.DeviceId">
+      <topicdata group="api" />
+      <apidata name="DeviceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DeviceId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceConnectionChangeTriggerDetails" ref="true" />
+      </containers>
+      <file name="3e697e10-0096-1939-ad8b-52bb4593827a" />
+    </api>
+    <api id="T:Windows.Devices.Enumeration.DeviceInformation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Enumeration.DeviceInformation" />
+      <apidata name="DeviceInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Enumeration.IDeviceInformation" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3a2ccea7-2066-f2a7-ec4e-784418073e71" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Enumeration.DeviceInformation">
+      <topicdata name="DeviceInformation" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Enumeration.DeviceInformation" />
+      <apidata name="DeviceInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Devices.Enumeration.DeviceInformation.CreateFromIdAsync">
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.CreateFromIdAsync(System.String)" />
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.CreateFromIdAsync(System.String,Windows.Foundation.Collections.IIterable{System.String})" />
+        </element>
+        <element api="Overload:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher">
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher" />
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher(Windows.Devices.Enumeration.DeviceClass)" />
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher(System.String)" />
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher(System.String,Windows.Foundation.Collections.IIterable{System.String})" />
+        </element>
+        <element api="P:Windows.Devices.Enumeration.DeviceInformation.EnclosureLocation" />
+        <element api="Overload:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync">
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync" />
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(Windows.Devices.Enumeration.DeviceClass)" />
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(System.String)" />
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(System.String,Windows.Foundation.Collections.IIterable{System.String})" />
+        </element>
+        <element api="M:Windows.Devices.Enumeration.DeviceInformation.GetGlyphThumbnailAsync" />
+        <element api="M:Windows.Devices.Enumeration.DeviceInformation.GetThumbnailAsync" />
+        <element api="P:Windows.Devices.Enumeration.DeviceInformation.Id" />
+        <element api="P:Windows.Devices.Enumeration.DeviceInformation.IsDefault" />
+        <element api="P:Windows.Devices.Enumeration.DeviceInformation.IsEnabled" />
+        <element api="P:Windows.Devices.Enumeration.DeviceInformation.Name" />
+        <element api="P:Windows.Devices.Enumeration.DeviceInformation.Properties" />
+        <element api="M:Windows.Devices.Enumeration.DeviceInformation.Update(Windows.Devices.Enumeration.DeviceInformationUpdate)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" />
+      </containers>
+      <file name="ab61d94d-ab76-4bc8-ff37-f4873cac752a" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Enumeration.DeviceInformation">
+      <topicdata name="DeviceInformation" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Enumeration.DeviceInformation" />
+      <apidata name="DeviceInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Devices.Enumeration.DeviceInformation.CreateFromIdAsync">
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.CreateFromIdAsync(System.String)" />
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.CreateFromIdAsync(System.String,Windows.Foundation.Collections.IIterable{System.String})" />
+        </element>
+        <element api="Overload:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher">
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher" />
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher(Windows.Devices.Enumeration.DeviceClass)" />
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher(System.String)" />
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher(System.String,Windows.Foundation.Collections.IIterable{System.String})" />
+        </element>
+        <element api="Overload:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync">
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync" />
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(Windows.Devices.Enumeration.DeviceClass)" />
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(System.String)" />
+          <element api="M:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(System.String,Windows.Foundation.Collections.IIterable{System.String})" />
+        </element>
+        <element api="M:Windows.Devices.Enumeration.DeviceInformation.GetGlyphThumbnailAsync" />
+        <element api="M:Windows.Devices.Enumeration.DeviceInformation.GetThumbnailAsync" />
+        <element api="M:Windows.Devices.Enumeration.DeviceInformation.Update(Windows.Devices.Enumeration.DeviceInformationUpdate)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" />
+      </containers>
+      <file name="032e228e-f72d-11fd-968e-206b228c6095" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Enumeration.DeviceInformation">
+      <topicdata name="DeviceInformation" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Enumeration.DeviceInformation" />
+      <apidata name="DeviceInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Enumeration.DeviceInformation.EnclosureLocation" />
+        <element api="P:Windows.Devices.Enumeration.DeviceInformation.Id" />
+        <element api="P:Windows.Devices.Enumeration.DeviceInformation.IsDefault" />
+        <element api="P:Windows.Devices.Enumeration.DeviceInformation.IsEnabled" />
+        <element api="P:Windows.Devices.Enumeration.DeviceInformation.Name" />
+        <element api="P:Windows.Devices.Enumeration.DeviceInformation.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" />
+      </containers>
+      <file name="bce75a20-eee2-7b13-1a07-e937d605c3bd" />
+    </api>
+    <api id="Overload:Windows.Devices.Enumeration.DeviceInformation.CreateFromIdAsync">
+      <topicdata name="CreateFromIdAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Devices.Enumeration.DeviceInformation" />
+      <apidata name="CreateFromIdAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Devices.Enumeration.DeviceInformation.CreateFromIdAsync(System.String)" />
+        <element api="M:Windows.Devices.Enumeration.DeviceInformation.CreateFromIdAsync(System.String,Windows.Foundation.Collections.IIterable{System.String})" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <file name="c33362f8-06f3-58e8-f4d8-45d4d54a5e54" />
+    </api>
+    <api id="Overload:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher">
+      <topicdata name="CreateWatcher" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Devices.Enumeration.DeviceInformation" />
+      <apidata name="CreateWatcher" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher" />
+        <element api="M:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher(Windows.Devices.Enumeration.DeviceClass)" />
+        <element api="M:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher(System.String)" />
+        <element api="M:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher(System.String,Windows.Foundation.Collections.IIterable{System.String})" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <file name="4ebe655c-0fca-1afd-7c12-94b937cd7976" />
+    </api>
+    <api id="Overload:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync">
+      <topicdata name="FindAllAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Devices.Enumeration.DeviceInformation" />
+      <apidata name="FindAllAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync" />
+        <element api="M:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(Windows.Devices.Enumeration.DeviceClass)" />
+        <element api="M:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(System.String)" />
+        <element api="M:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(System.String,Windows.Foundation.Collections.IIterable{System.String})" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <file name="6c943c4b-801c-3ccf-a1b1-1bdb3ef07574" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceInformation.CreateFromIdAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateFromIdAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.Enumeration.DeviceInformation.CreateFromIdAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateFromIdAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="90365f5a-f8d4-2f8d-8eda-2419e9a1647e" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceInformation.CreateFromIdAsync(System.String,Windows.Foundation.Collections.IIterable{System.String})">
+      <topicdata group="api" />
+      <apidata name="CreateFromIdAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.Enumeration.DeviceInformation.CreateFromIdAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="additionalProperties" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateFromIdAsyncAdditionalProperties</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="007ca04e-40ce-341f-53a4-9a8b958960dc" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher">
+      <topicdata group="api" />
+      <apidata name="CreateWatcher" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcher" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateWatcher</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bc5e432d-a488-ef38-008a-73c85c09e0a5" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher(System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateWatcher" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="aqsFilter" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcher" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateWatcherAqsFilter</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e0f0f297-e6d2-6eac-670e-a7b71ad3514b" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher(System.String,Windows.Foundation.Collections.IIterable{System.String})">
+      <topicdata group="api" />
+      <apidata name="CreateWatcher" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="aqsFilter" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="additionalProperties" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcher" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateWatcherAqsFilterAndAdditionalProperties</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4102d516-b91a-a349-8d95-22a57e935c47" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher(Windows.Devices.Enumeration.DeviceClass)">
+      <topicdata group="api" />
+      <apidata name="CreateWatcher" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.Enumeration.DeviceInformation.CreateWatcher" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceClass" in="true">
+          <type api="T:Windows.Devices.Enumeration.DeviceClass" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcher" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DefaultOverloadAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateWatcherDeviceClass</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="66d62d95-3625-a3e5-8486-9c36a19a75bc" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.DeviceInformation.EnclosureLocation">
+      <topicdata group="api" />
+      <apidata name="EnclosureLocation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_EnclosureLocation" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.EnclosureLocation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <file name="fcd8251b-f36b-1e3a-88ce-b79719bef2e2" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync">
+      <topicdata group="api" />
+      <apidata name="FindAllAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.DeviceInformationCollection" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FindAllAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="75c4753b-347e-9749-6781-042a531492b2" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="FindAllAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="aqsFilter" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.DeviceInformationCollection" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FindAllAsyncAqsFilter</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3dbe5939-303b-f53f-50e0-cd7ba5825c47" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(System.String,Windows.Foundation.Collections.IIterable{System.String})">
+      <topicdata group="api" />
+      <apidata name="FindAllAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="aqsFilter" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="additionalProperties" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.DeviceInformationCollection" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FindAllAsyncAqsFilterAndAdditionalProperties</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f14052b8-b610-b238-66bf-32a18ebabea0" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(Windows.Devices.Enumeration.DeviceClass)">
+      <topicdata group="api" />
+      <apidata name="FindAllAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.Enumeration.DeviceInformation.FindAllAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceClass" in="true">
+          <type api="T:Windows.Devices.Enumeration.DeviceClass" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.DeviceInformationCollection" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DefaultOverloadAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FindAllAsyncDeviceClass</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0a0558f3-b045-c4b4-99f3-89100197a254" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceInformation.GetGlyphThumbnailAsync">
+      <topicdata group="api" />
+      <apidata name="GetGlyphThumbnailAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.DeviceThumbnail" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <file name="4f3559e4-a7f6-7084-ea17-abe996502554" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceInformation.GetThumbnailAsync">
+      <topicdata group="api" />
+      <apidata name="GetThumbnailAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.DeviceThumbnail" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <file name="f077a0f6-50b4-187b-59f3-802f1978bacc" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.DeviceInformation.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <file name="16bca449-b4de-d6a9-e893-6fb910063546" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.DeviceInformation.IsDefault">
+      <topicdata group="api" />
+      <apidata name="IsDefault" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsDefault" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <file name="741eb0c4-d5e7-4fbc-272b-c2897d66c68a" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.DeviceInformation.IsEnabled">
+      <topicdata group="api" />
+      <apidata name="IsEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <file name="3e95a9d1-0113-0512-c28d-71c557baaacd" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.DeviceInformation.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <file name="9904e970-4bb6-a2ae-5e5b-df82d08f8800" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.DeviceInformation.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <file name="92449352-16d2-628e-83aa-19218f60db7e" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceInformation.Update(Windows.Devices.Enumeration.DeviceInformationUpdate)">
+      <topicdata group="api" />
+      <apidata name="Update" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="updateInfo" in="true">
+          <type api="T:Windows.Devices.Enumeration.DeviceInformationUpdate" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </containers>
+      <file name="a7852bf2-f33c-aeb7-d02d-239665f60941" />
+    </api>
+    <api id="T:Windows.Devices.Enumeration.DeviceInformationCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Enumeration.DeviceInformationCollection" />
+      <apidata name="DeviceInformationCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+          </specialization>
+        </type>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+          </specialization>
+        </type>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6af8f044-12fa-3595-cd7a-e3d961c1e32b" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Enumeration.DeviceInformationCollection">
+      <topicdata name="DeviceInformationCollection" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Enumeration.DeviceInformationCollection" />
+      <apidata name="DeviceInformationCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Enumeration.DeviceInformationCollection.First" />
+        <element api="M:Windows.Devices.Enumeration.DeviceInformationCollection.GetAt(System.UInt32)" />
+        <element api="M:Windows.Devices.Enumeration.DeviceInformationCollection.GetMany(System.UInt32,Windows.Devices.Enumeration.DeviceInformation[])" />
+        <element api="M:Windows.Devices.Enumeration.DeviceInformationCollection.IndexOf(Windows.Devices.Enumeration.DeviceInformation,System.UInt32@)" />
+        <element api="P:Windows.Devices.Enumeration.DeviceInformationCollection.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformationCollection" />
+      </containers>
+      <file name="95bccb55-8fcb-07ee-e873-dfefc7036253" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Enumeration.DeviceInformationCollection">
+      <topicdata name="DeviceInformationCollection" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Enumeration.DeviceInformationCollection" />
+      <apidata name="DeviceInformationCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Enumeration.DeviceInformationCollection.First" />
+        <element api="M:Windows.Devices.Enumeration.DeviceInformationCollection.GetAt(System.UInt32)" />
+        <element api="M:Windows.Devices.Enumeration.DeviceInformationCollection.GetMany(System.UInt32,Windows.Devices.Enumeration.DeviceInformation[])" />
+        <element api="M:Windows.Devices.Enumeration.DeviceInformationCollection.IndexOf(Windows.Devices.Enumeration.DeviceInformation,System.UInt32@)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformationCollection" />
+      </containers>
+      <file name="0f3d1148-c5ca-57d3-33c3-43eb7d9b6c06" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Enumeration.DeviceInformationCollection">
+      <topicdata name="DeviceInformationCollection" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Enumeration.DeviceInformationCollection" />
+      <apidata name="DeviceInformationCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Enumeration.DeviceInformationCollection.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformationCollection" />
+      </containers>
+      <file name="91bc4318-e158-27b1-d4db-53f6d5e004cc" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceInformationCollection.First">
+      <topicdata group="api" />
+      <apidata name="First" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IIterator`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IIterable`1.First">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformationCollection" ref="true" />
+      </containers>
+      <file name="b58ca2dc-9faf-cb8f-54a0-dd505f367ae0" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceInformationCollection.GetAt(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVectorView`1.GetAt(System.UInt32)">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformationCollection" ref="true" />
+      </containers>
+      <file name="9935bd48-4ba5-08df-cc53-3d1f83bc0260" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceInformationCollection.GetMany(System.UInt32,Windows.Devices.Enumeration.DeviceInformation[])">
+      <topicdata group="api" />
+      <apidata name="GetMany" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="startIndex" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="items" out="true">
+          <arrayOf rank="1">
+            <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVectorView`1.GetMany(System.UInt32,`0[])">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformationCollection" ref="true" />
+      </containers>
+      <file name="20d77feb-01f8-91ac-b0d3-f1f449b24f22" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceInformationCollection.IndexOf(Windows.Devices.Enumeration.DeviceInformation,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+        </parameter>
+        <parameter name="index" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVectorView`1.IndexOf(`0,System.UInt32@)">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformationCollection" ref="true" />
+      </containers>
+      <file name="25b23d61-6b52-1b56-e31d-c46349130bf7" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.DeviceInformationCollection.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Size" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.Collections.IVectorView`1.Size">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformationCollection" ref="true" />
+      </containers>
+      <file name="9893a737-50d3-4ed6-5b2e-a0f5166eea84" />
+    </api>
+    <api id="T:Windows.Devices.Enumeration.DeviceInformationUpdate">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Enumeration.DeviceInformationUpdate" />
+      <apidata name="DeviceInformationUpdate" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Enumeration.IDeviceInformationUpdate" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ac24f8f8-ce5b-bf35-ae3b-cdc2d14862b7" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Enumeration.DeviceInformationUpdate">
+      <topicdata name="DeviceInformationUpdate" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Enumeration.DeviceInformationUpdate" />
+      <apidata name="DeviceInformationUpdate" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.Enumeration.DeviceInformationUpdate.Id" />
+        <element api="P:Windows.Devices.Enumeration.DeviceInformationUpdate.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformationUpdate" />
+      </containers>
+      <file name="624b6842-dac8-e821-a283-23ab9c236673" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Enumeration.DeviceInformationUpdate">
+      <topicdata name="DeviceInformationUpdate" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Enumeration.DeviceInformationUpdate" />
+      <apidata name="DeviceInformationUpdate" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformationUpdate" />
+      </containers>
+      <file name="ba8559f6-0785-62a5-a0f1-b63dded52647" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Enumeration.DeviceInformationUpdate">
+      <topicdata name="DeviceInformationUpdate" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Enumeration.DeviceInformationUpdate" />
+      <apidata name="DeviceInformationUpdate" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Enumeration.DeviceInformationUpdate.Id" />
+        <element api="P:Windows.Devices.Enumeration.DeviceInformationUpdate.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformationUpdate" />
+      </containers>
+      <file name="d1e4984f-c6e9-3e1b-2414-7ae668d39d8e" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.DeviceInformationUpdate.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformationUpdate" ref="true" />
+      </containers>
+      <file name="e2ce2044-4b19-d94d-4168-b3c27904fb9d" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.DeviceInformationUpdate.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceInformationUpdate" ref="true" />
+      </containers>
+      <file name="e540bb4f-1b0b-933c-e585-49871fc6c8a2" />
+    </api>
+    <api id="T:Windows.Devices.Enumeration.DeviceThumbnail">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Enumeration.DeviceThumbnail" />
+      <apidata name="DeviceThumbnail" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Storage.Streams.IRandomAccessStreamWithContentType" ref="true" />
+        <type api="T:Windows.Storage.Streams.IContentTypeProvider" ref="true" />
+        <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+        <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9649f77f-a99e-7b0d-0672-29d4e3f8c074" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Enumeration.DeviceThumbnail">
+      <topicdata name="DeviceThumbnail" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Enumeration.DeviceThumbnail" />
+      <apidata name="DeviceThumbnail" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.Enumeration.DeviceThumbnail.CanRead" />
+        <element api="P:Windows.Devices.Enumeration.DeviceThumbnail.CanWrite" />
+        <element api="M:Windows.Devices.Enumeration.DeviceThumbnail.CloneStream" />
+        <element api="M:Windows.Devices.Enumeration.DeviceThumbnail.Close" />
+        <element api="P:Windows.Devices.Enumeration.DeviceThumbnail.ContentType" />
+        <element api="M:Windows.Devices.Enumeration.DeviceThumbnail.FlushAsync" />
+        <element api="M:Windows.Devices.Enumeration.DeviceThumbnail.GetInputStreamAt(System.UInt64)" />
+        <element api="M:Windows.Devices.Enumeration.DeviceThumbnail.GetOutputStreamAt(System.UInt64)" />
+        <element api="P:Windows.Devices.Enumeration.DeviceThumbnail.Position" />
+        <element api="M:Windows.Devices.Enumeration.DeviceThumbnail.ReadAsync(Windows.Storage.Streams.IBuffer,System.UInt32,Windows.Storage.Streams.InputStreamOptions)" />
+        <element api="M:Windows.Devices.Enumeration.DeviceThumbnail.Seek(System.UInt64)" />
+        <element api="P:Windows.Devices.Enumeration.DeviceThumbnail.Size" />
+        <element api="M:Windows.Devices.Enumeration.DeviceThumbnail.WriteAsync(Windows.Storage.Streams.IBuffer)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceThumbnail" />
+      </containers>
+      <file name="2faca4b3-6851-ffa6-8872-f0952610437d" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Enumeration.DeviceThumbnail">
+      <topicdata name="DeviceThumbnail" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Enumeration.DeviceThumbnail" />
+      <apidata name="DeviceThumbnail" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Enumeration.DeviceThumbnail.CloneStream" />
+        <element api="M:Windows.Devices.Enumeration.DeviceThumbnail.Close" />
+        <element api="M:Windows.Devices.Enumeration.DeviceThumbnail.FlushAsync" />
+        <element api="M:Windows.Devices.Enumeration.DeviceThumbnail.GetInputStreamAt(System.UInt64)" />
+        <element api="M:Windows.Devices.Enumeration.DeviceThumbnail.GetOutputStreamAt(System.UInt64)" />
+        <element api="M:Windows.Devices.Enumeration.DeviceThumbnail.ReadAsync(Windows.Storage.Streams.IBuffer,System.UInt32,Windows.Storage.Streams.InputStreamOptions)" />
+        <element api="M:Windows.Devices.Enumeration.DeviceThumbnail.Seek(System.UInt64)" />
+        <element api="M:Windows.Devices.Enumeration.DeviceThumbnail.WriteAsync(Windows.Storage.Streams.IBuffer)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceThumbnail" />
+      </containers>
+      <file name="07846971-7b00-b469-ea64-76abad1fc7a6" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Enumeration.DeviceThumbnail">
+      <topicdata name="DeviceThumbnail" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Enumeration.DeviceThumbnail" />
+      <apidata name="DeviceThumbnail" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Enumeration.DeviceThumbnail.CanRead" />
+        <element api="P:Windows.Devices.Enumeration.DeviceThumbnail.CanWrite" />
+        <element api="P:Windows.Devices.Enumeration.DeviceThumbnail.ContentType" />
+        <element api="P:Windows.Devices.Enumeration.DeviceThumbnail.Position" />
+        <element api="P:Windows.Devices.Enumeration.DeviceThumbnail.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceThumbnail" />
+      </containers>
+      <file name="d3665a2f-c2a4-4edf-4be0-2a7e4a98d46c" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.DeviceThumbnail.CanRead">
+      <topicdata group="api" />
+      <apidata name="CanRead" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CanRead" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Storage.Streams.IRandomAccessStream.CanRead">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceThumbnail" ref="true" />
+      </containers>
+      <file name="0ac60890-9af8-9b2e-3dc1-3c85e63f7b61" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.DeviceThumbnail.CanWrite">
+      <topicdata group="api" />
+      <apidata name="CanWrite" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CanWrite" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Storage.Streams.IRandomAccessStream.CanWrite">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceThumbnail" ref="true" />
+      </containers>
+      <file name="0fc8ffa4-f543-63cc-4b8d-0a1665ffcd21" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceThumbnail.CloneStream">
+      <topicdata group="api" />
+      <apidata name="CloneStream" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.Streams.IRandomAccessStream.CloneStream">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceThumbnail" ref="true" />
+      </containers>
+      <file name="877ab55e-7c64-8e0c-3ed3-1a6589530106" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceThumbnail.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceThumbnail" ref="true" />
+      </containers>
+      <file name="d978f474-e00a-0ae7-5d90-78a5f6f0d380" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.DeviceThumbnail.ContentType">
+      <topicdata group="api" />
+      <apidata name="ContentType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ContentType" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Storage.Streams.IContentTypeProvider.ContentType">
+          <type api="T:Windows.Storage.Streams.IContentTypeProvider" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceThumbnail" ref="true" />
+      </containers>
+      <file name="515cfb65-80e8-1977-baa1-312b9c18da6c" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceThumbnail.FlushAsync">
+      <topicdata group="api" />
+      <apidata name="FlushAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.Streams.IOutputStream.FlushAsync">
+          <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceThumbnail" ref="true" />
+      </containers>
+      <file name="e9f0ef6a-8bff-837e-1baf-7a945d0b051a" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceThumbnail.GetInputStreamAt(System.UInt64)">
+      <topicdata group="api" />
+      <apidata name="GetInputStreamAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="position" in="true">
+          <type api="T:System.UInt64" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.Streams.IRandomAccessStream.GetInputStreamAt(System.UInt64)">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceThumbnail" ref="true" />
+      </containers>
+      <file name="6d7e410d-8baf-03bf-af9d-847214702cd7" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceThumbnail.GetOutputStreamAt(System.UInt64)">
+      <topicdata group="api" />
+      <apidata name="GetOutputStreamAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="position" in="true">
+          <type api="T:System.UInt64" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.Streams.IRandomAccessStream.GetOutputStreamAt(System.UInt64)">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceThumbnail" ref="true" />
+      </containers>
+      <file name="48c172db-4e5c-b77f-42c0-e978ad2ae590" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.DeviceThumbnail.Position">
+      <topicdata group="api" />
+      <apidata name="Position" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Position" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Storage.Streams.IRandomAccessStream.Position">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceThumbnail" ref="true" />
+      </containers>
+      <file name="771c16ea-cc07-a3be-df57-a322316e7f23" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceThumbnail.ReadAsync(Windows.Storage.Streams.IBuffer,System.UInt32,Windows.Storage.Streams.InputStreamOptions)">
+      <topicdata group="api" />
+      <apidata name="ReadAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="buffer" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="count" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.Storage.Streams.InputStreamOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.Streams.IInputStream.ReadAsync(Windows.Storage.Streams.IBuffer,System.UInt32,Windows.Storage.Streams.InputStreamOptions)">
+          <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceThumbnail" ref="true" />
+      </containers>
+      <file name="f485d515-727d-a3cf-ce59-2e31c4602808" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceThumbnail.Seek(System.UInt64)">
+      <topicdata group="api" />
+      <apidata name="Seek" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="position" in="true">
+          <type api="T:System.UInt64" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Storage.Streams.IRandomAccessStream.Seek(System.UInt64)">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceThumbnail" ref="true" />
+      </containers>
+      <file name="5f9c3f09-ba12-0558-d718-45e603fb55fb" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.DeviceThumbnail.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Size" />
+      <setter name="set_Size" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Storage.Streams.IRandomAccessStream.Size">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceThumbnail" ref="true" />
+      </containers>
+      <file name="d1640cb3-7b28-0701-7eef-1622a29da772" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceThumbnail.WriteAsync(Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="buffer" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.Streams.IOutputStream.WriteAsync(Windows.Storage.Streams.IBuffer)">
+          <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceThumbnail" ref="true" />
+      </containers>
+      <file name="881f3dc1-5802-937f-0ff6-91d196def425" />
+    </api>
+    <api id="T:Windows.Devices.Enumeration.DeviceWatcher">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Enumeration.DeviceWatcher" />
+      <apidata name="DeviceWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Enumeration.IDeviceWatcher" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2af5afdc-9cf9-daa6-1203-1d816f5bce81" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Enumeration.DeviceWatcher">
+      <topicdata name="DeviceWatcher" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Enumeration.DeviceWatcher" />
+      <apidata name="DeviceWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="E:Windows.Devices.Enumeration.DeviceWatcher.Added" />
+        <element api="E:Windows.Devices.Enumeration.DeviceWatcher.EnumerationCompleted" />
+        <element api="E:Windows.Devices.Enumeration.DeviceWatcher.Removed" />
+        <element api="M:Windows.Devices.Enumeration.DeviceWatcher.Start" />
+        <element api="P:Windows.Devices.Enumeration.DeviceWatcher.Status" />
+        <element api="M:Windows.Devices.Enumeration.DeviceWatcher.Stop" />
+        <element api="E:Windows.Devices.Enumeration.DeviceWatcher.Stopped" />
+        <element api="E:Windows.Devices.Enumeration.DeviceWatcher.Updated" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcher" />
+      </containers>
+      <file name="5509d9ac-569c-79f7-2a3a-e1ac27e0339c" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Enumeration.DeviceWatcher">
+      <topicdata name="DeviceWatcher" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Enumeration.DeviceWatcher" />
+      <apidata name="DeviceWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Enumeration.DeviceWatcher.Start" />
+        <element api="M:Windows.Devices.Enumeration.DeviceWatcher.Stop" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcher" />
+      </containers>
+      <file name="f4263afb-d44b-584b-1d28-e8ccc0772c17" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Enumeration.DeviceWatcher">
+      <topicdata name="DeviceWatcher" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Enumeration.DeviceWatcher" />
+      <apidata name="DeviceWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Enumeration.DeviceWatcher.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcher" />
+      </containers>
+      <file name="3cf17c5d-9287-5fbe-f7aa-8314a92950b6" />
+    </api>
+    <api id="Events.T:Windows.Devices.Enumeration.DeviceWatcher">
+      <topicdata name="DeviceWatcher" group="list" subgroup="Events" typeTopicId="T:Windows.Devices.Enumeration.DeviceWatcher" />
+      <apidata name="DeviceWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Devices.Enumeration.DeviceWatcher.Added" />
+        <element api="E:Windows.Devices.Enumeration.DeviceWatcher.EnumerationCompleted" />
+        <element api="E:Windows.Devices.Enumeration.DeviceWatcher.Removed" />
+        <element api="E:Windows.Devices.Enumeration.DeviceWatcher.Stopped" />
+        <element api="E:Windows.Devices.Enumeration.DeviceWatcher.Updated" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcher" />
+      </containers>
+      <file name="77e7ff9f-c3ce-0c72-f2b5-5b8056f57266" />
+    </api>
+    <api id="E:Windows.Devices.Enumeration.DeviceWatcher.Added">
+      <topicdata group="api" />
+      <apidata name="Added" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Added" />
+      <remover name="remove_Added" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.DeviceWatcher" ref="true" />
+            <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcher" ref="true" />
+      </containers>
+      <file name="18391a93-bdbb-7fab-8ab3-fe82e63b8ed5" />
+    </api>
+    <api id="E:Windows.Devices.Enumeration.DeviceWatcher.EnumerationCompleted">
+      <topicdata group="api" />
+      <apidata name="EnumerationCompleted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_EnumerationCompleted" />
+      <remover name="remove_EnumerationCompleted" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.DeviceWatcher" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcher" ref="true" />
+      </containers>
+      <file name="46506bb7-35cf-86c2-9259-e535ad95164d" />
+    </api>
+    <api id="E:Windows.Devices.Enumeration.DeviceWatcher.Removed">
+      <topicdata group="api" />
+      <apidata name="Removed" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Removed" />
+      <remover name="remove_Removed" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.DeviceWatcher" ref="true" />
+            <type api="T:Windows.Devices.Enumeration.DeviceInformationUpdate" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcher" ref="true" />
+      </containers>
+      <file name="44cdd712-d56b-cbe1-63de-91b43d497410" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceWatcher.Start">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcher" ref="true" />
+      </containers>
+      <file name="6378a314-763a-321a-565b-f3c6e8ae1ec8" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.DeviceWatcher.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Status" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcherStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcher" ref="true" />
+      </containers>
+      <file name="d0151ab6-d430-8edc-9178-d0e9fc49da33" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.DeviceWatcher.Stop">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcher" ref="true" />
+      </containers>
+      <file name="df79d9f1-7b45-e8db-fbb0-c32b7e0893fe" />
+    </api>
+    <api id="E:Windows.Devices.Enumeration.DeviceWatcher.Stopped">
+      <topicdata group="api" />
+      <apidata name="Stopped" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Stopped" />
+      <remover name="remove_Stopped" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.DeviceWatcher" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcher" ref="true" />
+      </containers>
+      <file name="54d84c40-048c-bf1a-5048-49584114074e" />
+    </api>
+    <api id="E:Windows.Devices.Enumeration.DeviceWatcher.Updated">
+      <topicdata group="api" />
+      <apidata name="Updated" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Updated" />
+      <remover name="remove_Updated" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.DeviceWatcher" ref="true" />
+            <type api="T:Windows.Devices.Enumeration.DeviceInformationUpdate" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcher" ref="true" />
+      </containers>
+      <file name="d814e8b9-5c01-00fd-b48d-a8bba70d900b" />
+    </api>
+    <api id="T:Windows.Devices.Enumeration.DeviceWatcherStatus">
+      <topicdata group="api" />
+      <apidata name="DeviceWatcherStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Enumeration.DeviceWatcherStatus.Created" />
+        <element api="F:Windows.Devices.Enumeration.DeviceWatcherStatus.Started" />
+        <element api="F:Windows.Devices.Enumeration.DeviceWatcherStatus.EnumerationCompleted" />
+        <element api="F:Windows.Devices.Enumeration.DeviceWatcherStatus.Stopping" />
+        <element api="F:Windows.Devices.Enumeration.DeviceWatcherStatus.Stopped" />
+        <element api="F:Windows.Devices.Enumeration.DeviceWatcherStatus.Aborted" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a2d4bdab-b484-84de-34ae-587e243eaec1" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.DeviceWatcherStatus.Aborted">
+      <topicdata group="api" notopic="" />
+      <apidata name="Aborted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcherStatus" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcherStatus" ref="false" />
+      </containers>
+      <file name="5ffb368e-b756-f08c-24cc-d884d57ce766" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.DeviceWatcherStatus.Created">
+      <topicdata group="api" notopic="" />
+      <apidata name="Created" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcherStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcherStatus" ref="false" />
+      </containers>
+      <file name="3b5b4208-97fe-b71f-39ae-663e52eb3208" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.DeviceWatcherStatus.EnumerationCompleted">
+      <topicdata group="api" notopic="" />
+      <apidata name="EnumerationCompleted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcherStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcherStatus" ref="false" />
+      </containers>
+      <file name="bd78e67d-50d5-bd6a-7be6-c69893a16616" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.DeviceWatcherStatus.Started">
+      <topicdata group="api" notopic="" />
+      <apidata name="Started" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcherStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcherStatus" ref="false" />
+      </containers>
+      <file name="3fd414ff-da51-781e-f729-321f5a35ab89" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.DeviceWatcherStatus.Stopped">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stopped" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcherStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcherStatus" ref="false" />
+      </containers>
+      <file name="537c6fef-ab0f-ed49-4198-e553bf696d04" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.DeviceWatcherStatus.Stopping">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stopping" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcherStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcherStatus" ref="false" />
+      </containers>
+      <file name="cbdb50dc-72f6-ca69-5e46-e92eca52cd94" />
+    </api>
+    <api id="T:Windows.Devices.Enumeration.EnclosureLocation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Enumeration.EnclosureLocation" />
+      <apidata name="EnclosureLocation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Enumeration.IEnclosureLocation" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="f7376ed3-9984-f988-f99f-40afa401e696" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Enumeration.EnclosureLocation">
+      <topicdata name="EnclosureLocation" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Enumeration.EnclosureLocation" />
+      <apidata name="EnclosureLocation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.Enumeration.EnclosureLocation.InDock" />
+        <element api="P:Windows.Devices.Enumeration.EnclosureLocation.InLid" />
+        <element api="P:Windows.Devices.Enumeration.EnclosureLocation.Panel" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.EnclosureLocation" />
+      </containers>
+      <file name="5ec372dd-67ce-d8d1-090d-cb2d29d31412" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Enumeration.EnclosureLocation">
+      <topicdata name="EnclosureLocation" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Enumeration.EnclosureLocation" />
+      <apidata name="EnclosureLocation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.EnclosureLocation" />
+      </containers>
+      <file name="f7e2a640-2c96-063e-4b39-5b5c99381fc1" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Enumeration.EnclosureLocation">
+      <topicdata name="EnclosureLocation" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Enumeration.EnclosureLocation" />
+      <apidata name="EnclosureLocation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Enumeration.EnclosureLocation.InDock" />
+        <element api="P:Windows.Devices.Enumeration.EnclosureLocation.InLid" />
+        <element api="P:Windows.Devices.Enumeration.EnclosureLocation.Panel" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.EnclosureLocation" />
+      </containers>
+      <file name="2292f666-f4c9-ccf6-6b17-3a952bbe90b2" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.EnclosureLocation.InDock">
+      <topicdata group="api" />
+      <apidata name="InDock" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_InDock" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.EnclosureLocation" ref="true" />
+      </containers>
+      <file name="5c83aa13-b47e-b99a-8bbc-3f40ed83f82f" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.EnclosureLocation.InLid">
+      <topicdata group="api" />
+      <apidata name="InLid" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_InLid" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.EnclosureLocation" ref="true" />
+      </containers>
+      <file name="8b3d373b-dba2-73e4-4f6f-6d0111b6b5ab" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.EnclosureLocation.Panel">
+      <topicdata group="api" />
+      <apidata name="Panel" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Panel" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.Panel" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.EnclosureLocation" ref="true" />
+      </containers>
+      <file name="f18897e4-3028-40b1-92ab-2dac68570ae7" />
+    </api>
+    <api id="T:Windows.Devices.Enumeration.Panel">
+      <topicdata group="api" />
+      <apidata name="Panel" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Enumeration.Panel.Unknown" />
+        <element api="F:Windows.Devices.Enumeration.Panel.Front" />
+        <element api="F:Windows.Devices.Enumeration.Panel.Back" />
+        <element api="F:Windows.Devices.Enumeration.Panel.Top" />
+        <element api="F:Windows.Devices.Enumeration.Panel.Bottom" />
+        <element api="F:Windows.Devices.Enumeration.Panel.Left" />
+        <element api="F:Windows.Devices.Enumeration.Panel.Right" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1859f9bf-5322-0434-0163-401061797dd1" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.Panel.Back">
+      <topicdata group="api" notopic="" />
+      <apidata name="Back" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.Panel" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.Panel" ref="false" />
+      </containers>
+      <file name="efdac118-7a47-c950-571f-e26f0808c66d" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.Panel.Bottom">
+      <topicdata group="api" notopic="" />
+      <apidata name="Bottom" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.Panel" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.Panel" ref="false" />
+      </containers>
+      <file name="b3eb86ec-9ffd-0a70-11ee-16fe3d7d28df" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.Panel.Front">
+      <topicdata group="api" notopic="" />
+      <apidata name="Front" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.Panel" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.Panel" ref="false" />
+      </containers>
+      <file name="751dcac0-f026-64db-52e2-3f6e629656a0" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.Panel.Left">
+      <topicdata group="api" notopic="" />
+      <apidata name="Left" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.Panel" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.Panel" ref="false" />
+      </containers>
+      <file name="ed4255b9-e406-9072-0a7b-ff6d66324fc9" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.Panel.Right">
+      <topicdata group="api" notopic="" />
+      <apidata name="Right" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.Panel" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.Panel" ref="false" />
+      </containers>
+      <file name="8febd2ee-ad38-4c52-b2aa-1697ba9b66e7" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.Panel.Top">
+      <topicdata group="api" notopic="" />
+      <apidata name="Top" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.Panel" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.Panel" ref="false" />
+      </containers>
+      <file name="710a9989-578d-f97e-bd91-aa66231e45ec" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.Panel.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.Panel" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration" />
+        <type api="T:Windows.Devices.Enumeration.Panel" ref="false" />
+      </containers>
+      <file name="b737d22f-4cc3-6db0-e100-34a6a5e56ab3" />
+    </api>
+  </apis>
+</reflection>

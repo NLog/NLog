@@ -1,0 +1,1370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Web.DynamicData.Design">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.DynamicData.Design.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.DynamicData.Design.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.DynamicData.Design.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Web.DynamicData.Design">
+      <topicdata group="api" />
+      <apidata name="System.Web.DynamicData.Design" group="namespace" />
+      <elements>
+        <element api="T:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor" />
+        <element api="T:System.Web.DynamicData.Design.DataControlReferenceIDConverter" />
+        <element api="T:System.Web.DynamicData.Design.DynamicDataManagerDesigner" />
+        <element api="T:System.Web.DynamicData.Design.DynamicFieldDesigner" />
+      </elements>
+      <file name="5e3ce81b-217e-fa52-bc08-ba021840b398" />
+    </api>
+    <api id="T:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor" />
+      <apidata name="DataControlReferenceCollectionEditor" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.Design.CollectionEditor" ref="true" />
+          <type api="T:System.Drawing.Design.UITypeEditor" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+      </containers>
+      <file name="e4fd2cb4-70ce-c5c3-16a6-1224b97c72b8" />
+    </api>
+    <api id="AllMembers.T:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor">
+      <topicdata name="DataControlReferenceCollectionEditor" group="list" subgroup="members" typeTopicId="T:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor" />
+      <apidata name="DataControlReferenceCollectionEditor" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.CancelChanges" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.CanRemoveInstance(System.Object)" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.CanSelectMultipleInstances" />
+        <element api="P:System.ComponentModel.Design.CollectionEditor.CollectionItemType" />
+        <element api="P:System.ComponentModel.Design.CollectionEditor.CollectionType" />
+        <element api="P:System.ComponentModel.Design.CollectionEditor.Context" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.CreateCollectionForm" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.CreateInstance(System.Type)" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.CreateNewItemTypes" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.DestroyInstance(System.Object)" />
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor.EditValue">
+          <element api="M:System.Drawing.Design.UITypeEditor.EditValue(System.IServiceProvider,System.Object)" />
+          <element api="M:System.ComponentModel.Design.CollectionEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.Design.CollectionEditor.GetDisplayText(System.Object)" />
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor.GetEditStyle">
+          <element api="M:System.Drawing.Design.UITypeEditor.GetEditStyle" />
+          <element api="M:System.ComponentModel.Design.CollectionEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="M:System.ComponentModel.Design.CollectionEditor.GetItems(System.Object)" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.GetObjectsFromInstance(System.Object)" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.GetService(System.Type)" />
+        <element api="P:System.ComponentModel.Design.CollectionEditor.HelpTopic" />
+        <element api="P:System.ComponentModel.Design.CollectionEditor.NewItemTypes" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.SetItems(System.Object,System.Object[])" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.ShowHelp" />
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor.GetPaintValueSupported">
+          <element api="M:System.Drawing.Design.UITypeEditor.GetPaintValueSupported" />
+          <element api="M:System.Drawing.Design.UITypeEditor.GetPaintValueSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="P:System.Drawing.Design.UITypeEditor.IsDropDownResizable" />
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor.PaintValue">
+          <element api="M:System.Drawing.Design.UITypeEditor.PaintValue(System.Drawing.Design.PaintValueEventArgs)" />
+          <element api="M:System.Drawing.Design.UITypeEditor.PaintValue(System.Object,System.Drawing.Graphics,System.Drawing.Rectangle)" />
+        </element>
+        <element api="M:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor.#ctor(System.Type)" />
+        <element api="M:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor.CreateCollectionItemType" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor" />
+      </containers>
+      <file name="91f858a4-92bd-6ee3-0c48-96e970e956c3" />
+    </api>
+    <api id="Methods.T:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor">
+      <topicdata name="DataControlReferenceCollectionEditor" group="list" subgroup="Methods" typeTopicId="T:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor" />
+      <apidata name="DataControlReferenceCollectionEditor" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.CancelChanges" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.CanRemoveInstance(System.Object)" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.CanSelectMultipleInstances" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.CreateCollectionForm" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.CreateInstance(System.Type)" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.CreateNewItemTypes" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.DestroyInstance(System.Object)" />
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor.EditValue">
+          <element api="M:System.Drawing.Design.UITypeEditor.EditValue(System.IServiceProvider,System.Object)" />
+          <element api="M:System.ComponentModel.Design.CollectionEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.Design.CollectionEditor.GetDisplayText(System.Object)" />
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor.GetEditStyle">
+          <element api="M:System.Drawing.Design.UITypeEditor.GetEditStyle" />
+          <element api="M:System.ComponentModel.Design.CollectionEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="M:System.ComponentModel.Design.CollectionEditor.GetItems(System.Object)" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.GetObjectsFromInstance(System.Object)" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.GetService(System.Type)" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.SetItems(System.Object,System.Object[])" />
+        <element api="M:System.ComponentModel.Design.CollectionEditor.ShowHelp" />
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor.GetPaintValueSupported">
+          <element api="M:System.Drawing.Design.UITypeEditor.GetPaintValueSupported" />
+          <element api="M:System.Drawing.Design.UITypeEditor.GetPaintValueSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor.PaintValue">
+          <element api="M:System.Drawing.Design.UITypeEditor.PaintValue(System.Drawing.Design.PaintValueEventArgs)" />
+          <element api="M:System.Drawing.Design.UITypeEditor.PaintValue(System.Object,System.Drawing.Graphics,System.Drawing.Rectangle)" />
+        </element>
+        <element api="M:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor.CreateCollectionItemType" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor" />
+      </containers>
+      <file name="17606d81-270a-168d-c4fa-17e4f8661538" />
+    </api>
+    <api id="Properties.T:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor">
+      <topicdata name="DataControlReferenceCollectionEditor" group="list" subgroup="Properties" typeTopicId="T:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor" />
+      <apidata name="DataControlReferenceCollectionEditor" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.ComponentModel.Design.CollectionEditor.CollectionItemType" />
+        <element api="P:System.ComponentModel.Design.CollectionEditor.CollectionType" />
+        <element api="P:System.ComponentModel.Design.CollectionEditor.Context" />
+        <element api="P:System.ComponentModel.Design.CollectionEditor.HelpTopic" />
+        <element api="P:System.ComponentModel.Design.CollectionEditor.NewItemTypes" />
+        <element api="P:System.Drawing.Design.UITypeEditor.IsDropDownResizable" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor" />
+      </containers>
+      <file name="a7a3bfae-3b5b-8044-56e5-fc3375193c4a" />
+    </api>
+    <api id="M:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor.#ctor(System.Type)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor" ref="true" />
+      </containers>
+      <file name="56a9fbb2-6b92-ad44-218a-60fc84b9f77d" />
+    </api>
+    <api id="M:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor.CreateCollectionItemType">
+      <topicdata group="api" />
+      <apidata name="CreateCollectionItemType" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.Design.CollectionEditor.CreateCollectionItemType">
+          <type api="T:System.ComponentModel.Design.CollectionEditor" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DataControlReferenceCollectionEditor" ref="true" />
+      </containers>
+      <file name="b8a5164e-64b3-e703-3546-2ceea942fd61" />
+    </api>
+    <api id="T:System.Web.DynamicData.Design.DataControlReferenceIDConverter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.DynamicData.Design.DataControlReferenceIDConverter" />
+      <apidata name="DataControlReferenceIDConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.DynamicData.Design.DataControlReferenceIDConverter.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.StringConverter" ref="true" />
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+      </containers>
+      <file name="dc98dc08-434e-2e8c-7101-de5b332b8e09" />
+    </api>
+    <api id="AllMembers.T:System.Web.DynamicData.Design.DataControlReferenceIDConverter">
+      <topicdata name="DataControlReferenceIDConverter" group="list" subgroup="members" typeTopicId="T:System.Web.DynamicData.Design.DataControlReferenceIDConverter" />
+      <apidata name="DataControlReferenceIDConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.DynamicData.Design.DataControlReferenceIDConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.CanConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+          <element api="M:System.ComponentModel.StringConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.ConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+          <element api="M:System.ComponentModel.StringConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.CanConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.ConvertFromInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.ConvertFromString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.ConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.ConvertToInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.ConvertToString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.CreateInstance">
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)" />
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertFromException(System.Object)" />
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertToException(System.Object,System.Type)" />
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetCreateInstanceSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetProperties">
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetPropertiesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValues">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+          <element api="M:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValuesExclusive">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+          <element api="M:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValuesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+          <element api="M:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.IsValid">
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.SortProperties(System.ComponentModel.PropertyDescriptorCollection,System.String[])" />
+        <element api="M:System.Web.DynamicData.Design.DataControlReferenceIDConverter.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DataControlReferenceIDConverter" />
+      </containers>
+      <file name="872a4394-55f3-d267-6415-8335dee8feba" />
+    </api>
+    <api id="Methods.T:System.Web.DynamicData.Design.DataControlReferenceIDConverter">
+      <topicdata name="DataControlReferenceIDConverter" group="list" subgroup="Methods" typeTopicId="T:System.Web.DynamicData.Design.DataControlReferenceIDConverter" />
+      <apidata name="DataControlReferenceIDConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.DynamicData.Design.DataControlReferenceIDConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.CanConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+          <element api="M:System.ComponentModel.StringConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.ConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+          <element api="M:System.ComponentModel.StringConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.CanConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.ConvertFromInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.ConvertFromString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.ConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.ConvertToInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.ConvertToString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.CreateInstance">
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)" />
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertFromException(System.Object)" />
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertToException(System.Object,System.Type)" />
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetCreateInstanceSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetProperties">
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetPropertiesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValues">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+          <element api="M:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValuesExclusive">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+          <element api="M:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValuesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+          <element api="M:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.IsValid">
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.SortProperties(System.ComponentModel.PropertyDescriptorCollection,System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DataControlReferenceIDConverter" />
+      </containers>
+      <file name="2e4d95f1-7389-8d71-c2a3-06e3a94db8ac" />
+    </api>
+    <api id="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValues">
+      <topicdata name="GetStandardValues" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.DynamicData.Design.DataControlReferenceIDConverter" />
+      <apidata name="GetStandardValues" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+        <element api="M:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DataControlReferenceIDConverter" ref="true" />
+      </containers>
+      <file name="718dcf9c-4d7d-0073-eb89-d8ef8a5ea672" />
+    </api>
+    <api id="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValuesExclusive">
+      <topicdata name="GetStandardValuesExclusive" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.DynamicData.Design.DataControlReferenceIDConverter" />
+      <apidata name="GetStandardValuesExclusive" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+        <element api="M:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DataControlReferenceIDConverter" ref="true" />
+      </containers>
+      <file name="b0bb900b-b665-3946-2021-be52e64ed09e" />
+    </api>
+    <api id="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValuesSupported">
+      <topicdata name="GetStandardValuesSupported" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.DynamicData.Design.DataControlReferenceIDConverter" />
+      <apidata name="GetStandardValuesSupported" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+        <element api="M:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DataControlReferenceIDConverter" ref="true" />
+      </containers>
+      <file name="290d920b-029e-3563-0550-fb6c7e303746" />
+    </api>
+    <api id="M:System.Web.DynamicData.Design.DataControlReferenceIDConverter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DataControlReferenceIDConverter" ref="true" />
+      </containers>
+      <file name="ca34194f-e0d5-0e09-dfc2-ece71e46e17d" />
+    </api>
+    <api id="M:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)">
+      <topicdata group="api" />
+      <apidata name="GetStandardValues" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValues" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.TypeConverter.StandardValuesCollection" ref="true">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DataControlReferenceIDConverter" ref="true" />
+      </containers>
+      <file name="59bc813e-6641-267c-8c33-63fed2fd3296" />
+    </api>
+    <api id="M:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)">
+      <topicdata group="api" />
+      <apidata name="GetStandardValuesExclusive" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValuesExclusive" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DataControlReferenceIDConverter" ref="true" />
+      </containers>
+      <file name="5f5f037e-0985-2565-0c34-ee69d1d706c6" />
+    </api>
+    <api id="M:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)">
+      <topicdata group="api" />
+      <apidata name="GetStandardValuesSupported" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.DynamicData.Design.DataControlReferenceIDConverter.GetStandardValuesSupported" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DataControlReferenceIDConverter" ref="true" />
+      </containers>
+      <file name="d3dbef4e-6b4f-ed23-0c8a-ce54c0692a0c" />
+    </api>
+    <api id="T:System.Web.DynamicData.Design.DynamicDataManagerDesigner">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.DynamicData.Design.DynamicDataManagerDesigner" />
+      <apidata name="DynamicDataManagerDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.DynamicData.Design.DynamicDataManagerDesigner.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Web.UI.Design.ControlDesigner" ref="true" />
+          <type api="T:System.Web.UI.Design.HtmlControlDesigner" ref="true" />
+          <type api="T:System.ComponentModel.Design.ComponentDesigner" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+      </containers>
+      <file name="75e7834b-558a-262f-ae4e-236b71e65cb6" />
+    </api>
+    <api id="AllMembers.T:System.Web.DynamicData.Design.DynamicDataManagerDesigner">
+      <topicdata name="DynamicDataManagerDesigner" group="list" subgroup="members" typeTopicId="T:System.Web.DynamicData.Design.DynamicDataManagerDesigner" />
+      <apidata name="DynamicDataManagerDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.DynamicData.Design.DynamicDataManagerDesigner.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.AssociatedComponents" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Component" />
+        <element api="Overload:System.Web.DynamicData.Design.DynamicDataManagerDesigner.Dispose">
+          <element api="M:System.ComponentModel.Design.ComponentDesigner.Dispose" />
+          <element api="M:System.Web.UI.Design.HtmlControlDesigner.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.DoDefaultAction" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.Finalize" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.GetService(System.Type)" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.InheritanceAttribute" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Inherited" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeExistingComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNewComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNonDefault" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InvokeGetInheritanceAttribute(System.ComponentModel.Design.ComponentDesigner)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.OnSetComponentDefaults" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ParentComponent" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanged(System.ComponentModel.MemberDescriptor,System.Object,System.Object)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanging(System.ComponentModel.MemberDescriptor)" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ShadowProperties" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterProperties(System.Collections.IDictionary)" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Children" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Parent" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Verbs" />
+        <element api="M:System.Web.DynamicData.Design.DynamicDataManagerDesigner.#ctor" />
+        <element api="P:System.Web.DynamicData.Design.DynamicDataManagerDesigner.ActionLists" />
+        <element api="Overload:System.Web.DynamicData.Design.DynamicDataManagerDesigner.GetDesignTimeHtml">
+          <element api="M:System.Web.DynamicData.Design.DynamicDataManagerDesigner.GetDesignTimeHtml" />
+          <element api="M:System.Web.UI.Design.ControlDesigner.GetDesignTimeHtml(System.Web.UI.Design.DesignerRegionCollection)" />
+        </element>
+        <element api="P:System.Web.UI.Design.ControlDesigner.AllowResize" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.AutoFormats" />
+        <element api="Overload:System.Web.DynamicData.Design.DynamicDataManagerDesigner.CreateErrorDesignTimeHtml">
+          <element api="M:System.Web.UI.Design.ControlDesigner.CreateErrorDesignTimeHtml(System.String)" />
+          <element api="M:System.Web.UI.Design.ControlDesigner.CreateErrorDesignTimeHtml(System.String,System.Exception)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DynamicDataManagerDesigner.CreatePlaceHolderDesignTimeHtml">
+          <element api="M:System.Web.UI.Design.ControlDesigner.CreatePlaceHolderDesignTimeHtml" />
+          <element api="M:System.Web.UI.Design.ControlDesigner.CreatePlaceHolderDesignTimeHtml(System.String)" />
+        </element>
+        <element api="M:System.Web.UI.Design.ControlDesigner.CreateViewControl" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.DataBindingsEnabled" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.DesignerState" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.DesignTimeElementView" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.DesignTimeHtmlRequiresLoadComplete" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.GetBounds" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.GetEditableDesignerRegionContent(System.Web.UI.Design.EditableDesignerRegion)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.GetEmptyDesignTimeHtml" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.GetErrorDesignTimeHtml(System.Exception)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.GetPersistenceContent" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.GetPersistInnerHtml" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.GetViewRendering" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.HidePropertiesInTemplateMode" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.ID" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.Initialize(System.ComponentModel.IComponent)" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.InTemplateMode" />
+        <element api="Overload:System.Web.DynamicData.Design.DynamicDataManagerDesigner.Invalidate">
+          <element api="M:System.Web.UI.Design.ControlDesigner.Invalidate" />
+          <element api="M:System.Web.UI.Design.ControlDesigner.Invalidate(System.Drawing.Rectangle)" />
+        </element>
+        <element api="P:System.Web.UI.Design.ControlDesigner.IsDirty" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.IsPropertyBound(System.String)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.Localize(System.Web.UI.Design.IDesignTimeResourceWriter)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.OnAutoFormatApplied(System.Web.UI.Design.DesignerAutoFormat)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.OnBindingsCollectionChanged(System.String)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.OnClick(System.Web.UI.Design.DesignerRegionMouseEventArgs)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.OnComponentChanged(System.Object,System.ComponentModel.Design.ComponentChangedEventArgs)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.OnComponentChanging(System.Object,System.ComponentModel.Design.ComponentChangingEventArgs)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.OnControlResize" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.OnPaint(System.Windows.Forms.PaintEventArgs)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.PreFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.RaiseResizeEvent" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.ReadOnly" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.RegisterClone(System.Object,System.Object)" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.RootDesigner" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.SetEditableDesignerRegionContent(System.Web.UI.Design.EditableDesignerRegion,System.String)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.SetRegionContent(System.Web.UI.Design.EditableDesignerRegion,System.String)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.SetViewFlags(System.Web.UI.Design.ViewFlags,System.Boolean)" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.Tag" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.TemplateGroups" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.UpdateDesignTimeHtml" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.UsePreviewControl" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.ViewControl" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.ViewControlCreated" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.Visible" />
+        <element api="P:System.Web.UI.Design.HtmlControlDesigner.Behavior" />
+        <element api="P:System.Web.UI.Design.HtmlControlDesigner.DataBindings" />
+        <element api="P:System.Web.UI.Design.HtmlControlDesigner.DesignTimeElement" />
+        <element api="P:System.Web.UI.Design.HtmlControlDesigner.Expressions" />
+        <element api="M:System.Web.UI.Design.HtmlControlDesigner.OnBehaviorAttached" />
+        <element api="M:System.Web.UI.Design.HtmlControlDesigner.OnBehaviorDetaching" />
+        <element api="M:System.Web.UI.Design.HtmlControlDesigner.OnSetParent" />
+        <element api="M:System.Web.UI.Design.HtmlControlDesigner.PreFilterEvents(System.Collections.IDictionary)" />
+        <element api="P:System.Web.UI.Design.HtmlControlDesigner.ShouldCodeSerialize" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicDataManagerDesigner" />
+      </containers>
+      <file name="c5a29412-1005-37c1-3f22-5ff21674d79f" />
+    </api>
+    <api id="Methods.T:System.Web.DynamicData.Design.DynamicDataManagerDesigner">
+      <topicdata name="DynamicDataManagerDesigner" group="list" subgroup="Methods" typeTopicId="T:System.Web.DynamicData.Design.DynamicDataManagerDesigner" />
+      <apidata name="DynamicDataManagerDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.DynamicData.Design.DynamicDataManagerDesigner.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Web.DynamicData.Design.DynamicDataManagerDesigner.Dispose">
+          <element api="M:System.ComponentModel.Design.ComponentDesigner.Dispose" />
+          <element api="M:System.Web.UI.Design.HtmlControlDesigner.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.DoDefaultAction" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.Finalize" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.GetService(System.Type)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeExistingComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNewComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNonDefault" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InvokeGetInheritanceAttribute(System.ComponentModel.Design.ComponentDesigner)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.OnSetComponentDefaults" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanged(System.ComponentModel.MemberDescriptor,System.Object,System.Object)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanging(System.ComponentModel.MemberDescriptor)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterProperties(System.Collections.IDictionary)" />
+        <element api="Overload:System.Web.DynamicData.Design.DynamicDataManagerDesigner.GetDesignTimeHtml">
+          <element api="M:System.Web.DynamicData.Design.DynamicDataManagerDesigner.GetDesignTimeHtml" />
+          <element api="M:System.Web.UI.Design.ControlDesigner.GetDesignTimeHtml(System.Web.UI.Design.DesignerRegionCollection)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DynamicDataManagerDesigner.CreateErrorDesignTimeHtml">
+          <element api="M:System.Web.UI.Design.ControlDesigner.CreateErrorDesignTimeHtml(System.String)" />
+          <element api="M:System.Web.UI.Design.ControlDesigner.CreateErrorDesignTimeHtml(System.String,System.Exception)" />
+        </element>
+        <element api="Overload:System.Web.DynamicData.Design.DynamicDataManagerDesigner.CreatePlaceHolderDesignTimeHtml">
+          <element api="M:System.Web.UI.Design.ControlDesigner.CreatePlaceHolderDesignTimeHtml" />
+          <element api="M:System.Web.UI.Design.ControlDesigner.CreatePlaceHolderDesignTimeHtml(System.String)" />
+        </element>
+        <element api="M:System.Web.UI.Design.ControlDesigner.CreateViewControl" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.GetBounds" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.GetEditableDesignerRegionContent(System.Web.UI.Design.EditableDesignerRegion)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.GetEmptyDesignTimeHtml" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.GetErrorDesignTimeHtml(System.Exception)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.GetPersistenceContent" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.GetPersistInnerHtml" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.GetViewRendering" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.Initialize(System.ComponentModel.IComponent)" />
+        <element api="Overload:System.Web.DynamicData.Design.DynamicDataManagerDesigner.Invalidate">
+          <element api="M:System.Web.UI.Design.ControlDesigner.Invalidate" />
+          <element api="M:System.Web.UI.Design.ControlDesigner.Invalidate(System.Drawing.Rectangle)" />
+        </element>
+        <element api="M:System.Web.UI.Design.ControlDesigner.IsPropertyBound(System.String)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.Localize(System.Web.UI.Design.IDesignTimeResourceWriter)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.OnAutoFormatApplied(System.Web.UI.Design.DesignerAutoFormat)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.OnBindingsCollectionChanged(System.String)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.OnClick(System.Web.UI.Design.DesignerRegionMouseEventArgs)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.OnComponentChanged(System.Object,System.ComponentModel.Design.ComponentChangedEventArgs)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.OnComponentChanging(System.Object,System.ComponentModel.Design.ComponentChangingEventArgs)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.OnControlResize" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.OnPaint(System.Windows.Forms.PaintEventArgs)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.PreFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.RaiseResizeEvent" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.RegisterClone(System.Object,System.Object)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.SetEditableDesignerRegionContent(System.Web.UI.Design.EditableDesignerRegion,System.String)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.SetRegionContent(System.Web.UI.Design.EditableDesignerRegion,System.String)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.SetViewFlags(System.Web.UI.Design.ViewFlags,System.Boolean)" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.UpdateDesignTimeHtml" />
+        <element api="M:System.Web.UI.Design.HtmlControlDesigner.OnBehaviorAttached" />
+        <element api="M:System.Web.UI.Design.HtmlControlDesigner.OnBehaviorDetaching" />
+        <element api="M:System.Web.UI.Design.HtmlControlDesigner.OnSetParent" />
+        <element api="M:System.Web.UI.Design.HtmlControlDesigner.PreFilterEvents(System.Collections.IDictionary)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicDataManagerDesigner" />
+      </containers>
+      <file name="a1e15099-6aaa-5e13-43e3-29c7c5febed4" />
+    </api>
+    <api id="Properties.T:System.Web.DynamicData.Design.DynamicDataManagerDesigner">
+      <topicdata name="DynamicDataManagerDesigner" group="list" subgroup="Properties" typeTopicId="T:System.Web.DynamicData.Design.DynamicDataManagerDesigner" />
+      <apidata name="DynamicDataManagerDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.DynamicData.Design.DynamicDataManagerDesigner.#ctor" />
+      <elements>
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.AssociatedComponents" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Component" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.InheritanceAttribute" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Inherited" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ParentComponent" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ShadowProperties" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Children" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Parent" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Verbs" />
+        <element api="P:System.Web.DynamicData.Design.DynamicDataManagerDesigner.ActionLists" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.AllowResize" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.AutoFormats" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.DataBindingsEnabled" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.DesignerState" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.DesignTimeElementView" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.DesignTimeHtmlRequiresLoadComplete" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.HidePropertiesInTemplateMode" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.ID" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.InTemplateMode" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.IsDirty" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.ReadOnly" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.RootDesigner" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.Tag" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.TemplateGroups" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.UsePreviewControl" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.ViewControl" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.ViewControlCreated" />
+        <element api="P:System.Web.UI.Design.ControlDesigner.Visible" />
+        <element api="P:System.Web.UI.Design.HtmlControlDesigner.Behavior" />
+        <element api="P:System.Web.UI.Design.HtmlControlDesigner.DataBindings" />
+        <element api="P:System.Web.UI.Design.HtmlControlDesigner.DesignTimeElement" />
+        <element api="P:System.Web.UI.Design.HtmlControlDesigner.Expressions" />
+        <element api="P:System.Web.UI.Design.HtmlControlDesigner.ShouldCodeSerialize" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicDataManagerDesigner" />
+      </containers>
+      <file name="89b0278c-6132-85dd-4da8-c07bbb7ee329" />
+    </api>
+    <api id="Overload:System.Web.DynamicData.Design.DynamicDataManagerDesigner.GetDesignTimeHtml">
+      <topicdata name="GetDesignTimeHtml" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.DynamicData.Design.DynamicDataManagerDesigner" />
+      <apidata name="GetDesignTimeHtml" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Web.DynamicData.Design.DynamicDataManagerDesigner.GetDesignTimeHtml" />
+        <element api="M:System.Web.UI.Design.ControlDesigner.GetDesignTimeHtml(System.Web.UI.Design.DesignerRegionCollection)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicDataManagerDesigner" ref="true" />
+      </containers>
+      <file name="4fc416f3-2991-5e0c-a916-662648724cc4" />
+    </api>
+    <api id="M:System.Web.DynamicData.Design.DynamicDataManagerDesigner.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicDataManagerDesigner" ref="true" />
+      </containers>
+      <file name="8b946279-6185-3561-29a4-4868506d64fb" />
+    </api>
+    <api id="P:System.Web.DynamicData.Design.DynamicDataManagerDesigner.ActionLists">
+      <topicdata group="api" />
+      <apidata name="ActionLists" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Web.UI.Design.ControlDesigner.ActionLists">
+          <type api="T:System.Web.UI.Design.ControlDesigner" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_ActionLists" />
+      <returns>
+        <type api="T:System.ComponentModel.Design.DesignerActionListCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicDataManagerDesigner" ref="true" />
+      </containers>
+      <file name="978546eb-26ab-573f-e69a-405fc63aa5f8" />
+    </api>
+    <api id="M:System.Web.DynamicData.Design.DynamicDataManagerDesigner.GetDesignTimeHtml">
+      <topicdata group="api" />
+      <apidata name="GetDesignTimeHtml" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.DynamicData.Design.DynamicDataManagerDesigner.GetDesignTimeHtml" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Web.UI.Design.ControlDesigner.GetDesignTimeHtml">
+          <type api="T:System.Web.UI.Design.ControlDesigner" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicDataManagerDesigner" ref="true" />
+      </containers>
+      <file name="e8b5733e-2b0f-0e60-3f09-4f2acc517d33" />
+    </api>
+    <api id="T:System.Web.DynamicData.Design.DynamicFieldDesigner">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.DynamicData.Design.DynamicFieldDesigner" />
+      <apidata name="DynamicFieldDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.DynamicData.Design.DynamicFieldDesigner.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Web.UI.Design.WebControls.DataControlFieldDesigner" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+      </containers>
+      <file name="4b85e06c-7358-f002-e1e4-4db1f452e4ce" />
+    </api>
+    <api id="AllMembers.T:System.Web.DynamicData.Design.DynamicFieldDesigner">
+      <topicdata name="DynamicFieldDesigner" group="list" subgroup="members" typeTopicId="T:System.Web.DynamicData.Design.DynamicFieldDesigner" />
+      <apidata name="DynamicFieldDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.DynamicData.Design.DynamicFieldDesigner.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.DynamicData.Design.DynamicFieldDesigner.#ctor" />
+        <element api="Overload:System.Web.DynamicData.Design.DynamicFieldDesigner.CreateField">
+          <element api="M:System.Web.DynamicData.Design.DynamicFieldDesigner.CreateField" />
+          <element api="M:System.Web.DynamicData.Design.DynamicFieldDesigner.CreateField(System.Web.UI.Design.IDataSourceFieldSchema)" />
+        </element>
+        <element api="M:System.Web.DynamicData.Design.DynamicFieldDesigner.CreateTemplateField(System.Web.UI.WebControls.DataControlField,System.Web.UI.WebControls.DataBoundControl)" />
+        <element api="P:System.Web.DynamicData.Design.DynamicFieldDesigner.DefaultNodeText" />
+        <element api="M:System.Web.DynamicData.Design.DynamicFieldDesigner.GetNodeText(System.Web.UI.WebControls.DataControlField)" />
+        <element api="M:System.Web.DynamicData.Design.DynamicFieldDesigner.GetTemplateContent(System.Web.UI.WebControls.DataControlField,System.Web.UI.WebControls.DataBoundControlMode)" />
+        <element api="M:System.Web.DynamicData.Design.DynamicFieldDesigner.IsEnabled(System.Web.UI.WebControls.DataBoundControl)" />
+        <element api="P:System.Web.DynamicData.Design.DynamicFieldDesigner.UsesSchema" />
+        <element api="M:System.Web.UI.Design.WebControls.DataControlFieldDesigner.GetNewDataSourceName(System.Type,System.Web.UI.WebControls.DataBoundControlMode)" />
+        <element api="M:System.Web.UI.Design.WebControls.DataControlFieldDesigner.GetService(System.Type)" />
+        <element api="M:System.Web.UI.Design.WebControls.DataControlFieldDesigner.GetTemplate(System.Web.UI.WebControls.DataBoundControl,System.String)" />
+        <element api="M:System.Web.UI.Design.WebControls.DataControlFieldDesigner.GetTemplateField(System.Web.UI.WebControls.DataControlField,System.Web.UI.WebControls.DataBoundControl)" />
+        <element api="P:System.Web.UI.Design.WebControls.DataControlFieldDesigner.ServiceProvider" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicFieldDesigner" />
+      </containers>
+      <file name="99c3e19e-dfdb-79a7-666b-5bc34d84c6b7" />
+    </api>
+    <api id="Methods.T:System.Web.DynamicData.Design.DynamicFieldDesigner">
+      <topicdata name="DynamicFieldDesigner" group="list" subgroup="Methods" typeTopicId="T:System.Web.DynamicData.Design.DynamicFieldDesigner" />
+      <apidata name="DynamicFieldDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.DynamicData.Design.DynamicFieldDesigner.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Web.DynamicData.Design.DynamicFieldDesigner.CreateField">
+          <element api="M:System.Web.DynamicData.Design.DynamicFieldDesigner.CreateField" />
+          <element api="M:System.Web.DynamicData.Design.DynamicFieldDesigner.CreateField(System.Web.UI.Design.IDataSourceFieldSchema)" />
+        </element>
+        <element api="M:System.Web.DynamicData.Design.DynamicFieldDesigner.CreateTemplateField(System.Web.UI.WebControls.DataControlField,System.Web.UI.WebControls.DataBoundControl)" />
+        <element api="M:System.Web.DynamicData.Design.DynamicFieldDesigner.GetNodeText(System.Web.UI.WebControls.DataControlField)" />
+        <element api="M:System.Web.DynamicData.Design.DynamicFieldDesigner.GetTemplateContent(System.Web.UI.WebControls.DataControlField,System.Web.UI.WebControls.DataBoundControlMode)" />
+        <element api="M:System.Web.DynamicData.Design.DynamicFieldDesigner.IsEnabled(System.Web.UI.WebControls.DataBoundControl)" />
+        <element api="M:System.Web.UI.Design.WebControls.DataControlFieldDesigner.GetNewDataSourceName(System.Type,System.Web.UI.WebControls.DataBoundControlMode)" />
+        <element api="M:System.Web.UI.Design.WebControls.DataControlFieldDesigner.GetService(System.Type)" />
+        <element api="M:System.Web.UI.Design.WebControls.DataControlFieldDesigner.GetTemplate(System.Web.UI.WebControls.DataBoundControl,System.String)" />
+        <element api="M:System.Web.UI.Design.WebControls.DataControlFieldDesigner.GetTemplateField(System.Web.UI.WebControls.DataControlField,System.Web.UI.WebControls.DataBoundControl)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicFieldDesigner" />
+      </containers>
+      <file name="8b76099d-4ada-2a46-0f95-4f3831890052" />
+    </api>
+    <api id="Properties.T:System.Web.DynamicData.Design.DynamicFieldDesigner">
+      <topicdata name="DynamicFieldDesigner" group="list" subgroup="Properties" typeTopicId="T:System.Web.DynamicData.Design.DynamicFieldDesigner" />
+      <apidata name="DynamicFieldDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.DynamicData.Design.DynamicFieldDesigner.#ctor" />
+      <elements>
+        <element api="P:System.Web.DynamicData.Design.DynamicFieldDesigner.DefaultNodeText" />
+        <element api="P:System.Web.DynamicData.Design.DynamicFieldDesigner.UsesSchema" />
+        <element api="P:System.Web.UI.Design.WebControls.DataControlFieldDesigner.ServiceProvider" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicFieldDesigner" />
+      </containers>
+      <file name="9f8e6d52-60b1-b6b4-c021-57965e77fb17" />
+    </api>
+    <api id="Overload:System.Web.DynamicData.Design.DynamicFieldDesigner.CreateField">
+      <topicdata name="CreateField" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.DynamicData.Design.DynamicFieldDesigner" />
+      <apidata name="CreateField" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Web.DynamicData.Design.DynamicFieldDesigner.CreateField" />
+        <element api="M:System.Web.DynamicData.Design.DynamicFieldDesigner.CreateField(System.Web.UI.Design.IDataSourceFieldSchema)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicFieldDesigner" ref="true" />
+      </containers>
+      <file name="44a70e50-99ce-c5ce-b21d-68a44ef87eac" />
+    </api>
+    <api id="M:System.Web.DynamicData.Design.DynamicFieldDesigner.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicFieldDesigner" ref="true" />
+      </containers>
+      <file name="c1ae44b1-bf28-6b40-eb39-5eed3a277586" />
+    </api>
+    <api id="M:System.Web.DynamicData.Design.DynamicFieldDesigner.CreateField">
+      <topicdata group="api" />
+      <apidata name="CreateField" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.DynamicData.Design.DynamicFieldDesigner.CreateField" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Web.UI.Design.WebControls.DataControlFieldDesigner.CreateField">
+          <type api="T:System.Web.UI.Design.WebControls.DataControlFieldDesigner" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Web.UI.WebControls.DataControlField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicFieldDesigner" ref="true" />
+      </containers>
+      <file name="0e2940e4-7f5e-bde6-586f-ffc6a9d1e493" />
+    </api>
+    <api id="M:System.Web.DynamicData.Design.DynamicFieldDesigner.CreateField(System.Web.UI.Design.IDataSourceFieldSchema)">
+      <topicdata group="api" />
+      <apidata name="CreateField" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.DynamicData.Design.DynamicFieldDesigner.CreateField" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Web.UI.Design.WebControls.DataControlFieldDesigner.CreateField(System.Web.UI.Design.IDataSourceFieldSchema)">
+          <type api="T:System.Web.UI.Design.WebControls.DataControlFieldDesigner" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="fieldSchema">
+          <type api="T:System.Web.UI.Design.IDataSourceFieldSchema" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Web.UI.WebControls.DataControlField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicFieldDesigner" ref="true" />
+      </containers>
+      <file name="1d04cf44-be9e-a474-ff5e-81e0349b07a9" />
+    </api>
+    <api id="M:System.Web.DynamicData.Design.DynamicFieldDesigner.CreateTemplateField(System.Web.UI.WebControls.DataControlField,System.Web.UI.WebControls.DataBoundControl)">
+      <topicdata group="api" />
+      <apidata name="CreateTemplateField" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Web.UI.Design.WebControls.DataControlFieldDesigner.CreateTemplateField(System.Web.UI.WebControls.DataControlField,System.Web.UI.WebControls.DataBoundControl)">
+          <type api="T:System.Web.UI.Design.WebControls.DataControlFieldDesigner" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="dataControlField">
+          <type api="T:System.Web.UI.WebControls.DataControlField" ref="true" />
+        </parameter>
+        <parameter name="dataBoundControl">
+          <type api="T:System.Web.UI.WebControls.DataBoundControl" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Web.UI.WebControls.TemplateField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicFieldDesigner" ref="true" />
+      </containers>
+      <file name="20af040a-500e-e5f2-c202-bfa46a77db68" />
+    </api>
+    <api id="P:System.Web.DynamicData.Design.DynamicFieldDesigner.DefaultNodeText">
+      <topicdata group="api" />
+      <apidata name="DefaultNodeText" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Web.UI.Design.WebControls.DataControlFieldDesigner.DefaultNodeText">
+          <type api="T:System.Web.UI.Design.WebControls.DataControlFieldDesigner" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_DefaultNodeText" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicFieldDesigner" ref="true" />
+      </containers>
+      <file name="0b328bd9-6348-6707-c95c-355443b9d398" />
+    </api>
+    <api id="M:System.Web.DynamicData.Design.DynamicFieldDesigner.GetNodeText(System.Web.UI.WebControls.DataControlField)">
+      <topicdata group="api" />
+      <apidata name="GetNodeText" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Web.UI.Design.WebControls.DataControlFieldDesigner.GetNodeText(System.Web.UI.WebControls.DataControlField)">
+          <type api="T:System.Web.UI.Design.WebControls.DataControlFieldDesigner" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="dataControlField">
+          <type api="T:System.Web.UI.WebControls.DataControlField" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicFieldDesigner" ref="true" />
+      </containers>
+      <file name="6df46b6c-d77c-9a42-e40f-e23ec566f646" />
+    </api>
+    <api id="M:System.Web.DynamicData.Design.DynamicFieldDesigner.GetTemplateContent(System.Web.UI.WebControls.DataControlField,System.Web.UI.WebControls.DataBoundControlMode)">
+      <topicdata group="api" />
+      <apidata name="GetTemplateContent" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="dataControlField">
+          <type api="T:System.Web.UI.WebControls.DataControlField" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.Web.UI.WebControls.DataBoundControlMode" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicFieldDesigner" ref="true" />
+      </containers>
+      <file name="f7390bcb-c233-d298-b9cf-a73c2f2417b0" />
+    </api>
+    <api id="M:System.Web.DynamicData.Design.DynamicFieldDesigner.IsEnabled(System.Web.UI.WebControls.DataBoundControl)">
+      <topicdata group="api" />
+      <apidata name="IsEnabled" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Web.UI.Design.WebControls.DataControlFieldDesigner.IsEnabled(System.Web.UI.WebControls.DataBoundControl)">
+          <type api="T:System.Web.UI.Design.WebControls.DataControlFieldDesigner" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="parent">
+          <type api="T:System.Web.UI.WebControls.DataBoundControl" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicFieldDesigner" ref="true" />
+      </containers>
+      <file name="58085159-5c10-fbf4-cb6a-2a7edf56ff12" />
+    </api>
+    <api id="P:System.Web.DynamicData.Design.DynamicFieldDesigner.UsesSchema">
+      <topicdata group="api" />
+      <apidata name="UsesSchema" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Web.UI.Design.WebControls.DataControlFieldDesigner.UsesSchema">
+          <type api="T:System.Web.UI.Design.WebControls.DataControlFieldDesigner" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_UsesSchema" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData.Design" module="System.Web.DynamicData.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Web.DynamicData.Design" />
+        <type api="T:System.Web.DynamicData.Design.DynamicFieldDesigner" ref="true" />
+      </containers>
+      <file name="349ea087-aef2-202e-a418-4e3faa9c341f" />
+    </api>
+  </apis>
+</reflection>

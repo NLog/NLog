@@ -1,0 +1,695 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows">
+      <assemblydata version="2.0.6.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.7.50915.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>2.0.6.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Ink">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Ink" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Ink.Stroke" />
+        <element api="T:System.Windows.Ink.StrokeCollection" />
+        <element api="T:System.Windows.Ink.DrawingAttributes" />
+      </elements>
+      <file name="9be46677-48cf-cd4b-14e2-0146b81b8eb7" />
+    </api>
+    <api id="T:System.Windows.Ink.DrawingAttributes">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Ink.DrawingAttributes" />
+      <apidata name="DrawingAttributes" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Ink.DrawingAttributes.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+      </containers>
+      <file name="50787b38-75cb-e7d1-c1c7-cd948e1ede9c" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Ink.DrawingAttributes">
+      <topicdata name="DrawingAttributes" group="list" subgroup="members" typeTopicId="T:System.Windows.Ink.DrawingAttributes" />
+      <apidata name="DrawingAttributes" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Ink.DrawingAttributes.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Ink.DrawingAttributes.#ctor" />
+        <element api="P:System.Windows.Ink.DrawingAttributes.Color" />
+        <element api="P:System.Windows.Ink.DrawingAttributes.Height" />
+        <element api="P:System.Windows.Ink.DrawingAttributes.OutlineColor" />
+        <element api="P:System.Windows.Ink.DrawingAttributes.Width" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.DrawingAttributes" />
+      </containers>
+      <file name="be06106d-5d7b-e470-3be8-5b207fde051f" />
+    </api>
+    <api id="Methods.T:System.Windows.Ink.DrawingAttributes">
+      <topicdata name="DrawingAttributes" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Ink.DrawingAttributes" />
+      <apidata name="DrawingAttributes" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Ink.DrawingAttributes.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.DrawingAttributes" />
+      </containers>
+      <file name="d9660a52-4be5-2fe4-7a4c-96d1879a420c" />
+    </api>
+    <api id="Properties.T:System.Windows.Ink.DrawingAttributes">
+      <topicdata name="DrawingAttributes" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Ink.DrawingAttributes" />
+      <apidata name="DrawingAttributes" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Ink.DrawingAttributes.#ctor" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.Ink.DrawingAttributes.Color" />
+        <element api="P:System.Windows.Ink.DrawingAttributes.Height" />
+        <element api="P:System.Windows.Ink.DrawingAttributes.OutlineColor" />
+        <element api="P:System.Windows.Ink.DrawingAttributes.Width" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.DrawingAttributes" />
+      </containers>
+      <file name="61e9da99-5dad-501c-a0b9-a59baf547e90" />
+    </api>
+    <api id="M:System.Windows.Ink.DrawingAttributes.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.DrawingAttributes" ref="true" />
+      </containers>
+      <file name="5b234026-ff91-eabd-428d-9bb6edca914a" />
+    </api>
+    <api id="P:System.Windows.Ink.DrawingAttributes.Color">
+      <topicdata group="api" />
+      <apidata name="Color" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Color" />
+      <setter name="set_Color" />
+      <returns>
+        <type api="T:System.Windows.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.DrawingAttributes" ref="true" />
+      </containers>
+      <file name="a8a9268b-6762-85c8-4ed8-c56317e25daf" />
+    </api>
+    <api id="P:System.Windows.Ink.DrawingAttributes.Height">
+      <topicdata group="api" />
+      <apidata name="Height" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Height" />
+      <setter name="set_Height" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.DrawingAttributes" ref="true" />
+      </containers>
+      <file name="c330d192-d18d-9304-c23e-1113d912ea60" />
+    </api>
+    <api id="P:System.Windows.Ink.DrawingAttributes.OutlineColor">
+      <topicdata group="api" />
+      <apidata name="OutlineColor" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_OutlineColor" />
+      <setter name="set_OutlineColor" />
+      <returns>
+        <type api="T:System.Windows.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.DrawingAttributes" ref="true" />
+      </containers>
+      <file name="31c6ca3a-8f34-8ee0-5669-710422030c81" />
+    </api>
+    <api id="P:System.Windows.Ink.DrawingAttributes.Width">
+      <topicdata group="api" />
+      <apidata name="Width" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Width" />
+      <setter name="set_Width" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.DrawingAttributes" ref="true" />
+      </containers>
+      <file name="0335c3ef-6448-4a88-9f5d-b2215449d925" />
+    </api>
+    <api id="T:System.Windows.Ink.Stroke">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Ink.Stroke" />
+      <apidata name="Stroke" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Ink.Stroke.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+      </containers>
+      <file name="8fd22781-83c3-1311-fae9-ca978972de5d" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Ink.Stroke">
+      <topicdata name="Stroke" group="list" subgroup="members" typeTopicId="T:System.Windows.Ink.Stroke" />
+      <apidata name="Stroke" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Ink.Stroke.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="Overload:System.Windows.Ink.Stroke.#ctor">
+          <element api="M:System.Windows.Ink.Stroke.#ctor" />
+          <element api="M:System.Windows.Ink.Stroke.#ctor(System.Windows.Input.StylusPointCollection)" />
+        </element>
+        <element api="P:System.Windows.Ink.Stroke.DrawingAttributes" />
+        <element api="M:System.Windows.Ink.Stroke.GetBounds" />
+        <element api="M:System.Windows.Ink.Stroke.HitTest(System.Windows.Input.StylusPointCollection)" />
+        <element api="P:System.Windows.Ink.Stroke.StylusPoints" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.Stroke" />
+      </containers>
+      <file name="8e035521-49b8-ef9f-7824-47f7b6113310" />
+    </api>
+    <api id="Methods.T:System.Windows.Ink.Stroke">
+      <topicdata name="Stroke" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Ink.Stroke" />
+      <apidata name="Stroke" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Ink.Stroke.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Ink.Stroke.GetBounds" />
+        <element api="M:System.Windows.Ink.Stroke.HitTest(System.Windows.Input.StylusPointCollection)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.Stroke" />
+      </containers>
+      <file name="8244fab4-129e-4f2f-2fea-3a7cb753a182" />
+    </api>
+    <api id="Properties.T:System.Windows.Ink.Stroke">
+      <topicdata name="Stroke" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Ink.Stroke" />
+      <apidata name="Stroke" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Ink.Stroke.#ctor" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.Ink.Stroke.DrawingAttributes" />
+        <element api="P:System.Windows.Ink.Stroke.StylusPoints" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.Stroke" />
+      </containers>
+      <file name="feea75fc-ab0a-b765-73c0-91ed0efa5e95" />
+    </api>
+    <api id="Overload:System.Windows.Ink.Stroke.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Ink.Stroke" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Windows.Ink.Stroke.#ctor" />
+        <element api="M:System.Windows.Ink.Stroke.#ctor(System.Windows.Input.StylusPointCollection)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.Stroke" ref="true" />
+      </containers>
+      <file name="9df79850-9758-c612-e1a6-cd3f0635989d" />
+    </api>
+    <api id="M:System.Windows.Ink.Stroke.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Ink.Stroke.#ctor" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.Stroke" ref="true" />
+      </containers>
+      <file name="6552a07a-a028-df50-32b5-047415927ccb" />
+    </api>
+    <api id="M:System.Windows.Ink.Stroke.#ctor(System.Windows.Input.StylusPointCollection)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Ink.Stroke.#ctor" />
+      <parameters>
+        <parameter name="stylusPoints">
+          <type api="T:System.Windows.Input.StylusPointCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.Stroke" ref="true" />
+      </containers>
+      <file name="51766561-1b70-91a7-699b-f876b9977c70" />
+    </api>
+    <api id="P:System.Windows.Ink.Stroke.DrawingAttributes">
+      <topicdata group="api" />
+      <apidata name="DrawingAttributes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DrawingAttributes" />
+      <setter name="set_DrawingAttributes" />
+      <returns>
+        <type api="T:System.Windows.Ink.DrawingAttributes" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.Stroke" ref="true" />
+      </containers>
+      <file name="e206759a-d11d-62f5-f34f-e1b53bcdf7be" />
+    </api>
+    <api id="M:System.Windows.Ink.Stroke.GetBounds">
+      <topicdata group="api" />
+      <apidata name="GetBounds" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Windows.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.Stroke" ref="true" />
+      </containers>
+      <file name="114ed509-c168-908d-2efd-771c414e6c7a" />
+    </api>
+    <api id="M:System.Windows.Ink.Stroke.HitTest(System.Windows.Input.StylusPointCollection)">
+      <topicdata group="api" />
+      <apidata name="HitTest" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stylusPointCollection">
+          <type api="T:System.Windows.Input.StylusPointCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.Stroke" ref="true" />
+      </containers>
+      <file name="c097f0c9-a660-e854-45d7-1a6b9ccf3101" />
+    </api>
+    <api id="P:System.Windows.Ink.Stroke.StylusPoints">
+      <topicdata group="api" />
+      <apidata name="StylusPoints" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_StylusPoints" />
+      <setter name="set_StylusPoints" />
+      <returns>
+        <type api="T:System.Windows.Input.StylusPointCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.Stroke" ref="true" />
+      </containers>
+      <file name="75bed54b-930c-d5bd-7e30-ef48a97c4e4f" />
+    </api>
+    <api id="T:System.Windows.Ink.StrokeCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Ink.StrokeCollection" />
+      <apidata name="StrokeCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Ink.StrokeCollection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.PresentationFrameworkCollection`1" ref="true">
+            <specialization>
+              <type api="T:System.Windows.Ink.Stroke" ref="true" />
+            </specialization>
+          </type>
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+      </containers>
+      <file name="37edd22f-c302-d911-ed03-566df402e5a0" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Ink.StrokeCollection">
+      <topicdata name="StrokeCollection" group="list" subgroup="members" typeTopicId="T:System.Windows.Ink.StrokeCollection" />
+      <apidata name="StrokeCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Ink.StrokeCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.Add(`0)" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.Clear" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.Contains(`0)" />
+        <element api="Overload:System.Windows.Ink.StrokeCollection.CopyTo">
+          <element api="M:System.Windows.PresentationFrameworkCollection`1.CopyTo(`0[],System.Int32)" />
+          <element api="M:System.Windows.PresentationFrameworkCollection`1.CopyTo(System.Array,System.Int32)" />
+        </element>
+        <element api="P:System.Windows.PresentationFrameworkCollection`1.Count" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.GetEnumerator" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.IndexOf(`0)" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.Insert(System.Int32,`0)" />
+        <element api="P:System.Windows.PresentationFrameworkCollection`1.IsFixedSize" />
+        <element api="P:System.Windows.PresentationFrameworkCollection`1.IsReadOnly" />
+        <element api="P:System.Windows.PresentationFrameworkCollection`1.IsSynchronized" />
+        <element api="P:System.Windows.PresentationFrameworkCollection`1.Item(System.Int32)" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.Remove(`0)" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.RemoveAt(System.Int32)" />
+        <element api="P:System.Windows.PresentationFrameworkCollection`1.SyncRoot" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.System#Collections#IEnumerable#GetEnumerator" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.System#Collections#IList#Add(System.Object)" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.System#Collections#IList#Contains(System.Object)" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.System#Collections#IList#IndexOf(System.Object)" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.System#Collections#IList#Insert(System.Int32,System.Object)" />
+        <element api="P:System.Windows.PresentationFrameworkCollection`1.System#Collections#IList#Item(System.Int32)" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.System#Collections#IList#Remove(System.Object)" />
+        <element api="M:System.Windows.Ink.StrokeCollection.#ctor" />
+        <element api="M:System.Windows.Ink.StrokeCollection.GetBounds" />
+        <element api="M:System.Windows.Ink.StrokeCollection.HitTest(System.Windows.Input.StylusPointCollection)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.StrokeCollection" />
+      </containers>
+      <file name="a49222f3-d6af-8453-ed53-d86f898c8166" />
+    </api>
+    <api id="Methods.T:System.Windows.Ink.StrokeCollection">
+      <topicdata name="StrokeCollection" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Ink.StrokeCollection" />
+      <apidata name="StrokeCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Ink.StrokeCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.Add(`0)" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.Clear" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.Contains(`0)" />
+        <element api="Overload:System.Windows.Ink.StrokeCollection.CopyTo">
+          <element api="M:System.Windows.PresentationFrameworkCollection`1.CopyTo(`0[],System.Int32)" />
+          <element api="M:System.Windows.PresentationFrameworkCollection`1.CopyTo(System.Array,System.Int32)" />
+        </element>
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.GetEnumerator" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.IndexOf(`0)" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.Insert(System.Int32,`0)" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.Remove(`0)" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.RemoveAt(System.Int32)" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.System#Collections#IEnumerable#GetEnumerator" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.System#Collections#IList#Add(System.Object)" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.System#Collections#IList#Contains(System.Object)" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.System#Collections#IList#IndexOf(System.Object)" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.System#Collections#IList#Insert(System.Int32,System.Object)" />
+        <element api="M:System.Windows.PresentationFrameworkCollection`1.System#Collections#IList#Remove(System.Object)" />
+        <element api="M:System.Windows.Ink.StrokeCollection.GetBounds" />
+        <element api="M:System.Windows.Ink.StrokeCollection.HitTest(System.Windows.Input.StylusPointCollection)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.StrokeCollection" />
+      </containers>
+      <file name="f5bc084c-8f0e-4021-0b23-22804353ca36" />
+    </api>
+    <api id="Properties.T:System.Windows.Ink.StrokeCollection">
+      <topicdata name="StrokeCollection" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Ink.StrokeCollection" />
+      <apidata name="StrokeCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Ink.StrokeCollection.#ctor" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.PresentationFrameworkCollection`1.Count" />
+        <element api="P:System.Windows.PresentationFrameworkCollection`1.IsFixedSize" />
+        <element api="P:System.Windows.PresentationFrameworkCollection`1.IsReadOnly" />
+        <element api="P:System.Windows.PresentationFrameworkCollection`1.IsSynchronized" />
+        <element api="P:System.Windows.PresentationFrameworkCollection`1.Item(System.Int32)" />
+        <element api="P:System.Windows.PresentationFrameworkCollection`1.SyncRoot" />
+        <element api="P:System.Windows.PresentationFrameworkCollection`1.System#Collections#IList#Item(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.StrokeCollection" />
+      </containers>
+      <file name="9ccbc6c8-0adb-4646-dac1-ac7bcab42c36" />
+    </api>
+    <api id="M:System.Windows.Ink.StrokeCollection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.StrokeCollection" ref="true" />
+      </containers>
+      <file name="9392537f-e23c-9636-5cad-62a426764620" />
+    </api>
+    <api id="M:System.Windows.Ink.StrokeCollection.GetBounds">
+      <topicdata group="api" />
+      <apidata name="GetBounds" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Windows.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.StrokeCollection" ref="true" />
+      </containers>
+      <file name="bda5a44f-f7bf-cb45-98ef-f84b43613148" />
+    </api>
+    <api id="M:System.Windows.Ink.StrokeCollection.HitTest(System.Windows.Input.StylusPointCollection)">
+      <topicdata group="api" />
+      <apidata name="HitTest" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stylusPointCollection">
+          <type api="T:System.Windows.Input.StylusPointCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Ink.StrokeCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Ink" />
+        <type api="T:System.Windows.Ink.StrokeCollection" ref="true" />
+      </containers>
+      <file name="31962e55-4946-8ea8-6dbf-b07092f6e3b8" />
+    </api>
+  </apis>
+</reflection>

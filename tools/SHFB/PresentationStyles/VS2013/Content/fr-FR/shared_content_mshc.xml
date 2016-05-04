@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- French translations contributed by Stéphane Gagnon -->
+<content xml:space="preserve">
+
+	<!-- Paths.  These differ for MS Help Viewer. -->
+	<item id="iconPath">icons/{0}</item>
+	<item id="stylePath">styles/{0}</item>
+	<item id="scriptPath">scripts/{0}</item>
+
+</content>

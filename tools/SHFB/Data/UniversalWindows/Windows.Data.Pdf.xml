@@ -1,0 +1,1928 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Data.Pdf">
+      <topicdata group="api" />
+      <apidata name="Windows.Data.Pdf" group="namespace" />
+      <elements>
+        <element api="T:Windows.Data.Pdf.PdfPageRotation" />
+        <element api="T:Windows.Data.Pdf.PdfPageRenderOptions" />
+        <element api="T:Windows.Data.Pdf.PdfPageDimensions" />
+        <element api="T:Windows.Data.Pdf.PdfPage" />
+        <element api="T:Windows.Data.Pdf.PdfDocument" />
+      </elements>
+      <file name="f1458a7d-d370-46dd-3bf9-47121c70f08b" />
+    </api>
+    <api id="T:Windows.Data.Pdf.PdfDocument">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Data.Pdf.PdfDocument" />
+      <apidata name="PdfDocument" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b05db225-5f27-f3c3-0f32-235e9fddcbee" />
+    </api>
+    <api id="AllMembers.T:Windows.Data.Pdf.PdfDocument">
+      <topicdata name="PdfDocument" group="list" subgroup="members" typeTopicId="T:Windows.Data.Pdf.PdfDocument" />
+      <apidata name="PdfDocument" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Data.Pdf.PdfDocument.GetPage(System.UInt32)" />
+        <element api="P:Windows.Data.Pdf.PdfDocument.IsPasswordProtected" />
+        <element api="Overload:Windows.Data.Pdf.PdfDocument.LoadFromFileAsync">
+          <element api="M:Windows.Data.Pdf.PdfDocument.LoadFromFileAsync(Windows.Storage.IStorageFile)" />
+          <element api="M:Windows.Data.Pdf.PdfDocument.LoadFromFileAsync(Windows.Storage.IStorageFile,System.String)" />
+        </element>
+        <element api="Overload:Windows.Data.Pdf.PdfDocument.LoadFromStreamAsync">
+          <element api="M:Windows.Data.Pdf.PdfDocument.LoadFromStreamAsync(Windows.Storage.Streams.IRandomAccessStream)" />
+          <element api="M:Windows.Data.Pdf.PdfDocument.LoadFromStreamAsync(Windows.Storage.Streams.IRandomAccessStream,System.String)" />
+        </element>
+        <element api="P:Windows.Data.Pdf.PdfDocument.PageCount" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfDocument" />
+      </containers>
+      <file name="0fa522ce-ecea-6e64-bbd2-8e5a7cb422b2" />
+    </api>
+    <api id="Methods.T:Windows.Data.Pdf.PdfDocument">
+      <topicdata name="PdfDocument" group="list" subgroup="Methods" typeTopicId="T:Windows.Data.Pdf.PdfDocument" />
+      <apidata name="PdfDocument" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Data.Pdf.PdfDocument.GetPage(System.UInt32)" />
+        <element api="Overload:Windows.Data.Pdf.PdfDocument.LoadFromFileAsync">
+          <element api="M:Windows.Data.Pdf.PdfDocument.LoadFromFileAsync(Windows.Storage.IStorageFile)" />
+          <element api="M:Windows.Data.Pdf.PdfDocument.LoadFromFileAsync(Windows.Storage.IStorageFile,System.String)" />
+        </element>
+        <element api="Overload:Windows.Data.Pdf.PdfDocument.LoadFromStreamAsync">
+          <element api="M:Windows.Data.Pdf.PdfDocument.LoadFromStreamAsync(Windows.Storage.Streams.IRandomAccessStream)" />
+          <element api="M:Windows.Data.Pdf.PdfDocument.LoadFromStreamAsync(Windows.Storage.Streams.IRandomAccessStream,System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfDocument" />
+      </containers>
+      <file name="1cc769cb-e19c-7460-4a4c-11792f793bdb" />
+    </api>
+    <api id="Properties.T:Windows.Data.Pdf.PdfDocument">
+      <topicdata name="PdfDocument" group="list" subgroup="Properties" typeTopicId="T:Windows.Data.Pdf.PdfDocument" />
+      <apidata name="PdfDocument" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Data.Pdf.PdfDocument.IsPasswordProtected" />
+        <element api="P:Windows.Data.Pdf.PdfDocument.PageCount" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfDocument" />
+      </containers>
+      <file name="80e50e03-9a1c-c0db-9dec-6091ba124279" />
+    </api>
+    <api id="Overload:Windows.Data.Pdf.PdfDocument.LoadFromFileAsync">
+      <topicdata name="LoadFromFileAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Data.Pdf.PdfDocument" />
+      <apidata name="LoadFromFileAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Data.Pdf.PdfDocument.LoadFromFileAsync(Windows.Storage.IStorageFile)" />
+        <element api="M:Windows.Data.Pdf.PdfDocument.LoadFromFileAsync(Windows.Storage.IStorageFile,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfDocument" ref="true" />
+      </containers>
+      <file name="84b58bc7-3d90-bbef-f636-45a0c6360215" />
+    </api>
+    <api id="Overload:Windows.Data.Pdf.PdfDocument.LoadFromStreamAsync">
+      <topicdata name="LoadFromStreamAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Data.Pdf.PdfDocument" />
+      <apidata name="LoadFromStreamAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Data.Pdf.PdfDocument.LoadFromStreamAsync(Windows.Storage.Streams.IRandomAccessStream)" />
+        <element api="M:Windows.Data.Pdf.PdfDocument.LoadFromStreamAsync(Windows.Storage.Streams.IRandomAccessStream,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfDocument" ref="true" />
+      </containers>
+      <file name="8ac7b194-0ca5-25e2-56ff-f039e33ee7db" />
+    </api>
+    <api id="M:Windows.Data.Pdf.PdfDocument.GetPage(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetPage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="pageIndex" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Pdf.PdfPage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfDocument" ref="true" />
+      </containers>
+      <file name="602f215c-c9ec-78f8-b9af-ecb6f748f804" />
+    </api>
+    <api id="P:Windows.Data.Pdf.PdfDocument.IsPasswordProtected">
+      <topicdata group="api" />
+      <apidata name="IsPasswordProtected" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsPasswordProtected" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfDocument" ref="true" />
+      </containers>
+      <file name="2d560033-e8e5-3d62-ad00-89a1e19c1286" />
+    </api>
+    <api id="M:Windows.Data.Pdf.PdfDocument.LoadFromFileAsync(Windows.Storage.IStorageFile)">
+      <topicdata group="api" />
+      <apidata name="LoadFromFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Data.Pdf.PdfDocument.LoadFromFileAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Data.Pdf.PdfDocument" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfDocument" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>LoadFromFileAsync</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="55b9eb03-88a2-6f2c-4465-dbd411d82926" />
+    </api>
+    <api id="M:Windows.Data.Pdf.PdfDocument.LoadFromFileAsync(Windows.Storage.IStorageFile,System.String)">
+      <topicdata group="api" />
+      <apidata name="LoadFromFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Data.Pdf.PdfDocument.LoadFromFileAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+        <parameter name="password" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Data.Pdf.PdfDocument" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfDocument" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>LoadFromFileWithPasswordAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="457dd60b-db4d-8887-5567-6526696c0520" />
+    </api>
+    <api id="M:Windows.Data.Pdf.PdfDocument.LoadFromStreamAsync(Windows.Storage.Streams.IRandomAccessStream)">
+      <topicdata group="api" />
+      <apidata name="LoadFromStreamAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Data.Pdf.PdfDocument.LoadFromStreamAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputStream" in="true">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Data.Pdf.PdfDocument" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfDocument" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>LoadFromStreamAsync</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="9717070c-4ca1-44a2-a574-867a75863035" />
+    </api>
+    <api id="M:Windows.Data.Pdf.PdfDocument.LoadFromStreamAsync(Windows.Storage.Streams.IRandomAccessStream,System.String)">
+      <topicdata group="api" />
+      <apidata name="LoadFromStreamAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Data.Pdf.PdfDocument.LoadFromStreamAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputStream" in="true">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </parameter>
+        <parameter name="password" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Data.Pdf.PdfDocument" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfDocument" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>LoadFromStreamWithPasswordAsync</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="0d49eaf8-3bbf-a6ff-f795-e587dedefcc1" />
+    </api>
+    <api id="P:Windows.Data.Pdf.PdfDocument.PageCount">
+      <topicdata group="api" />
+      <apidata name="PageCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PageCount" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfDocument" ref="true" />
+      </containers>
+      <file name="716c3480-9994-5b26-24e7-e951c9515a04" />
+    </api>
+    <api id="T:Windows.Data.Pdf.PdfPage">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Data.Pdf.PdfPage" />
+      <apidata name="PdfPage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3b9bb2c4-aa55-e609-c941-c93c2171e634" />
+    </api>
+    <api id="AllMembers.T:Windows.Data.Pdf.PdfPage">
+      <topicdata name="PdfPage" group="list" subgroup="members" typeTopicId="T:Windows.Data.Pdf.PdfPage" />
+      <apidata name="PdfPage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Data.Pdf.PdfPage.Close" />
+        <element api="P:Windows.Data.Pdf.PdfPage.Dimensions" />
+        <element api="P:Windows.Data.Pdf.PdfPage.Index" />
+        <element api="P:Windows.Data.Pdf.PdfPage.PreferredZoom" />
+        <element api="M:Windows.Data.Pdf.PdfPage.PreparePageAsync" />
+        <element api="Overload:Windows.Data.Pdf.PdfPage.RenderToStreamAsync">
+          <element api="M:Windows.Data.Pdf.PdfPage.RenderToStreamAsync(Windows.Storage.Streams.IRandomAccessStream)" />
+          <element api="M:Windows.Data.Pdf.PdfPage.RenderToStreamAsync(Windows.Storage.Streams.IRandomAccessStream,Windows.Data.Pdf.PdfPageRenderOptions)" />
+        </element>
+        <element api="P:Windows.Data.Pdf.PdfPage.Rotation" />
+        <element api="P:Windows.Data.Pdf.PdfPage.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPage" />
+      </containers>
+      <file name="ea394486-2d7e-0e2d-7317-dca4d3ae9bc3" />
+    </api>
+    <api id="Methods.T:Windows.Data.Pdf.PdfPage">
+      <topicdata name="PdfPage" group="list" subgroup="Methods" typeTopicId="T:Windows.Data.Pdf.PdfPage" />
+      <apidata name="PdfPage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Data.Pdf.PdfPage.Close" />
+        <element api="M:Windows.Data.Pdf.PdfPage.PreparePageAsync" />
+        <element api="Overload:Windows.Data.Pdf.PdfPage.RenderToStreamAsync">
+          <element api="M:Windows.Data.Pdf.PdfPage.RenderToStreamAsync(Windows.Storage.Streams.IRandomAccessStream)" />
+          <element api="M:Windows.Data.Pdf.PdfPage.RenderToStreamAsync(Windows.Storage.Streams.IRandomAccessStream,Windows.Data.Pdf.PdfPageRenderOptions)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPage" />
+      </containers>
+      <file name="5a8d6105-e233-5f28-588c-02f532ad5e44" />
+    </api>
+    <api id="Properties.T:Windows.Data.Pdf.PdfPage">
+      <topicdata name="PdfPage" group="list" subgroup="Properties" typeTopicId="T:Windows.Data.Pdf.PdfPage" />
+      <apidata name="PdfPage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Data.Pdf.PdfPage.Dimensions" />
+        <element api="P:Windows.Data.Pdf.PdfPage.Index" />
+        <element api="P:Windows.Data.Pdf.PdfPage.PreferredZoom" />
+        <element api="P:Windows.Data.Pdf.PdfPage.Rotation" />
+        <element api="P:Windows.Data.Pdf.PdfPage.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPage" />
+      </containers>
+      <file name="590f3f7d-218f-fc64-841a-714da96b66c9" />
+    </api>
+    <api id="Overload:Windows.Data.Pdf.PdfPage.RenderToStreamAsync">
+      <topicdata name="RenderToStreamAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Data.Pdf.PdfPage" />
+      <apidata name="RenderToStreamAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Data.Pdf.PdfPage.RenderToStreamAsync(Windows.Storage.Streams.IRandomAccessStream)" />
+        <element api="M:Windows.Data.Pdf.PdfPage.RenderToStreamAsync(Windows.Storage.Streams.IRandomAccessStream,Windows.Data.Pdf.PdfPageRenderOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPage" ref="true" />
+      </containers>
+      <file name="8d7d71f7-b4f5-d1ec-1f32-d3e36b03ea4d" />
+    </api>
+    <api id="M:Windows.Data.Pdf.PdfPage.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPage" ref="true" />
+      </containers>
+      <file name="4c9fc562-8295-43a1-0c77-1c6e0bf3eb96" />
+    </api>
+    <api id="P:Windows.Data.Pdf.PdfPage.Dimensions">
+      <topicdata group="api" />
+      <apidata name="Dimensions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Dimensions" />
+      <returns>
+        <type api="T:Windows.Data.Pdf.PdfPageDimensions" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPage" ref="true" />
+      </containers>
+      <file name="2be3d617-fc96-d70c-7aae-0a166b44c351" />
+    </api>
+    <api id="P:Windows.Data.Pdf.PdfPage.Index">
+      <topicdata group="api" />
+      <apidata name="Index" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Index" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPage" ref="true" />
+      </containers>
+      <file name="d56cfd53-65df-3f16-65f5-7d190c1c4412" />
+    </api>
+    <api id="P:Windows.Data.Pdf.PdfPage.PreferredZoom">
+      <topicdata group="api" />
+      <apidata name="PreferredZoom" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PreferredZoom" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPage" ref="true" />
+      </containers>
+      <file name="4dfa950a-36e4-523c-69dd-5ef25b22b3d1" />
+    </api>
+    <api id="M:Windows.Data.Pdf.PdfPage.PreparePageAsync">
+      <topicdata group="api" />
+      <apidata name="PreparePageAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPage" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="cfd7b41b-36df-7b6a-c89e-760462de0b00" />
+    </api>
+    <api id="M:Windows.Data.Pdf.PdfPage.RenderToStreamAsync(Windows.Storage.Streams.IRandomAccessStream)">
+      <topicdata group="api" />
+      <apidata name="RenderToStreamAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Data.Pdf.PdfPage.RenderToStreamAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="outputStream" in="true">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPage" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RenderToStreamAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="aabdd4ac-3ed8-a0a5-18f5-8120dd890ce1" />
+    </api>
+    <api id="M:Windows.Data.Pdf.PdfPage.RenderToStreamAsync(Windows.Storage.Streams.IRandomAccessStream,Windows.Data.Pdf.PdfPageRenderOptions)">
+      <topicdata group="api" />
+      <apidata name="RenderToStreamAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Data.Pdf.PdfPage.RenderToStreamAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="outputStream" in="true">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.Data.Pdf.PdfPageRenderOptions" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPage" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RenderWithOptionsToStreamAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1c3ff2c9-de31-46ed-b505-d76a49d81aaf" />
+    </api>
+    <api id="P:Windows.Data.Pdf.PdfPage.Rotation">
+      <topicdata group="api" />
+      <apidata name="Rotation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Rotation" />
+      <returns>
+        <type api="T:Windows.Data.Pdf.PdfPageRotation" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPage" ref="true" />
+      </containers>
+      <file name="c7821019-9a0c-8ff7-c5cd-b848adab1f23" />
+    </api>
+    <api id="P:Windows.Data.Pdf.PdfPage.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Size" />
+      <returns>
+        <type api="T:Windows.Foundation.Size" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPage" ref="true" />
+      </containers>
+      <file name="3bcfc718-ff0a-a462-40ff-f998de35135f" />
+    </api>
+    <api id="T:Windows.Data.Pdf.PdfPageDimensions">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Data.Pdf.PdfPageDimensions" />
+      <apidata name="PdfPageDimensions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="11aac4d4-b859-0add-5b9f-d72ba8087e36" />
+    </api>
+    <api id="AllMembers.T:Windows.Data.Pdf.PdfPageDimensions">
+      <topicdata name="PdfPageDimensions" group="list" subgroup="members" typeTopicId="T:Windows.Data.Pdf.PdfPageDimensions" />
+      <apidata name="PdfPageDimensions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Data.Pdf.PdfPageDimensions.ArtBox" />
+        <element api="P:Windows.Data.Pdf.PdfPageDimensions.BleedBox" />
+        <element api="P:Windows.Data.Pdf.PdfPageDimensions.CropBox" />
+        <element api="P:Windows.Data.Pdf.PdfPageDimensions.MediaBox" />
+        <element api="P:Windows.Data.Pdf.PdfPageDimensions.TrimBox" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageDimensions" />
+      </containers>
+      <file name="e025125f-9e17-00e7-efd2-8ddab2927e18" />
+    </api>
+    <api id="Methods.T:Windows.Data.Pdf.PdfPageDimensions">
+      <topicdata name="PdfPageDimensions" group="list" subgroup="Methods" typeTopicId="T:Windows.Data.Pdf.PdfPageDimensions" />
+      <apidata name="PdfPageDimensions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageDimensions" />
+      </containers>
+      <file name="34093c25-2e9e-4686-e025-62df9cf43239" />
+    </api>
+    <api id="Properties.T:Windows.Data.Pdf.PdfPageDimensions">
+      <topicdata name="PdfPageDimensions" group="list" subgroup="Properties" typeTopicId="T:Windows.Data.Pdf.PdfPageDimensions" />
+      <apidata name="PdfPageDimensions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Data.Pdf.PdfPageDimensions.ArtBox" />
+        <element api="P:Windows.Data.Pdf.PdfPageDimensions.BleedBox" />
+        <element api="P:Windows.Data.Pdf.PdfPageDimensions.CropBox" />
+        <element api="P:Windows.Data.Pdf.PdfPageDimensions.MediaBox" />
+        <element api="P:Windows.Data.Pdf.PdfPageDimensions.TrimBox" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageDimensions" />
+      </containers>
+      <file name="cd790089-a7f7-eac1-bed9-23243b33fbdc" />
+    </api>
+    <api id="P:Windows.Data.Pdf.PdfPageDimensions.ArtBox">
+      <topicdata group="api" />
+      <apidata name="ArtBox" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ArtBox" />
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageDimensions" ref="true" />
+      </containers>
+      <file name="165cc39a-de17-c901-dc98-ec062bef79c8" />
+    </api>
+    <api id="P:Windows.Data.Pdf.PdfPageDimensions.BleedBox">
+      <topicdata group="api" />
+      <apidata name="BleedBox" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_BleedBox" />
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageDimensions" ref="true" />
+      </containers>
+      <file name="34243ac8-5d6e-26d2-549c-2c2dfbeb3880" />
+    </api>
+    <api id="P:Windows.Data.Pdf.PdfPageDimensions.CropBox">
+      <topicdata group="api" />
+      <apidata name="CropBox" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CropBox" />
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageDimensions" ref="true" />
+      </containers>
+      <file name="817e1631-32b4-0d15-eccc-32f766042ee6" />
+    </api>
+    <api id="P:Windows.Data.Pdf.PdfPageDimensions.MediaBox">
+      <topicdata group="api" />
+      <apidata name="MediaBox" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MediaBox" />
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageDimensions" ref="true" />
+      </containers>
+      <file name="b61de58e-5f92-b370-b659-7f55e9a09a2e" />
+    </api>
+    <api id="P:Windows.Data.Pdf.PdfPageDimensions.TrimBox">
+      <topicdata group="api" />
+      <apidata name="TrimBox" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_TrimBox" />
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageDimensions" ref="true" />
+      </containers>
+      <file name="3e775df8-2832-0ef4-ba30-848e98052007" />
+    </api>
+    <api id="T:Windows.Data.Pdf.PdfPageRenderOptions">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Data.Pdf.PdfPageRenderOptions" />
+      <apidata name="PdfPageRenderOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Data.Pdf.PdfPageRenderOptions.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="800d954e-2c54-9202-dc19-9ff1f6eaa64f" />
+    </api>
+    <api id="AllMembers.T:Windows.Data.Pdf.PdfPageRenderOptions">
+      <topicdata name="PdfPageRenderOptions" group="list" subgroup="members" typeTopicId="T:Windows.Data.Pdf.PdfPageRenderOptions" />
+      <apidata name="PdfPageRenderOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Data.Pdf.PdfPageRenderOptions.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Data.Pdf.PdfPageRenderOptions.#ctor" />
+        <element api="P:Windows.Data.Pdf.PdfPageRenderOptions.BackgroundColor" />
+        <element api="P:Windows.Data.Pdf.PdfPageRenderOptions.BitmapEncoderId" />
+        <element api="P:Windows.Data.Pdf.PdfPageRenderOptions.DestinationHeight" />
+        <element api="P:Windows.Data.Pdf.PdfPageRenderOptions.DestinationWidth" />
+        <element api="P:Windows.Data.Pdf.PdfPageRenderOptions.IsIgnoringHighContrast" />
+        <element api="P:Windows.Data.Pdf.PdfPageRenderOptions.SourceRect" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageRenderOptions" />
+      </containers>
+      <file name="ec50cf27-21bb-2c4e-a815-07ea36f56abf" />
+    </api>
+    <api id="Methods.T:Windows.Data.Pdf.PdfPageRenderOptions">
+      <topicdata name="PdfPageRenderOptions" group="list" subgroup="Methods" typeTopicId="T:Windows.Data.Pdf.PdfPageRenderOptions" />
+      <apidata name="PdfPageRenderOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Data.Pdf.PdfPageRenderOptions.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageRenderOptions" />
+      </containers>
+      <file name="63353fcd-fdaa-689e-ca27-0cc57bdb6133" />
+    </api>
+    <api id="Properties.T:Windows.Data.Pdf.PdfPageRenderOptions">
+      <topicdata name="PdfPageRenderOptions" group="list" subgroup="Properties" typeTopicId="T:Windows.Data.Pdf.PdfPageRenderOptions" />
+      <apidata name="PdfPageRenderOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Data.Pdf.PdfPageRenderOptions.#ctor" />
+      <elements>
+        <element api="P:Windows.Data.Pdf.PdfPageRenderOptions.BackgroundColor" />
+        <element api="P:Windows.Data.Pdf.PdfPageRenderOptions.BitmapEncoderId" />
+        <element api="P:Windows.Data.Pdf.PdfPageRenderOptions.DestinationHeight" />
+        <element api="P:Windows.Data.Pdf.PdfPageRenderOptions.DestinationWidth" />
+        <element api="P:Windows.Data.Pdf.PdfPageRenderOptions.IsIgnoringHighContrast" />
+        <element api="P:Windows.Data.Pdf.PdfPageRenderOptions.SourceRect" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageRenderOptions" />
+      </containers>
+      <file name="3b299ff4-7be5-04fe-fbbc-751e71d93f33" />
+    </api>
+    <api id="M:Windows.Data.Pdf.PdfPageRenderOptions.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageRenderOptions" ref="true" />
+      </containers>
+      <file name="62e54f62-1604-f32f-efec-f636bb197738" />
+    </api>
+    <api id="P:Windows.Data.Pdf.PdfPageRenderOptions.BackgroundColor">
+      <topicdata group="api" />
+      <apidata name="BackgroundColor" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BackgroundColor" />
+      <setter name="set_BackgroundColor" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageRenderOptions" ref="true" />
+      </containers>
+      <file name="2a9f6617-ff32-2303-2720-8a9d0cd02408" />
+    </api>
+    <api id="P:Windows.Data.Pdf.PdfPageRenderOptions.BitmapEncoderId">
+      <topicdata group="api" />
+      <apidata name="BitmapEncoderId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BitmapEncoderId" />
+      <setter name="set_BitmapEncoderId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageRenderOptions" ref="true" />
+      </containers>
+      <file name="d8144ece-eecd-a981-a938-162057306bde" />
+    </api>
+    <api id="P:Windows.Data.Pdf.PdfPageRenderOptions.DestinationHeight">
+      <topicdata group="api" />
+      <apidata name="DestinationHeight" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DestinationHeight" />
+      <setter name="set_DestinationHeight" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageRenderOptions" ref="true" />
+      </containers>
+      <file name="3ae3b9c7-082b-4b8a-64df-6f8a409028e0" />
+    </api>
+    <api id="P:Windows.Data.Pdf.PdfPageRenderOptions.DestinationWidth">
+      <topicdata group="api" />
+      <apidata name="DestinationWidth" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DestinationWidth" />
+      <setter name="set_DestinationWidth" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageRenderOptions" ref="true" />
+      </containers>
+      <file name="fb9c5e29-161f-88b8-9021-2f263a30c521" />
+    </api>
+    <api id="P:Windows.Data.Pdf.PdfPageRenderOptions.IsIgnoringHighContrast">
+      <topicdata group="api" />
+      <apidata name="IsIgnoringHighContrast" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsIgnoringHighContrast" />
+      <setter name="set_IsIgnoringHighContrast" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageRenderOptions" ref="true" />
+      </containers>
+      <file name="fca162f9-e2a9-7da0-5fc3-81b909ddd573" />
+    </api>
+    <api id="P:Windows.Data.Pdf.PdfPageRenderOptions.SourceRect">
+      <topicdata group="api" />
+      <apidata name="SourceRect" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SourceRect" />
+      <setter name="set_SourceRect" />
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageRenderOptions" ref="true" />
+      </containers>
+      <file name="69d9d01a-655b-e0f3-ec63-f3fb047c97cf" />
+    </api>
+    <api id="T:Windows.Data.Pdf.PdfPageRotation">
+      <topicdata group="api" />
+      <apidata name="PdfPageRotation" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Data.Pdf.PdfPageRotation.Normal" />
+        <element api="F:Windows.Data.Pdf.PdfPageRotation.Rotate90" />
+        <element api="F:Windows.Data.Pdf.PdfPageRotation.Rotate180" />
+        <element api="F:Windows.Data.Pdf.PdfPageRotation.Rotate270" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="709af968-25dc-6524-0ae5-debec3cb0227" />
+    </api>
+    <api id="F:Windows.Data.Pdf.PdfPageRotation.Normal">
+      <topicdata group="api" notopic="" />
+      <apidata name="Normal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Pdf.PdfPageRotation" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageRotation" ref="false" />
+      </containers>
+      <file name="f8a6faad-1f9d-c68e-637d-eb49b23b6263" />
+    </api>
+    <api id="F:Windows.Data.Pdf.PdfPageRotation.Rotate180">
+      <topicdata group="api" notopic="" />
+      <apidata name="Rotate180" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Pdf.PdfPageRotation" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageRotation" ref="false" />
+      </containers>
+      <file name="d7e1be48-8ad6-b651-db5d-d9933d51cb7a" />
+    </api>
+    <api id="F:Windows.Data.Pdf.PdfPageRotation.Rotate270">
+      <topicdata group="api" notopic="" />
+      <apidata name="Rotate270" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Pdf.PdfPageRotation" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageRotation" ref="false" />
+      </containers>
+      <file name="5b3aac37-c312-e662-d2ae-c7ef1b67188c" />
+    </api>
+    <api id="F:Windows.Data.Pdf.PdfPageRotation.Rotate90">
+      <topicdata group="api" notopic="" />
+      <apidata name="Rotate90" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Pdf.PdfPageRotation" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Pdf" />
+        <type api="T:Windows.Data.Pdf.PdfPageRotation" ref="false" />
+      </containers>
+      <file name="bca8c4c3-944f-5499-00a2-d4ff782c71c6" />
+    </api>
+  </apis>
+</reflection>

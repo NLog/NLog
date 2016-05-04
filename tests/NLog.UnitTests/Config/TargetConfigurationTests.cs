@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,17 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.IO;
+
 namespace NLog.UnitTests.Config
 {
-    using System;
-    using System.Globalization;
-    using System.Text;
     using NLog.Conditions;
     using NLog.Config;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using System;
+    using System.Globalization;
+    using System.Text;
     using Xunit;
 
     public class TargetConfigurationTests : NLogTestBase
@@ -90,6 +92,31 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void NestedXmlConfigElementTest()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <extensions>
+                    <add type='" + typeof(StructuredDebugTarget).AssemblyQualifiedName + @"' />
+                </extensions>
+                <targets>
+                    <target type='StructuredDebugTarget'>
+                      <name>structuredTgt</name>
+                      <layout>${message}</layout>
+                      <config platform='any'>
+                        <parameter name='param1' />
+                      </config>
+                    </target>
+                </targets>
+            </nlog>");
+
+            var t = c.FindTargetByName("structuredTgt") as StructuredDebugTarget;
+            Assert.NotNull(t);
+            Assert.Equal("any", t.Config.Platform);
+            Assert.Equal("param1", t.Config.Parameter.Name);
+        }
+
+        [Fact]
         public void ArrayParameterTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -111,7 +138,7 @@ namespace NLog.UnitTests.Config
 
             Assert.Equal("p2", t.Parameters[1].Name);
             Assert.Equal("'${level}'", t.Parameters[1].Layout.ToString());
-            
+
             Assert.Equal("p3", t.Parameters[2].Name);
             Assert.Equal("'${logger}'", t.Parameters[2].Layout.ToString());
         }
@@ -420,6 +447,37 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void DontThrowExceptionWhenArchiveEverySetByDefaultParameters()
+        {
+
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true'>
+    <targets>
+        <default-target-parameters 
+            type='File'
+            concurrentWrites='true'
+            keepFileOpen='true'
+            maxArchiveFiles='5'
+            archiveNumbering='Rolling'
+            archiveEvery='Day' />
+
+          <target fileName='" + Path.GetFileNameWithoutExtension(Path.GetTempFileName()) + @".log'
+                name = 'file'
+                type = 'File'
+                layout = '${message}' />
+    </targets>
+
+    <rules>
+        <logger name='*' writeTo='file'/>
+    </rules>
+</nlog> ");
+
+            LogManager.Configuration = configuration;
+            LogManager.GetLogger("TestLogger").Info("DefaultFileTargetParametersTests.DontThrowExceptionWhenArchiveEverySetByDefaultParameters is true");
+
+        }
+
+        [Fact]
         public void DataTypesTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -611,6 +669,34 @@ namespace NLog.UnitTests.Config
             Value2 = 2,
 
             Value3 = 4,
+        }
+
+        [Target("StructuredDebugTarget")]
+        public class StructuredDebugTarget : TargetWithLayout
+        {
+            public StructuredDebugTargetConfig Config { get; set; }
+
+            public StructuredDebugTarget()
+            {
+                Config = new StructuredDebugTargetConfig();
+            }
+        }
+
+        public class StructuredDebugTargetConfig
+        {
+            public string Platform { get; set; }
+
+            public StructuredDebugTargetParameter Parameter { get; set; }
+
+            public StructuredDebugTargetConfig()
+            {
+                Parameter = new StructuredDebugTargetParameter();
+            }
+        }
+
+        public class StructuredDebugTargetParameter
+        {
+            public string Name { get; set; }
         }
     }
 }

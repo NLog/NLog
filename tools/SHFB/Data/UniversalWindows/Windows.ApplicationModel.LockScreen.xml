@@ -1,0 +1,1498 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.LockScreen">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.LockScreen" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" />
+        <element api="T:Windows.ApplicationModel.LockScreen.LockScreenBadge" />
+        <element api="T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingDeferral" />
+        <element api="T:Windows.ApplicationModel.LockScreen.LockApplicationHost" />
+        <element api="T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs" />
+      </elements>
+      <file name="67c3d0ca-e775-b1cd-ae35-f194dc30af71" />
+    </api>
+    <api id="T:Windows.ApplicationModel.LockScreen.LockApplicationHost">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.LockScreen.LockApplicationHost" />
+      <apidata name="LockApplicationHost" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="f998acdd-6f3c-fef2-895e-a51e3edda0d5" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.LockScreen.LockApplicationHost">
+      <topicdata name="LockApplicationHost" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.LockScreen.LockApplicationHost" />
+      <apidata name="LockApplicationHost" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.LockScreen.LockApplicationHost.GetForCurrentView" />
+        <element api="M:Windows.ApplicationModel.LockScreen.LockApplicationHost.RequestUnlock" />
+        <element api="E:Windows.ApplicationModel.LockScreen.LockApplicationHost.Unlocking" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockApplicationHost" />
+      </containers>
+      <file name="72702668-d140-6846-0f8e-db70913fb0e3" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.LockScreen.LockApplicationHost">
+      <topicdata name="LockApplicationHost" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.LockScreen.LockApplicationHost" />
+      <apidata name="LockApplicationHost" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.LockScreen.LockApplicationHost.GetForCurrentView" />
+        <element api="M:Windows.ApplicationModel.LockScreen.LockApplicationHost.RequestUnlock" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockApplicationHost" />
+      </containers>
+      <file name="bb3d4fd6-c4b4-e6db-ec63-ead4c9c5cc73" />
+    </api>
+    <api id="Events.T:Windows.ApplicationModel.LockScreen.LockApplicationHost">
+      <topicdata name="LockApplicationHost" group="list" subgroup="Events" typeTopicId="T:Windows.ApplicationModel.LockScreen.LockApplicationHost" />
+      <apidata name="LockApplicationHost" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.ApplicationModel.LockScreen.LockApplicationHost.Unlocking" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockApplicationHost" />
+      </containers>
+      <file name="682935c5-bebd-d10f-9d9c-600d23d65dcf" />
+    </api>
+    <api id="M:Windows.ApplicationModel.LockScreen.LockApplicationHost.GetForCurrentView">
+      <topicdata group="api" />
+      <apidata name="GetForCurrentView" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.LockScreen.LockApplicationHost" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockApplicationHost" ref="true" />
+      </containers>
+      <file name="e8a07abc-de24-419b-cb4f-cd7799553a70" />
+    </api>
+    <api id="M:Windows.ApplicationModel.LockScreen.LockApplicationHost.RequestUnlock">
+      <topicdata group="api" />
+      <apidata name="RequestUnlock" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockApplicationHost" ref="true" />
+      </containers>
+      <file name="42ee48fc-44cf-5e19-ccae-3d236a713d34" />
+    </api>
+    <api id="E:Windows.ApplicationModel.LockScreen.LockApplicationHost.Unlocking">
+      <topicdata group="api" />
+      <apidata name="Unlocking" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Unlocking" />
+      <remover name="remove_Unlocking" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.LockScreen.LockApplicationHost" ref="true" />
+            <type api="T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockApplicationHost" ref="true" />
+      </containers>
+      <file name="cf3583b9-201a-592b-425e-46789678cce9" />
+    </api>
+    <api id="T:Windows.ApplicationModel.LockScreen.LockScreenBadge">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.LockScreen.LockScreenBadge" />
+      <apidata name="LockScreenBadge" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="60d3f0cf-0e7a-6050-8423-9ab8b98eef6f" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.LockScreen.LockScreenBadge">
+      <topicdata name="LockScreenBadge" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.LockScreen.LockScreenBadge" />
+      <apidata name="LockScreenBadge" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.LockScreen.LockScreenBadge.AutomationName" />
+        <element api="P:Windows.ApplicationModel.LockScreen.LockScreenBadge.Glyph" />
+        <element api="M:Windows.ApplicationModel.LockScreen.LockScreenBadge.LaunchApp" />
+        <element api="P:Windows.ApplicationModel.LockScreen.LockScreenBadge.Logo" />
+        <element api="P:Windows.ApplicationModel.LockScreen.LockScreenBadge.Number" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenBadge" />
+      </containers>
+      <file name="46b0b38e-71fc-7cb2-eec6-68d66334e5bb" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.LockScreen.LockScreenBadge">
+      <topicdata name="LockScreenBadge" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.LockScreen.LockScreenBadge" />
+      <apidata name="LockScreenBadge" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.LockScreen.LockScreenBadge.LaunchApp" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenBadge" />
+      </containers>
+      <file name="bc4ca914-37ee-bc14-d158-6f741087c070" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.LockScreen.LockScreenBadge">
+      <topicdata name="LockScreenBadge" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.LockScreen.LockScreenBadge" />
+      <apidata name="LockScreenBadge" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.LockScreen.LockScreenBadge.AutomationName" />
+        <element api="P:Windows.ApplicationModel.LockScreen.LockScreenBadge.Glyph" />
+        <element api="P:Windows.ApplicationModel.LockScreen.LockScreenBadge.Logo" />
+        <element api="P:Windows.ApplicationModel.LockScreen.LockScreenBadge.Number" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenBadge" />
+      </containers>
+      <file name="7f7d88be-dea1-96bc-efd5-b2ba70c4be40" />
+    </api>
+    <api id="P:Windows.ApplicationModel.LockScreen.LockScreenBadge.AutomationName">
+      <topicdata group="api" />
+      <apidata name="AutomationName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AutomationName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenBadge" ref="true" />
+      </containers>
+      <file name="9665a1c4-1a3e-e56d-0830-4ebef7033c74" />
+    </api>
+    <api id="P:Windows.ApplicationModel.LockScreen.LockScreenBadge.Glyph">
+      <topicdata group="api" />
+      <apidata name="Glyph" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Glyph" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenBadge" ref="true" />
+      </containers>
+      <file name="52475de0-1670-af99-c52d-9e23ad6ea17b" />
+    </api>
+    <api id="M:Windows.ApplicationModel.LockScreen.LockScreenBadge.LaunchApp">
+      <topicdata group="api" />
+      <apidata name="LaunchApp" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenBadge" ref="true" />
+      </containers>
+      <file name="1629b4dc-d4a1-1007-f84d-c2af4634f211" />
+    </api>
+    <api id="P:Windows.ApplicationModel.LockScreen.LockScreenBadge.Logo">
+      <topicdata group="api" />
+      <apidata name="Logo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Logo" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenBadge" ref="true" />
+      </containers>
+      <file name="79218385-e229-47ef-137f-dc0739ba4a8d" />
+    </api>
+    <api id="P:Windows.ApplicationModel.LockScreen.LockScreenBadge.Number">
+      <topicdata group="api" />
+      <apidata name="Number" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Number" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenBadge" ref="true" />
+      </containers>
+      <file name="5012c7db-5a95-a71b-68cb-accc91587010" />
+    </api>
+    <api id="T:Windows.ApplicationModel.LockScreen.LockScreenInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.LockScreen.LockScreenInfo" />
+      <apidata name="LockScreenInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fc44aa90-faca-894b-cb35-af7bfdf14d66" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.LockScreen.LockScreenInfo">
+      <topicdata name="LockScreenInfo" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" />
+      <apidata name="LockScreenInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.LockScreen.LockScreenInfo.AlarmIcon" />
+        <element api="E:Windows.ApplicationModel.LockScreen.LockScreenInfo.AlarmIconChanged" />
+        <element api="P:Windows.ApplicationModel.LockScreen.LockScreenInfo.Badges" />
+        <element api="E:Windows.ApplicationModel.LockScreen.LockScreenInfo.BadgesChanged" />
+        <element api="P:Windows.ApplicationModel.LockScreen.LockScreenInfo.DetailText" />
+        <element api="E:Windows.ApplicationModel.LockScreen.LockScreenInfo.DetailTextChanged" />
+        <element api="P:Windows.ApplicationModel.LockScreen.LockScreenInfo.LockScreenImage" />
+        <element api="E:Windows.ApplicationModel.LockScreen.LockScreenInfo.LockScreenImageChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" />
+      </containers>
+      <file name="b99df40a-d1c2-db06-941a-9ffa1558346d" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.LockScreen.LockScreenInfo">
+      <topicdata name="LockScreenInfo" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" />
+      <apidata name="LockScreenInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" />
+      </containers>
+      <file name="72721526-b1cd-e0f7-ddf0-18b0ec2e3119" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.LockScreen.LockScreenInfo">
+      <topicdata name="LockScreenInfo" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" />
+      <apidata name="LockScreenInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.LockScreen.LockScreenInfo.AlarmIcon" />
+        <element api="P:Windows.ApplicationModel.LockScreen.LockScreenInfo.Badges" />
+        <element api="P:Windows.ApplicationModel.LockScreen.LockScreenInfo.DetailText" />
+        <element api="P:Windows.ApplicationModel.LockScreen.LockScreenInfo.LockScreenImage" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" />
+      </containers>
+      <file name="983b1f09-9fa9-2994-bee2-0666b97d9b93" />
+    </api>
+    <api id="Events.T:Windows.ApplicationModel.LockScreen.LockScreenInfo">
+      <topicdata name="LockScreenInfo" group="list" subgroup="Events" typeTopicId="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" />
+      <apidata name="LockScreenInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.ApplicationModel.LockScreen.LockScreenInfo.AlarmIconChanged" />
+        <element api="E:Windows.ApplicationModel.LockScreen.LockScreenInfo.BadgesChanged" />
+        <element api="E:Windows.ApplicationModel.LockScreen.LockScreenInfo.DetailTextChanged" />
+        <element api="E:Windows.ApplicationModel.LockScreen.LockScreenInfo.LockScreenImageChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" />
+      </containers>
+      <file name="17fdd9ea-5b68-9ea4-785f-e8976b12a526" />
+    </api>
+    <api id="P:Windows.ApplicationModel.LockScreen.LockScreenInfo.AlarmIcon">
+      <topicdata group="api" />
+      <apidata name="AlarmIcon" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AlarmIcon" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" ref="true" />
+      </containers>
+      <file name="1c4cd7f8-36dd-15e9-54cc-d3c9da0c163b" />
+    </api>
+    <api id="E:Windows.ApplicationModel.LockScreen.LockScreenInfo.AlarmIconChanged">
+      <topicdata group="api" />
+      <apidata name="AlarmIconChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_AlarmIconChanged" />
+      <remover name="remove_AlarmIconChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" ref="true" />
+      </containers>
+      <file name="e3cb10fd-8dd1-ee47-15af-234ebae60a30" />
+    </api>
+    <api id="P:Windows.ApplicationModel.LockScreen.LockScreenInfo.Badges">
+      <topicdata group="api" />
+      <apidata name="Badges" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Badges" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.LockScreen.LockScreenBadge" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" ref="true" />
+      </containers>
+      <file name="c5cbe76d-08b6-4cb6-0477-474b48d29017" />
+    </api>
+    <api id="E:Windows.ApplicationModel.LockScreen.LockScreenInfo.BadgesChanged">
+      <topicdata group="api" />
+      <apidata name="BadgesChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_BadgesChanged" />
+      <remover name="remove_BadgesChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" ref="true" />
+      </containers>
+      <file name="0203ad68-022e-8292-611a-c2da36a56732" />
+    </api>
+    <api id="P:Windows.ApplicationModel.LockScreen.LockScreenInfo.DetailText">
+      <topicdata group="api" />
+      <apidata name="DetailText" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DetailText" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" ref="true" />
+      </containers>
+      <file name="43787a20-c954-96e0-3e03-d7011f4b6b8e" />
+    </api>
+    <api id="E:Windows.ApplicationModel.LockScreen.LockScreenInfo.DetailTextChanged">
+      <topicdata group="api" />
+      <apidata name="DetailTextChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_DetailTextChanged" />
+      <remover name="remove_DetailTextChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" ref="true" />
+      </containers>
+      <file name="b0218a19-0a5e-e39d-ff70-d7c89f77e0e2" />
+    </api>
+    <api id="P:Windows.ApplicationModel.LockScreen.LockScreenInfo.LockScreenImage">
+      <topicdata group="api" />
+      <apidata name="LockScreenImage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_LockScreenImage" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" ref="true" />
+      </containers>
+      <file name="1ceaa638-c20f-38fd-73cb-d3cca9b966ad" />
+    </api>
+    <api id="E:Windows.ApplicationModel.LockScreen.LockScreenInfo.LockScreenImageChanged">
+      <topicdata group="api" />
+      <apidata name="LockScreenImageChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_LockScreenImageChanged" />
+      <remover name="remove_LockScreenImageChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenInfo" ref="true" />
+      </containers>
+      <file name="e54ea8f2-7b04-054d-d3e6-084cccaeb8cf" />
+    </api>
+    <api id="T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingDeferral">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingDeferral" />
+      <apidata name="LockScreenUnlockingDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="63cdad7a-4d3a-305f-75a4-fe503866fa4d" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingDeferral">
+      <topicdata name="LockScreenUnlockingDeferral" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingDeferral" />
+      <apidata name="LockScreenUnlockingDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.LockScreen.LockScreenUnlockingDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingDeferral" />
+      </containers>
+      <file name="843deec1-5b3f-5ab8-4f65-bfabf540da20" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingDeferral">
+      <topicdata name="LockScreenUnlockingDeferral" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingDeferral" />
+      <apidata name="LockScreenUnlockingDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.LockScreen.LockScreenUnlockingDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingDeferral" />
+      </containers>
+      <file name="f81b201e-4d55-0caa-07d2-025b9687d107" />
+    </api>
+    <api id="M:Windows.ApplicationModel.LockScreen.LockScreenUnlockingDeferral.Complete">
+      <topicdata group="api" />
+      <apidata name="Complete" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingDeferral" ref="true" />
+      </containers>
+      <file name="e27cba2d-2556-7da3-93e2-1845f20f4e2b" />
+    </api>
+    <api id="T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs" />
+      <apidata name="LockScreenUnlockingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="5aeb6b6b-dcbd-728a-eed8-c82f64808170" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs">
+      <topicdata name="LockScreenUnlockingEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs" />
+      <apidata name="LockScreenUnlockingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs.Deadline" />
+        <element api="M:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs.GetDeferral" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs" />
+      </containers>
+      <file name="79c0dcaa-ae57-43eb-be20-5019ff4f6654" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs">
+      <topicdata name="LockScreenUnlockingEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs" />
+      <apidata name="LockScreenUnlockingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs.GetDeferral" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs" />
+      </containers>
+      <file name="25a6e2ea-4e62-11eb-bdbe-43943a9a0461" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs">
+      <topicdata name="LockScreenUnlockingEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs" />
+      <apidata name="LockScreenUnlockingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs.Deadline" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs" />
+      </containers>
+      <file name="cdaf479d-351a-40f3-ddf9-68798c07649a" />
+    </api>
+    <api id="P:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs.Deadline">
+      <topicdata group="api" />
+      <apidata name="Deadline" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Deadline" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs" ref="true" />
+      </containers>
+      <file name="9d34ab7b-4a26-62b3-ceee-7207129b2a0b" />
+    </api>
+    <api id="M:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs.GetDeferral">
+      <topicdata group="api" />
+      <apidata name="GetDeferral" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingDeferral" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.LockScreen" />
+        <type api="T:Windows.ApplicationModel.LockScreen.LockScreenUnlockingEventArgs" ref="true" />
+      </containers>
+      <file name="4069935e-03fc-788e-d682-5e889d7ae6e6" />
+    </api>
+  </apis>
+</reflection>

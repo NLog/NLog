@@ -1,0 +1,640 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Data.Linq">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.Linq.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System Linq to Sql Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Windows Phone</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Phone.Data.Linq.Mapping">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Phone.Data.Linq.Mapping" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn" />
+        <element api="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndex" />
+        <element api="T:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute" />
+        <element api="T:Microsoft.Phone.Data.Linq.Mapping.SortOrder" />
+      </elements>
+      <file name="2d489bb9-9e12-b616-0784-2da617fce34e" />
+    </api>
+    <api id="T:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute" />
+      <apidata name="IndexAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="302503c9-20d2-e674-fe7e-3bad590ef03e" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute">
+      <topicdata name="IndexAttribute" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute" />
+      <apidata name="IndexAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute.#ctor" />
+        <element api="P:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute.Columns" />
+        <element api="P:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute.IsUnique" />
+        <element api="P:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute.Name" />
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute" />
+      </containers>
+      <file name="38666c7e-af0a-d32a-29b5-f0a2ce5f8fe1" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute">
+      <topicdata name="IndexAttribute" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute" />
+      <apidata name="IndexAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute" />
+      </containers>
+      <file name="afddbd97-0e81-db6b-56ed-e87f1c1e5b27" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute">
+      <topicdata name="IndexAttribute" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute" />
+      <apidata name="IndexAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute.Columns" />
+        <element api="P:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute.IsUnique" />
+        <element api="P:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute" />
+      </containers>
+      <file name="cf502332-f754-11e5-6ead-c712cf589b6a" />
+    </api>
+    <api id="M:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute" ref="true" />
+      </containers>
+      <file name="643da1fe-7e0e-d4a9-3bc4-722663985616" />
+    </api>
+    <api id="P:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute.Columns">
+      <topicdata group="api" />
+      <apidata name="Columns" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Columns" />
+      <setter name="set_Columns" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute" ref="true" />
+      </containers>
+      <file name="911fd0bb-93f3-1dc9-e3a7-45a99e38185a" />
+    </api>
+    <api id="P:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute.IsUnique">
+      <topicdata group="api" />
+      <apidata name="IsUnique" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsUnique" />
+      <setter name="set_IsUnique" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute" ref="true" />
+      </containers>
+      <file name="821b1914-a6a8-9f27-971c-e408e432a891" />
+    </api>
+    <api id="P:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.IndexAttribute" ref="true" />
+      </containers>
+      <file name="9c181679-d121-d439-b540-44a4f3cbf382" />
+    </api>
+    <api id="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndex">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Data.Linq.Mapping.MetaIndex" />
+      <apidata name="MetaIndex" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+      </containers>
+      <file name="7396c0af-5922-87a3-9e43-dd4aec341ba6" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Data.Linq.Mapping.MetaIndex">
+      <topicdata name="MetaIndex" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndex" />
+      <apidata name="MetaIndex" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Data.Linq.Mapping.MetaIndex.#ctor" />
+        <element api="P:Microsoft.Phone.Data.Linq.Mapping.MetaIndex.Columns" />
+        <element api="P:Microsoft.Phone.Data.Linq.Mapping.MetaIndex.DeclaringType" />
+        <element api="P:Microsoft.Phone.Data.Linq.Mapping.MetaIndex.IndexName" />
+        <element api="P:Microsoft.Phone.Data.Linq.Mapping.MetaIndex.IsUnique" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndex" />
+      </containers>
+      <file name="20eccb60-401b-cee1-30bd-66d3cc77b31a" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Data.Linq.Mapping.MetaIndex">
+      <topicdata name="MetaIndex" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndex" />
+      <apidata name="MetaIndex" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndex" />
+      </containers>
+      <file name="35234221-09ab-b119-17bf-180e9d195caf" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Data.Linq.Mapping.MetaIndex">
+      <topicdata name="MetaIndex" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndex" />
+      <apidata name="MetaIndex" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Data.Linq.Mapping.MetaIndex.Columns" />
+        <element api="P:Microsoft.Phone.Data.Linq.Mapping.MetaIndex.DeclaringType" />
+        <element api="P:Microsoft.Phone.Data.Linq.Mapping.MetaIndex.IndexName" />
+        <element api="P:Microsoft.Phone.Data.Linq.Mapping.MetaIndex.IsUnique" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndex" />
+      </containers>
+      <file name="0d0d537e-4226-dd27-ed78-e044d73209eb" />
+    </api>
+    <api id="M:Microsoft.Phone.Data.Linq.Mapping.MetaIndex.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndex" ref="true" />
+      </containers>
+      <file name="9491e31f-62df-c235-5374-317146f65b72" />
+    </api>
+    <api id="P:Microsoft.Phone.Data.Linq.Mapping.MetaIndex.Columns">
+      <topicdata group="api" />
+      <apidata name="Columns" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Columns" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndex" ref="true" />
+      </containers>
+      <file name="2cd63a7b-26cd-e267-ded8-81f274ccf9e8" />
+    </api>
+    <api id="P:Microsoft.Phone.Data.Linq.Mapping.MetaIndex.DeclaringType">
+      <topicdata group="api" />
+      <apidata name="DeclaringType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_DeclaringType" />
+      <returns>
+        <type api="T:System.Data.Linq.Mapping.MetaType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndex" ref="true" />
+      </containers>
+      <file name="7f7bd940-4e96-d678-6db1-168fd791018f" />
+    </api>
+    <api id="P:Microsoft.Phone.Data.Linq.Mapping.MetaIndex.IndexName">
+      <topicdata group="api" />
+      <apidata name="IndexName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IndexName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndex" ref="true" />
+      </containers>
+      <file name="e61d0840-cbef-f7c3-a55c-a086b4223f85" />
+    </api>
+    <api id="P:Microsoft.Phone.Data.Linq.Mapping.MetaIndex.IsUnique">
+      <topicdata group="api" />
+      <apidata name="IsUnique" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsUnique" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndex" ref="true" />
+      </containers>
+      <file name="a7f11e0d-345b-0024-c197-a1a3097de0f7" />
+    </api>
+    <api id="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn" />
+      <apidata name="MetaIndexedColumn" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+      </containers>
+      <file name="7bbd46f0-58bf-8bec-4b65-386cac3a13f2" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn">
+      <topicdata name="MetaIndexedColumn" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn" />
+      <apidata name="MetaIndexedColumn" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn.#ctor" />
+        <element api="P:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn.Column" />
+        <element api="P:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn.SortOrder" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn" />
+      </containers>
+      <file name="6d1a2c4f-da21-f969-5264-2b2353f02722" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn">
+      <topicdata name="MetaIndexedColumn" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn" />
+      <apidata name="MetaIndexedColumn" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn" />
+      </containers>
+      <file name="f96b86a7-0385-50da-8204-91663622bb52" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn">
+      <topicdata name="MetaIndexedColumn" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn" />
+      <apidata name="MetaIndexedColumn" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn.Column" />
+        <element api="P:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn.SortOrder" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn" />
+      </containers>
+      <file name="a528a1ca-c7df-fb68-be48-c0d1f8c4eeb9" />
+    </api>
+    <api id="M:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn" ref="true" />
+      </containers>
+      <file name="86ddb99a-ffc5-922e-bdc4-c1749bfbb558" />
+    </api>
+    <api id="P:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn.Column">
+      <topicdata group="api" />
+      <apidata name="Column" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Column" />
+      <returns>
+        <type api="T:System.Data.Linq.Mapping.MetaDataMember" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn" ref="true" />
+      </containers>
+      <file name="6ede64da-cf6c-7cb8-c34a-c722cd846833" />
+    </api>
+    <api id="P:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn.SortOrder">
+      <topicdata group="api" />
+      <apidata name="SortOrder" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_SortOrder" />
+      <returns>
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.SortOrder" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.MetaIndexedColumn" ref="true" />
+      </containers>
+      <file name="36aaee7c-3c46-4de6-613b-265119eb4320" />
+    </api>
+    <api id="T:Microsoft.Phone.Data.Linq.Mapping.SortOrder">
+      <topicdata group="api" />
+      <apidata name="SortOrder" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.Data.Linq.Mapping.SortOrder.Ascending" />
+        <element api="F:Microsoft.Phone.Data.Linq.Mapping.SortOrder.Descending" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+      </containers>
+      <file name="3d2339ae-85fd-b043-0bc4-64953f399768" />
+    </api>
+    <api id="F:Microsoft.Phone.Data.Linq.Mapping.SortOrder.Ascending">
+      <topicdata group="api" notopic="" />
+      <apidata name="Ascending" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.SortOrder" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.SortOrder" ref="false" />
+      </containers>
+      <file name="9dfb195f-935e-a5fc-778c-f3cc86d927d5" />
+    </api>
+    <api id="F:Microsoft.Phone.Data.Linq.Mapping.SortOrder.Descending">
+      <topicdata group="api" notopic="" />
+      <apidata name="Descending" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.SortOrder" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq.Mapping" />
+        <type api="T:Microsoft.Phone.Data.Linq.Mapping.SortOrder" ref="false" />
+      </containers>
+      <file name="a6703a5e-1744-5496-39e5-22b08411dab2" />
+    </api>
+  </apis>
+</reflection>

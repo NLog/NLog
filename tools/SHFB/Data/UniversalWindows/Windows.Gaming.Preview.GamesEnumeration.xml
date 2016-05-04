@@ -1,0 +1,1158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Gaming.Preview.GamesEnumerationContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Gaming.Preview.GamesEnumeration">
+      <topicdata group="api" />
+      <apidata name="Windows.Gaming.Preview.GamesEnumeration" group="namespace" />
+      <elements>
+        <element api="T:Windows.Gaming.Preview.GamesEnumeration.GameListCategory" />
+        <element api="T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry" />
+        <element api="T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry" />
+        <element api="T:Windows.Gaming.Preview.GamesEnumeration.GameListChangedEventHandler" />
+        <element api="T:Windows.Gaming.Preview.GamesEnumeration.GameListRemovedEventHandler" />
+        <element api="T:Windows.Gaming.Preview.GamesEnumeration.GameList" />
+      </elements>
+      <file name="122604a0-f188-4366-d1d6-8a5441ee6018" />
+    </api>
+    <api id="T:Windows.Gaming.Preview.GamesEnumeration.GameList">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Gaming.Preview.GamesEnumeration.GameList" />
+      <apidata name="GameList" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Gaming.Preview.GamesEnumerationContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="29870a59-c3ab-ec38-3d40-f830c87a89d8" />
+    </api>
+    <api id="AllMembers.T:Windows.Gaming.Preview.GamesEnumeration.GameList">
+      <topicdata name="GameList" group="list" subgroup="members" typeTopicId="T:Windows.Gaming.Preview.GamesEnumeration.GameList" />
+      <apidata name="GameList" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.Gaming.Preview.GamesEnumeration.GameList.FindAllAsync">
+          <element api="M:Windows.Gaming.Preview.GamesEnumeration.GameList.FindAllAsync" />
+          <element api="M:Windows.Gaming.Preview.GamesEnumeration.GameList.FindAllAsync(System.String)" />
+        </element>
+        <element api="E:Windows.Gaming.Preview.GamesEnumeration.GameList.GameAdded" />
+        <element api="E:Windows.Gaming.Preview.GamesEnumeration.GameList.GameRemoved" />
+        <element api="E:Windows.Gaming.Preview.GamesEnumeration.GameList.GameUpdated" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameList" />
+      </containers>
+      <file name="d733f29a-8e14-cd22-aacb-a0e09f3b0ad7" />
+    </api>
+    <api id="Methods.T:Windows.Gaming.Preview.GamesEnumeration.GameList">
+      <topicdata name="GameList" group="list" subgroup="Methods" typeTopicId="T:Windows.Gaming.Preview.GamesEnumeration.GameList" />
+      <apidata name="GameList" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.Gaming.Preview.GamesEnumeration.GameList.FindAllAsync">
+          <element api="M:Windows.Gaming.Preview.GamesEnumeration.GameList.FindAllAsync" />
+          <element api="M:Windows.Gaming.Preview.GamesEnumeration.GameList.FindAllAsync(System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameList" />
+      </containers>
+      <file name="ed148a11-b140-ae4d-82c2-2b8c44f51d6e" />
+    </api>
+    <api id="Events.T:Windows.Gaming.Preview.GamesEnumeration.GameList">
+      <topicdata name="GameList" group="list" subgroup="Events" typeTopicId="T:Windows.Gaming.Preview.GamesEnumeration.GameList" />
+      <apidata name="GameList" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Gaming.Preview.GamesEnumeration.GameList.GameAdded" />
+        <element api="E:Windows.Gaming.Preview.GamesEnumeration.GameList.GameRemoved" />
+        <element api="E:Windows.Gaming.Preview.GamesEnumeration.GameList.GameUpdated" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameList" />
+      </containers>
+      <file name="1f36e13e-53ad-ee44-61ed-fa617496406a" />
+    </api>
+    <api id="Overload:Windows.Gaming.Preview.GamesEnumeration.GameList.FindAllAsync">
+      <topicdata name="FindAllAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Gaming.Preview.GamesEnumeration.GameList" />
+      <apidata name="FindAllAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Gaming.Preview.GamesEnumeration.GameList.FindAllAsync" />
+        <element api="M:Windows.Gaming.Preview.GamesEnumeration.GameList.FindAllAsync(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameList" ref="true" />
+      </containers>
+      <file name="aacb8194-013b-ee53-c2e0-cea0b71c75d1" />
+    </api>
+    <api id="M:Windows.Gaming.Preview.GamesEnumeration.GameList.FindAllAsync">
+      <topicdata group="api" />
+      <apidata name="FindAllAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Gaming.Preview.GamesEnumeration.GameList.FindAllAsync" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FindAllAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="441276d6-fe6f-1805-8ed6-d674945c1757" />
+    </api>
+    <api id="M:Windows.Gaming.Preview.GamesEnumeration.GameList.FindAllAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="FindAllAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Gaming.Preview.GamesEnumeration.GameList.FindAllAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="packageFamilyName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameList" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FindAllAsyncPackageFamilyName</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="c1e75ee9-54b9-51dc-b469-8b0c1e80cfb0" />
+    </api>
+    <api id="E:Windows.Gaming.Preview.GamesEnumeration.GameList.GameAdded">
+      <topicdata group="api" />
+      <apidata name="GameAdded" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_GameAdded" />
+      <remover name="remove_GameAdded" />
+      <eventhandler>
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListChangedEventHandler" ref="true" />
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameList" ref="true" />
+      </containers>
+      <file name="2ff62262-5583-99b8-1264-6f23fe2a28f0" />
+    </api>
+    <api id="E:Windows.Gaming.Preview.GamesEnumeration.GameList.GameRemoved">
+      <topicdata group="api" />
+      <apidata name="GameRemoved" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_GameRemoved" />
+      <remover name="remove_GameRemoved" />
+      <eventhandler>
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListRemovedEventHandler" ref="true" />
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameList" ref="true" />
+      </containers>
+      <file name="02099622-4f90-5625-c626-4f7070b48415" />
+    </api>
+    <api id="E:Windows.Gaming.Preview.GamesEnumeration.GameList.GameUpdated">
+      <topicdata group="api" />
+      <apidata name="GameUpdated" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_GameUpdated" />
+      <remover name="remove_GameUpdated" />
+      <eventhandler>
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListChangedEventHandler" ref="true" />
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameList" ref="true" />
+      </containers>
+      <file name="57298749-56c4-cf08-b59a-350bcb535e51" />
+    </api>
+    <api id="T:Windows.Gaming.Preview.GamesEnumeration.GameListCategory">
+      <topicdata group="api" />
+      <apidata name="GameListCategory" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Gaming.Preview.GamesEnumeration.GameListCategory.Candidate" />
+        <element api="F:Windows.Gaming.Preview.GamesEnumeration.GameListCategory.ConfirmedBySystem" />
+        <element api="F:Windows.Gaming.Preview.GamesEnumeration.GameListCategory.ConfirmedByUser" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Gaming.Preview.GamesEnumerationContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="12e2a959-c8be-a8f1-4bfa-398d9b3c162d" />
+    </api>
+    <api id="F:Windows.Gaming.Preview.GamesEnumeration.GameListCategory.Candidate">
+      <topicdata group="api" notopic="" />
+      <apidata name="Candidate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListCategory" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListCategory" ref="false" />
+      </containers>
+      <file name="70727caa-4fca-07da-3647-2a40ea848fdd" />
+    </api>
+    <api id="F:Windows.Gaming.Preview.GamesEnumeration.GameListCategory.ConfirmedBySystem">
+      <topicdata group="api" notopic="" />
+      <apidata name="ConfirmedBySystem" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListCategory" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListCategory" ref="false" />
+      </containers>
+      <file name="b7167e23-8af1-b966-aedd-86a261a8ae95" />
+    </api>
+    <api id="F:Windows.Gaming.Preview.GamesEnumeration.GameListCategory.ConfirmedByUser">
+      <topicdata group="api" notopic="" />
+      <apidata name="ConfirmedByUser" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListCategory" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListCategory" ref="false" />
+      </containers>
+      <file name="dbfcea24-1f78-6113-1e99-9ce333df5c66" />
+    </api>
+    <api id="T:Windows.Gaming.Preview.GamesEnumeration.GameListChangedEventHandler">
+      <topicdata group="api" />
+      <apidata name="GameListChangedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="game" in="true">
+          <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>636920865</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>55541</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19857</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>180</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>14</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>83</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>213</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>232</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>111</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>222</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>100</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Gaming.Preview.GamesEnumerationContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c749ea5b-b421-ace4-ffad-c19e80e05865" />
+    </api>
+    <api id="T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry" />
+      <apidata name="GameListEntry" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Gaming.Preview.GamesEnumerationContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b03984b2-1a8a-a7bd-768d-e66355fb9989" />
+    </api>
+    <api id="AllMembers.T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry">
+      <topicdata name="GameListEntry" group="list" subgroup="members" typeTopicId="T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry" />
+      <apidata name="GameListEntry" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Gaming.Preview.GamesEnumeration.GameListEntry.Category" />
+        <element api="P:Windows.Gaming.Preview.GamesEnumeration.GameListEntry.DisplayInfo" />
+        <element api="M:Windows.Gaming.Preview.GamesEnumeration.GameListEntry.LaunchAsync" />
+        <element api="P:Windows.Gaming.Preview.GamesEnumeration.GameListEntry.Properties" />
+        <element api="M:Windows.Gaming.Preview.GamesEnumeration.GameListEntry.SetCategoryAsync(Windows.Gaming.Preview.GamesEnumeration.GameListCategory)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry" />
+      </containers>
+      <file name="6d68454e-b097-1490-ff8f-882963436510" />
+    </api>
+    <api id="Methods.T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry">
+      <topicdata name="GameListEntry" group="list" subgroup="Methods" typeTopicId="T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry" />
+      <apidata name="GameListEntry" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Gaming.Preview.GamesEnumeration.GameListEntry.LaunchAsync" />
+        <element api="M:Windows.Gaming.Preview.GamesEnumeration.GameListEntry.SetCategoryAsync(Windows.Gaming.Preview.GamesEnumeration.GameListCategory)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry" />
+      </containers>
+      <file name="fd06338a-456a-d251-de93-dc79be3141ac" />
+    </api>
+    <api id="Properties.T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry">
+      <topicdata name="GameListEntry" group="list" subgroup="Properties" typeTopicId="T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry" />
+      <apidata name="GameListEntry" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Gaming.Preview.GamesEnumeration.GameListEntry.Category" />
+        <element api="P:Windows.Gaming.Preview.GamesEnumeration.GameListEntry.DisplayInfo" />
+        <element api="P:Windows.Gaming.Preview.GamesEnumeration.GameListEntry.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry" />
+      </containers>
+      <file name="d934088d-7d8e-0228-a16f-d9a0233181a5" />
+    </api>
+    <api id="P:Windows.Gaming.Preview.GamesEnumeration.GameListEntry.Category">
+      <topicdata group="api" />
+      <apidata name="Category" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Category" />
+      <returns>
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListCategory" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.Category">
+          <type api="T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry" ref="true" />
+      </containers>
+      <file name="74076100-6db0-c1ae-7a12-cc45619566c0" />
+    </api>
+    <api id="P:Windows.Gaming.Preview.GamesEnumeration.GameListEntry.DisplayInfo">
+      <topicdata group="api" />
+      <apidata name="DisplayInfo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DisplayInfo" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.AppDisplayInfo" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.DisplayInfo">
+          <type api="T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry" ref="true" />
+      </containers>
+      <file name="65546cb0-1f8a-2fa4-9d2d-0cbf129aa59c" />
+    </api>
+    <api id="M:Windows.Gaming.Preview.GamesEnumeration.GameListEntry.LaunchAsync">
+      <topicdata group="api" />
+      <apidata name="LaunchAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.LaunchAsync">
+          <type api="T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="934d0633-f63f-f1c3-9b33-ab02d933a43a" />
+    </api>
+    <api id="P:Windows.Gaming.Preview.GamesEnumeration.GameListEntry.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="P:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.Properties">
+          <type api="T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry" ref="true" />
+      </containers>
+      <file name="e5ddf8ee-4a7b-692a-6235-7c80b2b7e7b7" />
+    </api>
+    <api id="M:Windows.Gaming.Preview.GamesEnumeration.GameListEntry.SetCategoryAsync(Windows.Gaming.Preview.GamesEnumeration.GameListCategory)">
+      <topicdata group="api" />
+      <apidata name="SetCategoryAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListCategory" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.SetCategoryAsync(Windows.Gaming.Preview.GamesEnumeration.GameListCategory)">
+          <type api="T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="bb5b9212-1570-147e-1403-607be5fe162c" />
+    </api>
+    <api id="T:Windows.Gaming.Preview.GamesEnumeration.GameListRemovedEventHandler">
+      <topicdata group="api" />
+      <apidata name="GameListRemovedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="identifier" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Gaming.Preview.GamesEnumerationContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>281371791</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>27791</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18194</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>155</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>56</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>71</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>75</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>194</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>46</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>118</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>216</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a21d11ca-3b67-8c9d-8e6e-7b0707f251f0" />
+    </api>
+    <api id="T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry" />
+      <apidata name="IGameListEntry" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListEntry" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Gaming.Preview.GamesEnumerationContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>1935221971</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>33055</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17556</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>182</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>156</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>198</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>65</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>160</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>198</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>21</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>67</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ba33746d-6783-da5d-d9ab-5558bff0cc6f" />
+    </api>
+    <api id="AllMembers.T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry">
+      <topicdata name="IGameListEntry" group="list" subgroup="members" typeTopicId="T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry" />
+      <apidata name="IGameListEntry" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.Category" />
+        <element api="P:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.DisplayInfo" />
+        <element api="M:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.LaunchAsync" />
+        <element api="P:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.Properties" />
+        <element api="M:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.SetCategoryAsync(Windows.Gaming.Preview.GamesEnumeration.GameListCategory)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry" />
+      </containers>
+      <file name="96d79bb2-a019-b337-3c67-81f897f0e64c" />
+    </api>
+    <api id="Methods.T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry">
+      <topicdata name="IGameListEntry" group="list" subgroup="Methods" typeTopicId="T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry" />
+      <apidata name="IGameListEntry" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.LaunchAsync" />
+        <element api="M:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.SetCategoryAsync(Windows.Gaming.Preview.GamesEnumeration.GameListCategory)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry" />
+      </containers>
+      <file name="7bcbea3e-a14d-3821-9834-95410075c0a1" />
+    </api>
+    <api id="Properties.T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry">
+      <topicdata name="IGameListEntry" group="list" subgroup="Properties" typeTopicId="T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry" />
+      <apidata name="IGameListEntry" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.Category" />
+        <element api="P:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.DisplayInfo" />
+        <element api="P:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry" />
+      </containers>
+      <file name="c1d3938b-af2f-2254-bc09-6c321ec90e75" />
+    </api>
+    <api id="P:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.Category">
+      <topicdata group="api" />
+      <apidata name="Category" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Category" />
+      <returns>
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListCategory" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry" ref="true" />
+      </containers>
+      <file name="a6999d20-1598-2252-7239-83d1ae3e6de2" />
+    </api>
+    <api id="P:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.DisplayInfo">
+      <topicdata group="api" />
+      <apidata name="DisplayInfo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_DisplayInfo" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.AppDisplayInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry" ref="true" />
+      </containers>
+      <file name="5cec3e52-3058-473f-2799-ff125f206e7b" />
+    </api>
+    <api id="M:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.LaunchAsync">
+      <topicdata group="api" />
+      <apidata name="LaunchAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a43e7ec5-9449-12fe-d133-e09560a8c03e" />
+    </api>
+    <api id="P:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry" ref="true" />
+      </containers>
+      <file name="0b706bba-8a28-0288-02bf-21a417c8ac4e" />
+    </api>
+    <api id="M:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry.SetCategoryAsync(Windows.Gaming.Preview.GamesEnumeration.GameListCategory)">
+      <topicdata group="api" />
+      <apidata name="SetCategoryAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Gaming.Preview.GamesEnumeration.GameListCategory" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Gaming.Preview.GamesEnumerationContract" module="Windows.Gaming.Preview.GamesEnumerationContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Preview.GamesEnumeration" />
+        <type api="T:Windows.Gaming.Preview.GamesEnumeration.IGameListEntry" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a7b2d8b7-2d78-8066-2636-f52faa009f55" />
+    </api>
+  </apis>
+</reflection>

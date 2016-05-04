@@ -1,0 +1,4293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.System">
+      <topicdata group="api" />
+      <apidata name="Windows.System" group="namespace" />
+      <elements>
+        <element api="T:Windows.System.AppMemoryUsageLevel" />
+        <element api="T:Windows.System.AppMemoryUsageLimitChangingEventArgs" />
+        <element api="T:Windows.System.MemoryManager" />
+        <element api="T:Windows.System.LauncherUIOptions" />
+        <element api="T:Windows.System.LauncherOptions" />
+        <element api="T:Windows.System.Launcher" />
+        <element api="T:Windows.System.ProcessorArchitecture" />
+        <element api="T:Windows.System.VirtualKeyModifiers" />
+        <element api="T:Windows.System.VirtualKey" />
+      </elements>
+      <file name="4b780bf8-592c-a7d3-84ad-9a9db4b666d9" />
+    </api>
+    <api id="T:Windows.System.AppMemoryUsageLevel">
+      <topicdata group="api" />
+      <apidata name="AppMemoryUsageLevel" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.System.AppMemoryUsageLevel.Low" />
+        <element api="F:Windows.System.AppMemoryUsageLevel.Medium" />
+        <element api="F:Windows.System.AppMemoryUsageLevel.High" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7b7a24bc-44cc-8996-bba4-9816bea1ded6" />
+    </api>
+    <api id="F:Windows.System.AppMemoryUsageLevel.High">
+      <topicdata group="api" notopic="" />
+      <apidata name="High" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.AppMemoryUsageLevel" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.AppMemoryUsageLevel" ref="false" />
+      </containers>
+      <file name="e270498d-635d-aa0a-7069-0224c864e0ea" />
+    </api>
+    <api id="F:Windows.System.AppMemoryUsageLevel.Low">
+      <topicdata group="api" notopic="" />
+      <apidata name="Low" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.AppMemoryUsageLevel" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.AppMemoryUsageLevel" ref="false" />
+      </containers>
+      <file name="1a6726d1-318d-4669-7623-aa6a0fa315e6" />
+    </api>
+    <api id="F:Windows.System.AppMemoryUsageLevel.Medium">
+      <topicdata group="api" notopic="" />
+      <apidata name="Medium" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.AppMemoryUsageLevel" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.AppMemoryUsageLevel" ref="false" />
+      </containers>
+      <file name="4a1f800a-27b9-9e25-c311-cbc7339d0796" />
+    </api>
+    <api id="T:Windows.System.AppMemoryUsageLimitChangingEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.AppMemoryUsageLimitChangingEventArgs" />
+      <apidata name="AppMemoryUsageLimitChangingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.System.IAppMemoryUsageLimitChangingEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8224b47c-7450-93fd-d9aa-30d15c7a4f01" />
+    </api>
+    <api id="AllMembers.T:Windows.System.AppMemoryUsageLimitChangingEventArgs">
+      <topicdata name="AppMemoryUsageLimitChangingEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.System.AppMemoryUsageLimitChangingEventArgs" />
+      <apidata name="AppMemoryUsageLimitChangingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.System.AppMemoryUsageLimitChangingEventArgs.NewLimit" />
+        <element api="P:Windows.System.AppMemoryUsageLimitChangingEventArgs.OldLimit" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.AppMemoryUsageLimitChangingEventArgs" />
+      </containers>
+      <file name="21494925-89bd-33bb-4584-7c8592d422d8" />
+    </api>
+    <api id="Methods.T:Windows.System.AppMemoryUsageLimitChangingEventArgs">
+      <topicdata name="AppMemoryUsageLimitChangingEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.System.AppMemoryUsageLimitChangingEventArgs" />
+      <apidata name="AppMemoryUsageLimitChangingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.AppMemoryUsageLimitChangingEventArgs" />
+      </containers>
+      <file name="baa6e271-75cb-b96d-f98b-a1c53431c2d6" />
+    </api>
+    <api id="Properties.T:Windows.System.AppMemoryUsageLimitChangingEventArgs">
+      <topicdata name="AppMemoryUsageLimitChangingEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.System.AppMemoryUsageLimitChangingEventArgs" />
+      <apidata name="AppMemoryUsageLimitChangingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.AppMemoryUsageLimitChangingEventArgs.NewLimit" />
+        <element api="P:Windows.System.AppMemoryUsageLimitChangingEventArgs.OldLimit" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.AppMemoryUsageLimitChangingEventArgs" />
+      </containers>
+      <file name="5662e4a5-99f3-64f8-b95d-0daafc69b0b0" />
+    </api>
+    <api id="P:Windows.System.AppMemoryUsageLimitChangingEventArgs.NewLimit">
+      <topicdata group="api" />
+      <apidata name="NewLimit" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NewLimit" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.AppMemoryUsageLimitChangingEventArgs" ref="true" />
+      </containers>
+      <file name="26976d4c-5611-a7aa-d6d2-5c4269cf450e" />
+    </api>
+    <api id="P:Windows.System.AppMemoryUsageLimitChangingEventArgs.OldLimit">
+      <topicdata group="api" />
+      <apidata name="OldLimit" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_OldLimit" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.AppMemoryUsageLimitChangingEventArgs" ref="true" />
+      </containers>
+      <file name="ede68b1a-55d1-3d26-6539-58f6e68569eb" />
+    </api>
+    <api id="T:Windows.System.Launcher">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Launcher" />
+      <apidata name="Launcher" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b11585e1-6ccb-a133-0fb4-0fe9319889e6" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Launcher">
+      <topicdata name="Launcher" group="list" subgroup="members" typeTopicId="T:Windows.System.Launcher" />
+      <apidata name="Launcher" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.System.Launcher.LaunchFileAsync">
+          <element api="M:Windows.System.Launcher.LaunchFileAsync(Windows.Storage.IStorageFile)" />
+          <element api="M:Windows.System.Launcher.LaunchFileAsync(Windows.Storage.IStorageFile,Windows.System.LauncherOptions)" />
+        </element>
+        <element api="Overload:Windows.System.Launcher.LaunchUriAsync">
+          <element api="M:Windows.System.Launcher.LaunchUriAsync(Windows.Foundation.Uri)" />
+          <element api="M:Windows.System.Launcher.LaunchUriAsync(Windows.Foundation.Uri,Windows.System.LauncherOptions)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.Launcher" />
+      </containers>
+      <file name="8a96953a-ae79-a1ba-9931-96ed47b20ee6" />
+    </api>
+    <api id="Methods.T:Windows.System.Launcher">
+      <topicdata name="Launcher" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Launcher" />
+      <apidata name="Launcher" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.System.Launcher.LaunchFileAsync">
+          <element api="M:Windows.System.Launcher.LaunchFileAsync(Windows.Storage.IStorageFile)" />
+          <element api="M:Windows.System.Launcher.LaunchFileAsync(Windows.Storage.IStorageFile,Windows.System.LauncherOptions)" />
+        </element>
+        <element api="Overload:Windows.System.Launcher.LaunchUriAsync">
+          <element api="M:Windows.System.Launcher.LaunchUriAsync(Windows.Foundation.Uri)" />
+          <element api="M:Windows.System.Launcher.LaunchUriAsync(Windows.Foundation.Uri,Windows.System.LauncherOptions)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.Launcher" />
+      </containers>
+      <file name="d5e06e2c-00f8-e604-3344-cc0e1b09ab42" />
+    </api>
+    <api id="Overload:Windows.System.Launcher.LaunchFileAsync">
+      <topicdata name="LaunchFileAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.System.Launcher" />
+      <apidata name="LaunchFileAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.System.Launcher.LaunchFileAsync(Windows.Storage.IStorageFile)" />
+        <element api="M:Windows.System.Launcher.LaunchFileAsync(Windows.Storage.IStorageFile,Windows.System.LauncherOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.Launcher" ref="true" />
+      </containers>
+      <file name="17ed3890-d3c6-5ec1-079f-d4cfc4af916a" />
+    </api>
+    <api id="Overload:Windows.System.Launcher.LaunchUriAsync">
+      <topicdata name="LaunchUriAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.System.Launcher" />
+      <apidata name="LaunchUriAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.System.Launcher.LaunchUriAsync(Windows.Foundation.Uri)" />
+        <element api="M:Windows.System.Launcher.LaunchUriAsync(Windows.Foundation.Uri,Windows.System.LauncherOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.Launcher" ref="true" />
+      </containers>
+      <file name="95183abd-8402-16dd-62fd-0552836feb0a" />
+    </api>
+    <api id="M:Windows.System.Launcher.LaunchFileAsync(Windows.Storage.IStorageFile)">
+      <topicdata group="api" />
+      <apidata name="LaunchFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.System.Launcher.LaunchFileAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.Launcher" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>LaunchFileAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="44c8cf88-fb4a-ff89-b713-c13d46618c55" />
+    </api>
+    <api id="M:Windows.System.Launcher.LaunchFileAsync(Windows.Storage.IStorageFile,Windows.System.LauncherOptions)">
+      <topicdata group="api" />
+      <apidata name="LaunchFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.System.Launcher.LaunchFileAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.System.LauncherOptions" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.Launcher" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>LaunchFileWithOptionsAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="97770e0c-e96c-fc47-6a2b-9ebf2ffc5137" />
+    </api>
+    <api id="M:Windows.System.Launcher.LaunchUriAsync(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="LaunchUriAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.System.Launcher.LaunchUriAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="uri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.Launcher" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>LaunchUriAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="aed45fde-4965-0bcd-33de-c1071ef05c03" />
+    </api>
+    <api id="M:Windows.System.Launcher.LaunchUriAsync(Windows.Foundation.Uri,Windows.System.LauncherOptions)">
+      <topicdata group="api" />
+      <apidata name="LaunchUriAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.System.Launcher.LaunchUriAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="uri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.System.LauncherOptions" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.Launcher" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>LaunchUriWithOptionsAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ac5446b3-6446-85ca-c233-bf0efa045309" />
+    </api>
+    <api id="T:Windows.System.LauncherOptions">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.LauncherOptions" />
+      <apidata name="LauncherOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.System.LauncherOptions.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.System.ILauncherOptions" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="28a3646d-e086-3cb6-a46d-be3d4354f9d7" />
+    </api>
+    <api id="AllMembers.T:Windows.System.LauncherOptions">
+      <topicdata name="LauncherOptions" group="list" subgroup="members" typeTopicId="T:Windows.System.LauncherOptions" />
+      <apidata name="LauncherOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.System.LauncherOptions.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.System.LauncherOptions.#ctor" />
+        <element api="P:Windows.System.LauncherOptions.ContentType" />
+        <element api="P:Windows.System.LauncherOptions.DisplayApplicationPicker" />
+        <element api="P:Windows.System.LauncherOptions.FallbackUri" />
+        <element api="P:Windows.System.LauncherOptions.PreferredApplicationDisplayName" />
+        <element api="P:Windows.System.LauncherOptions.PreferredApplicationPackageFamilyName" />
+        <element api="P:Windows.System.LauncherOptions.TreatAsUntrusted" />
+        <element api="P:Windows.System.LauncherOptions.UI" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.LauncherOptions" />
+      </containers>
+      <file name="33a7ca9b-9828-c21f-de1a-1f28488c1f23" />
+    </api>
+    <api id="Methods.T:Windows.System.LauncherOptions">
+      <topicdata name="LauncherOptions" group="list" subgroup="Methods" typeTopicId="T:Windows.System.LauncherOptions" />
+      <apidata name="LauncherOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.System.LauncherOptions.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.LauncherOptions" />
+      </containers>
+      <file name="a4d9b1f8-ec64-1f7c-f78b-7b6ecac2cde6" />
+    </api>
+    <api id="Properties.T:Windows.System.LauncherOptions">
+      <topicdata name="LauncherOptions" group="list" subgroup="Properties" typeTopicId="T:Windows.System.LauncherOptions" />
+      <apidata name="LauncherOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.System.LauncherOptions.#ctor" />
+      <elements>
+        <element api="P:Windows.System.LauncherOptions.ContentType" />
+        <element api="P:Windows.System.LauncherOptions.DisplayApplicationPicker" />
+        <element api="P:Windows.System.LauncherOptions.FallbackUri" />
+        <element api="P:Windows.System.LauncherOptions.PreferredApplicationDisplayName" />
+        <element api="P:Windows.System.LauncherOptions.PreferredApplicationPackageFamilyName" />
+        <element api="P:Windows.System.LauncherOptions.TreatAsUntrusted" />
+        <element api="P:Windows.System.LauncherOptions.UI" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.LauncherOptions" />
+      </containers>
+      <file name="ca24e6b6-a21f-e510-9181-29ff78ad635e" />
+    </api>
+    <api id="M:Windows.System.LauncherOptions.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.LauncherOptions" ref="true" />
+      </containers>
+      <file name="0ea41e0c-ac06-1d19-2bd3-a9ce21092da6" />
+    </api>
+    <api id="P:Windows.System.LauncherOptions.ContentType">
+      <topicdata group="api" />
+      <apidata name="ContentType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ContentType" />
+      <setter name="set_ContentType" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.LauncherOptions" ref="true" />
+      </containers>
+      <file name="748f012e-a680-c026-90b8-0a05b1fa3268" />
+    </api>
+    <api id="P:Windows.System.LauncherOptions.DisplayApplicationPicker">
+      <topicdata group="api" />
+      <apidata name="DisplayApplicationPicker" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DisplayApplicationPicker" />
+      <setter name="set_DisplayApplicationPicker" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.LauncherOptions" ref="true" />
+      </containers>
+      <file name="0b20e994-af80-1b94-9c9b-922d4a634c4b" />
+    </api>
+    <api id="P:Windows.System.LauncherOptions.FallbackUri">
+      <topicdata group="api" />
+      <apidata name="FallbackUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_FallbackUri" />
+      <setter name="set_FallbackUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.LauncherOptions" ref="true" />
+      </containers>
+      <file name="0d9ef452-d0da-1882-dc5b-1221681e54ab" />
+    </api>
+    <api id="P:Windows.System.LauncherOptions.PreferredApplicationDisplayName">
+      <topicdata group="api" />
+      <apidata name="PreferredApplicationDisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PreferredApplicationDisplayName" />
+      <setter name="set_PreferredApplicationDisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.LauncherOptions" ref="true" />
+      </containers>
+      <file name="c34a5d50-8923-357c-676e-69c54810d577" />
+    </api>
+    <api id="P:Windows.System.LauncherOptions.PreferredApplicationPackageFamilyName">
+      <topicdata group="api" />
+      <apidata name="PreferredApplicationPackageFamilyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PreferredApplicationPackageFamilyName" />
+      <setter name="set_PreferredApplicationPackageFamilyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.LauncherOptions" ref="true" />
+      </containers>
+      <file name="9695cf28-50d0-195f-cbe5-26631607c505" />
+    </api>
+    <api id="P:Windows.System.LauncherOptions.TreatAsUntrusted">
+      <topicdata group="api" />
+      <apidata name="TreatAsUntrusted" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TreatAsUntrusted" />
+      <setter name="set_TreatAsUntrusted" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.LauncherOptions" ref="true" />
+      </containers>
+      <file name="37503344-8e52-a14c-41ed-51dbff26f6f6" />
+    </api>
+    <api id="P:Windows.System.LauncherOptions.UI">
+      <topicdata group="api" />
+      <apidata name="UI" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UI" />
+      <returns>
+        <type api="T:Windows.System.LauncherUIOptions" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.LauncherOptions" ref="true" />
+      </containers>
+      <file name="628328a1-ac65-a87d-5e4b-5ad6d0070e63" />
+    </api>
+    <api id="T:Windows.System.LauncherUIOptions">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.LauncherUIOptions" />
+      <apidata name="LauncherUIOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.System.ILauncherUIOptions" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1a598cfa-e5f1-674c-10b1-a77a4ef4152e" />
+    </api>
+    <api id="AllMembers.T:Windows.System.LauncherUIOptions">
+      <topicdata name="LauncherUIOptions" group="list" subgroup="members" typeTopicId="T:Windows.System.LauncherUIOptions" />
+      <apidata name="LauncherUIOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.System.LauncherUIOptions.InvocationPoint" />
+        <element api="P:Windows.System.LauncherUIOptions.PreferredPlacement" />
+        <element api="P:Windows.System.LauncherUIOptions.SelectionRect" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.LauncherUIOptions" />
+      </containers>
+      <file name="f99bc371-9f96-d018-5e0e-cad0e3421dd5" />
+    </api>
+    <api id="Methods.T:Windows.System.LauncherUIOptions">
+      <topicdata name="LauncherUIOptions" group="list" subgroup="Methods" typeTopicId="T:Windows.System.LauncherUIOptions" />
+      <apidata name="LauncherUIOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.LauncherUIOptions" />
+      </containers>
+      <file name="dddc7734-e635-2da8-f7d6-9346978c49a0" />
+    </api>
+    <api id="Properties.T:Windows.System.LauncherUIOptions">
+      <topicdata name="LauncherUIOptions" group="list" subgroup="Properties" typeTopicId="T:Windows.System.LauncherUIOptions" />
+      <apidata name="LauncherUIOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.LauncherUIOptions.InvocationPoint" />
+        <element api="P:Windows.System.LauncherUIOptions.PreferredPlacement" />
+        <element api="P:Windows.System.LauncherUIOptions.SelectionRect" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.LauncherUIOptions" />
+      </containers>
+      <file name="6ba6552a-552d-08c2-f02d-b63d1187688d" />
+    </api>
+    <api id="P:Windows.System.LauncherUIOptions.InvocationPoint">
+      <topicdata group="api" />
+      <apidata name="InvocationPoint" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InvocationPoint" />
+      <setter name="set_InvocationPoint" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Foundation.Point" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.LauncherUIOptions" ref="true" />
+      </containers>
+      <file name="ba4d88c1-8afd-8b8a-6e01-c12dcd58ab9a" />
+    </api>
+    <api id="P:Windows.System.LauncherUIOptions.PreferredPlacement">
+      <topicdata group="api" />
+      <apidata name="PreferredPlacement" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PreferredPlacement" />
+      <setter name="set_PreferredPlacement" />
+      <returns>
+        <type api="T:Windows.UI.Popups.Placement" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.LauncherUIOptions" ref="true" />
+      </containers>
+      <file name="df9e658c-70df-6683-1200-417b51e5b5f5" />
+    </api>
+    <api id="P:Windows.System.LauncherUIOptions.SelectionRect">
+      <topicdata group="api" />
+      <apidata name="SelectionRect" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SelectionRect" />
+      <setter name="set_SelectionRect" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Foundation.Rect" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.LauncherUIOptions" ref="true" />
+      </containers>
+      <file name="92c8f4f0-4cb3-8434-ca35-e5b8903391ed" />
+    </api>
+    <api id="T:Windows.System.MemoryManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.MemoryManager" />
+      <apidata name="MemoryManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0a0eed4a-c5bf-b2f7-7bc8-94f70504871c" />
+    </api>
+    <api id="AllMembers.T:Windows.System.MemoryManager">
+      <topicdata name="MemoryManager" group="list" subgroup="members" typeTopicId="T:Windows.System.MemoryManager" />
+      <apidata name="MemoryManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.MemoryManager.AppMemoryUsage" />
+        <element api="E:Windows.System.MemoryManager.AppMemoryUsageDecreased" />
+        <element api="E:Windows.System.MemoryManager.AppMemoryUsageIncreased" />
+        <element api="P:Windows.System.MemoryManager.AppMemoryUsageLevel" />
+        <element api="P:Windows.System.MemoryManager.AppMemoryUsageLimit" />
+        <element api="E:Windows.System.MemoryManager.AppMemoryUsageLimitChanging" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.MemoryManager" />
+      </containers>
+      <file name="8302aa3e-5392-6cf2-7bd9-cd48c328645e" />
+    </api>
+    <api id="Properties.T:Windows.System.MemoryManager">
+      <topicdata name="MemoryManager" group="list" subgroup="Properties" typeTopicId="T:Windows.System.MemoryManager" />
+      <apidata name="MemoryManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.MemoryManager.AppMemoryUsage" />
+        <element api="P:Windows.System.MemoryManager.AppMemoryUsageLevel" />
+        <element api="P:Windows.System.MemoryManager.AppMemoryUsageLimit" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.MemoryManager" />
+      </containers>
+      <file name="39e1f946-bc79-b3c5-3fab-79a379b28a5d" />
+    </api>
+    <api id="Events.T:Windows.System.MemoryManager">
+      <topicdata name="MemoryManager" group="list" subgroup="Events" typeTopicId="T:Windows.System.MemoryManager" />
+      <apidata name="MemoryManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.System.MemoryManager.AppMemoryUsageDecreased" />
+        <element api="E:Windows.System.MemoryManager.AppMemoryUsageIncreased" />
+        <element api="E:Windows.System.MemoryManager.AppMemoryUsageLimitChanging" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.MemoryManager" />
+      </containers>
+      <file name="63c24d31-a845-1e1c-efd9-87730597e891" />
+    </api>
+    <api id="P:Windows.System.MemoryManager.AppMemoryUsage">
+      <topicdata group="api" />
+      <apidata name="AppMemoryUsage" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AppMemoryUsage" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.MemoryManager" ref="true" />
+      </containers>
+      <file name="e98db645-0876-58a4-002a-80a4ebb2af6c" />
+    </api>
+    <api id="E:Windows.System.MemoryManager.AppMemoryUsageDecreased">
+      <topicdata group="api" />
+      <apidata name="AppMemoryUsageDecreased" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_AppMemoryUsageDecreased" />
+      <remover name="remove_AppMemoryUsageDecreased" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Object" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.MemoryManager" ref="true" />
+      </containers>
+      <file name="c3c6f38f-79de-1cec-ee38-0f5299459b3e" />
+    </api>
+    <api id="E:Windows.System.MemoryManager.AppMemoryUsageIncreased">
+      <topicdata group="api" />
+      <apidata name="AppMemoryUsageIncreased" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_AppMemoryUsageIncreased" />
+      <remover name="remove_AppMemoryUsageIncreased" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Object" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.MemoryManager" ref="true" />
+      </containers>
+      <file name="2216ad68-2c5a-a369-be58-e5fe4099aee8" />
+    </api>
+    <api id="P:Windows.System.MemoryManager.AppMemoryUsageLevel">
+      <topicdata group="api" />
+      <apidata name="AppMemoryUsageLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AppMemoryUsageLevel" />
+      <returns>
+        <type api="T:Windows.System.AppMemoryUsageLevel" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.MemoryManager" ref="true" />
+      </containers>
+      <file name="6ca6207c-6473-92ad-4a95-b01ff0431d37" />
+    </api>
+    <api id="P:Windows.System.MemoryManager.AppMemoryUsageLimit">
+      <topicdata group="api" />
+      <apidata name="AppMemoryUsageLimit" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AppMemoryUsageLimit" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.MemoryManager" ref="true" />
+      </containers>
+      <file name="9272984d-d20c-210e-55f8-b1162c0deac3" />
+    </api>
+    <api id="E:Windows.System.MemoryManager.AppMemoryUsageLimitChanging">
+      <topicdata group="api" />
+      <apidata name="AppMemoryUsageLimitChanging" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_AppMemoryUsageLimitChanging" />
+      <remover name="remove_AppMemoryUsageLimitChanging" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Windows.System.AppMemoryUsageLimitChangingEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Windows.System.AppMemoryUsageLimitChangingEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.MemoryManager" ref="true" />
+      </containers>
+      <file name="9c2dcd2f-e71b-4a9d-541d-333fd893320f" />
+    </api>
+    <api id="T:Windows.System.ProcessorArchitecture">
+      <topicdata group="api" />
+      <apidata name="ProcessorArchitecture" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.System.ProcessorArchitecture.X86" />
+        <element api="F:Windows.System.ProcessorArchitecture.Arm" />
+        <element api="F:Windows.System.ProcessorArchitecture.X64" />
+        <element api="F:Windows.System.ProcessorArchitecture.Neutral" />
+        <element api="F:Windows.System.ProcessorArchitecture.Unknown" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3366aa83-0621-0a80-4ae5-d16b1a8cbb53" />
+    </api>
+    <api id="F:Windows.System.ProcessorArchitecture.Arm">
+      <topicdata group="api" notopic="" />
+      <apidata name="Arm" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.ProcessorArchitecture" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.ProcessorArchitecture" ref="false" />
+      </containers>
+      <file name="d13c5edd-3110-bca9-ce2e-57f1c849ac27" />
+    </api>
+    <api id="F:Windows.System.ProcessorArchitecture.Neutral">
+      <topicdata group="api" notopic="" />
+      <apidata name="Neutral" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.ProcessorArchitecture" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.ProcessorArchitecture" ref="false" />
+      </containers>
+      <file name="ef1e9ff2-f224-fefb-508e-b6a2aaa0c7f8" />
+    </api>
+    <api id="F:Windows.System.ProcessorArchitecture.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.ProcessorArchitecture" ref="false" />
+      </returns>
+      <value>65535</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.ProcessorArchitecture" ref="false" />
+      </containers>
+      <file name="8909621a-0384-56ca-c4b5-2e22e81b8bf5" />
+    </api>
+    <api id="F:Windows.System.ProcessorArchitecture.X64">
+      <topicdata group="api" notopic="" />
+      <apidata name="X64" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.ProcessorArchitecture" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.ProcessorArchitecture" ref="false" />
+      </containers>
+      <file name="7f677450-e5c2-bfc7-a709-1b97e5f81807" />
+    </api>
+    <api id="F:Windows.System.ProcessorArchitecture.X86">
+      <topicdata group="api" notopic="" />
+      <apidata name="X86" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.ProcessorArchitecture" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.ProcessorArchitecture" ref="false" />
+      </containers>
+      <file name="c0ce065e-14cc-0a53-ac03-7d7b43a03711" />
+    </api>
+    <api id="T:Windows.System.VirtualKey">
+      <topicdata group="api" />
+      <apidata name="VirtualKey" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.System.VirtualKey.None" />
+        <element api="F:Windows.System.VirtualKey.LeftButton" />
+        <element api="F:Windows.System.VirtualKey.RightButton" />
+        <element api="F:Windows.System.VirtualKey.Cancel" />
+        <element api="F:Windows.System.VirtualKey.MiddleButton" />
+        <element api="F:Windows.System.VirtualKey.XButton1" />
+        <element api="F:Windows.System.VirtualKey.XButton2" />
+        <element api="F:Windows.System.VirtualKey.Back" />
+        <element api="F:Windows.System.VirtualKey.Tab" />
+        <element api="F:Windows.System.VirtualKey.Clear" />
+        <element api="F:Windows.System.VirtualKey.Enter" />
+        <element api="F:Windows.System.VirtualKey.Shift" />
+        <element api="F:Windows.System.VirtualKey.Control" />
+        <element api="F:Windows.System.VirtualKey.Menu" />
+        <element api="F:Windows.System.VirtualKey.Pause" />
+        <element api="F:Windows.System.VirtualKey.CapitalLock" />
+        <element api="F:Windows.System.VirtualKey.Kana" />
+        <element api="F:Windows.System.VirtualKey.Hangul" />
+        <element api="F:Windows.System.VirtualKey.Junja" />
+        <element api="F:Windows.System.VirtualKey.Final" />
+        <element api="F:Windows.System.VirtualKey.Hanja" />
+        <element api="F:Windows.System.VirtualKey.Kanji" />
+        <element api="F:Windows.System.VirtualKey.Escape" />
+        <element api="F:Windows.System.VirtualKey.Convert" />
+        <element api="F:Windows.System.VirtualKey.NonConvert" />
+        <element api="F:Windows.System.VirtualKey.Accept" />
+        <element api="F:Windows.System.VirtualKey.ModeChange" />
+        <element api="F:Windows.System.VirtualKey.Space" />
+        <element api="F:Windows.System.VirtualKey.PageUp" />
+        <element api="F:Windows.System.VirtualKey.PageDown" />
+        <element api="F:Windows.System.VirtualKey.End" />
+        <element api="F:Windows.System.VirtualKey.Home" />
+        <element api="F:Windows.System.VirtualKey.Left" />
+        <element api="F:Windows.System.VirtualKey.Up" />
+        <element api="F:Windows.System.VirtualKey.Right" />
+        <element api="F:Windows.System.VirtualKey.Down" />
+        <element api="F:Windows.System.VirtualKey.Select" />
+        <element api="F:Windows.System.VirtualKey.Print" />
+        <element api="F:Windows.System.VirtualKey.Execute" />
+        <element api="F:Windows.System.VirtualKey.Snapshot" />
+        <element api="F:Windows.System.VirtualKey.Insert" />
+        <element api="F:Windows.System.VirtualKey.Delete" />
+        <element api="F:Windows.System.VirtualKey.Help" />
+        <element api="F:Windows.System.VirtualKey.Number0" />
+        <element api="F:Windows.System.VirtualKey.Number1" />
+        <element api="F:Windows.System.VirtualKey.Number2" />
+        <element api="F:Windows.System.VirtualKey.Number3" />
+        <element api="F:Windows.System.VirtualKey.Number4" />
+        <element api="F:Windows.System.VirtualKey.Number5" />
+        <element api="F:Windows.System.VirtualKey.Number6" />
+        <element api="F:Windows.System.VirtualKey.Number7" />
+        <element api="F:Windows.System.VirtualKey.Number8" />
+        <element api="F:Windows.System.VirtualKey.Number9" />
+        <element api="F:Windows.System.VirtualKey.A" />
+        <element api="F:Windows.System.VirtualKey.B" />
+        <element api="F:Windows.System.VirtualKey.C" />
+        <element api="F:Windows.System.VirtualKey.D" />
+        <element api="F:Windows.System.VirtualKey.E" />
+        <element api="F:Windows.System.VirtualKey.F" />
+        <element api="F:Windows.System.VirtualKey.G" />
+        <element api="F:Windows.System.VirtualKey.H" />
+        <element api="F:Windows.System.VirtualKey.I" />
+        <element api="F:Windows.System.VirtualKey.J" />
+        <element api="F:Windows.System.VirtualKey.K" />
+        <element api="F:Windows.System.VirtualKey.L" />
+        <element api="F:Windows.System.VirtualKey.M" />
+        <element api="F:Windows.System.VirtualKey.N" />
+        <element api="F:Windows.System.VirtualKey.O" />
+        <element api="F:Windows.System.VirtualKey.P" />
+        <element api="F:Windows.System.VirtualKey.Q" />
+        <element api="F:Windows.System.VirtualKey.R" />
+        <element api="F:Windows.System.VirtualKey.S" />
+        <element api="F:Windows.System.VirtualKey.T" />
+        <element api="F:Windows.System.VirtualKey.U" />
+        <element api="F:Windows.System.VirtualKey.V" />
+        <element api="F:Windows.System.VirtualKey.W" />
+        <element api="F:Windows.System.VirtualKey.X" />
+        <element api="F:Windows.System.VirtualKey.Y" />
+        <element api="F:Windows.System.VirtualKey.Z" />
+        <element api="F:Windows.System.VirtualKey.LeftWindows" />
+        <element api="F:Windows.System.VirtualKey.RightWindows" />
+        <element api="F:Windows.System.VirtualKey.Application" />
+        <element api="F:Windows.System.VirtualKey.Sleep" />
+        <element api="F:Windows.System.VirtualKey.NumberPad0" />
+        <element api="F:Windows.System.VirtualKey.NumberPad1" />
+        <element api="F:Windows.System.VirtualKey.NumberPad2" />
+        <element api="F:Windows.System.VirtualKey.NumberPad3" />
+        <element api="F:Windows.System.VirtualKey.NumberPad4" />
+        <element api="F:Windows.System.VirtualKey.NumberPad5" />
+        <element api="F:Windows.System.VirtualKey.NumberPad6" />
+        <element api="F:Windows.System.VirtualKey.NumberPad7" />
+        <element api="F:Windows.System.VirtualKey.NumberPad8" />
+        <element api="F:Windows.System.VirtualKey.NumberPad9" />
+        <element api="F:Windows.System.VirtualKey.Multiply" />
+        <element api="F:Windows.System.VirtualKey.Add" />
+        <element api="F:Windows.System.VirtualKey.Separator" />
+        <element api="F:Windows.System.VirtualKey.Subtract" />
+        <element api="F:Windows.System.VirtualKey.Decimal" />
+        <element api="F:Windows.System.VirtualKey.Divide" />
+        <element api="F:Windows.System.VirtualKey.F1" />
+        <element api="F:Windows.System.VirtualKey.F2" />
+        <element api="F:Windows.System.VirtualKey.F3" />
+        <element api="F:Windows.System.VirtualKey.F4" />
+        <element api="F:Windows.System.VirtualKey.F5" />
+        <element api="F:Windows.System.VirtualKey.F6" />
+        <element api="F:Windows.System.VirtualKey.F7" />
+        <element api="F:Windows.System.VirtualKey.F8" />
+        <element api="F:Windows.System.VirtualKey.F9" />
+        <element api="F:Windows.System.VirtualKey.F10" />
+        <element api="F:Windows.System.VirtualKey.F11" />
+        <element api="F:Windows.System.VirtualKey.F12" />
+        <element api="F:Windows.System.VirtualKey.F13" />
+        <element api="F:Windows.System.VirtualKey.F14" />
+        <element api="F:Windows.System.VirtualKey.F15" />
+        <element api="F:Windows.System.VirtualKey.F16" />
+        <element api="F:Windows.System.VirtualKey.F17" />
+        <element api="F:Windows.System.VirtualKey.F18" />
+        <element api="F:Windows.System.VirtualKey.F19" />
+        <element api="F:Windows.System.VirtualKey.F20" />
+        <element api="F:Windows.System.VirtualKey.F21" />
+        <element api="F:Windows.System.VirtualKey.F22" />
+        <element api="F:Windows.System.VirtualKey.F23" />
+        <element api="F:Windows.System.VirtualKey.F24" />
+        <element api="F:Windows.System.VirtualKey.NumberKeyLock" />
+        <element api="F:Windows.System.VirtualKey.Scroll" />
+        <element api="F:Windows.System.VirtualKey.LeftShift" />
+        <element api="F:Windows.System.VirtualKey.RightShift" />
+        <element api="F:Windows.System.VirtualKey.LeftControl" />
+        <element api="F:Windows.System.VirtualKey.RightControl" />
+        <element api="F:Windows.System.VirtualKey.LeftMenu" />
+        <element api="F:Windows.System.VirtualKey.RightMenu" />
+        <element api="F:Windows.System.VirtualKey.GoBack" />
+        <element api="F:Windows.System.VirtualKey.GoForward" />
+        <element api="F:Windows.System.VirtualKey.Refresh" />
+        <element api="F:Windows.System.VirtualKey.Stop" />
+        <element api="F:Windows.System.VirtualKey.Search" />
+        <element api="F:Windows.System.VirtualKey.Favorites" />
+        <element api="F:Windows.System.VirtualKey.GoHome" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="67ab8c14-619d-d9bf-add7-28bf7838ed98" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.A">
+      <topicdata group="api" notopic="" />
+      <apidata name="A" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>65</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="bf90bf60-129c-afad-d445-1fa5ce35a31b" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Accept">
+      <topicdata group="api" notopic="" />
+      <apidata name="Accept" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>30</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="1b363444-de31-a593-20e3-1d7a15b9f48a" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Add">
+      <topicdata group="api" notopic="" />
+      <apidata name="Add" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>107</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="cb3b49c3-a4a2-90c2-603f-ff21ece687e1" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Application">
+      <topicdata group="api" notopic="" />
+      <apidata name="Application" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>93</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="66bd0f5a-6183-0ff4-ed9f-62a6edb61909" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.B">
+      <topicdata group="api" notopic="" />
+      <apidata name="B" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>66</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="4ab60c5e-ac30-7cc4-a33a-eeb64bc7662c" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Back">
+      <topicdata group="api" notopic="" />
+      <apidata name="Back" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="baad9348-b79c-38d7-0812-97f50aea3b76" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.C">
+      <topicdata group="api" notopic="" />
+      <apidata name="C" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>67</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="41d98f00-a5fa-3746-db28-e71066bd2023" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Cancel">
+      <topicdata group="api" notopic="" />
+      <apidata name="Cancel" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="bae0428a-779a-f329-e188-bfe6557b3e31" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.CapitalLock">
+      <topicdata group="api" notopic="" />
+      <apidata name="CapitalLock" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>20</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="359b059d-9838-38e2-308c-ff9c61039782" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Clear">
+      <topicdata group="api" notopic="" />
+      <apidata name="Clear" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="69ced98f-7782-6d5c-b752-14ebb82e0aa7" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Control">
+      <topicdata group="api" notopic="" />
+      <apidata name="Control" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>17</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="ccd79e08-d7f7-e370-5703-45246402369b" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Convert">
+      <topicdata group="api" notopic="" />
+      <apidata name="Convert" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>28</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="98e46d24-d548-ec27-cacc-bdc7e15adb77" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.D">
+      <topicdata group="api" notopic="" />
+      <apidata name="D" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>68</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="721cb069-e820-80e6-0252-4a5213100e39" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Decimal">
+      <topicdata group="api" notopic="" />
+      <apidata name="Decimal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>110</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="420405a5-955f-6aeb-ae10-63e88672ca92" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Delete">
+      <topicdata group="api" notopic="" />
+      <apidata name="Delete" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>46</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="3ba9d8d1-5b11-3ce4-b14d-7ad85ad07f72" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Divide">
+      <topicdata group="api" notopic="" />
+      <apidata name="Divide" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>111</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="13100d3d-e696-96bb-85d7-28f9e33b52e8" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Down">
+      <topicdata group="api" notopic="" />
+      <apidata name="Down" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>40</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="d9c5ef3f-9b61-69ff-1c69-340193fedee2" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.E">
+      <topicdata group="api" notopic="" />
+      <apidata name="E" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>69</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="5d3548ef-c4d4-5006-3d4a-19c5324810dc" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.End">
+      <topicdata group="api" notopic="" />
+      <apidata name="End" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>35</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="2fc238ff-c2e2-02ec-9098-294f6f6f648e" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Enter">
+      <topicdata group="api" notopic="" />
+      <apidata name="Enter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>13</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="cf4fefb2-7594-27e3-60b3-1fa6b97827d8" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Escape">
+      <topicdata group="api" notopic="" />
+      <apidata name="Escape" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>27</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="b4510c2c-6cdb-28b3-319f-87532d3ff280" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Execute">
+      <topicdata group="api" notopic="" />
+      <apidata name="Execute" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>43</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="d6aca3ae-f7fd-68a1-cd41-961f6bc4c271" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F">
+      <topicdata group="api" notopic="" />
+      <apidata name="F" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>70</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="3237ab33-9065-2ed9-90a8-dcca8debf96c" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F1">
+      <topicdata group="api" notopic="" />
+      <apidata name="F1" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>112</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="c34d6d8d-88c6-c7f5-2536-bdf2c41ca5ad" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F10">
+      <topicdata group="api" notopic="" />
+      <apidata name="F10" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>121</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="fc857fff-5899-8547-0045-55c29db42c73" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F11">
+      <topicdata group="api" notopic="" />
+      <apidata name="F11" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>122</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="46958ff4-397e-f129-da50-cc0091757780" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F12">
+      <topicdata group="api" notopic="" />
+      <apidata name="F12" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>123</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="7e9f5f0d-d293-a9fe-93a7-b5d74b91e40e" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F13">
+      <topicdata group="api" notopic="" />
+      <apidata name="F13" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>124</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="ef49048c-d045-0022-ed05-ee1bf498b3b7" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F14">
+      <topicdata group="api" notopic="" />
+      <apidata name="F14" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>125</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="aa33de58-941c-8ec0-50c8-aa59d485dd36" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F15">
+      <topicdata group="api" notopic="" />
+      <apidata name="F15" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>126</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="687f12b5-69bd-1fd9-e95f-b50aeb84439c" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F16">
+      <topicdata group="api" notopic="" />
+      <apidata name="F16" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>127</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="16b9ded5-8a7e-9017-0259-71c9a8cad580" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F17">
+      <topicdata group="api" notopic="" />
+      <apidata name="F17" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>128</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="30725378-d0c7-f038-378b-8100b59e3380" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F18">
+      <topicdata group="api" notopic="" />
+      <apidata name="F18" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>129</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="fb66368f-df95-1fb9-069b-50a4e36ae235" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F19">
+      <topicdata group="api" notopic="" />
+      <apidata name="F19" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>130</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="e73e7d0f-a6ba-59cc-f93f-1e781ec5632f" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F2">
+      <topicdata group="api" notopic="" />
+      <apidata name="F2" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>113</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="87bedf45-c53b-4af9-0627-1b6345da48f7" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F20">
+      <topicdata group="api" notopic="" />
+      <apidata name="F20" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>131</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="62bc6875-66fd-3f56-5905-33df311c75dc" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F21">
+      <topicdata group="api" notopic="" />
+      <apidata name="F21" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>132</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="d859f6d8-df61-5833-c8b7-4e99896d5522" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F22">
+      <topicdata group="api" notopic="" />
+      <apidata name="F22" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>133</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="24b5fa4e-ca50-4d2d-2881-25b4388c5ca0" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F23">
+      <topicdata group="api" notopic="" />
+      <apidata name="F23" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>134</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="6e88447f-b0a0-f924-1f74-4854fea78aff" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F24">
+      <topicdata group="api" notopic="" />
+      <apidata name="F24" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>135</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="07ea0f3a-d6d7-a5ce-4695-829ff7546ce6" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F3">
+      <topicdata group="api" notopic="" />
+      <apidata name="F3" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>114</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="0b8597f3-f7bd-1491-94f4-640eafcbdbba" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F4">
+      <topicdata group="api" notopic="" />
+      <apidata name="F4" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>115</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="c297201a-46e7-21ae-fb92-3d7b1d54159d" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F5">
+      <topicdata group="api" notopic="" />
+      <apidata name="F5" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>116</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="5dc0c001-44d3-3218-c59d-4d3e6e2d351d" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F6">
+      <topicdata group="api" notopic="" />
+      <apidata name="F6" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>117</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="0c853a79-24d2-f9d1-7675-ba825cc0fed9" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F7">
+      <topicdata group="api" notopic="" />
+      <apidata name="F7" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>118</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="a0ac66a4-de36-bd34-12e4-1a2a36602ce2" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F8">
+      <topicdata group="api" notopic="" />
+      <apidata name="F8" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>119</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="38c2163d-f3bc-a59f-a900-2b8907644fc0" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.F9">
+      <topicdata group="api" notopic="" />
+      <apidata name="F9" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>120</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="845d6412-a754-21ba-0514-a1a78c52e6b8" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Favorites">
+      <topicdata group="api" notopic="" />
+      <apidata name="Favorites" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>171</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="501bd31d-3190-d334-6b34-6e2bda0ef9de" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Final">
+      <topicdata group="api" notopic="" />
+      <apidata name="Final" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>24</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="d2a7ee18-a314-a506-2762-015f02c51016" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.G">
+      <topicdata group="api" notopic="" />
+      <apidata name="G" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>71</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="8bf7c0c6-02b4-96d9-1e85-850f11682055" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.GoBack">
+      <topicdata group="api" notopic="" />
+      <apidata name="GoBack" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>166</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="001d3c52-86b0-4948-83ce-dbdeb492ddcd" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.GoForward">
+      <topicdata group="api" notopic="" />
+      <apidata name="GoForward" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>167</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2ca82d43-f36f-b57d-7a13-ee395adc1c2a" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.GoHome">
+      <topicdata group="api" notopic="" />
+      <apidata name="GoHome" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>172</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="922faf32-ec89-997a-8b8b-9bb5b65b9408" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.H">
+      <topicdata group="api" notopic="" />
+      <apidata name="H" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>72</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="5ddf57d6-87ab-6df5-4178-4534716a21ee" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Hangul">
+      <topicdata group="api" notopic="" />
+      <apidata name="Hangul" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>21</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="ae2eac91-6486-dddf-d368-cef6d646e01b" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Hanja">
+      <topicdata group="api" notopic="" />
+      <apidata name="Hanja" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>25</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="0d626ff0-b173-b518-683a-1ac3d69955f3" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Help">
+      <topicdata group="api" notopic="" />
+      <apidata name="Help" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>47</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="c84cea81-debe-30c3-1234-e932ea44c47c" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Home">
+      <topicdata group="api" notopic="" />
+      <apidata name="Home" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>36</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="abfe8e40-8344-7613-855f-c1f1da145ab5" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.I">
+      <topicdata group="api" notopic="" />
+      <apidata name="I" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>73</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="9205bb38-fc6a-733e-c123-9548b192ea68" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Insert">
+      <topicdata group="api" notopic="" />
+      <apidata name="Insert" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>45</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="01fb2220-ff51-1336-be87-5af5e09c955f" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.J">
+      <topicdata group="api" notopic="" />
+      <apidata name="J" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>74</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="a81f2173-6130-d8e6-40da-012e645f407e" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Junja">
+      <topicdata group="api" notopic="" />
+      <apidata name="Junja" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>23</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="b787175b-2f4f-7d40-95ad-012c5791caa7" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.K">
+      <topicdata group="api" notopic="" />
+      <apidata name="K" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>75</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="3dafe699-53b6-29af-68a2-8583983ba7aa" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Kana">
+      <topicdata group="api" notopic="" />
+      <apidata name="Kana" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>21</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="21833954-3d40-eade-243b-2dc290eafe13" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Kanji">
+      <topicdata group="api" notopic="" />
+      <apidata name="Kanji" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>25</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="e6ab5e88-e904-b100-1338-ef6a994032a8" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.L">
+      <topicdata group="api" notopic="" />
+      <apidata name="L" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>76</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="ab8f7381-02fe-b422-19ef-2c1dcd4405d3" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Left">
+      <topicdata group="api" notopic="" />
+      <apidata name="Left" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>37</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="6b6e59cb-302e-adda-fdc2-66c3fa3a824b" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.LeftButton">
+      <topicdata group="api" notopic="" />
+      <apidata name="LeftButton" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="11e5f2ff-47e0-3989-8d44-048182be7fd6" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.LeftControl">
+      <topicdata group="api" notopic="" />
+      <apidata name="LeftControl" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>162</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="cef83def-ea98-8e1b-0fe1-0d3fc9d1264c" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.LeftMenu">
+      <topicdata group="api" notopic="" />
+      <apidata name="LeftMenu" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>164</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="e478b5f6-e27d-3be2-77b1-e4a2f10afd29" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.LeftShift">
+      <topicdata group="api" notopic="" />
+      <apidata name="LeftShift" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>160</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="cf7f11fc-90cf-8f3a-9655-e27ae541f2ba" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.LeftWindows">
+      <topicdata group="api" notopic="" />
+      <apidata name="LeftWindows" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>91</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="c6f20a4f-3a53-b641-7aa4-d64452311af3" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.M">
+      <topicdata group="api" notopic="" />
+      <apidata name="M" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>77</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="248b67d1-8b35-cb68-9bca-3f204413fa5b" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Menu">
+      <topicdata group="api" notopic="" />
+      <apidata name="Menu" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>18</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="6b5c849f-7258-7a08-ab0e-b8f701adad0d" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.MiddleButton">
+      <topicdata group="api" notopic="" />
+      <apidata name="MiddleButton" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="956231ef-43fe-7f9b-d362-24b0687fd6a6" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.ModeChange">
+      <topicdata group="api" notopic="" />
+      <apidata name="ModeChange" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>31</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="2b6191c8-9394-2697-d831-03dd81839c37" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Multiply">
+      <topicdata group="api" notopic="" />
+      <apidata name="Multiply" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>106</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="3f604f3e-0558-6569-5131-e8721f4c6e32" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.N">
+      <topicdata group="api" notopic="" />
+      <apidata name="N" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>78</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="094be8d0-6884-7b4f-bf1a-d668bb22f9ad" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.NonConvert">
+      <topicdata group="api" notopic="" />
+      <apidata name="NonConvert" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>29</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="94b91c61-4b3e-961b-59a0-f39025c3c65c" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="62516704-daf9-f290-f81d-76b6ba1dc3c6" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Number0">
+      <topicdata group="api" notopic="" />
+      <apidata name="Number0" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>48</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="96bb1bc2-a62d-a2fb-8140-df2c32a08122" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Number1">
+      <topicdata group="api" notopic="" />
+      <apidata name="Number1" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>49</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="f21b981a-d822-449c-997f-3fcc2c4cc31c" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Number2">
+      <topicdata group="api" notopic="" />
+      <apidata name="Number2" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>50</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="1e1ce7ab-083a-7a64-9df2-eeb108b80c3f" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Number3">
+      <topicdata group="api" notopic="" />
+      <apidata name="Number3" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>51</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="f4b93bdb-bc88-ce32-d2f9-421f92b9b42c" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Number4">
+      <topicdata group="api" notopic="" />
+      <apidata name="Number4" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>52</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="2c8f8f64-e69e-05d3-5a29-24e2a69e1513" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Number5">
+      <topicdata group="api" notopic="" />
+      <apidata name="Number5" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>53</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="ce16942f-1d92-d38b-2e97-ebf1bb34b5f2" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Number6">
+      <topicdata group="api" notopic="" />
+      <apidata name="Number6" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>54</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="0e030e67-8e83-1a42-76dc-ad755eb13b89" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Number7">
+      <topicdata group="api" notopic="" />
+      <apidata name="Number7" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>55</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="2e5b5cd1-8c32-a09a-869b-3b9d82c3f702" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Number8">
+      <topicdata group="api" notopic="" />
+      <apidata name="Number8" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>56</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="af2347d6-d565-4595-6d5c-9c614560c507" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Number9">
+      <topicdata group="api" notopic="" />
+      <apidata name="Number9" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>57</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="cf4493a1-a8d9-8f09-6d35-7164da541145" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.NumberKeyLock">
+      <topicdata group="api" notopic="" />
+      <apidata name="NumberKeyLock" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>144</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="2e3203e1-a8e3-4319-cc2b-abfe4d680d28" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.NumberPad0">
+      <topicdata group="api" notopic="" />
+      <apidata name="NumberPad0" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>96</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="8f3ba0c3-ab43-0e96-4f13-da6900f05919" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.NumberPad1">
+      <topicdata group="api" notopic="" />
+      <apidata name="NumberPad1" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>97</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="821a89bc-3009-3959-4e06-07a9fabbb33a" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.NumberPad2">
+      <topicdata group="api" notopic="" />
+      <apidata name="NumberPad2" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>98</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="ce32f93a-587d-fc89-23e9-4ed024ebd98a" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.NumberPad3">
+      <topicdata group="api" notopic="" />
+      <apidata name="NumberPad3" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>99</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="fa390a16-64c7-70ba-91a6-24e89cfc427d" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.NumberPad4">
+      <topicdata group="api" notopic="" />
+      <apidata name="NumberPad4" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>100</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="a23c0b5d-007b-d8ef-bdc1-e66343e1b7a6" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.NumberPad5">
+      <topicdata group="api" notopic="" />
+      <apidata name="NumberPad5" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>101</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="57307b80-d51f-bd66-cbbd-89c39d7db54d" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.NumberPad6">
+      <topicdata group="api" notopic="" />
+      <apidata name="NumberPad6" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>102</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="cbae6377-66ab-e584-816e-55655e7a0f4e" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.NumberPad7">
+      <topicdata group="api" notopic="" />
+      <apidata name="NumberPad7" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>103</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="593e8893-c6dd-fe04-f045-90f5caf0c059" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.NumberPad8">
+      <topicdata group="api" notopic="" />
+      <apidata name="NumberPad8" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>104</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="e929153d-c3e8-38d3-f209-c6fb7bcb6c1c" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.NumberPad9">
+      <topicdata group="api" notopic="" />
+      <apidata name="NumberPad9" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>105</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="ce0a5767-7d0e-e6bb-38d4-7c5715824971" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.O">
+      <topicdata group="api" notopic="" />
+      <apidata name="O" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>79</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="ac59f403-e00a-e67e-d08b-743212caf7d0" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.P">
+      <topicdata group="api" notopic="" />
+      <apidata name="P" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>80</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="8d63a313-1679-703d-a691-e507a9a1de62" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.PageDown">
+      <topicdata group="api" notopic="" />
+      <apidata name="PageDown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>34</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="04b92b37-c899-d038-8fe2-b56188e40aa0" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.PageUp">
+      <topicdata group="api" notopic="" />
+      <apidata name="PageUp" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>33</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="9f357c4d-02e4-5e77-1c9d-2e8b1842ec03" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Pause">
+      <topicdata group="api" notopic="" />
+      <apidata name="Pause" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>19</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="7ca102d8-c874-ae4e-a5e8-916dfbf0d089" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Print">
+      <topicdata group="api" notopic="" />
+      <apidata name="Print" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>42</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="0d59e274-8b71-4639-f877-d1366c36ddf7" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Q">
+      <topicdata group="api" notopic="" />
+      <apidata name="Q" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>81</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="eaf8980d-7266-2fcb-5fe9-100ef52414b5" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.R">
+      <topicdata group="api" notopic="" />
+      <apidata name="R" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>82</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="93146d3d-0837-21f3-987b-41ab04b8d8f0" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Refresh">
+      <topicdata group="api" notopic="" />
+      <apidata name="Refresh" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>168</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6954eaff-6e6a-7b3c-74e1-6ab5b0daada9" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Right">
+      <topicdata group="api" notopic="" />
+      <apidata name="Right" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>39</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="323ce536-858f-4f32-2efd-ab367842dc3a" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.RightButton">
+      <topicdata group="api" notopic="" />
+      <apidata name="RightButton" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="c85cae45-3164-1911-04d0-c011e51cfd08" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.RightControl">
+      <topicdata group="api" notopic="" />
+      <apidata name="RightControl" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>163</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="4fc61448-9940-6434-36db-ad9127509af7" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.RightMenu">
+      <topicdata group="api" notopic="" />
+      <apidata name="RightMenu" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>165</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="b57036e9-fa7c-634d-b671-3201514b2e2a" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.RightShift">
+      <topicdata group="api" notopic="" />
+      <apidata name="RightShift" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>161</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="71543d2a-902b-4534-7ba9-55226cea2c9f" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.RightWindows">
+      <topicdata group="api" notopic="" />
+      <apidata name="RightWindows" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>92</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="2433a516-49ae-6222-8ae2-133569ab3b41" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.S">
+      <topicdata group="api" notopic="" />
+      <apidata name="S" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>83</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="c09a7d66-2948-2e50-4c50-36ea4b953877" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Scroll">
+      <topicdata group="api" notopic="" />
+      <apidata name="Scroll" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>145</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="8242574b-b379-ac35-0465-8516f8182f29" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Search">
+      <topicdata group="api" notopic="" />
+      <apidata name="Search" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>170</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ac863f09-cd79-c6aa-34bc-7d217bb77dab" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Select">
+      <topicdata group="api" notopic="" />
+      <apidata name="Select" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>41</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="33c1735e-8591-c200-e0c8-54cb21370740" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Separator">
+      <topicdata group="api" notopic="" />
+      <apidata name="Separator" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>108</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="53931271-0568-2cb4-7d72-96d9cee61ea5" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Shift">
+      <topicdata group="api" notopic="" />
+      <apidata name="Shift" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="e8cc1036-8ca5-98da-c5de-9c78df783406" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Sleep">
+      <topicdata group="api" notopic="" />
+      <apidata name="Sleep" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>95</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="0e4a0b4f-1675-fc17-4ab8-84072da88fbd" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Snapshot">
+      <topicdata group="api" notopic="" />
+      <apidata name="Snapshot" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>44</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="0260107b-0e17-9aa6-fb6f-f034729283cd" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Space">
+      <topicdata group="api" notopic="" />
+      <apidata name="Space" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="e8f1ea23-18ea-1547-55aa-d068a74a9241" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Stop">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stop" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>169</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a4845015-aadb-7f1b-97de-a71d922e4849" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Subtract">
+      <topicdata group="api" notopic="" />
+      <apidata name="Subtract" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>109</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="b6d98ef7-a7f6-6754-ecfc-370d12649031" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.T">
+      <topicdata group="api" notopic="" />
+      <apidata name="T" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>84</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="a855ec22-bf50-8877-8920-a5ee23250bbb" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Tab">
+      <topicdata group="api" notopic="" />
+      <apidata name="Tab" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="c62ec2c4-6732-bbea-ca0f-55af0a55fac0" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.U">
+      <topicdata group="api" notopic="" />
+      <apidata name="U" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>85</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="5ac4f7f4-3be5-41a5-58e2-4905408e36e5" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Up">
+      <topicdata group="api" notopic="" />
+      <apidata name="Up" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>38</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="1bc0dc8a-f121-5208-53e7-047dc156974b" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.V">
+      <topicdata group="api" notopic="" />
+      <apidata name="V" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>86</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="d0510630-07d8-f0a4-6bec-d9309f966abd" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.W">
+      <topicdata group="api" notopic="" />
+      <apidata name="W" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>87</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="052b3892-423a-5bb7-09fd-81ef8b68a15a" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.X">
+      <topicdata group="api" notopic="" />
+      <apidata name="X" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>88</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="6fed3a5b-6e10-892c-5707-4b10ebb5259f" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.XButton1">
+      <topicdata group="api" notopic="" />
+      <apidata name="XButton1" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="398f260f-f4bb-7d89-a107-14c65cba8a7e" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.XButton2">
+      <topicdata group="api" notopic="" />
+      <apidata name="XButton2" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="afdc0537-17c4-83b1-2a50-3a490531946c" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Y">
+      <topicdata group="api" notopic="" />
+      <apidata name="Y" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>89</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="af44062a-6a60-1d3b-4cf1-44fbdff6f979" />
+    </api>
+    <api id="F:Windows.System.VirtualKey.Z">
+      <topicdata group="api" notopic="" />
+      <apidata name="Z" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </returns>
+      <value>90</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKey" ref="false" />
+      </containers>
+      <file name="9f8b2d1d-898c-6e82-ad20-5529a7655385" />
+    </api>
+    <api id="T:Windows.System.VirtualKeyModifiers">
+      <topicdata group="api" />
+      <apidata name="VirtualKeyModifiers" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.System.VirtualKeyModifiers.None" />
+        <element api="F:Windows.System.VirtualKeyModifiers.Control" />
+        <element api="F:Windows.System.VirtualKeyModifiers.Menu" />
+        <element api="F:Windows.System.VirtualKeyModifiers.Shift" />
+        <element api="F:Windows.System.VirtualKeyModifiers.Windows" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="2b5b44ad-5917-4b09-12d3-5e8323639d84" />
+    </api>
+    <api id="F:Windows.System.VirtualKeyModifiers.Control">
+      <topicdata group="api" notopic="" />
+      <apidata name="Control" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKeyModifiers" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKeyModifiers" ref="false" />
+      </containers>
+      <file name="32265b49-bad2-57d1-935b-7c5514ff684e" />
+    </api>
+    <api id="F:Windows.System.VirtualKeyModifiers.Menu">
+      <topicdata group="api" notopic="" />
+      <apidata name="Menu" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKeyModifiers" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKeyModifiers" ref="false" />
+      </containers>
+      <file name="406d9d3f-6579-b76d-f850-8ad80b7b6005" />
+    </api>
+    <api id="F:Windows.System.VirtualKeyModifiers.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKeyModifiers" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKeyModifiers" ref="false" />
+      </containers>
+      <file name="2144009f-ac5f-4874-7318-c42c41e8b317" />
+    </api>
+    <api id="F:Windows.System.VirtualKeyModifiers.Shift">
+      <topicdata group="api" notopic="" />
+      <apidata name="Shift" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKeyModifiers" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKeyModifiers" ref="false" />
+      </containers>
+      <file name="16175cc2-b9ec-eccb-7e72-7d3961a6c9ee" />
+    </api>
+    <api id="F:Windows.System.VirtualKeyModifiers.Windows">
+      <topicdata group="api" notopic="" />
+      <apidata name="Windows" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.VirtualKeyModifiers" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System" />
+        <type api="T:Windows.System.VirtualKeyModifiers" ref="false" />
+      </containers>
+      <file name="193e1e6e-4730-3096-9b42-54886b3fa621" />
+    </api>
+  </apis>
+</reflection>

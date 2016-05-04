@@ -1,0 +1,2070 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.EnterpriseServices">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4fb2d46f-efc8-4643-bcd0-6e5bfa6a174c</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.EnterpriseServices.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.EnterpriseServices.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.EnterpriseServices.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.EnterpriseServices.CompensatingResourceManager">
+      <topicdata group="api" />
+      <apidata name="System.EnterpriseServices.CompensatingResourceManager" group="namespace" />
+      <elements>
+        <element api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags" />
+        <element api="T:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions" />
+        <element api="T:System.EnterpriseServices.CompensatingResourceManager.TransactionState" />
+        <element api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecord" />
+        <element api="T:System.EnterpriseServices.CompensatingResourceManager.Compensator" />
+        <element api="T:System.EnterpriseServices.CompensatingResourceManager.Clerk" />
+        <element api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor" />
+        <element api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo" />
+        <element api="T:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute" />
+      </elements>
+      <file name="e6368a5b-b7e5-84b1-07b6-8fce9d4c3feb" />
+    </api>
+    <api id="T:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute" />
+      <apidata name="ApplicationCrmEnabledAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3631011e-3e0a-b7f0-2d48-a0d6d9a378fd" />
+    </api>
+    <api id="AllMembers.T:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute">
+      <topicdata name="ApplicationCrmEnabledAttribute" group="list" subgroup="members" typeTopicId="T:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute" />
+      <apidata name="ApplicationCrmEnabledAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute.#ctor">
+          <element api="M:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute.#ctor" />
+          <element api="M:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute.#ctor(System.Boolean)" />
+        </element>
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute" />
+      </containers>
+      <file name="d9873231-6ba5-f268-13d4-7ca9fb978c17" />
+    </api>
+    <api id="Methods.T:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute">
+      <topicdata name="ApplicationCrmEnabledAttribute" group="list" subgroup="Methods" typeTopicId="T:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute" />
+      <apidata name="ApplicationCrmEnabledAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute" />
+      </containers>
+      <file name="404f6271-16b0-b164-26f4-0f95a34f95b3" />
+    </api>
+    <api id="Properties.T:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute">
+      <topicdata name="ApplicationCrmEnabledAttribute" group="list" subgroup="Properties" typeTopicId="T:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute" />
+      <apidata name="ApplicationCrmEnabledAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute" />
+      </containers>
+      <file name="3f618dcf-a0dc-5eca-2ebe-e1b2a2b34eb4" />
+    </api>
+    <api id="Overload:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute.#ctor" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute.#ctor(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute" ref="true" />
+      </containers>
+      <file name="22f6b990-64a4-ae69-a9fc-492b94919b26" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute.#ctor" />
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute" ref="true" />
+      </containers>
+      <file name="638dcb38-c8cf-090c-1e91-b72d0c3f0556" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute.#ctor(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute.#ctor" />
+      <parameters>
+        <parameter name="val">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute" ref="true" />
+      </containers>
+      <file name="2951ed5c-88ce-960e-86bf-b5052ad19800" />
+    </api>
+    <api id="P:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ApplicationCrmEnabledAttribute" ref="true" />
+      </containers>
+      <file name="fb371df3-77f4-3982-b3c9-1abfa9b22c4b" />
+    </api>
+    <api id="T:System.EnterpriseServices.CompensatingResourceManager.Clerk">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.EnterpriseServices.CompensatingResourceManager.Clerk" />
+      <apidata name="Clerk" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+      </containers>
+      <file name="e79a5de4-8ff7-ad67-eae4-cd3018e0161b" />
+    </api>
+    <api id="AllMembers.T:System.EnterpriseServices.CompensatingResourceManager.Clerk">
+      <topicdata name="Clerk" group="list" subgroup="members" typeTopicId="T:System.EnterpriseServices.CompensatingResourceManager.Clerk" />
+      <apidata name="Clerk" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.EnterpriseServices.CompensatingResourceManager.Clerk.#ctor">
+          <element api="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.#ctor(System.String,System.String,System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions)" />
+          <element api="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.#ctor(System.Type,System.String,System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions)" />
+        </element>
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.Finalize" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.ForceLog" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.ForceTransactionToAbort" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.ForgetLogRecord" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.Clerk.LogRecordCount" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.Clerk.TransactionUOW" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.WriteLogRecord(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Clerk" />
+      </containers>
+      <file name="eb4b6c11-6686-f0ba-84d7-39d16d9518d2" />
+    </api>
+    <api id="Methods.T:System.EnterpriseServices.CompensatingResourceManager.Clerk">
+      <topicdata name="Clerk" group="list" subgroup="Methods" typeTopicId="T:System.EnterpriseServices.CompensatingResourceManager.Clerk" />
+      <apidata name="Clerk" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.Finalize" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.ForceLog" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.ForceTransactionToAbort" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.ForgetLogRecord" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.WriteLogRecord(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Clerk" />
+      </containers>
+      <file name="1c1370ab-62f0-1ca7-ac5c-ae9a50b21441" />
+    </api>
+    <api id="Properties.T:System.EnterpriseServices.CompensatingResourceManager.Clerk">
+      <topicdata name="Clerk" group="list" subgroup="Properties" typeTopicId="T:System.EnterpriseServices.CompensatingResourceManager.Clerk" />
+      <apidata name="Clerk" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.Clerk.LogRecordCount" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.Clerk.TransactionUOW" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Clerk" />
+      </containers>
+      <file name="129c1b61-a7ab-253a-e657-218b8a64c98d" />
+    </api>
+    <api id="Overload:System.EnterpriseServices.CompensatingResourceManager.Clerk.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.EnterpriseServices.CompensatingResourceManager.Clerk" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.#ctor(System.String,System.String,System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions)" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.#ctor(System.Type,System.String,System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions)" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Clerk" ref="true" />
+      </containers>
+      <file name="7b1baad2-d5a9-b16b-3c09-40185f0fb1f6" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.#ctor(System.String,System.String,System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.EnterpriseServices.CompensatingResourceManager.Clerk.#ctor" />
+      <parameters>
+        <parameter name="compensator">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="description">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="flags">
+          <type api="T:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Clerk" ref="true" />
+      </containers>
+      <file name="f9de558a-287c-be1a-58b8-749ec057c42d" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.#ctor(System.Type,System.String,System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.EnterpriseServices.CompensatingResourceManager.Clerk.#ctor" />
+      <parameters>
+        <parameter name="compensator">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="description">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="flags">
+          <type api="T:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Clerk" ref="true" />
+      </containers>
+      <file name="0f9d7aa5-5c65-f647-e6cb-76c139d045cd" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <implements>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Clerk" ref="true" />
+      </containers>
+      <file name="08d73313-9c05-5899-21c6-d30502fefa0e" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.ForceLog">
+      <topicdata group="api" />
+      <apidata name="ForceLog" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Clerk" ref="true" />
+      </containers>
+      <file name="c465dc77-3d81-7158-9eb1-bb8248f589da" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.ForceTransactionToAbort">
+      <topicdata group="api" />
+      <apidata name="ForceTransactionToAbort" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Clerk" ref="true" />
+      </containers>
+      <file name="b1a87347-cfbc-0b92-b653-967d702b7b12" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.ForgetLogRecord">
+      <topicdata group="api" />
+      <apidata name="ForgetLogRecord" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Clerk" ref="true" />
+      </containers>
+      <file name="b3b45edf-1f36-f134-9192-81839c3ecaeb" />
+    </api>
+    <api id="P:System.EnterpriseServices.CompensatingResourceManager.Clerk.LogRecordCount">
+      <topicdata group="api" />
+      <apidata name="LogRecordCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LogRecordCount" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Clerk" ref="true" />
+      </containers>
+      <file name="6ee91b52-7444-3124-89e6-8606d59cb733" />
+    </api>
+    <api id="P:System.EnterpriseServices.CompensatingResourceManager.Clerk.TransactionUOW">
+      <topicdata group="api" />
+      <apidata name="TransactionUOW" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TransactionUOW" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Clerk" ref="true" />
+      </containers>
+      <file name="8063134b-2637-7103-c786-3bd3cb98144b" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.Clerk.WriteLogRecord(System.Object)">
+      <topicdata group="api" />
+      <apidata name="WriteLogRecord" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="record">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Clerk" ref="true" />
+      </containers>
+      <file name="bd295af5-742c-b9a3-5258-b2f5dd766821" />
+    </api>
+    <api id="T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo" />
+      <apidata name="ClerkInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+      </containers>
+      <file name="1c984d6c-9a63-ee05-f979-76a0aedbc005" />
+    </api>
+    <api id="AllMembers.T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo">
+      <topicdata name="ClerkInfo" group="list" subgroup="members" typeTopicId="T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo" />
+      <apidata name="ClerkInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.ActivityId" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.Clerk" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.Compensator" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.Description" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.Finalize" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.InstanceId" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.TransactionUOW" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo" />
+      </containers>
+      <file name="ab90ae10-a667-bec9-67de-ed2394af893c" />
+    </api>
+    <api id="Methods.T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo">
+      <topicdata name="ClerkInfo" group="list" subgroup="Methods" typeTopicId="T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo" />
+      <apidata name="ClerkInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.Finalize" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo" />
+      </containers>
+      <file name="8411a2b8-3ce1-0659-f3f2-0f84ce1170eb" />
+    </api>
+    <api id="Properties.T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo">
+      <topicdata name="ClerkInfo" group="list" subgroup="Properties" typeTopicId="T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo" />
+      <apidata name="ClerkInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.ActivityId" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.Clerk" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.Compensator" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.Description" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.InstanceId" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.TransactionUOW" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo" />
+      </containers>
+      <file name="0d950977-8e2f-8760-7a16-e613914c7a71" />
+    </api>
+    <api id="P:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.ActivityId">
+      <topicdata group="api" />
+      <apidata name="ActivityId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ActivityId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo" ref="true" />
+      </containers>
+      <file name="4d8cc684-b16b-a238-b6cd-62b651c7b6d7" />
+    </api>
+    <api id="P:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.Clerk">
+      <topicdata group="api" />
+      <apidata name="Clerk" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Clerk" />
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Clerk" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo" ref="true" />
+      </containers>
+      <file name="0f817371-5fa4-bd51-d0e5-c8ed28f9a86c" />
+    </api>
+    <api id="P:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.Compensator">
+      <topicdata group="api" />
+      <apidata name="Compensator" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Compensator" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo" ref="true" />
+      </containers>
+      <file name="28d55524-c29e-691a-5331-f51cdd155210" />
+    </api>
+    <api id="P:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.Description">
+      <topicdata group="api" />
+      <apidata name="Description" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Description" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo" ref="true" />
+      </containers>
+      <file name="7f229040-805e-6ac0-6c24-e865e6838ff6" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <implements>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo" ref="true" />
+      </containers>
+      <file name="8da1b045-a2c5-844e-689c-ac1098293b79" />
+    </api>
+    <api id="P:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.InstanceId">
+      <topicdata group="api" />
+      <apidata name="InstanceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InstanceId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo" ref="true" />
+      </containers>
+      <file name="e3fe6845-3eae-fb65-ee39-f21542767be7" />
+    </api>
+    <api id="P:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo.TransactionUOW">
+      <topicdata group="api" />
+      <apidata name="TransactionUOW" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TransactionUOW" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo" ref="true" />
+      </containers>
+      <file name="15b0e3fe-b0a3-f041-3dbc-87740a2b7bcc" />
+    </api>
+    <api id="T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor" />
+      <apidata name="ClerkMonitor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Collections.IEnumerable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+      </containers>
+      <file name="288e26f4-3e86-ceca-54b3-15df7084cd93" />
+    </api>
+    <api id="AllMembers.T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor">
+      <topicdata name="ClerkMonitor" group="list" subgroup="members" typeTopicId="T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor" />
+      <apidata name="ClerkMonitor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.ParallelEnumerable.AsParallel(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsParallel" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.ParallelQuery" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.ParallelEnumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.#ctor" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Count" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Finalize" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.GetEnumerator" />
+        <element api="Overload:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Item">
+          <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Item(System.Int32)" />
+          <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Item(System.String)" />
+        </element>
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Populate" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor" />
+      </containers>
+      <file name="fef1d7ef-ba5f-1102-3a36-297b15d1b162" />
+    </api>
+    <api id="Methods.T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor">
+      <topicdata name="ClerkMonitor" group="list" subgroup="Methods" typeTopicId="T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor" />
+      <apidata name="ClerkMonitor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.ParallelEnumerable.AsParallel(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsParallel" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.ParallelQuery" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.ParallelEnumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Finalize" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.GetEnumerator" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Populate" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor" />
+      </containers>
+      <file name="bb4ac8e5-54a3-84e5-0faf-3b192bd946a4" />
+    </api>
+    <api id="Properties.T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor">
+      <topicdata name="ClerkMonitor" group="list" subgroup="Properties" typeTopicId="T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor" />
+      <apidata name="ClerkMonitor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.#ctor" />
+      <elements>
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Count" />
+        <element api="Overload:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Item">
+          <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Item(System.Int32)" />
+          <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Item(System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor" />
+      </containers>
+      <file name="79512ead-ea26-3051-f450-da6bb6f42856" />
+    </api>
+    <api id="Overload:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Item">
+      <topicdata name="Item" group="list" subgroup="overload" memberSubgroup="property" pseudo="true" allMembersTopicId="AllMembers.T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <elements>
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Item(System.Int32)" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Item(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor" ref="true" />
+      </containers>
+      <file name="ed7407ee-d6b6-72db-aeb1-c85e33244f37" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor" ref="true" />
+      </containers>
+      <file name="82a4f027-c440-fa88-4972-7f484ab17152" />
+    </api>
+    <api id="P:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Count">
+      <topicdata group="api" />
+      <apidata name="Count" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Count" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor" ref="true" />
+      </containers>
+      <file name="52d3c58d-270c-977e-2fa8-ca881f705f7c" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <implements>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor" ref="true" />
+      </containers>
+      <file name="a33b45be-450f-1c04-8b4b-d89ad4ae7706" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.GetEnumerator">
+      <topicdata group="api" />
+      <apidata name="GetEnumerator" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.IEnumerator" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Collections.IEnumerable.GetEnumerator">
+          <type api="T:System.Collections.IEnumerable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor" ref="true" />
+      </containers>
+      <file name="cf8351bf-53d0-cc69-a2eb-10738a52718d" />
+    </api>
+    <api id="P:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor" ref="true" />
+      </containers>
+      <file name="a220e2c1-f3e7-55ae-59b2-30efdf7488b7" />
+    </api>
+    <api id="P:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Item(System.String)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor" ref="true" />
+      </containers>
+      <file name="736d7814-3c1c-9fe2-30a2-86afc8e6f56e" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor.Populate">
+      <topicdata group="api" />
+      <apidata name="Populate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.ClerkMonitor" ref="true" />
+      </containers>
+      <file name="41dd83cd-27c9-ffca-7046-cbb7174ec4c1" />
+    </api>
+    <api id="T:System.EnterpriseServices.CompensatingResourceManager.Compensator">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.EnterpriseServices.CompensatingResourceManager.Compensator" />
+      <apidata name="Compensator" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.EnterpriseServices.ServicedComponent" ref="true" />
+          <type api="T:System.ContextBoundObject" ref="true" />
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+      </containers>
+      <file name="2dc6caab-b4ed-ba85-b28b-975a9de5221d" />
+    </api>
+    <api id="AllMembers.T:System.EnterpriseServices.CompensatingResourceManager.Compensator">
+      <topicdata name="Compensator" group="list" subgroup="members" typeTopicId="T:System.EnterpriseServices.CompensatingResourceManager.Compensator" />
+      <apidata name="Compensator" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.EnterpriseServices.CompensatingResourceManager.Compensator.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.EnterpriseServices.ServicedComponent.Activate" />
+        <element api="M:System.EnterpriseServices.ServicedComponent.CanBePooled" />
+        <element api="M:System.EnterpriseServices.ServicedComponent.Construct(System.String)" />
+        <element api="M:System.EnterpriseServices.ServicedComponent.Deactivate" />
+        <element api="Overload:System.EnterpriseServices.CompensatingResourceManager.Compensator.Dispose">
+          <element api="M:System.EnterpriseServices.ServicedComponent.Dispose" />
+          <element api="M:System.EnterpriseServices.ServicedComponent.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.EnterpriseServices.ServicedComponent.System#EnterpriseServices#IRemoteDispatch#RemoteDispatchAutoDone(System.String)" />
+        <element api="M:System.EnterpriseServices.ServicedComponent.System#EnterpriseServices#IRemoteDispatch#RemoteDispatchNotAutoDone(System.String)" />
+        <element api="M:System.EnterpriseServices.ServicedComponent.System#EnterpriseServices#IServicedComponentInfo#GetComponentInfo(System.Int32@,System.String[]@)" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.#ctor" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.AbortRecord(System.EnterpriseServices.CompensatingResourceManager.LogRecord)" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.BeginAbort(System.Boolean)" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.BeginCommit(System.Boolean)" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.BeginPrepare" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.Compensator.Clerk" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.CommitRecord(System.EnterpriseServices.CompensatingResourceManager.LogRecord)" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.EndAbort" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.EndCommit" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.EndPrepare" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.PrepareRecord(System.EnterpriseServices.CompensatingResourceManager.LogRecord)" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Compensator" />
+      </containers>
+      <file name="2002684d-f928-93b5-d208-e7f43cdd41d4" />
+    </api>
+    <api id="Methods.T:System.EnterpriseServices.CompensatingResourceManager.Compensator">
+      <topicdata name="Compensator" group="list" subgroup="Methods" typeTopicId="T:System.EnterpriseServices.CompensatingResourceManager.Compensator" />
+      <apidata name="Compensator" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.EnterpriseServices.CompensatingResourceManager.Compensator.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.EnterpriseServices.ServicedComponent.Activate" />
+        <element api="M:System.EnterpriseServices.ServicedComponent.CanBePooled" />
+        <element api="M:System.EnterpriseServices.ServicedComponent.Construct(System.String)" />
+        <element api="M:System.EnterpriseServices.ServicedComponent.Deactivate" />
+        <element api="Overload:System.EnterpriseServices.CompensatingResourceManager.Compensator.Dispose">
+          <element api="M:System.EnterpriseServices.ServicedComponent.Dispose" />
+          <element api="M:System.EnterpriseServices.ServicedComponent.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.EnterpriseServices.ServicedComponent.System#EnterpriseServices#IRemoteDispatch#RemoteDispatchAutoDone(System.String)" />
+        <element api="M:System.EnterpriseServices.ServicedComponent.System#EnterpriseServices#IRemoteDispatch#RemoteDispatchNotAutoDone(System.String)" />
+        <element api="M:System.EnterpriseServices.ServicedComponent.System#EnterpriseServices#IServicedComponentInfo#GetComponentInfo(System.Int32@,System.String[]@)" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.AbortRecord(System.EnterpriseServices.CompensatingResourceManager.LogRecord)" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.BeginAbort(System.Boolean)" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.BeginCommit(System.Boolean)" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.BeginPrepare" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.CommitRecord(System.EnterpriseServices.CompensatingResourceManager.LogRecord)" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.EndAbort" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.EndCommit" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.EndPrepare" />
+        <element api="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.PrepareRecord(System.EnterpriseServices.CompensatingResourceManager.LogRecord)" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Compensator" />
+      </containers>
+      <file name="b460f8e4-1d4c-0bee-0547-14f43f7c645e" />
+    </api>
+    <api id="Properties.T:System.EnterpriseServices.CompensatingResourceManager.Compensator">
+      <topicdata name="Compensator" group="list" subgroup="Properties" typeTopicId="T:System.EnterpriseServices.CompensatingResourceManager.Compensator" />
+      <apidata name="Compensator" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.#ctor" />
+      <elements>
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.Compensator.Clerk" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Compensator" />
+      </containers>
+      <file name="98f1aae9-763f-f0c7-cc34-9bbb52202ebe" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Compensator" ref="true" />
+      </containers>
+      <file name="5e4b5b2d-a7d8-c3cc-0228-9a72756a6deb" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.AbortRecord(System.EnterpriseServices.CompensatingResourceManager.LogRecord)">
+      <topicdata group="api" />
+      <apidata name="AbortRecord" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="rec">
+          <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecord" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Compensator" ref="true" />
+      </containers>
+      <file name="fe9e6d5f-076b-ab67-0c31-83e5ee444cf8" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.BeginAbort(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="BeginAbort" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="fRecovery">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Compensator" ref="true" />
+      </containers>
+      <file name="4fa74a01-c9fc-b543-8b15-74404c82e252" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.BeginCommit(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="BeginCommit" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="fRecovery">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Compensator" ref="true" />
+      </containers>
+      <file name="235af973-cf30-4b76-139f-4d96a95dd421" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.BeginPrepare">
+      <topicdata group="api" />
+      <apidata name="BeginPrepare" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Compensator" ref="true" />
+      </containers>
+      <file name="a3056d0c-6df9-1824-d613-6032b6d56f4e" />
+    </api>
+    <api id="P:System.EnterpriseServices.CompensatingResourceManager.Compensator.Clerk">
+      <topicdata group="api" />
+      <apidata name="Clerk" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Clerk" />
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Clerk" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Compensator" ref="true" />
+      </containers>
+      <file name="bb681544-a5d1-516a-a06e-e64d8eccdb17" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.CommitRecord(System.EnterpriseServices.CompensatingResourceManager.LogRecord)">
+      <topicdata group="api" />
+      <apidata name="CommitRecord" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="rec">
+          <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecord" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Compensator" ref="true" />
+      </containers>
+      <file name="5973ed0c-c230-8772-fae7-24983c58768e" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.EndAbort">
+      <topicdata group="api" />
+      <apidata name="EndAbort" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Compensator" ref="true" />
+      </containers>
+      <file name="54ceedc0-1b6b-865e-d21f-b328ddc7a882" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.EndCommit">
+      <topicdata group="api" />
+      <apidata name="EndCommit" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Compensator" ref="true" />
+      </containers>
+      <file name="ba0b509d-3b9f-c2ac-4cf4-7a41f4f5f295" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.EndPrepare">
+      <topicdata group="api" />
+      <apidata name="EndPrepare" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Compensator" ref="true" />
+      </containers>
+      <file name="76f728cc-a3d4-36e0-d709-a4beddd6f9b2" />
+    </api>
+    <api id="M:System.EnterpriseServices.CompensatingResourceManager.Compensator.PrepareRecord(System.EnterpriseServices.CompensatingResourceManager.LogRecord)">
+      <topicdata group="api" />
+      <apidata name="PrepareRecord" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="rec">
+          <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecord" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.Compensator" ref="true" />
+      </containers>
+      <file name="aa8e38a0-9683-5fbf-057b-b0688f35c39b" />
+    </api>
+    <api id="T:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions">
+      <topicdata group="api" />
+      <apidata name="CompensatorOptions" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="F:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions.PreparePhase" />
+        <element api="F:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions.CommitPhase" />
+        <element api="F:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions.AbortPhase" />
+        <element api="F:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions.AllPhases" />
+        <element api="F:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions.FailIfInDoubtsRemain" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="6a8f0aa7-8e32-876a-74e1-e984924cecd8" />
+    </api>
+    <api id="F:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions.AbortPhase">
+      <topicdata group="api" notopic="" />
+      <apidata name="AbortPhase" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions" ref="false" />
+      </containers>
+      <file name="1c474853-5ce6-9aee-e57c-349d2fe1cf05" />
+    </api>
+    <api id="F:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions.AllPhases">
+      <topicdata group="api" notopic="" />
+      <apidata name="AllPhases" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions" ref="false" />
+      </containers>
+      <file name="7e5c036f-8f05-cf88-169d-8ba7d2eedad7" />
+    </api>
+    <api id="F:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions.CommitPhase">
+      <topicdata group="api" notopic="" />
+      <apidata name="CommitPhase" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions" ref="false" />
+      </containers>
+      <file name="fa12ab8b-0725-6580-bc1c-2499a544582c" />
+    </api>
+    <api id="F:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions.FailIfInDoubtsRemain">
+      <topicdata group="api" notopic="" />
+      <apidata name="FailIfInDoubtsRemain" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions" ref="false" />
+      </containers>
+      <file name="27a19dd9-15c8-26e2-6b3e-ee847bd4459f" />
+    </api>
+    <api id="F:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions.PreparePhase">
+      <topicdata group="api" notopic="" />
+      <apidata name="PreparePhase" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.CompensatorOptions" ref="false" />
+      </containers>
+      <file name="08a91022-6b3b-ca3d-2c6b-da8306d0cbef" />
+    </api>
+    <api id="T:System.EnterpriseServices.CompensatingResourceManager.LogRecord">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.EnterpriseServices.CompensatingResourceManager.LogRecord" />
+      <apidata name="LogRecord" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+      </containers>
+      <file name="c4ce0111-6fd8-6692-e17e-e504e43a626f" />
+    </api>
+    <api id="AllMembers.T:System.EnterpriseServices.CompensatingResourceManager.LogRecord">
+      <topicdata name="LogRecord" group="list" subgroup="members" typeTopicId="T:System.EnterpriseServices.CompensatingResourceManager.LogRecord" />
+      <apidata name="LogRecord" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.LogRecord.Flags" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.LogRecord.Record" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.LogRecord.Sequence" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecord" />
+      </containers>
+      <file name="05eadb83-8313-cd6f-a5a0-34ef867acb1e" />
+    </api>
+    <api id="Methods.T:System.EnterpriseServices.CompensatingResourceManager.LogRecord">
+      <topicdata name="LogRecord" group="list" subgroup="Methods" typeTopicId="T:System.EnterpriseServices.CompensatingResourceManager.LogRecord" />
+      <apidata name="LogRecord" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecord" />
+      </containers>
+      <file name="8e91f5e7-047b-b293-6960-16404362e033" />
+    </api>
+    <api id="Properties.T:System.EnterpriseServices.CompensatingResourceManager.LogRecord">
+      <topicdata name="LogRecord" group="list" subgroup="Properties" typeTopicId="T:System.EnterpriseServices.CompensatingResourceManager.LogRecord" />
+      <apidata name="LogRecord" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.LogRecord.Flags" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.LogRecord.Record" />
+        <element api="P:System.EnterpriseServices.CompensatingResourceManager.LogRecord.Sequence" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecord" />
+      </containers>
+      <file name="7d7db1a7-28f4-1fca-5dd6-9e849897c5c5" />
+    </api>
+    <api id="P:System.EnterpriseServices.CompensatingResourceManager.LogRecord.Flags">
+      <topicdata group="api" />
+      <apidata name="Flags" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Flags" />
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecord" ref="true" />
+      </containers>
+      <file name="00cd8604-b8c1-3347-5511-9e918f775607" />
+    </api>
+    <api id="P:System.EnterpriseServices.CompensatingResourceManager.LogRecord.Record">
+      <topicdata group="api" />
+      <apidata name="Record" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Record" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecord" ref="true" />
+      </containers>
+      <file name="f69f4e46-b3a6-62d8-a841-7a7c94e92456" />
+    </api>
+    <api id="P:System.EnterpriseServices.CompensatingResourceManager.LogRecord.Sequence">
+      <topicdata group="api" />
+      <apidata name="Sequence" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Sequence" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecord" ref="true" />
+      </containers>
+      <file name="ff6c829a-b9e5-98f8-6d5c-c24ecff5b5d8" />
+    </api>
+    <api id="T:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags">
+      <topicdata group="api" />
+      <apidata name="LogRecordFlags" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="F:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags.ForgetTarget" />
+        <element api="F:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags.WrittenDuringPrepare" />
+        <element api="F:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags.WrittenDuringCommit" />
+        <element api="F:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags.WrittenDuringAbort" />
+        <element api="F:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags.WrittenDurringRecovery" />
+        <element api="F:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags.WrittenDuringReplay" />
+        <element api="F:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags.ReplayInProgress" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="1b6167c6-ca5b-ae56-aff6-8a3da91c5fcd" />
+    </api>
+    <api id="F:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags.ForgetTarget">
+      <topicdata group="api" notopic="" />
+      <apidata name="ForgetTarget" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags" ref="false" />
+      </containers>
+      <file name="7637a05f-031f-a91c-4875-9c0d797182f9" />
+    </api>
+    <api id="F:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags.ReplayInProgress">
+      <topicdata group="api" notopic="" />
+      <apidata name="ReplayInProgress" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags" ref="false" />
+      </returns>
+      <value>64</value>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags" ref="false" />
+      </containers>
+      <file name="2201890b-ca05-dff1-d7d6-1b26f8efa0ce" />
+    </api>
+    <api id="F:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags.WrittenDuringAbort">
+      <topicdata group="api" notopic="" />
+      <apidata name="WrittenDuringAbort" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags" ref="false" />
+      </containers>
+      <file name="72f41d31-ac07-68d6-a4c7-469b601d3c10" />
+    </api>
+    <api id="F:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags.WrittenDuringCommit">
+      <topicdata group="api" notopic="" />
+      <apidata name="WrittenDuringCommit" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags" ref="false" />
+      </containers>
+      <file name="0d766ba1-0689-3bda-0372-7cf53bb48827" />
+    </api>
+    <api id="F:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags.WrittenDuringPrepare">
+      <topicdata group="api" notopic="" />
+      <apidata name="WrittenDuringPrepare" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags" ref="false" />
+      </containers>
+      <file name="1849c70f-ef8f-0ae5-55c4-24eccb831011" />
+    </api>
+    <api id="F:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags.WrittenDuringReplay">
+      <topicdata group="api" notopic="" />
+      <apidata name="WrittenDuringReplay" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags" ref="false" />
+      </containers>
+      <file name="c8c0a3b1-ab78-ef6b-da72-d609de5b37a5" />
+    </api>
+    <api id="F:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags.WrittenDurringRecovery">
+      <topicdata group="api" notopic="" />
+      <apidata name="WrittenDurringRecovery" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.LogRecordFlags" ref="false" />
+      </containers>
+      <file name="b66891ee-5ebc-43d7-e6de-57f319510141" />
+    </api>
+    <api id="T:System.EnterpriseServices.CompensatingResourceManager.TransactionState">
+      <topicdata group="api" />
+      <apidata name="TransactionState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="F:System.EnterpriseServices.CompensatingResourceManager.TransactionState.Active" />
+        <element api="F:System.EnterpriseServices.CompensatingResourceManager.TransactionState.Committed" />
+        <element api="F:System.EnterpriseServices.CompensatingResourceManager.TransactionState.Aborted" />
+        <element api="F:System.EnterpriseServices.CompensatingResourceManager.TransactionState.Indoubt" />
+      </elements>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+      </containers>
+      <file name="f48f5ff8-48e2-8df4-587c-2adab6c63786" />
+    </api>
+    <api id="F:System.EnterpriseServices.CompensatingResourceManager.TransactionState.Aborted">
+      <topicdata group="api" notopic="" />
+      <apidata name="Aborted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.TransactionState" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.TransactionState" ref="false" />
+      </containers>
+      <file name="d1ae5abd-8bae-1180-1792-a06c93eb0db9" />
+    </api>
+    <api id="F:System.EnterpriseServices.CompensatingResourceManager.TransactionState.Active">
+      <topicdata group="api" notopic="" />
+      <apidata name="Active" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.TransactionState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.TransactionState" ref="false" />
+      </containers>
+      <file name="19fd7fed-17f5-438e-1922-843a56e3c962" />
+    </api>
+    <api id="F:System.EnterpriseServices.CompensatingResourceManager.TransactionState.Committed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Committed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.TransactionState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.TransactionState" ref="false" />
+      </containers>
+      <file name="375b69f5-8b1f-6040-cebc-be714283a4bf" />
+    </api>
+    <api id="F:System.EnterpriseServices.CompensatingResourceManager.TransactionState.Indoubt">
+      <topicdata group="api" notopic="" />
+      <apidata name="Indoubt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.TransactionState" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.EnterpriseServices" module="System.EnterpriseServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.EnterpriseServices.CompensatingResourceManager" />
+        <type api="T:System.EnterpriseServices.CompensatingResourceManager.TransactionState" ref="false" />
+      </containers>
+      <file name="1beef332-9e20-6e60-8e18-b0c7b10a4112" />
+    </api>
+  </apis>
+</reflection>

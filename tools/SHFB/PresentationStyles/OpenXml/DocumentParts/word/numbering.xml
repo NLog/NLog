@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:numbering xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas"
+						 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+						 xmlns:o="urn:schemas-microsoft-com:office:office"
+						 xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+						 xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"
+						 xmlns:v="urn:schemas-microsoft-com:vml"
+						 xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing"
+						 xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"
+						 xmlns:w10="urn:schemas-microsoft-com:office:word"
+						 xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+						 xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml"
+						 xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup"
+						 xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk"
+						 xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml"
+						 xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape"
+						 mc:Ignorable="w14 wp14">
+	<w:abstractNum w:abstractNumId="0">
+		<w:nsid w:val="326D4DF5"/>
+		<w:multiLevelType w:val="hybridMultilevel"/>
+		<w:lvl w:ilvl="0">
+			<w:start w:val="1"/>
+			<w:numFmt w:val="bullet"/>
+			<w:lvlText w:val="&#xF0B7;"/>
+			<w:lvlJc w:val="left"/>
+			<w:pPr>
+				<w:ind w:left="720" w:hanging="360"/>
+			</w:pPr>
+			<w:rPr>
+				<w:rFonts w:ascii="Symbol" w:hAnsi="Symbol" w:hint="default"/>
+			</w:rPr>
+		</w:lvl>
+		<w:lvl w:ilvl="1">
+			<w:start w:val="1"/>
+			<w:numFmt w:val="bullet"/>
+			<w:lvlText w:val="o"/>
+			<w:lvlJc w:val="left"/>
+			<w:pPr>
+				<w:ind w:left="1440" w:hanging="360"/>
+			</w:pPr>
+			<w:rPr>
+				<w:rFonts w:ascii="Courier New" w:hAnsi="Courier New" w:cs="Courier New" w:hint="default"/>
+			</w:rPr>
+		</w:lvl>
+		<w:lvl w:ilvl="2">
+			<w:start w:val="1"/>
+			<w:numFmt w:val="bullet"/>
+			<w:lvlText w:val="&#xF0A7;"/>
+			<w:lvlJc w:val="left"/>
+			<w:pPr>
+				<w:ind w:left="2160" w:hanging="360"/>
+			</w:pPr>
+			<w:rPr>
+				<w:rFonts w:ascii="Wingdings" w:hAnsi="Wingdings" w:hint="default"/>
+			</w:rPr>
+		</w:lvl>
+		<w:lvl w:ilvl="3">
+			<w:start w:val="1"/>
+			<w:numFmt w:val="bullet"/>
+			<w:lvlText w:val="&#xF0B7;"/>
+			<w:lvlJc w:val="left"/>
+			<w:pPr>
+				<w:ind w:left="2880" w:hanging="360"/>
+			</w:pPr>
+			<w:rPr>
+				<w:rFonts w:ascii="Symbol" w:hAnsi="Symbol" w:hint="default"/>
+			</w:rPr>
+		</w:lvl>
+		<w:lvl w:ilvl="4">
+			<w:start w:val="1"/>
+			<w:numFmt w:val="bullet"/>
+			<w:lvlText w:val="o"/>
+			<w:lvlJc w:val="left"/>
+			<w:pPr>
+				<w:ind w:left="3600" w:hanging="360"/>
+			</w:pPr>
+			<w:rPr>
+				<w:rFonts w:ascii="Courier New" w:hAnsi="Courier New" w:cs="Courier New" w:hint="default"/>
+			</w:rPr>
+		</w:lvl>
+		<w:lvl w:ilvl="5">
+			<w:start w:val="1"/>
+			<w:numFmt w:val="bullet"/>
+			<w:lvlText w:val="&#xF0A7;"/>
+			<w:lvlJc w:val="left"/>
+			<w:pPr>
+				<w:ind w:left="4320" w:hanging="360"/>
+			</w:pPr>
+			<w:rPr>
+				<w:rFonts w:ascii="Wingdings" w:hAnsi="Wingdings" w:hint="default"/>
+			</w:rPr>
+		</w:lvl>
+		<w:lvl w:ilvl="6">
+			<w:start w:val="1"/>
+			<w:numFmt w:val="bullet"/>
+			<w:lvlText w:val="&#xF0B7;"/>
+			<w:lvlJc w:val="left"/>
+			<w:pPr>
+				<w:ind w:left="5040" w:hanging="360"/>
+			</w:pPr>
+			<w:rPr>
+				<w:rFonts w:ascii="Symbol" w:hAnsi="Symbol" w:hint="default"/>
+			</w:rPr>
+		</w:lvl>
+		<w:lvl w:ilvl="7">
+			<w:start w:val="1"/>
+			<w:numFmt w:val="bullet"/>
+			<w:lvlText w:val="o"/>
+			<w:lvlJc w:val="left"/>
+			<w:pPr>
+				<w:ind w:left="5760" w:hanging="360"/>
+			</w:pPr>
+			<w:rPr>
+				<w:rFonts w:ascii="Courier New" w:hAnsi="Courier New" w:cs="Courier New" w:hint="default"/>
+			</w:rPr>
+		</w:lvl>
+		<w:lvl w:ilvl="8">
+			<w:start w:val="1"/>
+			<w:numFmt w:val="bullet"/>
+			<w:lvlText w:val="&#xF0A7;"/>
+			<w:lvlJc w:val="left"/>
+			<w:pPr>
+				<w:ind w:left="6480" w:hanging="360"/>
+			</w:pPr>
+			<w:rPr>
+				<w:rFonts w:ascii="Wingdings" w:hAnsi="Wingdings" w:hint="default"/>
+			</w:rPr>
+		</w:lvl>
+	</w:abstractNum>
+	<w:num w:numId="1">
+		<w:abstractNumId w:val="0"/>
+	</w:num>
+</w:numbering>

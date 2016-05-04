@@ -1,0 +1,1749 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Web.Extensions">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.Script.AjaxFrameworkAssemblyAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjax.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjax.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys._Application &amp;&amp; Sys.Observer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxApplicationServices.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxApplicationServices.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Services</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxComponentModel.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxComponentModel.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.CommandEventArgs</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxCore.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxCore.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Type &amp;&amp; Sys.Observer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxGlobalization.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxGlobalization.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.CultureInfo</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxHistory.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxHistory.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.HistoryEventArgs</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxNetwork.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxNetwork.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Net &amp;&amp; Sys.Net.WebRequestExecutor</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxSerialization.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxSerialization.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Serialization</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxTimer.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxTimer.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.UI &amp;&amp; Sys.UI._Timer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxWebForms.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxWebForms.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.WebForms</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxWebServices.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxWebServices.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Net &amp;&amp; Sys.Net.WebServiceProxy</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Date.HijriCalendar.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/Date.HijriCalendar.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Type &amp;&amp; Type._registerScript &amp;&amp; Type._registerScript._scripts &amp;&amp; Type._registerScript._scripts['Date.HijriCalendar.js']</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Date.UmAlQuraCalendar.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/Date.UmAlQuraCalendar.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Type &amp;&amp; Type._registerScript &amp;&amp; Type._registerScript._scripts &amp;&amp; Type._registerScript._scripts['Date.UmAlQuraCalendar.js']</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjax.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjax.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys._Application &amp;&amp; Sys.Observer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxApplicationServices.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxApplicationServices.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Services</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxComponentModel.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxComponentModel.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.CommandEventArgs</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxCore.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxCore.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Type &amp;&amp; Sys.Observer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxGlobalization.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxGlobalization.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.CultureInfo</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxHistory.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxHistory.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.HistoryEventArgs</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxNetwork.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxNetwork.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Net &amp;&amp; Sys.Net.WebRequestExecutor</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxSerialization.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxSerialization.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Serialization</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxTimer.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxTimer.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.UI &amp;&amp; Sys.UI._Timer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxWebForms.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxWebForms.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.WebForms</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxWebServices.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxWebServices.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Net &amp;&amp; Sys.Net.WebServiceProxy</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Date.HijriCalendar.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/Date.HijriCalendar.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Type &amp;&amp; Type._registerScript &amp;&amp; Type._registerScript._scripts &amp;&amp; Type._registerScript._scripts['Date.HijriCalendar.js']</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Date.UmAlQuraCalendar.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/Date.UmAlQuraCalendar.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Type &amp;&amp; Type._registerScript &amp;&amp; Type._registerScript._scripts &amp;&amp; Type._registerScript._scripts['Date.UmAlQuraCalendar.js']</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Drawing.BitmapSuffixInSatelliteAssemblyAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+          <assignment name="PartialTrustVisibilityLevel">
+            <type api="T:System.Security.PartialTrustVisibilityLevel" ref="false" />
+            <enumValue>
+              <field name="NotVisibleByDefault" />
+            </enumValue>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.Extensions.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.Extensions.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.Extensions.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Web.Script.Serialization">
+      <topicdata group="api" />
+      <apidata name="System.Web.Script.Serialization" group="namespace" />
+      <elements>
+        <element api="T:System.Web.Script.Serialization.JavaScriptSerializer" />
+        <element api="T:System.Web.Script.Serialization.JavaScriptTypeResolver" />
+        <element api="T:System.Web.Script.Serialization.ScriptIgnoreAttribute" />
+        <element api="T:System.Web.Script.Serialization.SimpleTypeResolver" />
+        <element api="T:System.Web.Script.Serialization.JavaScriptConverter" />
+      </elements>
+      <file name="e11a6f62-d468-1a9d-8570-3ba4a36d472f" />
+    </api>
+    <api id="T:System.Web.Script.Serialization.JavaScriptConverter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.Script.Serialization.JavaScriptConverter" />
+      <apidata name="JavaScriptConverter" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+      </containers>
+      <file name="319e4e20-7864-443d-2375-2535fdb0702f" />
+    </api>
+    <api id="AllMembers.T:System.Web.Script.Serialization.JavaScriptConverter">
+      <topicdata name="JavaScriptConverter" group="list" subgroup="members" typeTopicId="T:System.Web.Script.Serialization.JavaScriptConverter" />
+      <apidata name="JavaScriptConverter" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.Script.Serialization.JavaScriptConverter.#ctor" />
+        <element api="M:System.Web.Script.Serialization.JavaScriptConverter.Deserialize(System.Collections.Generic.IDictionary{System.String,System.Object},System.Type,System.Web.Script.Serialization.JavaScriptSerializer)" />
+        <element api="M:System.Web.Script.Serialization.JavaScriptConverter.Serialize(System.Object,System.Web.Script.Serialization.JavaScriptSerializer)" />
+        <element api="P:System.Web.Script.Serialization.JavaScriptConverter.SupportedTypes" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptConverter" />
+      </containers>
+      <file name="2cdcfe2e-c059-0bc1-5aa4-442f255da750" />
+    </api>
+    <api id="Methods.T:System.Web.Script.Serialization.JavaScriptConverter">
+      <topicdata name="JavaScriptConverter" group="list" subgroup="Methods" typeTopicId="T:System.Web.Script.Serialization.JavaScriptConverter" />
+      <apidata name="JavaScriptConverter" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.Script.Serialization.JavaScriptConverter.Deserialize(System.Collections.Generic.IDictionary{System.String,System.Object},System.Type,System.Web.Script.Serialization.JavaScriptSerializer)" />
+        <element api="M:System.Web.Script.Serialization.JavaScriptConverter.Serialize(System.Object,System.Web.Script.Serialization.JavaScriptSerializer)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptConverter" />
+      </containers>
+      <file name="ccff505b-d999-71a2-66cb-78f4d501261b" />
+    </api>
+    <api id="Properties.T:System.Web.Script.Serialization.JavaScriptConverter">
+      <topicdata name="JavaScriptConverter" group="list" subgroup="Properties" typeTopicId="T:System.Web.Script.Serialization.JavaScriptConverter" />
+      <apidata name="JavaScriptConverter" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Web.Script.Serialization.JavaScriptConverter.SupportedTypes" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptConverter" />
+      </containers>
+      <file name="85c61fdf-c929-6b2b-0b71-500278a4fd55" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.JavaScriptConverter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptConverter" ref="true" />
+      </containers>
+      <file name="08e59f80-2b0c-9d55-688c-f9f9926d8235" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.JavaScriptConverter.Deserialize(System.Collections.Generic.IDictionary{System.String,System.Object},System.Type,System.Web.Script.Serialization.JavaScriptSerializer)">
+      <topicdata group="api" />
+      <apidata name="Deserialize" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="dictionary">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="serializer">
+          <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptConverter" ref="true" />
+      </containers>
+      <file name="704793a6-daf4-98e2-d1bd-e8e0f605fd89" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.JavaScriptConverter.Serialize(System.Object,System.Web.Script.Serialization.JavaScriptSerializer)">
+      <topicdata group="api" />
+      <apidata name="Serialize" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="serializer">
+          <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptConverter" ref="true" />
+      </containers>
+      <file name="3d51bee5-17e2-5dc6-b258-f453af206eae" />
+    </api>
+    <api id="P:System.Web.Script.Serialization.JavaScriptConverter.SupportedTypes">
+      <topicdata group="api" />
+      <apidata name="SupportedTypes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_SupportedTypes" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Type" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptConverter" ref="true" />
+      </containers>
+      <file name="46e7b082-77cb-b2a0-12d3-fa802ca40877" />
+    </api>
+    <api id="T:System.Web.Script.Serialization.JavaScriptSerializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.Script.Serialization.JavaScriptSerializer" />
+      <apidata name="JavaScriptSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Script.Serialization.JavaScriptSerializer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+      </containers>
+      <file name="29bca9d0-45c7-f991-586a-3dc21d18667a" />
+    </api>
+    <api id="AllMembers.T:System.Web.Script.Serialization.JavaScriptSerializer">
+      <topicdata name="JavaScriptSerializer" group="list" subgroup="members" typeTopicId="T:System.Web.Script.Serialization.JavaScriptSerializer" />
+      <apidata name="JavaScriptSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Script.Serialization.JavaScriptSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Web.Script.Serialization.JavaScriptSerializer.#ctor">
+          <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.#ctor" />
+          <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.#ctor(System.Web.Script.Serialization.JavaScriptTypeResolver)" />
+        </element>
+        <element api="Overload:System.Web.Script.Serialization.JavaScriptSerializer.ConvertToType">
+          <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.ConvertToType``1(System.Object)" />
+          <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.ConvertToType(System.Object,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.Script.Serialization.JavaScriptSerializer.Deserialize">
+          <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.Deserialize``1(System.String)" />
+          <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.Deserialize(System.String,System.Type)" />
+        </element>
+        <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.DeserializeObject(System.String)" />
+        <element api="P:System.Web.Script.Serialization.JavaScriptSerializer.MaxJsonLength" />
+        <element api="P:System.Web.Script.Serialization.JavaScriptSerializer.RecursionLimit" />
+        <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.RegisterConverters(System.Collections.Generic.IEnumerable{System.Web.Script.Serialization.JavaScriptConverter})" />
+        <element api="Overload:System.Web.Script.Serialization.JavaScriptSerializer.Serialize">
+          <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.Serialize(System.Object)" />
+          <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.Serialize(System.Object,System.Text.StringBuilder)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" />
+      </containers>
+      <file name="07754208-60c2-386c-759b-cc97191aca37" />
+    </api>
+    <api id="Methods.T:System.Web.Script.Serialization.JavaScriptSerializer">
+      <topicdata name="JavaScriptSerializer" group="list" subgroup="Methods" typeTopicId="T:System.Web.Script.Serialization.JavaScriptSerializer" />
+      <apidata name="JavaScriptSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Script.Serialization.JavaScriptSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Web.Script.Serialization.JavaScriptSerializer.ConvertToType">
+          <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.ConvertToType``1(System.Object)" />
+          <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.ConvertToType(System.Object,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.Script.Serialization.JavaScriptSerializer.Deserialize">
+          <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.Deserialize``1(System.String)" />
+          <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.Deserialize(System.String,System.Type)" />
+        </element>
+        <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.DeserializeObject(System.String)" />
+        <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.RegisterConverters(System.Collections.Generic.IEnumerable{System.Web.Script.Serialization.JavaScriptConverter})" />
+        <element api="Overload:System.Web.Script.Serialization.JavaScriptSerializer.Serialize">
+          <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.Serialize(System.Object)" />
+          <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.Serialize(System.Object,System.Text.StringBuilder)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" />
+      </containers>
+      <file name="21964ab6-7996-fa69-3d85-21285b965f0a" />
+    </api>
+    <api id="Properties.T:System.Web.Script.Serialization.JavaScriptSerializer">
+      <topicdata name="JavaScriptSerializer" group="list" subgroup="Properties" typeTopicId="T:System.Web.Script.Serialization.JavaScriptSerializer" />
+      <apidata name="JavaScriptSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Script.Serialization.JavaScriptSerializer.#ctor" />
+      <elements>
+        <element api="P:System.Web.Script.Serialization.JavaScriptSerializer.MaxJsonLength" />
+        <element api="P:System.Web.Script.Serialization.JavaScriptSerializer.RecursionLimit" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" />
+      </containers>
+      <file name="80050de8-fc96-698e-1c3a-44e67da8d8ed" />
+    </api>
+    <api id="Overload:System.Web.Script.Serialization.JavaScriptSerializer.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.Script.Serialization.JavaScriptSerializer" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.#ctor" />
+        <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.#ctor(System.Web.Script.Serialization.JavaScriptTypeResolver)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" ref="true" />
+      </containers>
+      <file name="384edab3-c96e-4580-58eb-7d12f3b173e8" />
+    </api>
+    <api id="Overload:System.Web.Script.Serialization.JavaScriptSerializer.ConvertToType">
+      <topicdata name="ConvertToType" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.Script.Serialization.JavaScriptSerializer" />
+      <apidata name="ConvertToType" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.ConvertToType``1(System.Object)" />
+        <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.ConvertToType(System.Object,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" ref="true" />
+      </containers>
+      <file name="4da0281e-dcf3-b213-4f2f-4d1d4104cbf7" />
+    </api>
+    <api id="Overload:System.Web.Script.Serialization.JavaScriptSerializer.Deserialize">
+      <topicdata name="Deserialize" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.Script.Serialization.JavaScriptSerializer" />
+      <apidata name="Deserialize" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.Deserialize``1(System.String)" />
+        <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.Deserialize(System.String,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" ref="true" />
+      </containers>
+      <file name="bc6662ef-1989-7093-50db-9839b8709bbe" />
+    </api>
+    <api id="Overload:System.Web.Script.Serialization.JavaScriptSerializer.Serialize">
+      <topicdata name="Serialize" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.Script.Serialization.JavaScriptSerializer" />
+      <apidata name="Serialize" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.Serialize(System.Object)" />
+        <element api="M:System.Web.Script.Serialization.JavaScriptSerializer.Serialize(System.Object,System.Text.StringBuilder)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" ref="true" />
+      </containers>
+      <file name="f33ac010-1cf0-ea18-64be-8e20b8e7e432" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.JavaScriptSerializer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Web.Script.Serialization.JavaScriptSerializer.#ctor" />
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" ref="true" />
+      </containers>
+      <file name="cb28e761-c49e-1209-b771-880358313f48" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.JavaScriptSerializer.#ctor(System.Web.Script.Serialization.JavaScriptTypeResolver)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Web.Script.Serialization.JavaScriptSerializer.#ctor" />
+      <parameters>
+        <parameter name="resolver">
+          <type api="T:System.Web.Script.Serialization.JavaScriptTypeResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" ref="true" />
+      </containers>
+      <file name="b39d90b1-8411-347a-0649-82a8e2063e43" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.JavaScriptSerializer.ConvertToType``1(System.Object)">
+      <topicdata group="api" />
+      <apidata name="ConvertToType" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.Script.Serialization.JavaScriptSerializer.ConvertToType" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="M:System.Web.Script.Serialization.JavaScriptSerializer.ConvertToType``1(System.Object)" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" ref="true" />
+      </containers>
+      <file name="a06e1fb0-d1fb-74c8-8fa8-6dd070815dba" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.JavaScriptSerializer.ConvertToType(System.Object,System.Type)">
+      <topicdata group="api" />
+      <apidata name="ConvertToType" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.Script.Serialization.JavaScriptSerializer.ConvertToType" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" ref="true" />
+      </containers>
+      <file name="66c7b23f-ecb3-31dc-de98-3c12d128d71e" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.JavaScriptSerializer.Deserialize``1(System.String)">
+      <topicdata group="api" />
+      <apidata name="Deserialize" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.Script.Serialization.JavaScriptSerializer.Deserialize" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="M:System.Web.Script.Serialization.JavaScriptSerializer.Deserialize``1(System.String)" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" ref="true" />
+      </containers>
+      <file name="868261a1-d999-c40e-24c0-45840c71d336" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.JavaScriptSerializer.Deserialize(System.String,System.Type)">
+      <topicdata group="api" />
+      <apidata name="Deserialize" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.Script.Serialization.JavaScriptSerializer.Deserialize" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" ref="true" />
+      </containers>
+      <file name="fe76e3f8-0ba1-6532-4440-3195f171b4d4" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.JavaScriptSerializer.DeserializeObject(System.String)">
+      <topicdata group="api" />
+      <apidata name="DeserializeObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" ref="true" />
+      </containers>
+      <file name="5bb602b6-a3b6-d227-6daf-e20c6a7a6b14" />
+    </api>
+    <api id="P:System.Web.Script.Serialization.JavaScriptSerializer.MaxJsonLength">
+      <topicdata group="api" />
+      <apidata name="MaxJsonLength" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxJsonLength" />
+      <setter name="set_MaxJsonLength" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" ref="true" />
+      </containers>
+      <file name="502a3576-3d5a-a340-19db-a2bc33577ce9" />
+    </api>
+    <api id="P:System.Web.Script.Serialization.JavaScriptSerializer.RecursionLimit">
+      <topicdata group="api" />
+      <apidata name="RecursionLimit" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RecursionLimit" />
+      <setter name="set_RecursionLimit" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" ref="true" />
+      </containers>
+      <file name="7087f042-f842-2be5-fa13-f1711b69b9e0" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.JavaScriptSerializer.RegisterConverters(System.Collections.Generic.IEnumerable{System.Web.Script.Serialization.JavaScriptConverter})">
+      <topicdata group="api" />
+      <apidata name="RegisterConverters" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="converters">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Web.Script.Serialization.JavaScriptConverter" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" ref="true" />
+      </containers>
+      <file name="04b9387a-9989-4f3b-b4da-b4ee3d3d9d4f" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.JavaScriptSerializer.Serialize(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Serialize" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.Script.Serialization.JavaScriptSerializer.Serialize" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" ref="true" />
+      </containers>
+      <file name="09ea6b6e-4690-cd6a-36a6-3215940dc632" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.JavaScriptSerializer.Serialize(System.Object,System.Text.StringBuilder)">
+      <topicdata group="api" />
+      <apidata name="Serialize" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.Script.Serialization.JavaScriptSerializer.Serialize" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="output">
+          <type api="T:System.Text.StringBuilder" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptSerializer" ref="true" />
+      </containers>
+      <file name="68a59b6d-1bf0-bfdb-8ec6-28e226706683" />
+    </api>
+    <api id="T:System.Web.Script.Serialization.JavaScriptTypeResolver">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.Script.Serialization.JavaScriptTypeResolver" />
+      <apidata name="JavaScriptTypeResolver" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Web.Script.Serialization.SimpleTypeResolver" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+      </containers>
+      <file name="b641c29e-6d24-b1c5-2a93-255751673bdf" />
+    </api>
+    <api id="AllMembers.T:System.Web.Script.Serialization.JavaScriptTypeResolver">
+      <topicdata name="JavaScriptTypeResolver" group="list" subgroup="members" typeTopicId="T:System.Web.Script.Serialization.JavaScriptTypeResolver" />
+      <apidata name="JavaScriptTypeResolver" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.Script.Serialization.JavaScriptTypeResolver.#ctor" />
+        <element api="M:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveType(System.String)" />
+        <element api="M:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveTypeId(System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptTypeResolver" />
+      </containers>
+      <file name="0819d9c2-89e2-f7fd-ca5f-b63d1bd1de09" />
+    </api>
+    <api id="Methods.T:System.Web.Script.Serialization.JavaScriptTypeResolver">
+      <topicdata name="JavaScriptTypeResolver" group="list" subgroup="Methods" typeTopicId="T:System.Web.Script.Serialization.JavaScriptTypeResolver" />
+      <apidata name="JavaScriptTypeResolver" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveType(System.String)" />
+        <element api="M:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveTypeId(System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptTypeResolver" />
+      </containers>
+      <file name="c9330397-8db7-e50e-241d-2a12e4ddaf5b" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.JavaScriptTypeResolver.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptTypeResolver" ref="true" />
+      </containers>
+      <file name="c2b19f13-e150-458d-6b14-19d99c482537" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveType(System.String)">
+      <topicdata group="api" />
+      <apidata name="ResolveType" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="id">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptTypeResolver" ref="true" />
+      </containers>
+      <file name="33c99fac-75c8-286c-bb0f-18aef2f5b4c3" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveTypeId(System.Type)">
+      <topicdata group="api" />
+      <apidata name="ResolveTypeId" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.JavaScriptTypeResolver" ref="true" />
+      </containers>
+      <file name="1cd3db3d-7eb5-e718-fc0c-0234bcb2cd40" />
+    </api>
+    <api id="T:System.Web.Script.Serialization.ScriptIgnoreAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.Script.Serialization.ScriptIgnoreAttribute" />
+      <apidata name="ScriptIgnoreAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Web.Script.Serialization.ScriptIgnoreAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Property" />
+              <field name="Field" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="5dc80b70-6142-ce72-da1e-9f65b48b33b8" />
+    </api>
+    <api id="AllMembers.T:System.Web.Script.Serialization.ScriptIgnoreAttribute">
+      <topicdata name="ScriptIgnoreAttribute" group="list" subgroup="members" typeTopicId="T:System.Web.Script.Serialization.ScriptIgnoreAttribute" />
+      <apidata name="ScriptIgnoreAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Web.Script.Serialization.ScriptIgnoreAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.Script.Serialization.ScriptIgnoreAttribute.#ctor" />
+        <element api="P:System.Web.Script.Serialization.ScriptIgnoreAttribute.ApplyToOverrides" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.ScriptIgnoreAttribute" />
+      </containers>
+      <file name="b0ea0c0c-6d67-f7c1-7d17-d9b5131a920f" />
+    </api>
+    <api id="Methods.T:System.Web.Script.Serialization.ScriptIgnoreAttribute">
+      <topicdata name="ScriptIgnoreAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Web.Script.Serialization.ScriptIgnoreAttribute" />
+      <apidata name="ScriptIgnoreAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Web.Script.Serialization.ScriptIgnoreAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.ScriptIgnoreAttribute" />
+      </containers>
+      <file name="e10dd379-3874-e45f-7d3d-505dce6e5636" />
+    </api>
+    <api id="Properties.T:System.Web.Script.Serialization.ScriptIgnoreAttribute">
+      <topicdata name="ScriptIgnoreAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Web.Script.Serialization.ScriptIgnoreAttribute" />
+      <apidata name="ScriptIgnoreAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Web.Script.Serialization.ScriptIgnoreAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.Web.Script.Serialization.ScriptIgnoreAttribute.ApplyToOverrides" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.ScriptIgnoreAttribute" />
+      </containers>
+      <file name="695cbc66-44ec-250c-d242-458077ec281b" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.ScriptIgnoreAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.ScriptIgnoreAttribute" ref="true" />
+      </containers>
+      <file name="2a850e11-f0f9-699d-1bc2-73c0ffab62d7" />
+    </api>
+    <api id="P:System.Web.Script.Serialization.ScriptIgnoreAttribute.ApplyToOverrides">
+      <topicdata group="api" />
+      <apidata name="ApplyToOverrides" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ApplyToOverrides" />
+      <setter name="set_ApplyToOverrides" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.ScriptIgnoreAttribute" ref="true" />
+      </containers>
+      <file name="5183c0d8-efba-c88e-e444-d547afa6dd83" />
+    </api>
+    <api id="T:System.Web.Script.Serialization.SimpleTypeResolver">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.Script.Serialization.SimpleTypeResolver" />
+      <apidata name="SimpleTypeResolver" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Script.Serialization.SimpleTypeResolver.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Web.Script.Serialization.JavaScriptTypeResolver" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+      </containers>
+      <file name="548d047b-d7a7-879e-5523-a3fc397fe92b" />
+    </api>
+    <api id="AllMembers.T:System.Web.Script.Serialization.SimpleTypeResolver">
+      <topicdata name="SimpleTypeResolver" group="list" subgroup="members" typeTopicId="T:System.Web.Script.Serialization.SimpleTypeResolver" />
+      <apidata name="SimpleTypeResolver" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Script.Serialization.SimpleTypeResolver.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.Script.Serialization.SimpleTypeResolver.#ctor" />
+        <element api="M:System.Web.Script.Serialization.SimpleTypeResolver.ResolveType(System.String)" />
+        <element api="M:System.Web.Script.Serialization.SimpleTypeResolver.ResolveTypeId(System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.SimpleTypeResolver" />
+      </containers>
+      <file name="4013b3bb-bda4-d8b8-e75a-811f0a269ae4" />
+    </api>
+    <api id="Methods.T:System.Web.Script.Serialization.SimpleTypeResolver">
+      <topicdata name="SimpleTypeResolver" group="list" subgroup="Methods" typeTopicId="T:System.Web.Script.Serialization.SimpleTypeResolver" />
+      <apidata name="SimpleTypeResolver" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Script.Serialization.SimpleTypeResolver.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.Script.Serialization.SimpleTypeResolver.ResolveType(System.String)" />
+        <element api="M:System.Web.Script.Serialization.SimpleTypeResolver.ResolveTypeId(System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.SimpleTypeResolver" />
+      </containers>
+      <file name="c529f45b-ebc6-371a-2548-6b4817f363c6" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.SimpleTypeResolver.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.SimpleTypeResolver" ref="true" />
+      </containers>
+      <file name="ab466db3-11e9-c568-9035-7819bc47466c" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.SimpleTypeResolver.ResolveType(System.String)">
+      <topicdata group="api" />
+      <apidata name="ResolveType" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveType(System.String)">
+          <type api="T:System.Web.Script.Serialization.JavaScriptTypeResolver" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="id">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.SimpleTypeResolver" ref="true" />
+      </containers>
+      <file name="3ae8cf19-aa65-034f-dffb-a77580908560" />
+    </api>
+    <api id="M:System.Web.Script.Serialization.SimpleTypeResolver.ResolveTypeId(System.Type)">
+      <topicdata group="api" />
+      <apidata name="ResolveTypeId" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveTypeId(System.Type)">
+          <type api="T:System.Web.Script.Serialization.JavaScriptTypeResolver" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Script.Serialization" />
+        <type api="T:System.Web.Script.Serialization.SimpleTypeResolver" ref="true" />
+      </containers>
+      <file name="7068547c-72ed-2e3f-020d-1692d3eecbfe" />
+    </api>
+  </apis>
+</reflection>

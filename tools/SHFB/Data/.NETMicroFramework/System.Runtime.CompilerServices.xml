@@ -1,0 +1,1130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.CompilerServices">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.CompilerServices" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.CompilerServices.AccessedThroughPropertyAttribute" />
+        <element api="T:System.Runtime.CompilerServices.ExtensionAttribute" />
+        <element api="T:System.Runtime.CompilerServices.MethodImplOptions" />
+        <element api="T:System.Runtime.CompilerServices.MethodCodeType" />
+        <element api="T:System.Runtime.CompilerServices.MethodImplAttribute" />
+        <element api="T:System.Runtime.CompilerServices.IndexerNameAttribute" />
+        <element api="T:System.Runtime.CompilerServices.InternalsVisibleToAttribute" />
+        <element api="T:System.Runtime.CompilerServices.RuntimeHelpers" />
+      </elements>
+      <file name="4cd0765d-cbea-a229-8551-b17459d743a2" />
+    </api>
+    <api id="T:System.Runtime.CompilerServices.AccessedThroughPropertyAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.CompilerServices.AccessedThroughPropertyAttribute" />
+      <apidata name="AccessedThroughPropertyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Field" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="711a72c6-ab75-2c3b-4d3e-974aed27e790" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.CompilerServices.AccessedThroughPropertyAttribute">
+      <topicdata name="AccessedThroughPropertyAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.CompilerServices.AccessedThroughPropertyAttribute" />
+      <apidata name="AccessedThroughPropertyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.CompilerServices.AccessedThroughPropertyAttribute.#ctor(System.String)" />
+        <element api="P:System.Runtime.CompilerServices.AccessedThroughPropertyAttribute.PropertyName" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.AccessedThroughPropertyAttribute" />
+      </containers>
+      <file name="0782cffb-9ded-0658-1b6f-18b408409fae" />
+    </api>
+    <api id="Methods.T:System.Runtime.CompilerServices.AccessedThroughPropertyAttribute">
+      <topicdata name="AccessedThroughPropertyAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.CompilerServices.AccessedThroughPropertyAttribute" />
+      <apidata name="AccessedThroughPropertyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.AccessedThroughPropertyAttribute" />
+      </containers>
+      <file name="6d39e543-2492-b28b-4bec-0a18ff70e442" />
+    </api>
+    <api id="Properties.T:System.Runtime.CompilerServices.AccessedThroughPropertyAttribute">
+      <topicdata name="AccessedThroughPropertyAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.CompilerServices.AccessedThroughPropertyAttribute" />
+      <apidata name="AccessedThroughPropertyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.CompilerServices.AccessedThroughPropertyAttribute.PropertyName" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.AccessedThroughPropertyAttribute" />
+      </containers>
+      <file name="be58f5cb-4453-4ca4-5d89-553404d41159" />
+    </api>
+    <api id="M:System.Runtime.CompilerServices.AccessedThroughPropertyAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="propertyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.AccessedThroughPropertyAttribute" ref="true" />
+      </containers>
+      <file name="fec905c3-fea1-80a1-bd48-022877c955a0" />
+    </api>
+    <api id="P:System.Runtime.CompilerServices.AccessedThroughPropertyAttribute.PropertyName">
+      <topicdata group="api" />
+      <apidata name="PropertyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PropertyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.AccessedThroughPropertyAttribute" ref="true" />
+      </containers>
+      <file name="795a9446-dec5-ea10-736d-3ae43856235a" />
+    </api>
+    <api id="T:System.Runtime.CompilerServices.ExtensionAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.CompilerServices.ExtensionAttribute" />
+      <apidata name="ExtensionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.CompilerServices.ExtensionAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+              <field name="Class" />
+              <field name="Method" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2bfc8164-0538-1d7e-8444-211881dba1da" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.CompilerServices.ExtensionAttribute">
+      <topicdata name="ExtensionAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.CompilerServices.ExtensionAttribute" />
+      <apidata name="ExtensionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.CompilerServices.ExtensionAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.CompilerServices.ExtensionAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" />
+      </containers>
+      <file name="79460ac6-f7ab-8788-2acc-15b22ea4a7fe" />
+    </api>
+    <api id="Methods.T:System.Runtime.CompilerServices.ExtensionAttribute">
+      <topicdata name="ExtensionAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.CompilerServices.ExtensionAttribute" />
+      <apidata name="ExtensionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.CompilerServices.ExtensionAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" />
+      </containers>
+      <file name="bb6bbb1a-3b75-36c2-9648-b142249f12c0" />
+    </api>
+    <api id="M:System.Runtime.CompilerServices.ExtensionAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+      </containers>
+      <file name="a74fcc0f-13fe-2112-7fc4-9dcab7fab9a0" />
+    </api>
+    <api id="T:System.Runtime.CompilerServices.IndexerNameAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.CompilerServices.IndexerNameAttribute" />
+      <apidata name="IndexerNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Property" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="83544692-2399-097c-7eb5-dde2946b113e" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.CompilerServices.IndexerNameAttribute">
+      <topicdata name="IndexerNameAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.CompilerServices.IndexerNameAttribute" />
+      <apidata name="IndexerNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.CompilerServices.IndexerNameAttribute.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.IndexerNameAttribute" />
+      </containers>
+      <file name="65e38361-5bed-e717-16e3-aae8c570f3b5" />
+    </api>
+    <api id="Methods.T:System.Runtime.CompilerServices.IndexerNameAttribute">
+      <topicdata name="IndexerNameAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.CompilerServices.IndexerNameAttribute" />
+      <apidata name="IndexerNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.IndexerNameAttribute" />
+      </containers>
+      <file name="79c0abdd-cc30-096d-4f46-60c9cf3a5174" />
+    </api>
+    <api id="M:System.Runtime.CompilerServices.IndexerNameAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="indexerName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.IndexerNameAttribute" ref="true" />
+      </containers>
+      <file name="f15346ef-bd1c-0ce6-e46a-be5da4959470" />
+    </api>
+    <api id="T:System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.CompilerServices.InternalsVisibleToAttribute" />
+      <apidata name="InternalsVisibleToAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="b086852f-2b3d-ea05-e6bf-4f6f554c0965" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <topicdata name="InternalsVisibleToAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.CompilerServices.InternalsVisibleToAttribute" />
+      <apidata name="InternalsVisibleToAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.CompilerServices.InternalsVisibleToAttribute.#ctor(System.String)" />
+        <element api="P:System.Runtime.CompilerServices.InternalsVisibleToAttribute.AssemblyName" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.InternalsVisibleToAttribute" />
+      </containers>
+      <file name="af52ed9a-9e36-c76e-a666-10a14c35191b" />
+    </api>
+    <api id="Methods.T:System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <topicdata name="InternalsVisibleToAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.CompilerServices.InternalsVisibleToAttribute" />
+      <apidata name="InternalsVisibleToAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.InternalsVisibleToAttribute" />
+      </containers>
+      <file name="8c9e0f00-bfb7-25da-b5f1-8a900e43ced4" />
+    </api>
+    <api id="Properties.T:System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <topicdata name="InternalsVisibleToAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.CompilerServices.InternalsVisibleToAttribute" />
+      <apidata name="InternalsVisibleToAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.CompilerServices.InternalsVisibleToAttribute.AssemblyName" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.InternalsVisibleToAttribute" />
+      </containers>
+      <file name="67eeb518-677c-d3ec-ef34-3531bf93abcc" />
+    </api>
+    <api id="M:System.Runtime.CompilerServices.InternalsVisibleToAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="assemblyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.InternalsVisibleToAttribute" ref="true" />
+      </containers>
+      <file name="ca95e1c5-166f-65aa-4968-1e8d5bc4118a" />
+    </api>
+    <api id="P:System.Runtime.CompilerServices.InternalsVisibleToAttribute.AssemblyName">
+      <topicdata group="api" />
+      <apidata name="AssemblyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AssemblyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.InternalsVisibleToAttribute" ref="true" />
+      </containers>
+      <file name="c96b88e7-90f1-ee5e-86b5-6485dab5ec30" />
+    </api>
+    <api id="T:System.Runtime.CompilerServices.MethodCodeType">
+      <topicdata group="api" />
+      <apidata name="MethodCodeType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="F:System.Runtime.CompilerServices.MethodCodeType.IL" />
+        <element api="F:System.Runtime.CompilerServices.MethodCodeType.Native" />
+        <element api="F:System.Runtime.CompilerServices.MethodCodeType.OPTIL" />
+        <element api="F:System.Runtime.CompilerServices.MethodCodeType.Runtime" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+      </containers>
+      <file name="bf85c547-f662-fda5-4814-1ca7ba78b68e" />
+    </api>
+    <api id="F:System.Runtime.CompilerServices.MethodCodeType.IL">
+      <topicdata group="api" notopic="" />
+      <apidata name="IL" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.MethodCodeType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodCodeType" ref="false" />
+      </containers>
+      <file name="eb47587b-2712-8689-bc02-91fc8330a37f" />
+    </api>
+    <api id="F:System.Runtime.CompilerServices.MethodCodeType.Native">
+      <topicdata group="api" notopic="" />
+      <apidata name="Native" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.MethodCodeType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodCodeType" ref="false" />
+      </containers>
+      <file name="4b1972a2-3161-942c-341a-d09ec02184dc" />
+    </api>
+    <api id="F:System.Runtime.CompilerServices.MethodCodeType.OPTIL">
+      <topicdata group="api" notopic="" />
+      <apidata name="OPTIL" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.MethodCodeType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodCodeType" ref="false" />
+      </containers>
+      <file name="e6f500d8-dea4-c9e6-5a8e-f056ae5e6d7b" />
+    </api>
+    <api id="F:System.Runtime.CompilerServices.MethodCodeType.Runtime">
+      <topicdata group="api" notopic="" />
+      <apidata name="Runtime" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.MethodCodeType" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodCodeType" ref="false" />
+      </containers>
+      <file name="26235525-2a49-d45a-9329-c75172687fb2" />
+    </api>
+    <api id="T:System.Runtime.CompilerServices.MethodImplAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.CompilerServices.MethodImplAttribute" />
+      <apidata name="MethodImplAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Runtime.CompilerServices.MethodImplAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Constructor" />
+              <field name="Method" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="cbb259ea-ca78-1070-1f29-4e32f565db74" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.CompilerServices.MethodImplAttribute">
+      <topicdata name="MethodImplAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.CompilerServices.MethodImplAttribute" />
+      <apidata name="MethodImplAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Runtime.CompilerServices.MethodImplAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Runtime.CompilerServices.MethodImplAttribute.#ctor">
+          <element api="M:System.Runtime.CompilerServices.MethodImplAttribute.#ctor" />
+          <element api="M:System.Runtime.CompilerServices.MethodImplAttribute.#ctor(System.Int16)" />
+          <element api="M:System.Runtime.CompilerServices.MethodImplAttribute.#ctor(System.Runtime.CompilerServices.MethodImplOptions)" />
+        </element>
+        <element api="F:System.Runtime.CompilerServices.MethodImplAttribute.MethodCodeType" />
+        <element api="P:System.Runtime.CompilerServices.MethodImplAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodImplAttribute" />
+      </containers>
+      <file name="fb901401-c8e9-bb19-8895-ffc4b95095f3" />
+    </api>
+    <api id="Methods.T:System.Runtime.CompilerServices.MethodImplAttribute">
+      <topicdata name="MethodImplAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.CompilerServices.MethodImplAttribute" />
+      <apidata name="MethodImplAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Runtime.CompilerServices.MethodImplAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodImplAttribute" />
+      </containers>
+      <file name="9375380a-81de-b613-8347-73a269e18cba" />
+    </api>
+    <api id="Properties.T:System.Runtime.CompilerServices.MethodImplAttribute">
+      <topicdata name="MethodImplAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.CompilerServices.MethodImplAttribute" />
+      <apidata name="MethodImplAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Runtime.CompilerServices.MethodImplAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Runtime.CompilerServices.MethodImplAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodImplAttribute" />
+      </containers>
+      <file name="4e94f559-34da-ae2c-2d9f-d24888306813" />
+    </api>
+    <api id="Fields.T:System.Runtime.CompilerServices.MethodImplAttribute">
+      <topicdata name="MethodImplAttribute" group="list" subgroup="Fields" typeTopicId="T:System.Runtime.CompilerServices.MethodImplAttribute" />
+      <apidata name="MethodImplAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Runtime.CompilerServices.MethodImplAttribute.#ctor" />
+      <elements>
+        <element api="F:System.Runtime.CompilerServices.MethodImplAttribute.MethodCodeType" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodImplAttribute" />
+      </containers>
+      <file name="18b5888a-8848-7a9b-2758-2498a8009805" />
+    </api>
+    <api id="Overload:System.Runtime.CompilerServices.MethodImplAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.CompilerServices.MethodImplAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Runtime.CompilerServices.MethodImplAttribute.#ctor" />
+        <element api="M:System.Runtime.CompilerServices.MethodImplAttribute.#ctor(System.Int16)" />
+        <element api="M:System.Runtime.CompilerServices.MethodImplAttribute.#ctor(System.Runtime.CompilerServices.MethodImplOptions)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodImplAttribute" ref="true" />
+      </containers>
+      <file name="cee3beb4-7ae0-a4ff-96a6-b78c360760c8" />
+    </api>
+    <api id="M:System.Runtime.CompilerServices.MethodImplAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.CompilerServices.MethodImplAttribute.#ctor" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodImplAttribute" ref="true" />
+      </containers>
+      <file name="24b9b3ef-14df-90aa-8084-08a1c93dba96" />
+    </api>
+    <api id="M:System.Runtime.CompilerServices.MethodImplAttribute.#ctor(System.Int16)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.CompilerServices.MethodImplAttribute.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int16" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodImplAttribute" ref="true" />
+      </containers>
+      <file name="364cc5ab-4988-5750-9eb5-6b8a561b7fb2" />
+    </api>
+    <api id="M:System.Runtime.CompilerServices.MethodImplAttribute.#ctor(System.Runtime.CompilerServices.MethodImplOptions)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.CompilerServices.MethodImplAttribute.#ctor" />
+      <parameters>
+        <parameter name="methodImplOptions">
+          <type api="T:System.Runtime.CompilerServices.MethodImplOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodImplAttribute" ref="true" />
+      </containers>
+      <file name="69d2142c-ba39-a97c-274e-cd90bc1e1b7c" />
+    </api>
+    <api id="F:System.Runtime.CompilerServices.MethodImplAttribute.MethodCodeType">
+      <topicdata group="api" />
+      <apidata name="MethodCodeType" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.MethodCodeType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodImplAttribute" ref="true" />
+      </containers>
+      <file name="c2db9a4e-190d-1edc-9a7d-dcf95322ea29" />
+    </api>
+    <api id="P:System.Runtime.CompilerServices.MethodImplAttribute.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.MethodImplOptions" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodImplAttribute" ref="true" />
+      </containers>
+      <file name="170c6436-29a3-3c6b-85ea-68a5b8052448" />
+    </api>
+    <api id="T:System.Runtime.CompilerServices.MethodImplOptions">
+      <topicdata group="api" />
+      <apidata name="MethodImplOptions" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="F:System.Runtime.CompilerServices.MethodImplOptions.Unmanaged" />
+        <element api="F:System.Runtime.CompilerServices.MethodImplOptions.ForwardRef" />
+        <element api="F:System.Runtime.CompilerServices.MethodImplOptions.PreserveSig" />
+        <element api="F:System.Runtime.CompilerServices.MethodImplOptions.InternalCall" />
+        <element api="F:System.Runtime.CompilerServices.MethodImplOptions.Synchronized" />
+        <element api="F:System.Runtime.CompilerServices.MethodImplOptions.NoInlining" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+      </containers>
+      <file name="c5f55941-de28-e86e-5470-63821f7c557e" />
+    </api>
+    <api id="F:System.Runtime.CompilerServices.MethodImplOptions.ForwardRef">
+      <topicdata group="api" notopic="" />
+      <apidata name="ForwardRef" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.MethodImplOptions" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodImplOptions" ref="false" />
+      </containers>
+      <file name="36b9e78f-5bd9-86e9-f5dd-bac74efefe22" />
+    </api>
+    <api id="F:System.Runtime.CompilerServices.MethodImplOptions.InternalCall">
+      <topicdata group="api" notopic="" />
+      <apidata name="InternalCall" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.MethodImplOptions" ref="false" />
+      </returns>
+      <value>4096</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodImplOptions" ref="false" />
+      </containers>
+      <file name="1b6fc604-8dc8-d0d8-aa8d-82ffc5e9d4ff" />
+    </api>
+    <api id="F:System.Runtime.CompilerServices.MethodImplOptions.NoInlining">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoInlining" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.MethodImplOptions" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodImplOptions" ref="false" />
+      </containers>
+      <file name="229dd6f7-b19f-e27b-d387-51123942f198" />
+    </api>
+    <api id="F:System.Runtime.CompilerServices.MethodImplOptions.PreserveSig">
+      <topicdata group="api" notopic="" />
+      <apidata name="PreserveSig" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.MethodImplOptions" ref="false" />
+      </returns>
+      <value>128</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodImplOptions" ref="false" />
+      </containers>
+      <file name="2b0ab347-9b71-3b5f-c28b-ee84dde019e2" />
+    </api>
+    <api id="F:System.Runtime.CompilerServices.MethodImplOptions.Synchronized">
+      <topicdata group="api" notopic="" />
+      <apidata name="Synchronized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.MethodImplOptions" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodImplOptions" ref="false" />
+      </containers>
+      <file name="bb611adb-732b-90f7-610d-207d11537710" />
+    </api>
+    <api id="F:System.Runtime.CompilerServices.MethodImplOptions.Unmanaged">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unmanaged" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.MethodImplOptions" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.MethodImplOptions" ref="false" />
+      </containers>
+      <file name="2eea6fde-bbba-f95f-905b-b339346399af" />
+    </api>
+    <api id="T:System.Runtime.CompilerServices.RuntimeHelpers">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.CompilerServices.RuntimeHelpers" />
+      <apidata name="RuntimeHelpers" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+      </containers>
+      <file name="c9a6b17f-ce58-6e62-6407-3a58f91207f2" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.CompilerServices.RuntimeHelpers">
+      <topicdata name="RuntimeHelpers" group="list" subgroup="members" typeTopicId="T:System.Runtime.CompilerServices.RuntimeHelpers" />
+      <apidata name="RuntimeHelpers" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="true" />
+      <elements>
+        <element api="M:System.Runtime.CompilerServices.RuntimeHelpers.GetObjectValue(System.Object)" />
+        <element api="M:System.Runtime.CompilerServices.RuntimeHelpers.InitializeArray(System.Array,System.RuntimeFieldHandle)" />
+        <element api="P:System.Runtime.CompilerServices.RuntimeHelpers.OffsetToStringData" />
+        <element api="M:System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(System.RuntimeTypeHandle)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.RuntimeHelpers" />
+      </containers>
+      <file name="d2cb068d-3768-1932-aa05-acfbfab81062" />
+    </api>
+    <api id="Methods.T:System.Runtime.CompilerServices.RuntimeHelpers">
+      <topicdata name="RuntimeHelpers" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.CompilerServices.RuntimeHelpers" />
+      <apidata name="RuntimeHelpers" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="true" />
+      <elements>
+        <element api="M:System.Runtime.CompilerServices.RuntimeHelpers.GetObjectValue(System.Object)" />
+        <element api="M:System.Runtime.CompilerServices.RuntimeHelpers.InitializeArray(System.Array,System.RuntimeFieldHandle)" />
+        <element api="M:System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(System.RuntimeTypeHandle)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.RuntimeHelpers" />
+      </containers>
+      <file name="9a8ee074-aedf-9c72-bfa0-df189553c874" />
+    </api>
+    <api id="Properties.T:System.Runtime.CompilerServices.RuntimeHelpers">
+      <topicdata name="RuntimeHelpers" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.CompilerServices.RuntimeHelpers" />
+      <apidata name="RuntimeHelpers" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="true" />
+      <elements>
+        <element api="P:System.Runtime.CompilerServices.RuntimeHelpers.OffsetToStringData" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.RuntimeHelpers" />
+      </containers>
+      <file name="c7344933-b8a4-f7a5-f9d1-3989e2a573d7" />
+    </api>
+    <api id="M:System.Runtime.CompilerServices.RuntimeHelpers.GetObjectValue(System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetObjectValue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.RuntimeHelpers" ref="true" />
+      </containers>
+      <file name="ea63098b-d76e-fcd6-586b-587947f6df59" />
+    </api>
+    <api id="M:System.Runtime.CompilerServices.RuntimeHelpers.InitializeArray(System.Array,System.RuntimeFieldHandle)">
+      <topicdata group="api" />
+      <apidata name="InitializeArray" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="array">
+          <type api="T:System.Array" ref="true" />
+        </parameter>
+        <parameter name="fldHandle">
+          <type api="T:System.RuntimeFieldHandle" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.RuntimeHelpers" ref="true" />
+      </containers>
+      <file name="f3f91017-349e-3516-1e5c-2dbe1414fef1" />
+    </api>
+    <api id="P:System.Runtime.CompilerServices.RuntimeHelpers.OffsetToStringData">
+      <topicdata group="api" />
+      <apidata name="OffsetToStringData" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OffsetToStringData" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.RuntimeHelpers" ref="true" />
+      </containers>
+      <file name="9195006f-ad6a-c71b-936f-bca390293358" />
+    </api>
+    <api id="M:System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(System.RuntimeTypeHandle)">
+      <topicdata group="api" />
+      <apidata name="RunClassConstructor" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.RuntimeTypeHandle" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.CompilerServices" />
+        <type api="T:System.Runtime.CompilerServices.RuntimeHelpers" ref="true" />
+      </containers>
+      <file name="18db643f-e811-bbb4-78ad-eb028207a2be" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- Syntax section and code example title.  Add one for the primary ID and one for each alternate ID. -->
+	<item id="devlang_F#">F#</item>
+	<item id="devlang_FSharp">F#</item>
+	<item id="devlang_fs">F#</item>
+	<item id="devlang_fsscript">F#</item>
+
+	<!-- Development language metadata values.  Add one for the primary ID and one for each alternate ID.  -->
+	<item id="metaLang_F#">FSharp</item>
+	<item id="metaLang_FSharp">FSharp</item>
+	<item id="metaLang_fs">FSharp</item>
+	<item id="metaLang_fsscript">FSharp</item>
+
+	<!-- F# syntax section messages -->
+	<item id="UnsupportedUnsafe_FSharp">F# does not support APIs that consume or return unsafe types.</item>
+	<item id="UnsupportedOperator_FSharp">F# does not support this operator.</item>
+	<item id="UnsupportedCast_FSharp">F# does not support the declaration of new casting operators.</item>
+	<item id="UnsupportedVarargs_FSharp">F# does not support methods that use variable length arguments
+(<span class="code">varargs</span>).  The compiler automatically resolves calls to this method to the same method
+that uses a parameter array.</item>
+
+</content>

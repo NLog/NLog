@@ -1,0 +1,1568 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Devices.DevicesLowLevelContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Gpio">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Gpio" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Gpio.GpioSharingMode" />
+        <element api="T:Windows.Devices.Gpio.GpioOpenStatus" />
+        <element api="T:Windows.Devices.Gpio.GpioPinDriveMode" />
+        <element api="T:Windows.Devices.Gpio.GpioPinValue" />
+        <element api="T:Windows.Devices.Gpio.GpioPinEdge" />
+        <element api="T:Windows.Devices.Gpio.GpioPinValueChangedEventArgs" />
+        <element api="T:Windows.Devices.Gpio.GpioPin" />
+        <element api="T:Windows.Devices.Gpio.GpioController" />
+      </elements>
+      <file name="40c49809-4ef1-6e23-70fc-837d4ffac24a" />
+    </api>
+    <api id="T:Windows.Devices.Gpio.GpioController">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Gpio.GpioController" />
+      <apidata name="GpioController" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.DevicesLowLevelContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="59c8b3b6-b3e8-6ffa-1033-c3b0e70f1b2d" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Gpio.GpioController">
+      <topicdata name="GpioController" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Gpio.GpioController" />
+      <apidata name="GpioController" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Gpio.GpioController.GetDefault" />
+        <element api="Overload:Windows.Devices.Gpio.GpioController.OpenPin">
+          <element api="M:Windows.Devices.Gpio.GpioController.OpenPin(System.Int32)" />
+          <element api="M:Windows.Devices.Gpio.GpioController.OpenPin(System.Int32,Windows.Devices.Gpio.GpioSharingMode)" />
+        </element>
+        <element api="P:Windows.Devices.Gpio.GpioController.PinCount" />
+        <element api="M:Windows.Devices.Gpio.GpioController.TryOpenPin(System.Int32,Windows.Devices.Gpio.GpioSharingMode,Windows.Devices.Gpio.GpioPin@,Windows.Devices.Gpio.GpioOpenStatus@)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioController" />
+      </containers>
+      <file name="30c3f1eb-57b0-c546-fee4-2f9e2ce02496" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Gpio.GpioController">
+      <topicdata name="GpioController" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Gpio.GpioController" />
+      <apidata name="GpioController" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Gpio.GpioController.GetDefault" />
+        <element api="Overload:Windows.Devices.Gpio.GpioController.OpenPin">
+          <element api="M:Windows.Devices.Gpio.GpioController.OpenPin(System.Int32)" />
+          <element api="M:Windows.Devices.Gpio.GpioController.OpenPin(System.Int32,Windows.Devices.Gpio.GpioSharingMode)" />
+        </element>
+        <element api="M:Windows.Devices.Gpio.GpioController.TryOpenPin(System.Int32,Windows.Devices.Gpio.GpioSharingMode,Windows.Devices.Gpio.GpioPin@,Windows.Devices.Gpio.GpioOpenStatus@)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioController" />
+      </containers>
+      <file name="0d4b6381-b9e4-dc7a-c671-ca0f6b8c9637" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Gpio.GpioController">
+      <topicdata name="GpioController" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Gpio.GpioController" />
+      <apidata name="GpioController" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Gpio.GpioController.PinCount" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioController" />
+      </containers>
+      <file name="214a532e-736c-ee7d-e5e7-dac04e705d2f" />
+    </api>
+    <api id="Overload:Windows.Devices.Gpio.GpioController.OpenPin">
+      <topicdata name="OpenPin" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Devices.Gpio.GpioController" />
+      <apidata name="OpenPin" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Devices.Gpio.GpioController.OpenPin(System.Int32)" />
+        <element api="M:Windows.Devices.Gpio.GpioController.OpenPin(System.Int32,Windows.Devices.Gpio.GpioSharingMode)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioController" ref="true" />
+      </containers>
+      <file name="78dd1a3e-5f76-a15d-e3c0-2fba6125c677" />
+    </api>
+    <api id="M:Windows.Devices.Gpio.GpioController.GetDefault">
+      <topicdata group="api" />
+      <apidata name="GetDefault" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioController" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioController" ref="true" />
+      </containers>
+      <file name="9d246e49-511b-2128-1692-2739e6b63db5" />
+    </api>
+    <api id="M:Windows.Devices.Gpio.GpioController.OpenPin(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="OpenPin" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Devices.Gpio.GpioController.OpenPin" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="pinNumber" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioPin" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioController" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>OpenPin</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="538f9d3a-9dd1-9170-da1a-a2917ad068f9" />
+    </api>
+    <api id="M:Windows.Devices.Gpio.GpioController.OpenPin(System.Int32,Windows.Devices.Gpio.GpioSharingMode)">
+      <topicdata group="api" />
+      <apidata name="OpenPin" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Devices.Gpio.GpioController.OpenPin" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="pinNumber" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sharingMode" in="true">
+          <type api="T:Windows.Devices.Gpio.GpioSharingMode" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioPin" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioController" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>OpenPinWithSharingMode</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8c52422a-472b-1f58-6ae2-d19376f600ff" />
+    </api>
+    <api id="P:Windows.Devices.Gpio.GpioController.PinCount">
+      <topicdata group="api" />
+      <apidata name="PinCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PinCount" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioController" ref="true" />
+      </containers>
+      <file name="3109a999-63d5-2f2e-8635-7096f895538b" />
+    </api>
+    <api id="M:Windows.Devices.Gpio.GpioController.TryOpenPin(System.Int32,Windows.Devices.Gpio.GpioSharingMode,Windows.Devices.Gpio.GpioPin@,Windows.Devices.Gpio.GpioOpenStatus@)">
+      <topicdata group="api" />
+      <apidata name="TryOpenPin" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="pinNumber" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sharingMode" in="true">
+          <type api="T:Windows.Devices.Gpio.GpioSharingMode" ref="false" />
+        </parameter>
+        <parameter name="pin" out="true">
+          <referenceTo>
+            <type api="T:Windows.Devices.Gpio.GpioPin" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="openStatus" out="true">
+          <referenceTo>
+            <type api="T:Windows.Devices.Gpio.GpioOpenStatus" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioController" ref="true" />
+      </containers>
+      <file name="62cce973-fef7-1465-1fcf-efd99259f4e8" />
+    </api>
+    <api id="T:Windows.Devices.Gpio.GpioOpenStatus">
+      <topicdata group="api" />
+      <apidata name="GpioOpenStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Gpio.GpioOpenStatus.PinOpened" />
+        <element api="F:Windows.Devices.Gpio.GpioOpenStatus.PinUnavailable" />
+        <element api="F:Windows.Devices.Gpio.GpioOpenStatus.SharingViolation" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.DevicesLowLevelContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="020f4f99-88ef-4453-764f-8fd15ebd620b" />
+    </api>
+    <api id="F:Windows.Devices.Gpio.GpioOpenStatus.PinOpened">
+      <topicdata group="api" notopic="" />
+      <apidata name="PinOpened" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioOpenStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioOpenStatus" ref="false" />
+      </containers>
+      <file name="35d620c4-d5b5-6614-a4d7-059652524793" />
+    </api>
+    <api id="F:Windows.Devices.Gpio.GpioOpenStatus.PinUnavailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="PinUnavailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioOpenStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioOpenStatus" ref="false" />
+      </containers>
+      <file name="68ceaab6-ae34-2b3e-b4ec-2951705fe5b4" />
+    </api>
+    <api id="F:Windows.Devices.Gpio.GpioOpenStatus.SharingViolation">
+      <topicdata group="api" notopic="" />
+      <apidata name="SharingViolation" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioOpenStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioOpenStatus" ref="false" />
+      </containers>
+      <file name="b852f65e-f545-960b-16dd-f6d170af68d3" />
+    </api>
+    <api id="T:Windows.Devices.Gpio.GpioPin">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Gpio.GpioPin" />
+      <apidata name="GpioPin" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.DevicesLowLevelContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="03cff44f-e962-7bb0-796c-5a9459c95ccd" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Gpio.GpioPin">
+      <topicdata name="GpioPin" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Gpio.GpioPin" />
+      <apidata name="GpioPin" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Gpio.GpioPin.Close" />
+        <element api="P:Windows.Devices.Gpio.GpioPin.DebounceTimeout" />
+        <element api="M:Windows.Devices.Gpio.GpioPin.GetDriveMode" />
+        <element api="M:Windows.Devices.Gpio.GpioPin.IsDriveModeSupported(Windows.Devices.Gpio.GpioPinDriveMode)" />
+        <element api="P:Windows.Devices.Gpio.GpioPin.PinNumber" />
+        <element api="M:Windows.Devices.Gpio.GpioPin.Read" />
+        <element api="M:Windows.Devices.Gpio.GpioPin.SetDriveMode(Windows.Devices.Gpio.GpioPinDriveMode)" />
+        <element api="P:Windows.Devices.Gpio.GpioPin.SharingMode" />
+        <element api="E:Windows.Devices.Gpio.GpioPin.ValueChanged" />
+        <element api="M:Windows.Devices.Gpio.GpioPin.Write(Windows.Devices.Gpio.GpioPinValue)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPin" />
+      </containers>
+      <file name="5b6478f9-f512-d7ab-0d3a-03ab94ae41cf" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Gpio.GpioPin">
+      <topicdata name="GpioPin" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Gpio.GpioPin" />
+      <apidata name="GpioPin" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Gpio.GpioPin.Close" />
+        <element api="M:Windows.Devices.Gpio.GpioPin.GetDriveMode" />
+        <element api="M:Windows.Devices.Gpio.GpioPin.IsDriveModeSupported(Windows.Devices.Gpio.GpioPinDriveMode)" />
+        <element api="M:Windows.Devices.Gpio.GpioPin.Read" />
+        <element api="M:Windows.Devices.Gpio.GpioPin.SetDriveMode(Windows.Devices.Gpio.GpioPinDriveMode)" />
+        <element api="M:Windows.Devices.Gpio.GpioPin.Write(Windows.Devices.Gpio.GpioPinValue)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPin" />
+      </containers>
+      <file name="6a4c445c-ad45-0f2c-ea2b-646423b47a09" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Gpio.GpioPin">
+      <topicdata name="GpioPin" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Gpio.GpioPin" />
+      <apidata name="GpioPin" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Gpio.GpioPin.DebounceTimeout" />
+        <element api="P:Windows.Devices.Gpio.GpioPin.PinNumber" />
+        <element api="P:Windows.Devices.Gpio.GpioPin.SharingMode" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPin" />
+      </containers>
+      <file name="6d22345d-2e2f-ac68-fa21-3ab92d42952d" />
+    </api>
+    <api id="Events.T:Windows.Devices.Gpio.GpioPin">
+      <topicdata name="GpioPin" group="list" subgroup="Events" typeTopicId="T:Windows.Devices.Gpio.GpioPin" />
+      <apidata name="GpioPin" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Devices.Gpio.GpioPin.ValueChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPin" />
+      </containers>
+      <file name="984e279f-3402-83bf-219d-4d98b375b1e7" />
+    </api>
+    <api id="M:Windows.Devices.Gpio.GpioPin.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPin" ref="true" />
+      </containers>
+      <file name="794193da-ec55-335c-bf3b-e054262d07f5" />
+    </api>
+    <api id="P:Windows.Devices.Gpio.GpioPin.DebounceTimeout">
+      <topicdata group="api" />
+      <apidata name="DebounceTimeout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DebounceTimeout" />
+      <setter name="set_DebounceTimeout" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPin" ref="true" />
+      </containers>
+      <file name="22d4daf5-3968-1e39-9b3b-71aa73b7c1dc" />
+    </api>
+    <api id="M:Windows.Devices.Gpio.GpioPin.GetDriveMode">
+      <topicdata group="api" />
+      <apidata name="GetDriveMode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioPinDriveMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPin" ref="true" />
+      </containers>
+      <file name="4b5e5170-4807-2d13-bdb5-c8dd1f31b8cc" />
+    </api>
+    <api id="M:Windows.Devices.Gpio.GpioPin.IsDriveModeSupported(Windows.Devices.Gpio.GpioPinDriveMode)">
+      <topicdata group="api" />
+      <apidata name="IsDriveModeSupported" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="driveMode" in="true">
+          <type api="T:Windows.Devices.Gpio.GpioPinDriveMode" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPin" ref="true" />
+      </containers>
+      <file name="a1c1f44a-bfc0-ec9b-fcfe-45fb06c1be75" />
+    </api>
+    <api id="P:Windows.Devices.Gpio.GpioPin.PinNumber">
+      <topicdata group="api" />
+      <apidata name="PinNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PinNumber" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPin" ref="true" />
+      </containers>
+      <file name="42618d05-7110-7f25-dad7-cf9ac8dfc487" />
+    </api>
+    <api id="M:Windows.Devices.Gpio.GpioPin.Read">
+      <topicdata group="api" />
+      <apidata name="Read" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioPinValue" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPin" ref="true" />
+      </containers>
+      <file name="a78136fc-082e-8074-f64f-d439e17ed3ab" />
+    </api>
+    <api id="M:Windows.Devices.Gpio.GpioPin.SetDriveMode(Windows.Devices.Gpio.GpioPinDriveMode)">
+      <topicdata group="api" />
+      <apidata name="SetDriveMode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Devices.Gpio.GpioPinDriveMode" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPin" ref="true" />
+      </containers>
+      <file name="b1dadfc5-59d1-0db6-5271-8b1b75affbe6" />
+    </api>
+    <api id="P:Windows.Devices.Gpio.GpioPin.SharingMode">
+      <topicdata group="api" />
+      <apidata name="SharingMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SharingMode" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioSharingMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPin" ref="true" />
+      </containers>
+      <file name="0d5235e6-123f-cf62-fbe5-4c7f0b0cab12" />
+    </api>
+    <api id="E:Windows.Devices.Gpio.GpioPin.ValueChanged">
+      <topicdata group="api" />
+      <apidata name="ValueChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ValueChanged" />
+      <remover name="remove_ValueChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Gpio.GpioPin" ref="true" />
+            <type api="T:Windows.Devices.Gpio.GpioPinValueChangedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPin" ref="true" />
+      </containers>
+      <file name="1d70825c-c780-0485-df66-3cb233c61e52" />
+    </api>
+    <api id="M:Windows.Devices.Gpio.GpioPin.Write(Windows.Devices.Gpio.GpioPinValue)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Devices.Gpio.GpioPinValue" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPin" ref="true" />
+      </containers>
+      <file name="41226d9a-81c6-09c5-9229-4cd9111c7e47" />
+    </api>
+    <api id="T:Windows.Devices.Gpio.GpioPinDriveMode">
+      <topicdata group="api" />
+      <apidata name="GpioPinDriveMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Gpio.GpioPinDriveMode.Input" />
+        <element api="F:Windows.Devices.Gpio.GpioPinDriveMode.Output" />
+        <element api="F:Windows.Devices.Gpio.GpioPinDriveMode.InputPullUp" />
+        <element api="F:Windows.Devices.Gpio.GpioPinDriveMode.InputPullDown" />
+        <element api="F:Windows.Devices.Gpio.GpioPinDriveMode.OutputOpenDrain" />
+        <element api="F:Windows.Devices.Gpio.GpioPinDriveMode.OutputOpenDrainPullUp" />
+        <element api="F:Windows.Devices.Gpio.GpioPinDriveMode.OutputOpenSource" />
+        <element api="F:Windows.Devices.Gpio.GpioPinDriveMode.OutputOpenSourcePullDown" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.DevicesLowLevelContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2d67a463-73b4-aea6-11fc-6278c1be0c63" />
+    </api>
+    <api id="F:Windows.Devices.Gpio.GpioPinDriveMode.Input">
+      <topicdata group="api" notopic="" />
+      <apidata name="Input" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioPinDriveMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPinDriveMode" ref="false" />
+      </containers>
+      <file name="56c56843-6779-1a7d-6c14-0ac5c91588d0" />
+    </api>
+    <api id="F:Windows.Devices.Gpio.GpioPinDriveMode.InputPullDown">
+      <topicdata group="api" notopic="" />
+      <apidata name="InputPullDown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioPinDriveMode" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPinDriveMode" ref="false" />
+      </containers>
+      <file name="2842875b-d65f-f0e0-db55-a277c14d17ac" />
+    </api>
+    <api id="F:Windows.Devices.Gpio.GpioPinDriveMode.InputPullUp">
+      <topicdata group="api" notopic="" />
+      <apidata name="InputPullUp" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioPinDriveMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPinDriveMode" ref="false" />
+      </containers>
+      <file name="3a6b762a-3a26-fca3-0005-df18a6d5cbcf" />
+    </api>
+    <api id="F:Windows.Devices.Gpio.GpioPinDriveMode.Output">
+      <topicdata group="api" notopic="" />
+      <apidata name="Output" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioPinDriveMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPinDriveMode" ref="false" />
+      </containers>
+      <file name="4f68b328-e86f-d989-12f4-8df33e1df24f" />
+    </api>
+    <api id="F:Windows.Devices.Gpio.GpioPinDriveMode.OutputOpenDrain">
+      <topicdata group="api" notopic="" />
+      <apidata name="OutputOpenDrain" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioPinDriveMode" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPinDriveMode" ref="false" />
+      </containers>
+      <file name="01f6c7cc-a3c7-ab9f-4fbd-c95508502dbb" />
+    </api>
+    <api id="F:Windows.Devices.Gpio.GpioPinDriveMode.OutputOpenDrainPullUp">
+      <topicdata group="api" notopic="" />
+      <apidata name="OutputOpenDrainPullUp" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioPinDriveMode" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPinDriveMode" ref="false" />
+      </containers>
+      <file name="93cdeba2-232f-ce00-52bb-553c6482c3fa" />
+    </api>
+    <api id="F:Windows.Devices.Gpio.GpioPinDriveMode.OutputOpenSource">
+      <topicdata group="api" notopic="" />
+      <apidata name="OutputOpenSource" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioPinDriveMode" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPinDriveMode" ref="false" />
+      </containers>
+      <file name="82709373-aa81-c645-3916-fce8ded7b4f7" />
+    </api>
+    <api id="F:Windows.Devices.Gpio.GpioPinDriveMode.OutputOpenSourcePullDown">
+      <topicdata group="api" notopic="" />
+      <apidata name="OutputOpenSourcePullDown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioPinDriveMode" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPinDriveMode" ref="false" />
+      </containers>
+      <file name="e0de1ad7-c1b3-7bb7-09b4-0cf27a610c33" />
+    </api>
+    <api id="T:Windows.Devices.Gpio.GpioPinEdge">
+      <topicdata group="api" />
+      <apidata name="GpioPinEdge" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Gpio.GpioPinEdge.FallingEdge" />
+        <element api="F:Windows.Devices.Gpio.GpioPinEdge.RisingEdge" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.DevicesLowLevelContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="55e229fd-3b3e-5bb5-d7ea-f4c7ba586532" />
+    </api>
+    <api id="F:Windows.Devices.Gpio.GpioPinEdge.FallingEdge">
+      <topicdata group="api" notopic="" />
+      <apidata name="FallingEdge" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioPinEdge" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPinEdge" ref="false" />
+      </containers>
+      <file name="5d7679f8-77ab-4f3a-221d-7691b64aeb7c" />
+    </api>
+    <api id="F:Windows.Devices.Gpio.GpioPinEdge.RisingEdge">
+      <topicdata group="api" notopic="" />
+      <apidata name="RisingEdge" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioPinEdge" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPinEdge" ref="false" />
+      </containers>
+      <file name="32cfe788-76b6-86eb-08d9-c5f488cd084e" />
+    </api>
+    <api id="T:Windows.Devices.Gpio.GpioPinValue">
+      <topicdata group="api" />
+      <apidata name="GpioPinValue" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Gpio.GpioPinValue.Low" />
+        <element api="F:Windows.Devices.Gpio.GpioPinValue.High" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.DevicesLowLevelContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5a82ee8b-825b-f1ff-d352-e38d7d7df5ff" />
+    </api>
+    <api id="F:Windows.Devices.Gpio.GpioPinValue.High">
+      <topicdata group="api" notopic="" />
+      <apidata name="High" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioPinValue" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPinValue" ref="false" />
+      </containers>
+      <file name="95fc1a10-6973-ba9e-2b0c-5fab93c3fbfa" />
+    </api>
+    <api id="F:Windows.Devices.Gpio.GpioPinValue.Low">
+      <topicdata group="api" notopic="" />
+      <apidata name="Low" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioPinValue" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPinValue" ref="false" />
+      </containers>
+      <file name="3a0cc7f0-1125-3bcc-9238-707dd6fee358" />
+    </api>
+    <api id="T:Windows.Devices.Gpio.GpioPinValueChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Gpio.GpioPinValueChangedEventArgs" />
+      <apidata name="GpioPinValueChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.DevicesLowLevelContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1c77c5f4-1e32-9aa2-f561-b04e220b571c" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Gpio.GpioPinValueChangedEventArgs">
+      <topicdata name="GpioPinValueChangedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Gpio.GpioPinValueChangedEventArgs" />
+      <apidata name="GpioPinValueChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.Gpio.GpioPinValueChangedEventArgs.Edge" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPinValueChangedEventArgs" />
+      </containers>
+      <file name="7cf0f740-b746-64b1-ae48-9396dc7a821d" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Gpio.GpioPinValueChangedEventArgs">
+      <topicdata name="GpioPinValueChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Gpio.GpioPinValueChangedEventArgs" />
+      <apidata name="GpioPinValueChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPinValueChangedEventArgs" />
+      </containers>
+      <file name="bd97efba-92e8-fe15-d5d4-703a3da7fb1e" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Gpio.GpioPinValueChangedEventArgs">
+      <topicdata name="GpioPinValueChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Gpio.GpioPinValueChangedEventArgs" />
+      <apidata name="GpioPinValueChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Gpio.GpioPinValueChangedEventArgs.Edge" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPinValueChangedEventArgs" />
+      </containers>
+      <file name="1152bea0-6a32-815a-ed04-1edb561f805e" />
+    </api>
+    <api id="P:Windows.Devices.Gpio.GpioPinValueChangedEventArgs.Edge">
+      <topicdata group="api" />
+      <apidata name="Edge" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Edge" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioPinEdge" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioPinValueChangedEventArgs" ref="true" />
+      </containers>
+      <file name="8fbfbb7d-3cb3-8da7-4280-dd741a2f2ad4" />
+    </api>
+    <api id="T:Windows.Devices.Gpio.GpioSharingMode">
+      <topicdata group="api" />
+      <apidata name="GpioSharingMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Gpio.GpioSharingMode.Exclusive" />
+        <element api="F:Windows.Devices.Gpio.GpioSharingMode.SharedReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.DevicesLowLevelContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3596a021-ee51-1477-157b-09d01b3a6ab6" />
+    </api>
+    <api id="F:Windows.Devices.Gpio.GpioSharingMode.Exclusive">
+      <topicdata group="api" notopic="" />
+      <apidata name="Exclusive" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioSharingMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioSharingMode" ref="false" />
+      </containers>
+      <file name="fdf668eb-fc83-761e-47cb-f3f39e045308" />
+    </api>
+    <api id="F:Windows.Devices.Gpio.GpioSharingMode.SharedReadOnly">
+      <topicdata group="api" notopic="" />
+      <apidata name="SharedReadOnly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Gpio.GpioSharingMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Gpio" />
+        <type api="T:Windows.Devices.Gpio.GpioSharingMode" ref="false" />
+      </containers>
+      <file name="95ee0f68-76ea-0b9c-c0f4-e345a4ef5a7b" />
+    </api>
+  </apis>
+</reflection>

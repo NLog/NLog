@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- French translations contributed by Stéphane Gagnon -->
+<content xml:space="preserve" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+
+	<!-- paths -->
+	<item id="iconPath">../icons/{0}</item>
+	<item id="stylePath">../styles/{0}</item>
+	<item id="scriptPath">../scripts/{0}</item>
+
+	<!-- locale -->
+	<item id="locale">fr-FR</item>
+	<item id="brandingLocaleCss">branding-fr-FR.css</item>
+
+	<item id="meta_help20_desktopTechnologyAttribute">kbNetFramewk</item>
+	<item id="meta_help20_netcfTechnologyAttribute">kbNetCompactFramewk</item>
+	<item id="meta_help20_netcfDocSetAttribute">NetCompactFramework</item>
+	<item id="meta_help20_xnaTechnologyAttribute">kbXNA</item>
+	<item id="meta_help20_xnaDocSetAttribute">XNA</item>
+
+	<!-- header and footer -->
+	<item id="header"><span class="introStyle"></span></item>
+	<item id="footer_text"></item>
+  
+	<!-- freshness date -->
+	<item id="boilerplate_UpdateTitle"><span class="introStyle">Mise à jour: {0}</span></item>
+	<!-- if the TransformComponent of the BuildAssembler config file has the argument: 
+			 argument key="changeHistoryOptions" value="showDefaultFreshnessDate"
+			 the "text_defaultFreshnessDate" item is used as the default freshness date for topics that don't have a Change History table. -->
+	<item id="text_defaultFreshnessDate"/>
+  
+	<!-- topic title -->
+	<item id="boilerplate_pageTitle">{0}</item>
+
+	<!-- alert titles -->
+	<item id="alert_title_tip">Conseil</item>
+	<item id="alert_title_caution">Avertissement</item>
+	<item id="alert_title_security">Note de sécurité</item>
+	<item id="alert_title_note">Note</item>
+	<item id="alert_title_important">Important</item>
+	<item id="alert_title_visualBasic">Visual Basic Note</item>
+	<item id="alert_title_visualC#">C# Note</item>
+	<item id="alert_title_visualC++">C++ Note</item>
+	<item id="alert_title_visualJ#">J# Note</item>
+
+	<!-- alert alt text -->
+	<item id="alert_altText_tip">Conseil</item>
+	<item id="alert_altText_caution">Avertissement</item>
+	<item id="alert_altText_security">Note de sécurité</item>
+	<item id="alert_altText_note">Note</item>
+	<item id="alert_altText_important">Important note</item>
+	<item id="alert_altText_visualBasic">Visual Basic note</item>
+	<item id="alert_altText_visualC#">C# note</item>
+	<item id="alert_altText_visualC++">C++ note</item>
+	<item id="alert_altText_visualJ#">J# note</item>	
+
+	<!-- section titles -->
+	<item id="title_remarks">Remarques</item>
+	<item id="title_changeHistory">Historique des modifications</item>
+	<item id="title_events">Événéments</item>
+	<item id="title_exceptions">Exceptions</item>
+	<item id="title_contracts">Contrats</item>
+	<item id="title_setter">Set</item>
+	<item id="title_getter">Get</item>
+	<item id="title_seeAlso_tasks">Tâches</item>
+	<item id="title_seeAlso_reference">Référence</item>
+	<item id="title_seeAlso_concepts">Concepts</item>
+	<item id="title_seeAlso_otherResources">Autres ressources</item>
+	<item id="title_revisionHistory">Historique des modifications</item>
+
+	<!-- dynamic Link Information -->
+	<item id="meta_mshelp_KTable"><MSHelp:ktable keywords='{0}' locHeader='Location' topicHeader = 'Topic'
+		disambiguator='table' indexMoniker='!DefaultDynamicLinkIndex' /></item>
+
+	<item id="inline_dynamicLink_prefixText">Pour de l'information supplémentaire, voir </item>
+	<item id="inline_dynamicLink_postfixText">.</item>
+	<item id="inline_dynamicLink_separatorText"> et </item>
+  
+	<!-- Development language and code snippet titles for languages without a syntax generator -->
+	<item id="devlang_HTML">HTML</item>
+	<item id="devlang_PShell">PowerShell</item>
+	<item id="devlang_Python">Python</item>
+	<item id="devlang_SQL">SQL</item>
+	<item id="devlang_VBScript">Visual Basic Script</item>
+	<item id="devlang_VisualBasicAndCSharp">Visual Basic et C#</item>
+	<item id="devlang_XML">XML</item>
+
+	<item id="noCodeExample"><p>Il n'y a pas d'exemple de code disponible actuellement ou le langage n'est pas supporté.</p></item>
+
+	<!-- Development language metadata values for languages without a syntax generator -->
+	<item id="metaLang_HTML">HTML</item>
+	<item id="metaLang_PShell">PowerShell</item>
+	<item id="metaLang_Python">Python</item>
+	<item id="metaLang_SQL">SQL</item>
+	<item id="metaLang_VBScript">VBScript</item>
+	<item id="metaLang_VisualBasicAndCSharp">VB et C#</item>
+	<item id="metaLang_XML">XML</item>
+
+	<!-- language keywords -->
+	<item id="devlang_nullKeyword">une référence null (<span class="keyword">Nothing</span> en Visual Basic)</item>
+	<item id="devlang_staticKeyword"><span class="keyword">static</span> (<span class="keyword">Shared</span> en Visual Basic)</item>
+	<item id="devlang_virtualKeyword"><span class="keyword">virtual</span> (<span class="keyword">Overridable</span> en Visual Basic)</item>
+	<item id="devlang_trueKeyword"><span class="keyword">true</span> (<span class="keyword">True</span> en Visual Basic)</item>
+	<item id="devlang_falseKeyword"><span class="keyword">false</span> (<span class="keyword">False</span> en Visual Basic)</item>
+	<item id="devlang_abstractKeyword"><span class="keyword">abstract</span> (<span class="keyword">MustInherit</span> en Visual Basic)</item>
+  <item id="devlang_sealedKeyword"><span class="keyword">sealed</span> (<span class="keyword">NotInheritable</span> en Visual Basic)</item>
+	<item id="devlang_asyncKeyword"><span class="keyword">async</span> (<span class="keyword">Async</span> en Visual Basic)</item>
+	<item id="devlang_awaitKeyword"><span class="keyword">await</span> (<span class="keyword">Await</span> en Visual Basic)</item>
+	<item id="devlang_asyncAwaitKeyword"><span class="keyword">async</span>/<span class="keyword">await</span> (<span class="keyword">Async</span>/<span class="keyword">Await</span> en Visual Basic)</item>
+
+	<!-- transforms insert K Index Technology qualifiers based on a conceptual topic's //metadata/attribute[@name='DocSet'] value />-->
+	<!-- If you add new docset values, the item/@id must = "meta_kIndexTechTag_" + the lower-case DocSet name. -->
+	<item id="meta_kIndexTermWithTechQualifier">{0}<include item="meta_kIndexTechTag_{1}" />{2}</item>
+	<item id="meta_kIndexTechTag_avalon"> [WPF]</item>
+	<item id="meta_kIndexTechTag_wpf"> [WPF]</item>
+	<item id="meta_kIndexTechTag_wcf"> [Windows Communication Foundation]</item>
+	<item id="meta_kIndexTechTag_windowsforms"> [Windows Forms]</item>
+
+	<item id="top">Haut de la page</item>
+
+	<!-- Copyright -->
+	<item id="copyright_info"><include item="copyright_text"/></item>
+	<item id="copyright_link"></item>
+	<item id="copyright_text">&#169; 2015 UQAC. Tout droit réservé.</item>
+
+	<!-- Bibliography -->
+	<item id="bibliographyTitle">Bibliographie</item>
+
+	<!-- Legacy shared content -->
+	<item id="copyrightText"><include item="copyright_text"/></item>
+	<item id="copyCode">Copie</item>
+
+	<!-- Lightweight TOC resize tool tip -->
+	<item id="resizeToolTip">Cliquez ou draguez pour réajuster</item>
+</content>
