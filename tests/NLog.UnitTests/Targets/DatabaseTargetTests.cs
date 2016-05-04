@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Data.SqlTypes;
+
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
@@ -350,7 +352,7 @@ Dispose()
                     new DatabaseParameterInfo("msg", "${message}"),
                     new DatabaseParameterInfo("lvl", "${level}"),
                     new DatabaseParameterInfo("lg", "${logger}")
-                        
+
                 }
             };
 
@@ -779,17 +781,63 @@ Dispose()
                 // typeof(OracleDbType).FullName + ".Clob"
                 DbType = "NLog.UnitTests.Targets.OracleDbType.Clob"
             };
-            var parameter = new MockDbParameter(new MockDbCommand(), 0); 
+            var parameter = new MockDbParameter(new MockDbCommand(), 0);
 
             target.SetParamType(parameter, parameterInfo.DbType);
 
             Assert.Equal(expected, parameter.OracleDbType);
         }
 
-        [Fact]
-        public void DbType_SetParamTypeShouldSetEnumValueTest()
+
+        [Theory]
+        [InlineData("SQLSERVER", "System.Data.SqlDbType.DateTime, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089", DbType.DateTime)]
+        //    [InlineData("SQLSERVER", "System.Data.SqlDbType.DateTime, System.Data", DbType.DateTime)]
+        [InlineData("SQLSERVER", "System.Data.SqlDbType.DateTime", DbType.DateTime)]
+        //       [InlineData("SQLSERVER", "SqlDbType.DateTime", DbType.DateTime)]
+        public void CreateCommandTests(string dbProvider, string dbTypeName, DbType dbType)
         {
-            var expected = DbType.DateTime2;
+            var logEvent = LogEventInfo.CreateNullEvent();
+
+            //todo dbprobider=System.Data.SqlClient wont work?
+
+            var configXml = string.Format(@"
+<nlog ThrowExceptions='true'>
+    <targets>
+        <target name='database' type='Database' 
+            dbProvider = '{1}'
+            connectionString = 'some-connectionstring'   
+            commandText='@boo'     >
+ 
+            <parameter name='@date' layout='${{date:format=yyyy\-MM\-dd HH\:mm\:ss.fff}}' DbType='{0}' />
+        </target>
+    </targets>
+</nlog>
+", dbTypeName, dbProvider);
+
+            var config = CreateConfigurationFromString(configXml);
+
+            //todo better crash if InitializeAll not called
+            config.InitializeAll();
+            var databaseTarget = config.FindTargetByName<DatabaseTarget>("database");
+            Assert.NotNull(databaseTarget);
+            Assert.Equal(1, databaseTarget.Parameters.Count);
+            var command = databaseTarget.CreateCommand(logEvent, databaseTarget.CreateConnection());
+            Assert.Equal(1, command.Parameters.Count);
+
+            Assert.Equal(dbType, ((IDataParameter)command.Parameters[0]).DbType);
+
+
+
+        }
+
+        [Theory]
+        //    [InlineData("System.Data.SqlDbType.DateTime, System.Data", DbType.DateTime)]
+        [InlineData("System.Data.SqlDbType.DateTime, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089", DbType.DateTime)]
+        [InlineData("System.Data.DbType.DateTime2", DbType.DateTime2)]
+        [InlineData("", DbType.AnsiString)]
+        public void DbType_SetParamTypeShouldSetEnumValueTest(string dbTypeString, DbType expected)
+        {
+            LogManager.ThrowExceptions = true;
             var target = new DatabaseTarget
             {
                 Name = "notimportant",
@@ -799,10 +847,9 @@ Dispose()
             };
             var parameterInfo = new DatabaseParameterInfo
             {
-                DbType = string.Format("System.Data.DbType.{0}", expected),
+                DbType = dbTypeString
             };
-            var parameter = new MockDbParameter(new MockDbCommand(), 0); 
-            parameter.DbType = DbType.AnsiString;
+            var parameter = new MockDbParameter(new MockDbCommand(), 0);
 
             target.SetParamType(parameter, parameterInfo.DbType);
             Assert.Equal(expected, parameter.DbType);
@@ -875,7 +922,7 @@ Dispose()
             LogManager.ThrowExceptions = true;
             Exception exception = Assert.Throws<NLogConfigurationException>(() =>
                 target.SetParamType(parameter, parameterInfo.DbType));
-            
+
             Assert.Contains(dbType, exception.Message);
         }
 
@@ -908,7 +955,7 @@ Dispose()
                 ConnectionString = "notimportant",
                 CommandText = "notimportant",
             };
-            var parameterInfo = new DatabaseParameterInfo {DbType = null};
+            var parameterInfo = new DatabaseParameterInfo { DbType = null };
             var parameter = new MockDbParameter(new MockDbCommand(), 0);
             var expected = parameter.DbType = DbType.String;
             target.SetParamType(parameter, parameterInfo.DbType);
@@ -941,9 +988,9 @@ Dispose()
         }
 
         [Theory]
-        [InlineData("usetransactions='false'",true)]
-        [InlineData("usetransactions='true'",true)]
-        [InlineData("",false)]
+        [InlineData("usetransactions='false'", true)]
+        [InlineData("usetransactions='true'", true)]
+        [InlineData("", false)]
         public void WarningForObsoleteUseTransactions(string property, bool printWarning)
         {
             LoggingConfiguration c = CreateConfigurationFromString(string.Format(@"
