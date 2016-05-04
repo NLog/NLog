@@ -341,7 +341,7 @@ namespace NLog.Targets
                     this.ProviderFactory = DbProviderFactories.GetFactory(cs.ProviderName);
                     foundProvider = true;
                 }
-            
+
             }
 
             if (!foundProvider)
@@ -567,25 +567,16 @@ namespace NLog.Targets
 
 
                     //if its a DbType then we can just set it
-                    if (databaseType == typeof (DbType))
+                    if (databaseType == typeof(DbType))
                     {
-                        dbDataParameter.DbType = (DbType) enumValueObject;
+                        dbDataParameter.DbType = (DbType)enumValueObject;
                     }
                     else
                     {
                         // Each custom database type that we want to support will need added here on as needed basis
-                        string propertyName = null;
-                        if (dbType.Contains(".OracleDbType.") || dbType.StartsWith("OracleDbType."))
-                        {
-                            // for Oracle we have to set the OracleDbType property on the parameter
-                            propertyName = "OracleDbType";
-                        }
-                        else if (dbType.Contains(".SqlDbType.") || dbType.StartsWith("SqlDbType."))
-                        {
-                            // for Oracle we have to set the OracleDbType property on the parameter
-                            propertyName = "SqlDbType";
-                        }
-                        else
+                        string propertyName = TryDbType(dbType, "OracleDbType") ?? TryDbType(dbType, "SqlDbType");
+
+                        if (propertyName == null)
                         {
                             // we only support additional database types by custom implementation
                             var exception = new NLogConfigurationException("Custom setting of the database type is not supported for: " +
@@ -627,6 +618,18 @@ namespace NLog.Targets
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Test DB type. If OK, returns <paramref name="dbTypeName"/> otherwise <c>null</c>.
+        /// </summary>
+        /// <param name="fullType"></param>
+        /// <param name="dbTypeName">dbtype/propertyname</param>
+        /// <returns></returns>
+        private static string TryDbType(string fullType, string dbTypeName)
+        {
+            var result = fullType.StartsWith(string.Format("{0}.", dbTypeName)) || fullType.Contains(string.Format(".{0}.", dbTypeName));
+            return !result ? null : dbTypeName;
         }
 
         private class EnumNameParseResult
