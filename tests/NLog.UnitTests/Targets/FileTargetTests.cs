@@ -717,7 +717,7 @@ namespace NLog.UnitTests.Targets
         public void DeleteArchiveFilesByDateWithDateName()
         {
             const int maxArchiveFiles = 3;
-
+            LogManager.ThrowExceptions = true;
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempPath, "${date:format=yyyyMMddHHmmssfff}.txt");
             try

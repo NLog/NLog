@@ -224,21 +224,31 @@ namespace NLog.Targets
             get { return fileName; }
             set
             {
-                var simpleLayout = value as SimpleLayout;
-                if (simpleLayout != null && simpleLayout.IsFixedText)
-                {
-                    cachedCleanedFileNamed = CleanupInvalidFileNameChars(simpleLayout.FixedText);
-                }
-                else
-                {
-                    //clear cache
-                    cachedCleanedFileNamed = null;
-                }
-
+              
                 fileName = value;
 
-                RefreshFileArchive();
-                RefreshArchiveFilePatternToWatch();
+                if (IsInitialized)
+                {
+                    SetCachedCleanedFileNamed(value);
+
+                    //don't call before initialized because this could lead to stackoverflows.
+                    RefreshFileArchive();
+                    RefreshArchiveFilePatternToWatch();
+                }
+            }
+        }
+
+        private void SetCachedCleanedFileNamed(Layout value)
+        {
+            var simpleLayout = value as SimpleLayout;
+            if (simpleLayout != null && simpleLayout.IsFixedText)
+            {
+                cachedCleanedFileNamed = CleanupInvalidFileNameChars(simpleLayout.FixedText);
+            }
+            else
+            {
+                //clear cache
+                cachedCleanedFileNamed = null;
             }
         }
 
@@ -293,7 +303,10 @@ namespace NLog.Targets
             set
             {
                 keepFileOpen = value;
-                RefreshArchiveFilePatternToWatch();
+                if (IsInitialized)
+                {
+                    RefreshArchiveFilePatternToWatch();
+                }
             }
         }
 
@@ -403,7 +416,10 @@ namespace NLog.Targets
             set
             {
                 concurrentWrites = value;
-                RefreshArchiveFilePatternToWatch();
+                if (IsInitialized)
+                {
+                    RefreshArchiveFilePatternToWatch();
+                }
             }
         }
 
@@ -488,7 +504,10 @@ namespace NLog.Targets
             set
             {
                 archiveAboveSize = value;
-                RefreshArchiveFilePatternToWatch();
+                if (IsInitialized)
+                {
+                    RefreshArchiveFilePatternToWatch();
+                }
             }
         }
 
@@ -513,7 +532,10 @@ namespace NLog.Targets
             set
             {
                 archiveEvery = value;
-                RefreshArchiveFilePatternToWatch();
+                if (IsInitialized)
+                {
+                    RefreshArchiveFilePatternToWatch();
+                }
             }
         }
 
@@ -533,8 +555,12 @@ namespace NLog.Targets
             set
             {
                 archiveFileName = value;
-                RefreshFileArchive();
-                RefreshArchiveFilePatternToWatch();
+                if (IsInitialized)
+                {
+                    //don't call before initialized because this could lead to stackoverflows.
+                    RefreshFileArchive();
+                    RefreshArchiveFilePatternToWatch();
+                }
             }
         }
 
@@ -574,7 +600,10 @@ namespace NLog.Targets
             set
             {
                 enableArchiveFileCompression = value;
-                RefreshArchiveFilePatternToWatch();
+                if (IsInitialized)
+                {
+                    RefreshArchiveFilePatternToWatch();
+                }
             }
         }
 #else
@@ -822,6 +851,9 @@ namespace NLog.Targets
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
+           
+            SetCachedCleanedFileNamed(FileName);
+            RefreshFileArchive();
             this.appenderFactory = GetFileAppenderFactory();
 
             this.fileAppenderCache = new FileAppenderCache(this.OpenFileCacheSize, this.appenderFactory, this);
