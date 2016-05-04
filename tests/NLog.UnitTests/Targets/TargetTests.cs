@@ -31,9 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
 using NLog.Config;
+using NLog.Internal;
 using NLog.LayoutRenderers;
 using NLog.Layouts;
+using NLog.Targets.Wrappers;
+using NLog.UnitTests.Targets.Wrappers;
 
 namespace NLog.UnitTests.Targets
 {
@@ -46,79 +50,146 @@ namespace NLog.UnitTests.Targets
 
     public class TargetTests : NLogTestBase
     {
+        /// <summary>
+        /// Test the following things:
+        /// - Target has default ctor
+        /// - Target has ctor with name (string) arg.
+        /// - Both ctors are creating the same instances
+        /// </summary>
         [Fact]
-        public void ConstructorsTest()
+        public void TargetContructorWithNameTest()
         {
-            var targetTypes = typeof(Target).Assembly.GetExportedTypes();
-            int needed = targetTypes.Length;
+            var targetTypes = typeof(Target).Assembly.GetTypes().Where(t => !t.IsAbstract && t.IsSubclassOf(typeof(Target)) ).ToList();
+            int needed = targetTypes.Count;
             int @checked = 0;
-            foreach (Type candidateType in targetTypes)
+            foreach (Type targetType in targetTypes)
             {
-                if (!candidateType.IsAbstract &&
-                    typeof(Target).IsAssignableFrom(candidateType))
+                Target defaultConstructedTarget;
+                Target namedConstructedTarget;
+                bool constructionFailed = false;
+                string lastPropertyName = null;
+
+                try
                 {
-                    Target defaultConstructedTarget;
-                    Target namedConstructedTarget;
-                    bool constructionFailed = false;
-                    string lastPropertyName = null;
-                    
-                    try
+                    // Check if the Target can be created using a default constructor
+                    var name = targetType + "_name";
+
+                    defaultConstructedTarget = (Target) Activator.CreateInstance(targetType);
+                    defaultConstructedTarget.Name = name;
+
+                    // Check if the Target can be created using a constructor with the name parameter
+                    namedConstructedTarget = (Target) Activator.CreateInstance(targetType, targetType.ToString());
+
+                    var checkedAtLeastOneProperty = false;
+
+                    foreach (System.Reflection.PropertyInfo pi in targetType.GetProperties(
+                        System.Reflection.BindingFlags.NonPublic |
+                        System.Reflection.BindingFlags.Instance |
+                        System.Reflection.BindingFlags.Static))
                     {
-                        // Check if the Target can be created using a default constructor
-                        defaultConstructedTarget = (Target)Activator.CreateInstance(candidateType);
-
-                        // Check if the Target can be created using a constructor with the name parameter
-                        namedConstructedTarget = (Target)Activator.CreateInstance(candidateType, candidateType.ToString());
-
-                        var checkedAtLeastOneProperty = false;
-
-                        foreach (System.Reflection.PropertyInfo pi in candidateType.GetProperties(
-                            System.Reflection.BindingFlags.NonPublic |
-                            System.Reflection.BindingFlags.Instance |
-                            System.Reflection.BindingFlags.Static))
+                        lastPropertyName = pi.Name;
+                        if (pi.CanRead && !pi.Name.Equals("SyncRoot"))
                         {
-                           
-                            lastPropertyName = pi.Name;
-                            if (pi.CanRead && !pi.Name.Equals("Name") && !pi.Name.Equals("SyncRoot"))
+                            var value1 = pi.GetValue(defaultConstructedTarget, null);
+                            var value2 = pi.GetValue(namedConstructedTarget, null);
+                            if (value1 != null && value2 != null)
                             {
-                                var value1 = pi.GetValue(defaultConstructedTarget, null);
-                                var value2 = pi.GetValue(namedConstructedTarget, null);
-                                if (value1 != null && value2 != null)
+                                if (value1 is IRenderable)
                                 {
-                                    if (value1 is SimpleLayout || value1 is LayoutRenderer || value1 is Layout)
-                                    {
-                                        Assert.Equal(value1.ToString(), value2.ToString());
-                                    }
-                                    else
-                                    {
-                                        Assert.Equal(value1, value2);
-                                    }
-                                  
+                                    Assert.Equal((IRenderable) value1, (IRenderable) value2, new RenderableEq());
+                                }
+                                else if (value1 is AsyncRequestQueue)
+                                {
+                                    Assert.Equal((AsyncRequestQueue) value1, (AsyncRequestQueue) value2, new AsyncRequestQueueEq());
                                 }
                                 else
                                 {
-                                    Assert.Null(value1);
-                                    Assert.Null(value2);
+                                    Assert.Equal(value1, value2);
                                 }
-                                checkedAtLeastOneProperty = true;
                             }
-
-                        }
-
-                        if (checkedAtLeastOneProperty)
-                        {
-                            @checked ++;
+                            else
+                            {
+                                Assert.Null(value1);
+                                Assert.Null(value2);
+                            }
+                            checkedAtLeastOneProperty = true;
                         }
                     }
-                    catch (Exception ex)
+
+                    if (checkedAtLeastOneProperty)
                     {
-                        constructionFailed = true;
-                        string failureMessage = String.Format("Error testing constructors for '{0}.{1}`\n{2}", candidateType, lastPropertyName, ex.ToString());
-                        Assert.False(constructionFailed, failureMessage);
+                        @checked ++;
                     }
+                }
+                catch (Exception ex)
+                {
+                    constructionFailed = true;
+                    string failureMessage = String.Format("Error testing constructors for '{0}.{1}`\n{2}", targetType, lastPropertyName, ex.ToString());
+                    Assert.False(constructionFailed, failureMessage);
                 }
             }
             Assert.Equal(needed,@checked);
+        }
+
+        private class RenderableEq : EqualityComparer<IRenderable>
+        {
+            /// <summary>
+            /// Determines whether the specified objects are equal.
+            /// </summary>
+            /// <returns>
+            /// true if the specified objects are equal; otherwise, false.
+            /// </returns>
+            /// <param name="x">The first object of type <paramref name="T"/> to compare.</param><param name="y">The second object of type <paramref name="T"/> to compare.</param>
+            public override bool Equals(IRenderable x, IRenderable y)
+            {
+                if (x == null) return y == null;
+                var nullEvent = LogEventInfo.CreateNullEvent();
+                return x.Render(nullEvent) == y.Render(nullEvent);
+            }
+
+            /// <summary>
+            /// Returns a hash code for the specified object.
+            /// </summary>
+            /// <returns>
+            /// A hash code for the specified object.
+            /// </returns>
+            /// <param name="obj">The <see cref="T:System.Object"/> for which a hash code is to be returned.</param><exception cref="T:System.ArgumentNullException">The type of <paramref name="obj"/> is a reference type and <paramref name="obj"/> is null.</exception>
+            public override int GetHashCode(IRenderable obj)
+            {
+                return obj.ToString().GetHashCode();
+            }
+        }
+
+        private class AsyncRequestQueueEq : EqualityComparer<AsyncRequestQueue>
+        {
+            /// <summary>
+            /// Determines whether the specified objects are equal.
+            /// </summary>
+            /// <returns>
+            /// true if the specified objects are equal; otherwise, false.
+            /// </returns>
+            /// <param name="x">The first object of type <paramref name="T"/> to compare.</param><param name="y">The second object of type <paramref name="T"/> to compare.</param>
+            public override bool Equals(AsyncRequestQueue x, AsyncRequestQueue y)
+            {
+                if (x == null) return y == null;
+
+                return x.RequestLimit == y.RequestLimit && x.OnOverflow == y.OnOverflow;
+            }
+
+            /// <summary>
+            /// Returns a hash code for the specified object.
+            /// </summary>
+            /// <returns>
+            /// A hash code for the specified object.
+            /// </returns>
+            /// <param name="obj">The <see cref="T:System.Object"/> for which a hash code is to be returned.</param><exception cref="T:System.ArgumentNullException">The type of <paramref name="obj"/> is a reference type and <paramref name="obj"/> is null.</exception>
+            public override int GetHashCode(AsyncRequestQueue obj)
+            {
+                unchecked
+                {
+                    return (obj.RequestLimit * 397) ^ (int)obj.OnOverflow;
+                }
+            }
         }
 
         [Fact]
