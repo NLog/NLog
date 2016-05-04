@@ -97,7 +97,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="PerformanceCounterTarget" /> class.
         /// </summary>
         /// <param name="name">Name of the target.</param>
-        public PerformanceCounterTarget(string name)
+        public PerformanceCounterTarget(string name) : this()
         {
             this.Name = name;
         }
