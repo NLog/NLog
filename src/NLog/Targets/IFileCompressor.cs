@@ -34,9 +34,8 @@
 namespace NLog.Targets
 {
     /// <summary>
-    /// <see cref="FileTarget"/> instances may be configured to compress archived files in a custom way
-    /// by setting <see cref="FileTarget.Compressor"/> per instance
-    /// or <see cref="FileTarget.DefaultCompressor"/> for all instances.
+    /// <see cref="FileTarget"/> may be configured to compress archived files in a custom way
+    /// by setting <see cref="FileTarget.FileCompressor"/> before logging your first event.
     /// </summary>
     public interface IFileCompressor
     {
@@ -45,6 +44,6 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="fileName">Absolute path to the log file to compress/zip.</param>
         /// <param name="archiveFileName">Absolute path to the archive zip file to create.</param>
-        void Compress(string fileName, string archiveFileName);
+        void CompressFile(string fileName, string archiveFileName);
     }
 }

@@ -39,16 +39,16 @@ using System.IO.Compression;
 
     /// <summary>
     /// Builtin IFileCompressor implementation utilizing the .Net4.5 specific <see cref="ZipArchive"/> 
-    /// and is used as the default value for <see cref="FileTarget.DefaultCompressor"/>.
+    /// and is used as the default value for <see cref="FileTarget.FileCompressor"/> on .Net4.5.
     /// So log files created via <see cref="FileTarget"/> can be zipped when archived
-    /// w/o 3rd party zip library.
+    /// w/o 3rd party zip library when run on .Net4.5 or higher.
     /// </summary>
     internal class ZipArchiveFileCompressor : IFileCompressor
     {
         /// <summary>
-        /// Implements <see cref="IFileCompressor.Compress(string, string)"/>
+        /// Implements <see cref="IFileCompressor.CompressFile(string, string)"/> using the .Net4.5 specific <see cref="ZipArchive"/>
         /// </summary>
-        public void Compress(string fileName, string archiveFileName)
+        public void CompressFile(string fileName, string archiveFileName)
         {
             using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
             using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
