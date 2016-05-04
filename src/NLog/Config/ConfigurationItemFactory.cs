@@ -251,7 +251,7 @@ namespace NLog.Config
             }
             if (!Directory.Exists(assemblyLocation))
             {
-                InternalLogger.Warn("No auto loading because Nlog.dll location is not found");
+                InternalLogger.Warn("No auto loading because '{0}' doesn't exists", assemblyLocation);
                 return factory;
             }
 
