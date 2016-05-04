@@ -204,6 +204,18 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="FileTarget" /> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        /// <param name="name">Name of the target.</param>
+        public FileTarget(string name) : this()
+        {
+            this.Name = name;
+        }
+
+        /// <summary>
         /// Gets or sets the name of the file to write to.
         /// </summary>
         /// <remarks>
@@ -237,8 +249,11 @@ namespace NLog.Targets
 
                 fileName = value;
 
-                RefreshFileArchive();
-                RefreshArchiveFilePatternToWatch();
+                if (IsInitialized)
+                {
+                    RefreshFileArchive();
+                    RefreshArchiveFilePatternToWatch();
+                }
             }
         }
 
@@ -822,6 +837,9 @@ namespace NLog.Targets
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
+            RefreshFileArchive();
+            RefreshArchiveFilePatternToWatch();
+
             this.appenderFactory = GetFileAppenderFactory();
 
             this.fileAppenderCache = new FileAppenderCache(this.OpenFileCacheSize, this.appenderFactory, this);

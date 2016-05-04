@@ -32,6 +32,8 @@
 // 
 
 using NLog.Config;
+using NLog.LayoutRenderers;
+using NLog.Layouts;
 
 namespace NLog.UnitTests.Targets
 {
@@ -44,6 +46,81 @@ namespace NLog.UnitTests.Targets
 
     public class TargetTests : NLogTestBase
     {
+        [Fact]
+        public void ConstructorsTest()
+        {
+            var targetTypes = typeof(Target).Assembly.GetExportedTypes();
+            int needed = targetTypes.Length;
+            int @checked = 0;
+            foreach (Type candidateType in targetTypes)
+            {
+                if (!candidateType.IsAbstract &&
+                    typeof(Target).IsAssignableFrom(candidateType))
+                {
+                    Target defaultConstructedTarget;
+                    Target namedConstructedTarget;
+                    bool constructionFailed = false;
+                    string lastPropertyName = null;
+                    
+                    try
+                    {
+                        // Check if the Target can be created using a default constructor
+                        defaultConstructedTarget = (Target)Activator.CreateInstance(candidateType);
+
+                        // Check if the Target can be created using a constructor with the name parameter
+                        namedConstructedTarget = (Target)Activator.CreateInstance(candidateType, candidateType.ToString());
+
+                        var checkedAtLeastOneProperty = false;
+
+                        foreach (System.Reflection.PropertyInfo pi in candidateType.GetProperties(
+                            System.Reflection.BindingFlags.NonPublic |
+                            System.Reflection.BindingFlags.Instance |
+                            System.Reflection.BindingFlags.Static))
+                        {
+                           
+                            lastPropertyName = pi.Name;
+                            if (pi.CanRead && !pi.Name.Equals("Name") && !pi.Name.Equals("SyncRoot"))
+                            {
+                                var value1 = pi.GetValue(defaultConstructedTarget, null);
+                                var value2 = pi.GetValue(namedConstructedTarget, null);
+                                if (value1 != null && value2 != null)
+                                {
+                                    if (value1 is SimpleLayout || value1 is LayoutRenderer || value1 is Layout)
+                                    {
+                                        Assert.Equal(value1.ToString(), value2.ToString());
+                                    }
+                                    else
+                                    {
+                                        Assert.Equal(value1, value2);
+                                    }
+                                  
+                                }
+                                else
+                                {
+                                    Assert.Null(value1);
+                                    Assert.Null(value2);
+                                }
+                                checkedAtLeastOneProperty = true;
+                            }
+
+                        }
+
+                        if (checkedAtLeastOneProperty)
+                        {
+                            @checked ++;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        constructionFailed = true;
+                        string failureMessage = String.Format("Error testing constructors for '{0}.{1}`\n{2}", candidateType, lastPropertyName, ex.ToString());
+                        Assert.False(constructionFailed, failureMessage);
+                    }
+                }
+            }
+            Assert.Equal(needed,@checked);
+        }
+
         [Fact]
         public void InitializeTest()
         {
@@ -291,6 +368,15 @@ namespace NLog.UnitTests.Targets
             public bool ThrowOnInitialize { get; set; }
             public int WriteCount3 { get; set; }
 
+            public MyTarget() : base()
+            {
+            }
+
+            public MyTarget(string name) : this()
+            {
+                this.Name = name;
+            }
+
             protected override void InitializeTarget()
             {
                 if (this.ThrowOnInitialize)
@@ -363,6 +449,15 @@ namespace NLog.UnitTests.Targets
 
         public class WrongMyTarget : Target
         {
+            public WrongMyTarget() : base()
+            {
+            }
+
+            public WrongMyTarget(string name) : this()
+            {
+                this.Name = name;
+            }
+
             /// <summary>
             /// Initializes the target. Can be used by inheriting classes
             /// to initialize logging.

@@ -88,10 +88,27 @@ namespace NLog.UnitTests.Targets.Wrappers
 
         public class MyWrapper : WrapperTargetBase
         {
+            public MyWrapper() : base()
+            {
+            }
+
+            public MyWrapper(string name) : this()
+            {
+                this.Name = name;
+            }
         }
 
         public class MyWrappedTarget : Target
         {
+            public MyWrappedTarget() : base()
+            {
+            }
+
+            public MyWrappedTarget(string name) : this()
+            {
+                this.Name = name;
+            }
+
             public int FlushCount { get; set; }
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
