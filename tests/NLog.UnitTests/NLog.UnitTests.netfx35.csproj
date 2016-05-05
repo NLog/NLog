@@ -98,6 +98,7 @@
     <Compile Include="ApiTests.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AsyncHelperTests.cs" />
+    <Compile Include="Common\CSharpEventTarget.cs" />
     <Compile Include="Common\InternalLoggerTests.cs" />
     <Compile Include="Common\InternalLoggerTests_Trace.cs" />
     <Compile Include="Common\LastLogEventListTarget.cs" />
