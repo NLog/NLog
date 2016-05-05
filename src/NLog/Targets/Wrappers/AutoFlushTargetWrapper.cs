@@ -63,7 +63,7 @@ namespace NLog.Targets.Wrappers
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
         /// </remarks>
         public AutoFlushTargetWrapper()
-            : this((Target)null)
+            : this(null)
         {
         }
 
@@ -73,9 +73,10 @@ namespace NLog.Targets.Wrappers
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
         /// </remarks>
+        /// <param name="wrappedTarget">The wrapped target.</param>
         /// <param name="name">Name of the target</param>
-        public AutoFlushTargetWrapper(string name)
-            : this()
+        public AutoFlushTargetWrapper(string name, Target wrappedTarget)
+            : this(wrappedTarget)
         {
             this.Name = name;
         }

@@ -52,7 +52,7 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="BufferingTargetWrapper" /> class.
         /// </summary>
         public BufferingTargetWrapper()
-            : this((Target)null)
+            : this(null)
         {
         }
 
@@ -60,8 +60,9 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="BufferingTargetWrapper" /> class.
         /// </summary>
         /// <param name="name">Name of the target.</param>
-        public BufferingTargetWrapper(string name)
-            : this()
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        public BufferingTargetWrapper(string name, Target wrappedTarget)
+            : this(wrappedTarget)
         {
             this.Name = name;
         }

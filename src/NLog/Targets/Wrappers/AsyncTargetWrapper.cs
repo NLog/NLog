@@ -87,7 +87,7 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="AsyncTargetWrapper" /> class.
         /// </summary>
         public AsyncTargetWrapper()
-            : this((Target)null)
+            : this(null)
         {
         }
 
@@ -95,8 +95,9 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="AsyncTargetWrapper" /> class.
         /// </summary>
         /// <param name="name">Name of the target.</param>
-        public AsyncTargetWrapper(string name)
-            : this()
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        public AsyncTargetWrapper(string name, Target wrappedTarget)
+            : this(wrappedTarget)
         {
             this.Name = name;
         }

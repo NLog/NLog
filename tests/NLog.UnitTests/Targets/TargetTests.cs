@@ -32,6 +32,7 @@
 // 
 
 using System.Linq;
+using NLog.Conditions;
 using NLog.Config;
 using NLog.Internal;
 using NLog.LayoutRenderers;
@@ -59,14 +60,13 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void TargetContructorWithNameTest()
         {
-            var targetTypes = typeof(Target).Assembly.GetTypes().Where(t => !t.IsAbstract && t.IsSubclassOf(typeof(Target)) ).ToList();
-            int needed = targetTypes.Count;
-            int @checked = 0;
+            var targetTypes = typeof(Target).Assembly.GetTypes().Where(t => !t.IsAbstract && t.IsSubclassOf(typeof(Target))).ToList();
+            int neededCheckCount = targetTypes.Count;
+            int checkCount = 0;
+            Target fileTarget = new FileTarget();
+
             foreach (Type targetType in targetTypes)
             {
-                Target defaultConstructedTarget;
-                Target namedConstructedTarget;
-                bool constructionFailed = false;
                 string lastPropertyName = null;
 
                 try
@@ -74,61 +74,113 @@ namespace NLog.UnitTests.Targets
                     // Check if the Target can be created using a default constructor
                     var name = targetType + "_name";
 
-                    defaultConstructedTarget = (Target) Activator.CreateInstance(targetType);
-                    defaultConstructedTarget.Name = name;
+                    var isWrapped = targetType.IsSubclassOf(typeof(WrapperTargetBase));
 
-                    // Check if the Target can be created using a constructor with the name parameter
-                    namedConstructedTarget = (Target) Activator.CreateInstance(targetType, targetType.ToString());
-
-                    var checkedAtLeastOneProperty = false;
-
-                    foreach (System.Reflection.PropertyInfo pi in targetType.GetProperties(
-                        System.Reflection.BindingFlags.NonPublic |
-                        System.Reflection.BindingFlags.Instance |
-                        System.Reflection.BindingFlags.Static))
+                    if (isWrapped)
                     {
-                        lastPropertyName = pi.Name;
-                        if (pi.CanRead && !pi.Name.Equals("SyncRoot"))
+                        neededCheckCount++;
+                      
+                        var args = new List<object> { fileTarget };
+
+                        //specials cases
+                        if (targetType == typeof(FilteringTargetWrapper))
                         {
-                            var value1 = pi.GetValue(defaultConstructedTarget, null);
-                            var value2 = pi.GetValue(namedConstructedTarget, null);
-                            if (value1 != null && value2 != null)
-                            {
-                                if (value1 is IRenderable)
-                                {
-                                    Assert.Equal((IRenderable) value1, (IRenderable) value2, new RenderableEq());
-                                }
-                                else if (value1 is AsyncRequestQueue)
-                                {
-                                    Assert.Equal((AsyncRequestQueue) value1, (AsyncRequestQueue) value2, new AsyncRequestQueueEq());
-                                }
-                                else
-                                {
-                                    Assert.Equal(value1, value2);
-                                }
-                            }
-                            else
-                            {
-                                Assert.Null(value1);
-                                Assert.Null(value2);
-                            }
-                            checkedAtLeastOneProperty = true;
+                            args.Add(new ConditionLoggerNameExpression());
                         }
+                        else if (targetType == typeof(RepeatingTargetWrapper))
+                        {
+                            args.Add(5);
+                        }
+                        else if (targetType == typeof(RetryingTargetWrapper))
+                        {
+                            args.Add(10);
+                            args.Add(100);
+                        }
+
+                        //default ctor, only test for non-crash
+                        var defaultConstructedTarget = (WrapperTargetBase)Activator.CreateInstance(targetType);
+                        defaultConstructedTarget.WrappedTarget = fileTarget;
+
+                        //ctor: target
+                        var targetConstructedTarget = (WrapperTargetBase)Activator.CreateInstance(targetType, args.ToArray());
+                        targetConstructedTarget.Name = name;
+
+                        args.Insert(0, targetType.ToString());
+
+                        //ctor: target+name
+                        var namedConstructedTarget = (WrapperTargetBase)Activator.CreateInstance(targetType, args.ToArray());
+                        
+                        CheckEquals(targetType, targetConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
+
+                        CheckEquals(targetType, defaultConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
+                    }
+                    else
+                    {
+                        //default ctor
+                        var targetConstructedTarget = (Target)Activator.CreateInstance(targetType);
+                        targetConstructedTarget.Name = name;
+
+                        // ctor: name
+                        var namedConstructedTarget = (Target)Activator.CreateInstance(targetType, targetType.ToString());
+
+                        CheckEquals(targetType, targetConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
                     }
 
-                    if (checkedAtLeastOneProperty)
-                    {
-                        @checked ++;
-                    }
+                    
                 }
                 catch (Exception ex)
                 {
-                    constructionFailed = true;
+                    var constructionFailed = true;
                     string failureMessage = String.Format("Error testing constructors for '{0}.{1}`\n{2}", targetType, lastPropertyName, ex.ToString());
                     Assert.False(constructionFailed, failureMessage);
                 }
             }
-            Assert.Equal(needed,@checked);
+            Assert.Equal(neededCheckCount, checkCount);
+        }
+
+        private static void CheckEquals(Type targetType, Target defaultConstructedTarget, Target namedConstructedTarget, 
+            ref string lastPropertyName, ref int @checked)
+        {
+            var checkedAtLeastOneProperty = false;
+
+            foreach (System.Reflection.PropertyInfo pi in targetType.GetProperties(
+                System.Reflection.BindingFlags.NonPublic |
+                System.Reflection.BindingFlags.Instance |
+                System.Reflection.BindingFlags.Static))
+            {
+                lastPropertyName = pi.Name;
+                if (pi.CanRead && !pi.Name.Equals("SyncRoot"))
+                {
+                    var value1 = pi.GetValue(defaultConstructedTarget, null);
+                    var value2 = pi.GetValue(namedConstructedTarget, null);
+                    if (value1 != null && value2 != null)
+                    {
+                        if (value1 is IRenderable)
+                        {
+                            Assert.Equal((IRenderable) value1, (IRenderable) value2, new RenderableEq());
+                        }
+                        else if (value1 is AsyncRequestQueue)
+                        {
+                            Assert.Equal((AsyncRequestQueue) value1, (AsyncRequestQueue) value2, new AsyncRequestQueueEq());
+                        }
+                        else
+                        {
+                            Assert.Equal(value1, value2);
+                        }
+                    }
+                    else
+                    {
+                        Assert.Null(value1);
+                        Assert.Null(value2);
+                    }
+                    checkedAtLeastOneProperty = true;
+                }
+            }
+
+            if (checkedAtLeastOneProperty)
+            {
+                @checked++;
+            }
         }
 
         private class RenderableEq : EqualityComparer<IRenderable>

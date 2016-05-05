@@ -71,7 +71,10 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="RepeatingTargetWrapper" /> class.
         /// </summary>
         /// <param name="name">Name of the target.</param>
-        public RepeatingTargetWrapper(string name) : this()
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        /// <param name="repeatCount">The repeat count.</param>
+        public RepeatingTargetWrapper(string name, Target wrappedTarget, int repeatCount) 
+            : this(wrappedTarget, repeatCount)
         {
             this.Name = name;
         }
