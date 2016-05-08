@@ -1872,7 +1872,6 @@ namespace NLog.UnitTests.Targets
             var tempDirectory = new DirectoryInfo(tempPath);
             try
             {
-
                 var archiveFile = Path.Combine(tempPath, "Application{#}.log");
                 var archiveFileMask = "Application*.log";
 
@@ -2102,7 +2101,7 @@ namespace NLog.UnitTests.Targets
                 File.Create(Path.Combine(tempPath, "archive", "file.10.txt2")).Dispose();
                 File.Create(Path.Combine(tempPath, "archive", "file.9.txt2")).Dispose();
 
-                var fileTarget = WrapFileTarget(new FileTarget
+                using (var fileTarget = WrapFileTarget(new FileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(tempPath, "archive", "file.txt2"),
@@ -2110,19 +2109,20 @@ namespace NLog.UnitTests.Targets
                     LineEnding = LineEndingMode.LF,
                     Layout = "${message}",
                     MaxArchiveFiles = 2,
-                });
-
-                SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
-
-                // we emit 2 * 250 *(aaa + \n) bytes
-                // so that we should get a full file + 1 archive
-                for (var i = 0; i < 250; ++i)
+                }))
                 {
-                    logger.Debug("aaa");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("bbb");
+                    SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+
+                    // we emit 2 * 250 *(aaa + \n) bytes
+                    // so that we should get a full file + 1 archive
+                    for (var i = 0; i < 250; ++i)
+                    {
+                        logger.Debug("aaa");
+                    }
+                    for (var i = 0; i < 250; ++i)
+                    {
+                        logger.Debug("bbb");
+                    }
                 }
 
                 AssertFileContents(logFile,
@@ -2157,7 +2157,7 @@ namespace NLog.UnitTests.Targets
             var archiveExtension = "txt";
             try
             {
-                var fileTarget = new FileTarget
+                using (var fileTarget = new FileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(tempPath, "archive", "{#}." + archiveExtension),
@@ -2167,27 +2167,28 @@ namespace NLog.UnitTests.Targets
                     Layout = "${message}",
                     MaxArchiveFiles = maxArchiveFiles,
                     ArchiveNumbering = ArchiveNumberingMode.DateAndSequence,
-                };
-
-                SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
-
-                ArchiveFileNameHelper helper = new ArchiveFileNameHelper(Path.Combine(tempPath, "archive"), DateTime.Now.ToString(fileTarget.ArchiveDateFormat), archiveExtension);
-
-                Generate1000BytesLog('a');
-
-                for (int i = 0; i < maxArchiveFiles; i++)
+                })
                 {
+
+                    SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+
+                    ArchiveFileNameHelper helper = new ArchiveFileNameHelper(Path.Combine(tempPath, "archive"), DateTime.Now.ToString(fileTarget.ArchiveDateFormat), archiveExtension);
+
                     Generate1000BytesLog('a');
-                    Assert.True(helper.Exists(i), string.Format("file {0} is missing", i));
-                }
 
-                for (int i = maxArchiveFiles; i < 100; i++)
-                {
-                    Generate1000BytesLog('b');
-                    var numberToBeRemoved = i - maxArchiveFiles; // number 11, we need to remove 1 etc
-                    Assert.True(!helper.Exists(numberToBeRemoved), string.Format("archive file {0} has not been removed! We are created file {1}", numberToBeRemoved, i));
-                }
+                    for (int i = 0; i < maxArchiveFiles; i++)
+                    {
+                        Generate1000BytesLog('a');
+                        Assert.True(helper.Exists(i), string.Format("file {0} is missing", i));
+                    }
 
+                    for (int i = maxArchiveFiles; i < 100; i++)
+                    {
+                        Generate1000BytesLog('b');
+                        var numberToBeRemoved = i - maxArchiveFiles; // number 11, we need to remove 1 etc
+                        Assert.True(!helper.Exists(numberToBeRemoved), string.Format("archive file {0} has not been removed! We are created file {1}", numberToBeRemoved, i));
+                    }
+                }
             }
             finally
             {

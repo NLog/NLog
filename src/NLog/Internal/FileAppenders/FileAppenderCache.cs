@@ -40,12 +40,13 @@ namespace NLog.Internal.FileAppenders
     /// Maintains a collection of file appenders usually associated with file targets.
     /// </summary>
     internal sealed class FileAppenderCache
-    {
+    {        
         private BaseFileAppender[] appenders;
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         private string archiveFilePatternToWatch = null;
         private bool logFileWasArchived = false;
         private readonly MultiFileWatcher externalFileArchivingWatcher = new MultiFileWatcher(NotifyFilters.FileName);
+        internal event EventHandler OnLogFileWasArchived;
 #endif
 
         /// <summary>
@@ -86,7 +87,11 @@ namespace NLog.Internal.FileAppenders
         private void ExternalFileArchivingWatcher_OnChange(object sender, FileSystemEventArgs e)
         {
             if ((e.ChangeType & WatcherChangeTypes.Created) == WatcherChangeTypes.Created)
+            {
                 logFileWasArchived = true;
+                if (OnLogFileWasArchived != null)
+                    OnLogFileWasArchived(this, EventArgs.Empty);
+            }
         }
 
         /// <summary>
