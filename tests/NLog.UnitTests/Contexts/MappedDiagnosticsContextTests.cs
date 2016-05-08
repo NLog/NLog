@@ -80,6 +80,9 @@ namespace NLog.UnitTests.Contexts
 
                                 Assert.True(MappedDiagnosticsContext.Contains("foo2"));
                                 Assert.Equal("bar2", MappedDiagnosticsContext.Get("foo2"));
+
+                                Assert.Null(MappedDiagnosticsContext.GetObject("foo3"));
+                                MappedDiagnosticsContext.Set("foo3", new { One = 1 });
                             }
                             catch (Exception exception)
                             {
@@ -146,6 +149,8 @@ namespace NLog.UnitTests.Contexts
 
                             Assert.True(MDC.Contains("foo2"));
                             Assert.Equal("bar2", MDC.Get("foo2"));
+
+                            Assert.Null(MDC.GetObject("foo3"));
                         }
                         catch (Exception ex)
                         {
