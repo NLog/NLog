@@ -64,7 +64,7 @@ namespace NLog.UnitTests.Targets
             int neededCheckCount = targetTypes.Count;
             int checkCount = 0;
             Target fileTarget = new FileTarget();
-            Target databaseTarget = new DatabaseTarget();
+            Target memoryTarget = new MemoryTarget();
 
             foreach (Type targetType in targetTypes)
             {
@@ -135,7 +135,7 @@ namespace NLog.UnitTests.Targets
                         neededCheckCount++;
 
                         //multiple targets
-                        var args = new List<object> { fileTarget, databaseTarget };
+                        var args = new List<object> { fileTarget, memoryTarget };
 
                         //specials cases
                    
@@ -144,7 +144,7 @@ namespace NLog.UnitTests.Targets
                         var defaultConstructedTarget = (CompoundTargetBase)Activator.CreateInstance(targetType);
                         defaultConstructedTarget.Name = name;
                         defaultConstructedTarget.Targets.Add(fileTarget);
-                        defaultConstructedTarget.Targets.Add(databaseTarget);
+                        defaultConstructedTarget.Targets.Add(memoryTarget);
 
                         //ctor: target
                         var targetConstructedTarget = (CompoundTargetBase)Activator.CreateInstance(targetType, args.ToArray());
