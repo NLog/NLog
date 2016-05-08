@@ -1822,7 +1822,7 @@ namespace NLog.Targets
         {
             if (this.ReplaceFileContentsOnEachWrite)
             {
-                ReplaceFileContent(fileName, bytes);
+                ReplaceFileContent(fileName, bytes, true);
                 return;
             }
 
@@ -1957,24 +1957,38 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="fileName">The name of the file to be written.</param>
         /// <param name="bytes">Sequence of <see langword="byte"/> to be written in the content section of the file.</param>
+        /// <param name="firstAttempt">First attempt to write?</param>
         /// <remarks>This method is used when the content of the log file is re-written on every write.</remarks>
-        private void ReplaceFileContent(string fileName, byte[] bytes)
+        private void ReplaceFileContent(string fileName, byte[] bytes, bool firstAttempt)
         {
-            using (FileStream fs = File.Create(fileName))
+            try
             {
-                byte[] headerBytes = this.GetHeaderBytes();
-                if (headerBytes != null)
+                using (FileStream fs = File.Create(fileName))
                 {
-                    fs.Write(headerBytes, 0, headerBytes.Length);
+                    byte[] headerBytes = this.GetHeaderBytes();
+                    if (headerBytes != null)
+                    {
+                        fs.Write(headerBytes, 0, headerBytes.Length);
+                    }
+
+                    fs.Write(bytes, 0, bytes.Length);
+
+                    byte[] footerBytes = this.GetFooterBytes();
+                    if (footerBytes != null)
+                    {
+                        fs.Write(footerBytes, 0, footerBytes.Length);
+                    }
                 }
-
-                fs.Write(bytes, 0, bytes.Length);
-
-                byte[] footerBytes = this.GetFooterBytes();
-                if (footerBytes != null)
+            }
+            catch (DirectoryNotFoundException)
+            {
+                if (!this.CreateDirs || !firstAttempt)
                 {
-                    fs.Write(footerBytes, 0, footerBytes.Length);
+                    throw;
                 }
+                Directory.CreateDirectory(Path.GetDirectoryName(fileName));
+                //retry.
+                ReplaceFileContent(fileName, bytes, false);
             }
         }
 

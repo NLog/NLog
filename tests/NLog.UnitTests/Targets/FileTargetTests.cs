@@ -414,6 +414,48 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void ReplaceFileContentsOnEachWrite_CreateDirs(bool createDirs)
+        {
+
+            LogManager.ThrowExceptions = false;
+
+            var tempPath = Path.Combine(Path.GetTempPath(), "dir_" + Guid.NewGuid().ToString());
+            var logfile = Path.Combine(tempPath, "log.log");
+
+            try
+            {
+                var target = new FileTarget
+                {
+                    FileName = logfile,
+                    ReplaceFileContentsOnEachWrite = true,
+                    CreateDirs = createDirs
+                };
+                var config = new LoggingConfiguration();
+
+                config.AddTarget("logfile", target);
+
+                config.AddRuleForAllLevels(target);
+
+                LogManager.Configuration = config;
+
+                ILogger logger = LogManager.GetLogger("A");
+                logger.Info("a");
+
+                Assert.Equal(createDirs, Directory.Exists(tempPath));
+            }
+            finally
+            {
+                if (File.Exists(logfile))
+                    File.Delete(logfile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
         [Fact]
         public void CreateDirsTest()
         {
@@ -2662,6 +2704,7 @@ namespace NLog.UnitTests.Targets
             Assert.NotNull(exceptions[2]);
             Assert.NotNull(exceptions[3]);
         }
+
     }
 
 
