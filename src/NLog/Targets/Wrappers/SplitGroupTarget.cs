@@ -72,8 +72,9 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="SplitGroupTarget" /> class.
         /// </summary>
         /// <param name="name">Name of the target.</param>
-        public SplitGroupTarget(string name)
-            : this()
+        /// <param name="targets">The targets.</param>
+        public SplitGroupTarget(string name, params Target[] targets)
+             : this(targets)
         {
             this.Name = name;
         }

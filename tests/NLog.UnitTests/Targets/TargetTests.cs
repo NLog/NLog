@@ -64,6 +64,7 @@ namespace NLog.UnitTests.Targets
             int neededCheckCount = targetTypes.Count;
             int checkCount = 0;
             Target fileTarget = new FileTarget();
+            Target databaseTarget = new DatabaseTarget();
 
             foreach (Type targetType in targetTypes)
             {
@@ -75,6 +76,7 @@ namespace NLog.UnitTests.Targets
                     var name = targetType + "_name";
 
                     var isWrapped = targetType.IsSubclassOf(typeof(WrapperTargetBase));
+                    var isCompound = targetType.IsSubclassOf(typeof(CompoundTargetBase));
 
                     if (isWrapped)
                     {
@@ -82,34 +84,77 @@ namespace NLog.UnitTests.Targets
                       
                         var args = new List<object> { fileTarget };
 
+                
+
+                        //default ctor
+                        var defaultConstructedTarget = (WrapperTargetBase)Activator.CreateInstance(targetType);
+                        defaultConstructedTarget.Name = name;
+                        defaultConstructedTarget.WrappedTarget = fileTarget;
+
                         //specials cases
                         if (targetType == typeof(FilteringTargetWrapper))
                         {
-                            args.Add(new ConditionLoggerNameExpression());
+                            var cond = new ConditionLoggerNameExpression();
+                            args.Add(cond);
+                            var target = (FilteringTargetWrapper) defaultConstructedTarget;
+                            target.Condition = cond;
                         }
                         else if (targetType == typeof(RepeatingTargetWrapper))
                         {
-                            args.Add(5);
+                            var repeatCount = 5;
+                            args.Add(repeatCount);
+                            var target = (RepeatingTargetWrapper)defaultConstructedTarget;
+                            target.RepeatCount = repeatCount;
                         }
                         else if (targetType == typeof(RetryingTargetWrapper))
                         {
-                            args.Add(10);
-                            args.Add(100);
+                            var retryCount = 10;
+                            var retryDelayMilliseconds = 100;
+                            args.Add(retryCount);
+                            args.Add(retryDelayMilliseconds);
+                            var target = (RetryingTargetWrapper)defaultConstructedTarget;
+                            target.RetryCount = retryCount;
+                            target.RetryDelayMilliseconds = retryDelayMilliseconds;
                         }
-
-                        //default ctor, only test for non-crash
-                        var defaultConstructedTarget = (WrapperTargetBase)Activator.CreateInstance(targetType);
-                        defaultConstructedTarget.WrappedTarget = fileTarget;
 
                         //ctor: target
                         var targetConstructedTarget = (WrapperTargetBase)Activator.CreateInstance(targetType, args.ToArray());
                         targetConstructedTarget.Name = name;
 
-                        args.Insert(0, targetType.ToString());
+                        args.Insert(0, name);
 
                         //ctor: target+name
                         var namedConstructedTarget = (WrapperTargetBase)Activator.CreateInstance(targetType, args.ToArray());
                         
+                        CheckEquals(targetType, targetConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
+
+                        CheckEquals(targetType, defaultConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
+                    }
+                    else if (isCompound)
+                    {
+                        neededCheckCount++;
+
+                        //multiple targets
+                        var args = new List<object> { fileTarget, databaseTarget };
+
+                        //specials cases
+                   
+
+                        //default ctor
+                        var defaultConstructedTarget = (CompoundTargetBase)Activator.CreateInstance(targetType);
+                        defaultConstructedTarget.Name = name;
+                        defaultConstructedTarget.Targets.Add(fileTarget);
+                        defaultConstructedTarget.Targets.Add(databaseTarget);
+
+                        //ctor: target
+                        var targetConstructedTarget = (CompoundTargetBase)Activator.CreateInstance(targetType, args.ToArray());
+                        targetConstructedTarget.Name = name;
+
+                        args.Insert(0, name);
+
+                        //ctor: target+name
+                        var namedConstructedTarget = (CompoundTargetBase)Activator.CreateInstance(targetType, args.ToArray());
+
                         CheckEquals(targetType, targetConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
 
                         CheckEquals(targetType, defaultConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
@@ -121,7 +166,7 @@ namespace NLog.UnitTests.Targets
                         targetConstructedTarget.Name = name;
 
                         // ctor: name
-                        var namedConstructedTarget = (Target)Activator.CreateInstance(targetType, targetType.ToString());
+                        var namedConstructedTarget = (Target)Activator.CreateInstance(targetType, name);
 
                         CheckEquals(targetType, targetConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
                     }
@@ -143,10 +188,15 @@ namespace NLog.UnitTests.Targets
         {
             var checkedAtLeastOneProperty = false;
 
-            foreach (System.Reflection.PropertyInfo pi in targetType.GetProperties(
+            var properties = targetType.GetProperties(
                 System.Reflection.BindingFlags.NonPublic |
+                System.Reflection.BindingFlags.Public |
+                System.Reflection.BindingFlags.FlattenHierarchy |
+                System.Reflection.BindingFlags.Default |
+
                 System.Reflection.BindingFlags.Instance |
-                System.Reflection.BindingFlags.Static))
+                System.Reflection.BindingFlags.Static);
+            foreach (System.Reflection.PropertyInfo pi in properties)
             {
                 lastPropertyName = pi.Name;
                 if (pi.CanRead && !pi.Name.Equals("SyncRoot"))
