@@ -93,7 +93,7 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks>Last write time is store in local time (no UTC).</remarks>
         private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
-        
+
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
 
         /// <summary>
@@ -109,7 +109,11 @@ namespace NLog.Targets
 
         private Timer autoClosingTimer;
 
+#if NET4_5
         private Thread appenderInvalidatorThread = null;
+
+        private ManualResetEvent appenderManualResetEvent;
+#endif
 
         /// <summary>
         /// The number of initialised files at any one time.
@@ -162,7 +166,7 @@ namespace NLog.Targets
 
         private bool concurrentWrites;
         private bool keepFileOpen;
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
         /// </summary>
@@ -681,54 +685,73 @@ namespace NLog.Targets
                         fileNamePattern = Path.Combine(Path.GetDirectoryName(fileNamePattern), ReplaceFileNamePattern(fileNamePattern, "*"));
                         this.fileAppenderCache.ArchiveFilePatternToWatch = fileNamePattern;
 
-                        if ((EnableArchiveFileCompression) && (this.appenderInvalidatorThread == null))
+#if NET4_5
+                        if (EnableArchiveFileCompression)
                         {
                             // EnableArchiveFileCompression creates a new file for the archive, instead of just moving the log file.
                             // The log file is deleted instead of moved. This process may be holding a lock to that file which will
                             // avoid the file from being deleted. Therefore we must periodically close appenders for files that 
                             // were archived so that the file can be deleted.
-
-                            this.appenderInvalidatorThread = new Thread(new ThreadStart(() =>
+                            lock (SyncRoot)
                             {
-                                while (true)
+                                if (this.appenderInvalidatorThread != null)
+                                    return;
+
+                                this.appenderManualResetEvent = new ManualResetEvent(false);
+                                this.appenderInvalidatorThread = new Thread(() =>
                                 {
                                     try
                                     {
-                                        Thread.Sleep(200);
-                                    }
-                                    catch (ThreadAbortException ex)
-                                    {
-                                        //ThreadAbortException will be automatically re-thrown at the end of the try/catch/finally if ResetAbort isn't called.
-                                        Thread.ResetAbort();
-                                        InternalLogger.Trace(ex, "ThreadAbortException in Thread.Sleep");
+                                        var tmp = appenderManualResetEvent;
+                                        while (true)
+                                        {
+                                            if (tmp.WaitOne(200))
+                                                break;
+
+                                            lock (SyncRoot)
+                                                this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
+                                        }
                                     }
                                     catch (Exception ex)
                                     {
-                                        InternalLogger.Warn(ex, "Exception in Thread.Sleep, most of the time not an issue.");
+                                        InternalLogger.Info("Error in InvalidatorThread loop {0}", ex);
                                     }
-                                   
-                                    lock (SyncRoot)
-                                        this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
-                                }
-                            }));
-                            this.appenderInvalidatorThread.IsBackground = true;
-                            this.appenderInvalidatorThread.Start();
+                                });
+
+                                this.appenderInvalidatorThread.IsBackground = true;
+                                this.appenderInvalidatorThread.Name = "NLog AppenderInvalidatorThread";
+                                this.appenderInvalidatorThread.Start();
+                            }
                         }
+#endif
                     }
                 }
                 else
                 {
+                    StopAppenderInvalidatorThread();
                     this.fileAppenderCache.ArchiveFilePatternToWatch = null;
-
-                    if (this.appenderInvalidatorThread != null)
-                    {
-                        this.appenderInvalidatorThread.Abort();
-                        this.appenderInvalidatorThread = null;
-                    }
                 }
             }
 #endif
         }
+
+
+        private void StopAppenderInvalidatorThread()
+        {
+#if NET4_5
+            lock (SyncRoot)
+            {
+                if (this.appenderManualResetEvent == null)
+                    return;
+
+                this.appenderManualResetEvent.Set();
+                this.appenderManualResetEvent = null;
+                this.appenderInvalidatorThread = null;
+            }
+#endif
+        }
+
+
 
         /// <summary>
         /// Removes records of initialized files that have not been 
@@ -838,7 +861,7 @@ namespace NLog.Targets
             else
                 return SingleProcessFileAppender.TheFactory;
         }
-        
+
         private bool IsArchivingEnabled()
         {
             return this.ArchiveAboveSize != FileTarget.ArchiveAboveSizeDisabled || this.ArchiveEvery != FileArchivePeriod.None;
@@ -888,12 +911,7 @@ namespace NLog.Targets
                 this.autoClosingTimer = null;
             }
 
-            if (this.appenderInvalidatorThread != null)
-            {
-                this.appenderInvalidatorThread.Abort();
-                this.appenderInvalidatorThread = null;
-            }
-
+            StopAppenderInvalidatorThread();
             this.fileAppenderCache.CloseAppenders();
         }
 
@@ -1050,7 +1068,8 @@ namespace NLog.Targets
             try
             {
                 if (currentFileName != null)
-                    ProcessLogEvent(firstLogEvent, currentFileName, ms.ToArray());            }
+                    ProcessLogEvent(firstLogEvent, currentFileName, ms.ToArray());
+            }
             catch (Exception exception)
             {
                 if (exception.MustBeRethrown())
@@ -1225,7 +1244,7 @@ namespace NLog.Targets
                 InternalLogger.Info("Archiving {0} to zip-archive {1}", fileName, archiveFileName);
                 using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
                 using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
-                using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite ))
+                using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
                     var zipArchiveEntry = archive.CreateEntry(Path.GetFileName(fileName));
                     using (var destination = zipArchiveEntry.Open())
@@ -1233,7 +1252,7 @@ namespace NLog.Targets
                         originalFileStream.CopyTo(destination);
                     }
                 }
-                
+
                 DeleteAndWaitForFileDelete(fileName);
             }
             else
@@ -1331,7 +1350,7 @@ namespace NLog.Targets
             archiveFileNames.Add(archiveFileName);
             EnsureArchiveCount(archiveFileNames);
         }
-        
+
         /// <summary>
         /// Deletes files among a given list, and stops as soon as the remaining files are fewer than the <see
         /// cref="P:FileTarget.MaxArchiveFiles"/> setting.
@@ -1516,7 +1535,7 @@ namespace NLog.Targets
                 {
                     string archiveFileName = Path.GetFileName(nextFile);
                     int lastIndexOfStar = fileNameMask.LastIndexOf('*');
-          
+
                     if (lastIndexOfStar + dateFormat.Length <= archiveFileName.Length)
                     {
                         string datePart = archiveFileName.Substring(lastIndexOfStar, dateFormat.Length);
@@ -1554,7 +1573,7 @@ namespace NLog.Targets
                     case FileArchivePeriod.Year: formatString = "yyyy"; break;
                     case FileArchivePeriod.Month: formatString = "yyyyMM"; break;
                     default: formatString = "yyyyMMdd"; break;
-                    case FileArchivePeriod.Hour: formatString = "yyyyMMddHH";break;
+                    case FileArchivePeriod.Hour: formatString = "yyyyMMddHH"; break;
                     case FileArchivePeriod.Minute: formatString = "yyyyMMddHHmm"; break;
                 }
             }
@@ -1574,7 +1593,7 @@ namespace NLog.Targets
                 InternalLogger.Trace("Using previous log event time (is more recent)");
                 return previousLogEventTimestamp.Value;
             }
-            
+
             if (PreviousLogOverlappedPeriod(fileCharacteristics, logEvent))
             {
                 InternalLogger.Trace("Using previous log event time (previous log overlapped period)");
@@ -1691,7 +1710,7 @@ namespace NLog.Targets
                 return Path.GetFullPath(archiveFileName);
             }
         }
-        
+
         /// <summary>
         /// Determine if old archive files should be deleted.
         /// </summary>
@@ -1755,7 +1774,7 @@ namespace NLog.Targets
             {
                 return false;
             }
-            
+
             // file creation time is in Utc and logEvent's timestamp is originated from TimeSource.Current,
             // so we should ask the TimeSource to convert file time to TimeSource time:
             DateTime creationTime = TimeSource.Current.FromSystemTime(fileCharacteristics.CreationTimeUtc);
@@ -1861,7 +1880,7 @@ namespace NLog.Targets
                 if (!this.initializedFiles.ContainsKey(fileName))
                 {
                     ProcessOnStartup(fileName, logEvent);
-                    
+
                     this.initializedFiles[fileName] = now;
                     this.initializedFilesCounter++;
                     writeHeader = true;
@@ -2112,7 +2131,7 @@ namespace NLog.Targets
         {
             private readonly Queue<string> archiveFileQueue = new Queue<string>();
             private readonly FileTarget fileTarget;
-            
+
             /// <summary>
             /// Creates an instance of <see cref="DynamicFileArchive"/> class.
             /// </summary>
@@ -2123,7 +2142,7 @@ namespace NLog.Targets
                 this.fileTarget = fileTarget;
                 this.MaxArchiveFileToKeep = maxArchivedFiles;
             }
-            
+
             /// <summary>
             /// Gets or sets the maximum number of archive files that should be kept.
             /// </summary>
@@ -2174,7 +2193,7 @@ namespace NLog.Targets
                 AddToArchive(archiveFileName, fileName, createDirectory);
                 return true;
             }
-            
+
             /// <summary>
             /// Archives the file, either by copying it to a new file system location or by compressing it, and add the file name into the list of archives.
             /// </summary>
@@ -2232,7 +2251,7 @@ namespace NLog.Targets
                 }
             }
 
-            
+
             /// <summary>
             /// Gets the file name for the next archive file by appending a number to the provided
             /// "base"-filename.
