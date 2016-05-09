@@ -1196,7 +1196,7 @@ namespace NLog.Targets
             
             if (EnableArchiveFileCompression)
             {
-                InternalLogger.Info("Archiving {0} to zip-archive {1}", fileName, archiveFileName);
+                InternalLogger.Info("Archiving {0} to compressed {1}", fileName, archiveFileName);
                 FileCompressor.CompressFile(fileName, archiveFileName);
                 DeleteAndWaitForFileDelete(fileName);
             }

@@ -252,27 +252,46 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Fact]
-        public void ArchiveFileOnStartTest()
+#if NET3_5 || NET4_0 || NET4_5
+        public static IEnumerable<object[]> ArchiveFileOnStartTests_TestParameters
         {
-            ArchiveFileOnStartTests(enableCompression: false);
+            get
+            {
+                var booleanValues = new[] { true, false };
+                return
+                    from enableCompression in booleanValues
+                    from customFileCompressor in booleanValues
+                    select new object[] { enableCompression, customFileCompressor };
+            }
         }
-
-#if NET4_5
-        [Fact]
-        public void ArchiveFileOnStartTest_WithCompression()
+#else
+        public static IEnumerable<object[]> ArchiveFileOnStartTests_TestParameters
         {
-            ArchiveFileOnStartTests(enableCompression: true);
+            get
+            {
+                var booleanValues = new[] { true, false };
+                return
+                    from enableCompression in booleanValues
+                    select new object[] { enableCompression, false };
+            }
         }
 #endif
-
-        private void ArchiveFileOnStartTests(bool enableCompression)
+        [Theory]
+        [PropertyData("ArchiveFileOnStartTests_TestParameters")]
+        public void ArchiveFileOnStartTests(bool enableCompression, bool customFileCompressor)
         {
             var logFile = Path.GetTempFileName();
             var tempArchiveFolder = Path.Combine(Path.GetTempPath(), "Archive");
             var archiveExtension = enableCompression ? "zip" : "txt";
+            IFileCompressor fileCompressor = null;
             try
             {
+                if (customFileCompressor)
+                {
+                    fileCompressor = FileTarget.FileCompressor;
+                    FileTarget.FileCompressor = new CustomFileCompressor();
+                }
+
                 // Configure first time with ArchiveOldFileOnStartup = false. 
                 var fileTarget = WrapFileTarget(new FileTarget
                 {
@@ -318,11 +337,10 @@ namespace NLog.UnitTests.Targets
 
                 var archiveTempName = Path.Combine(tempArchiveFolder, "archive." + archiveExtension);
 
-                fileTarget = WrapFileTarget(new FileTarget
+                FileTarget ft;
+                fileTarget = WrapFileTarget(ft = new FileTarget
                 {
-#if NET4_5
                     EnableArchiveFileCompression = enableCompression,
-#endif
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
@@ -341,17 +359,16 @@ namespace NLog.UnitTests.Targets
                 AssertFileContents(logFile, "Debug ddd\nInfo eee\nWarn fff\n", Encoding.UTF8);
                 Assert.True(File.Exists(archiveTempName));
 
-                var assertFileContents =
-#if NET4_5
- enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
-#else
- new Action<string, string, Encoding>(AssertFileContents);
-#endif
+                var assertFileContents = ft.EnableArchiveFileCompression ? 
+                    new Action<string, string, Encoding>(AssertZipFileContents) : 
+                    AssertFileContents;
+
                 assertFileContents(archiveTempName, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n",
                     Encoding.UTF8);
             }
             finally
             {
+                FileTarget.FileCompressor = fileCompressor;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
                 if (Directory.Exists(tempArchiveFolder))
