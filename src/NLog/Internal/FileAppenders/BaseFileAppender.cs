@@ -114,7 +114,7 @@ namespace NLog.Internal.FileAppenders
         /// Gets the file info.
         /// </summary>
         /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public abstract FileCharacteristics GetFileCharacteristics();
+        public abstract FileCharacteristics? GetFileCharacteristics();
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

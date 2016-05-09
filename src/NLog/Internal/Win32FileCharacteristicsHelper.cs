@@ -48,7 +48,7 @@ namespace NLog.Internal
         /// <param name="fileName">Name of the file.</param>
         /// <param name="fileHandle">The file handle.</param>
         /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public override FileCharacteristics GetFileCharacteristics(string fileName, IntPtr fileHandle)
+        public override FileCharacteristics? GetFileCharacteristics(string fileName, IntPtr fileHandle)
         {
             Win32FileNativeMethods.BY_HANDLE_FILE_INFORMATION fileInfo;
             if (Win32FileNativeMethods.GetFileInformationByHandle(fileHandle, out fileInfo))

@@ -38,7 +38,7 @@ namespace NLog.Internal
     /// <summary>
     /// An immutable object that stores basic file info.
     /// </summary>
-    internal class FileCharacteristics
+    internal struct FileCharacteristics
     {
         /// <summary>
         /// Constructs a FileCharacteristics object.
@@ -46,7 +46,7 @@ namespace NLog.Internal
         /// <param name="creationTimeUtc">The time the file was created in UTC.</param>
         /// <param name="lastWriteTimeUtc">The time the file was last written to in UTC.</param>
         /// <param name="fileLength">The size of the file in bytes.</param>
-        public FileCharacteristics(DateTime creationTimeUtc, DateTime lastWriteTimeUtc, long fileLength)
+        public FileCharacteristics(DateTime creationTimeUtc, DateTime lastWriteTimeUtc, long fileLength) : this()
         {
             CreationTimeUtc = creationTimeUtc;
             LastWriteTimeUtc = lastWriteTimeUtc;

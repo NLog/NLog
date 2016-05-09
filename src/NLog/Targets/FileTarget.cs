@@ -1281,6 +1281,7 @@ namespace NLog.Targets
 
             if (string.IsNullOrEmpty(baseNamePattern))
             {
+                InternalLogger.Warn("baseNamePattern is empty, can't do archiveByDate");
                 return;
             }
 
@@ -1291,12 +1292,18 @@ namespace NLog.Targets
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             if (string.IsNullOrEmpty(dirName))
             {
+                InternalLogger.Warn("dirName is empty, can't do archiveByDate");
                 return;
             }
 
             int minSequenceLength = fileTemplate.EndAt - fileTemplate.BeginAt - 2;
             int nextSequenceNumber;
-            DateTime archiveDate = GetArchiveDate(fileName, logEvent);
+            var archiveDate = GetArchiveDate(fileName, logEvent);
+            if (archiveDate == null)
+            {
+                InternalLogger.Warn("archiveDate is null, can't do archiveByDate");
+                return;
+            }
             List<string> archiveFileNames;
             if (Directory.Exists(dirName))
             {
@@ -1305,7 +1312,7 @@ namespace NLog.Targets
 
                 // Find out the next sequence number among existing archives having the same date part as the current date.
                 int? lastSequenceNumber = archives
-                    .Where(a => a.HasSameFormattedDate(archiveDate))
+                    .Where(a => a.HasSameFormattedDate(archiveDate.Value))
                     .Max(a => (int?)a.Sequence);
                 nextSequenceNumber = (int)(lastSequenceNumber != null ? lastSequenceNumber + 1 : 0);
 
@@ -1324,7 +1331,7 @@ namespace NLog.Targets
 
             string paddedSequence = nextSequenceNumber.ToString().PadLeft(minSequenceLength, '0');
             string archiveFileNameWithoutPath = fileNameMask.Replace("*",
-                string.Format("{0}.{1}", archiveDate.ToString(dateFormat), paddedSequence));
+                string.Format("{0}.{1}", archiveDate.Value.ToString(dateFormat), paddedSequence));
             string archiveFileName = Path.Combine(dirName, archiveFileNameWithoutPath);
 
             ArchiveFile(fileName, archiveFileName);
@@ -1470,10 +1477,10 @@ namespace NLog.Targets
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             string dateFormat = GetArchiveDateFormatString(this.ArchiveDateFormat);
 
-            DateTime archiveDate = GetArchiveDate(fileName, logEvent);
-            if (dirName != null)
+            var archiveDate = GetArchiveDate(fileName, logEvent);
+            if (dirName != null && archiveDate.HasValue)
             {
-                string archiveFileName = Path.Combine(dirName, fileNameMask.Replace("*", archiveDate.ToString(dateFormat)));
+                string archiveFileName = Path.Combine(dirName, fileNameMask.Replace("*", archiveDate.Value.ToString(dateFormat)));
                 ArchiveFile(fileName, archiveFileName);
             }
 
@@ -1561,10 +1568,14 @@ namespace NLog.Targets
             return formatString;
         }
 
-        private DateTime GetArchiveDate(string fileName, LogEventInfo logEvent)
+        private DateTime? GetArchiveDate(string fileName, LogEventInfo logEvent)
         {
             var fileCharacteristics = GetFileCharacteristics(fileName);
-            var lastWriteTime = TimeSource.Current.FromSystemTime(fileCharacteristics.LastWriteTimeUtc);
+            if (fileCharacteristics == null)
+            {
+                return null;
+            }
+            var lastWriteTime = TimeSource.Current.FromSystemTime(fileCharacteristics.Value.LastWriteTimeUtc);
 
             InternalLogger.Trace("Calculating archive date. Last write time: {0}; Previous log event time: {1}", lastWriteTime, previousLogEventTimestamp);
 
@@ -1575,10 +1586,10 @@ namespace NLog.Targets
                 return previousLogEventTimestamp.Value;
             }
             
-            if (PreviousLogOverlappedPeriod(fileCharacteristics, logEvent))
+            if (PreviousLogOverlappedPeriod(fileCharacteristics.Value, logEvent))
             {
                 InternalLogger.Trace("Using previous log event time (previous log overlapped period)");
-                return previousLogEventTimestamp.Value;
+                return previousLogEventTimestamp;
             }
 
             InternalLogger.Trace("Using last write time");
@@ -1734,7 +1745,7 @@ namespace NLog.Targets
                 return false;
             }
 
-            return fileCharacteristics.FileLength + upcomingWriteSize > this.ArchiveAboveSize;
+            return fileCharacteristics.Value.FileLength + upcomingWriteSize > this.ArchiveAboveSize;
         }
 
         /// <summary>
@@ -1758,7 +1769,7 @@ namespace NLog.Targets
             
             // file creation time is in Utc and logEvent's timestamp is originated from TimeSource.Current,
             // so we should ask the TimeSource to convert file time to TimeSource time:
-            DateTime creationTime = TimeSource.Current.FromSystemTime(fileCharacteristics.CreationTimeUtc);
+            DateTime creationTime = TimeSource.Current.FromSystemTime(fileCharacteristics.Value.CreationTimeUtc);
             string formatString = GetArchiveDateFormatString(string.Empty);
             string fileCreated = creationTime.ToString(formatString, CultureInfo.InvariantCulture);
             string logEventRecorded = logEvent.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
@@ -1998,9 +2009,9 @@ namespace NLog.Targets
         /// <param name="appender">File appender associated with the file.</param>
         private void WriteHeader(BaseFileAppender appender)
         {
-            FileCharacteristics fileCharacteristics = appender.GetFileCharacteristics();
+            var fileCharacteristics = appender.GetFileCharacteristics();
             //  Write header only on empty files or if file info cannot be obtained.
-            if ((fileCharacteristics == null) || (fileCharacteristics.FileLength == 0))
+            if ((fileCharacteristics == null) || (fileCharacteristics.Value.FileLength == 0))
             {
                 byte[] headerBytes = this.GetHeaderBytes();
                 if (headerBytes != null)
@@ -2015,7 +2026,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="filePath">File which the information are requested.</param>
         /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        private FileCharacteristics GetFileCharacteristics(string filePath)
+        private FileCharacteristics? GetFileCharacteristics(string filePath)
         {
             var fileCharacteristics = this.fileAppenderCache.GetFileCharacteristics(filePath);
             if (fileCharacteristics != null)
