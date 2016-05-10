@@ -97,6 +97,7 @@
     <Compile Include="ApiTests.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AsyncHelperTests.cs" />
+    <Compile Include="Common\CSharpEventTarget.cs" />
     <Compile Include="Common\InternalLoggerTests.cs" />
     <Compile Include="Common\InternalLoggerTests_Trace.cs" />
     <Compile Include="Common\LastLogEventListTarget.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="LayoutRenderers\Wrappers\TrimWhiteSpaceTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WhenEmptyTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WhenTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\WrapLineTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\XmlEncodeTests.cs" />
     <Compile Include="Layouts\AllEventPropertiesTests.cs" />
     <Compile Include="Layouts\CsvLayoutTests.cs" />

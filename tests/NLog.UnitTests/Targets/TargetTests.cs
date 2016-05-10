@@ -31,7 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+using NLog.Conditions;
 using NLog.Config;
+using NLog.Internal;
+using NLog.LayoutRenderers;
+using NLog.Layouts;
+using NLog.Targets.Wrappers;
+using NLog.UnitTests.Targets.Wrappers;
 
 namespace NLog.UnitTests.Targets
 {
@@ -44,6 +51,249 @@ namespace NLog.UnitTests.Targets
 
     public class TargetTests : NLogTestBase
     {
+        /// <summary>
+        /// Test the following things:
+        /// - Target has default ctor
+        /// - Target has ctor with name (string) arg.
+        /// - Both ctors are creating the same instances
+        /// </summary>
+        [Fact]
+        public void TargetContructorWithNameTest()
+        {
+            var targetTypes = typeof(Target).Assembly.GetTypes().Where(t => !t.IsAbstract && t.IsSubclassOf(typeof(Target))).ToList();
+            int neededCheckCount = targetTypes.Count;
+            int checkCount = 0;
+            Target fileTarget = new FileTarget();
+            Target memoryTarget = new MemoryTarget();
+
+            foreach (Type targetType in targetTypes)
+            {
+                string lastPropertyName = null;
+
+                try
+                {
+                    // Check if the Target can be created using a default constructor
+                    var name = targetType + "_name";
+
+                    var isWrapped = targetType.IsSubclassOf(typeof(WrapperTargetBase));
+                    var isCompound = targetType.IsSubclassOf(typeof(CompoundTargetBase));
+
+                    if (isWrapped)
+                    {
+                        neededCheckCount++;
+                      
+                        var args = new List<object> { fileTarget };
+
+                
+
+                        //default ctor
+                        var defaultConstructedTarget = (WrapperTargetBase)Activator.CreateInstance(targetType);
+                        defaultConstructedTarget.Name = name;
+                        defaultConstructedTarget.WrappedTarget = fileTarget;
+
+                        //specials cases
+                        if (targetType == typeof(FilteringTargetWrapper))
+                        {
+                            var cond = new ConditionLoggerNameExpression();
+                            args.Add(cond);
+                            var target = (FilteringTargetWrapper) defaultConstructedTarget;
+                            target.Condition = cond;
+                        }
+                        else if (targetType == typeof(RepeatingTargetWrapper))
+                        {
+                            var repeatCount = 5;
+                            args.Add(repeatCount);
+                            var target = (RepeatingTargetWrapper)defaultConstructedTarget;
+                            target.RepeatCount = repeatCount;
+                        }
+                        else if (targetType == typeof(RetryingTargetWrapper))
+                        {
+                            var retryCount = 10;
+                            var retryDelayMilliseconds = 100;
+                            args.Add(retryCount);
+                            args.Add(retryDelayMilliseconds);
+                            var target = (RetryingTargetWrapper)defaultConstructedTarget;
+                            target.RetryCount = retryCount;
+                            target.RetryDelayMilliseconds = retryDelayMilliseconds;
+                        }
+
+                        //ctor: target
+                        var targetConstructedTarget = (WrapperTargetBase)Activator.CreateInstance(targetType, args.ToArray());
+                        targetConstructedTarget.Name = name;
+
+                        args.Insert(0, name);
+
+                        //ctor: target+name
+                        var namedConstructedTarget = (WrapperTargetBase)Activator.CreateInstance(targetType, args.ToArray());
+                        
+                        CheckEquals(targetType, targetConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
+
+                        CheckEquals(targetType, defaultConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
+                    }
+                    else if (isCompound)
+                    {
+                        neededCheckCount++;
+
+                        //multiple targets
+                        var args = new List<object> { fileTarget, memoryTarget };
+
+                        //specials cases
+                   
+
+                        //default ctor
+                        var defaultConstructedTarget = (CompoundTargetBase)Activator.CreateInstance(targetType);
+                        defaultConstructedTarget.Name = name;
+                        defaultConstructedTarget.Targets.Add(fileTarget);
+                        defaultConstructedTarget.Targets.Add(memoryTarget);
+
+                        //ctor: target
+                        var targetConstructedTarget = (CompoundTargetBase)Activator.CreateInstance(targetType, args.ToArray());
+                        targetConstructedTarget.Name = name;
+
+                        args.Insert(0, name);
+
+                        //ctor: target+name
+                        var namedConstructedTarget = (CompoundTargetBase)Activator.CreateInstance(targetType, args.ToArray());
+
+                        CheckEquals(targetType, targetConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
+
+                        CheckEquals(targetType, defaultConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
+                    }
+                    else
+                    {
+                        //default ctor
+                        var targetConstructedTarget = (Target)Activator.CreateInstance(targetType);
+                        targetConstructedTarget.Name = name;
+
+                        // ctor: name
+                        var namedConstructedTarget = (Target)Activator.CreateInstance(targetType, name);
+
+                        CheckEquals(targetType, targetConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
+                    }
+
+                    
+                }
+                catch (Exception ex)
+                {
+                    var constructionFailed = true;
+                    string failureMessage = String.Format("Error testing constructors for '{0}.{1}`\n{2}", targetType, lastPropertyName, ex.ToString());
+                    Assert.False(constructionFailed, failureMessage);
+                }
+            }
+            Assert.Equal(neededCheckCount, checkCount);
+        }
+
+        private static void CheckEquals(Type targetType, Target defaultConstructedTarget, Target namedConstructedTarget, 
+            ref string lastPropertyName, ref int @checked)
+        {
+            var checkedAtLeastOneProperty = false;
+
+            var properties = targetType.GetProperties(
+                System.Reflection.BindingFlags.NonPublic |
+                System.Reflection.BindingFlags.Public |
+                System.Reflection.BindingFlags.FlattenHierarchy |
+                System.Reflection.BindingFlags.Default |
+
+                System.Reflection.BindingFlags.Instance |
+                System.Reflection.BindingFlags.Static);
+            foreach (System.Reflection.PropertyInfo pi in properties)
+            {
+                lastPropertyName = pi.Name;
+                if (pi.CanRead && !pi.Name.Equals("SyncRoot"))
+                {
+                    var value1 = pi.GetValue(defaultConstructedTarget, null);
+                    var value2 = pi.GetValue(namedConstructedTarget, null);
+                    if (value1 != null && value2 != null)
+                    {
+                        if (value1 is IRenderable)
+                        {
+                            Assert.Equal((IRenderable) value1, (IRenderable) value2, new RenderableEq());
+                        }
+                        else if (value1 is AsyncRequestQueue)
+                        {
+                            Assert.Equal((AsyncRequestQueue) value1, (AsyncRequestQueue) value2, new AsyncRequestQueueEq());
+                        }
+                        else
+                        {
+                            Assert.Equal(value1, value2);
+                        }
+                    }
+                    else
+                    {
+                        Assert.Null(value1);
+                        Assert.Null(value2);
+                    }
+                    checkedAtLeastOneProperty = true;
+                }
+            }
+
+            if (checkedAtLeastOneProperty)
+            {
+                @checked++;
+            }
+        }
+
+        private class RenderableEq : EqualityComparer<IRenderable>
+        {
+            /// <summary>
+            /// Determines whether the specified objects are equal.
+            /// </summary>
+            /// <returns>
+            /// true if the specified objects are equal; otherwise, false.
+            /// </returns>
+            /// <param name="x">The first object of type <paramref name="T"/> to compare.</param><param name="y">The second object of type <paramref name="T"/> to compare.</param>
+            public override bool Equals(IRenderable x, IRenderable y)
+            {
+                if (x == null) return y == null;
+                var nullEvent = LogEventInfo.CreateNullEvent();
+                return x.Render(nullEvent) == y.Render(nullEvent);
+            }
+
+            /// <summary>
+            /// Returns a hash code for the specified object.
+            /// </summary>
+            /// <returns>
+            /// A hash code for the specified object.
+            /// </returns>
+            /// <param name="obj">The <see cref="T:System.Object"/> for which a hash code is to be returned.</param><exception cref="T:System.ArgumentNullException">The type of <paramref name="obj"/> is a reference type and <paramref name="obj"/> is null.</exception>
+            public override int GetHashCode(IRenderable obj)
+            {
+                return obj.ToString().GetHashCode();
+            }
+        }
+
+        private class AsyncRequestQueueEq : EqualityComparer<AsyncRequestQueue>
+        {
+            /// <summary>
+            /// Determines whether the specified objects are equal.
+            /// </summary>
+            /// <returns>
+            /// true if the specified objects are equal; otherwise, false.
+            /// </returns>
+            /// <param name="x">The first object of type <paramref name="T"/> to compare.</param><param name="y">The second object of type <paramref name="T"/> to compare.</param>
+            public override bool Equals(AsyncRequestQueue x, AsyncRequestQueue y)
+            {
+                if (x == null) return y == null;
+
+                return x.RequestLimit == y.RequestLimit && x.OnOverflow == y.OnOverflow;
+            }
+
+            /// <summary>
+            /// Returns a hash code for the specified object.
+            /// </summary>
+            /// <returns>
+            /// A hash code for the specified object.
+            /// </returns>
+            /// <param name="obj">The <see cref="T:System.Object"/> for which a hash code is to be returned.</param><exception cref="T:System.ArgumentNullException">The type of <paramref name="obj"/> is a reference type and <paramref name="obj"/> is null.</exception>
+            public override int GetHashCode(AsyncRequestQueue obj)
+            {
+                unchecked
+                {
+                    return (obj.RequestLimit * 397) ^ (int)obj.OnOverflow;
+                }
+            }
+        }
+
         [Fact]
         public void InitializeTest()
         {
@@ -291,6 +541,15 @@ namespace NLog.UnitTests.Targets
             public bool ThrowOnInitialize { get; set; }
             public int WriteCount3 { get; set; }
 
+            public MyTarget() : base()
+            {
+            }
+
+            public MyTarget(string name) : this()
+            {
+                this.Name = name;
+            }
+
             protected override void InitializeTarget()
             {
                 if (this.ThrowOnInitialize)
@@ -363,6 +622,15 @@ namespace NLog.UnitTests.Targets
 
         public class WrongMyTarget : Target
         {
+            public WrongMyTarget() : base()
+            {
+            }
+
+            public WrongMyTarget(string name) : this()
+            {
+                this.Name = name;
+            }
+
             /// <summary>
             /// Initializes the target. Can be used by inheriting classes
             /// to initialize logging.

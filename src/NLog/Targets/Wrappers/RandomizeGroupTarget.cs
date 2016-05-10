@@ -72,6 +72,17 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Initializes a new instance of the <see cref="RandomizeGroupTarget" /> class.
         /// </summary>
+        /// <param name="name">Name of the target.</param>
+        /// <param name="targets">The targets.</param>
+        public RandomizeGroupTarget(string name, params Target[] targets)
+             : this(targets)
+        {
+            this.Name = name;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RandomizeGroupTarget" /> class.
+        /// </summary>
         /// <param name="targets">The targets.</param>
         public RandomizeGroupTarget(params Target[] targets)
             : base(targets)

@@ -289,6 +289,7 @@
     <Compile Include="LayoutRenderers\Wrappers\UrlEncodeLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WhenEmptyLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WhenLayoutRendererWrapper.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\WrapLineLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WrapperLayoutRendererBase.cs" />
     <Compile Include="LayoutRenderers\Wrappers\XmlEncodeLayoutRendererWrapper.cs" />
     <Compile Include="Layouts\CsvColumn.cs" />

@@ -249,6 +249,11 @@ namespace NLog.Config
                 InternalLogger.Warn("No auto loading because Nlog.dll location is unknown");
                 return factory;
             }
+            if (!Directory.Exists(assemblyLocation))
+            {
+                InternalLogger.Warn("No auto loading because '{0}' doesn't exists", assemblyLocation);
+                return factory;
+            }
 
             var extensionDlls = Directory.GetFiles(assemblyLocation, "NLog*.dll")
                 .Select(Path.GetFileName)

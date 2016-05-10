@@ -31,26 +31,54 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using NLog.Layouts;
 using NLog.Targets;
 
-namespace NLogAutloadExtension
+namespace NLog.UnitTests.Common
 {
-    [Target("AutoLoadTarget")]
-    public class AutoLoadTarget : Target
+    /// <summary>
+    /// Target for unit testing the last written LogEvent with a event
+    /// </summary>
+    [Target("CSharpEventTarget")]
+    public class CSharpEventTarget : TargetWithLayout
     {
-        public AutoLoadTarget() : base()
-        {
-        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="eventInfo">event</param>
+        /// <param name="rendered">rendered <see cref="Layout"/></param>
+        /// <param name="threadId">current thread</param>
+        public delegate void EventHandler(LogEventInfo eventInfo, string rendered, int threadId);
 
-        public AutoLoadTarget(string name) : this()
-        {
-            this.Name = name;
-        }
+        public event EventHandler BeforeWrite;
 
+        /// <summary>
+        /// An event has been written
+        /// 
+        /// </summary>
+        public event EventHandler EventWritten;
+
+        /// <summary>
+        /// Increases the number of messages.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            // do nothing
+            if (BeforeWrite != null)
+            {
+                BeforeWrite.Invoke(null, null, Thread.CurrentThread.ManagedThreadId);
+            }
+
+            if (EventWritten != null)
+            {
+                var rendered = Layout == null ? null : Layout.Render(logEvent);
+                EventWritten.Invoke(logEvent, rendered, Thread.CurrentThread.ManagedThreadId);
+            }
         }
+
     }
 }
