@@ -42,6 +42,7 @@ namespace NLog.UnitTests
 
     using NLog.Layouts;
     using NLog.Config;
+    using NLog.Targets;
     using Xunit;
 #if SILVERLIGHT
     using System.Xml.Linq;
@@ -51,7 +52,6 @@ namespace NLog.UnitTests
     using System.Security.Permissions;
 #if NET3_5 || NET4_0 || NET4_5
     using Ionic.Zip;
-    using NLog.Targets;
 #endif
 #endif
 
