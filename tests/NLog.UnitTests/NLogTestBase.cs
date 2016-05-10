@@ -178,9 +178,7 @@ namespace NLog.UnitTests
                 }
             }
         }
-#endif
-
-#if NET4_5
+#elif NET4_5
         protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
         {
             FileInfo fi = new FileInfo(fileName);
@@ -205,6 +203,11 @@ namespace NLog.UnitTests
                     Assert.Equal(encodedBuf[i], buf[i]);
                 }
             }
+        }
+#else
+        protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
+        {
+            Assert.True(false);
         }
 #endif
 
