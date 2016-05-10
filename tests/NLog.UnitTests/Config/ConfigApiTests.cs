@@ -181,5 +181,30 @@ namespace NLog.UnitTests.Config
             Assert.Throws <NLogConfigurationException>(() => config.AddRuleForOneLevel(LogLevel.Error, "File", "*a"));
 
         }
+
+        [Fact]
+        public void CheckAllTargets()
+        {
+
+            var config = new LoggingConfiguration();
+            var fileTarget = new FileTarget { Name = "File" , FileName = "file"};
+            config.AddRuleForOneLevel(LogLevel.Error, fileTarget, "*a");
+         
+
+
+
+            config.AddTarget(fileTarget);
+
+            Assert.Equal(1, config.AllTargets.Count);
+            Assert.Equal(fileTarget, config.AllTargets[0]);
+
+
+
+            config.InitializeAll();
+
+            Assert.Equal(1, config.AllTargets.Count);
+            Assert.Equal(fileTarget, config.AllTargets[0]);
+
+        }
     }
 }
