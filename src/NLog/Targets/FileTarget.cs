@@ -93,7 +93,7 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks>Last write time is store in local time (no UTC).</remarks>
         private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
-        
+
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace NLog.Targets
 
         private bool concurrentWrites;
         private bool keepFileOpen;
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
         /// </summary>
@@ -204,6 +204,18 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="FileTarget" /> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        /// <param name="name">Name of the target.</param>
+        public FileTarget(string name) : this()
+        {
+            this.Name = name;
+        }
+
+        /// <summary>
         /// Gets or sets the name of the file to write to.
         /// </summary>
         /// <remarks>
@@ -224,7 +236,7 @@ namespace NLog.Targets
             get { return fileName; }
             set
             {
-              
+
                 fileName = value;
 
                 if (IsInitialized)
@@ -249,6 +261,14 @@ namespace NLog.Targets
             {
                 //clear cache
                 cachedCleanedFileNamed = null;
+            }
+
+            fileName = value;
+
+            if (IsInitialized)
+            {
+                RefreshFileArchive();
+                RefreshArchiveFilePatternToWatch();
             }
         }
 
@@ -706,7 +726,7 @@ namespace NLog.Targets
                                     {
                                         InternalLogger.Warn(ex, "Exception in Thread.Sleep, most of the time not an issue.");
                                     }
-                                   
+
                                     lock (SyncRoot)
                                         this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
                                 }
@@ -838,7 +858,7 @@ namespace NLog.Targets
             else
                 return SingleProcessFileAppender.TheFactory;
         }
-        
+
         private bool IsArchivingEnabled()
         {
             return this.ArchiveAboveSize != FileTarget.ArchiveAboveSizeDisabled || this.ArchiveEvery != FileArchivePeriod.None;
@@ -851,7 +871,7 @@ namespace NLog.Targets
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
-           
+
             SetCachedCleanedFileNamed(FileName);
             RefreshFileArchive();
             this.appenderFactory = GetFileAppenderFactory();
@@ -1050,7 +1070,8 @@ namespace NLog.Targets
             try
             {
                 if (currentFileName != null)
-                    ProcessLogEvent(firstLogEvent, currentFileName, ms.ToArray());            }
+                    ProcessLogEvent(firstLogEvent, currentFileName, ms.ToArray());
+            }
             catch (Exception exception)
             {
                 if (exception.MustBeRethrown())
@@ -1225,7 +1246,7 @@ namespace NLog.Targets
                 InternalLogger.Info("Archiving {0} to zip-archive {1}", fileName, archiveFileName);
                 using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
                 using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
-                using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite ))
+                using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
                     var zipArchiveEntry = archive.CreateEntry(Path.GetFileName(fileName));
                     using (var destination = zipArchiveEntry.Open())
@@ -1233,7 +1254,7 @@ namespace NLog.Targets
                         originalFileStream.CopyTo(destination);
                     }
                 }
-                
+
                 DeleteAndWaitForFileDelete(fileName);
             }
             else
@@ -1331,7 +1352,7 @@ namespace NLog.Targets
             archiveFileNames.Add(archiveFileName);
             EnsureArchiveCount(archiveFileNames);
         }
-        
+
         /// <summary>
         /// Deletes files among a given list, and stops as soon as the remaining files are fewer than the <see
         /// cref="P:FileTarget.MaxArchiveFiles"/> setting.
@@ -1516,7 +1537,7 @@ namespace NLog.Targets
                 {
                     string archiveFileName = Path.GetFileName(nextFile);
                     int lastIndexOfStar = fileNameMask.LastIndexOf('*');
-          
+
                     if (lastIndexOfStar + dateFormat.Length <= archiveFileName.Length)
                     {
                         string datePart = archiveFileName.Substring(lastIndexOfStar, dateFormat.Length);
@@ -1554,7 +1575,7 @@ namespace NLog.Targets
                     case FileArchivePeriod.Year: formatString = "yyyy"; break;
                     case FileArchivePeriod.Month: formatString = "yyyyMM"; break;
                     default: formatString = "yyyyMMdd"; break;
-                    case FileArchivePeriod.Hour: formatString = "yyyyMMddHH";break;
+                    case FileArchivePeriod.Hour: formatString = "yyyyMMddHH"; break;
                     case FileArchivePeriod.Minute: formatString = "yyyyMMddHHmm"; break;
                 }
             }
@@ -1574,7 +1595,7 @@ namespace NLog.Targets
                 InternalLogger.Trace("Using previous log event time (is more recent)");
                 return previousLogEventTimestamp.Value;
             }
-            
+
             if (PreviousLogOverlappedPeriod(fileCharacteristics, logEvent))
             {
                 InternalLogger.Trace("Using previous log event time (previous log overlapped period)");
@@ -1691,7 +1712,7 @@ namespace NLog.Targets
                 return Path.GetFullPath(archiveFileName);
             }
         }
-        
+
         /// <summary>
         /// Determine if old archive files should be deleted.
         /// </summary>
@@ -1755,7 +1776,7 @@ namespace NLog.Targets
             {
                 return false;
             }
-            
+
             // file creation time is in Utc and logEvent's timestamp is originated from TimeSource.Current,
             // so we should ask the TimeSource to convert file time to TimeSource time:
             DateTime creationTime = TimeSource.Current.FromSystemTime(fileCharacteristics.CreationTimeUtc);
@@ -1861,7 +1882,7 @@ namespace NLog.Targets
                 if (!this.initializedFiles.ContainsKey(fileName))
                 {
                     ProcessOnStartup(fileName, logEvent);
-                    
+
                     this.initializedFiles[fileName] = now;
                     this.initializedFilesCounter++;
                     writeHeader = true;
@@ -2112,7 +2133,7 @@ namespace NLog.Targets
         {
             private readonly Queue<string> archiveFileQueue = new Queue<string>();
             private readonly FileTarget fileTarget;
-            
+
             /// <summary>
             /// Creates an instance of <see cref="DynamicFileArchive"/> class.
             /// </summary>
@@ -2123,7 +2144,7 @@ namespace NLog.Targets
                 this.fileTarget = fileTarget;
                 this.MaxArchiveFileToKeep = maxArchivedFiles;
             }
-            
+
             /// <summary>
             /// Gets or sets the maximum number of archive files that should be kept.
             /// </summary>
@@ -2174,7 +2195,7 @@ namespace NLog.Targets
                 AddToArchive(archiveFileName, fileName, createDirectory);
                 return true;
             }
-            
+
             /// <summary>
             /// Archives the file, either by copying it to a new file system location or by compressing it, and add the file name into the list of archives.
             /// </summary>
@@ -2232,7 +2253,7 @@ namespace NLog.Targets
                 }
             }
 
-            
+
             /// <summary>
             /// Gets the file name for the next archive file by appending a number to the provided
             /// "base"-filename.

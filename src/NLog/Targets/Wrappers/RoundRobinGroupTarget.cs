@@ -74,6 +74,17 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Initializes a new instance of the <see cref="RoundRobinGroupTarget" /> class.
         /// </summary>
+        /// <param name="name">Name of the target.</param>
+        /// <param name="targets">The targets.</param>
+        public RoundRobinGroupTarget(string name, params Target[] targets)
+             : this(targets)
+        {
+            this.Name = name;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RoundRobinGroupTarget" /> class.
+        /// </summary>
         /// <param name="targets">The targets.</param>
         public RoundRobinGroupTarget(params Target[] targets)
             : base(targets)

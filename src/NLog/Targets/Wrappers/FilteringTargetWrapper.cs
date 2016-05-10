@@ -71,6 +71,18 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Initializes a new instance of the <see cref="FilteringTargetWrapper" /> class.
         /// </summary>
+        /// <param name="name">Name of the target.</param>
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        /// <param name="condition">The condition.</param>
+        public FilteringTargetWrapper(string name, Target wrappedTarget, ConditionExpression condition)
+            : this(wrappedTarget, condition)
+        {
+            this.Name = name;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FilteringTargetWrapper" /> class.
+        /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         /// <param name="condition">The condition.</param>
         public FilteringTargetWrapper(Target wrappedTarget, ConditionExpression condition)

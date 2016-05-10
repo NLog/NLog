@@ -69,6 +69,18 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="MemoryTarget" /> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        /// <param name="name">Name of the target.</param>
+        public MemoryTarget(string name) : this()
+        {
+            this.Name = name;
+        }
+
+        /// <summary>
         /// Gets the list of logs gathered in the <see cref="MemoryTarget"/>.
         /// </summary>
         public IList<string> Logs { get; private set; }

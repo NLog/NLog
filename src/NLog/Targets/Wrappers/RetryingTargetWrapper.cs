@@ -71,6 +71,19 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Initializes a new instance of the <see cref="RetryingTargetWrapper" /> class.
         /// </summary>
+        /// <param name="name">Name of the target.</param>
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        /// <param name="retryCount">The retry count.</param>
+        /// <param name="retryDelayMilliseconds">The retry delay milliseconds.</param>
+        public RetryingTargetWrapper(string name, Target wrappedTarget, int retryCount, int retryDelayMilliseconds)
+            : this(wrappedTarget, retryCount, retryDelayMilliseconds)
+        {
+            this.Name = name;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RetryingTargetWrapper" /> class.
+        /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         /// <param name="retryCount">The retry count.</param>
         /// <param name="retryDelayMilliseconds">The retry delay milliseconds.</param>

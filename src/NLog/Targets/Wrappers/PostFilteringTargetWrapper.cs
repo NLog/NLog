@@ -75,9 +75,29 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Initializes a new instance of the <see cref="PostFilteringTargetWrapper" /> class.
         /// </summary>
-        public PostFilteringTargetWrapper()
+        public PostFilteringTargetWrapper() : this(null)
         {
             this.Rules = new List<FilteringRule>();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PostFilteringTargetWrapper" /> class.
+        /// </summary>
+        public PostFilteringTargetWrapper(Target wrappedTarget)
+        {
+            this.Rules = new List<FilteringRule>();
+            this.WrappedTarget = wrappedTarget;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PostFilteringTargetWrapper" /> class.
+        /// </summary>
+        /// <param name="name">Name of the target.</param>
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        public PostFilteringTargetWrapper(string name, Target wrappedTarget)
+            : this(wrappedTarget)
+        {
+            this.Name = name;
         }
 
         /// <summary>
