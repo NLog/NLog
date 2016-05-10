@@ -692,17 +692,24 @@ namespace NLog.Targets
                             {
                                 while (true)
                                 {
-                                    this.fileAppenderCache.LogArchiveWaitHandle.WaitOne();
-
-                                    lock (SyncRoot)
+                                    try
                                     {
-                                        if (!this.fileAppenderCache.LogFileWasArchived)
-                                        {
-                                            // StopAppenderInvalidatorThread() was called.
-                                            break;
-                                        }
+                                        this.fileAppenderCache.LogArchiveWaitHandle.WaitOne();
 
-                                        this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
+                                        lock (SyncRoot)
+                                        {
+                                            if (!this.fileAppenderCache.LogFileWasArchived)
+                                            {
+                                                // StopAppenderInvalidatorThread() was called.
+                                                break;
+                                            }
+
+                                            this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        InternalLogger.Info(ex, "Exception in FileTarget appender-invalidator thread.");
                                     }
                                 }
                             }));
