@@ -368,7 +368,8 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                FileTarget.FileCompressor = fileCompressor;
+                if (customFileCompressor)
+                    FileTarget.FileCompressor = fileCompressor;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
                 if (Directory.Exists(tempArchiveFolder))
