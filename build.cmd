@@ -1,35 +1,11 @@
-@echo off
-cd %~dp0
+CALL dnvm install 1.0.0-rc1-update1
 
-SETLOCAL
-SET NUGET_VERSION=latest
-SET CACHED_NUGET=%LocalAppData%\NuGet\nuget.%NUGET_VERSION%.exe
-SET BUILDCMD_KOREBUILD_VERSION=
-SET BUILDCMD_DNX_VERSION=1.0.0-rc1-update1
-SET BUILDCMD_DNX_OPTIONS=
-SET SKIP_DNX_INSTALL=
+CALL dnu restore --quiet
+CALL dnu build src/NLog --quiet
+CALL dnu build src/NLog.Extended --quiet
+CALL dnu build src/NLog.Extended --quiet
+CALL dnu build src/NLogAutoLoadExtension --quiet
+CALL dnu build tests/SampleExtensions --quiet
+CALL dnu build tests/NLog.UnitTests --quiet
 
-IF EXIST %CACHED_NUGET% goto copynuget
-echo Downloading latest version of NuGet.exe...
-IF NOT EXIST %LocalAppData%\NuGet md %LocalAppData%\NuGet
-@powershell -NoProfile -ExecutionPolicy unrestricted -Command "$ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest 'https://dist.nuget.org/win-x86-commandline/%NUGET_VERSION%/nuget.exe' -OutFile '%CACHED_NUGET%'"
-
-:copynuget
-IF EXIST .nuget\nuget.exe goto restore
-md .nuget
-copy %CACHED_NUGET% .nuget\nuget.exe > nul
-
-:restore
-IF NOT EXIST build.ps1 @powershell -NoProfile -ExecutionPolicy unrestricted -Command "Invoke-WebRequest http://cakebuild.net/bootstrapper/windows -OutFile build.ps1"
-
-:getdnx
-@powershell -NoProfile -ExecutionPolicy unrestricted -Command "&{$Branch='dev';iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}"
-
-
-IF "%SKIP_DNX_INSTALL%"=="" (
-    CALL dnvm install %BUILDCMD_DNX_VERSION% -runtime CLR -arch x86 -alias default %BUILDCMD_DNX_OPTIONS%
-	CALL dnvm install %BUILDCMD_DNX_VERSION% -runtime coreclr -arch x86 %BUILDCMD_DNX_OPTIONS%
-	CALL dnvm install %BUILDCMD_DNX_VERSION% -runtime coreclr -arch x64 %BUILDCMD_DNX_OPTIONS%
-)
-
-@powershell -NoProfile -ExecutionPolicy unrestricted -Command ".\build.ps1 -Script build.cake -DnxVersion %BUILDCMD_DNX_VERSION% %*"
+call dnx -p tests\NLog.UnitTests test
