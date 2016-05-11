@@ -141,9 +141,8 @@ namespace NLog.Targets
 
         private FileArchivePeriod archiveEvery;
         private long archiveAboveSize;
-#if NET4_5
+
         private bool enableArchiveFileCompression;
-#endif
 
         /// <summary>
         /// The filename if <see cref="FileName"/> is a fixed string
@@ -202,6 +201,13 @@ namespace NLog.Targets
             this.fileAppenderCache = FileAppenderCache.Empty;
             this.CleanupFileName = true;
         }
+
+#if NET4_5
+        static FileTarget()
+        {
+            FileCompressor = new ZipArchiveFileCompressor();
+        }
+#endif
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
@@ -608,7 +614,14 @@ namespace NLog.Targets
         /// <docgen category='Archival Options' order='10' />
         public ArchiveNumberingMode ArchiveNumbering { get; set; }
 
-#if NET4_5
+        /// <summary>
+        /// Used to compress log files during archiving.
+        /// This may be used to provide your own implementation of a zip file compressor,
+        /// on platforms other than .Net4.5.
+        /// Defaults to ZipArchiveFileCompressor on .Net4.5 and to null otherwise.
+        /// </summary>
+        public static IFileCompressor FileCompressor { get; set; }
+
         /// <summary>
         /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
         /// </summary>
@@ -616,7 +629,7 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool EnableArchiveFileCompression
         {
-            get { return enableArchiveFileCompression; }
+            get { return enableArchiveFileCompression && FileCompressor != null; }
             set
             {
                 enableArchiveFileCompression = value;
@@ -626,12 +639,7 @@ namespace NLog.Targets
                 }
             }
         }
-#else
-        /// <summary>
-        /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
-        /// </summary>
-        private const bool EnableArchiveFileCompression = false;
-#endif
+
 
         /// <summary>
         /// Gets or set a value indicating whether a managed file stream is forced, instead of used the native implementation.
@@ -1239,26 +1247,14 @@ namespace NLog.Targets
             string archiveFolderPath = Path.GetDirectoryName(archiveFileName);
             if (!Directory.Exists(archiveFolderPath))
                 Directory.CreateDirectory(archiveFolderPath);
-
-#if NET4_5
+            
             if (EnableArchiveFileCompression)
             {
-                InternalLogger.Info("Archiving {0} to zip-archive {1}", fileName, archiveFileName);
-                using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
-                using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
-                using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                {
-                    var zipArchiveEntry = archive.CreateEntry(Path.GetFileName(fileName));
-                    using (var destination = zipArchiveEntry.Open())
-                    {
-                        originalFileStream.CopyTo(destination);
-                    }
-                }
-
+                InternalLogger.Info("Archiving {0} to compressed {1}", fileName, archiveFileName);
+                FileCompressor.CompressFile(fileName, archiveFileName);
                 DeleteAndWaitForFileDelete(fileName);
             }
             else
-#endif
             {
                 InternalLogger.Info("Archiving {0} to {1}", fileName, archiveFileName);
                 File.Move(fileName, archiveFileName);

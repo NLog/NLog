@@ -42,6 +42,7 @@ namespace NLog.UnitTests
 
     using NLog.Layouts;
     using NLog.Config;
+    using NLog.Targets;
     using Xunit;
 #if SILVERLIGHT
     using System.Xml.Linq;
@@ -49,6 +50,9 @@ namespace NLog.UnitTests
     using System.Xml;
     using System.IO.Compression;
     using System.Security.Permissions;
+#if NET3_5 || NET4_0 || NET4_5
+    using Ionic.Zip;
+#endif
 #endif
 
     public abstract class NLogTestBase
@@ -135,7 +139,46 @@ namespace NLog.UnitTests
             Assert.Equal(contents, fileText.Substring(fileText.Length - contents.Length));
         }
 
-#if NET4_5
+        protected class CustomFileCompressor : IFileCompressor
+        {
+            public void CompressFile(string fileName, string archiveFileName)
+            {
+#if NET3_5 || NET4_0 || NET4_5
+                using (ZipFile zip = new ZipFile())
+                {
+                    zip.AddFile(fileName);
+                    zip.Save(archiveFileName);
+                }
+#endif
+            }
+        }
+
+#if NET3_5 || NET4_0
+        protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
+        {
+            if (!File.Exists(fileName))
+                Assert.True(false, "File '" + fileName + "' doesn't exist.");
+
+            byte[] encodedBuf = encoding.GetBytes(contents);
+            
+            using (var zip = new ZipFile(fileName))
+            {
+                Assert.Equal(1, zip.Count);
+                Assert.Equal(encodedBuf.Length, zip[0].UncompressedSize);
+
+                byte[] buf = new byte[zip[0].UncompressedSize];
+                using (var fs = zip[0].OpenReader())
+                {
+                    fs.Read(buf, 0, buf.Length);
+                }
+                                
+                for (int i = 0; i < buf.Length; ++i)
+                {
+                    Assert.Equal(encodedBuf[i], buf[i]);
+                }
+            }
+        }
+#elif NET4_5
         protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
         {
             FileInfo fi = new FileInfo(fileName);
@@ -160,6 +203,11 @@ namespace NLog.UnitTests
                     Assert.Equal(encodedBuf[i], buf[i]);
                 }
             }
+        }
+#else
+        protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
+        {
+            Assert.True(false);
         }
 #endif
 

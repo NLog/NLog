@@ -352,6 +352,7 @@
     <Compile Include="Targets\EventLogTargetOverflowAction.cs" />
     <Compile Include="Targets\FileArchivePeriod.cs" />
     <Compile Include="Targets\FileTarget.cs" />
+    <Compile Include="Targets\IFileCompressor.cs" />
     <Compile Include="Targets\LineEndingMode.cs" />
     <Compile Include="Targets\LogReceiverWebServiceTarget.cs" />
     <Compile Include="Targets\MailTarget.cs" />
@@ -396,6 +397,7 @@
     <Compile Include="Targets\Wrappers\SecurityLogOnType.cs" />
     <Compile Include="Targets\Wrappers\SplitGroupTarget.cs" />
     <Compile Include="Targets\Wrappers\WrapperTargetBase.cs" />
+    <Compile Include="Targets\ZipArchiveFileCompressor.cs" />
     <Compile Include="Time\AccurateLocalTimeSource.cs" />
     <Compile Include="Time\AccurateUtcTimeSource.cs" />
     <Compile Include="Time\CachedTimeSource.cs" />
