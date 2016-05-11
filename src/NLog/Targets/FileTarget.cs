@@ -722,21 +722,23 @@ namespace NLog.Targets
                                 {
                                     try
                                     {
-                                        Thread.Sleep(200);
-                                    }
-                                    catch (ThreadAbortException ex)
+                                        this.fileAppenderCache.LogArchiveWaitHandle.WaitOne();
+
+                                        lock (SyncRoot)
                                     {
+                                            if (!this.fileAppenderCache.LogFileWasArchived)
+                                            {
                                         //ThreadAbortException will be automatically re-thrown at the end of the try/catch/finally if ResetAbort isn't called.
-                                        Thread.ResetAbort();
-                                        InternalLogger.Trace(ex, "ThreadAbortException in Thread.Sleep");
+                                                break;
+                                    }
+
+                                            this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
+                                        }
                                     }
                                     catch (Exception ex)
                                     {
-                                        InternalLogger.Warn(ex, "Exception in Thread.Sleep, most of the time not an issue.");
+                                        InternalLogger.Info(ex, "Exception in FileTarget appender-invalidator thread.");
                                     }
-
-                                    lock (SyncRoot)
-                                        this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
                                 }
                             }));
                             this.appenderInvalidatorThread.IsBackground = true;
@@ -747,16 +749,25 @@ namespace NLog.Targets
                 else
                 {
                     this.fileAppenderCache.ArchiveFilePatternToWatch = null;
-
-                    if (this.appenderInvalidatorThread != null)
-                    {
-                        this.appenderInvalidatorThread.Abort();
-                        this.appenderInvalidatorThread = null;
-                    }
+                    this.StopAppenderInvalidatorThread();
                 }
             }
 #endif
         }
+
+        private void StopAppenderInvalidatorThread()
+        {
+                    if (this.appenderInvalidatorThread != null)
+                    {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                if (this.fileAppenderCache.LogFileWasArchived)
+                    this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
+
+                this.fileAppenderCache.LogArchiveWaitHandle.Set();
+#endif
+                        this.appenderInvalidatorThread = null;
+                    }
+                }
 
         /// <summary>
         /// Removes records of initialized files that have not been 
@@ -916,11 +927,7 @@ namespace NLog.Targets
                 this.autoClosingTimer = null;
             }
 
-            if (this.appenderInvalidatorThread != null)
-            {
-                this.appenderInvalidatorThread.Abort();
-                this.appenderInvalidatorThread = null;
-            }
+            this.StopAppenderInvalidatorThread();
 
             this.fileAppenderCache.CloseAppenders();
         }
