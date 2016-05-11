@@ -132,7 +132,28 @@ namespace NLog.Config
             get
             {
                 var configTargets = this.configItems.OfType<Target>();
-                return configTargets.Concat(targets.Values).ToList().AsReadOnly();
+                return configTargets.Concat(targets.Values).Distinct(TargetNameComparer).ToList().AsReadOnly();
+            }
+        }
+        /// <summary>
+        /// Compare on name
+        /// </summary>
+        private static IEqualityComparer<Target> TargetNameComparer = new TargetNameEq();
+
+        /// <summary>
+        /// Compare on name
+        /// </summary>
+        private class TargetNameEq : IEqualityComparer<Target>
+        {
+          
+            public bool Equals(Target x, Target y)
+            {
+                return string.Equals(x.Name, y.Name);
+            }
+
+            public int GetHashCode(Target obj)
+            {
+               return (obj.Name != null ? obj.Name.GetHashCode() : 0);
             }
         }
 
