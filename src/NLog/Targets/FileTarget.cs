@@ -722,7 +722,7 @@ namespace NLog.Targets
                                 {
                                     try
                                     {
-                                        this.fileAppenderCache.LogArchiveWaitHandle.WaitOne();
+                                        this.fileAppenderCache.LogArchiveWaitHandle.WaitOne(200);
 
                                         lock (SyncRoot)
                                         {
