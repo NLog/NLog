@@ -369,9 +369,12 @@ namespace NLog
         /// </summary>
         public static void Shutdown()
         {
-            foreach (var target in Configuration.AllTargets)
+            if (Configuration != null && Configuration.AllTargets != null)
             {
-                target.Dispose();
+                foreach (var target in Configuration.AllTargets)
+                {
+                    if (target != null) target.Dispose();
+                }
             }
         }
 
