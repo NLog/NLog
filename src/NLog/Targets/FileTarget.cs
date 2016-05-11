@@ -109,7 +109,9 @@ namespace NLog.Targets
 
         private Timer autoClosingTimer;
 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         private Thread appenderInvalidatorThread = null;
+#endif
 
         /// <summary>
         /// The number of initialised files at any one time.
@@ -749,6 +751,7 @@ namespace NLog.Targets
                 else
                 {
                     this.fileAppenderCache.ArchiveFilePatternToWatch = null;
+
                     this.StopAppenderInvalidatorThread();
                 }
             }
@@ -757,17 +760,20 @@ namespace NLog.Targets
 
         private void StopAppenderInvalidatorThread()
         {
-                    if (this.appenderInvalidatorThread != null)
-                    {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+            if (this.appenderInvalidatorThread != null)
+            {
+
                 if (this.fileAppenderCache.LogFileWasArchived)
                     this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
 
                 this.fileAppenderCache.LogArchiveWaitHandle.Set();
+
+                this.appenderInvalidatorThread = null;
+
+            }
 #endif
-                        this.appenderInvalidatorThread = null;
-                    }
-                }
+        }
 
         /// <summary>
         /// Removes records of initialized files that have not been 
@@ -1254,7 +1260,7 @@ namespace NLog.Targets
             string archiveFolderPath = Path.GetDirectoryName(archiveFileName);
             if (!Directory.Exists(archiveFolderPath))
                 Directory.CreateDirectory(archiveFolderPath);
-            
+
             if (EnableArchiveFileCompression)
             {
                 InternalLogger.Info("Archiving {0} to compressed {1}", fileName, archiveFileName);
