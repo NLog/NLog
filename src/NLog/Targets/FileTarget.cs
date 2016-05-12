@@ -111,6 +111,7 @@ namespace NLog.Targets
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         private Thread appenderInvalidatorThread = null;
+        private EventWaitHandle stopAppenderInvalidatorThreadWaitHandle = new ManualResetEvent(false);
 #endif
 
         /// <summary>
@@ -724,16 +725,11 @@ namespace NLog.Targets
                                 {
                                     try
                                     {
-                                        this.fileAppenderCache.LogArchiveWaitHandle.WaitOne(200);
+                                        if (this.stopAppenderInvalidatorThreadWaitHandle.WaitOne(200))
+                                            break;
 
                                         lock (SyncRoot)
                                         {
-                                            if (!this.fileAppenderCache.LogFileWasArchived)
-                                            {
-                                                //ThreadAbortException will be automatically re-thrown at the end of the try/catch/finally if ResetAbort isn't called.
-                                                break;
-                                            }
-
                                             this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
                                         }
                                     }
@@ -763,14 +759,8 @@ namespace NLog.Targets
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             if (this.appenderInvalidatorThread != null)
             {
-
-                if (this.fileAppenderCache.LogFileWasArchived)
-                    this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
-
-                this.fileAppenderCache.LogArchiveWaitHandle.Set();
-
+                this.stopAppenderInvalidatorThreadWaitHandle.Set();
                 this.appenderInvalidatorThread = null;
-
             }
 #endif
         }

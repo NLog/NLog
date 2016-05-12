@@ -46,7 +46,7 @@ namespace NLog.Internal.FileAppenders
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         private string archiveFilePatternToWatch = null;
         private readonly MultiFileWatcher externalFileArchivingWatcher = new MultiFileWatcher(NotifyFilters.FileName);
-        private readonly ManualResetEvent logFileArchiveWaitHandle = new ManualResetEvent(false);
+        private bool logFileWasArchived = false;
 #endif
 
         /// <summary>
@@ -87,22 +87,9 @@ namespace NLog.Internal.FileAppenders
         private void ExternalFileArchivingWatcher_OnChange(object sender, FileSystemEventArgs e)
         {
             if ((e.ChangeType & WatcherChangeTypes.Created) == WatcherChangeTypes.Created)
-            {
-                LogFileWasArchived = true;
-                logFileArchiveWaitHandle.Set();
-            }
+                logFileWasArchived = true;
         }
-
-        public bool LogFileWasArchived
-        {
-            get; private set;
-        }
-
-        public EventWaitHandle LogArchiveWaitHandle
-        {
-            get { return logFileArchiveWaitHandle; }
-        }
-
+        
         /// <summary>
         /// The archive file path pattern that is used to detect when archiving occurs.
         /// </summary>
@@ -115,7 +102,7 @@ namespace NLog.Internal.FileAppenders
                 {
                     archiveFilePatternToWatch = value;
 
-                    LogFileWasArchived = false;
+                    logFileWasArchived = false;
                     externalFileArchivingWatcher.StopWatching();
                 }
             }
@@ -126,10 +113,10 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public void InvalidateAppendersForInvalidFiles()
         {
-            if (LogFileWasArchived)
+            if (logFileWasArchived)
             {
                 CloseAppenders();
-                LogFileWasArchived = false;
+                logFileWasArchived = false;
             }
         }
 #endif
