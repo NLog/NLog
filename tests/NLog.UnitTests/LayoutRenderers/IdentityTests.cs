@@ -76,7 +76,6 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             var oldPrincipal = Thread.CurrentPrincipal;
 
-            Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("SOMEDOMAIN\\SomeUser", "CustomAuth"), new[] { "Role1", "Role2" });
 
             try
             {
@@ -129,17 +128,20 @@ namespace NLog.UnitTests.LayoutRenderers
                     };
 
 
-                 
+                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("SOMEDOMAIN\\SomeUser", "CustomAuth"), new[] { "Role1", "Role2" });
+
                     var logger = LogManager.GetCurrentClassLogger();
                     logger.Debug("test write");
 
 
                     Assert.True(continuationHit.WaitOne());
-                    Assert.Equal("auth:CustomAuth:SOMEDOMAIN\\SomeUser", rendered);
-                    Assert.NotNull(lastLogEvent);
-                   
                     //should be written in another thread.
                     Assert.NotEqual(threadId, asyncThreadId);
+
+                    Assert.NotNull(lastLogEvent);
+                    Assert.Equal("auth:CustomAuth:SOMEDOMAIN\\SomeUser", rendered);
+                  
+                 
 
                 }
                 finally
