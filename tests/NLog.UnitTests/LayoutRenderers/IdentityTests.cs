@@ -135,10 +135,11 @@ namespace NLog.UnitTests.LayoutRenderers
 
 
                     Assert.True(continuationHit.WaitOne());
+                    Assert.NotNull(lastLogEvent);
                     //should be written in another thread.
                     Assert.NotEqual(threadId, asyncThreadId);
 
-                    Assert.NotNull(lastLogEvent);
+                   
                     Assert.Equal("auth:CustomAuth:SOMEDOMAIN\\SomeUser", rendered);
                   
                  
