@@ -1,4 +1,6 @@
-See also https://github.com/NLog/NLog/releases
+See also [releases](https://github.com/NLog/NLog/releases) and [milestones](https://github.com/NLog/NLog/milestones).
+
+This list is new since 4.3.4. If requested, we will try to add the older releases in this file.
 
 ### V4.3.4 (2016/05/16)
 
