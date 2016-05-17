@@ -59,6 +59,8 @@ namespace NLog.Config
     /// <summary>
     /// A class for configuring NLog through an XML configuration file 
     /// (App.config style or App.nlog style).
+    /// 
+    /// Parsing of the XML file is also implemented in this class.
     /// </summary>
     ///<remarks>This class is thread-safe.<c>.ToList()</c> is used for that purpose.</remarks>
     public class XmlLoggingConfiguration : LoggingConfiguration

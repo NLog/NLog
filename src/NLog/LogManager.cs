@@ -178,6 +178,15 @@ namespace NLog
         }
 
         /// <summary>
+        /// Overwrite possible file paths (including filename) for possible NLog config files. If this property is set to non-<c>null</c>, the default file paths are not used.
+        /// </summary>
+        public static IList<string> CandidateConfigFileNames
+        {
+            get { return factory.CandidateConfigFileNames; }
+            set { factory.CandidateConfigFileNames = value; }
+        }
+
+        /// <summary>
         /// Gets the logger with the name of the current class.  
         /// </summary>
         /// <returns>The logger.</returns>
