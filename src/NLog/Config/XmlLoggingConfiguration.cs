@@ -546,6 +546,13 @@ namespace NLog.Config
                 this.ParseExtensionsElement(extensionsChild, Path.GetDirectoryName(filePath));
             }
 
+            //then load <variable>
+            var variableChilds = children.Where(child => child.LocalName.Equals("VARIABLE", StringComparison.InvariantCultureIgnoreCase)).ToList();
+            foreach (var variableChild in variableChilds)
+            {
+                this.ParseVariableElement(variableChild);
+            }
+
             //parse all other direct elements
             foreach (var child in children)
             {
@@ -565,7 +572,7 @@ namespace NLog.Config
                         break;
 
                     case "VARIABLE":
-                        this.ParseVariableElement(child);
+                        //already parsed
                         break;
 
                     case "RULES":
