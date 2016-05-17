@@ -8,7 +8,7 @@
 [![Last News](https://img.shields.io/badge/News-16_april_2016-orange.svg)](http://nlog-project.org/archives/)
 [![codecov.io](https://codecov.io/github/NLog/NLog/coverage.svg?branch=master)](https://codecov.io/github/NLog/NLog?branch=master) 
 [![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-3D9FE0.svg)](http://semver.org/)
-
+[![Rager Releases](http://rager.io/badge.svg?url=https%3A%2F%2Fgithub.com%2FNLog%2FNLog)](http://rager.io/projects/search?badge=1&query=github.com/nlog/nlog)
 
 <!--
 [![NuGet downloads](https://img.shields.io/nuget/dt/NLog.svg)](https://www.nuget.org/packages/NLog)
