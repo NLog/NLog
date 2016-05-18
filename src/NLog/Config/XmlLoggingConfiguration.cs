@@ -1058,6 +1058,11 @@ namespace NLog.Config
                 return;
             }
 
+            if (this.SetItemFromElement(o, element))
+            {
+                return;
+            }
+
             PropertyHelper.SetPropertyFromString(o, element.LocalName, this.ExpandSimpleVariables(element.Value), this.ConfigurationItemFactory);
         }
 
@@ -1129,6 +1134,25 @@ namespace NLog.Config
             }
 
             return false;
+        }
+
+        private bool SetItemFromElement(object o, NLogXmlElement element)
+        {
+            if (element.Value != null)
+                return false;
+
+            string name = element.LocalName;
+
+            PropertyInfo propInfo;
+            if (!PropertyHelper.TryGetPropertyInfo(o, name, out propInfo))
+            {
+                return false;
+            }
+
+            object item = propInfo.GetValue(o, null);
+            this.ConfigureObjectFromAttributes(item, element, true);
+            this.ConfigureObjectFromElement(item, element);
+            return true;
         }
 
         private void ConfigureObjectFromElement(object targetObject, NLogXmlElement element)

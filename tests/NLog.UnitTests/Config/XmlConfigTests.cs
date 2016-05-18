@@ -40,7 +40,7 @@ namespace NLog.UnitTests.Config
     public class XmlConfigTests : NLogTestBase
     {
         [Fact]
-        void ParseNLogOptionsDefaultTest()
+        public void ParseNLogOptionsDefaultTest()
         {
             var xml = "<nlog></nlog>";
             var config = CreateConfigurationFromString(xml);
@@ -58,7 +58,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void ParseNLogOptionsTest()
+        public void ParseNLogOptionsTest()
         {
             var xml = "<nlog autoreload='true' logfile='test.txt' internalLogIncludeTimestamp='false' internalLogToConsole='true' internalLogToConsoleError='true'></nlog>";
             var config = CreateConfigurationFromString(xml);

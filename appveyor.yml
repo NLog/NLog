@@ -5,11 +5,11 @@ branches:
   - coreCLR
 build_script:
   - build.cmd -Configuration Debug
+
 before_test:
   - tests\CreateTestUsers.cmd
 after_test:
   - tests\DeleteTestUsers.cmd
-
 deploy: off
 # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
 cache:
