@@ -38,7 +38,7 @@ Param(
     [switch]$WhatIf,
     [switch]$Mono,
     [switch]$SkipToolPackageRestore,
-	[string]$DnxVersion = "1.0.0-rc1-update1",
+	[string]$DnxVersion = "1.0.0-rc1-update2",
 	[string]$DnxInstallOption="-NGen",
 	[Parameter(ValueFromRemainingArguments = $true)]
     [string[]]$ScriptArgs
