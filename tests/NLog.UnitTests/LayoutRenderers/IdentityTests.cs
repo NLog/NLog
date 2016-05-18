@@ -31,6 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+using NLog.Common;
+using NLog.Config;
+using NLog.Targets;
+using NLog.Targets.Wrappers;
+using NLog.UnitTests.Common;
+using NLog.UnitTests.Targets.Wrappers;
+
 #if !SILVERLIGHT && !UWP10
 
 namespace NLog.UnitTests.LayoutRenderers
@@ -60,12 +68,97 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
+        /// <summary>
+        /// Test writing ${identity} async
+        /// </summary>
+        [Fact]
+        public void IdentityTest1Async()
+        {
+            var oldPrincipal = Thread.CurrentPrincipal;
+
+            Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("SOMEDOMAIN\\SomeUser", "CustomAuth"), new[] { "Role1", "Role2" });
+
+            try
+            {
+               
+                ConfigurationItemFactory.Default.Targets
+                            .RegisterDefinition("CSharpEventTarget", typeof(CSharpEventTarget));
+
+
+                LogManager.Configuration = this.CreateConfigurationFromString(@"<?xml version='1.0' encoding='utf-8' ?>
+<nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
+      xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+ 
+      internalLogLevel='Debug'
+      throwExceptions='true' >
+
+  <targets async='true'>
+    <target name='target1' xsi:type='CSharpEventTarget' layout='${identity}' />
+  </targets>
+
+  <rules>
+    <logger name='*' writeTo='target1' />
+  </rules>
+</nlog>
+");
+
+                try
+                {
+                    var continuationHit = new ManualResetEvent(false);
+                    string rendered = null;
+                    var threadId = Thread.CurrentThread.ManagedThreadId;
+                    var asyncThreadId = threadId;
+                    LogEventInfo lastLogEvent = null;
+
+                    var asyncTarget = LogManager.Configuration.FindTargetByName<AsyncTargetWrapper>("target1");
+                    Assert.NotNull(asyncTarget);
+                    var target = asyncTarget.WrappedTarget as CSharpEventTarget;
+                    Assert.NotNull(target);
+                    target.BeforeWrite += (logevent, rendered1, asyncThreadId1) =>
+                    {
+                        //clear in current thread before write
+                        Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("ANOTHER user", "type"),null);
+                    };
+
+                     target.EventWritten += (logevent, rendered1, asyncThreadId1) =>
+                    {
+                        continuationHit.Set();
+                        rendered = rendered1;
+                        asyncThreadId = asyncThreadId1;
+                        lastLogEvent = logevent;
+                    };
+
+
+                 
+                    var logger = LogManager.GetCurrentClassLogger();
+                    logger.Debug("test write");
+
+
+                    Assert.True(continuationHit.WaitOne());
+                    Assert.Equal("auth:CustomAuth:SOMEDOMAIN\\SomeUser", rendered);
+                    Assert.NotNull(lastLogEvent);
+                   
+                    //should be written in another thread.
+                    Assert.NotEqual(threadId, asyncThreadId);
+
+                }
+                finally
+                {
+                    LogManager.Configuration.Close();
+                }
+            }
+            finally
+            {
+                Thread.CurrentPrincipal = oldPrincipal;
+            }
+        }
+
         [Fact]
         public void IdentityTest2()
         {
             var oldPrincipal = Thread.CurrentPrincipal;
 
-            Thread.CurrentPrincipal = new GenericPrincipal(new NotAuthenticatedIdentity(), new []{"role1"});
+            Thread.CurrentPrincipal = new GenericPrincipal(new NotAuthenticatedIdentity(), new[] { "role1" });
             try
             {
                 AssertLayoutRendererOutput("${identity}", "notauth::");
@@ -81,7 +174,7 @@ namespace NLog.UnitTests.LayoutRenderers
         /// </summary>
         private class NotAuthenticatedIdentity : GenericIdentity
         {
-            
+
             public NotAuthenticatedIdentity()
                 : base("")
             {

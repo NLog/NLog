@@ -50,7 +50,7 @@ namespace NLog.UnitTests.Config
         public void AddTarget_testname()
         {
             var config = new LoggingConfiguration();
-            config.AddTarget("name1", new FileTarget { Name = "File" });
+            config.AddTarget("name1", new FileTarget {Name = "File"});
             var allTargets = config.AllTargets;
             Assert.NotNull(allTargets);
             Assert.Equal(1, allTargets.Count);
@@ -68,7 +68,7 @@ namespace NLog.UnitTests.Config
         public void AddTarget_testname_param()
         {
             var config = new LoggingConfiguration();
-            config.AddTarget("name1", new FileTarget { Name = "name2" });
+            config.AddTarget("name1", new FileTarget {Name = "name2"});
             var allTargets = config.AllTargets;
             Assert.NotNull(allTargets);
             Assert.Equal(1, allTargets.Count);
@@ -82,15 +82,13 @@ namespace NLog.UnitTests.Config
         public void AddTarget_testname_fromtarget()
         {
             var config = new LoggingConfiguration();
-            config.AddTarget(new FileTarget { Name = "name2" });
+            config.AddTarget(new FileTarget {Name = "name2"});
             var allTargets = config.AllTargets;
             Assert.NotNull(allTargets);
             Assert.Equal(1, allTargets.Count);
             Assert.Equal("name2", allTargets.First().Name);
             Assert.NotNull(config.FindTargetByName<FileTarget>("name2"));
         }
-
-
 
         [Fact]
         public void AddRule_min_max()
@@ -113,12 +111,11 @@ namespace NLog.UnitTests.Config
             Assert.Equal(false, rule1.IsLoggingEnabledForLevel(LogLevel.Off));
         }
 
-
         [Fact]
         public void AddRule_all()
         {
             var config = new LoggingConfiguration();
-            config.AddTarget(new FileTarget { Name = "File" });
+            config.AddTarget(new FileTarget {Name = "File"});
             config.AddRuleForAllLevels("File", "*a");
             Assert.NotNull(config.LoggingRules);
             Assert.Equal(1, config.LoggingRules.Count);
@@ -139,7 +136,7 @@ namespace NLog.UnitTests.Config
         public void AddRule_onelevel()
         {
             var config = new LoggingConfiguration();
-            config.AddTarget(new FileTarget { Name = "File" });
+            config.AddTarget(new FileTarget {Name = "File"});
             config.AddRuleForOneLevel(LogLevel.Error, "File", "*a");
             Assert.NotNull(config.LoggingRules);
             Assert.Equal(1, config.LoggingRules.Count);
@@ -160,11 +157,11 @@ namespace NLog.UnitTests.Config
         public void AddRule_with_target()
         {
             var config = new LoggingConfiguration();
-            var fileTarget = new FileTarget { Name = "File" };
+            var fileTarget = new FileTarget {Name = "File"};
             config.AddRuleForOneLevel(LogLevel.Error, fileTarget, "*a");
             Assert.NotNull(config.LoggingRules);
             Assert.Equal(1, config.LoggingRules.Count);
-            config.AddTarget(new FileTarget { Name = "File" });
+            config.AddTarget(new FileTarget {Name = "File"});
             var allTargets = config.AllTargets;
             Assert.NotNull(allTargets);
             Assert.Equal(1, allTargets.Count);
@@ -172,14 +169,77 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(config.FindTargetByName<FileTarget>("File"));
         }
 
-
         [Fact]
         public void AddRule_missingtarget()
         {
             var config = new LoggingConfiguration();
 
-            Assert.Throws <NLogConfigurationException>(() => config.AddRuleForOneLevel(LogLevel.Error, "File", "*a"));
+            Assert.Throws<NLogConfigurationException>(() => config.AddRuleForOneLevel(LogLevel.Error, "File", "*a"));
+        }
 
+        [Fact]
+        public void CheckAllTargets()
+        {
+            var config = new LoggingConfiguration();
+            var fileTarget = new FileTarget {Name = "File", FileName = "file"};
+            config.AddRuleForOneLevel(LogLevel.Error, fileTarget, "*a");
+
+            config.AddTarget(fileTarget);
+
+            Assert.Equal(1, config.AllTargets.Count);
+            Assert.Equal(fileTarget, config.AllTargets[0]);
+
+            config.InitializeAll();
+
+            Assert.Equal(1, config.AllTargets.Count);
+            Assert.Equal(fileTarget, config.AllTargets[0]);
+        }
+
+        [Fact]
+        public void LogRuleToStringTest_min()
+        {
+            var target = new FileTarget {Name = "file1"};
+            var loggingRule = new LoggingRule("*", LogLevel.Error, target);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (:All) levels: [ Error Fatal ] appendTo: [ file1 ]", s);
+        }
+
+        [Fact]
+        public void LogRuleToStringTest_minAndMax()
+        {
+            var target = new FileTarget {Name = "file1"};
+            var loggingRule = new LoggingRule("*", LogLevel.Debug, LogLevel.Error, target);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (:All) levels: [ Debug Info Warn Error ] appendTo: [ file1 ]", s);
+        }
+
+        [Fact]
+        public void LogRuleToStringTest_none()
+        {
+            var target = new FileTarget {Name = "file1"};
+            var loggingRule = new LoggingRule("*", target);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (:All) levels: [ ] appendTo: [ file1 ]", s);
+        }
+
+        [Fact]
+        public void LogRuleToStringTest_filter()
+        {
+            var target = new FileTarget {Name = "file1"};
+            var loggingRule = new LoggingRule("namespace.comp1", target);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (namespace.comp1:Equals) levels: [ ] appendTo: [ file1 ]", s);
+        }
+
+        [Fact]
+        public void LogRuleToStringTest_multiple_targets()
+        {
+            var target = new FileTarget {Name = "file1"};
+            var target2 = new FileTarget {Name = "file2"};
+            var loggingRule = new LoggingRule("namespace.comp1", target);
+            loggingRule.Targets.Add(target2);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (namespace.comp1:Equals) levels: [ ] appendTo: [ file1 file2 ]", s);
         }
     }
 }

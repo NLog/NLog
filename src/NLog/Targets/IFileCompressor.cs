@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,26 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog;
-using NLog.Targets;
-
-namespace NLogAutloadExtension
+namespace NLog.Targets
 {
-    [Target("AutoLoadTarget")]
-    public class AutoLoadTarget : Target
+    /// <summary>
+    /// <see cref="FileTarget"/> may be configured to compress archived files in a custom way
+    /// by setting <see cref="FileTarget.FileCompressor"/> before logging your first event.
+    /// </summary>
+    public interface IFileCompressor
     {
-        public AutoLoadTarget() : base()
-        {
-        }
-
-        public AutoLoadTarget(string name) : this()
-        {
-            this.Name = name;
-        }
-
-        protected override void Write(LogEventInfo logEvent)
-        {
-            // do nothing
-        }
+        /// <summary>
+        /// Create archiveFileName by compressing fileName.
+        /// </summary>
+        /// <param name="fileName">Absolute path to the log file to compress.</param>
+        /// <param name="archiveFileName">Absolute path to the compressed archive file to create.</param>
+        void CompressFile(string fileName, string archiveFileName);
     }
 }

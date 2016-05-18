@@ -87,6 +87,57 @@ namespace NLog.UnitTests.Layouts
             }
         }
 
+        /// <summary>
+        /// Custom header overwrites file headers
+        /// 
+        /// Note: maybe changed with an option in the future
+        /// </summary>
+        [Fact]
+        public void CustomHeaderTest()
+        {
+            try
+            {
+                LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                  <target name='f' type='File' fileName='CSVLayoutEndToEnd1.txt'>
+                    <layout type='CSVLayout'>
+                      <header>headertest</header>
+                      <column name='level' layout='${level}' />
+                      <column name='message' layout='${message}' />
+                      <column name='counter' layout='${counter}' />
+                      <delimiter>Comma</delimiter>
+                    </layout>
+                  </target>
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='f' />
+                </rules>
+            </nlog>");
+
+                ILogger logger = LogManager.GetLogger("A");
+                logger.Debug("msg");
+                logger.Info("msg2");
+                logger.Warn("Message with, a comma");
+
+                using (StreamReader sr = File.OpenText("CSVLayoutEndToEnd1.txt"))
+                {
+                    Assert.Equal("headertest", sr.ReadLine());
+                    //   Assert.Equal("level,message,counter", sr.ReadLine());
+                    Assert.Equal("Debug,msg,1", sr.ReadLine());
+                    Assert.Equal("Info,msg2,2", sr.ReadLine());
+                    Assert.Equal("Warn,\"Message with, a comma\",3", sr.ReadLine());
+                }
+            }
+            finally
+            {
+                if (File.Exists("CSVLayoutEndToEnd1.txt"))
+                {
+                    File.Delete("CSVLayoutEndToEnd1.txt");
+                }
+            }
+        }
+
         [Fact]
         public void NoHeadersTest()
         {

@@ -52,6 +52,28 @@ namespace NLog.Targets
         public bool AddComments { get; set; }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="AspResponseTarget" /> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        public AspResponseTarget() : base()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AspResponseTarget"/> class with a name.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        /// <param name="name">Name of the target.</param>
+        public AspResponseTarget(string name) : this()
+        {
+            this.Name = name;
+        }
+
+        /// <summary>
         /// Outputs the rendered logging event through the <c>OutputDebugString()</c> Win32 API.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>

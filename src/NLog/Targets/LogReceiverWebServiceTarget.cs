@@ -72,6 +72,15 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="LogReceiverWebServiceTarget"/> class.
+        /// </summary>
+        /// <param name="name">Name of the target.</param>
+        public LogReceiverWebServiceTarget(string name) : this()
+        {
+            this.Name = name;
+        }
+
+        /// <summary>
         /// Gets or sets the endpoint address.
         /// </summary>
         /// <value>The endpoint address.</value>

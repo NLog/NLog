@@ -35,6 +35,7 @@ namespace NLog.Internal.FileAppenders
 {
     using System;
     using System.IO;
+    using System.Threading;
 
     /// <summary>
     /// Maintains a collection of file appenders usually associated with file targets.
@@ -44,8 +45,8 @@ namespace NLog.Internal.FileAppenders
         private BaseFileAppender[] appenders;
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !DNX && !UWP10
         private string archiveFilePatternToWatch = null;
-        private bool logFileWasArchived = false;
         private readonly MultiFileWatcher externalFileArchivingWatcher = new MultiFileWatcher(NotifyFilters.FileName);
+        private bool logFileWasArchived = false;
 #endif
 
         /// <summary>
@@ -87,8 +88,8 @@ namespace NLog.Internal.FileAppenders
         {
             if ((e.ChangeType & WatcherChangeTypes.Created) == WatcherChangeTypes.Created)
                 logFileWasArchived = true;
-                }
-
+        }
+        
         /// <summary>
         /// The archive file path pattern that is used to detect when archiving occurs.
         /// </summary>

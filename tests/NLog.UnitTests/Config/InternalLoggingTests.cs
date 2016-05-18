@@ -31,6 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+using System.IO;
+using System.Text;
+
 namespace NLog.UnitTests.Config
 {
     using NLog.Common;
@@ -91,6 +95,32 @@ namespace NLog.UnitTests.Config
             }
         }
 
+        [Fact]
+        public void InternalLoggingConfig_off_should_be_off()
+        {
+            var sb = new StringBuilder();
+            var stringWriter = new StringWriter(sb);
+            InternalLogger.LogWriter = stringWriter;
+            string wrongFileName = "WRONG/***[]???////WRONG";
+            LogManager.Configuration = this.CreateConfigurationFromString(string.Format(@"<?xml version='1.0' encoding='utf-8' ?>
+<nlog internalLogFile='{0}'
+      internalLogLevel='Off'
+      throwExceptions='true' >
+
+  <targets>
+    <target name='logfile' type='File' fileName='WRONG'  />
+  </targets>
+
+  <rules>
+    <logger name='*' writeTo='logfile' />
+  </rules>
+</nlog>
+", wrongFileName));
+
+            Assert.Equal("",sb.ToString());
+            Assert.Equal(LogLevel.Off,InternalLogger.LogLevel);
+            Assert.False(InternalLogger.ExceptionThrowWhenWriting);
+            }
 
         private void InternalLoggingConfigTest(LogLevel logLevel, bool logToConsole, bool logToConsoleError, LogLevel globalThreshold, bool throwExceptions, bool? throwConfigExceptions, string file, bool logToTrace)
         {

@@ -70,6 +70,15 @@ namespace NLog.Targets
         {
             IncludeNLogData = false;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChainsawTarget"/> class with a name.
+        /// </summary>
+        /// <param name="name">Name of the target.</param>
+        public ChainsawTarget(string name) : this()
+        {
+            this.Name = name;
+        }
     }
 }
 #endif

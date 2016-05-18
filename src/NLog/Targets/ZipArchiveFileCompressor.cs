@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,26 +31,36 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog;
-using NLog.Targets;
-
-namespace NLogAutloadExtension
+namespace NLog.Targets
 {
-    [Target("AutoLoadTarget")]
-    public class AutoLoadTarget : Target
+#if NET4_5
+using System.IO;
+using System.IO.Compression;
+
+    /// <summary>
+    /// Builtin IFileCompressor implementation utilizing the .Net4.5 specific <see cref="ZipArchive"/> 
+    /// and is used as the default value for <see cref="FileTarget.FileCompressor"/> on .Net4.5.
+    /// So log files created via <see cref="FileTarget"/> can be zipped when archived
+    /// w/o 3rd party zip library when run on .Net4.5 or higher.
+    /// </summary>
+    internal class ZipArchiveFileCompressor : IFileCompressor
     {
-        public AutoLoadTarget() : base()
+        /// <summary>
+        /// Implements <see cref="IFileCompressor.CompressFile(string, string)"/> using the .Net4.5 specific <see cref="ZipArchive"/>
+        /// </summary>
+        public void CompressFile(string fileName, string archiveFileName)
         {
-        }
-
-        public AutoLoadTarget(string name) : this()
-        {
-            this.Name = name;
-        }
-
-        protected override void Write(LogEventInfo logEvent)
-        {
-            // do nothing
+            using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
+            using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
+            using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite ))
+            {
+                var zipArchiveEntry = archive.CreateEntry(Path.GetFileName(fileName));
+                using (var destination = zipArchiveEntry.Open())
+                {
+                    originalFileStream.CopyTo(destination);
+                }
+            }
         }
     }
+#endif
 }
