@@ -2,23 +2,24 @@
   "version": "4.4.0-alpha1",
   "description": "NLog Library",
   "authors": [ "NLog" ],
-  "tags": [ "NLog" ],
-  "projectUrl": "",
-  "licenseUrl": "",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/NLog/NLog"
+  "packOptions": {
+    "tags": [ "NLog" ],
+    "projectUrl": "",
+    "licenseUrl": "",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/NLog/NLog"
+    }
   },
   "dependencies": {
-    "NLog": ""
+    "NLog": "4.*"
   },
 
   "frameworks": {
-    "net451": {
+    "netstandard1.0": {
       "frameworkAssemblies": {
-        "System.Messaging": ""
       },
-      "compilationOptions": {
+      "buildOptions": {
         "define": [ "NET4_5", "WCF_SUPPORTED", "DNX" ]
       }
     },
@@ -26,12 +27,12 @@
       "frameworkAssemblies": {
         "System.Messaging": ""
       },
-      "compilationOptions": {
+      "buildOptions": {
         "define": [ "NET3_5", "WCF_SUPPORTED" ]
       }
     }
   },
-  "compilationOptions": {
+  "buildOptions": {
     "keyFile": "../NLog/NLog.snk"
   }
 }

@@ -1,8 +1,8 @@
 {
-    "projects": [ "src", "tests", "wrap" ],
-    "sdk": {
-        "version": "1.0.0-rc1-update1",
-        "runtime": "coreclr",
-        "architecture": "x86"
-    }
+  "projects": [ "src", "tests", "wrap" ],
+  "sdk": {
+    "version": "1.0.0-preview1-002702",
+    "runtime": "coreclr",
+    "architecture": "x86"
+  }
 }

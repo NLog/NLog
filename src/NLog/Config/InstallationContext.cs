@@ -46,7 +46,7 @@ namespace NLog.Config
     /// </summary>
     public sealed class InstallationContext : IDisposable
     {
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !UWP10 && !NETSTANDARD1_0
         /// <summary>
         /// Mapping between log levels and console output colors.
         /// </summary>
