@@ -853,19 +853,18 @@ namespace NLog.Targets
 #if SILVERLIGHT
                 return RetryingMultiProcessFileAppender.TheFactory;
 #elif MONO
-                //
-                // mono on Windows uses mutexes, on Unix - special appender
-                //
                 if (PlatformDetector.IsUnix)
                 {
                     return UnixMultiProcessFileAppender.TheFactory;
                 }
                 else
                 {
-                    return MutexMultiProcessFileAppender.TheFactory;
+                    return UnleashedMultiProcessFileAppender.TheFactory;
                 }
-#else
+#elif __IOS__ || __ANDROID__
                 return MutexMultiProcessFileAppender.TheFactory;
+#else
+                return UnleashedMultiProcessFileAppender.TheFactory;
 #endif
             }
             else if (IsArchivingEnabled())

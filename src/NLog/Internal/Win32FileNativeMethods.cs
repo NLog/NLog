@@ -53,6 +53,8 @@ namespace NLog.Internal
             GenericWrite = 0x40000000,
             GenericExecute = 0x20000000,
             GenericAll = 0x10000000,
+            Synchronize = 0x00100000,
+            FileAppendData = 0x0004
         }
 
         public enum CreationDisposition : uint
@@ -92,6 +94,11 @@ namespace NLog.Internal
             public uint nFileIndexHigh;
             public uint nFileIndexLow;
         }
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool WriteFile(IntPtr hFile, byte[] lpBuffer,
+            uint nNumberOfBytesToWrite, out uint lpNumberOfBytesWritten, IntPtr lpOverlapped);
     }
 }
 
