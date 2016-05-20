@@ -15,7 +15,7 @@
         }
     },
     "dependencies": {
-        "NETStandard.Library": "1.5.0-rc2-24027"
+       
     },
 
     "frameworks": {
@@ -81,26 +81,23 @@
         //},
         "netstandard1.3": {
             "dependencies": {
-                "System.Console": "4.0.0-rc2-24027",
-                "System.Diagnostics.Contracts": "4.0.1-rc2-24027",
-                "System.Diagnostics.StackTrace": "4.0.1-rc2-24027",
-                "System.Diagnostics.Tools": "4.0.1-rc2-24027",
-                "System.Diagnostics.TraceSource": "4.0.0-rc2-24027",
-                "System.Linq": "4.1.0-rc2-24027",
-                "System.Runtime.Serialization.Primitives": "4.1.1-rc2-24027",
-                "System.Xml.XmlDocument": "4.0.1-rc2-24027",
-                "System.ComponentModel.TypeConverter": "4.0.1-rc2-24027",
-                "System.Data.Common": "4.0.1-rc2-24027",
-                "System.Threading.ThreadPool": "4.0.10-rc2-24027",
-                "System.Threading.Thread": "4.0.0-rc2-24027",
+                "NETStandard.Library": "1.5.0-rc2-24027",
+                "Microsoft.AspNetCore.Hosting.Abstractions": "1.0.0-rc2-final",
                 "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc2-final",
-                "System.Threading.Timer": "4.0.1-rc2-24027",
-                "System.Reflection.TypeExtensions": "4.1.0-rc2-24027",
-                "System.IO.FileSystem.Watcher": "4.0.0-rc2-24027",
-                "System.Net.Requests": "4.0.11-rc2-24027",
                 "System.Collections.NonGeneric": "4.0.1-rc2-24027",
                 "System.Collections.Specialized": "4.0.1-rc2-24027",
-                "Microsoft.AspNetCore.Hosting.Abstractions": "1.0.0-rc2-final"
+                "System.ComponentModel.TypeConverter": "4.0.1-rc2-24027",
+                "System.Data.Common": "4.0.1-rc2-24027",
+                "System.Diagnostics.Contracts": "4.0.1-rc2-24027",
+                "System.Diagnostics.StackTrace": "4.0.1-rc2-24027",
+                "System.Diagnostics.TraceSource": "4.0.0-rc2-24027",
+                "System.IO.FileSystem.Watcher": "4.0.0-rc2-24027",
+                "System.Net.Requests": "4.0.11-rc2-24027",
+                "System.Reflection.TypeExtensions": "4.1.0-rc2-24027",
+                "System.Runtime.Serialization.Primitives": "4.1.1-rc2-24027",
+                "System.Threading.Thread": "4.0.0-rc2-24027",
+                "System.Threading.ThreadPool": "4.0.10-rc2-24027",
+                "System.Xml.XmlDocument": "4.0.1-rc2-24027"
             },
             "buildOptions": {
                 "define": [ "NET4_5", "DNX", "UWP10", "DOTNET5_4" ]
