@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || DOTNET54
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
 
 namespace NLog.Targets
 {
@@ -138,7 +138,7 @@ namespace NLog.Targets
         [DefaultValue(true)]
         public bool UseDefaultRowHighlightingRules { get; set; }
 
-#if !DOTNET54
+#if !NETSTANDARD1_3
         /// <summary>
         /// The encoding for writing messages to the <see cref="Console"/>.
         ///  </summary>

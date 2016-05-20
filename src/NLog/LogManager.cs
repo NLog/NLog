@@ -316,7 +316,7 @@ namespace NLog
             factory.ReconfigExistingLoggers();
         }
 
-#if !SILVERLIGHT && !UWP10 || DOTNET54
+#if !SILVERLIGHT && !UWP10 || NETSTANDARD1_3
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
         /// </summary>

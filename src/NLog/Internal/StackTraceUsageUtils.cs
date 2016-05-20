@@ -47,7 +47,7 @@ namespace NLog.Internal
             return (StackTraceUsage)Math.Max((int)u1, (int)u2);
         }
 
-#if !DOTNET5_4
+#if !NETSTANDARD1_3
 
         /// <summary>
         /// Get this stacktrace for inline unit test

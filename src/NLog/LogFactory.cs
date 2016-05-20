@@ -65,7 +65,7 @@ namespace NLog
     /// </summary>
     public class LogFactory : IDisposable
     {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || DOTNET54
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
         private const int ReconfigAfterFileChangedTimeout = 1000;
         private Timer reloadTimer;
         private readonly MultiFileWatcher watcher;
@@ -100,10 +100,10 @@ namespace NLog
         /// </summary>
         public LogFactory()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || DOTNET54
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
             this.watcher = new MultiFileWatcher();
             this.watcher.OnChange += this.ConfigFileChanged;
-#if ! DOTNET54
+#if ! NETSTANDARD1_3
             CurrentAppDomain.DomainUnload += currentAppDomain_DomainUnload;
 #endif            
 #endif
@@ -223,7 +223,7 @@ namespace NLog
                     {
                         try
                         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || DOTNET54
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
                             config.Dump();
 
                             try
@@ -256,7 +256,7 @@ namespace NLog
 
             set
             {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || DOTNET54
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
                 try
                 {
                     this.watcher.StopWatching();
@@ -278,7 +278,7 @@ namespace NLog
                     if (oldConfig != null)
                     {
                         InternalLogger.Info("Closing old configuration.");
-#if !SILVERLIGHT && !UWP10 || DOTNET54
+#if !SILVERLIGHT && !UWP10 || NETSTANDARD1_3
                         this.Flush();
 #endif
                         oldConfig.Close();
@@ -296,7 +296,7 @@ namespace NLog
 
                             this.config.InitializeAll();
                             this.ReconfigExistingLoggers();
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || DOTNET54
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
                             try
                             {
                                 this.watcher.Watch(this.config.FileNamesToWatch);
@@ -512,7 +512,7 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT && !UWP10 || DOTNET54
+#if !SILVERLIGHT && !UWP10 || NETSTANDARD1_3
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
         /// </summary>
@@ -699,7 +699,7 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || DOTNET54
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
         internal void ReloadConfigOnTimer(object state)
         {
             LoggingConfiguration configurationToReload = (LoggingConfiguration)state;
@@ -870,7 +870,7 @@ namespace NLog
         /// <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || DOTNET54
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
             if (disposing)
             {
                 this.watcher.Dispose();
@@ -1028,7 +1028,7 @@ namespace NLog
             return newLogger;
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || DOTNET54
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
         private void ConfigFileChanged(object sender, EventArgs args)
         {
             InternalLogger.Info("Configuration file change detected! Reloading in {0}ms...", LogFactory.ReconfigAfterFileChangedTimeout);
@@ -1065,7 +1065,7 @@ namespace NLog
         }
 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || DOTNET54
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
         /// <summary>
         /// Is this in disposing state?
         /// </summary>
