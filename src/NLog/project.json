@@ -46,7 +46,7 @@
     //    "define": [ "NET4_0", "WCF_SUPPORTED", "CLIENT_SKU", "NETSTANDARD1_0" ]
     //  }
     //},
-    "netstandard1.5": {
+    "netstandard1.3": {
         "dependencies": {
             "System.Console": "4.0.0-rc2-24027",
             "System.Diagnostics.Contracts": "4.0.1-rc2-24027",
