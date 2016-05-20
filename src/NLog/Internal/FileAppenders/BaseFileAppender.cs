@@ -284,7 +284,7 @@ namespace NLog.Internal.FileAppenders
                 this.CreateFileParameters.BufferSize);
         }
 
-        private void UpdateCreationTime()
+        protected void UpdateCreationTime()
         {
             if (File.Exists(this.FileName))
             {

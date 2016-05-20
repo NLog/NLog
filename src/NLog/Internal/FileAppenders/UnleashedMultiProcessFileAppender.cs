@@ -39,6 +39,7 @@ namespace NLog.Internal.FileAppenders
     using System.Security;
     using NLog.Common;
     using System.Runtime.InteropServices;
+    using System.IO;
     /// <summary>
     /// Provides a multiprocess-safe atomic file append while
     /// keeping the files open.
@@ -76,12 +77,24 @@ namespace NLog.Internal.FileAppenders
 
         private void CreateAppendOnlyFile(string fileName)
         {
+            string dir = Path.GetDirectoryName(fileName);
+            if (!Directory.Exists(dir))
+            {
+                if (!CreateFileParameters.CreateDirs)
+                {
+                    throw new DirectoryNotFoundException(dir);
+                }
+                Directory.CreateDirectory(dir);
+            }
+
             int fileShare = Win32FileNativeMethods.FILE_SHARE_READ | Win32FileNativeMethods.FILE_SHARE_WRITE;
 
             if (this.CreateFileParameters.EnableFileDelete)
             {
                 fileShare |= Win32FileNativeMethods.FILE_SHARE_DELETE;
             }
+
+            UpdateCreationTime();
 
             try
             {
@@ -169,7 +182,7 @@ namespace NLog.Internal.FileAppenders
         {
             return FileCharacteristicsHelper.Helper.GetFileCharacteristics(FileName, _file.DangerousGetHandle());
         }
-        
+
         /// <summary>
         /// Factory class.
         /// </summary>
@@ -185,7 +198,15 @@ namespace NLog.Internal.FileAppenders
             /// </returns>
             BaseFileAppender IFileAppenderFactory.Open(string fileName, ICreateFileParameters parameters)
             {
-                return new UnleashedMultiProcessFileAppender(fileName, parameters);
+                try
+                {
+                    if (!parameters.ForceManaged && PlatformDetector.IsDesktopWin32)
+                        return new UnleashedMultiProcessFileAppender(fileName, parameters);
+                }
+                catch
+                {
+                }
+                return new MutexMultiProcessFileAppender(fileName, parameters);
             }
         }
     }
