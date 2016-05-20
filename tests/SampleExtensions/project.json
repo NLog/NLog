@@ -1,46 +1,47 @@
 {
-  "version": "4.4.0-alpha1",
-  "description": "NLog Library",
-  "authors": [ "NLog" ],
-  "tags": [ "NLog" ],
-  "projectUrl": "",
-  "licenseUrl": "",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/NLog/NLog"
-  },
-  "dependencies": {
-    "NLog": "4.*"
-  },
-
-  "frameworks": {
-    ".NETFramework,Version=v3.5": { },
-    "net451": { },
-    "dotnet5.4": {
-      "dependencies": {
-        "System.Console": "4.0.0-beta-23516",
-        "System.Diagnostics.Contracts": "4.0.1-beta-23516",
-        "System.Diagnostics.StackTrace": "4.0.1-beta-23516",
-        "System.Diagnostics.Tools": "4.0.1-beta-23516",
-        "System.Diagnostics.TraceSource": "4.0.0-beta-23516",
-        "System.Linq": "4.0.1-beta-23516",
-        "System.Runtime.Serialization.Primitives": "4.1.0-beta-23516",
-        "System.Xml.XmlDocument": "4.0.1-beta-23516",
-        "System.ServiceModel.Primitives": "4.0.0",
-        "System.ComponentModel.TypeConverter": "4.0.1-beta-23516",
-        "System.Data.Common": "4.0.1-beta-23516",
-        "System.Net.Requests": "4.0.10",
-        "System.Threading.ThreadPool": "4.0.10-beta-23516",
-        "System.IO.Compression": "4.0.1-beta-23409"
-      },
-      "compilationOptions": {
-        "define": [ "NET4_5", "DNX", "UWP10" ]
-      }
+    "version": "4.4.0-alpha1",
+    "description": "NLog Library",
+    "authors": [ "NLog" ],
+    "packOptions": {
+        "tags": [ "NLog" ],
+        "projectUrl": "",
+        "licenseUrl": "",
+        "repository": {
+            "type": "git",
+            "url": "git://github.com/NLog/NLog"
+        }
     },
-    "Silverlight,Version=v5.0": {
+    "dependencies": {
+        "NLog": "4.*"
+    },
+
+    "frameworks": {
+        ".NETFramework,Version=v3.5": { },
+           "netstandard1.3": {
+            "dependencies": {
+                "System.Console": "4.0.0-rc2-24027",
+                "System.Diagnostics.Contracts": "4.0.1-rc2-24027",
+                "System.Diagnostics.StackTrace": "4.0.1-rc2-24027",
+                "System.Diagnostics.Tools": "4.0.1-rc2-24027",
+                "System.Diagnostics.TraceSource": "4.0.0-rc2-24027",
+                "System.Linq": "4.1.0-rc2-24027",
+                "System.Runtime.Serialization.Primitives": "4.1.1-rc2-24027",
+                "System.Xml.XmlDocument": "4.0.1-rc2-24027",
+                "System.ServiceModel.Primitives": "4.1.0-rc2-24027",
+                "System.ComponentModel.TypeConverter": "4.0.1-rc2-24027",
+                "System.Data.Common": "4.0.1-rc2-24027",
+                "System.Net.Requests": "4.0.11-rc2-24027",
+                "System.Threading.ThreadPool": "4.0.10-rc2-24027",
+                "System.IO.Compression": "4.1.0-rc2-24027"
+            },
+            "buildOptions": {
+                "define": [ "NET4_5", "DNX", "UWP10" ]
+            }
+        },
+        "Silverlight,Version=v5.0": {
+        }
+    },
+    "buildOptions": {
+        "keyFile": "../NLog.UnitTests/NLogTests.snk"
     }
-  },
-  "compilationOptions": {
-    "keyFile": "../NLog.UnitTests/NLogTests.snk"
-  }
 }
