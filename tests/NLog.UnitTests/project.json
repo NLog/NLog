@@ -10,8 +10,8 @@
         "url": "git://github.com/NLog/NLog"
     },
     "dependencies": {
-        "NLog": "",
-        "SampleExtensions": ""
+        "NLog": "4.*",
+        "SampleExtensions": "4.*"
     },
 
     "frameworks": {
