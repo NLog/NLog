@@ -1,10 +1,10 @@
 {
-    "version": "4.4.0-beta7",
+    "version": "4.4.0-beta8",
     "description": "NLog is a logging platform for .NET with rich log routing and management capabilities. It can help you produce and manage high-quality logs for your application regardless of its size or complexity. This package installs NLog.dll with includes core logging functionality. For your main project also need to install 'NLog Configuration' package.",
     "authors": [ "NLog" ],
     "packOptions": {
-        "summary": "NLog - Advanced .NET and Silverlight Logging",
-        "tags": [ "logging", "log", "tracing", "logfiles", "NLog", "database", "eventlog", "email", "wcf" ],
+        "summary": "NLog - Flexible & free open-source logging for .NET",
+        "tags": [ "logging", "log", "tracing", "logfiles", "NLog", "database", "eventlog", "email", "wcf", "netcore", "dynamic" ],
         "projectUrl": "http://nlog-project.org/",
         "licenseUrl": "http://raw.github.com/NLog/NLog/master/LICENSE.txt",
         "requireLicenseAcceptance": false,
@@ -13,6 +13,7 @@
             "type": "git",
             "url": "git://github.com/NLog/NLog"
         }
+        
     },
     "dependencies": {
 
@@ -100,7 +101,7 @@
                 "System.Xml.XmlDocument": "4.0.1-rc2-24027"
             },
             "buildOptions": {
-                "define": [ "NET4_5", "DNX", "UWP10", "NETSTANDARD1_3" ]
+                "define": [ "NET4_5", "DNX", "UWP10", "NETSTANDARD1_3", "ASYNC_SUPPORTED" ]
             }
         },
         "Silverlight,Version=v4.0": {
@@ -155,6 +156,8 @@
                 "define": [ "SILVERLIGHT", "WINDOWS_PHONE" ]
             }
         }
+        
+        
     },
     "buildOptions": {
         "keyFile": "NLog.snk"
