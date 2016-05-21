@@ -281,7 +281,7 @@ namespace NLog.UnitTests.Targets
         }
 #endif
         [Theory]
-        [PropertyData("ArchiveFileOnStartTests_TestParameters")]
+        [MemberData("ArchiveFileOnStartTests_TestParameters")]
         public void ArchiveFileOnStartTests(bool enableCompression, bool customFileCompressor)
         {
             var logFile = Path.GetTempFileName();

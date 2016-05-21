@@ -85,6 +85,7 @@
                 "System.Threading.Tasks": "",
                 "System.Xml.Linq": "",
                 "System.DirectoryServices.AccountManagement": ""
+                
 
 
             },
@@ -93,38 +94,41 @@
                 "Microsoft.Owin.Hosting": "3.0.1",
                 "xunit": "2.1.0",
                 "Unity": "4.0.1",
-                "Microsoft.AspNet.WebApi.OwinSelfHost": "5.2.3"
+                "Microsoft.AspNet.WebApi.OwinSelfHost": "5.2.3",
+                "DotNetZip.Reduced": "1.9.1.8"
 
             },
             "buildOptions": {
                 "define": [ "WCF_SUPPORTED", "XUNIT2", "NET4_5" ]
-            }
-        },
-        "Silverlight,Version=v5.0": {
-            "frameworkAssemblies": {
-                "System.Windows": "",
-                "mscorlib": "",
-                "System": "",
-                "System.Core": "",
-                "System.Net": "",
-                "System.Xml": "",
-                "System.Windows.Browser": ""
-            },
-            "dependencies": {
-                "Microsoft.Silverlight.Testing": "1.0.0-*",
-                "Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight": "1.0.0-*",
-                "xunit-silverlight4": "1.0.0-*",
-                "xunit.extensions-silverlight4": "1.0.0-*",
-                "xunitcontrib.runner.silverlight.toolkit-sl4": "1.0.0-*",
-                "System.Xml.Linq": "1.0.0-*"
-            },
-            "buildOptions": {
-                "define": [ "SILVERLIGHT", "SILVERLIGHT5", "WCF_SUPPORTED", "XUNIT2" ]
+                
             }
         }
+        //,"Silverlight,Version=v5.0": {
+        //    "frameworkAssemblies": {
+        //        "System.Windows": "",
+        //        "mscorlib": "",
+        //        "System": "",
+        //        "System.Core": "",
+        //        "System.Net": "",
+        //        "System.Xml": "",
+        //        "System.Windows.Browser": ""
+        //    },
+        //    "dependencies": {
+        //        "Microsoft.Silverlight.Testing": "1.0.0-*",
+        //        "Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight": "1.0.0-*",
+        //        "xunit-silverlight4": "1.0.0-*",
+        //        "xunit.extensions-silverlight4": "1.0.0-*",
+        //        "xunitcontrib.runner.silverlight.toolkit-sl4": "1.0.0-*",
+        //        "System.Xml.Linq": "1.0.0-*"
+        //    },
+        //    "buildOptions": {
+        //        "define": [ "SILVERLIGHT", "SILVERLIGHT5", "WCF_SUPPORTED", "XUNIT2" ]
+        //    }
+       // }
     },
     "buildOptions": {
-        "keyFile": "NLogTests.snk"
+        "keyFile": "NLogTests.snk",
+        "nowarn": [ ]
     },
     "commands": {
         "test": "xunit.runner.dnx -xml testresults.xml"
