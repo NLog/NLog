@@ -863,8 +863,7 @@ namespace NLog.UnitTests.Targets
         [MemberData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
 #else
         [PropertyData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
-        public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool includeDateInLogFilePath, bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive)
-        #endif
+#endif
         public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool includeDateInLogFilePath, bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive)
         {
             const string archiveDateFormat = "yyyyMMdd";
@@ -1747,7 +1746,7 @@ namespace NLog.UnitTests.Targets
                     logger.Error("ddd");
                     logger.Fatal("eee");
                 }
-#if (DNX || UWP10) && !DOTNET54
+#if (DNX || UWP10) && !NETSTANDARD1_3
                 LogManager.Flush(null);
 #else
                 LogManager.Flush();

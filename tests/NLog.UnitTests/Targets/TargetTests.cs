@@ -51,6 +51,8 @@ namespace NLog.UnitTests.Targets
 
     public class TargetTests : NLogTestBase
     {
+#if !DNX
+
         /// <summary>
         /// Test the following things:
         /// - Target has default ctor
@@ -293,7 +295,7 @@ namespace NLog.UnitTests.Targets
                 }
             }
         }
-
+#endif
         [Fact]
         public void InitializeTest()
         {
@@ -454,7 +456,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(2, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
         }
 
-        #if !UWP10
+#if !UWP10
         [Fact]
         public void LockingTest()
         {
@@ -503,7 +505,7 @@ namespace NLog.UnitTests.Targets
                 Assert.True(false, backgroundThreadException.ToString());
             }
         }
-        #endif
+#endif
 
         [Fact]
         public void GivenNullEvents_WhenWriteAsyncLogEvents_ThenNoExceptionAreThrown()
@@ -597,7 +599,7 @@ namespace NLog.UnitTests.Targets
                 this.WriteCount3++;
                 base.Write(logEvents);
             }
-            #if !UWP10
+#if !UWP10
             public void BlockingOperation(int millisecondsTimeout)
             {
                 lock (this.SyncRoot)
