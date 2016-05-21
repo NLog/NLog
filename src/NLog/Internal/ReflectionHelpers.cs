@@ -64,7 +64,7 @@ namespace NLog.Internal
 #else
             try
             {
-#if DNX
+#if NETSTANDARD_1plus
                 return assembly.DefinedTypes.Select(typeinfo => typeinfo.AsType()).ToArray();
 #else
                 return assembly.GetTypes();

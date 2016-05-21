@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !UWP10 || DNX
+#if !SILVERLIGHT && !UWP10 || NETSTANDARD_1plus
 
 namespace NLog.UnitTests.Targets
 {
@@ -1746,7 +1746,7 @@ namespace NLog.UnitTests.Targets
                     logger.Error("ddd");
                     logger.Fatal("eee");
                 }
-#if (DNX || UWP10) && !NETSTANDARD1_3
+#if (NETSTANDARD_1plus || UWP10) && !NETSTANDARD1_3
                 LogManager.Flush(null);
 #else
                 LogManager.Flush();

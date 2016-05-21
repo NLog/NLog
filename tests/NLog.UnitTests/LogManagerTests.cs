@@ -44,7 +44,7 @@ namespace NLog.UnitTests
     using NLog.Config;
     using NLog.Targets;
 
-#if NET4_5 && !DNX
+#if NET4_5 && !NETSTANDARD_1plus
     using System.Threading.Tasks;
     using Microsoft.Practices.Unity;
 #endif
@@ -467,7 +467,7 @@ namespace NLog.UnitTests
         }
 
 
-#if NET4_0 || NET4_5 && !DNX
+#if NET4_0 || NET4_5 && !NETSTANDARD_1plus
         [Fact]
         public void GivenLazyClass_WhenGetCurrentClassLogger_ThenLoggerNameShouldBeCurrentClass()
         {
@@ -476,7 +476,7 @@ namespace NLog.UnitTests
             Assert.Equal(this.GetType().FullName, logger.Value.Name);
         }
 #endif
-#if NET4_5 && !DNX
+#if NET4_5 && !NETSTANDARD_1plus
 
         /// <summary>
         /// target for <see cref="ThreadSafe_getCurrentClassLogger_test"/>

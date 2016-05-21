@@ -15,23 +15,23 @@
     "NLog": "4.*"
   },
 
-  "frameworks": {
-    //"netstandard1.3": {
-    //  "frameworkAssemblies": {
-    //  },
-    //  "buildOptions": {
-    //    "define": [ "NET4_5", "WCF_SUPPORTED", "DNX" ]
-    //  }
-    //},
-    ".NETFramework,Version=v3.5": {
-      "frameworkAssemblies": {
-        "System.Messaging": ""
-      },
-      "buildOptions": {
-        "define": [ "NET3_5", "WCF_SUPPORTED" ]
-      }
-    }
-  },
+    "frameworks": {
+        //"netstandard1.3": {
+        //  "frameworkAssemblies": {
+        //  },
+        //  "buildOptions": {
+        //    "define": [ "NET4_5", "WCF_SUPPORTED", "NETSTANDARD_1plus" ]
+        //  }
+        //},
+        ".NETFramework,Version=v3.5": {
+            "frameworkAssemblies": {
+                "System.Messaging": ""
+            },
+            "buildOptions": {
+                "define": [ "NET3_5", "WCF_SUPPORTED" ]
+            }
+        }
+    },
   "buildOptions": {
     "keyFile": "../NLog/NLog.snk"
   }

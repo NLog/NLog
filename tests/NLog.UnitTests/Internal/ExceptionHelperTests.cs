@@ -52,7 +52,7 @@ namespace NLog.UnitTests.Internal
     public class ExceptionHelperTests : NLogTestBase
     {
         [Theory]
-#if !DNX
+#if !NETSTANDARD_1plus
         [InlineData(typeof(StackOverflowException), true)]
         [InlineData(typeof(ThreadAbortException), true)]
 #endif
@@ -70,7 +70,7 @@ namespace NLog.UnitTests.Internal
         }
 
         [Theory]
-#if !DNX
+#if !NETSTANDARD_1plus
         [InlineData(typeof(StackOverflowException), true, false, false)]
         [InlineData(typeof(StackOverflowException), true, true, false)]
 #endif
@@ -94,7 +94,7 @@ namespace NLog.UnitTests.Internal
         [InlineData(typeof(ArgumentException), true, true, null)]
         [InlineData(typeof(NullReferenceException), false, false, false)]
         [InlineData(typeof(NullReferenceException), true, true, false)]
-#if !DNX
+#if !NETSTANDARD_1plus
         [InlineData(typeof(ThreadAbortException), true, false, false)]
         [InlineData(typeof(ThreadAbortException), true, true, false)]
 #endif
@@ -160,7 +160,7 @@ namespace NLog.UnitTests.Internal
 
         private static Exception CreateException(Type exceptionType)
         {
-#if DNX
+#if NETSTANDARD_1plus
             return exceptionType.GetConstructor(Type.EmptyTypes).Invoke(null) as Exception;
 #else
 

@@ -48,7 +48,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class CallSiteTests : NLogTestBase
     {
-#if !SILVERLIGHT && !UWP10 && !DNX
+#if !SILVERLIGHT && !UWP10 && !NETSTANDARD_1plus
         [Fact]
         public void HiddenAssemblyTest()
         {
@@ -945,7 +945,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-#if !DNX
+#if !NETSTANDARD_1plus
         /// <summary>
         /// If some calls got inlined, we can't find LoggerType anymore. We should fallback if loggerType can be found
         /// 

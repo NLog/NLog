@@ -51,7 +51,7 @@ namespace NLog.UnitTests.Targets
 
     public class TargetTests : NLogTestBase
     {
-#if !DNX
+#if !NETSTANDARD_1plus
 
         /// <summary>
         /// Test the following things:

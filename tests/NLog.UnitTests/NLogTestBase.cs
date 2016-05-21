@@ -58,7 +58,7 @@ namespace NLog.UnitTests
 #endif
 #endif
 
-#if DNX
+#if NETSTANDARD_1plus
     using System.IO.Compression;
 #endif
 

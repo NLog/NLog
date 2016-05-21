@@ -78,7 +78,7 @@ namespace NLog.Internal
 
         private static RuntimeOS GetCurrentRuntimeOS()
         {
-#if DNX
+#if NETSTANDARD_1plus
             var runtimeEnv = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default?.Runtime?.OperatingSystem;
             if ("windows".Equals(runtimeEnv, StringComparison.CurrentCultureIgnoreCase))
                 return RuntimeOS.Windows;

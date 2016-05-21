@@ -1,4 +1,4 @@
-﻿#if DNX
+﻿#if NETSTANDARD_1plus
 using NLog.Internal;
 using System;
 using System.Collections.Generic;

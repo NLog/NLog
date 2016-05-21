@@ -35,7 +35,7 @@
                 "System.IO.Compression": "4.1.0-rc2-24027"
             },
             "buildOptions": {
-                "define": [ "NET4_5", "DNX", "UWP10" ]
+                "define": [ "NET4_5", "NETSTANDARD_1plus", "UWP10" ]
             }
         },
         "Silverlight,Version=v5.0": {

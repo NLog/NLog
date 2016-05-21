@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !UWP10 || DNX
+#if !SILVERLIGHT && !UWP10 || NETSTANDARD_1plus
 
 namespace NLog.LayoutRenderers
 {
@@ -40,7 +40,7 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using NLog.Config;
 
-#if !DNX
+#if !NETSTANDARD_1plus
     using Internal.Fakeables;
 #else
     using Microsoft.Extensions.PlatformAbstractions;
@@ -56,7 +56,7 @@ namespace NLog.LayoutRenderers
     {
         private string baseDir;
 
-#if !DNX
+#if !NETSTANDARD_1plus
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
         /// </summary>

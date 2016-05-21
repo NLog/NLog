@@ -51,7 +51,7 @@ namespace NLog.Internal
 
         internal static object CreateInstance(Type t)
         {
-#if DNX
+#if NETSTANDARD_1plus
             try
             {
                 return Activator.CreateInstance(t);

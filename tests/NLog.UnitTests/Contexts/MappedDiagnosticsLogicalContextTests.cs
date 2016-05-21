@@ -34,7 +34,7 @@
 namespace NLog.UnitTests.Contexts
 {
     using System;
-#if NET4_0 || NET4_5 && !DNX
+#if NET4_0 || NET4_5 && !NETSTANDARD_1plus
     using System.Threading.Tasks;
     using Xunit;
 

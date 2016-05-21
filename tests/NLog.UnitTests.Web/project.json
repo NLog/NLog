@@ -13,14 +13,14 @@
 
     },
     "frameworks": {
-        "dnx451": {
-            "frameworkAssemblies": {
-                "System.Xml": "4.0.0.0"
-            },
-            "dependencies": {
-                "nunit": "3.2.0"
-            }
+        ".NETFramework,Version=v4.5": {
+           "frameworkAssemblies": {
+                    "System.Xml": "4.0.0.0"
+                },
+                "dependencies": {
+                    "nunit": "3.2.0"
+                }
 
+            }
         }
     }
-}

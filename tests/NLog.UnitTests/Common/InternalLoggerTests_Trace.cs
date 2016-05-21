@@ -165,7 +165,7 @@ namespace NLog.UnitTests.Common
         }
 
 
-#if !DNX
+#if !NETSTANDARD_1plus
         [Fact(Skip = "This test's not working - explenation is in documentation: https://msdn.microsoft.com/pl-pl/library/system.stackoverflowexception(v=vs.110).aspx#Anchor_5. To clarify if StackOverflowException should be thrown.")]
         public void ShouldThrowStackOverFlowExceptionWhenUsingNLogTraceListener()
         {
@@ -209,7 +209,7 @@ namespace NLog.UnitTests.Common
             else
             {
                 throw new NotSupportedException();
-#if !DNX
+#if !NETSTANDARD_1plus
                 traceListener = CreateNLogTraceListener() as T;
 #endif
             }
@@ -244,7 +244,7 @@ namespace NLog.UnitTests.Common
             return new MockTraceListener();
         }
 
-#if !DNX
+#if !NETSTANDARD_1plus
         /// <summary>
         /// Creates <see cref="NLogTraceListener"/> instance.
         /// </summary>
