@@ -39,6 +39,9 @@ namespace NLog.UnitTests.LayoutRenderers
     using System.IO;
     using Xunit;
 
+#if XUNIT2
+    [Trait("Category","basedir")]
+#endif
     public class BaseDirTests : NLogTestBase
     {
 #if !DNX
@@ -47,42 +50,27 @@ namespace NLog.UnitTests.LayoutRenderers
         private string baseDir = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationBasePath;
 #endif
 
-#if DNX451
-        [Fact(Skip = "Needs RC2 of Microsoft. Dotnet5.4 works, but not net451 with dnx.")]
-#else
+
         [Fact]
-#endif
         
         public void BaseDirTest()
         {
             AssertLayoutRendererOutput("${basedir}", baseDir);
         }
 
-#if DNX451
-        [Fact(Skip = "Needs RC2 of Microsoft. Dotnet5.4 works, but not net451 with dnx.")]
-#else
         [Fact]
-#endif
         public void BaseDirCombineTest()
         {
             AssertLayoutRendererOutput("${basedir:dir=aaa}", Path.Combine(baseDir, "aaa"));
         }
 
-#if DNX451
-        [Fact(Skip = "Needs RC2 of Microsoft. Dotnet5.4 works, but not net451 with dnx.")]
-#else
         [Fact]
-#endif
         public void BaseDirFileCombineTest()
         {
             AssertLayoutRendererOutput("${basedir:file=aaa.txt}", Path.Combine(baseDir, "aaa.txt"));
         }
 
-#if DNX451
-        [Fact(Skip = "Needs RC2 of Microsoft. Dotnet5.4 works, but not net451 with dnx.")]
-#else
         [Fact]
-#endif
         public void BaseDirDirFileCombineTest()
         {
             AssertLayoutRendererOutput("${basedir:dir=aaa:file=bbb.txt}", Path.Combine(baseDir, "aaa", "bbb.txt"));
