@@ -171,7 +171,6 @@ namespace NLog.UnitTests.Contexts
         [Fact]
         public void given_item_does_not_exist_when_clearing_should_not_throw()
         {
-            const string keyForItemThatShouldExist = "Key";
 #if !XUNIT2
             Assert.DoesNotThrow(MappedDiagnosticsLogicalContext.Clear);
 #else
