@@ -53,7 +53,7 @@ namespace NLog.UnitTests
     using System.Xml;
     using System.IO.Compression;
     using System.Security.Permissions;
-#if NET3_5 || NET4_0 || NET4_5
+#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD_1plus
     using Ionic.Zip;
 #endif
 #endif
@@ -147,14 +147,15 @@ namespace NLog.UnitTests
             string fileText = File.ReadAllText(fileName, encoding);
             Assert.True(fileText.Length >= contents.Length);
             Assert.Equal(contents, fileText.Substring(fileText.Length - contents.Length));
-            }
+        }
+
 
         protected class CustomFileCompressor : IFileCompressor
         {
             public void CompressFile(string fileName, string archiveFileName)
             {
-#if NET3_5 || NET4_0 || NET4_5
-                using (ZipFile zip = new ZipFile())
+#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD_1plus
+                using (ZipFile zip = new Ionic.Zip.ZipFile())
                 {
                     zip.AddFile(fileName);
                     zip.Save(archiveFileName);
@@ -329,13 +330,13 @@ namespace NLog.UnitTests
         protected string RunAndCaptureInternalLog(SyncAction action, LogLevel internalLogLevel)
         {
             var stringWriter = new StringWriter();
-                InternalLogger.LogWriter = stringWriter;
-                InternalLogger.LogLevel = LogLevel.Trace;
-                InternalLogger.IncludeTimestamp = false;
-                action();
+            InternalLogger.LogWriter = stringWriter;
+            InternalLogger.LogLevel = LogLevel.Trace;
+            InternalLogger.IncludeTimestamp = false;
+            action();
 
-                return stringWriter.ToString();
-            }
+            return stringWriter.ToString();
+        }
 
         public delegate void SyncAction();
 

@@ -261,10 +261,16 @@ namespace NLog.UnitTests.Targets
         {
             get
             {
-                var booleanValues = new[] { true, false };
+                var enableCompressionValues = new[] { true, false };
+#if NETSTANDARD_1plus
+                //dotnet-zip doesn't work on .NET Core
+                var customFileCompressorValues = new[] {  false };
+#else
+                var customFileCompressorValues = new[] { true, false };
+#endif
                 return
-                    from enableCompression in booleanValues
-                    from customFileCompressor in booleanValues
+                    from enableCompression in enableCompressionValues
+                    from customFileCompressor in customFileCompressorValues
                     select new object[] { enableCompression, customFileCompressor };
             }
         }
