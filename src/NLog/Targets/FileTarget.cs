@@ -859,7 +859,7 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    return UnleashedMultiProcessFileAppender.TheFactory;
+                    return WindowsMultiProcessFileAppender.TheFactory;
                 }
 #elif __IOS__ || __ANDROID__
                 return MutexMultiProcessFileAppender.TheFactory;
