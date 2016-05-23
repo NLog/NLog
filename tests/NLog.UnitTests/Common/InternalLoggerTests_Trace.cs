@@ -208,9 +208,11 @@ namespace NLog.UnitTests.Common
             }
             else
             {
-                throw new NotSupportedException();
+                
 #if !NETSTANDARD_1plus
                 traceListener = CreateNLogTraceListener() as T;
+#else 
+                throw new NotSupportedException();
 #endif
             }
 
