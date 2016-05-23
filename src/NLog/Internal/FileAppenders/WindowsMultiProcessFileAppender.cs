@@ -45,18 +45,18 @@ namespace NLog.Internal.FileAppenders
     /// keeping the files open.
     /// </summary>
     [SecuritySafeCritical]
-    internal class UnleashedMultiProcessFileAppender : BaseFileAppender
+    internal class WindowsMultiProcessFileAppender : BaseFileAppender
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
-        private Microsoft.Win32.SafeHandles.SafeFileHandle _file;
+        private Microsoft.Win32.SafeHandles.SafeFileHandle file;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UnleashedMultiProcessFileAppender" /> class.
+        /// Initializes a new instance of the <see cref="WindowsMultiProcessFileAppender" /> class.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="parameters">The parameters.</param>
-        public UnleashedMultiProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
+        public WindowsMultiProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
             try
             {
@@ -64,11 +64,11 @@ namespace NLog.Internal.FileAppenders
             }
             catch
             {
-                if (_file != null)
+                if (file != null)
                 {
-                    if (!_file.IsClosed)
-                        _file.Close();
-                    _file = null;
+                    if (!file.IsClosed)
+                        file.Close();
+                    file = null;
                 }
 
                 throw;
@@ -104,7 +104,7 @@ namespace NLog.Internal.FileAppenders
                 // and any offset information about writes to the file is ignored.
                 // However, the file will automatically be extended as necessary for this type of write operation.
 
-                _file = Win32FileNativeMethods.CreateFile(
+                file = Win32FileNativeMethods.CreateFile(
                     fileName,
                     Win32FileNativeMethods.FileAccess.FileAppendData | Win32FileNativeMethods.FileAccess.Synchronize,
                     fileShare,
@@ -113,17 +113,17 @@ namespace NLog.Internal.FileAppenders
                     this.CreateFileParameters.FileAttributes,
                     IntPtr.Zero);
 
-                if (_file.IsInvalid)
+                if (file.IsInvalid)
                 {
                     Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
                 }
             }
             catch
             {
-                if ((_file != null) && (!_file.IsClosed))
-                    _file.Close();
+                if ((file != null) && (!file.IsClosed))
+                    file.Close();
 
-                _file = null;
+                file = null;
 
                 throw;
             }
@@ -135,19 +135,13 @@ namespace NLog.Internal.FileAppenders
         /// <param name="bytes">The bytes to be written.</param>
         public override void Write(byte[] bytes)
         {
-            try
+            uint written;
+            bool success = Win32FileNativeMethods.WriteFile(file.DangerousGetHandle(), bytes, (uint)bytes.Length, out written, IntPtr.Zero);
+            if (!success || (uint)bytes.Length != written)
             {
-                uint written;
-                bool success = Win32FileNativeMethods.WriteFile(_file.DangerousGetHandle(), bytes, (uint)bytes.Length, out written, IntPtr.Zero);
-                if (!success || (uint)bytes.Length != written)
-                {
-                    Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
-                }
-                FileTouched();
+                Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
             }
-            finally
-            {
-            }
+            FileTouched();
         }
 
         /// <summary>
@@ -156,12 +150,12 @@ namespace NLog.Internal.FileAppenders
         public override void Close()
         {
             InternalLogger.Trace("Closing '{0}'", FileName);
-            if (_file != null && !_file.IsClosed)
+            if (file != null && !file.IsClosed)
             {
-                _file.Close();
+                file.Close();
             }
 
-            _file = null;
+            file = null;
             FileTouched();
         }
 
@@ -180,7 +174,7 @@ namespace NLog.Internal.FileAppenders
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2001:AvoidCallingProblematicMethods", MessageId = "System.Runtime.InteropServices.SafeHandle.DangerousGetHandle", Justification = "Optimization")]
         public override FileCharacteristics GetFileCharacteristics()
         {
-            return FileCharacteristicsHelper.Helper.GetFileCharacteristics(FileName, _file.DangerousGetHandle());
+            return FileCharacteristicsHelper.Helper.GetFileCharacteristics(FileName, file.DangerousGetHandle());
         }
 
         /// <summary>
@@ -201,10 +195,11 @@ namespace NLog.Internal.FileAppenders
                 try
                 {
                     if (!parameters.ForceManaged && PlatformDetector.IsDesktopWin32)
-                        return new UnleashedMultiProcessFileAppender(fileName, parameters);
+                        return new WindowsMultiProcessFileAppender(fileName, parameters);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    InternalLogger.Debug(ex, "Fallback to MutexMultiProcessFileAppender({0})", fileName);
                 }
                 return new MutexMultiProcessFileAppender(fileName, parameters);
             }

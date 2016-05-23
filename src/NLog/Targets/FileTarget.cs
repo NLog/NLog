@@ -864,7 +864,7 @@ namespace NLog.Targets
 #elif __IOS__ || __ANDROID__
                 return MutexMultiProcessFileAppender.TheFactory;
 #else
-                return UnleashedMultiProcessFileAppender.TheFactory;
+                return WindowsMultiProcessFileAppender.TheFactory;
 #endif
             }
             else if (IsArchivingEnabled())
