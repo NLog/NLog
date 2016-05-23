@@ -42,9 +42,6 @@ namespace NLog.LayoutRenderers
 
 #if !NETSTANDARD_1plus
     using Internal.Fakeables;
-#else
-    using Microsoft.Extensions.PlatformAbstractions;
-    using Microsoft.AspNetCore.Hosting;
 #endif
 
     /// <summary>
@@ -85,18 +82,7 @@ namespace NLog.LayoutRenderers
             this.baseDir = appEnv.ApplicationBasePath;
         }
         
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer"/> class
-        /// </summary>
-        /// <param name="appEnv">The application environment to be used</param>
-        public BaseDirLayoutRenderer(IHostingEnvironment appEnv)
-        {
-            if (appEnv == null)
-                throw new ArgumentNullException(nameof(appEnv));
-
-            this.baseDir = appEnv.WebRootPath;
-        }
-
+       
 #endif
         /// <summary>
         /// Gets or sets the name of the file to be Path.Combine()'d with with the base directory.
