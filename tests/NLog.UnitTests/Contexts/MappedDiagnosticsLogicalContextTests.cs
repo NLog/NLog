@@ -129,7 +129,7 @@ namespace NLog.UnitTests.Contexts
         [Fact]
         public void given_no_item_exists_when_getting_items_should_return_empty_collection()
         {
-            Assert.Equal(0,MappedDiagnosticsLogicalContext.GetItems().Count);
+            Assert.Equal(0,MappedDiagnosticsLogicalContext.GetNames().Count);
         }
 
         [Fact]
@@ -138,8 +138,8 @@ namespace NLog.UnitTests.Contexts
             const string key = "Key";
             MappedDiagnosticsLogicalContext.Set(key, "Item");
 
-            Assert.Equal(1, MappedDiagnosticsLogicalContext.GetItems().Count);
-            Assert.True(MappedDiagnosticsLogicalContext.GetItems().Contains("Key"));
+            Assert.Equal(1, MappedDiagnosticsLogicalContext.GetNames().Count);
+            Assert.True(MappedDiagnosticsLogicalContext.GetNames().Contains("Key"));
 
         }
 
@@ -156,8 +156,8 @@ namespace NLog.UnitTests.Contexts
 
             MappedDiagnosticsLogicalContext.Remove(keyThatIsRemoved);
 
-            Assert.Equal(2, MappedDiagnosticsLogicalContext.GetItems().Count);
-            Assert.False(MappedDiagnosticsLogicalContext.GetItems().Contains(keyThatIsRemoved));
+            Assert.Equal(2, MappedDiagnosticsLogicalContext.GetNames().Count);
+            Assert.False(MappedDiagnosticsLogicalContext.GetNames().Contains(keyThatIsRemoved));
         }
 
         [Fact]

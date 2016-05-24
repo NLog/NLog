@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
 using NLog.Internal;
 
 namespace NLog
@@ -116,11 +117,11 @@ namespace NLog
         /// Returns all item names
         /// </summary>
         /// <returns>A collection of the names of all items in the Global Diagnostics Context.</returns>
-        public static ICollection<string> GetItems()
+        public static IReadOnlyCollection<string> GetNames()
         {
             lock (dict)
             {
-                return dict.Keys;
+                return dict.Keys.ToList();
             }
         }
 

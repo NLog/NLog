@@ -47,14 +47,14 @@ namespace NLog.UnitTests.Contexts
             Assert.Equal(string.Empty, GlobalDiagnosticsContext.Get("foo"));
             Assert.False(GlobalDiagnosticsContext.Contains("foo2"));
             Assert.Equal(string.Empty, GlobalDiagnosticsContext.Get("foo2"));
-            Assert.Equal(0, GlobalDiagnosticsContext.GetItems().Count);
+            Assert.Equal(0, GlobalDiagnosticsContext.GetNames().Count);
 
             GlobalDiagnosticsContext.Set("foo", "bar");
             GlobalDiagnosticsContext.Set("foo2", "bar2");
 
             Assert.True(GlobalDiagnosticsContext.Contains("foo"));
             Assert.Equal("bar", GlobalDiagnosticsContext.Get("foo"));
-            Assert.Equal(2, GlobalDiagnosticsContext.GetItems().Count);
+            Assert.Equal(2, GlobalDiagnosticsContext.GetNames().Count);
 
             GlobalDiagnosticsContext.Remove("foo");
             Assert.False(GlobalDiagnosticsContext.Contains("foo"));
@@ -63,7 +63,7 @@ namespace NLog.UnitTests.Contexts
             Assert.True(GlobalDiagnosticsContext.Contains("foo2"));
             Assert.Equal("bar2", GlobalDiagnosticsContext.Get("foo2"));
 
-            Assert.Equal(1, GlobalDiagnosticsContext.GetItems().Count);
+            Assert.Equal(1, GlobalDiagnosticsContext.GetNames().Count);
 
             Assert.Null(GlobalDiagnosticsContext.GetObject("foo3"));
             Assert.Equal(string.Empty, GlobalDiagnosticsContext.Get("foo3", null));
