@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+
 namespace NLog
 {
     using System;
@@ -114,10 +116,10 @@ namespace NLog
         /// <summary>
         /// Returns all item names
         /// </summary>
-        /// <returns>A collection of the names of all items in current  thread MDC.</returns>
-        public static ICollection<string> GetItems()
+        /// <returns>A set of the names of all items in current thread MDC.</returns>
+        public static IReadOnlyCollection<string> GetNames()
         {
-            return ThreadDictionary.Keys;
+            return (IReadOnlyCollection<string>)ThreadDictionary.Keys;
         }
 
         /// <summary>

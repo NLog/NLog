@@ -260,7 +260,7 @@ namespace NLog.LayoutRenderers
                 xtw.WriteStartElement("log4j", "properties", dummyNamespace);
                 if (this.IncludeMdc)
                 {
-                    foreach (string key in MappedDiagnosticsContext.GetItems())
+                    foreach (string key in MappedDiagnosticsContext.GetNames())
                     {
                         xtw.WriteStartElement("log4j", "data", dummyNamespace);
                         xtw.WriteAttributeSafeString("name", key);
