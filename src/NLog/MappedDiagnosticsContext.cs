@@ -116,7 +116,7 @@ namespace NLog
         /// <summary>
         /// Returns all item names
         /// </summary>
-        /// <returns>A set of the names of all items in current thread MDC.</returns>
+        /// <returns>A set of the names of all items in current thread-MDC.</returns>
         public static IReadOnlyCollection<string> GetNames()
         {
             return (IReadOnlyCollection<string>)ThreadDictionary.Keys;
