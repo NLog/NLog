@@ -119,7 +119,7 @@ namespace NLog
         /// <returns>A set of the names of all items in current thread-MDC.</returns>
         public static IReadOnlyCollection<string> GetNames()
         {
-            return (IReadOnlyCollection<string>)ThreadDictionary.Keys;
+            return ThreadDictionary.Keys.ToList();
         }
 
         /// <summary>
