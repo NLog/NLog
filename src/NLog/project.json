@@ -1,5 +1,5 @@
 {
-    "version": "4.4.0-beta9",
+    "version": "4.4.0-beta10",
     "description": "NLog is a logging platform for .NET with rich log routing and management capabilities. It can help you produce and manage high-quality logs for your application regardless of its size or complexity. This package installs NLog.dll with includes core logging functionality. For your main project also need to install 'NLog Configuration' package.",
     "authors": [ "NLog" ],
     "packOptions": {
@@ -97,7 +97,8 @@
                 "System.Runtime.Serialization.Primitives": "4.1.1-rc2-24027",
                 "System.Threading.Thread": "4.0.0-rc2-24027",
                 "System.Threading.ThreadPool": "4.0.10-rc2-24027",
-                "System.Xml.XmlDocument": "4.0.1-rc2-24027"
+                "System.Xml.XmlDocument": "4.0.1-rc2-24027",
+                "System.Net.NameResolution": "4.0.0-rc2-24027"
             },
             "buildOptions": {
                 "define": [ "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD1_3", "ASYNC_SUPPORTED", "UWP10" ]

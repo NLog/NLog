@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !UWP10
+#if !UWP10 || NETSTANDARD_1plus
 
 namespace NLog.Targets
 {

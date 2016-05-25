@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !UWP10
+#if !UWP10 || NETSTANDARD1_3
 
 namespace NLog.Internal.NetworkSenders
 {
@@ -180,7 +180,13 @@ namespace NLog.Internal.NetworkSenders
 
                 default:
                     {
+#if NETSTANDARD_1plus
+                        var addresses = Dns.GetHostAddressesAsync(uri.Host).Result;
+#else
                         var addresses = Dns.GetHostEntry(uri.Host).AddressList;
+#endif
+                        
+
                         foreach (var addr in addresses)
                         {
                             if (addr.AddressFamily == addressFamily || addressFamily == AddressFamily.Unspecified)
@@ -193,7 +199,7 @@ namespace NLog.Internal.NetworkSenders
                     }
             }
 #endif
-        }
+                    }
 
         public virtual void CheckSocket()
         {
