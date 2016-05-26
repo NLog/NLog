@@ -31,14 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !UWP10 || NETSTANDARD1_3
 
 namespace NLog.UnitTests.Targets
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
+#if !NETSTANDARD1_3
     using System.Configuration;
+#endif
     using System.Data;
     using System.Data.Common;
     using System.Globalization;
@@ -51,7 +53,7 @@ namespace NLog.UnitTests.Targets
 
     public class DatabaseTargetTests : NLogTestBase
     {
-#if !MONO
+#if !MONO &&  !NETSTANDARD1_3
         static DatabaseTargetTests()
         {
             var data = (DataSet)ConfigurationManager.GetSection("system.data");
@@ -655,7 +657,7 @@ Dispose()
 ";
             AssertLog(expectedLog);
         }
-
+#if !NETSTANDARD1_3
         [Fact]
         public void ConnectionStringNameInitTest()
         {
@@ -698,6 +700,7 @@ Dispose()
             }
         }
 
+
         [Fact]
         public void ProviderFactoryInitTest()
         {
@@ -710,6 +713,7 @@ Dispose()
             Assert.Equal(1, MockDbConnection2.OpenCount);
             Assert.Equal("myConnectionString", MockDbConnection2.LastOpenConnectionString);
         }
+#endif
 
         [Fact]
         public void SqlServerShorthandNotationTest()
@@ -729,6 +733,12 @@ Dispose()
             }
         }
 
+
+#if !NETSTANDARD1_3
+
+        /// <summary>
+        /// no OleDB in .NET Core
+        /// </summary>
         [Fact]
         public void OleDbShorthandNotationTest()
         {
@@ -744,6 +754,9 @@ Dispose()
             Assert.Equal(typeof(System.Data.OleDb.OleDbConnection), dt.ConnectionType);
         }
 
+        /// <summary>
+        /// no ODBC in .NET Core
+        /// </summary>
         [Fact]
         public void OdbcShorthandNotationTest()
         {
@@ -803,6 +816,7 @@ Dispose()
             Assert.Equal(typeof(System.Data.SqlClient.SqlClientFactory), databaseTarget.ProviderFactory.GetType());
         }
 
+
         [Theory]
         [InlineData("usetransactions='false'", true)]
         [InlineData("usetransactions='true'", true)]
@@ -832,18 +846,19 @@ Dispose()
 
             if (printWarning)
             {
-                Assert.Contains("obsolete", internalLog, StringComparison.InvariantCultureIgnoreCase);
-                Assert.Contains("usetransactions", internalLog, StringComparison.InvariantCultureIgnoreCase);
+                Assert.Contains("obsolete", internalLog, StringComparison.OrdinalIgnoreCase);
+                Assert.Contains("usetransactions", internalLog, StringComparison.OrdinalIgnoreCase);
             }
             else
             {
-                Assert.DoesNotContain("obsolete", internalLog, StringComparison.InvariantCultureIgnoreCase);
-                Assert.DoesNotContain("usetransactions", internalLog, StringComparison.InvariantCultureIgnoreCase);
+                Assert.DoesNotContain("obsolete", internalLog, StringComparison.OrdinalIgnoreCase);
+                Assert.DoesNotContain("usetransactions", internalLog, StringComparison.OrdinalIgnoreCase);
             }
 
 
 
         }
+#endif
 
         private static void AssertLog(string expectedLog)
         {
