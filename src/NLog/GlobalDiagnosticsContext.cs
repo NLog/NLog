@@ -117,11 +117,11 @@ namespace NLog
         /// Returns all item names
         /// </summary>
         /// <returns>A collection of the names of all items in the Global Diagnostics Context.</returns>
-        public static IReadOnlyCollection<string> GetNames()
+        public static ICollection<string> GetNames()
         {
             lock (dict)
             {
-                return dict.Keys.ToList();
+                return dict.Keys;
             }
         }
 

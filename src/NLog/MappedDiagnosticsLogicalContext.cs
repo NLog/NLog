@@ -132,9 +132,9 @@ namespace NLog
         /// Returns all item names
         /// </summary>
         /// <returns>A collection of the names of all items in current logical context.</returns>
-        public static IReadOnlyCollection<string> GetNames()
+        public static ICollection<string> GetNames()
         {
-            return LogicalThreadDictionary.Keys.ToList();
+            return LogicalThreadDictionary.Keys;
         }
 
         /// <summary>
