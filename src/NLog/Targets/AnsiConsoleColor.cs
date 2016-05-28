@@ -53,7 +53,8 @@ namespace NLog.Targets
                     return "\x1B[34m";
                 case ConsoleColor.DarkCyan:
                     return "\x1B[36m";
-                    
+                case ConsoleColor.DarkGray:
+                    return "\x1B[90m";
                 case ConsoleColor.DarkGreen:
                     return "\x1B[32m";    
                 case ConsoleColor.DarkMagenta:
@@ -74,7 +75,6 @@ namespace NLog.Targets
                     return "\x1B[97m";
                 case ConsoleColor.Yellow:
                     return "\x1B[93m";
-                case ConsoleColor.DarkGray:
                 default:
                     return "\x1B[39m"; // default foreground color
             }
@@ -95,7 +95,22 @@ namespace NLog.Targets
                     return "\x1B[104m";
                 case ConsoleColor.Cyan:
                     return "\x1B[106m";
-                
+                case ConsoleColor.DarkBlue:
+                    return "\x1B[44m";
+                case ConsoleColor.DarkCyan:
+                    return "\x1B[46m";
+                case ConsoleColor.DarkGray:
+                    return "\x1B[100m";
+                case ConsoleColor.DarkGreen:
+                    return "\x1B[42m";    
+                case ConsoleColor.DarkMagenta:
+                    return "\x1B[45m";
+                case ConsoleColor.DarkRed:
+                    return "\x1B[41m";
+                case ConsoleColor.DarkYellow:
+                    return "\x1B[43m";
+                case ConsoleColor.Gray:
+                    return "\x1B[47m";
                 case ConsoleColor.Green:
                     return "\x1B[102m";    
                 case ConsoleColor.Magenta:
@@ -106,15 +121,6 @@ namespace NLog.Targets
                     return "\x1B[107m";
                 case ConsoleColor.Yellow:
                     return "\x1B[103m";
-                
-                case ConsoleColor.DarkBlue:
-                case ConsoleColor.DarkCyan:
-                case ConsoleColor.DarkGray:
-                case ConsoleColor.DarkGreen:
-                case ConsoleColor.DarkMagenta:
-                case ConsoleColor.DarkRed:
-                case ConsoleColor.DarkYellow:
-                case ConsoleColor.Gray:
                 default:
                     return "\x1B[0m"; // Use default background color
             }
