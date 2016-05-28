@@ -260,13 +260,20 @@ namespace NLog.Targets
         private void OutputUsingAnsiEscapeCodes(LogEventInfo logEvent, string message)
         {
             var matchingRule = GetMatchingRowHighlightingRule(logEvent);
-
-            StringBuilder builder = new StringBuilder(5);
-            builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)matchingRule.BackgroundColor));
-            builder.Append(AnsiConsoleColor.GetForegroundColorEscapeCode((ConsoleColor)matchingRule.ForegroundColor));
+            StringBuilder builder = new StringBuilder(1);
+            
+            if (matchingRule.BackgroundColor != ConsoleOutputColor.NoChange)
+                builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)matchingRule.BackgroundColor));
+            if (matchingRule.ForegroundColor != ConsoleOutputColor.NoChange)
+                builder.Append(AnsiConsoleColor.GetForegroundColorEscapeCode((ConsoleColor)matchingRule.ForegroundColor));
+            
             builder.Append(message);
-            builder.Append(AnsiConsoleColor.GetTerminalDefaultForegroundColorEscapeCode());
-            builder.Append(AnsiConsoleColor.GetTerminalDefaultBackgroundColorEscapeCode());
+            
+            if (matchingRule.ForegroundColor != ConsoleOutputColor.NoChange)
+                builder.Append(AnsiConsoleColor.GetTerminalDefaultForegroundColorEscapeCode());
+            if (matchingRule.BackgroundColor != ConsoleOutputColor.NoChange)
+                builder.Append(AnsiConsoleColor.GetTerminalDefaultBackgroundColorEscapeCode());
+            
             message = builder.ToString();
 
             var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
