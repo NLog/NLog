@@ -165,8 +165,9 @@ namespace NLog.Targets
         private bool concurrentWrites;
         private bool keepFileOpen;
 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         private bool preferMutexLockedFileCreation;
-
+#endif
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
         /// </summary>
