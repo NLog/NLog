@@ -40,6 +40,7 @@ namespace NLog.Targets
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.IO;
+    using NLog.Internal;
     using NLog.Config;
 
     /// <summary>
@@ -204,6 +205,14 @@ namespace NLog.Targets
 
         private void Output(LogEventInfo logEvent, string message)
         {
+            if (!PlatformDetector.IsUnix)
+                OutputUsingConsoleColors(logEvent, message);
+            else
+                OutputUsingAnsiEscapeCodes(logEvent, message);
+        }
+        
+        private void OutputUsingConsoleColors(LogEventInfo logEvent, string message)
+        {
             ConsoleColor oldForegroundColor = Console.ForegroundColor;
             ConsoleColor oldBackgroundColor = Console.BackgroundColor;
             bool didChangeForegroundColor = false, didChangeBackgroundColor = false;
@@ -245,6 +254,41 @@ namespace NLog.Targets
                     Console.ForegroundColor = oldForegroundColor;
                 if (didChangeBackgroundColor)
                     Console.BackgroundColor = oldBackgroundColor;
+            }
+        }
+        
+        private void OutputUsingAnsiEscapeCodes(LogEventInfo logEvent, string message)
+        {
+            var matchingRule = GetMatchingRowHighlightingRule(logEvent);
+
+            StringBuilder builder = new StringBuilder(5);
+            builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)matchingRule.BackgroundColor));
+            builder.Append(AnsiConsoleColor.GetForegroundColorEscapeCode((ConsoleColor)matchingRule.ForegroundColor));
+            builder.Append(message);
+            builder.Append(AnsiConsoleColor.GetTerminalDefaultForegroundColorEscapeCode());
+            builder.Append(AnsiConsoleColor.GetTerminalDefaultBackgroundColorEscapeCode());
+            message = builder.ToString();
+
+            var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
+            if (this.WordHighlightingRules.Count == 0)
+            {
+                consoleStream.WriteLine(message);
+            }
+            else
+            {
+                consoleStream.WriteLine(message);
+                /* No supoort yet for Word Highlighting :(
+                message = message.Replace("\a", "\a\a");
+                foreach (ConsoleWordHighlightingRule hl in this.WordHighlightingRules)
+                {
+                    message = hl.ReplaceWithEscapeSequences(message);
+                }
+
+                ColorizeEscapeSequences(consoleStream, message, new ColorPair(Console.ForegroundColor, Console.BackgroundColor), new ColorPair(oldForegroundColor, oldBackgroundColor));
+                consoleStream.WriteLine();
+
+                didChangeForegroundColor = didChangeBackgroundColor = true;
+                */
             }
         }
 
