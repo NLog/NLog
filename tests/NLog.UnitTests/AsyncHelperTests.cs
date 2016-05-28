@@ -446,9 +446,6 @@ namespace NLog.UnitTests
             using (new InternalLoggerScope())
             {
                 InternalLogger.LogLevel = LogLevel.Trace;
-#if !UWP10
-                InternalLogger.LogToConsole = true;
-#endif
 
                 var finalContinuationInvoked = new ManualResetEvent(false);
                 Exception lastException = null;
@@ -465,9 +462,7 @@ namespace NLog.UnitTests
                 AsyncHelpers.ForEachItemInParallel(input, finalContinuation,
                     (i, cont) =>
                         {
-#if !UWP10
-                            Console.WriteLine("Callback on {0}", Thread.CurrentThread.ManagedThreadId);
-#endif
+
                             lock (input)
                             {
                                 sum += i;

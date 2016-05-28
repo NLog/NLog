@@ -90,7 +90,7 @@ namespace NLog.Common
             LogFile = string.Empty;
             IncludeTimestamp = true;
 
-#if !UWP10
+#if !UWP10 || NETSTANDARD1_3
             LogToConsole = false;
             LogToConsoleError = false;
 #endif
@@ -108,7 +108,7 @@ namespace NLog.Common
         /// <example>If set to <see cref="NLog.LogLevel.Info"/>, then messages of the levels <see cref="NLog.LogLevel.Info"/>, <see cref="NLog.LogLevel.Error"/> and <see cref="NLog.LogLevel.Fatal"/> will be written.</example>
         public static LogLevel LogLevel { get; set; }
 
-#if !UWP10
+#if !UWP10 || NETSTANDARD1_3
         /// <summary>
         /// Gets or sets a value indicating whether internal messages should be written to the console output stream.
         /// </summary>
@@ -282,7 +282,7 @@ namespace NLog.Common
                         writer.WriteLine(msg);
                     }
                 }
-#if !UWP10
+#if !UWP10 || NETSTANDARD1_3
                 // log to console
                 if (LogToConsole)
                 {
@@ -335,7 +335,7 @@ namespace NLog.Common
             }
 
             return !string.IsNullOrEmpty(LogFile)  ||
-#if !UWP10
+#if !UWP10 || NETSTANDARD1_3
             LogToConsole || LogToConsoleError ||
 #endif
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
