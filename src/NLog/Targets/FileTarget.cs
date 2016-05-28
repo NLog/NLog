@@ -165,6 +165,8 @@ namespace NLog.Targets
         private bool concurrentWrites;
         private bool keepFileOpen;
 
+        private bool preferMutexLockedFileCreation;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
         /// </summary>
@@ -645,10 +647,32 @@ namespace NLog.Targets
 
 
         /// <summary>
-        /// Gets or set a value indicating whether a managed file stream is forced, instead of used the native implementation.
+        /// Gets or set a value indicating whether a managed file stream is forced, instead of using the native implementation.
         /// </summary>
         [DefaultValue(false)]
         public bool ForceManaged { get; set; }
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+        /// <summary>
+        /// Gets or sets a value indicationg whether file creation calls should be synchronized by a system global mutex.
+        /// </summary>
+        /// [DefaultValue(false)]
+        public bool PreferMutexLockedFileCreation
+        {
+            get
+            {
+                return preferMutexLockedFileCreation;
+            }
+            internal set
+            {
+                preferMutexLockedFileCreation = value;
+                if (IsInitialized)
+                {
+                    RefreshArchiveFilePatternToWatch();
+                }
+            }
+        }
+#endif
 
         /// <summary>
         /// Gets the characters that are appended after each line.
@@ -859,12 +883,16 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    return WindowsMultiProcessFileAppender.TheFactory;
+                    if (!this.PreferMutexLockedFileCreation && !this.ForceManaged && PlatformDetector.IsDesktopWin32)
+                        return WindowsMultiProcessFileAppender.TheFactory;
+                    return MutexMultiProcessFileAppender.TheFactory;
                 }
 #elif __IOS__ || __ANDROID__
                 return MutexMultiProcessFileAppender.TheFactory;
 #else
-                return WindowsMultiProcessFileAppender.TheFactory;
+                if (!this.PreferMutexLockedFileCreation && !this.ForceManaged && PlatformDetector.IsDesktopWin32)
+                    return WindowsMultiProcessFileAppender.TheFactory;
+                return MutexMultiProcessFileAppender.TheFactory;
 #endif
             }
             else if (IsArchivingEnabled())

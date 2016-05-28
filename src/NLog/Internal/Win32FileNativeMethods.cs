@@ -46,6 +46,10 @@ namespace NLog.Internal
         public const int FILE_SHARE_WRITE = 2;
         public const int FILE_SHARE_DELETE = 4;
 
+        // Values returned by Marshal.GetLastWin32Error()
+        public const int NOERROR = 0;
+        public const int ERROR_ALREADY_EXISTS = 183;
+
         [Flags]
         public enum FileAccess : uint
         {

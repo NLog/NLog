@@ -40,6 +40,8 @@ namespace NLog.Internal.FileAppenders
     using NLog.Common;
     using System.Runtime.InteropServices;
     using System.IO;
+    using System.Threading;
+
     /// <summary>
     /// Provides a multiprocess-safe atomic file append while
     /// keeping the files open.
@@ -75,6 +77,12 @@ namespace NLog.Internal.FileAppenders
             }
         }
 
+        /// <summary>
+        /// Creates or opens a file in a special mode, so that writes are automatically
+        /// as atomic writes at the file end.
+        /// See also "UnixMultiProcessFileAppender" which does a similar job on *nix platforms.
+        /// </summary>
+        /// <param name="fileName">File to create or open</param>
         private void CreateAppendOnlyFile(string fileName)
         {
             string dir = Path.GetDirectoryName(fileName);
@@ -93,9 +101,7 @@ namespace NLog.Internal.FileAppenders
             {
                 fileShare |= Win32FileNativeMethods.FILE_SHARE_DELETE;
             }
-
-            UpdateCreationTime();
-
+            
             try
             {
                 // https://blogs.msdn.microsoft.com/oldnewthing/20151127-00/?p=92211/
@@ -109,13 +115,51 @@ namespace NLog.Internal.FileAppenders
                     Win32FileNativeMethods.FileAccess.FileAppendData | Win32FileNativeMethods.FileAccess.Synchronize,
                     fileShare,
                     IntPtr.Zero,
-                    Win32FileNativeMethods.CreationDisposition.OpenAlways,
+                    Win32FileNativeMethods.CreationDisposition.OpenAlways, // open or create
                     this.CreateFileParameters.FileAttributes,
                     IntPtr.Zero);
 
                 if (file.IsInvalid)
                 {
-                    Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+                    int hr = Marshal.GetHRForLastWin32Error();
+                    InternalLogger.Error("Unable to open/create '{0}' HR:{1}", FileName, hr);
+                    Marshal.ThrowExceptionForHR(hr);
+                }
+                int lastError = Marshal.GetLastWin32Error();
+                if (lastError == Win32FileNativeMethods.NOERROR)
+                {
+                    // We actually created the file and eventually concurrent processes 
+                    // may have opened the same file in between.
+                    // Only the one process creating the file should adjust the file creation time 
+                    // to avoid being thwarted by Windows' Tunneling capabilities (https://support.microsoft.com/en-us/kb/172190).
+                    // Unfortunately we can't use the native SetFileTime() to prevent opening the file 2nd time.
+                    // This would require another desiredAccess flag which would disable the atomic append feature.
+                    // See also UpdateCreationTime()
+
+                    this.CreationTime = DateTime.UtcNow;
+                    File.SetCreationTimeUtc(this.FileName, this.CreationTime);
+                }
+                else if (lastError == Win32FileNativeMethods.ERROR_ALREADY_EXISTS)
+                {
+                    // Somebody else has already created the file and we just 
+                    // need to record the files creation time.
+                    // There's a small chance for a racing condition here:
+                    // Suppose another process has created the file and before executing the above 
+                    // code "File.SetCreationTimeUtc(...)" context is switched to us reading the
+                    // currently set creation time, which in case of above mentioned tunneling issue
+                    // may be "wrong". Consequences aren't fatal since this.CreationTime isn't used by NLog itself.
+                    // Anyhow, to increase chances of getting the "right" creation time we may wait for some time
+                    // and read creation time again.
+                    this.CreationTime = File.GetCreationTimeUtc(this.FileName);
+                    if (this.CreationTime < DateTime.UtcNow - TimeSpan.FromSeconds(2))
+                    {
+                        // File wasn't created "almost now". 
+                        // This could mean creation time has tunneled through from another file (see comment above).
+                        Thread.Sleep(10);
+                        // Having waited for a short amount of time usually means the file creation process has continued
+                        // code execution just enough to the above point where it has fixed up the creation time.
+                        this.CreationTime = File.GetCreationTimeUtc(this.FileName);
+                    }
                 }
             }
             catch
@@ -135,10 +179,14 @@ namespace NLog.Internal.FileAppenders
         /// <param name="bytes">The bytes to be written.</param>
         public override void Write(byte[] bytes)
         {
+            if (file == null)
+                return;
+
             uint written;
             bool success = Win32FileNativeMethods.WriteFile(file.DangerousGetHandle(), bytes, (uint)bytes.Length, out written, IntPtr.Zero);
             if (!success || (uint)bytes.Length != written)
             {
+                InternalLogger.Error("Written only {0} out of {1} bytes to '{2}'", written, bytes.Length, FileName);
                 Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
             }
             FileTouched();
@@ -192,16 +240,7 @@ namespace NLog.Internal.FileAppenders
             /// </returns>
             BaseFileAppender IFileAppenderFactory.Open(string fileName, ICreateFileParameters parameters)
             {
-                try
-                {
-                    if (!parameters.ForceManaged && PlatformDetector.IsDesktopWin32)
-                        return new WindowsMultiProcessFileAppender(fileName, parameters);
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Debug(ex, "Fallback to MutexMultiProcessFileAppender({0})", fileName);
-                }
-                return new MutexMultiProcessFileAppender(fileName, parameters);
+                return new WindowsMultiProcessFileAppender(fileName, parameters);
             }
         }
     }
