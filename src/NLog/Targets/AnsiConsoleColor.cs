@@ -90,7 +90,7 @@ namespace NLog.Targets
             switch (color)
             {
                 case ConsoleColor.Black:
-                    return "\x1B[100m";
+                    return "\x1B[40m";
                 case ConsoleColor.Blue:
                     return "\x1B[104m";
                 case ConsoleColor.Cyan:
