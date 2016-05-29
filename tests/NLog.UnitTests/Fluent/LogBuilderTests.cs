@@ -426,6 +426,19 @@ namespace NLog.UnitTests.Fluent
             Assert.Equal(d, logEventInfo.TimeStamp);
         }
 
+        [Fact]
+        public void LogBuilder_exception_only()
+        {
+            var ex = new Exception("Exception message1");
+
+            _logger.Error()
+            .Exception(ex)
+            .Write();
+
+            var expectedEvent = new LogEventInfo(LogLevel.Error, "logger1", null) { Exception = ex };
+            AssertLastLogEventTarget(expectedEvent);
+        }
+
         ///<remarks>
         /// func because 1 logbuilder creates 1 message
         /// 
