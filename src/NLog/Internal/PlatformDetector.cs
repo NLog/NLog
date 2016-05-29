@@ -88,7 +88,7 @@ namespace NLog.Internal
                 return RuntimeOS.Unix;
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                 return RuntimeOS.Unix;
-                
+
             return RuntimeOS.Unknown;
 #elif UWP10
             return RuntimeOS.Unknown;
