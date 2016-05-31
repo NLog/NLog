@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+
 namespace NLog.UnitTests.Contexts
 {
     using System;
@@ -124,6 +126,40 @@ namespace NLog.UnitTests.Contexts
             MappedDiagnosticsLogicalContext.Set(key, newItem);
 
             Assert.Equal(newItem, MappedDiagnosticsLogicalContext.Get(key));
+        }
+
+        [Fact]
+        public void given_no_item_exists_when_getting_items_should_return_empty_collection()
+        {
+            Assert.Equal(0,MappedDiagnosticsLogicalContext.GetNames().Count);
+        }
+
+        [Fact]
+        public void given_item_exists_when_getting_items_should_return_that_item()
+        {
+            const string key = "Key";
+            MappedDiagnosticsLogicalContext.Set(key, "Item");
+
+            Assert.Equal(1, MappedDiagnosticsLogicalContext.GetNames().Count);
+            Assert.True(MappedDiagnosticsLogicalContext.GetNames().Contains("Key"));
+
+        }
+
+        [Fact]
+        public void given_item_exists_after_removing_item_when_getting_items_should_not_contain_item()
+        {
+            const string keyThatRemains1 = "Key1";
+            const string keyThatRemains2 = "Key2";
+            const string keyThatIsRemoved = "KeyR";
+
+            MappedDiagnosticsLogicalContext.Set(keyThatRemains1, "7");
+            MappedDiagnosticsLogicalContext.Set(keyThatIsRemoved, 7);
+            MappedDiagnosticsLogicalContext.Set(keyThatRemains2, 8);
+
+            MappedDiagnosticsLogicalContext.Remove(keyThatIsRemoved);
+
+            Assert.Equal(2, MappedDiagnosticsLogicalContext.GetNames().Count);
+            Assert.False(MappedDiagnosticsLogicalContext.GetNames().Contains(keyThatIsRemoved));
         }
 
         [Fact]
