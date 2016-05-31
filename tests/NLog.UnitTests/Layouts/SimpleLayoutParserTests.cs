@@ -512,12 +512,28 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal("1/Log_{#}.log", l.Render(le));
         }
 #if !SILVERLIGHT
-        
+
+        /// <summary>
+        /// 
+        /// Test layout with Genernic List type. - is the seperator
+        /// 
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// comma escape is backtick (cannot use backslash due to layout parse)
+        /// </remarks>
+        /// <param name="input"></param>
+        /// <param name="propname"></param>
+        /// <param name="expected"></param>
         [Theory]
         [InlineData("2,3,4", "numbers", "2-3-4")]
         [InlineData("a,b,c", "Strings", "a-b-c")]
         [InlineData("a,b,c", "Objects", "a-b-c")]
         [InlineData("a,,b,c", "Strings", "a--b-c")]
+        [InlineData("a`,b,c", "Strings", "a,b-c")]
+        [InlineData("a`b,c", "Strings", "a`b-c")]
+        [InlineData("a``b,c", "Strings", "a``b-c")]
+        [InlineData("a`,`b,c", "Strings", "a,`b-c")]
         [InlineData("2.0,3.0,4.0", "doubles", "2-3-4")]
         [InlineData("2.1,3.2,4.3", "doubles", "2.1-3.2-4.3")]
         [InlineData("Ignore,Neutral,Ignore", "enums", "Ignore-Neutral-Ignore")]
@@ -553,8 +569,6 @@ namespace NLog.UnitTests.Layouts
         {
             public List<double> Doubles { get; set; }
 
-            public List<Layout> Layouts { get; set; }
-
             public List<FilterResult> Enums { get; set; }
 
             public List<int> Numbers { get; set; }
@@ -577,7 +591,6 @@ namespace NLog.UnitTests.Layouts
                 AppendFormattable(builder, Enums);
                 AppendFormattable(builder, Doubles);
                 Append(builder, Encodings);
-                Append(builder, Layouts);
                 Append(builder, Objects);
             }
 

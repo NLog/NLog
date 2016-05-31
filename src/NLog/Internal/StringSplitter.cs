@@ -45,7 +45,7 @@ namespace NLog.Internal
     /// <summary>
     /// Split a string 
     /// </summary>
-    public static class StringSplitter
+    internal static class StringSplitter
     {
         /// <summary>
         /// Split string with escape. The escape char is the same as the splitchar

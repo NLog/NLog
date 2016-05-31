@@ -296,6 +296,9 @@ namespace NLog.Internal
         /// <summary>
         /// Try parse of string to (Generic) list, comma separated
         /// </summary>
+        /// <remarks>
+        /// comma escape is backtick (cannot use backslash due to layout parse)
+        /// </remarks>
         /// <param name="type"></param>
         /// <param name="valueRaw"></param>
         /// <param name="newValue"></param>
@@ -306,7 +309,7 @@ namespace NLog.Internal
             {
                 //note: type.GenericTypeArguments is .NET 4.5+ 
                 var propertyType =  type.GetGenericArguments()[0];
-                var values = valueRaw.Split(',');
+                var values = valueRaw.SplitWithEscape(',', '`');
                 //todo support for Array?
                 var list = Activator.CreateInstance(type) as IList;
                 if (list == null)
