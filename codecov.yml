@@ -1,0 +1,7 @@
+coverage:
+  precision: 0
+  round: nearest
+  range: "70...100"
+comment:
+  layout: "header, diff, changes, sunburst, uncovered"
+  branches: null
