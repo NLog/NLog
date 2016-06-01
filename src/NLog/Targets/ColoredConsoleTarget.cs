@@ -260,43 +260,15 @@ namespace NLog.Targets
         private void OutputUsingAnsiEscapeCodes(LogEventInfo logEvent, string message)
         {
             var matchingRule = GetMatchingRowHighlightingRule(logEvent);
-            StringBuilder builder = new StringBuilder(1);
-            
-            if (matchingRule.BackgroundColor != ConsoleOutputColor.NoChange)
-                builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)matchingRule.BackgroundColor));
-            if (matchingRule.ForegroundColor != ConsoleOutputColor.NoChange)
-                builder.Append(AnsiConsoleColor.GetForegroundColorEscapeCode((ConsoleColor)matchingRule.ForegroundColor));
-            
-            builder.Append(message);
-            
-            if (matchingRule.ForegroundColor != ConsoleOutputColor.NoChange)
-                builder.Append(AnsiConsoleColor.GetTerminalDefaultForegroundColorEscapeCode());
-            if (matchingRule.BackgroundColor != ConsoleOutputColor.NoChange)
-                builder.Append(AnsiConsoleColor.GetTerminalDefaultBackgroundColorEscapeCode());
-            
-            message = builder.ToString();
 
-            var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
-            if (this.WordHighlightingRules.Count == 0)
-            {
-                consoleStream.WriteLine(message);
-            }
-            else
-            {
-                consoleStream.WriteLine(message);
-                /* No supoort yet for Word Highlighting :(
-                message = message.Replace("\a", "\a\a");
+            message = AnsiConsoleColorFormatter.FormatRow(message, matchingRule);
+
+            if (this.WordHighlightingRules.Count != 0)
                 foreach (ConsoleWordHighlightingRule hl in this.WordHighlightingRules)
-                {
-                    message = hl.ReplaceWithEscapeSequences(message);
-                }
+                    message = hl.Replace(message, m => AnsiConsoleColorFormatter.FormatWord(m.Value, matchingRule, hl));
 
-                ColorizeEscapeSequences(consoleStream, message, new ColorPair(Console.ForegroundColor, Console.BackgroundColor), new ColorPair(oldForegroundColor, oldBackgroundColor));
-                consoleStream.WriteLine();
-
-                didChangeForegroundColor = didChangeBackgroundColor = true;
-                */
-            }
+            var consoleStream = this.ErrorStream ? Console.Error : Console.Out;            
+            consoleStream.WriteLine(message);
         }
 
         private ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(LogEventInfo logEvent)

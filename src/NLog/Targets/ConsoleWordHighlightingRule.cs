@@ -198,6 +198,11 @@ namespace NLog.Targets
 
         internal string ReplaceWithEscapeSequences(string message)
         {
+            return Replace(message, this.MatchEvaluator);
+        }
+        
+        internal string Replace(string message, MatchEvaluator matchEvaluator)
+        {
             if (CompileRegex)
             {
                 var regex = this.CompiledRegex;
@@ -207,7 +212,7 @@ namespace NLog.Targets
                     return message;
                 }
 
-                return regex.Replace(message, this.MatchEvaluator);
+                return regex.Replace(message, matchEvaluator);
             }
             //use regex cache
             var expression = GetRegexExpression();
