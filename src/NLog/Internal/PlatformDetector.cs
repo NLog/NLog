@@ -35,6 +35,9 @@ namespace NLog.Internal
 {
     using System;
     using System.Collections.Generic;
+#if NETSTANDARD_1plus
+    using System.Runtime.InteropServices;
+#endif
     using NLog.Config;
 
     /// <summary>
@@ -79,12 +82,11 @@ namespace NLog.Internal
         private static RuntimeOS GetCurrentRuntimeOS()
         {
 #if NETSTANDARD_1plus
-            var runtimeEnv = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default?.Runtime?.OperatingSystem;
-            if ("windows".Equals(runtimeEnv, StringComparison.CurrentCultureIgnoreCase))
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 return RuntimeOS.Windows;
-            else if ("darwin".Equals(runtimeEnv, StringComparison.CurrentCultureIgnoreCase))
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                 return RuntimeOS.Unix;
-            else if (runtimeEnv.ToLower().Contains("unix"))
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                 return RuntimeOS.Unix;
 
             return RuntimeOS.Unknown;
