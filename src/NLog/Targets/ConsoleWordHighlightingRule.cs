@@ -195,7 +195,6 @@ namespace NLog.Targets
             return result.ToString();
         }
 
-
         internal string ReplaceWithEscapeSequences(string message)
         {
             return Replace(message, this.MatchEvaluator);
