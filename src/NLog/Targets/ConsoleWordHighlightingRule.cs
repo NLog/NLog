@@ -199,7 +199,7 @@ namespace NLog.Targets
         {
             return Replace(message, this.MatchEvaluator);
         }
-        
+
         internal string Replace(string message, MatchEvaluator matchEvaluator)
         {
             if (CompileRegex)
