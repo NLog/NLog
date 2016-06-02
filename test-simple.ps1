@@ -8,4 +8,4 @@ dir .\tests\NLog.UnitTests\bin\Release\net45
 $dir =  @(get-item .\tests\NLog.UnitTests\bin\Release\net45\* | ?{ $_.PSIsContainer })[0].FullName
 
 
-xunit.console.exe "${dir}c\NLog.UnitTests.dll"
+xunit.console.exe "${dir}\NLog.UnitTests.dll"
