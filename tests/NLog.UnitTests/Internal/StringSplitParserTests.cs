@@ -1,4 +1,4 @@
-﻿// 
+// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT
 
 using System;
 using System.Collections.Generic;
@@ -83,3 +84,4 @@ namespace NLog.UnitTests.Internal
         }
     }
 }
+#endif
