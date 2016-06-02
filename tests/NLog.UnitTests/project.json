@@ -67,7 +67,8 @@
                 "xunit": "2.1.0",
                 "Unity": "4.0.1",
                 "Microsoft.AspNet.WebApi.OwinSelfHost": "5.2.3",
-                "DotNetZip.Reduced": "1.9.1.8"
+                "DotNetZip.Reduced": "1.9.1.8",
+                "xunit.runner.console": "2.2.0-beta1-build3239"
 
             },
             "buildOptions": {
