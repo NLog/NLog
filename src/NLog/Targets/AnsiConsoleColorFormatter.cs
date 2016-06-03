@@ -37,6 +37,7 @@ namespace NLog.Targets
 {
     using System;
     using System.Text;
+    using System.Collections.Generic;
     
     public static class AnsiConsoleColorFormatter
     {
@@ -57,6 +58,14 @@ namespace NLog.Targets
                 builder.Append(AnsiConsoleColor.GetTerminalDefaultBackgroundColorEscapeCode());
             
             return builder.ToString();
+        }
+        
+        public static string ApplyWordHighlightingRules(string message, ConsoleRowHighlightingRule matchingRule, IList<ConsoleWordHighlightingRule> wordHighlightingRules)
+        {
+            foreach (ConsoleWordHighlightingRule hl in wordHighlightingRules)
+                    message = hl.Replace(message, m => AnsiConsoleColorFormatter.FormatWord(m.Value, matchingRule, hl));
+
+            return message;
         }
         
         public static string FormatWord(string word, ConsoleRowHighlightingRule matchingRule, ConsoleWordHighlightingRule hl)

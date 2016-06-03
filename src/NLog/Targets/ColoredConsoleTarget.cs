@@ -36,7 +36,6 @@
 namespace NLog.Targets
 {
     using System;
-    using System.Text;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.IO;
@@ -264,8 +263,7 @@ namespace NLog.Targets
             message = AnsiConsoleColorFormatter.FormatRow(message, matchingRule);
 
             if (this.WordHighlightingRules.Count != 0)
-                foreach (ConsoleWordHighlightingRule hl in this.WordHighlightingRules)
-                    message = hl.Replace(message, m => AnsiConsoleColorFormatter.FormatWord(m.Value, matchingRule, hl));
+                message = AnsiConsoleColorFormatter.ApplyWordHighlightingRules(message, matchingRule, this.WordHighlightingRules);
 
             var consoleStream = this.ErrorStream ? Console.Error : Console.Out;            
             consoleStream.WriteLine(message);
