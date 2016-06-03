@@ -63,36 +63,39 @@ namespace NLog.Targets
         public static string ApplyWordHighlightingRules(string message, ConsoleRowHighlightingRule matchingRule, IList<ConsoleWordHighlightingRule> wordHighlightingRules)
         {
             foreach (ConsoleWordHighlightingRule hl in wordHighlightingRules)
-                    message = hl.Replace(message, m => AnsiConsoleColorFormatter.FormatWord(m.Value, matchingRule, hl));
+                    message = hl.Replace(message, 
+                        m => AnsiConsoleColorFormatter.FormatWord(m.Value, matchingRule.ForegroundColor, matchingRule.BackgroundColor, 
+                                                                  hl.ForegroundColor, hl.BackgroundColor));
 
             return message;
         }
         
-        public static string FormatWord(string word, ConsoleRowHighlightingRule matchingRule, ConsoleWordHighlightingRule hl)
+        public static string FormatWord(string word, ConsoleOutputColor rowForegroundColor, ConsoleOutputColor rowBackgroundColor, 
+                                   ConsoleOutputColor wordForegroundColor, ConsoleOutputColor wordBackgroundColor)
         {
             var builder = new StringBuilder(5);
 
-            if (hl.BackgroundColor != ConsoleOutputColor.NoChange)
-                builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)hl.BackgroundColor));
-            if (hl.ForegroundColor != ConsoleOutputColor.NoChange)
-                builder.Append(AnsiConsoleColor.GetForegroundColorEscapeCode((ConsoleColor)hl.ForegroundColor));
+            if (wordBackgroundColor != ConsoleOutputColor.NoChange)
+                builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)wordBackgroundColor));
+            if (wordForegroundColor != ConsoleOutputColor.NoChange)
+                builder.Append(AnsiConsoleColor.GetForegroundColorEscapeCode((ConsoleColor)wordForegroundColor));
 
             builder.Append(word);
             
-            if (hl.ForegroundColor != ConsoleOutputColor.NoChange)
-                if (matchingRule.ForegroundColor != ConsoleOutputColor.NoChange)
-                    builder.Append(AnsiConsoleColor.GetForegroundColorEscapeCode((ConsoleColor)matchingRule.ForegroundColor));
+            if (wordForegroundColor != ConsoleOutputColor.NoChange)
+                if (rowForegroundColor != ConsoleOutputColor.NoChange)
+                    builder.Append(AnsiConsoleColor.GetForegroundColorEscapeCode((ConsoleColor)rowForegroundColor));
                 else
                     builder.Append(AnsiConsoleColor.GetTerminalDefaultForegroundColorEscapeCode());
             
-            if (hl.BackgroundColor != ConsoleOutputColor.NoChange)
-                if (matchingRule.BackgroundColor != ConsoleOutputColor.NoChange)
-                    builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)matchingRule.BackgroundColor));
+            if (wordBackgroundColor != ConsoleOutputColor.NoChange)
+                if (rowBackgroundColor != ConsoleOutputColor.NoChange)
+                    builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)rowBackgroundColor));
                 else
                     builder.Append(AnsiConsoleColor.GetTerminalDefaultBackgroundColorEscapeCode());
 
             return builder.ToString();
-        }        
+        }
     }
 }
 
