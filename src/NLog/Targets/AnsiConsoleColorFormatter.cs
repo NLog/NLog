@@ -79,13 +79,13 @@ namespace NLog.Targets
 
             builder.Append(word);
             
-            if (matchingRule.ForegroundColor != ConsoleOutputColor.NoChange)
+            if (hl.ForegroundColor != ConsoleOutputColor.NoChange)
                 if (matchingRule.ForegroundColor != ConsoleOutputColor.NoChange)
                     builder.Append(AnsiConsoleColor.GetForegroundColorEscapeCode((ConsoleColor)matchingRule.ForegroundColor));
                 else
                     builder.Append(AnsiConsoleColor.GetTerminalDefaultForegroundColorEscapeCode());
             
-            if (matchingRule.BackgroundColor != ConsoleOutputColor.NoChange)
+            if (hl.BackgroundColor != ConsoleOutputColor.NoChange)
                 if (matchingRule.BackgroundColor != ConsoleOutputColor.NoChange)
                     builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)matchingRule.BackgroundColor));
                 else
