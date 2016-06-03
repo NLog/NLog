@@ -219,7 +219,7 @@ namespace NLog.Targets
             {
                 RegexOptions regexOptions = GetRegexOptions(RegexOptions.None);
                 //the static methods of Regex will cache the regex
-                return System.Text.RegularExpressions.Regex.Replace(message, expression, this.MatchEvaluator, regexOptions);
+                return System.Text.RegularExpressions.Regex.Replace(message, expression, matchEvaluator, regexOptions);
             }
             return message;
         }
