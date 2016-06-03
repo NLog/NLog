@@ -80,6 +80,24 @@ namespace NLog.UnitTests.Targets
             
             Assert.Equal(expectedMessage, formattedMessage);
         }
+        
+        [Theory]
+        [InlineData("This is my word", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, "This is my word")]
+        [InlineData("This is my word", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange, "\x1B[31mThis is my word\x1B[39m")]
+        [InlineData("This is my word", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkRed, "\x1B[41mThis is my word\x1B[0m")]
+        [InlineData("This is my word", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkBlue, ConsoleOutputColor.DarkRed, "\x1B[41m\x1B[34mThis is my word\x1B[39m\x1B[0m")]
+        [InlineData("This is my word", ConsoleOutputColor.DarkBlue, ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange, "\x1B[31mThis is my word\x1B[34m")]
+        [InlineData("This is my word", ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkBlue, ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkRed, "\x1B[41mThis is my word\x1B[44m")]
+        [InlineData("This is my word", ConsoleOutputColor.DarkMagenta, ConsoleOutputColor.DarkGreen, ConsoleOutputColor.DarkBlue, ConsoleOutputColor.DarkRed, "\x1B[41m\x1B[34mThis is my word\x1B[35m\x1B[42m")]
+        public void FormatWordTest(string word, ConsoleOutputColor rowForegroundColor, ConsoleOutputColor rowBackgroundColor, ConsoleOutputColor wordForegroundColor, ConsoleOutputColor wordBackgroundColor, string expectedMessage)
+        {
+            var rowRule = new ConsoleRowHighlightingRule { ForegroundColor = rowForegroundColor, BackgroundColor = rowBackgroundColor };
+            var wordRule = new ConsoleWordHighlightingRule { ForegroundColor = wordForegroundColor, BackgroundColor = wordBackgroundColor };
+            
+            var formattedMessage = AnsiConsoleColorFormatter.FormatWord(word, rowRule, wordRule);
+            
+            Assert.Equal(expectedMessage, formattedMessage);
+        }
     }
 }
 
