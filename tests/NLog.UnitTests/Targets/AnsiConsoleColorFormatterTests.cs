@@ -143,6 +143,24 @@ namespace NLog.UnitTests.Targets
             var expectedMessage = "The \x1B[31mbig \x1B[35mw\x1B[32ma\x1B[35mrn\x1B[31ming\x1B[39m mess\x1B[32ma\x1B[39mge";
             Assert.Equal(expectedMessage, formattedMessage);
         }
+        
+        [Fact]
+        public void WordRuleWithMultipleResutsShouldBeFormattedCorrectlyTest()
+        {
+            var message = "The big big big big warning message";
+            var rowRule = new ConsoleRowHighlightingRule{ ForegroundColor = ConsoleOutputColor.NoChange, BackgroundColor = ConsoleOutputColor.NoChange };
+            var wordRules = new []{ new ConsoleWordHighlightingRule 
+                                    {
+                                        Text = "big big",
+                                        ForegroundColor = ConsoleOutputColor.DarkRed,
+                                        BackgroundColor = ConsoleOutputColor.NoChange
+                                    }};
+            
+            var formattedMessage = AnsiConsoleColorFormatter.ApplyWordHighlightingRules(message, rowRule, wordRules);
+            
+            var expectedMessage = "The \x1B[31mbig big\x1B[39m \x1B[31mbig big\x1B[39m warning message";
+            Assert.Equal(expectedMessage, formattedMessage);
+        }
     }
 }
 
