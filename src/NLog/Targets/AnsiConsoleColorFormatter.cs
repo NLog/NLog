@@ -122,11 +122,6 @@ namespace NLog.Targets
             public int End;
             public ConsoleOutputColor ForegroundColor;
             public ConsoleOutputColor BackgroundColor;
-            
-            public string Dump()
-            {
-                return string.Format("Layer {0}, Start {1}, End {2}, FC {3}, BC {4}", Layer, Start, End, ForegroundColor, BackgroundColor);
-            }
         }
         
         internal static string FormatWord(string word, ConsoleOutputColor matchForegroundColor, ConsoleOutputColor matchBackgroundColor, 
