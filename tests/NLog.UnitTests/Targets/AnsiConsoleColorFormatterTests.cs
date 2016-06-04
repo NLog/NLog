@@ -37,7 +37,7 @@ namespace NLog.UnitTests.Targets
 {
     using NLog.Targets;
     using Xunit;
-    
+
     public class AnsiConsoleColorFormatterTests
     {
         [Theory]
@@ -83,17 +83,64 @@ namespace NLog.UnitTests.Targets
         
         [Theory]
         [InlineData("This is my word", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, "This is my word")]
-        [InlineData("This is my word", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange, "\x1B[31mThis is my word\x1B[39m")]
-        [InlineData("This is my word", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkRed, "\x1B[41mThis is my word\x1B[0m")]
-        [InlineData("This is my word", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkBlue, ConsoleOutputColor.DarkRed, "\x1B[41m\x1B[34mThis is my word\x1B[39m\x1B[0m")]
-        [InlineData("This is my word", ConsoleOutputColor.DarkBlue, ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange, "\x1B[31mThis is my word\x1B[34m")]
-        [InlineData("This is my word", ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkBlue, ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkRed, "\x1B[41mThis is my word\x1B[44m")]
-        [InlineData("This is my word", ConsoleOutputColor.DarkMagenta, ConsoleOutputColor.DarkGreen, ConsoleOutputColor.DarkBlue, ConsoleOutputColor.DarkRed, "\x1B[41m\x1B[34mThis is my word\x1B[35m\x1B[42m")]
-        public void FormatWordTest(string word, ConsoleOutputColor rowForegroundColor, ConsoleOutputColor rowBackgroundColor, 
-                                   ConsoleOutputColor wordForegroundColor, ConsoleOutputColor wordBackgroundColor, string expectedMessage)
+        [InlineData("This is my word", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, "\x1B[31mThis is my word\x1B[39m")]
+        [InlineData("This is my word", ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, "\x1B[41mThis is my word\x1B[0m")]
+        [InlineData("This is my word", ConsoleOutputColor.DarkBlue, ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, "\x1B[41m\x1B[34mThis is my word\x1B[39m\x1B[0m")]
+        [InlineData("This is my word", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkBlue, ConsoleOutputColor.NoChange, "\x1B[31mThis is my word\x1B[34m")]
+        [InlineData("This is my word", ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkBlue, "\x1B[41mThis is my word\x1B[44m")]
+        [InlineData("This is my word", ConsoleOutputColor.DarkBlue, ConsoleOutputColor.DarkRed, ConsoleOutputColor.DarkMagenta, ConsoleOutputColor.DarkGreen, "\x1B[41m\x1B[34mThis is my word\x1B[35m\x1B[42m")]
+        public void FormatWordTest(string word, ConsoleOutputColor matchForegroundColor, ConsoleOutputColor matchBackgroundColor, 
+                                   ConsoleOutputColor nextForegroundColor, ConsoleOutputColor nextBackgroundColor, string expectedMessage)
         {
-            var formattedMessage = AnsiConsoleColorFormatter.FormatWord(word, rowForegroundColor, rowBackgroundColor, wordForegroundColor, wordBackgroundColor);
+            var formattedMessage = AnsiConsoleColorFormatter.FormatWord(word, matchForegroundColor, matchBackgroundColor, nextForegroundColor, nextBackgroundColor);
             
+            Assert.Equal(expectedMessage, formattedMessage);
+        }
+        
+        [Fact]
+        public void InvalidWordRuleDoesNotfail()
+        {
+            var message = "The big warning message";
+            var rowRule = new ConsoleRowHighlightingRule{ ForegroundColor = ConsoleOutputColor.NoChange, BackgroundColor = ConsoleOutputColor.NoChange };
+            var wordRules = new []{ new ConsoleWordHighlightingRule 
+                                    {
+                                        ForegroundColor = ConsoleOutputColor.DarkRed,
+                                        BackgroundColor = ConsoleOutputColor.NoChange
+                                    }};
+            
+            var formattedMessage = AnsiConsoleColorFormatter.ApplyWordHighlightingRules(message, rowRule, wordRules);
+            
+            var expectedMessage = "The big warning message";
+            Assert.Equal(expectedMessage, formattedMessage);
+        }
+        
+        [Fact]
+        public void ApplyMultipleWordRules()
+        {
+            var message = "The big warning message";
+            var rowRule = new ConsoleRowHighlightingRule{ ForegroundColor = ConsoleOutputColor.NoChange, BackgroundColor = ConsoleOutputColor.NoChange };
+            var wordRules = new []{ new ConsoleWordHighlightingRule 
+                                    {
+                                        Text = "big warning",
+                                        ForegroundColor = ConsoleOutputColor.DarkRed,
+                                        BackgroundColor = ConsoleOutputColor.NoChange
+                                    },
+                                    new ConsoleWordHighlightingRule
+                                    {
+                                        Text = "warn",
+                                        ForegroundColor = ConsoleOutputColor.DarkMagenta,
+                                        BackgroundColor = ConsoleOutputColor.NoChange
+                                    },
+                                    new ConsoleWordHighlightingRule
+                                    {
+                                        Text = "a",
+                                        ForegroundColor = ConsoleOutputColor.DarkGreen,
+                                        BackgroundColor = ConsoleOutputColor.NoChange
+                                    }};
+            
+            var formattedMessage = AnsiConsoleColorFormatter.ApplyWordHighlightingRules(message, rowRule, wordRules);
+            
+            var expectedMessage = "The \x1B[31mbig \x1B[35mw\x1B[32ma\x1B[35mrn\x1B[31ming\x1B[39m mess\x1B[32ma\x1B[39mge";
             Assert.Equal(expectedMessage, formattedMessage);
         }
     }

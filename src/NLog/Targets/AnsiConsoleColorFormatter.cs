@@ -38,7 +38,8 @@ namespace NLog.Targets
     using System;
     using System.Text;
     using System.Collections.Generic;
-    
+    using System.Text.RegularExpressions;
+    using System.Linq;
     public static class AnsiConsoleColorFormatter
     {
         public static string FormatRow(string message, ConsoleRowHighlightingRule matchingRule)
@@ -62,35 +63,93 @@ namespace NLog.Targets
         
         public static string ApplyWordHighlightingRules(string message, ConsoleRowHighlightingRule matchingRule, IList<ConsoleWordHighlightingRule> wordHighlightingRules)
         {
+            var matches = BuildMatchList(message, wordHighlightingRules);
+            
+            int id = 1;
             foreach (ConsoleWordHighlightingRule hl in wordHighlightingRules)
-                    message = hl.Replace(message, 
-                        m => AnsiConsoleColorFormatter.FormatWord(m.Value, matchingRule.ForegroundColor, matchingRule.BackgroundColor, 
-                                                                  hl.ForegroundColor, hl.BackgroundColor));
+            {
+                message = hl.Replace(message, m => 
+                { 
+                    var currentMatch = matches.First(hw => hw.Id == id);
+                    var matchBelowEndOfCurrentMatch = FindMatchBelowTheEndOfTheCurrentMatch(matches, currentMatch);
+                        
+                    id++;
+                    return AnsiConsoleColorFormatter.FormatWord(m.Value,
+                            hl.ForegroundColor, hl.BackgroundColor, 
+                            matchBelowEndOfCurrentMatch != null ? matchBelowEndOfCurrentMatch.ForegroundColor : matchingRule.ForegroundColor, 
+                            matchBelowEndOfCurrentMatch != null ? matchBelowEndOfCurrentMatch.BackgroundColor : matchingRule.BackgroundColor);
+                });
+            }
 
             return message;
         }
         
-        public static string FormatWord(string word, ConsoleOutputColor rowForegroundColor, ConsoleOutputColor rowBackgroundColor, 
-                                   ConsoleOutputColor wordForegroundColor, ConsoleOutputColor wordBackgroundColor)
+        private static List<HighlightedMatch> BuildMatchList(string message, IList<ConsoleWordHighlightingRule> wordHighlightingRules)
+        {
+            var matchResults = new List<HighlightedMatch>();
+            int layer = 1;
+            int id = 1;
+            foreach (ConsoleWordHighlightingRule hl in wordHighlightingRules)
+            {
+                var matches = hl.Matches(message);
+                if (matches == null)
+                    continue;
+                
+                foreach (Match m in matches)
+                {
+                    matchResults.Add(new HighlightedMatch{Id = id, Layer = layer, Start = m.Index, End = m.Index + m.Length, ForegroundColor = hl.ForegroundColor, BackgroundColor = hl.BackgroundColor});
+                    id++;
+                }
+                layer++;
+            }
+            return matchResults;
+        }
+        
+        private static HighlightedMatch FindMatchBelowTheEndOfTheCurrentMatch(List<HighlightedMatch> matches, HighlightedMatch currentMatch)
+        {
+            return matches.FindAll(hw => hw.Layer < currentMatch.Layer &&
+                                   hw.Start < currentMatch.End && 
+                                   hw.End > currentMatch.End)
+                          .OrderByDescending(o => o.Layer)
+                          .FirstOrDefault();
+        }
+        
+        private class HighlightedMatch
+        {
+            public int Id;
+            public int Layer;
+            public int Start;
+            public int End;
+            public ConsoleOutputColor ForegroundColor;
+            public ConsoleOutputColor BackgroundColor;
+            
+            public string Dump()
+            {
+                return string.Format("Layer {0}, Start {1}, End {2}, FC {3}, BC {4}", Layer, Start, End, ForegroundColor, BackgroundColor);
+            }
+        }
+        
+        public static string FormatWord(string word, ConsoleOutputColor matchForegroundColor, ConsoleOutputColor matchBackgroundColor, 
+                                   ConsoleOutputColor nextForegroundColor, ConsoleOutputColor nextBackgroundColor)
         {
             var builder = new StringBuilder(5);
 
-            if (wordBackgroundColor != ConsoleOutputColor.NoChange)
-                builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)wordBackgroundColor));
-            if (wordForegroundColor != ConsoleOutputColor.NoChange)
-                builder.Append(AnsiConsoleColor.GetForegroundColorEscapeCode((ConsoleColor)wordForegroundColor));
+            if (matchBackgroundColor != ConsoleOutputColor.NoChange)
+                builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)matchBackgroundColor));
+            if (matchForegroundColor != ConsoleOutputColor.NoChange)
+                builder.Append(AnsiConsoleColor.GetForegroundColorEscapeCode((ConsoleColor)matchForegroundColor));
 
             builder.Append(word);
             
-            if (wordForegroundColor != ConsoleOutputColor.NoChange)
-                if (rowForegroundColor != ConsoleOutputColor.NoChange)
-                    builder.Append(AnsiConsoleColor.GetForegroundColorEscapeCode((ConsoleColor)rowForegroundColor));
+            if (matchForegroundColor != ConsoleOutputColor.NoChange)
+                if (nextForegroundColor != ConsoleOutputColor.NoChange)
+                    builder.Append(AnsiConsoleColor.GetForegroundColorEscapeCode((ConsoleColor)nextForegroundColor));
                 else
                     builder.Append(AnsiConsoleColor.GetTerminalDefaultForegroundColorEscapeCode());
             
-            if (wordBackgroundColor != ConsoleOutputColor.NoChange)
-                if (rowBackgroundColor != ConsoleOutputColor.NoChange)
-                    builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)rowBackgroundColor));
+            if (matchBackgroundColor != ConsoleOutputColor.NoChange)
+                if (nextBackgroundColor != ConsoleOutputColor.NoChange)
+                    builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)nextBackgroundColor));
                 else
                     builder.Append(AnsiConsoleColor.GetTerminalDefaultBackgroundColorEscapeCode());
 

@@ -223,6 +223,30 @@ namespace NLog.Targets
             }
             return message;
         }
+        
+        internal MatchCollection Matches(string message)
+        {
+            if (CompileRegex)
+            {
+                var regex = this.CompiledRegex;
+                if (regex == null)
+                {
+                    //empty regex so nothing todo
+                    return null;
+                }
+
+                return regex.Matches(message);
+            }
+            //use regex cache
+            var expression = GetRegexExpression();
+            if (expression != null)
+            {
+                RegexOptions regexOptions = GetRegexOptions(RegexOptions.None);
+                //the static methods of Regex will cache the regex
+                return System.Text.RegularExpressions.Regex.Matches(message, expression, regexOptions);
+            }
+            return null;
+        }
     }
 }
 
