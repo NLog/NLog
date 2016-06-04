@@ -258,15 +258,23 @@ namespace NLog.Targets
         
         private void OutputUsingAnsiEscapeCodes(LogEventInfo logEvent, string message)
         {
-            var matchingRule = GetMatchingRowHighlightingRule(logEvent);
+            var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
+            try{
+                var matchingRule = GetMatchingRowHighlightingRule(logEvent);
 
-            message = AnsiConsoleColorFormatter.FormatRow(message, matchingRule);
+                message = AnsiConsoleColorFormatter.FormatRow(message, matchingRule);
 
-            if (this.WordHighlightingRules.Count != 0)
-                message = AnsiConsoleColorFormatter.ApplyWordHighlightingRules(message, matchingRule, this.WordHighlightingRules);
+                if (this.WordHighlightingRules.Count != 0)
+                    message = AnsiConsoleColorFormatter.ApplyWordHighlightingRules(message, matchingRule, this.WordHighlightingRules);
 
-            var consoleStream = this.ErrorStream ? Console.Error : Console.Out;            
-            consoleStream.WriteLine(message);
+                consoleStream.WriteLine(message);
+            }
+            catch
+            {
+                consoleStream.WriteLine(AnsiConsoleColor.GetTerminalDefaultForegroundColorEscapeCode() + 
+                                        AnsiConsoleColor.GetTerminalDefaultBackgroundColorEscapeCode());
+                throw;
+            }
         }
 
         private ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(LogEventInfo logEvent)
