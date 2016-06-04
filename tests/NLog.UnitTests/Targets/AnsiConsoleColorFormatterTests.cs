@@ -98,7 +98,7 @@ namespace NLog.UnitTests.Targets
         }
         
         [Fact]
-        public void InvalidWordRuleDoesNotfail()
+        public void InvalidWordRuleShouldResultInNoHighlightingTest()
         {
             var message = "The big warning message";
             var rowRule = new ConsoleRowHighlightingRule{ ForegroundColor = ConsoleOutputColor.NoChange, BackgroundColor = ConsoleOutputColor.NoChange };
@@ -115,7 +115,7 @@ namespace NLog.UnitTests.Targets
         }
         
         [Fact]
-        public void ApplyMultipleWordRules()
+        public void OverlappingWordRulesShouldBeFormattedCorrectlyTest()
         {
             var message = "The big warning message";
             var rowRule = new ConsoleRowHighlightingRule{ ForegroundColor = ConsoleOutputColor.NoChange, BackgroundColor = ConsoleOutputColor.NoChange };
