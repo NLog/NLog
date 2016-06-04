@@ -40,9 +40,9 @@ namespace NLog.Targets
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using System.Linq;
-    public static class AnsiConsoleColorFormatter
+    internal static class AnsiConsoleColorFormatter
     {
-        public static string FormatRow(string message, ConsoleRowHighlightingRule matchingRule)
+        internal static string FormatRow(string message, ConsoleRowHighlightingRule matchingRule)
         {
             StringBuilder builder = new StringBuilder(1);
             
@@ -61,7 +61,7 @@ namespace NLog.Targets
             return builder.ToString();
         }
         
-        public static string ApplyWordHighlightingRules(string message, ConsoleRowHighlightingRule matchingRule, IList<ConsoleWordHighlightingRule> wordHighlightingRules)
+        internal static string ApplyWordHighlightingRules(string message, ConsoleRowHighlightingRule matchingRule, IList<ConsoleWordHighlightingRule> wordHighlightingRules)
         {
             var matches = BuildMatchList(message, wordHighlightingRules);
             
@@ -129,7 +129,7 @@ namespace NLog.Targets
             }
         }
         
-        public static string FormatWord(string word, ConsoleOutputColor matchForegroundColor, ConsoleOutputColor matchBackgroundColor, 
+        internal static string FormatWord(string word, ConsoleOutputColor matchForegroundColor, ConsoleOutputColor matchBackgroundColor, 
                                    ConsoleOutputColor nextForegroundColor, ConsoleOutputColor nextBackgroundColor)
         {
             var builder = new StringBuilder(5);

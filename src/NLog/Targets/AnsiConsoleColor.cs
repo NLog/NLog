@@ -37,9 +37,9 @@ namespace NLog.Targets
 {
     using System;
     
-    public static class AnsiConsoleColor
+    internal static class AnsiConsoleColor
     {
-        public static string GetForegroundColorEscapeCode(ConsoleColor color)
+        internal static string GetForegroundColorEscapeCode(ConsoleColor color)
         {
             switch (color)
             {
@@ -80,12 +80,12 @@ namespace NLog.Targets
             }
         }
         
-        public static string GetTerminalDefaultForegroundColorEscapeCode()
+        internal static string GetTerminalDefaultForegroundColorEscapeCode()
         {
             return "\x1B[39m";
         }
 
-        public static string GetBackgroundColorEscapeCode(ConsoleColor color)
+        internal static string GetBackgroundColorEscapeCode(ConsoleColor color)
         {
             switch (color)
             {
@@ -126,7 +126,7 @@ namespace NLog.Targets
             }
         }
         
-        public static string GetTerminalDefaultBackgroundColorEscapeCode()
+        internal static string GetTerminalDefaultBackgroundColorEscapeCode()
         {
             return "\x1B[0m";
         }
