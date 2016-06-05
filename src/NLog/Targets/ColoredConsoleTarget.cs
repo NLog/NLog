@@ -264,7 +264,6 @@ namespace NLog.Targets
 
                 var formatter = new AnsiConsoleColorFormatter(message, matchingRule, this.WordHighlightingRules);
                 message = formatter.FormatRow();
-
                 if (this.WordHighlightingRules.Count != 0)
                     message = formatter.ApplyWordHighlightingRules();
 
