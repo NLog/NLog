@@ -262,10 +262,11 @@ namespace NLog.Targets
             try{
                 var matchingRule = GetMatchingRowHighlightingRule(logEvent);
 
-                message = AnsiConsoleColorFormatter.FormatRow(message, matchingRule);
+                var formatter = new AnsiConsoleColorFormatter(message, matchingRule, this.WordHighlightingRules);
+                message = formatter.FormatRow();
 
                 if (this.WordHighlightingRules.Count != 0)
-                    message = AnsiConsoleColorFormatter.ApplyWordHighlightingRules(message, matchingRule, this.WordHighlightingRules);
+                    message = formatter.ApplyWordHighlightingRules();
 
                 consoleStream.WriteLine(message);
             }
