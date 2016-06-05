@@ -69,7 +69,8 @@ namespace NLog.Targets
             if (matchingRule.BackgroundColor != ConsoleOutputColor.NoChange)
                 builder.Append(AnsiConsoleColor.GetTerminalDefaultBackgroundColorEscapeCode());
             
-            return builder.ToString();
+            message = builder.ToString();
+            return message;
         }
         
         internal string ApplyWordHighlightingRules()
