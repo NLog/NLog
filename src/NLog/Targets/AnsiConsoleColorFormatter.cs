@@ -43,18 +43,18 @@ namespace NLog.Targets
     internal class AnsiConsoleColorFormatter
     {
         private string message;
-        private ConsoleRowHighlightingRule matchingRule;
+        private ConsoleRowHighlightingRule rowHighlightingRule;
         private IList<ConsoleWordHighlightingRule> wordHighlightingRules;
         
-        internal AnsiConsoleColorFormatter(string message, ConsoleRowHighlightingRule matchingRule, IList<ConsoleWordHighlightingRule> wordHighlightingRules)
+        internal AnsiConsoleColorFormatter(string message, ConsoleRowHighlightingRule rowHighlightingRule, IList<ConsoleWordHighlightingRule> wordHighlightingRules)
         {
-            if (matchingRule == null)
-                throw new ArgumentNullException("matchingRule");
+            if (rowHighlightingRule == null)
+                throw new ArgumentNullException("rowHighlightingRule");
             if (wordHighlightingRules == null)
                 throw new ArgumentNullException("wordHighlightingRules");
 
             this.message = message;
-            this.matchingRule = matchingRule;
+            this.rowHighlightingRule = rowHighlightingRule;
             this.wordHighlightingRules = wordHighlightingRules;
         }
         
@@ -71,16 +71,16 @@ namespace NLog.Targets
         {
             StringBuilder builder = new StringBuilder(1);
             
-            if (matchingRule.BackgroundColor != ConsoleOutputColor.NoChange)
-                builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)matchingRule.BackgroundColor));
-            if (matchingRule.ForegroundColor != ConsoleOutputColor.NoChange)
-                builder.Append(AnsiConsoleColor.GetForegroundColorEscapeCode((ConsoleColor)matchingRule.ForegroundColor));
+            if (rowHighlightingRule.BackgroundColor != ConsoleOutputColor.NoChange)
+                builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)rowHighlightingRule.BackgroundColor));
+            if (rowHighlightingRule.ForegroundColor != ConsoleOutputColor.NoChange)
+                builder.Append(AnsiConsoleColor.GetForegroundColorEscapeCode((ConsoleColor)rowHighlightingRule.ForegroundColor));
             
             builder.Append(message);
             
-            if (matchingRule.ForegroundColor != ConsoleOutputColor.NoChange)
+            if (rowHighlightingRule.ForegroundColor != ConsoleOutputColor.NoChange)
                 builder.Append(AnsiConsoleColor.GetTerminalDefaultForegroundColorEscapeCode());
-            if (matchingRule.BackgroundColor != ConsoleOutputColor.NoChange)
+            if (rowHighlightingRule.BackgroundColor != ConsoleOutputColor.NoChange)
                 builder.Append(AnsiConsoleColor.GetTerminalDefaultBackgroundColorEscapeCode());
             
             message = builder.ToString();
@@ -102,8 +102,8 @@ namespace NLog.Targets
                     id++;
                     return AnsiConsoleColorFormatter.FormatWord(m.Value,
                             hl.ForegroundColor, hl.BackgroundColor, 
-                            matchBelowEndOfCurrentMatch != null ? matchBelowEndOfCurrentMatch.ForegroundColor : matchingRule.ForegroundColor, 
-                            matchBelowEndOfCurrentMatch != null ? matchBelowEndOfCurrentMatch.BackgroundColor : matchingRule.BackgroundColor);
+                            matchBelowEndOfCurrentMatch != null ? matchBelowEndOfCurrentMatch.ForegroundColor : rowHighlightingRule.ForegroundColor, 
+                            matchBelowEndOfCurrentMatch != null ? matchBelowEndOfCurrentMatch.BackgroundColor : rowHighlightingRule.BackgroundColor);
                 });
             }
 
