@@ -48,12 +48,26 @@ namespace NLog.Targets
         
         internal AnsiConsoleColorFormatter(string message, ConsoleRowHighlightingRule matchingRule, IList<ConsoleWordHighlightingRule> wordHighlightingRules)
         {
+            if (matchingRule == null)
+                throw new ArgumentNullException("matchingRule");
+            if (wordHighlightingRules == null)
+                throw new ArgumentNullException("wordHighlightingRules");
+
             this.message = message;
             this.matchingRule = matchingRule;
-            this. wordHighlightingRules = wordHighlightingRules;                        
+            this.wordHighlightingRules = wordHighlightingRules;
         }
         
-        internal string FormatRow()
+        internal string FormatMessage()
+        {
+            var formattedMessage = FormatRow();
+                if (wordHighlightingRules.Count != 0)
+                    formattedMessage = ApplyWordHighlightingRules();
+                    
+            return formattedMessage;
+        }
+        
+        private string FormatRow()
         {
             StringBuilder builder = new StringBuilder(1);
             
@@ -73,7 +87,7 @@ namespace NLog.Targets
             return message;
         }
         
-        internal string ApplyWordHighlightingRules()
+        private string ApplyWordHighlightingRules()
         {
             var matches = BuildMatchList();
             
