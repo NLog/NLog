@@ -40,13 +40,13 @@ namespace NLog.Targets
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using System.Linq;
-    internal class AnsiConsoleColorFormatter
+    internal class AnsiConsoleColorizer
     {
         private string message;
         private ConsoleRowHighlightingRule rowHighlightingRule;
         private IList<ConsoleWordHighlightingRule> wordHighlightingRules;
         
-        internal AnsiConsoleColorFormatter(string message, ConsoleRowHighlightingRule rowHighlightingRule, IList<ConsoleWordHighlightingRule> wordHighlightingRules)
+        internal AnsiConsoleColorizer(string message, ConsoleRowHighlightingRule rowHighlightingRule, IList<ConsoleWordHighlightingRule> wordHighlightingRules)
         {
             if (rowHighlightingRule == null)
                 throw new ArgumentNullException("rowHighlightingRule");
@@ -58,16 +58,16 @@ namespace NLog.Targets
             this.wordHighlightingRules = wordHighlightingRules;
         }
         
-        internal string FormatMessage()
+        internal string ColorizeMessage()
         {
-            var formattedMessage = FormatRow();
+            var formattedMessage = ColorizeRow();
                 if (wordHighlightingRules.Count != 0)
                     formattedMessage = ApplyWordHighlightingRules();
                     
             return formattedMessage;
         }
         
-        private string FormatRow()
+        private string ColorizeRow()
         {
             StringBuilder builder = new StringBuilder(1);
             
@@ -100,7 +100,7 @@ namespace NLog.Targets
                     var matchBelowEndOfCurrentMatch = FindMatchBelowTheEndOfTheCurrentMatch(matches, currentMatch);
                         
                     id++;
-                    return AnsiConsoleColorFormatter.FormatWord(m.Value,
+                    return AnsiConsoleColorizer.ColorizeWord(m.Value,
                             hl.ForegroundColor, hl.BackgroundColor, 
                             matchBelowEndOfCurrentMatch != null ? matchBelowEndOfCurrentMatch.ForegroundColor : rowHighlightingRule.ForegroundColor, 
                             matchBelowEndOfCurrentMatch != null ? matchBelowEndOfCurrentMatch.BackgroundColor : rowHighlightingRule.BackgroundColor);
@@ -150,7 +150,7 @@ namespace NLog.Targets
             public ConsoleOutputColor BackgroundColor;
         }
         
-        internal static string FormatWord(string word, ConsoleOutputColor matchForegroundColor, ConsoleOutputColor matchBackgroundColor, 
+        internal static string ColorizeWord(string word, ConsoleOutputColor matchForegroundColor, ConsoleOutputColor matchBackgroundColor, 
                                    ConsoleOutputColor nextForegroundColor, ConsoleOutputColor nextBackgroundColor)
         {
             var builder = new StringBuilder(5);

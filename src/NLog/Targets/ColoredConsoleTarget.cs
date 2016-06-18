@@ -261,9 +261,9 @@ namespace NLog.Targets
             var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
             try{
                 var matchingRule = GetMatchingRowHighlightingRule(logEvent);
-                var formatter = new AnsiConsoleColorFormatter(message, matchingRule, this.WordHighlightingRules);
+                var colorizer = new AnsiConsoleColorizer(message, matchingRule, this.WordHighlightingRules);
 
-                consoleStream.WriteLine(formatter.FormatMessage());
+                consoleStream.WriteLine(colorizer.ColorizeMessage());
             }
             catch
             {
