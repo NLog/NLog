@@ -38,6 +38,7 @@ namespace NLog.Targets
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Text;
 
     /// <summary>
     /// Colorizes console output using Console.ForegroundColor and Console.BackgroundColor.
@@ -87,7 +88,19 @@ namespace NLog.Targets
                     message = message.Replace("\a", "\a\a");
                     foreach (ConsoleWordHighlightingRule hl in wordHighlightingRules)
                     {
-                        message = hl.ReplaceWithEscapeSequences(message);
+                        message = hl.Replace(message, m =>
+                        {
+                            StringBuilder result = new StringBuilder(m.Value.Length + 5);
+
+                            result.Append('\a');
+                            result.Append((char)((int)hl.ForegroundColor + 'A'));
+                            result.Append((char)((int)hl.BackgroundColor + 'A'));
+                            result.Append(m.Value);
+                            result.Append('\a');
+                            result.Append('X');
+
+                            return result.ToString();
+                        });
                     }
 
                     ColorizeEscapeSequences(consoleStream, message, new ColorPair(Console.ForegroundColor, Console.BackgroundColor), new ColorPair(oldForegroundColor, oldBackgroundColor));
