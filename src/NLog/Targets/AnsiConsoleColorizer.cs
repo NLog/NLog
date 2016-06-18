@@ -40,6 +40,11 @@ namespace NLog.Targets
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using System.Linq;
+
+    /// <summary>
+    /// Colorizes console output using ansi escape codes.
+    /// See https://en.wikipedia.org/wiki/ANSI_escape_code#Colors for background info.
+    /// </summary>
     internal class AnsiConsoleColorizer
     {
         private string message;
