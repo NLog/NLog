@@ -38,7 +38,6 @@ namespace NLog.Targets
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.IO;
     using NLog.Internal;
     using NLog.Config;
 
@@ -222,10 +221,10 @@ namespace NLog.Targets
         private void OutputUsingAnsiEscapeCodes(LogEventInfo logEvent, string message)
         {
             var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
-            try{
-                var matchingRule = GetMatchingRowHighlightingRule(logEvent);
-                var colorizer = new AnsiConsoleColorizer(message, matchingRule, this.WordHighlightingRules);
+            var matchingRule = GetMatchingRowHighlightingRule(logEvent);
+            var colorizer = new AnsiConsoleColorizer(message, matchingRule, this.WordHighlightingRules);
 
+            try{
                 consoleStream.WriteLine(colorizer.ColorizeMessage());
             }
             catch

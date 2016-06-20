@@ -20,66 +20,6 @@
     },
 
     "frameworks": {
-        ".NETFramework,Version=v3.5": {
-            "frameworkAssemblies": {
-                "System": "",
-                "System.Configuration": "",
-                "System.Core": "",
-                "System.Data": "",
-                "System.Runtime.Serialization": "",
-                "System.ServiceModel": "",
-                "System.Transactions": "",
-                "System.Xml": ""
-            },
-            "buildOptions": {
-                "define": [ "NET3_5", "WCF_SUPPORTED" ]
-            }
-        },
-
-        ".NETFramework,Version=v4.0": {
-            "frameworkAssemblies": {
-                "System": "",
-                "System.Configuration": "",
-                "System.Core": "",
-                "System.Data": "",
-                "System.Runtime.Serialization": "",
-                "System.ServiceModel": "",
-                "System.Transactions": "",
-                "System.Xml": ""
-            },
-            "buildOptions": {
-                "define": [ "NET4_0", "WCF_SUPPORTED" ]
-            }
-        },
-        ".NETFramework,Version=v4.5": {
-            "frameworkAssemblies": {
-                "System": "",
-                "System.Configuration": "",
-                "System.Core": "",
-                "System.Data": "",
-                "System.IO.Compression": "",
-                "System.Runtime.Serialization": "",
-                "System.ServiceModel": "",
-                "System.Transactions": "",
-                "System.Xml": ""
-
-            },
-            "buildOptions": {
-                "define": [ "NET4_5", "WCF_SUPPORTED", "ASYNC_SUPPORTED" ]
-            }
-        },
-        //"netstandard1.0": {
-        //  "dependencies": {
-        //    "System.Threading": "4.0.11-rc2-24027",
-        //    "System.Security.Principal": "4.0.1-rc2-24027",
-        //    "System.Net.Primitives": "4.0.11-rc2-24027",
-        //    "System.Xml.XmlSerializer": "4.0.11-rc2-24027",
-        //    "System.Runtime.Serialization.Primitives": "4.1.1-rc2-24027"
-        //  },
-        //  "buildOptions": {
-        //    "define": [ "NET4_0", "WCF_SUPPORTED", "NETSTANDARD1_0" ]
-        //  }
-        //},
         "netstandard1.3": {
             "dependencies": {
                 "NETStandard.Library": "1.5.0-rc2-24027",
@@ -102,61 +42,7 @@
             "buildOptions": {
                 "define": [ "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD1_3", "ASYNC_SUPPORTED", "UWP10" ]
             }
-        },
-        "Silverlight,Version=v4.0": {
-            "frameworkAssemblies": {
-                "mscorlib": "",
-                "System": "",
-                "System.Core": "",
-                "System.Xml": "",
-                "System.Net": "",
-                "System.Windows": "",
-                "System.Windows.Browser": "",
-                "System.Runtime.Serialization": "",
-                "System.ServiceModel": ""
-            },
-            "dependencies": {
-            },
-            "buildOptions": {
-                "define": [ "SILVERLIGHT", "SILVERLIGHT4", "WCF_SUPPORTED" ]
-            }
-        },
-        "Silverlight,Version=v5.0": {
-            "frameworkAssemblies": {
-                "mscorlib": "",
-                "System": "",
-                "System.Core": "",
-                "System.Xml": "",
-                "System.Net": "",
-                "System.Windows": "",
-                "System.Windows.Browser": "",
-                "System.Runtime.Serialization": "",
-                "System.ServiceModel": ""
-            },
-            "dependencies": {
-            },
-            "buildOptions": {
-                "define": [ "SILVERLIGHT", "SILVERLIGHT5", "WCF_SUPPORTED" ]
-            }
-        },
-
-        "wp8": {
-            "frameworkAssemblies": {
-                "mscorlib": "",
-                "System": "",
-                "System.Core": "",
-                "System.Xml": "",
-                "System.Net": "",
-                "System.Windows": ""
-            },
-            "dependencies": {
-            },
-            "buildOptions": {
-                "define": [ "SILVERLIGHT", "WINDOWS_PHONE" ]
-            }
         }
-        
-        
     },
     "buildOptions": {
         "keyFile": "NLog.snk"

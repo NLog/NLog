@@ -12,11 +12,10 @@
         }
     },
     "dependencies": {
-        "NLog": "4.*"
+        "NLog": "4.4.0-beta9"
     },
 
     "frameworks": {
-        ".NETFramework,Version=v3.5": { },
            "netstandard1.3": {
             "dependencies": {
                 "System.Console": "4.0.0-rc2-24027",
@@ -37,8 +36,6 @@
             "buildOptions": {
                 "define": [ "NET4_5", "NETSTANDARD_1plus", "UWP10" ]
             }
-        },
-        "Silverlight,Version=v5.0": {
         }
     },
     "buildOptions": {
