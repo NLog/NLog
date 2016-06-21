@@ -34,7 +34,6 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using NLog.Common;
     using NLog.Time;

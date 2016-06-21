@@ -15,8 +15,7 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -369,7 +368,6 @@
     <Compile Include="Targets\FileArchivePeriod.cs" />
     <Compile Include="Targets\FileTarget.cs" />
     <Compile Include="Targets\IFileCompressor.cs" />
-    <Compile Include="Targets\LimitingTargetWrapper.cs" />
     <Compile Include="Targets\LineEndingMode.cs" />
     <Compile Include="Targets\LogReceiverWebServiceTarget.cs" />
     <Compile Include="Targets\MailTarget.cs" />
@@ -404,6 +402,7 @@
     <Compile Include="Targets\Wrappers\FilteringRule.cs" />
     <Compile Include="Targets\Wrappers\FilteringTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\ImpersonatingTargetWrapper.cs" />
+    <Compile Include="Targets\Wrappers\LimitingTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\LogOnProviderType.cs" />
     <Compile Include="Targets\Wrappers\PostFilteringTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\RandomizeGroupTarget.cs" />
