@@ -52,9 +52,8 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Initializes a new instance of the <see cref="LimitingTargetWrapper" /> class.
         /// </summary>
-        public LimitingTargetWrapper()
+        public LimitingTargetWrapper():this(null)
         {
-
         }
 
 
@@ -64,7 +63,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="name">The name of the target.</param>
         /// <param name="wrappedTarget">The wrapped target.</param>
         public LimitingTargetWrapper(string name, Target wrappedTarget) 
-            : this(wrappedTarget, 100, TimeSpan.FromHours(1))
+            : this(wrappedTarget, 1000, TimeSpan.FromHours(1))
         {
             this.Name = name;
         }
@@ -73,7 +72,8 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="LimitingTargetWrapper" /> class.
         /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
-        public LimitingTargetWrapper(Target wrappedTarget) : this(wrappedTarget, 1000, TimeSpan.FromHours(1))
+        public LimitingTargetWrapper(Target wrappedTarget)
+            : this(wrappedTarget, 1000, TimeSpan.FromHours(1))
         {
         }
 

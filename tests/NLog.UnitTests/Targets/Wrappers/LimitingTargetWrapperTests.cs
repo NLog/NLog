@@ -156,7 +156,27 @@ namespace NLog.UnitTests.Targets.Wrappers
         public void ConstructorWithNoParametersInitialisesDefaultsCorrectly()
         {
             MyTarget wrappedTarget = new MyTarget();
+            LimitingTargetWrapper wrapper = new LimitingTargetWrapper();
+
+            Assert.Equal(1000, wrapper.MessageLimit);
+            Assert.Equal(TimeSpan.FromHours(1), wrapper.Interval);
+        }
+
+        [Fact]
+        public void ConstructorWithTargetInitialisesDefaultsCorrectly()
+        {
+            MyTarget wrappedTarget = new MyTarget();
             LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget);
+
+            Assert.Equal(1000, wrapper.MessageLimit);
+            Assert.Equal(TimeSpan.FromHours(1), wrapper.Interval);
+        }
+
+        [Fact]
+        public void ConstructorWithNameInitialisesDefaultsCorrectly()
+        {
+            MyTarget wrappedTarget = new MyTarget();
+            LimitingTargetWrapper wrapper = new LimitingTargetWrapper("Wrapper", wrappedTarget);
 
             Assert.Equal(1000, wrapper.MessageLimit);
             Assert.Equal(TimeSpan.FromHours(1), wrapper.Interval);

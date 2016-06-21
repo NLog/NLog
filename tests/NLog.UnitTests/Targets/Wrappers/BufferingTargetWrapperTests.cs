@@ -494,7 +494,6 @@ namespace NLog.UnitTests.Targets.Wrappers
                                              };
 
             InitializeTargets(myTarget, bufferingTargetWrapper);
-
             bufferingTargetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => { }));
 
             var flushHit = new ManualResetEvent(false);
