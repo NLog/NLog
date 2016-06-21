@@ -19,11 +19,12 @@ namespace NLog.UnitTests.Targets.Wrappers
             LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget, 5, TimeSpan.FromSeconds(1));
             InitializeTargets(wrappedTarget, wrapper);
 
+            Exception lastException = null;
             // Write limit number of messages should just write them to the wrappedTarget.
             for (int i = 0; i < 5; i++)
             {
                 wrapper.WriteAsyncLogEvent(
-                    new LogEventInfo(LogLevel.Debug, "test", $"Hello {i}").WithContinuation(ex => { }));
+                    new LogEventInfo(LogLevel.Debug, "test", $"Hello {i}").WithContinuation(ex => lastException=ex));
             }
 
             Assert.Equal(5, wrappedTarget.WriteCount);
@@ -35,11 +36,12 @@ namespace NLog.UnitTests.Targets.Wrappers
             for (int i = 5; i < 10; i++)
             {
                 wrapper.WriteAsyncLogEvent(
-                    new LogEventInfo(LogLevel.Debug, "test", $"Hello {i}").WithContinuation(ex => { }));
+                    new LogEventInfo(LogLevel.Debug, "test", $"Hello {i}").WithContinuation(ex => lastException = ex));
             }
 
             // We should have 10 messages (5 from first interval, 5 from second interval).
             Assert.Equal(10, wrappedTarget.WriteCount);
+            Assert.Null(lastException);
         }
 
         [Fact]
@@ -48,11 +50,13 @@ namespace NLog.UnitTests.Targets.Wrappers
             MyTarget wrappedTarget= new MyTarget();
             LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget, 5, TimeSpan.FromHours(1));
             InitializeTargets(wrappedTarget, wrapper);
+            Exception lastException = null;
 
             // Write limit number of messages should just write them to the wrappedTarget.
             for (int i = 0; i < 5; i++)
             {
-                wrapper.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Debug, "test", $"Hello {i}").WithContinuation(ex => { }));
+                wrapper.WriteAsyncLogEvent(
+                    new LogEventInfo(LogLevel.Debug, "test", $"Hello {i}").WithContinuation(ex => lastException = ex));
             }
             Assert.Equal(5, wrappedTarget.WriteCount);
 
@@ -60,11 +64,12 @@ namespace NLog.UnitTests.Targets.Wrappers
             string internalLog = RunAndCaptureInternalLog(() =>
             {
                 wrapper.WriteAsyncLogEvent(
-                    new LogEventInfo(LogLevel.Debug, "test", $"Hello {5}").WithContinuation(ex => { }));
+                    new LogEventInfo(LogLevel.Debug, "test", $"Hello {5}").WithContinuation(ex => lastException = ex));
             }, LogLevel.Trace);
 
             Assert.Equal(5, wrappedTarget.WriteCount);
             Assert.True(internalLog.Contains("MessageLimit"));
+            Assert.Null(lastException);
         }
 
         [Fact]
@@ -73,9 +78,9 @@ namespace NLog.UnitTests.Targets.Wrappers
             MyTarget wrappedTarget = new MyTarget();
             LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget, 5, TimeSpan.FromSeconds(1));
             InitializeTargets(wrappedTarget, wrapper);
-
+            Exception lastException = null;
             wrapper.WriteAsyncLogEvent(
-                new LogEventInfo(LogLevel.Debug, "test", "first interval").WithContinuation(ex => { }));
+                new LogEventInfo(LogLevel.Debug, "test", "first interval").WithContinuation(ex => lastException = ex));
 
             //Let the interval expire.
             Thread.Sleep(1000);
@@ -87,13 +92,14 @@ namespace NLog.UnitTests.Targets.Wrappers
                 for (int i = 0; i < 5; i++)
                 {
                     wrapper.WriteAsyncLogEvent(
-                        new LogEventInfo(LogLevel.Debug, "test", $"Hello {i}").WithContinuation(ex => { }));
+                        new LogEventInfo(LogLevel.Debug, "test", $"Hello {i}").WithContinuation(ex => lastException = ex));
                 }
             }, LogLevel.Trace);
 
             //We should have written 6 messages (1 in first interval and 5 in second interval).
             Assert.Equal(6, wrappedTarget.WriteCount);
             Assert.True(internalLog.Contains("new interval"));
+            Assert.Null(lastException);
         }
 
         [Fact]
@@ -102,12 +108,12 @@ namespace NLog.UnitTests.Targets.Wrappers
             MyTarget wrappedTarget = new MyTarget();
             LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget, 5, TimeSpan.FromSeconds(1));
             InitializeTargets(wrappedTarget, wrapper);
-            List<Exception> exceptions = new List<Exception>();
+            Exception lastException = null;
 
             for (int i = 0; i < 10; i++)
             {
                 wrapper.WriteAsyncLogEvent(
-                    new LogEventInfo(LogLevel.Debug, "test", $"Hello {i}").WithContinuation(exceptions.Add));
+                    new LogEventInfo(LogLevel.Debug, "test", $"Hello {i}").WithContinuation(ex => lastException = ex));
             }
 
             //Let the interval expire.
@@ -119,7 +125,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             for (int i = 10; i < 20; i++)
             {
                 wrapper.WriteAsyncLogEvent(
-                    new LogEventInfo(LogLevel.Debug, "test", $"Hello {i}").WithContinuation(exceptions.Add));
+                    new LogEventInfo(LogLevel.Debug, "test", $"Hello {i}").WithContinuation(ex => lastException = ex));
             }
             //We should have 10 messages (5 from first, 5 from second interval).
             Assert.Equal(10, wrappedTarget.WriteCount);
@@ -131,7 +137,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             for (int i = 20; i < 30; i++)
             {
                 wrapper.WriteAsyncLogEvent(
-                    new LogEventInfo(LogLevel.Debug, "test", $"Hello {i}").WithContinuation(exceptions.Add));
+                    new LogEventInfo(LogLevel.Debug, "test", $"Hello {i}").WithContinuation(ex => lastException = ex));
             }
 
             //We should have 15 messages (5 from first, 5 from second, 5 from third interval).
@@ -143,13 +149,13 @@ namespace NLog.UnitTests.Targets.Wrappers
             for (int i = 30; i < 40; i++)
             {
                 wrapper.WriteAsyncLogEvent(
-                    new LogEventInfo(LogLevel.Debug, "test", $"Hello {i}").WithContinuation(exceptions.Add));
+                    new LogEventInfo(LogLevel.Debug, "test", $"Hello {i}").WithContinuation(ex => lastException = ex));
             }
 
             //No more messages shouldve been written, since we are still in the third interval.
             Assert.Equal(15, wrappedTarget.WriteCount);
             Assert.Equal("Hello 24", wrappedTarget.LastWrittenMessage);
-            Assert.True(exceptions.TrueForAll(e => e == null));
+            Assert.Null(lastException);
         }
 
         [Fact]
