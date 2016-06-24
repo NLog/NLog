@@ -197,7 +197,7 @@ namespace NLog.Targets
             var colorizer = new AnsiConsoleColorizer(message, matchingRule, this.WordHighlightingRules);
 
             try{
-                consoleStream.WriteLine(colorizer.ColorizeMessage());
+                consoleStream.WriteLine(colorizer.GetColorizedMessage());
             }
             catch
             {

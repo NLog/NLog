@@ -54,9 +54,9 @@ namespace NLog.UnitTests.Targets
             var rule = new ConsoleRowHighlightingRule { ForegroundColor = foregroundColor, BackgroundColor = backgroundColor };
             var sut = new AnsiConsoleColorizer(message, rule, new List<ConsoleWordHighlightingRule>());
             
-            var formattedMessage = sut.ColorizeMessage();
+            var colorizedMessage = sut.GetColorizedMessage();
             
-            Assert.Equal(expectedMessage, formattedMessage);
+            Assert.Equal(expectedMessage, colorizedMessage);
         }
         
         [Theory]
@@ -67,9 +67,9 @@ namespace NLog.UnitTests.Targets
             var rule = new ConsoleRowHighlightingRule { ForegroundColor = foregroundColor, BackgroundColor = backgroundColor };
             var sut = new AnsiConsoleColorizer(message, rule, new List<ConsoleWordHighlightingRule>());
             
-            var formattedMessage = sut.ColorizeMessage();
+            var colorizedMessage = sut.GetColorizedMessage();
             
-            Assert.Equal(expectedMessage, formattedMessage);
+            Assert.Equal(expectedMessage, colorizedMessage);
         }
         
         [Theory]
@@ -80,9 +80,9 @@ namespace NLog.UnitTests.Targets
             var rule = new ConsoleRowHighlightingRule { ForegroundColor = foregroundColor, BackgroundColor = backgroundColor };
             var sut = new AnsiConsoleColorizer(message, rule, new List<ConsoleWordHighlightingRule>());
             
-            var formattedMessage = sut.ColorizeMessage();
+            var colorizedMessage = sut.GetColorizedMessage();
             
-            Assert.Equal(expectedMessage, formattedMessage);
+            Assert.Equal(expectedMessage, colorizedMessage);
         }
         
         [Theory]
@@ -96,9 +96,9 @@ namespace NLog.UnitTests.Targets
         public void FormatWordTest(string word, ConsoleOutputColor matchForegroundColor, ConsoleOutputColor matchBackgroundColor, 
                                    ConsoleOutputColor nextForegroundColor, ConsoleOutputColor nextBackgroundColor, string expectedMessage)
         {
-            var formattedMessage = AnsiConsoleColorizer.ColorizeWord(word, matchForegroundColor, matchBackgroundColor, nextForegroundColor, nextBackgroundColor);
+            var colorizedMessage = AnsiConsoleColorizer.ColorizeWord(word, matchForegroundColor, matchBackgroundColor, nextForegroundColor, nextBackgroundColor);
             
-            Assert.Equal(expectedMessage, formattedMessage);
+            Assert.Equal(expectedMessage, colorizedMessage);
         }
         
         [Fact]
@@ -113,10 +113,10 @@ namespace NLog.UnitTests.Targets
                                     }};
             var sut = new AnsiConsoleColorizer(message, rowRule, wordRules);
                         
-            var formattedMessage = sut.ColorizeMessage();
+            var colorizedMessage = sut.GetColorizedMessage();
             
             var expectedMessage = "The big warning message";
-            Assert.Equal(expectedMessage, formattedMessage);
+            Assert.Equal(expectedMessage, colorizedMessage);
         }
         
         [Fact]
@@ -144,10 +144,10 @@ namespace NLog.UnitTests.Targets
                                     }};
             var sut = new AnsiConsoleColorizer(message, rowRule, wordRules);
                         
-            var formattedMessage = sut.ColorizeMessage();
+            var colorizedMessage = sut.GetColorizedMessage();
             
             var expectedMessage = "The \x1B[31mbig \x1B[35mw\x1B[32ma\x1B[35mrn\x1B[31ming\x1B[39m mess\x1B[32ma\x1B[39mge";
-            Assert.Equal(expectedMessage, formattedMessage);
+            Assert.Equal(expectedMessage, colorizedMessage);
         }
         
         [Fact]
@@ -163,10 +163,10 @@ namespace NLog.UnitTests.Targets
                                     }};
             var sut = new AnsiConsoleColorizer(message, rowRule, wordRules);
                         
-            var formattedMessage = sut.ColorizeMessage();
+            var colorizedMessage = sut.GetColorizedMessage();
             
             var expectedMessage = "The \x1B[31mbig big\x1B[39m \x1B[31mbig big\x1B[39m warning message";
-            Assert.Equal(expectedMessage, formattedMessage);
+            Assert.Equal(expectedMessage, colorizedMessage);
         }
 
         [Fact]
@@ -182,10 +182,10 @@ namespace NLog.UnitTests.Targets
                                     }};
             var sut = new AnsiConsoleColorizer(message, rowRule, wordRules);
             
-            var formattedMessage = sut.ColorizeMessage();
+            var colorizedMessage = sut.GetColorizedMessage();
             
             var expectedMessage = "\x1B[47m\x1B[31mThe big \x1B[45m\x1B[34mwarning\x1B[31m\x1B[47m message\x1B[39m\x1B[0m";
-            Assert.Equal(expectedMessage, formattedMessage);
+            Assert.Equal(expectedMessage, colorizedMessage);
         }
     }
 }

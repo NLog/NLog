@@ -73,7 +73,7 @@ namespace NLog.Targets
             this.wordHighlightingRules = wordHighlightingRules;
         }
         
-        internal string ColorizeMessage()
+        internal string GetColorizedMessage()
         {
             var formattedMessage = ColorizeRow();
                 if (wordHighlightingRules.Count != 0)
