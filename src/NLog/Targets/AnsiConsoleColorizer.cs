@@ -47,6 +47,16 @@ namespace NLog.Targets
     /// </summary>
     internal class AnsiConsoleColorizer
     {
+	    internal static readonly IList<ConsoleRowHighlightingRule> DefaultConsoleRowHighlightingRules = new List<ConsoleRowHighlightingRule>()
+        {
+            new ConsoleRowHighlightingRule("level == LogLevel.Fatal", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange),
+            new ConsoleRowHighlightingRule("level == LogLevel.Error", ConsoleOutputColor.DarkYellow, ConsoleOutputColor.NoChange),
+            new ConsoleRowHighlightingRule("level == LogLevel.Warn", ConsoleOutputColor.DarkMagenta, ConsoleOutputColor.NoChange),
+            new ConsoleRowHighlightingRule("level == LogLevel.Info", ConsoleOutputColor.DarkGreen, ConsoleOutputColor.NoChange),
+            new ConsoleRowHighlightingRule("level == LogLevel.Debug", ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange),
+            new ConsoleRowHighlightingRule("level == LogLevel.Trace", ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange),
+        };
+
         private string message;
         private ConsoleRowHighlightingRule rowHighlightingRule;
         private IList<ConsoleWordHighlightingRule> wordHighlightingRules;

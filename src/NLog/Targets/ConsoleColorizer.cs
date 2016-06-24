@@ -45,6 +45,16 @@ namespace NLog.Targets
     /// </summary>
     internal class ConsoleColorizer
     {
+        internal static readonly IList<ConsoleRowHighlightingRule> DefaultConsoleRowHighlightingRules = new List<ConsoleRowHighlightingRule>()
+        {
+            new ConsoleRowHighlightingRule("level == LogLevel.Fatal", ConsoleOutputColor.Red, ConsoleOutputColor.NoChange),
+            new ConsoleRowHighlightingRule("level == LogLevel.Error", ConsoleOutputColor.Yellow, ConsoleOutputColor.NoChange),
+            new ConsoleRowHighlightingRule("level == LogLevel.Warn", ConsoleOutputColor.Magenta, ConsoleOutputColor.NoChange),
+            new ConsoleRowHighlightingRule("level == LogLevel.Info", ConsoleOutputColor.White, ConsoleOutputColor.NoChange),
+            new ConsoleRowHighlightingRule("level == LogLevel.Debug", ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange),
+            new ConsoleRowHighlightingRule("level == LogLevel.Trace", ConsoleOutputColor.DarkGray, ConsoleOutputColor.NoChange),
+        };
+
         private TextWriter consoleStream;
         private string message;
         private ConsoleRowHighlightingRule rowHighlightingRule;

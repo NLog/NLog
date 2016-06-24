@@ -40,6 +40,7 @@ namespace NLog.Targets
     using System.ComponentModel;
     using NLog.Internal;
     using NLog.Config;
+    using System.IO;
 
     /// <summary>
     /// Writes log messages to the console with customizable coloring.
@@ -48,16 +49,6 @@ namespace NLog.Targets
     [Target("ColoredConsole")]
     public sealed class ColoredConsoleTarget : TargetWithLayoutHeaderAndFooter
     {
-        private static readonly IList<ConsoleRowHighlightingRule> defaultConsoleRowHighlightingRules = new List<ConsoleRowHighlightingRule>()
-        {
-            new ConsoleRowHighlightingRule("level == LogLevel.Fatal", ConsoleOutputColor.Red, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Error", ConsoleOutputColor.Yellow, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Warn", ConsoleOutputColor.Magenta, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Info", ConsoleOutputColor.White, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Debug", ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Trace", ConsoleOutputColor.DarkGray, ConsoleOutputColor.NoChange),
-        };
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ColoredConsoleTarget" /> class.
         /// </summary>
@@ -94,43 +85,25 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to use default row highlighting rules.
         /// </summary>
         /// <remarks>
-        /// The default rules are:
+        /// The default rules for Windows are:
         /// <table>
-        /// <tr>
-        /// <th>Condition</th>
-        /// <th>Foreground Color</th>
-        /// <th>Background Color</th>
-        /// </tr>
-        /// <tr>
-        /// <td>level == LogLevel.Fatal</td>
-        /// <td>Red</td>
-        /// <td>NoChange</td>
-        /// </tr>
-        /// <tr>
-        /// <td>level == LogLevel.Error</td>
-        /// <td>Yellow</td>
-        /// <td>NoChange</td>
-        /// </tr>
-        /// <tr>
-        /// <td>level == LogLevel.Warn</td>
-        /// <td>Magenta</td>
-        /// <td>NoChange</td>
-        /// </tr>
-        /// <tr>
-        /// <td>level == LogLevel.Info</td>
-        /// <td>White</td>
-        /// <td>NoChange</td>
-        /// </tr>
-        /// <tr>
-        /// <td>level == LogLevel.Debug</td>
-        /// <td>Gray</td>
-        /// <td>NoChange</td>
-        /// </tr>
-        /// <tr>
-        /// <td>level == LogLevel.Trace</td>
-        /// <td>DarkGray</td>
-        /// <td>NoChange</td>
-        /// </tr>
+        /// <tr><th>Condition</th><th>Foreground Color</th><th>Background Color</th></tr>
+        /// <tr><td>level == LogLevel.Fatal</td><td>Red</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Error</td><td>Yellow</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Warn</td><td>Magenta</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Info</td><td>White</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Debug</td><td>Gray</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Trace</td><td>DarkGray</td><td>NoChange</td></tr>
+        /// </table>
+        /// The default rules for Unix based systems are:
+        /// <table>
+        /// <tr><th>Condition</th><th>Foreground Color</th><th>Background Color</th></tr>
+        /// <tr><td>level == LogLevel.Fatal</td><td>DarkRed</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Error</td><td>DarkYellow</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Warn</td><td>DarkMagenta</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Info</td><td>DarkGreen</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Debug</td><td>Gray</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Trace</td><td>Gray</td><td>NoChange</td></tr>
         /// </table>
         /// </remarks>
         /// <docgen category='Highlighting Rules' order='9' />
@@ -203,25 +176,24 @@ namespace NLog.Targets
 
         private void Output(LogEventInfo logEvent, string message)
         {
+            var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
             if (!PlatformDetector.IsUnix)
-                OutputUsingConsoleColors(logEvent, message);
+                OutputUsingConsoleColors(consoleStream, logEvent, message);
             else
-                OutputUsingAnsiEscapeCodes(logEvent, message);
+                OutputUsingAnsiEscapeCodes(consoleStream, logEvent, message);
         }
         
-        private void OutputUsingConsoleColors(LogEventInfo logEvent, string message)
+        private void OutputUsingConsoleColors(TextWriter consoleStream, LogEventInfo logEvent, string message)
         {
-            var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
-            var matchingRule = GetMatchingRowHighlightingRule(logEvent);
+            var matchingRule = GetMatchingRowHighlightingRule(logEvent, ConsoleColorizer.DefaultConsoleRowHighlightingRules);
             var colorizer = new ConsoleColorizer(consoleStream, message, matchingRule, this.WordHighlightingRules);
 
             colorizer.ColorizeMessage();        
         }
         
-        private void OutputUsingAnsiEscapeCodes(LogEventInfo logEvent, string message)
+        private void OutputUsingAnsiEscapeCodes(TextWriter consoleStream, LogEventInfo logEvent, string message)
         {
-            var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
-            var matchingRule = GetMatchingRowHighlightingRule(logEvent);
+            var matchingRule = GetMatchingRowHighlightingRule(logEvent, AnsiConsoleColorizer.DefaultConsoleRowHighlightingRules);
             var colorizer = new AnsiConsoleColorizer(message, matchingRule, this.WordHighlightingRules);
 
             try{
@@ -235,7 +207,7 @@ namespace NLog.Targets
             }
         }
 
-        private ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(LogEventInfo logEvent)
+        private ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(LogEventInfo logEvent, IList<ConsoleRowHighlightingRule> defaultConsoleRowHighlightingRules)
         {
             foreach (ConsoleRowHighlightingRule rule in this.RowHighlightingRules)
             {
