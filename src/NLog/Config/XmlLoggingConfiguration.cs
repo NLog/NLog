@@ -909,24 +909,62 @@ namespace NLog.Config
                 string type = StripOptionalNamespacePrefix(addElement.GetOptionalAttribute("type", null));
                 if (type != null)
                 {
-                    this.ConfigurationItemFactory.RegisterType(Type.GetType(type, true), prefix);
+                    try
+                    {
+                        this.ConfigurationItemFactory.RegisterType(Type.GetType(type, true), prefix);
+                    }
+                    catch (Exception exception)
+                    {
+                        if (exception.MustBeRethrownImmediately())
+                        {
+                            throw;
+                        }
+
+                        InternalLogger.Error(exception, "Error loading extensions.");
+                        NLogConfigurationException configException =
+                            new NLogConfigurationException("Error loading extensions: " + type, exception);
+
+                        if (configException.MustBeRethrown())
+                        {
+                            throw configException;
+                        }
+                    }
                 }
 
                 string assemblyFile = addElement.GetOptionalAttribute("assemblyFile", null);
                 if (assemblyFile != null)
                 {
+                    try
+                    {
 #if SILVERLIGHT && !WINDOWS_PHONE
                     var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
                     var assemblyPart = new AssemblyPart();
                     Assembly asm = assemblyPart.Load(si.Stream);
 #else
+                        string fullFileName = Path.Combine(baseDirectory, assemblyFile);
+                        InternalLogger.Info("Loading assembly file: {0}", fullFileName);
 
-                    string fullFileName = Path.Combine(baseDirectory, assemblyFile);
-                    InternalLogger.Info("Loading assembly file: {0}", fullFileName);
-
-                    Assembly asm = Assembly.LoadFrom(fullFileName);
+                        Assembly asm = Assembly.LoadFrom(fullFileName);
 #endif
-                    this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
+                        this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
+
+                    }
+                    catch (Exception exception)
+                    {
+                        if (exception.MustBeRethrownImmediately())
+                        {
+                            throw;
+                        }
+
+                        InternalLogger.Error(exception, "Error loading extensions.");
+                        NLogConfigurationException configException =
+                            new NLogConfigurationException("Error loading extensions: " + assemblyFile, exception);
+
+                        if (configException.MustBeRethrown())
+                        {
+                            throw configException;
+                        }
+                    }
 
                     continue;
                 }
@@ -934,17 +972,35 @@ namespace NLog.Config
                 string assemblyName = addElement.GetOptionalAttribute("assembly", null);
                 if (assemblyName != null)
                 {
-                   
-                    InternalLogger.Info("Loading assembly name: {0}", assemblyName);
+                    try
+                    {
+                        InternalLogger.Info("Loading assembly name: {0}", assemblyName);
 #if SILVERLIGHT && !WINDOWS_PHONE
                     var si = Application.GetResourceStream(new Uri(assemblyName + ".dll", UriKind.Relative));
                     var assemblyPart = new AssemblyPart();
                     Assembly asm = assemblyPart.Load(si.Stream);
 #else
-                    Assembly asm = Assembly.Load(assemblyName);
+                        Assembly asm = Assembly.Load(assemblyName);
 #endif
 
-                    this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
+                        this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
+                    }
+                    catch (Exception exception)
+                    {
+                        if (exception.MustBeRethrownImmediately())
+                        {
+                            throw;
+                        }
+
+                        InternalLogger.Error(exception, "Error loading extensions.");
+                        NLogConfigurationException configException =
+                            new NLogConfigurationException("Error loading extensions: " + assemblyName, exception);
+
+                        if (configException.MustBeRethrown())
+                        {
+                            throw configException;
+                        }
+                    }
                 }
             }
         }
