@@ -80,7 +80,7 @@ namespace NLog.Internal.FileAppenders
         int BufferSize { get; }
 
         /// <summary>
-        /// Gets or set a value indicating whether a managed file stream is forced, instead of used the native implementation.
+        /// Gets or set a value indicating whether a managed file stream is forced, instead of using the native implementation.
         /// </summary>
         bool ForceManaged { get; }
 
@@ -89,6 +89,13 @@ namespace NLog.Internal.FileAppenders
         /// Gets or sets the file attributes (Windows only).
         /// </summary>
         Win32FileAttributes FileAttributes { get; }
+#endif
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+        /// <summary>
+        /// Gets or sets a value indicationg whether file creation calls should be synchronized by a system global mutex.
+        /// </summary>
+        bool PreferMutexLockedFileCreation { get; }
 #endif
     }
 }
