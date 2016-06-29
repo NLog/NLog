@@ -46,7 +46,6 @@ namespace NLog.Targets.Wrappers
     public class LimitingTargetWrapper : WrapperTargetBase
     {
         private DateTime firstWriteInInterval;
-        private int writeCount;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LimitingTargetWrapper" /> class.
@@ -115,7 +114,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets the number of <see cref="AsyncLogEventInfo"/> written in the current <see cref="Interval"/>.
         /// </summary>
-        public int MessagesWrittenCount { get { return writeCount;} }
+        public int MessagesWrittenCount { get; private set; }
 
         /// <summary>
         /// Initializes the target and resets the current Interval and <see cref="MessagesWrittenCount"/>.
@@ -141,16 +140,16 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">Log event to be written out.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            if (IntervalExpired())
+            if (IsIntervalExpired())
             {
                 ResetInterval();
                 InternalLogger.Debug("LimitingWrapper '{0}': new interval of '{1}' started.", Name, Interval);
             }
 
-            if (writeCount < MessageLimit)
+            if (MessagesWrittenCount < MessageLimit)
             {
                 this.WrappedTarget.WriteAsyncLogEvent(logEvent);
-                writeCount++;
+                MessagesWrittenCount++;
             }
             else
             {
@@ -162,10 +161,10 @@ namespace NLog.Targets.Wrappers
         private void ResetInterval()
         {
             firstWriteInInterval = TimeSource.Current.Time;
-            writeCount = 0;
+            MessagesWrittenCount = 0;
         }
 
-        private bool IntervalExpired()
+        private bool IsIntervalExpired()
         {
             return TimeSource.Current.Time - firstWriteInInterval > Interval;
         }
