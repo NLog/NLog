@@ -5,8 +5,6 @@ build_script:
   - build-simple.bat
   - ps: .\test-simple.ps1
 
-
-
 deploy: off
 artifacts:
 - path: '**\*.nupkg'
