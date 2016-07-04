@@ -38,7 +38,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 
 #if NETSTANDARD1_3
-    [assembly: AssemblyTitle("NLog for .NET Framework 5 - .NET Platform Standard 1.4")]
+    [assembly: AssemblyTitle("NLog for .NET Platform Standard 1.3")]
 #elif NET3_5
     [assembly: AssemblyTitle("NLog for .NET Framework 3.5")]
 #elif NET4_0
@@ -46,11 +46,11 @@ using System.Security;
 #elif NET4_5
     [assembly: AssemblyTitle("NLog for .NET Framework 4.5")]
 #elif MONO_2_0
-    [assembly: AssemblyTitle("NLog for Mono 2.0")]
+    [assembly: AssemblyTitle("NLog for Mono 2")]
 #elif SILVERLIGHT4
-    [assembly: AssemblyTitle("NLog for Silverlight 4.0")]
+    [assembly: AssemblyTitle("NLog for Silverlight 4")]
 #elif SILVERLIGHT5
-    [assembly: AssemblyTitle("NLog for Silverlight 5.0")]
+    [assembly: AssemblyTitle("NLog for Silverlight 5")]
 #elif UWP10
     [assembly: AssemblyTitle("NLog for Windows 10 Universal App Platform")]
 #elif DOCUMENTATION
