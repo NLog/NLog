@@ -35,7 +35,7 @@
 
 namespace NLog.UnitTests.Targets
 {
-    using System.Collections.Generic;
+    using System.IO;
     using NLog.Targets;
     using Xunit;
 
@@ -52,22 +52,24 @@ namespace NLog.UnitTests.Targets
         public void RowHighlightingTextTest(string message, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor, string expectedMessage)
         {
             var rule = new ConsoleRowHighlightingRule { ForegroundColor = foregroundColor, BackgroundColor = backgroundColor };
-            var sut = new AnsiConsoleColorizer(message, rule, new List<ConsoleWordHighlightingRule>());
+            var sut = new AnsiConsoleColorizer(message);
+            sut.RowHighlightingRule = rule;
             
-            var colorizedMessage = sut.GetColorizedMessage();
-            
+            var colorizedMessage = GetColorizedMessage(sut);
+
             Assert.Equal(expectedMessage, colorizedMessage);
         }
-        
+
         [Theory]
         [InlineData("This is a message", ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange, "\x1B[37mThis is a message\x1B[39m")]
         [InlineData("This is a message", ConsoleOutputColor.NoChange, ConsoleOutputColor.Gray, "\x1B[47mThis is a message\x1B[0m")]
         public void GrayHasDarkWhiteAnsiCodeTest(string message, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor, string expectedMessage)
         {
             var rule = new ConsoleRowHighlightingRule { ForegroundColor = foregroundColor, BackgroundColor = backgroundColor };
-            var sut = new AnsiConsoleColorizer(message, rule, new List<ConsoleWordHighlightingRule>());
+            var sut = new AnsiConsoleColorizer(message);
+            sut.RowHighlightingRule = rule;
             
-            var colorizedMessage = sut.GetColorizedMessage();
+            var colorizedMessage = GetColorizedMessage(sut);
             
             Assert.Equal(expectedMessage, colorizedMessage);
         }
@@ -78,9 +80,10 @@ namespace NLog.UnitTests.Targets
         public void DarkGrayHasBrightBlackAnsiCodeTest(string message, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor, string expectedMessage)
         {
             var rule = new ConsoleRowHighlightingRule { ForegroundColor = foregroundColor, BackgroundColor = backgroundColor };
-            var sut = new AnsiConsoleColorizer(message, rule, new List<ConsoleWordHighlightingRule>());
+            var sut = new AnsiConsoleColorizer(message);
+            sut.RowHighlightingRule = rule;
             
-            var colorizedMessage = sut.GetColorizedMessage();
+            var colorizedMessage = GetColorizedMessage(sut);
             
             Assert.Equal(expectedMessage, colorizedMessage);
         }
@@ -111,9 +114,11 @@ namespace NLog.UnitTests.Targets
                                         ForegroundColor = ConsoleOutputColor.DarkRed,
                                         BackgroundColor = ConsoleOutputColor.NoChange
                                     }};
-            var sut = new AnsiConsoleColorizer(message, rowRule, wordRules);
-                        
-            var colorizedMessage = sut.GetColorizedMessage();
+            var sut = new AnsiConsoleColorizer(message);
+            sut.RowHighlightingRule = rowRule;
+            sut.WordHighlightingRules = wordRules;
+            
+            var colorizedMessage = GetColorizedMessage(sut);
             
             var expectedMessage = "The big warning message";
             Assert.Equal(expectedMessage, colorizedMessage);
@@ -142,9 +147,11 @@ namespace NLog.UnitTests.Targets
                                         ForegroundColor = ConsoleOutputColor.DarkGreen,
                                         BackgroundColor = ConsoleOutputColor.NoChange
                                     }};
-            var sut = new AnsiConsoleColorizer(message, rowRule, wordRules);
-                        
-            var colorizedMessage = sut.GetColorizedMessage();
+            var sut = new AnsiConsoleColorizer(message);
+            sut.RowHighlightingRule = rowRule;
+            sut.WordHighlightingRules = wordRules;
+            
+            var colorizedMessage = GetColorizedMessage(sut);
             
             var expectedMessage = "The \x1B[31mbig \x1B[35mw\x1B[32ma\x1B[35mrn\x1B[31ming\x1B[39m mess\x1B[32ma\x1B[39mge";
             Assert.Equal(expectedMessage, colorizedMessage);
@@ -161,9 +168,11 @@ namespace NLog.UnitTests.Targets
                                         ForegroundColor = ConsoleOutputColor.DarkRed,
                                         BackgroundColor = ConsoleOutputColor.NoChange
                                     }};
-            var sut = new AnsiConsoleColorizer(message, rowRule, wordRules);
-                        
-            var colorizedMessage = sut.GetColorizedMessage();
+            var sut = new AnsiConsoleColorizer(message);
+            sut.RowHighlightingRule = rowRule;
+            sut.WordHighlightingRules = wordRules;
+            
+            var colorizedMessage = GetColorizedMessage(sut);
             
             var expectedMessage = "The \x1B[31mbig big\x1B[39m \x1B[31mbig big\x1B[39m warning message";
             Assert.Equal(expectedMessage, colorizedMessage);
@@ -180,12 +189,21 @@ namespace NLog.UnitTests.Targets
                                         ForegroundColor = ConsoleOutputColor.DarkBlue,
                                         BackgroundColor = ConsoleOutputColor.DarkMagenta
                                     }};
-            var sut = new AnsiConsoleColorizer(message, rowRule, wordRules);
+            var sut = new AnsiConsoleColorizer(message);
+            sut.RowHighlightingRule = rowRule;
+            sut.WordHighlightingRules = wordRules;
             
-            var colorizedMessage = sut.GetColorizedMessage();
+            var colorizedMessage = GetColorizedMessage(sut);
             
             var expectedMessage = "\x1B[47m\x1B[31mThe big \x1B[45m\x1B[34mwarning\x1B[31m\x1B[47m message\x1B[39m\x1B[0m";
             Assert.Equal(expectedMessage, colorizedMessage);
+        }
+
+        private static string GetColorizedMessage(AnsiConsoleColorizer colorizer)
+        {
+            var writer = new StringWriter();
+            colorizer.ColorizeMessage(writer);
+            return writer.ToString().Trim();
         }
     }
 }
