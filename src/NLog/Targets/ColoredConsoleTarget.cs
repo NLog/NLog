@@ -38,6 +38,7 @@ namespace NLog.Targets
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Text;
     using NLog.Internal;
     using NLog.Config;
     using System.IO;
