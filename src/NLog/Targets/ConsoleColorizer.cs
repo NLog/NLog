@@ -43,9 +43,9 @@ namespace NLog.Targets
     /// <summary>
     /// Colorizes console output using Console.ForegroundColor and Console.BackgroundColor.
     /// </summary>
-    internal class ConsoleColorizer
+    internal class ConsoleColorizer : IConsoleColorizer
     {
-        internal static readonly IList<ConsoleRowHighlightingRule> DefaultConsoleRowHighlightingRules = new List<ConsoleRowHighlightingRule>()
+        private static readonly IList<ConsoleRowHighlightingRule> defaultConsoleRowHighlightingRules = new List<ConsoleRowHighlightingRule>()
         {
             new ConsoleRowHighlightingRule("level == LogLevel.Fatal", ConsoleOutputColor.Red, ConsoleOutputColor.NoChange),
             new ConsoleRowHighlightingRule("level == LogLevel.Error", ConsoleOutputColor.Yellow, ConsoleOutputColor.NoChange),
@@ -55,25 +55,31 @@ namespace NLog.Targets
             new ConsoleRowHighlightingRule("level == LogLevel.Trace", ConsoleOutputColor.DarkGray, ConsoleOutputColor.NoChange),
         };
 
-        private TextWriter consoleStream;
         private string message;
-        private ConsoleRowHighlightingRule rowHighlightingRule;
-        private IList<ConsoleWordHighlightingRule> wordHighlightingRules;
+        private ConsoleRowHighlightingRule rowHighlightingRule = ConsoleRowHighlightingRule.Default;
+        private IList<ConsoleWordHighlightingRule> wordHighlightingRules = new List<ConsoleWordHighlightingRule>(0);
         
-        internal ConsoleColorizer(TextWriter consoleStream, string message, ConsoleRowHighlightingRule rowHighlightingRule, IList<ConsoleWordHighlightingRule> wordHighlightingRules)
+        internal ConsoleColorizer(string message)
         {
-            if (rowHighlightingRule == null)
-                throw new ArgumentNullException("rowHighlightingRule");
-            if (wordHighlightingRules == null)
-                throw new ArgumentNullException("wordHighlightingRules");
-
-            this.consoleStream = consoleStream;
             this.message = message;
-            this.rowHighlightingRule = rowHighlightingRule;
-            this.wordHighlightingRules = wordHighlightingRules;
+        }
+
+        public IList<ConsoleRowHighlightingRule> DefaultConsoleRowHighlightingRules
+        {
+            get { return defaultConsoleRowHighlightingRules; }
+        }
+
+        public ConsoleRowHighlightingRule RowHighlightingRule
+        {
+            set { rowHighlightingRule = value; }
+        }
+
+        public IList<ConsoleWordHighlightingRule> WordHighlightingRules
+        {
+            set { wordHighlightingRules = value; }
         }
         
-        internal void ColorizeMessage()
+        public void ColorizeMessage(TextWriter consoleStream)
         {
             ConsoleColor oldForegroundColor = Console.ForegroundColor;
             ConsoleColor oldBackgroundColor = Console.BackgroundColor;

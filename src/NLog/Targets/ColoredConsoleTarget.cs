@@ -176,35 +176,22 @@ namespace NLog.Targets
 
         private void Output(LogEventInfo logEvent, string message)
         {
+            var colorizer = CreateConsoleColorizer(message);       
+
+            var matchingRule = GetMatchingRowHighlightingRule(logEvent, colorizer.DefaultConsoleRowHighlightingRules);
+            colorizer.RowHighlightingRule = matchingRule;
+            colorizer.WordHighlightingRules = this.WordHighlightingRules;
+
             var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
+            colorizer.ColorizeMessage(consoleStream);
+        }
+
+        private IConsoleColorizer CreateConsoleColorizer(string message)
+        {
             if (!PlatformDetector.IsUnix)
-                OutputUsingConsoleColors(consoleStream, logEvent, message);
+                return new ConsoleColorizer(message);
             else
-                OutputUsingAnsiEscapeCodes(consoleStream, logEvent, message);
-        }
-        
-        private void OutputUsingConsoleColors(TextWriter consoleStream, LogEventInfo logEvent, string message)
-        {
-            var matchingRule = GetMatchingRowHighlightingRule(logEvent, ConsoleColorizer.DefaultConsoleRowHighlightingRules);
-            var colorizer = new ConsoleColorizer(consoleStream, message, matchingRule, this.WordHighlightingRules);
-
-            colorizer.ColorizeMessage();        
-        }
-        
-        private void OutputUsingAnsiEscapeCodes(TextWriter consoleStream, LogEventInfo logEvent, string message)
-        {
-            var matchingRule = GetMatchingRowHighlightingRule(logEvent, AnsiConsoleColorizer.DefaultConsoleRowHighlightingRules);
-            var colorizer = new AnsiConsoleColorizer(message, matchingRule, this.WordHighlightingRules);
-
-            try{
-                consoleStream.WriteLine(colorizer.GetColorizedMessage());
-            }
-            catch
-            {
-                consoleStream.WriteLine(AnsiConsoleColor.GetTerminalDefaultForegroundColorEscapeCode() + 
-                                        AnsiConsoleColor.GetTerminalDefaultBackgroundColorEscapeCode());
-                throw;
-            }
+                return new AnsiConsoleColorizer(message);
         }
 
         private ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(LogEventInfo logEvent, IList<ConsoleRowHighlightingRule> defaultConsoleRowHighlightingRules)

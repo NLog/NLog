@@ -40,14 +40,15 @@ namespace NLog.Targets
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using System.Linq;
+    using System.IO;
 
     /// <summary>
     /// Colorizes console output using ansi escape codes.
     /// See https://en.wikipedia.org/wiki/ANSI_escape_code#Colors for background info.
     /// </summary>
-    internal class AnsiConsoleColorizer
+    internal class AnsiConsoleColorizer : IConsoleColorizer
     {
-	    internal static readonly IList<ConsoleRowHighlightingRule> DefaultConsoleRowHighlightingRules = new List<ConsoleRowHighlightingRule>()
+	    private static readonly IList<ConsoleRowHighlightingRule> defaultConsoleRowHighlightingRules = new List<ConsoleRowHighlightingRule>()
         {
             new ConsoleRowHighlightingRule("level == LogLevel.Fatal", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange),
             new ConsoleRowHighlightingRule("level == LogLevel.Error", ConsoleOutputColor.DarkYellow, ConsoleOutputColor.NoChange),
@@ -58,22 +59,43 @@ namespace NLog.Targets
         };
 
         private string message;
-        private ConsoleRowHighlightingRule rowHighlightingRule;
-        private IList<ConsoleWordHighlightingRule> wordHighlightingRules;
+        private ConsoleRowHighlightingRule rowHighlightingRule = ConsoleRowHighlightingRule.Default;
+        private IList<ConsoleWordHighlightingRule> wordHighlightingRules = new List<ConsoleWordHighlightingRule>(0);
         
-        internal AnsiConsoleColorizer(string message, ConsoleRowHighlightingRule rowHighlightingRule, IList<ConsoleWordHighlightingRule> wordHighlightingRules)
+        internal AnsiConsoleColorizer(string message)
         {
-            if (rowHighlightingRule == null)
-                throw new ArgumentNullException("rowHighlightingRule");
-            if (wordHighlightingRules == null)
-                throw new ArgumentNullException("wordHighlightingRules");
-
             this.message = message;
-            this.rowHighlightingRule = rowHighlightingRule;
-            this.wordHighlightingRules = wordHighlightingRules;
+        }
+
+        public IList<ConsoleRowHighlightingRule> DefaultConsoleRowHighlightingRules
+        {
+            get { return defaultConsoleRowHighlightingRules; }
+        }
+
+        public ConsoleRowHighlightingRule RowHighlightingRule
+        {
+            set { rowHighlightingRule = value; }
+        }
+
+        public IList<ConsoleWordHighlightingRule> WordHighlightingRules
+        {
+            set { wordHighlightingRules = value; }
         }
         
-        internal string GetColorizedMessage()
+        public void ColorizeMessage(TextWriter consoleStream)
+        {
+            try{
+                consoleStream.WriteLine(GetColorizedMessage());
+            }
+            catch
+            {
+                consoleStream.WriteLine(AnsiConsoleColor.GetTerminalDefaultForegroundColorEscapeCode() + 
+                                        AnsiConsoleColor.GetTerminalDefaultBackgroundColorEscapeCode());
+                throw;
+            }
+        }
+
+        private string GetColorizedMessage()
         {
             var formattedMessage = ColorizeRow();
                 if (wordHighlightingRules.Count != 0)
