@@ -41,6 +41,24 @@ namespace NLog.UnitTests.Targets
 
     public class AnsiConsoleColorizerTests
     {
+        [Fact]
+        public void EmptyMessageShouldNotFailTest()
+        {
+            var sut = new AnsiConsoleColorizer(string.Empty);
+            var colorizedMessage = GetColorizedMessage(sut);
+
+            Assert.Equal(string.Empty, colorizedMessage);
+        }
+
+        [Fact]
+        public void NullMessageShouldNotFailTest()
+        {
+            var sut = new AnsiConsoleColorizer(null);
+            var colorizedMessage = GetColorizedMessage(sut);
+
+            Assert.Equal(string.Empty, colorizedMessage);
+        }
+
         [Theory]
         [InlineData("This is a message", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, "This is a message")]
         [InlineData("This is a message", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange, "\x1B[31mThis is a message\x1B[39m")]

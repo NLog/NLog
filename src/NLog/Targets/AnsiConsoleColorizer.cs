@@ -97,6 +97,9 @@ namespace NLog.Targets
 
         private string GetColorizedMessage()
         {
+            if (string.IsNullOrEmpty(message))
+                return string.Empty;
+
             var formattedMessage = ColorizeRow();
                 if (wordHighlightingRules.Count != 0)
                     formattedMessage = ApplyWordHighlightingRules();
