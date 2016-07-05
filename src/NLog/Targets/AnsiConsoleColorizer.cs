@@ -122,7 +122,15 @@ namespace NLog.Targets
             message = builder.ToString();
             return message;
         }
-        
+
+        /// <summary>
+        /// Colorizing a word is very similar to colorize a row. We need to apply the foreground/background code of the match before the start and
+        /// need to reset the color at the end of the match. Here comes the tricky part: We need to know to what color we have to reset to. This
+        /// can either be the default code, the foreground/background code or the row rule or the foreground/background code of a match of a 
+        /// different word rule. For the last one we need to know if there is a match from a word rule from a layer underneath the current level that 
+        /// lays at the ending position of the current match. To do that we loop the matches two times. First build a list of matches with layer and id.      
+        /// Then loop again, determine at each match what the crossing underneath match is and get its color using the id. Finally do the replace.
+        /// </summary>
         private string ApplyWordHighlightingRules()
         {
             var matches = BuildMatchList();
