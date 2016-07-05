@@ -106,7 +106,7 @@ namespace NLog.Targets
         
         private string ColorizeRow()
         {
-            StringBuilder builder = new StringBuilder(1);
+            StringBuilder builder = new StringBuilder(message.Length);
             
             if (rowHighlightingRule.BackgroundColor != ConsoleOutputColor.NoChange)
                 builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)rowHighlightingRule.BackgroundColor));
@@ -190,7 +190,7 @@ namespace NLog.Targets
         internal static string ColorizeWord(string word, ConsoleOutputColor matchForegroundColor, ConsoleOutputColor matchBackgroundColor, 
                                    ConsoleOutputColor nextForegroundColor, ConsoleOutputColor nextBackgroundColor)
         {
-            var builder = new StringBuilder(5);
+            var builder = new StringBuilder(word.Length);
 
             if (matchBackgroundColor != ConsoleOutputColor.NoChange)
                 builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)matchBackgroundColor));
