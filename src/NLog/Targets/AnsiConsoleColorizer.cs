@@ -89,8 +89,8 @@ namespace NLog.Targets
             }
             catch
             {
-                consoleStream.WriteLine(AnsiConsoleColor.GetTerminalDefaultForegroundColorEscapeCode() + 
-                                        AnsiConsoleColor.GetTerminalDefaultBackgroundColorEscapeCode());
+                consoleStream.WriteLine(AnsiConsoleColor.TerminalDefaultForegroundColorEscapeCode + 
+                                        AnsiConsoleColor.TerminalDefaultBackgroundColorEscapeCode);
                 throw;
             }
         }
@@ -116,9 +116,9 @@ namespace NLog.Targets
             builder.Append(message);
             
             if (rowHighlightingRule.ForegroundColor != ConsoleOutputColor.NoChange)
-                builder.Append(AnsiConsoleColor.GetTerminalDefaultForegroundColorEscapeCode());
+                builder.Append(AnsiConsoleColor.TerminalDefaultForegroundColorEscapeCode);
             if (rowHighlightingRule.BackgroundColor != ConsoleOutputColor.NoChange)
-                builder.Append(AnsiConsoleColor.GetTerminalDefaultBackgroundColorEscapeCode());
+                builder.Append(AnsiConsoleColor.TerminalDefaultBackgroundColorEscapeCode);
             
             message = builder.ToString();
             return message;
@@ -203,13 +203,13 @@ namespace NLog.Targets
                 if (nextForegroundColor != ConsoleOutputColor.NoChange)
                     builder.Append(AnsiConsoleColor.GetForegroundColorEscapeCode((ConsoleColor)nextForegroundColor));
                 else
-                    builder.Append(AnsiConsoleColor.GetTerminalDefaultForegroundColorEscapeCode());
+                    builder.Append(AnsiConsoleColor.TerminalDefaultForegroundColorEscapeCode);
             
             if (matchBackgroundColor != ConsoleOutputColor.NoChange)
                 if (nextBackgroundColor != ConsoleOutputColor.NoChange)
                     builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)nextBackgroundColor));
                 else
-                    builder.Append(AnsiConsoleColor.GetTerminalDefaultBackgroundColorEscapeCode());
+                    builder.Append(AnsiConsoleColor.TerminalDefaultBackgroundColorEscapeCode);
 
             return builder.ToString();
         }

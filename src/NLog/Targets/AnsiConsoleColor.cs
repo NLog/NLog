@@ -76,13 +76,13 @@ namespace NLog.Targets
                 case ConsoleColor.Yellow:
                     return "\x1B[93m";
                 default:
-                    return "\x1B[39m"; // default foreground color
+                    return TerminalDefaultForegroundColorEscapeCode; // default foreground color
             }
         }
         
-        internal static string GetTerminalDefaultForegroundColorEscapeCode()
+        internal static string TerminalDefaultForegroundColorEscapeCode
         {
-            return "\x1B[39m";
+            get { return "\x1B[39m"; }
         }
 
         internal static string GetBackgroundColorEscapeCode(ConsoleColor color)
@@ -122,13 +122,13 @@ namespace NLog.Targets
                 case ConsoleColor.Yellow:
                     return "\x1B[103m";
                 default:
-                    return "\x1B[0m"; // Use default background color
+                    return TerminalDefaultBackgroundColorEscapeCode;
             }
         }
         
-        internal static string GetTerminalDefaultBackgroundColorEscapeCode()
+        internal static string TerminalDefaultBackgroundColorEscapeCode
         {
-            return "\x1B[0m";
+            get { return "\x1B[0m"; }
         }
     }
 }
