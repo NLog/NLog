@@ -140,23 +140,23 @@ namespace NLog.Targets
             {
                 message = hl.Replace(message, m => 
                 { 
-                    var currentMatch = matches.First(hw => hw.Id == id);
+                    var currentMatch = matches[id];
                     var matchBelowEndOfCurrentMatch = FindMatchBelowTheEndOfTheCurrentMatch(matches, currentMatch);
                         
                     id++;
                     return AnsiConsoleColorizer.ColorizeWord(m.Value,
                             hl.ForegroundColor, hl.BackgroundColor, 
-                            matchBelowEndOfCurrentMatch != null ? matchBelowEndOfCurrentMatch.ForegroundColor : rowHighlightingRule.ForegroundColor, 
-                            matchBelowEndOfCurrentMatch != null ? matchBelowEndOfCurrentMatch.BackgroundColor : rowHighlightingRule.BackgroundColor);
+                            matchBelowEndOfCurrentMatch.Key != 0 ? matchBelowEndOfCurrentMatch.Value.ForegroundColor : rowHighlightingRule.ForegroundColor, 
+                            matchBelowEndOfCurrentMatch.Key != 0 ? matchBelowEndOfCurrentMatch.Value.BackgroundColor : rowHighlightingRule.BackgroundColor);
                 });
             }
 
             return message;
         }
         
-        private List<HighlightedMatch> BuildMatchList()
+        private Dictionary<int, HighlightedMatch> BuildMatchList()
         {
-            var matchResults = new List<HighlightedMatch>();
+            var matchResults = new Dictionary<int, HighlightedMatch>();
             int layer = 1;
             int id = 1;
             foreach (ConsoleWordHighlightingRule hl in wordHighlightingRules)
@@ -167,7 +167,7 @@ namespace NLog.Targets
                 
                 foreach (Match m in matches)
                 {
-                    matchResults.Add(new HighlightedMatch{Id = id, Layer = layer, Start = m.Index, End = m.Index + m.Length, ForegroundColor = hl.ForegroundColor, BackgroundColor = hl.BackgroundColor});
+                    matchResults.Add(id, new HighlightedMatch{Layer = layer, Start = m.Index, End = m.Index + m.Length, ForegroundColor = hl.ForegroundColor, BackgroundColor = hl.BackgroundColor});
                     id++;
                 }
                 layer++;
@@ -175,18 +175,17 @@ namespace NLog.Targets
             return matchResults;
         }
         
-        private static HighlightedMatch FindMatchBelowTheEndOfTheCurrentMatch(List<HighlightedMatch> matches, HighlightedMatch currentMatch)
+        private static KeyValuePair<int,HighlightedMatch> FindMatchBelowTheEndOfTheCurrentMatch(Dictionary<int, HighlightedMatch> matches, HighlightedMatch currentMatch)
         {
-            return matches.FindAll(hw => hw.Layer < currentMatch.Layer &&
-                                   hw.Start < currentMatch.End && 
-                                   hw.End > currentMatch.End)
-                          .OrderByDescending(o => o.Layer)
+            return matches.Where(hm => hm.Value.Layer < currentMatch.Layer &&
+                                   hm.Value.Start < currentMatch.End && 
+                                   hm.Value.End > currentMatch.End)
+                          .OrderByDescending(o => o.Value.Layer)
                           .FirstOrDefault();
         }
         
         private class HighlightedMatch
         {
-            public int Id;
             public int Layer;
             public int Start;
             public int End;
