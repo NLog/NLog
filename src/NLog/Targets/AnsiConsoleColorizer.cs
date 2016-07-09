@@ -89,8 +89,7 @@ namespace NLog.Targets
             }
             catch
             {
-                consoleStream.WriteLine(AnsiConsoleColor.TerminalDefaultForegroundColorEscapeCode + 
-                                        AnsiConsoleColor.TerminalDefaultBackgroundColorEscapeCode);
+                consoleStream.WriteLine(AnsiConsoleColor.TerminalDefaultColorEscapeCode);
                 throw;
             }
         }
