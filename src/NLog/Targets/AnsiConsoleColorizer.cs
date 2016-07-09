@@ -113,12 +113,9 @@ namespace NLog.Targets
             
             AppendBackgroundColorEscapeCodeIfNeeded(builder, rowHighlightingRule.BackgroundColor);
             AppendForegroundColorEscapeCodeIfNeeded(builder, rowHighlightingRule.ForegroundColor);
-
             builder.Append(message);
-
-            AppendForegroundColorResetEscapeCodeIfNeeded(builder, rowHighlightingRule.ForegroundColor);
-            AppendBackgroundColorResetEscapeCodeIfNeeded(builder, rowHighlightingRule.BackgroundColor);
-
+            AppendColorResetEscapeCodeIfNeeded(builder, rowHighlightingRule.ForegroundColor, rowHighlightingRule.BackgroundColor);
+        
             message = builder.ToString();
             return message;
         }
@@ -201,12 +198,7 @@ namespace NLog.Targets
             AppendBackgroundColorEscapeCodeIfNeeded(builder, matchBackgroundColor);
             AppendForegroundColorEscapeCodeIfNeeded(builder, matchForegroundColor);
             builder.Append(word);
-            
-            if (matchForegroundColor != ConsoleOutputColor.NoChange)
-                AppendForegroundColorOrResetEscapeCodeIfNeeded(builder, nextForegroundColor);
-            
-            if (matchBackgroundColor != ConsoleOutputColor.NoChange)
-                AppendBackgroundColorOrResetEscapeCodeIfNeeded(builder, nextBackgroundColor);
+            AppendColorResetEscapeCodeIfNeeded(builder, matchForegroundColor, matchBackgroundColor, nextForegroundColor, nextBackgroundColor);
 
             return builder.ToString();
         }
@@ -223,6 +215,23 @@ namespace NLog.Targets
                 builder.Append(AnsiConsoleColor.TerminalDefaultBackgroundColorEscapeCode);
         }
 
+        private static void AppendColorResetEscapeCodeIfNeeded(StringBuilder builder, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor, 
+                                                                ConsoleOutputColor nextForegroundColor, ConsoleOutputColor nextBackgroundColor)
+        {
+            if (foregroundColor != ConsoleOutputColor.NoChange && backgroundColor != ConsoleOutputColor.NoChange
+                && nextForegroundColor == ConsoleOutputColor.NoChange && nextBackgroundColor == ConsoleOutputColor.NoChange)
+            {
+                builder.Append(AnsiConsoleColor.TerminalDefaultColorEscapeCode);
+                return;
+            }
+            
+            if (foregroundColor != ConsoleOutputColor.NoChange)
+                AppendForegroundColorOrResetEscapeCodeIfNeeded(builder, nextForegroundColor);
+            
+            if (backgroundColor != ConsoleOutputColor.NoChange)
+                AppendBackgroundColorOrResetEscapeCodeIfNeeded(builder, nextBackgroundColor);
+        }
+
         private static void AppendBackgroundColorOrResetEscapeCodeIfNeeded(StringBuilder builder, ConsoleOutputColor backgroundColor)
         {
             if (backgroundColor != ConsoleOutputColor.NoChange)
@@ -235,6 +244,18 @@ namespace NLog.Targets
         {
             if (foregroundColor != ConsoleOutputColor.NoChange)
                 builder.Append(AnsiConsoleColor.GetForegroundColorEscapeCode((ConsoleColor)foregroundColor));
+        }
+
+        private static void AppendColorResetEscapeCodeIfNeeded(StringBuilder builder, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor)
+        {
+            if (foregroundColor != ConsoleOutputColor.NoChange && backgroundColor != ConsoleOutputColor.NoChange)
+            {
+                builder.Append(AnsiConsoleColor.TerminalDefaultColorEscapeCode);
+                return;
+            }
+
+            AppendForegroundColorResetEscapeCodeIfNeeded(builder, foregroundColor);
+            AppendBackgroundColorResetEscapeCodeIfNeeded(builder, backgroundColor);
         }
 
         private static void AppendForegroundColorResetEscapeCodeIfNeeded(StringBuilder builder, ConsoleOutputColor foregroundColor)

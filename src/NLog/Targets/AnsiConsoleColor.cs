@@ -128,6 +128,14 @@ namespace NLog.Targets
         
         internal static string TerminalDefaultBackgroundColorEscapeCode
         {
+            get { return "\x1B[49m"; }
+        }
+
+        /// <summary>
+        /// Resets both foreground and background color.
+        /// </summary>
+        internal static string TerminalDefaultColorEscapeCode
+        {
             get { return "\x1B[0m"; }
         }
     }
