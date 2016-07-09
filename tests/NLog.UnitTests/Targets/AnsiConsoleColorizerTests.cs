@@ -61,11 +61,11 @@ namespace NLog.UnitTests.Targets
 
         [Theory]
         [InlineData("This is a message", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, "This is a message")]
-        [InlineData("This is a message", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange, "\x1B[31mThis is a message\x1B[39m")]
-        [InlineData("This is a message", ConsoleOutputColor.Red, ConsoleOutputColor.NoChange, "\x1B[91mThis is a message\x1B[39m")]
+        [InlineData("This is a message", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange, "\x1B[31mThis is a message\x1B[39m\x1B[22m")]
+        [InlineData("This is a message", ConsoleOutputColor.Red, ConsoleOutputColor.NoChange, "\x1B[1m\x1B[31mThis is a message\x1B[39m\x1B[22m")]
         [InlineData("This is a message", ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkRed, "\x1B[41mThis is a message\x1B[49m")]
         [InlineData("This is a message", ConsoleOutputColor.NoChange, ConsoleOutputColor.Red, "\x1B[101mThis is a message\x1B[49m")]
-        [InlineData("This is a message", ConsoleOutputColor.Blue, ConsoleOutputColor.DarkBlue, "\x1B[44m\x1B[94mThis is a message\x1B[0m")]
+        [InlineData("This is a message", ConsoleOutputColor.Blue, ConsoleOutputColor.DarkBlue, "\x1B[44m\x1B[1m\x1B[34mThis is a message\x1B[0m")]
         [InlineData("This is a message", ConsoleOutputColor.DarkBlue, ConsoleOutputColor.Blue, "\x1B[104m\x1B[34mThis is a message\x1B[0m")]
         public void RowHighlightingTextTest(string message, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor, string expectedMessage)
         {
@@ -79,7 +79,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [InlineData("This is a message", ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange, "\x1B[37mThis is a message\x1B[39m")]
+        [InlineData("This is a message", ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange, "\x1B[37mThis is a message\x1B[39m\x1B[22m")]
         [InlineData("This is a message", ConsoleOutputColor.NoChange, ConsoleOutputColor.Gray, "\x1B[47mThis is a message\x1B[49m")]
         public void GrayHasDarkWhiteAnsiCodeTest(string message, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor, string expectedMessage)
         {
@@ -93,7 +93,7 @@ namespace NLog.UnitTests.Targets
         }
         
         [Theory]
-        [InlineData("This is a message", ConsoleOutputColor.DarkGray, ConsoleOutputColor.NoChange, "\x1B[90mThis is a message\x1B[39m")]
+        [InlineData("This is a message", ConsoleOutputColor.DarkGray, ConsoleOutputColor.NoChange, "\x1B[1m\x1B[30mThis is a message\x1B[39m\x1B[22m")]
         [InlineData("This is a message", ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkGray, "\x1B[100mThis is a message\x1B[49m")]
         public void DarkGrayHasBrightBlackAnsiCodeTest(string message, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor, string expectedMessage)
         {
@@ -108,7 +108,7 @@ namespace NLog.UnitTests.Targets
         
         [Theory]
         [InlineData("This is my word", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, "This is my word")]
-        [InlineData("This is my word", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, "\x1B[31mThis is my word\x1B[39m")]
+        [InlineData("This is my word", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, "\x1B[31mThis is my word\x1B[39m\x1B[22m")]
         [InlineData("This is my word", ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, "\x1B[41mThis is my word\x1B[49m")]
         [InlineData("This is my word", ConsoleOutputColor.DarkBlue, ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange, "\x1B[41m\x1B[34mThis is my word\x1B[0m")]
         [InlineData("This is my word", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange, ConsoleOutputColor.DarkBlue, ConsoleOutputColor.NoChange, "\x1B[31mThis is my word\x1B[34m")]
@@ -171,7 +171,7 @@ namespace NLog.UnitTests.Targets
             
             var colorizedMessage = GetColorizedMessage(sut);
             
-            var expectedMessage = "The \x1B[31mbig \x1B[35mw\x1B[32ma\x1B[35mrn\x1B[31ming\x1B[39m mess\x1B[32ma\x1B[39mge";
+            var expectedMessage = "The \x1B[31mbig \x1B[35mw\x1B[32ma\x1B[35mrn\x1B[31ming\x1B[39m\x1B[22m mess\x1B[32ma\x1B[39m\x1B[22mge";
             Assert.Equal(expectedMessage, colorizedMessage);
         }
         
@@ -192,7 +192,7 @@ namespace NLog.UnitTests.Targets
             
             var colorizedMessage = GetColorizedMessage(sut);
             
-            var expectedMessage = "The \x1B[31mbig big\x1B[39m \x1B[31mbig big\x1B[39m warning message";
+            var expectedMessage = "The \x1B[31mbig big\x1B[39m\x1B[22m \x1B[31mbig big\x1B[39m\x1B[22m warning message";
             Assert.Equal(expectedMessage, colorizedMessage);
         }
 

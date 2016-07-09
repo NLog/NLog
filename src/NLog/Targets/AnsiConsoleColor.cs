@@ -46,15 +46,15 @@ namespace NLog.Targets
                 case ConsoleColor.Black:
                     return "\x1B[30m";
                 case ConsoleColor.Blue:
-                    return "\x1B[94m";
+                    return "\x1B[1m\x1B[34m";
                 case ConsoleColor.Cyan:
-                    return "\x1B[96m";
+                    return "\x1B[1m\x1B[36m";
                 case ConsoleColor.DarkBlue:
                     return "\x1B[34m";
                 case ConsoleColor.DarkCyan:
                     return "\x1B[36m";
                 case ConsoleColor.DarkGray:
-                    return "\x1B[90m";
+                    return "\x1B[1m\x1B[30m";
                 case ConsoleColor.DarkGreen:
                     return "\x1B[32m";    
                 case ConsoleColor.DarkMagenta:
@@ -66,15 +66,15 @@ namespace NLog.Targets
                 case ConsoleColor.Gray:
                     return "\x1B[37m";
                 case ConsoleColor.Green:
-                    return "\x1B[92m";
+                    return "\x1B[1m\x1B[32m";
                 case ConsoleColor.Magenta:
-                    return "\x1B[95m";
+                    return "\x1B[1m\x1B[35m";
                 case ConsoleColor.Red:
-                    return "\x1B[91m";
+                    return "\x1B[1m\x1B[31m";
                 case ConsoleColor.White:
-                    return "\x1B[97m";
+                    return "\x1B[1m\x1B[37m";
                 case ConsoleColor.Yellow:
-                    return "\x1B[93m";
+                    return "\x1B[1m\x1B[33m";
                 default:
                     return TerminalDefaultForegroundColorEscapeCode; // default foreground color
             }
@@ -82,7 +82,7 @@ namespace NLog.Targets
         
         internal static string TerminalDefaultForegroundColorEscapeCode
         {
-            get { return "\x1B[39m"; }
+            get { return "\x1B[39m\x1B[22m"; }
         }
 
         internal static string GetBackgroundColorEscapeCode(ConsoleColor color)
