@@ -209,37 +209,6 @@ namespace NLog.Targets
                 builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)backgroundColor));
         }
 
-        private static void AppendBackgroundColorResetEscapeCodeIfNeeded(StringBuilder builder, ConsoleOutputColor backgroundColor)
-        {
-            if (backgroundColor != ConsoleOutputColor.NoChange)
-                builder.Append(AnsiConsoleColor.TerminalDefaultBackgroundColorEscapeCode);
-        }
-
-        private static void AppendColorResetEscapeCodeIfNeeded(StringBuilder builder, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor, 
-                                                                ConsoleOutputColor nextForegroundColor, ConsoleOutputColor nextBackgroundColor)
-        {
-            if (foregroundColor != ConsoleOutputColor.NoChange && backgroundColor != ConsoleOutputColor.NoChange
-                && nextForegroundColor == ConsoleOutputColor.NoChange && nextBackgroundColor == ConsoleOutputColor.NoChange)
-            {
-                builder.Append(AnsiConsoleColor.TerminalDefaultColorEscapeCode);
-                return;
-            }
-            
-            if (foregroundColor != ConsoleOutputColor.NoChange)
-                AppendForegroundColorOrResetEscapeCodeIfNeeded(builder, nextForegroundColor);
-            
-            if (backgroundColor != ConsoleOutputColor.NoChange)
-                AppendBackgroundColorOrResetEscapeCodeIfNeeded(builder, nextBackgroundColor);
-        }
-
-        private static void AppendBackgroundColorOrResetEscapeCodeIfNeeded(StringBuilder builder, ConsoleOutputColor backgroundColor)
-        {
-            if (backgroundColor != ConsoleOutputColor.NoChange)
-                builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)backgroundColor));
-            else
-                builder.Append(AnsiConsoleColor.TerminalDefaultBackgroundColorEscapeCode);
-        }
-
         private static void AppendForegroundColorEscapeCodeIfNeeded(StringBuilder builder, ConsoleOutputColor foregroundColor)
         {
             if (foregroundColor != ConsoleOutputColor.NoChange)
@@ -264,12 +233,43 @@ namespace NLog.Targets
                 builder.Append(AnsiConsoleColor.TerminalDefaultForegroundColorEscapeCode);
         }
 
+        private static void AppendBackgroundColorResetEscapeCodeIfNeeded(StringBuilder builder, ConsoleOutputColor backgroundColor)
+        {
+            if (backgroundColor != ConsoleOutputColor.NoChange)
+                builder.Append(AnsiConsoleColor.TerminalDefaultBackgroundColorEscapeCode);
+        }
+
+        private static void AppendColorResetEscapeCodeIfNeeded(StringBuilder builder, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor, 
+                                                                ConsoleOutputColor nextForegroundColor, ConsoleOutputColor nextBackgroundColor)
+        {
+            if (foregroundColor != ConsoleOutputColor.NoChange && backgroundColor != ConsoleOutputColor.NoChange
+                && nextForegroundColor == ConsoleOutputColor.NoChange && nextBackgroundColor == ConsoleOutputColor.NoChange)
+            {
+                builder.Append(AnsiConsoleColor.TerminalDefaultColorEscapeCode);
+                return;
+            }
+            
+            if (foregroundColor != ConsoleOutputColor.NoChange)
+                AppendForegroundColorOrResetEscapeCodeIfNeeded(builder, nextForegroundColor);
+            
+            if (backgroundColor != ConsoleOutputColor.NoChange)
+                AppendBackgroundColorOrResetEscapeCodeIfNeeded(builder, nextBackgroundColor);
+        }
+
         private static void AppendForegroundColorOrResetEscapeCodeIfNeeded(StringBuilder builder, ConsoleOutputColor foregroundColor)
         {
             if (foregroundColor != ConsoleOutputColor.NoChange)
                 builder.Append(AnsiConsoleColor.GetForegroundColorEscapeCode((ConsoleColor)foregroundColor));
             else
                 builder.Append(AnsiConsoleColor.TerminalDefaultForegroundColorEscapeCode);
+        }
+
+        private static void AppendBackgroundColorOrResetEscapeCodeIfNeeded(StringBuilder builder, ConsoleOutputColor backgroundColor)
+        {
+            if (backgroundColor != ConsoleOutputColor.NoChange)
+                builder.Append(AnsiConsoleColor.GetBackgroundColorEscapeCode((ConsoleColor)backgroundColor));
+            else
+                builder.Append(AnsiConsoleColor.TerminalDefaultBackgroundColorEscapeCode);
         }
     }
 }
