@@ -740,6 +740,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         }
 
+#if !NETSTANDARD1_3
         [Fact]
         public void CallSiteShouldWorkForAsyncMethodsWithReturnValue()
         {
@@ -762,6 +763,7 @@ namespace NLog.UnitTests.LayoutRenderers
             return callSite;
         }
 
+#endif
 #endif
 
         [Fact]
@@ -967,7 +969,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-#if !NETSTANDARD_1plus
+#if !NETSTANDARD1_3
         /// <summary>
         /// If some calls got inlined, we can't find LoggerType anymore. We should fallback if loggerType can be found
         /// 
