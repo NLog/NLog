@@ -79,6 +79,54 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             Assert.Equal("messageYYY", l.Render(le));
         }
 
-       
+        [Fact]
+        public void WhenElseCase()
+        {
+            //else cannot be invoked ambiently. First param is inner
+            SimpleLayout l = @"${when:good:when=logger=='logger':else=better}";
+
+            {
+                var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+                Assert.Equal("good", l.Render(le));
+            }
+            {
+                var le = LogEventInfo.Create(LogLevel.Info, "logger1", "message");
+                Assert.Equal("better", l.Render(le));
+            }
+        }
+
+        [Fact]
+        public void WhenElseCase_empty_when()
+        {
+            //else cannot be invoked ambiently. First param is inner
+            SimpleLayout l = @"${when:good:else=better}";
+
+            {
+                var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+                Assert.Equal("good", l.Render(le));
+            }
+            {
+                var le = LogEventInfo.Create(LogLevel.Info, "logger1", "message");
+                Assert.Equal("good", l.Render(le));
+            }
+        }
+
+
+        [Fact]
+        public void WhenElseCase_noIf()
+        {
+            //else cannot be invoked ambiently. First param is inner
+            SimpleLayout l = @"${when:when=logger=='logger':else=better}";
+
+            {
+                var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+                Assert.Equal("", l.Render(le));
+            }
+            {
+                var le = LogEventInfo.Create(LogLevel.Info, "logger1", "message");
+                Assert.Equal("better", l.Render(le));
+            }
+        }
+
     }
 }
