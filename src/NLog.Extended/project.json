@@ -33,6 +33,7 @@
         }
     },
   "buildOptions": {
-    "keyFile": "../NLog/NLog.snk"
+    "keyFile": "../NLog/NLog.snk",
+    "xmlDoc": true 
   }
 }

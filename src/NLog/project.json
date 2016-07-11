@@ -181,7 +181,9 @@
 
 
   },
-    "buildOptions": {
-        "keyFile": "NLog.snk"
-    }
+  "buildOptions": {
+    "keyFile": "NLog.snk",
+    "xmlDoc": true 
+
+  }
 }
