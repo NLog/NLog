@@ -39,11 +39,10 @@ using NLog.Internal;
 
 namespace NLog.Targets
 {
-
-#if !UWP10
     /// <summary>
     /// Line ending mode.
     /// </summary>
+#if !UWP10
     [TypeConverter(typeof(LineEndingModeConverter))]
 #endif
     public sealed class LineEndingMode 

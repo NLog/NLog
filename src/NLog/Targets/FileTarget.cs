@@ -1167,6 +1167,7 @@ namespace NLog.Targets
         /// archives are deleted.
         /// </summary>
         /// <param name="fileName">File name to be archived.</param>
+        /// <param name="pattern">configured filepattern for the archive filename.</param>
         private void ArchiveBySequence(string fileName, string pattern)
         {
             FileNameTemplate fileTemplate = new FileNameTemplate(Path.GetFileName(pattern));
@@ -1235,7 +1236,7 @@ namespace NLog.Targets
 
         /// <summary>
         /// Creates an archive copy of source file either by compressing it or moving to a new location in the file
-        /// system. Which action will be used is determined by the value of <paramref name="enableCompression"/> parameter.
+        /// system. 
         /// </summary>
         /// <param name="fileName">File name to be archived.</param>
         /// <param name="archiveFileName">Name of the archive file.</param>
@@ -2132,7 +2133,7 @@ namespace NLog.Targets
             /// <summary>
             /// Creates an instance of <see cref="DynamicFileArchive"/> class.
             /// </summary>
-            /// <param name="maxArchivedFiles">Maximum number of archive files to be kept.</param>
+            /// <param name="fileTarget">filetarget to call fileTarget.ArchiveFile</param>
             /// <param name="maxArchivedFiles">Maximum number of archive files to be kept.</param>
             public DynamicFileArchive(FileTarget fileTarget, int maxArchivedFiles)
             {
@@ -2170,7 +2171,6 @@ namespace NLog.Targets
             /// <param name="archiveFileName">File name of the archive</param>
             /// <param name="fileName">Original file name</param>
             /// <param name="createDirectory">Create a directory, if it does not exist</param>
-            /// <param name="enableCompression">Enables file compression</param>
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
             public bool Archive(string archiveFileName, string fileName, bool createDirectory)
             {

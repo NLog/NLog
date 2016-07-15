@@ -100,7 +100,8 @@
         "System.Net.NameResolution": "4.0.0"
       },
       "buildOptions": {
-        "define": [ "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD1_3", "ASYNC_SUPPORTED", "UWP10" ]
+        "define": [ "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD1_3", "ASYNC_SUPPORTED", "UWP10" ],
+        "nowarn": [ "CS0436" ]
       }
     },
     "netstandard1.5": {
@@ -123,7 +124,8 @@
         "System.Net.NameResolution": "4.0.0"
       },
       "buildOptions": {
-        "define": [ "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD1_3", "NETSTANDARD1_5", "ASYNC_SUPPORTED", "UWP10" ]
+        "define": [ "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD1_3", "NETSTANDARD1_5", "ASYNC_SUPPORTED", "UWP10" ],
+        "nowarn": [ "CS0436" ]
       }
     },
     "Silverlight,Version=v4.0": {
@@ -142,6 +144,7 @@
       },
       "buildOptions": {
         "define": [ "SILVERLIGHT", "SILVERLIGHT4", "WCF_SUPPORTED" ]
+      
       }
     },
     "Silverlight,Version=v5.0": {
@@ -160,6 +163,7 @@
       },
       "buildOptions": {
         "define": [ "SILVERLIGHT", "SILVERLIGHT5", "WCF_SUPPORTED" ]
+     
       }
     },
 

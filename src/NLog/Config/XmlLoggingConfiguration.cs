@@ -99,7 +99,7 @@ namespace NLog.Config
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="fileName">Configuration file to be read.</param>
-        /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
+        /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
         public XmlLoggingConfiguration(string fileName, LogFactory logFactory)
             : this(fileName, false, logFactory)
         { }
@@ -132,7 +132,6 @@ namespace NLog.Config
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
-        /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files).</param>
         private static XmlReader CreateFileReader(string fileName)
         {
@@ -168,7 +167,8 @@ namespace NLog.Config
         /// </summary>
         /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files).</param>
-        /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
+        /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
+
         public XmlLoggingConfiguration(XmlReader reader, string fileName, LogFactory logFactory)
             : this(reader, fileName, false, logFactory)
         { }

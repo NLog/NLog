@@ -418,7 +418,7 @@ namespace NLog
 
 #if !UWP10
         /// <summary>
-        /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
+        /// Gets a custom logger with the name of the current class. Use <typeparamref name="T"/> to pass the type of the needed Logger.
         /// </summary>
         /// <returns>The logger with type <typeparamref name="T"/>.</returns>
         /// <typeparam name="T">Type of the logger</typeparam>
@@ -442,7 +442,8 @@ namespace NLog
         /// <param name="loggerType">The type of the logger to create. The type must inherit from 
         /// NLog.Logger.</param>
         /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
-        /// <remarks>This is a slow-running method. Make sure you are not calling this method in a 
+        /// <remarks>This is a slow-running method.
+        /// Make sure you're not doing this in a loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger(Type loggerType)
         {
@@ -468,18 +469,17 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the custom named logger. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
+        /// Gets the custom named logger. Use <typeparamref name="T"/>  to pass the type of the needed Logger.
         /// </summary>
         /// <param name="name">Name of the logger.</param>
-        /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger"/>.	</param>       
-        /// <typeparam name="T">Type of the logger</typeparam>
+        /// <typeparam name="T">The type of the logger to create. The type must inherit from <see cref="Logger"/>.	</typeparam>       
         /// <returns>The logger reference with type <typeparamref name="T"/>. Multiple calls to <c>GetLogger</c> with the same argument 
         /// are not guaranteed to return the same logger reference.</returns>
         public T GetLogger<T>(string name) where T : Logger
         {
             return (T)this.GetLogger(new LoggerCacheKey(name, typeof(T)));
         }
-        /// same argument aren't guaranteed to return the same logger reference.</returns>
+
         /// <summary>
         /// Gets the specified named logger.  Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
