@@ -37,7 +37,9 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
 
-#if NETSTANDARD1_3
+#if NETSTANDARD1_5
+    [assembly: AssemblyTitle("NLog for .NET Platform Standard 1.5")]
+#elif NETSTANDARD1_3
     [assembly: AssemblyTitle("NLog for .NET Platform Standard 1.3")]
 #elif NET3_5
     [assembly: AssemblyTitle("NLog for .NET Framework 3.5")]
