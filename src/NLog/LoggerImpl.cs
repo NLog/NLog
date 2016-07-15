@@ -302,6 +302,7 @@ namespace NLog
         /// <summary>
         /// Stackframe with correspending index on the stracktrace
         /// </summary>
+       [DebuggerDisplay("{StackFrameIndex} => {StackFrame}")]
         private class StackFrameWithIndex
         {
             /// <summary>
