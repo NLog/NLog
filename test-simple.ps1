@@ -14,5 +14,5 @@ dir .\tests\NLog.UnitTests\bin\Release\net45\win7-x64
 $dir =  @(get-item .\tests\NLog.UnitTests\bin\Release\net45\* | ?{ $_.PSIsContainer })[0].FullName
 
 #version print
-xunit.console.exe
-xunit.console.exe "${dir}\NLog.UnitTests.dll"
+xunit.console.clr4
+xunit.console.clr4 "${dir}\NLog.UnitTests.dll" /appveyor
