@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
 using System.Text;
 
 #pragma warning disable 0618
@@ -67,12 +68,14 @@ namespace NLog.UnitTests.Contexts
                                 Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo"));
                                 Assert.False(MappedDiagnosticsContext.Contains("foo2"));
                                 Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo2"));
+                                Assert.Equal(0, MappedDiagnosticsContext.GetNames().Count);
 
                                 MappedDiagnosticsContext.Set("foo", "bar");
                                 MappedDiagnosticsContext.Set("foo2", "bar2");
 
                                 Assert.True(MappedDiagnosticsContext.Contains("foo"));
                                 Assert.Equal("bar", MappedDiagnosticsContext.Get("foo"));
+                                Assert.Equal(2, MappedDiagnosticsContext.GetNames().Count);
 
                                 MappedDiagnosticsContext.Remove("foo");
                                 Assert.False(MappedDiagnosticsContext.Contains("foo"));
@@ -80,6 +83,9 @@ namespace NLog.UnitTests.Contexts
 
                                 Assert.True(MappedDiagnosticsContext.Contains("foo2"));
                                 Assert.Equal("bar2", MappedDiagnosticsContext.Get("foo2"));
+
+                                Assert.Equal(1, MappedDiagnosticsContext.GetNames().Count);
+                                Assert.True(MappedDiagnosticsContext.GetNames().Contains("foo2"));
 
                                 Assert.Null(MappedDiagnosticsContext.GetObject("foo3"));
                                 MappedDiagnosticsContext.Set("foo3", new { One = 1 });

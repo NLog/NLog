@@ -40,7 +40,7 @@ NLog consists of multiple packages. Most of the functionality is inside the NLog
 Package  | Build status | NuGet |
 -------- | :------------ | :------------ | :------------------
 NLog (.Net / Silverlight 4+5 / Xamarin iOS / Xamarin Android / Windows Phone 8)                                    | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/master.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/master)                   | [![NuGet package](https://badge.fury.io/nu/NLog.svg)](https://www.nuget.org/packages/NLog)                            |
-NLog (.NET Core)                                                | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/coreclr.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/coreclr)                   | [![NuGet package](https://img.shields.io/badge/nuget-v4.4.0--beta-blue.svg)](https://www.nuget.org/packages/NLog)       | 
+NLog (.NET Core)   - coreCLR branch                                             | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/coreclr.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/coreclr)                   | [![NuGet package](https://img.shields.io/badge/nuget-v4.4.0--beta-blue.svg)](https://www.nuget.org/packages/NLog)       | 
 [NLog (Microsoft Logging Platform)](https://github.com/NLog/NLog.Framework.Logging)  | [![Build status](https://img.shields.io/appveyor/ci/nlog/nlog-framework-logging/master.svg)](https://ci.appveyor.com/project/nlog/nlog-framework-logging/branch/master) | [![NuGet Pre Release](https://badge.fury.io/nu/NLog.Extensions.Logging.svg)](https://www.nuget.org/packages/NLog.Extensions.Logging) |
 NLog (Mono)                                                         | [![Build Status](https://travis-ci.org/NLog/NLog.svg?branch=master)](https://travis-ci.org/NLog/NLog)                                                         |                                                                                                                                  |
 NLog.Config                                                         | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/master.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/master)                   | [![NuGet package](https://badge.fury.io/nu/NLog.Config.svg)](https://www.nuget.org/packages/NLog.Config)                   |
@@ -177,5 +177,4 @@ Steps to set up [AppVeyor](https://ci.appveyor.com)/[Travis](https://travis-ci.o
 2. Press "+  Add new repository to Codecov" button
 3. Select your fork
 4. Wait for a build on AppVeyor. All the config is already in appveyor.yml. The first report can take some minutes after the first build.
-
 

@@ -34,3 +34,4 @@ build/
 *.sublime-*
 *.DotSettings
 *.vshost.*
+/.vs

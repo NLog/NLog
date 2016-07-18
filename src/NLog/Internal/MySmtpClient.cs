@@ -40,7 +40,13 @@ namespace NLog.Internal
     /// <summary>
     /// Supports mocking of SMTP Client code.
     /// </summary>
+    /// <remarks>
+    /// Disabled Error CS0618  'SmtpClient' is obsolete: 'SmtpClient and its network of types are poorly designed,
+    ///  we strongly recommend you use https://github.com/jstedfast/MailKit and https://github.com/jstedfast/MimeKit instead'	
+    /// </remarks>
+#pragma warning disable 618
     internal class MySmtpClient : SmtpClient, ISmtpClient
+#pragma warning restore 618
     {
 #if NET3_5 || MONO
         /// <summary>

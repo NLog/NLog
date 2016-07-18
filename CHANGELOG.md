@@ -2,6 +2,16 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
 
 This file is new since 4.3.4. If requested, we will try to add the older releases in this file.
 
+### V4.3.5 (2016/06/13)
+
+#### Features
+- [#1471](https://github.com/nlog/nlog/pull/1471) Add else option to ${when} (@304NotModified)
+- [#1481](https://github.com/nlog/nlog/pull/1481) get items for diagnostic contexts (DiagnosticsContextes, GetNames() method) (@tiljanssen)
+
+#### Fixes
+
+- [#1504](https://github.com/nlog/nlog/pull/1504) Fix ${callsite} with async method with return value (@PELNZ)
+
 ### V4.3.4 (2016/05/16)
 
 #### Features
