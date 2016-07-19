@@ -404,10 +404,12 @@ namespace NLog.Targets
             var client = sender as IWcfLogReceiverClient;
             if (client != null && client.State == CommunicationState.Opened)
             {
-                try {
+                try
+                {
                     client.Close();
                 }
-                catch {
+                catch
+                {
                     client.Abort();
                 }
             }
