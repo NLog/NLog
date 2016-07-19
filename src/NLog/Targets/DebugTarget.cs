@@ -33,8 +33,6 @@
 
 namespace NLog.Targets
 {
-    using System;
-
     /// <summary>
     /// Mock target - useful for testing.
     /// </summary>
@@ -57,6 +55,7 @@ namespace NLog.Targets
     [Target("Debug")]
     public sealed class DebugTarget : TargetWithLayout
     {
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DebugTarget" /> class.
         /// </summary>
@@ -94,12 +93,19 @@ namespace NLog.Targets
         public string LastMessage { get; private set; }
 
         /// <summary>
+        /// Gets the last log event rendered by this target
+        /// </summary>
+        /// <docgen category='Debugging Options' order='20' />
+        public LogEventInfo LastLogEvent { get; private set; }
+
+        /// <summary>
         /// Increases the number of messages.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
             this.Counter++;
+            this.LastLogEvent = logEvent.Clone();
             this.LastMessage = this.Layout.Render(logEvent);
         }
     }

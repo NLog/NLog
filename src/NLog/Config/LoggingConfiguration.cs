@@ -33,6 +33,7 @@
 
 using System.Globalization;
 using System.Linq;
+using NLog.Internal.Pooling;
 using NLog.Layouts;
 
 namespace NLog.Config
@@ -69,6 +70,8 @@ namespace NLog.Config
         public LoggingConfiguration()
         {
             this.LoggingRules = new List<LoggingRule>();
+            this.PoolConfiguration = new PoolConfiguration(this);
+            this.PoolFactory = new PoolFactory(this.PoolConfiguration);
         }
 
         /// <summary>
@@ -123,6 +126,17 @@ namespace NLog.Config
         /// </value>
         [CanBeNull]
         public CultureInfo DefaultCultureInfo { get; set; }
+
+        /// <summary>
+        /// Gets or sets the current object pool configuration.
+        /// </summary>
+        public PoolConfiguration PoolConfiguration { get; set; }
+
+
+        /// <summary>
+        /// Gets the current object pool
+        /// </summary>
+        internal PoolFactory PoolFactory { get; private set; }
 
         /// <summary>
         /// Gets all targets.
@@ -484,6 +498,11 @@ namespace NLog.Config
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         internal void FlushAllTargets(AsyncContinuation asyncContinuation)
         {
+            if (asyncContinuation == null)
+            {
+                throw new ArgumentNullException("asyncContinuation");
+
+            }
             var uniqueTargets = new List<Target>();
             var loggingRules = this.LoggingRules.ToList();
             foreach (var rule in loggingRules)
@@ -497,8 +516,20 @@ namespace NLog.Config
                     }
                 }
             }
+            var exceptions = new List<Exception>();
+            foreach (var target in uniqueTargets)
+            {
+                target.Flush(ex =>
+                    {
+                        if (ex != null)
+                        {
+                            exceptions.Add(ex);
+                        }
+                    });
+            }
+            asyncContinuation(AsyncHelpers.GetCombinedException(exceptions));
 
-            AsyncHelpers.ForEachItemInParallel(uniqueTargets, asyncContinuation, (target, cont) => target.Flush(cont));
+            //AsyncHelpers.ForEachItemInParallel(this, uniqueTargets, asyncContinuation, (target, cont) => target.Flush(cont));
         }
 
         /// <summary>
@@ -521,7 +552,7 @@ namespace NLog.Config
             }
 
             this.configItems = ObjectGraphScanner.FindReachableObjects<object>(roots.ToArray());
-
+            this.configItems.Add(this.PoolFactory);
             // initialize all config items starting from most nested first
             // so that whenever the container is initialized its children have already been
             InternalLogger.Info("Found {0} configuration items", this.configItems.Count);

@@ -31,12 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal.Pooling.Pools;
+
 namespace NLog.Layouts
 {
     using System.ComponentModel;
     using NLog.Config;
     using NLog.Internal;
-
+    using System.Text;
+    using Internal.Pooling;    
+    
     /// <summary>
     /// Abstract interface that layouts must implement.
     /// </summary>
@@ -141,6 +145,34 @@ namespace NLog.Layouts
         }
 
         /// <summary>
+        /// Renders the event info in layout.
+        /// </summary>
+        /// <param name="logEvent">The event info.</param>
+        /// <returns>StringBuilder representing log event.</returns>
+        internal StringBuilder RenderBuilder(LogEventInfo logEvent)
+        {
+            if (!this.isInitialized)
+            {
+                this.isInitialized = true;
+                this.InitializeLayout();
+            }
+
+            StringBuilder builder;
+
+            if (this.LoggingConfiguration.PoolingEnabled())
+            {
+                builder = this.LoggingConfiguration.PoolFactory.Get<StringBuilderPool, StringBuilder>().Get();
+            }
+            else
+            {
+                builder = new StringBuilder();
+            }
+            
+            this.AppendFormattedMessage(builder, logEvent);
+            return builder;
+        }
+
+        /// <summary>
         /// Initializes this instance.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
@@ -218,5 +250,16 @@ namespace NLog.Layouts
         /// <param name="logEvent">The logging event.</param>
         /// <returns>The rendered layout.</returns>
         protected abstract string GetFormattedMessage(LogEventInfo logEvent);
+
+        /// <summary>
+        /// Renders the layout for the specified logging event by invoking layout renderers and appending the rendering to the given string builder.
+        /// </summary>
+        /// <param name="target">The stringbuilder where layouts should be rendered to.</param>
+        /// <param name="logEvent">The logging event.</param>
+        protected virtual void AppendFormattedMessage(StringBuilder target, LogEventInfo logEvent)
+        {
+            target.Append(GetFormattedMessage(logEvent));
+        }
+
     }
 }

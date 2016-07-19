@@ -331,8 +331,13 @@ namespace NLog
             {
                 lock (this.syncRoot)
                 {
-                    this.globalThreshold = value;
-                    this.ReconfigExistingLoggers();
+                    // Prevent potential stack overflow, if value being set is the same.
+                    // also no need to reconfigure if value is the same
+                    if (this.globalThreshold != value)
+                    {
+                        this.ReconfigExistingLoggers();
+                        this.globalThreshold = value;
+                    }
                 }
             }
         }
@@ -377,7 +382,7 @@ namespace NLog
         {
             TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
             Logger newLogger = new Logger();
-            newLogger.Initialize(string.Empty, new LoggerConfiguration(targetsByLevel, false), this);
+            newLogger.Initialize(string.Empty, new LoggerConfiguration(targetsByLevel, false), this,this.Configuration);
             return newLogger;
         }
 
@@ -488,7 +493,7 @@ namespace NLog
             var loggers = new List<Logger>(loggerCache.Loggers);
             foreach (var logger in loggers)
             {
-                logger.SetConfiguration(this.GetConfigurationForLogger(logger.Name, this.config));
+                logger.SetConfiguration(this.GetConfigurationForLogger(logger.Name, this.config), this.Configuration);
             }
         }
 
@@ -510,7 +515,7 @@ namespace NLog
         {
             try
             {
-                AsyncHelpers.RunSynchronously(cb => this.Flush(cb, timeout));
+                AsyncHelpers.RunSynchronously(this.config, cb => this.Flush(cb, timeout));
             }
             catch (Exception ex)
             {
@@ -540,7 +545,9 @@ namespace NLog
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public void Flush(AsyncContinuation asyncContinuation)
         {
-            this.Flush(asyncContinuation, TimeSpan.MaxValue);
+            // TimeSpan.MaxValue throws exception : System.ArgumentOutOfRangeExceptionTime-out interval must be less than 2^32-2.
+            int timeout = Int32.MaxValue - 2;
+            this.Flush(asyncContinuation, timeout);
         }
 
         /// <summary>
@@ -687,13 +694,15 @@ namespace NLog
             InternalLogger.Info("Reloading configuration...");
             lock (this.syncRoot)
             {
-                if (this.reloadTimer != null)
+                
+                    if (this.reloadTimer != null)
                 {
                     this.reloadTimer.Dispose();
                     this.reloadTimer = null;
                 }
-
-                if (IsDisposing)
+                try
+                {
+                    if (IsDisposing)
                 {
                     //timer was disposed already. 
                     this.watcher.Dispose();
@@ -701,8 +710,7 @@ namespace NLog
                 }
 
                 this.watcher.StopWatching();
-                try
-                {
+                
                     if (this.Configuration != configurationToReload)
                     {
                         throw new NLogConfigurationException("Config changed in between. Not reloading.");
@@ -988,7 +996,7 @@ namespace NLog
 
                 if (cacheKey.ConcreteType != null)
                 {
-                    newLogger.Initialize(cacheKey.Name, this.GetConfigurationForLogger(cacheKey.Name, this.Configuration), this);
+                    newLogger.Initialize(cacheKey.Name, this.GetConfigurationForLogger(cacheKey.Name, this.Configuration), this, this.Configuration);
                 }
 
                 // TODO: Clarify what is the intention when cacheKey.ConcreteType = null.

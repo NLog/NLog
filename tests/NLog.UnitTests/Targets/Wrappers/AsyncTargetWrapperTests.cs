@@ -39,6 +39,8 @@ namespace NLog.UnitTests.Targets.Wrappers
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using System.Collections.Generic;
+    using System.Diagnostics;
+
     using Xunit;
 
     public class AsyncTargetWrapperTests : NLogTestBase
@@ -219,19 +221,23 @@ namespace NLog.UnitTests.Targets.Wrappers
                 targetWrapper.Close();
             }
         }
-
         [Fact]
-        public void AsyncTargetWrapperFlushTest()
+        public void AsyncTargetWrapperSingleTest()
         {
+            InternalLogger.LogToConsole = true;
+            InternalLogger.IncludeTimestamp = true;
+            InternalLogger.LogLevel = LogLevel.Trace;
             var myTarget = new MyAsyncTarget
             {
                 ThrowExceptions = true
             };
 
+
             var targetWrapper = new AsyncTargetWrapper(myTarget)
             {
                 Name = "AsyncTargetWrapperFlushTest_Wrapper",
-                OverflowAction = AsyncTargetWrapperOverflowAction.Grow
+                OverflowAction = AsyncTargetWrapperOverflowAction.Grow,
+                TimeToSleepBetweenBatches = 3
             };
 
             targetWrapper.Initialize(null);
@@ -240,20 +246,26 @@ namespace NLog.UnitTests.Targets.Wrappers
             try
             {
                 List<Exception> exceptions = new List<Exception>();
+                long missingEvents = 1;
 
-                int eventCount = 5000;
 
-                for (int i = 0; i < eventCount; ++i)
-                {
-                    targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(
-                        ex =>
+                targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(
+                    ex =>
+                    {
+                        try
                         {
                             lock (exceptions)
                             {
                                 exceptions.Add(ex);
                             }
-                        }));
-                }
+                            Interlocked.Decrement(ref missingEvents);
+                        }
+                        catch (Exception e)
+                        {
+                            InternalLogger.Trace("Error in callback", e);
+                        }
+                    }));
+               
 
                 Exception lastException = null;
                 ManualResetEvent mre = new ManualResetEvent(false);
@@ -262,18 +274,161 @@ namespace NLog.UnitTests.Targets.Wrappers
                     () =>
                     {
                         targetWrapper.Flush(
+                        cont =>
+                        {
+                            try
+                            {
+                                DateTime start = DateTime.Now;
+
+                                    // We have to spin until all events are done being written by the above code, otherwise on
+                                    // slow computers the flush will be called before all events has been pushed to the event queue.
+                                    // causing the below assertions to fail.
+                                    if (missingEvents > 0)
+                                {
+                                    InternalLogger.Trace("Still missing {0} events, exceptions captured:{1}", missingEvents, exceptions.Count);
+                                }
+                                while (missingEvents > 0)
+                                {
+                                    InternalLogger.Trace("Still missing {0} events, exceptions captured:{1}", missingEvents, exceptions.Count);
+                                    Thread.Sleep(50);
+                                    if (DateTime.Now - start > TimeSpan.FromSeconds(2000))
+                                    {
+                                        Assert.False(true, string.Format("threads did not manage to enqueue their messages within time limit, still missing:{0}events, exceptions captured:{1}", missingEvents, exceptions.Count));
+                                    }
+                                }
+
+                                    // by this time all continuations should be completed
+                                    Assert.Equal(1, exceptions.Count);
+
+                                    // We have to use interlocked, otherwise there are no guarantee that we get the correct value
+                                    // with  just 1 flush of the target
+                                    int flushCount = Interlocked.CompareExchange(ref myTarget.FlushCount, 0, 1);
+
+                                Assert.Equal(1, flushCount);
+
+                                int writeCount = Interlocked.CompareExchange(ref myTarget.WriteCount, 0, 1);
+                                    // and all writes should be accounted for
+                                    Assert.Equal(1, writeCount);
+                            }
+                            catch (Exception ex)
+                            {
+                                lastException = ex;
+                            }
+                            finally
+                            {
+                                mre.Set();
+                            }
+                        });
+                        Assert.True(mre.WaitOne());
+                    },
+                    LogLevel.Trace);
+
+                if (lastException != null)
+                {
+                    Assert.True(false, lastException.ToString() + "\r\n" + internalLog);
+                }
+            }
+            finally
+            {
+                myTarget.Close();
+                targetWrapper.Close();
+            }
+        }
+
+        [Fact]
+        public void AsyncTargetWrapperFlushTest()
+        {
+            InternalLogger.LogToConsole = true;
+            InternalLogger.IncludeTimestamp = true;
+            InternalLogger.LogLevel = LogLevel.Trace;
+            var myTarget = new MyAsyncTarget
+            {
+                ThrowExceptions = true
+            };
+            
+
+            var targetWrapper = new AsyncTargetWrapper(myTarget)
+            {
+                Name = "AsyncTargetWrapperFlushTest_Wrapper",
+                OverflowAction = AsyncTargetWrapperOverflowAction.Grow,
+                TimeToSleepBetweenBatches = 3
+            };
+
+            targetWrapper.Initialize(null);
+            myTarget.Initialize(null);
+
+            try
+            {
+                List<Exception> exceptions = new List<Exception>();
+#if !SILVERLIGHT
+                int eventCount = Environment.Is64BitProcess ? 5000 : 500;
+                long missingEvents = Environment.Is64BitProcess ? 5000 : 500;
+#else
+                int eventCount = 500;
+                long missingEvents = 500;
+#endif
+                for (int i = 0; i < eventCount; ++i)
+                {
+                    targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(
+                        ex =>
+                            {
+                                try
+                                {
+                                    lock (exceptions)
+                                    {
+                                        exceptions.Add(ex);
+                                    }
+                                    Interlocked.Decrement(ref missingEvents);
+                                }
+                                catch (Exception e)
+                                {
+                                    InternalLogger.Trace("Error in callback",e);
+                                }
+                            }));
+                }
+
+                Exception lastException = null;
+                ManualResetEvent mre = new ManualResetEvent(false);
+
+                string internalLog = RunAndCaptureInternalLog(
+                    () =>
+                        {
+                            targetWrapper.Flush(
                             cont =>
                             {
                                 try
                                 {
+                                    DateTime start = DateTime.Now;
+
+                                    // We have to spin until all events are done being written by the above code, otherwise on
+                                    // slow computers the flush will be called before all events has been pushed to the event queue.
+                                    // causing the below assertions to fail.
+                                    if (missingEvents > 0)
+                                    {
+                                        InternalLogger.Trace("Still missing {0} events, exceptions captured:{1}", missingEvents, exceptions.Count);
+                                    }
+                                    while (missingEvents > 0)
+                                    {
+                                        InternalLogger.Trace("Still missing {0} events, exceptions captured:{1}", missingEvents, exceptions.Count);
+                                        Thread.Sleep(50);
+                                        if (DateTime.Now - start > TimeSpan.FromSeconds(20))
+                                        {
+                                            Assert.False( true,string.Format("threads did not manage to enqueue their messages within time limit, still missing:{0}events, exceptions captured:{1}", missingEvents, exceptions.Count));
+                                        }
+                                    }
+
                                     // by this time all continuations should be completed
                                     Assert.Equal(eventCount, exceptions.Count);
 
-                                    // with just 1 flush of the target
-                                    Assert.Equal(1, myTarget.FlushCount);
+                                    // We have to use interlocked, otherwise there are no guarantee that we get the correct value
+                                    // with  just 1 flush of the target
+                                    int flushCount = Interlocked.CompareExchange(ref myTarget.FlushCount, 0, 1);
 
+                                    Assert.Equal(1, flushCount);
+
+                                    int writeCount = Interlocked.CompareExchange(ref myTarget.WriteCount, 0, eventCount);
                                     // and all writes should be accounted for
-                                    Assert.Equal(eventCount, myTarget.WriteCount);
+                                    Assert.Equal(eventCount, writeCount);
                                 }
                                 catch (Exception ex)
                                 {
@@ -406,21 +561,39 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(AsyncLogEventInfo logEvent)
             {
-                Assert.True(this.FlushCount <= this.WriteCount);
+                // This assertion is flawed.
+                // If threads run slow, then AsyncTargetWrapper will flush multiple times.
+                // We cannot expect FlushCount to be lower than WriteCount, since Flush run on a timer thread, whereas
+                // Write run on a threadpool thread.
+                //Assert.True(this.FlushCount <= this.WriteCount);
                 Interlocked.Increment(ref this.WriteCount);
+                if (this.WriteCount % 100 == 0)
+                {
+                    InternalLogger.Trace("{0} -  Writen 100", DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss.ffff"));
+                }
+            
                 ThreadPool.QueueUserWorkItem(
                     s =>
                         {
-                            if (this.ThrowExceptions)
+                            try
                             {
-                                logEvent.Continuation(new InvalidOperationException("Some problem!"));
-                                logEvent.Continuation(new InvalidOperationException("Some problem!"));
+                                if (this.ThrowExceptions)
+                                {
+                                    logEvent.Continuation(new InvalidOperationException("Some problem!"));
+                                    logEvent.Continuation(new InvalidOperationException("Some problem!"));
+                                }
+                                else
+                                {
+                                    logEvent.Continuation(null);
+                                    logEvent.Continuation(null);
+                                }
                             }
-                            else
+                            catch (Exception e)
                             {
-                                logEvent.Continuation(null);
-                                logEvent.Continuation(null);
+                                InternalLogger.Trace("Unexopected Exception", e);
+                                logEvent.Continuation(e);
                             }
+                        
                         });
             }
 
@@ -428,7 +601,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 Interlocked.Increment(ref this.FlushCount);
                 ThreadPool.QueueUserWorkItem(
-                    s => asyncContinuation(null));
+                                    s => asyncContinuation(null));
             }
 
             public bool ThrowExceptions { get; set; }

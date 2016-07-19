@@ -31,26 +31,36 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+using System.Linq;
+
+using NLog.Config;
+
 namespace NLog.Targets.Wrappers
 {
     using System.Collections.Generic;
     using NLog.Common;
     using NLog.Internal;
+    using Internal.Pooling;
 
     /// <summary>
     /// Asynchronous request queue.
     /// </summary>
 	internal class AsyncRequestQueue
     {
+        private LoggingConfiguration configuration;
+
         private readonly Queue<AsyncLogEventInfo> logEventInfoQueue = new Queue<AsyncLogEventInfo>();
 
         /// <summary>
         /// Initializes a new instance of the AsyncRequestQueue class.
         /// </summary>
+        /// <param name="configuration">the logging configuration.</param>
         /// <param name="requestLimit">Request limit.</param>
         /// <param name="overflowAction">The overflow action.</param>
-        public AsyncRequestQueue(int requestLimit, AsyncTargetWrapperOverflowAction overflowAction)
+        public AsyncRequestQueue(LoggingConfiguration configuration, int requestLimit, AsyncTargetWrapperOverflowAction overflowAction)
         {
+            this.configuration = configuration;
             this.RequestLimit = requestLimit;
             this.OnOverflow = overflowAction;
         }
@@ -116,33 +126,58 @@ namespace NLog.Targets.Wrappers
 
         /// <summary>
         /// Dequeues a maximum of <c>count</c> items from the queue
-        /// and adds returns the list containing them.
+        /// and returns the an array containing the items.
+        /// Array can be larger than the requested count, but <paramref name="actualCount"/> contains the real number
+        /// of items that is returned. Actuacount is never larger than count.
         /// </summary>
         /// <param name="count">Maximum number of items to be dequeued.</param>
+        /// <param name="actualCount">The actual number of events returned in the array.</param>
         /// <returns>The array of log events.</returns>
-        public AsyncLogEventInfo[] DequeueBatch(int count)
+        public AsyncLogEventInfo[] DequeueBatch(int count, out int actualCount)
         {
-            var resultEvents = new List<AsyncLogEventInfo>();
-
+            AsyncLogEventInfo[] resultEvents;
             lock (this)
             {
-                for (int i = 0; i < count; ++i)
+                int maxCount = Math.Min(count, this.logEventInfoQueue.Count);
+
+                //if (this.configuration != null && this.configuration.PoolConfiguration.Enabled)
+                //{
+                //    resultEvents = this.configuration.PoolFactory.Get<AsyncLogEventInfoArrayPool, AsyncLogEventInfo[]>().Get(maxCount);
+                //}
+                //else
+                //{
+                    resultEvents = new AsyncLogEventInfo[maxCount];
+                //}
+
+                actualCount = Math.Min(maxCount, resultEvents.Length);
+
+                // Check if array can hold all elements, and if it can, just copy entire stack into the array, 
+                // so we dont have to loop over the contents.
+                if (this.logEventInfoQueue.Count < resultEvents.Length)
                 {
-                    if (this.logEventInfoQueue.Count <= 0)
-                    {
-                        break;
-                    }
-
-                    resultEvents.Add(this.logEventInfoQueue.Dequeue());
+                    this.logEventInfoQueue.CopyTo(resultEvents, 0);
+                    this.logEventInfoQueue.Clear();
                 }
+                else
+                {
+                    for (int i = 0; i < actualCount; ++i)
+                    {
+                        if (this.logEventInfoQueue.Count <= 0)
+                        {
+                            break;
+                        }
 
+                        resultEvents[i] = this.logEventInfoQueue.Dequeue();
+                    }
+                }
                 if (this.OnOverflow == AsyncTargetWrapperOverflowAction.Block)
                 {
                     System.Threading.Monitor.PulseAll(this);
                 }
-            }
+            
 
-            return resultEvents.ToArray();
+                return resultEvents;
+            }
         }
 
         /// <summary>
@@ -154,6 +189,11 @@ namespace NLog.Targets.Wrappers
             {
                 this.logEventInfoQueue.Clear();
             }
+        }
+
+        internal void Initialize(LoggingConfiguration loggingConfiguration)
+        {
+            this.configuration = loggingConfiguration;
         }
     }
 }

@@ -124,16 +124,27 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvents">Array of log events to be post-filtered.</param>
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
+            this.Write(new ArraySegment<AsyncLogEventInfo>(logEvents));
+        }
+
+        /// <summary>
+        /// Writes an array of logging events to the log target. By default it iterates on all
+        /// events and passes them to "Write" method. Inheriting classes can use this method to
+        /// optimize batch writes.
+        /// </summary>
+        /// <param name="logEvents">Logging events to be written out.</param>
+        protected override void Write(ArraySegment<AsyncLogEventInfo> logEvents)
+        {
             ConditionExpression resultFilter = null;
 
-            InternalLogger.Trace("Running {0} on {1} events", this, logEvents.Length);
+            InternalLogger.Trace("Running {0} on {1} events", this, logEvents.Count);
 
             // evaluate all the rules to get the filtering condition
-            for (int i = 0; i < logEvents.Length; ++i)
+            for (int i = 0; i < logEvents.Count; ++i)
             {
                 foreach (FilteringRule rule in this.Rules)
                 {
-                    object v = rule.Exists.Evaluate(logEvents[i].LogEvent);
+                    object v = rule.Exists.Evaluate(logEvents.Array[i].LogEvent);
 
                     if (boxedTrue.Equals(v))
                     {
@@ -166,17 +177,17 @@ namespace NLog.Targets.Wrappers
                 // apply the condition to the buffer
                 var resultBuffer = new List<AsyncLogEventInfo>();
 
-                for (int i = 0; i < logEvents.Length; ++i)
+                for (int i = 0; i < logEvents.Count; ++i)
                 {
-                    object v = resultFilter.Evaluate(logEvents[i].LogEvent);
+                    object v = resultFilter.Evaluate(logEvents.Array[i].LogEvent);
                     if (boxedTrue.Equals(v))
                     {
-                        resultBuffer.Add(logEvents[i]);
+                        resultBuffer.Add(logEvents.Array[i]);
                     }
                     else
                     {
                         // anything not passed down will be notified about successful completion
-                        logEvents[i].Continuation(null);
+                        logEvents.Array[i].Continuation(null);
                     }
                 }
 
@@ -184,7 +195,8 @@ namespace NLog.Targets.Wrappers
                 if (resultBuffer.Count > 0)
                 {
                     InternalLogger.Trace("Sending to {0}", this.WrappedTarget);
-                    this.WrappedTarget.WriteAsyncLogEvents(resultBuffer.ToArray());
+                    var infos = resultBuffer.ToArray();
+                    this.WrappedTarget.WriteAsyncLogEvents(infos);
                 }
             }
         }

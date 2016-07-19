@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace NLog.UnitTests
@@ -44,6 +45,7 @@ namespace NLog.UnitTests
     using NLog.Config;
     using NLog.Targets;
     using Xunit;
+    using NLog.Internal;
 #if SILVERLIGHT
     using System.Xml.Linq;
 #else
@@ -54,11 +56,22 @@ namespace NLog.UnitTests
     using Ionic.Zip;
 #endif
 #endif
+#if MONO
+    using Mono.Unix.Native;
+#endif
 
     public abstract class NLogTestBase
     {
         protected NLogTestBase()
         {
+#if MONO
+            if (PlatformDetector.IsUnix)
+            {
+        
+                // Force filesystem to flush to disk
+                Syscall.sync();
+            }
+#endif
             //reset before every test
             if (LogManager.Configuration != null)
             {
@@ -68,6 +81,10 @@ namespace NLog.UnitTests
             LogManager.Configuration = null;
             InternalLogger.Reset();
             LogManager.ThrowExceptions = false;
+            Trace.Listeners.Clear();
+#if !SILVERLIGHT
+            Debug.Listeners.Clear();
+#endif
         }
 
         protected void AssertDebugCounter(string targetName, int val)
@@ -111,6 +128,14 @@ namespace NLog.UnitTests
 
         protected void AssertFileContentsStartsWith(string fileName, string contents, Encoding encoding)
         {
+#if MONO
+            if (PlatformDetector.IsUnix)
+            {
+        
+                // Force filesystem to flush to disk
+                Syscall.sync();
+            }
+#endif
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
                 Assert.True(false, "File '" + fileName + "' doesn't exist.");
@@ -118,7 +143,7 @@ namespace NLog.UnitTests
             byte[] encodedBuf = encoding.GetBytes(contents);
             Assert.True(encodedBuf.Length <= fi.Length);
             byte[] buf = new byte[encodedBuf.Length];
-            using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            using (FileStream fs = new FileStream(fileName, System.IO.FileMode.Open, FileAccess.Read))
             {
                 fs.Read(buf, 0, buf.Length);
             }
@@ -131,6 +156,14 @@ namespace NLog.UnitTests
 
         protected void AssertFileContentsEndsWith(string fileName, string contents, Encoding encoding)
         {
+#if MONO
+            if (PlatformDetector.IsUnix)
+            {
+        
+                // Force filesystem to flush to disk
+                Syscall.sync();
+            }
+#endif
             if (!File.Exists(fileName))
                 Assert.True(false, "File '" + fileName + "' doesn't exist.");
 
@@ -186,7 +219,7 @@ namespace NLog.UnitTests
                 Assert.True(false, "File '" + fileName + "' doesn't exist.");
 
             byte[] encodedBuf = encoding.GetBytes(contents);
-            using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var stream = new FileStream(fileName, System.IO.FileMode.Open, FileAccess.Read, FileShare.Read))
             using (var zip = new ZipArchive(stream, ZipArchiveMode.Read))
             {
                 Assert.Equal(1, zip.Entries.Count);
@@ -213,17 +246,26 @@ namespace NLog.UnitTests
 
         protected void AssertFileContents(string fileName, string contents, Encoding encoding)
         {
+#if MONO
+            if (PlatformDetector.IsUnix)
+            {
+        
+                // Force filesystem to flush to disk
+                Syscall.sync();
+            }
+#endif
             FileInfo fi = new FileInfo(fileName);
+            
             if (!fi.Exists)
                 Assert.True(false, "File '" + fileName + "' doesn't exist.");
 
+            fi.Refresh();
             byte[] encodedBuf = encoding.GetBytes(contents);
-            Assert.Equal(encodedBuf.Length, fi.Length);
-            byte[] buf = new byte[(int)fi.Length];
-            using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
-            {
-                fs.Read(buf, 0, buf.Length);
-            }
+
+            byte[] buf = File.ReadAllBytes(fileName);
+
+            Assert.True(encodedBuf.Length == buf.Length, string.Format("File:{0} encodedBytes:{1} does not match file.Length:{2}",fileName,encodedBuf.Length, buf.Length));
+          
 
             for (int i = 0; i < buf.Length; ++i)
             {
@@ -233,13 +275,22 @@ namespace NLog.UnitTests
 
         protected void AssertFileContains(string fileName, string contentToCheck, Encoding encoding)
         {
+
+#if MONO
+            if (PlatformDetector.IsUnix)
+            {
+        
+                // Force filesystem to flush to disk
+                Syscall.sync();
+            }
+#endif
             if (contentToCheck.Contains(Environment.NewLine))
                 Assert.True(false, "Please use only single line string to check.");
 
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
                 Assert.True(false, "File '" + fileName + "' doesn't exist.");
-
+            fi.Refresh();
             using (TextReader fs = new StreamReader(fileName, encoding))
             {
                 string line;
@@ -317,13 +368,56 @@ namespace NLog.UnitTests
 
         protected string RunAndCaptureInternalLog(SyncAction action, LogLevel internalLogLevel)
         {
-            var stringWriter = new StringWriter();
+            var stringWriter = new Logger();
             InternalLogger.LogWriter = stringWriter;
             InternalLogger.LogLevel = LogLevel.Trace;
             InternalLogger.IncludeTimestamp = false;
             action();
 
             return stringWriter.ToString();
+        }
+        
+        // This class has to be used when outputting from the InternalLogger.LogWriter.
+        // Just creating a string writer will cause issues, since string writer is not thread safe.
+        // This can cause issues when calling the ToString() on the text writer, since the underlying stringbuilder
+        // of the textwriter, has char arrays that gets fucked up by the multiple threads.
+        // this is a simple wrapper that just locks access to the writer so only one thread can access
+        // it at a time.
+        private class Logger : TextWriter
+        {
+            private StringWriter writer = new StringWriter();
+
+            public override Encoding Encoding
+            {
+                get
+                {
+                    return this.writer.Encoding;
+                }
+            }
+
+            public override void Write(string value)
+            {
+                lock (this.writer)
+                {
+                    this.writer.Write(value);
+                }
+            }
+
+            public override void WriteLine(string value)
+            {
+                lock (this.writer)
+                {
+                    this.writer.WriteLine(value);
+                }
+            }
+
+            public override string ToString()
+            {
+                lock (this.writer)
+                {
+                    return this.writer.ToString();
+                }
+            }
         }
 
         public delegate void SyncAction();

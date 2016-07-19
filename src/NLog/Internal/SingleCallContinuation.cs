@@ -31,11 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal.Pooling.Pools;
+
 namespace NLog.Internal
 {
     using System;
     using System.Threading;
     using NLog.Common;
+
+    using Pooling;
 
     /// <summary>
     /// Implements a single-call guard around given continuation function.
@@ -50,18 +54,32 @@ namespace NLog.Internal
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public SingleCallContinuation(AsyncContinuation asyncContinuation)
         {
+            if (asyncContinuation == null)
+            {
+                throw new ArgumentNullException("asyncContinuation");
+            }
+
             this.asyncContinuation = asyncContinuation;
+            this.Delegate = this.Function;
         }
+
+        /// <summary>
+        /// Delegate, so that we dont have to allocate one every time we pass .Function as a delegate
+        /// </summary>
+        public readonly AsyncContinuation Delegate;
 
         /// <summary>
         /// Continuation function which implements the single-call guard.
         /// </summary>
         /// <param name="exception">The exception.</param>
-        public void Function(Exception exception)
+        private void Function(Exception exception)
         {
             try
             {
+                // Exchange async continuation with null, and if we get null back that means some other thread already
+                // did the continuation
                 var cont = Interlocked.Exchange(ref this.asyncContinuation, null);
+
                 if (cont != null)
                 {
                     cont(exception);
@@ -75,9 +93,50 @@ namespace NLog.Internal
                 {
                     throw;
                 }
+            }
 
-                
+            finally
+            {
+                this.PutBack();
+            }
+
+        }
+
+        private SingleCallContinuationPool pool;
+        internal SingleCallContinuation(SingleCallContinuationPool pool)
+        {
+            this.pool = pool;
+            this.Delegate = this.Function;
+        }
+
+        internal void Initialize(SingleCallContinuationPool pool, AsyncContinuation asyncContinuation)
+        {
+            if (pool == null)
+            {
+                throw new ArgumentNullException("pool");
+            }
+            if (asyncContinuation == null)
+            {
+                throw new ArgumentNullException("asyncContinuation");
+            }
+            this.pool = pool;
+            this.asyncContinuation = asyncContinuation;
+        }
+
+        internal void PutBack()
+        {
+            // Swap with null and if we get a pool back, put it back, otherwise another invocation has happened.
+            var localPool = Interlocked.Exchange(ref this.pool, null);
+            if (localPool != null)
+            {
+                localPool.PutBack(this);
             }
         }
+
+        internal void Clear()
+        {
+            this.asyncContinuation = null;
+        }
+
     }
 }

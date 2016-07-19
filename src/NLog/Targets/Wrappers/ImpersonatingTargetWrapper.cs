@@ -189,6 +189,17 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvents">Log events.</param>
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
+            this.Write(new ArraySegment<AsyncLogEventInfo>(logEvents));
+        }
+
+        /// <summary>
+        /// Writes an array of logging events to the log target. By default it iterates on all
+        /// events and passes them to "Write" method. Inheriting classes can use this method to
+        /// optimize batch writes.
+        /// </summary>
+        /// <param name="logEvents">Logging events to be written out.</param>
+        protected override void Write(ArraySegment<AsyncLogEventInfo> logEvents)
+        {
             using (this.DoImpersonate())
             {
                 this.WrappedTarget.WriteAsyncLogEvents(logEvents);

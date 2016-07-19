@@ -48,7 +48,7 @@ namespace NLog.Config
     /// - The result can we rendered in another thread. Delaying this could be more efficient. And/Or,
     /// - The result should not be precalculated, for example the target sends some extra context information. 
     /// </remarks>
-    [AttributeUsage(AttributeTargets.Class)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
     public sealed class ThreadAgnosticAttribute : Attribute
     {
     }

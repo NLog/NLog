@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal.Pooling.Pools;
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -38,6 +40,7 @@ namespace NLog.LayoutRenderers
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
+    using Internal.Pooling;
 
     /// <summary>
     /// Render environmental information related to logging events.
@@ -93,15 +96,38 @@ namespace NLog.LayoutRenderers
                 initialLength = MaxInitialRenderBufferLength;
             }
 
-            var builder = new StringBuilder(initialLength);
-
-            this.Render(builder, logEvent);
-            if (builder.Length > this.maxRenderedLength)
+            if (this.LoggingConfiguration.PoolingEnabled())
             {
-                this.maxRenderedLength = builder.Length;
-            }
+                var pool = this.LoggingConfiguration.PoolFactory.Get<StringBuilderPool, StringBuilder>();
+                var builder = pool.Get();
+                try
+                {
+                    this.Render(builder, logEvent);
+                    if (builder.Length > this.maxRenderedLength)
+                    {
+                        this.maxRenderedLength = (int)builder.Length;
+                    }
 
-            return builder.ToString();
+                    var result = builder.ToString();
+                    return result;
+                }
+                finally
+                {
+                    pool.PutBack(builder);
+                }
+            }
+            else
+            {
+                var builder = new StringBuilder(initialLength);
+
+                this.Render(builder, logEvent);
+                if (builder.Length > this.maxRenderedLength)
+                {
+                    this.maxRenderedLength = builder.Length;
+                }
+
+                return builder.ToString();
+            }
         }
 
         /// <summary>
@@ -132,8 +158,8 @@ namespace NLog.LayoutRenderers
 
             if (!this.isInitialized)
             {
-                this.isInitialized = true;
                 this.InitializeLayoutRenderer();
+                this.isInitialized = true;
             }
         }
 
@@ -170,7 +196,7 @@ namespace NLog.LayoutRenderers
                 {
                     throw;
                 }
-              
+
             }
         }
 

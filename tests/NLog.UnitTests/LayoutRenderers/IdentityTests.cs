@@ -121,10 +121,10 @@ namespace NLog.UnitTests.LayoutRenderers
 
                      target.EventWritten += (logevent, rendered1, asyncThreadId1) =>
                     {
-                        continuationHit.Set();
                         rendered = rendered1;
                         asyncThreadId = asyncThreadId1;
                         lastLogEvent = logevent;
+                        continuationHit.Set();
                     };
 
 

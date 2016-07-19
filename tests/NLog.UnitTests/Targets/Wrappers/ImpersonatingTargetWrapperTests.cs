@@ -194,9 +194,9 @@ namespace NLog.UnitTests.Targets.Wrappers
             };
 
             Assert.Throws<COMException>(() =>
-                {
-                    wrapper.Initialize(null);
-                });
+            {
+                wrapper.Initialize(null);
+            });
 
             wrapper.Close(); // will not fail because Initialize() failed
         }

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 #if !SILVERLIGHT
 
 namespace NLog.Internal.FileAppenders
@@ -100,6 +102,11 @@ namespace NLog.Internal.FileAppenders
         /// <param name="bytes">The bytes to be written.</param>
         public override void Write(byte[] bytes)
         {
+            this.Write(bytes, 0, bytes.Length);
+        }
+
+        public override void Write(byte[] bytes, int offset, int count)
+        {
             if (this.mutex == null)
             {
                 return;
@@ -119,9 +126,9 @@ namespace NLog.Internal.FileAppenders
             try
             {
                 this.fileStream.Seek(0, SeekOrigin.End);
-                this.fileStream.Write(bytes, 0, bytes.Length);
+                this.fileStream.Write(bytes, offset, count);
                 this.fileStream.Flush();
-                FileTouched();
+                this.FileTouched();
             }
             finally
             {
@@ -214,7 +221,7 @@ namespace NLog.Internal.FileAppenders
             int cutOffIndex = canonicalName.Length - (maxMutexNameLength - mutexNamePrefix.Length - hash.Length);
             return mutexNamePrefix + hash + canonicalName.Substring(cutOffIndex);
         }
-
+        
         /// <summary>
         /// Factory class.
         /// </summary>

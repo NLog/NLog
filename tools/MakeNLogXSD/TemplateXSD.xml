@@ -12,6 +12,7 @@
       <xs:element name="extensions" type="NLogExtensions" />
       <xs:element name="include" type="NLogInclude" />
       <xs:element name="variable" type="NLogVariable" />
+      <xs:element name="pooling" type="NLogPooling"/>
       <xs:element name="targets" type="NLogTargets" />
       <xs:element name="rules" type="NLogRules" />
       <xs:element name="time" type="TimeSource" />
@@ -59,6 +60,8 @@
 
   </xs:complexType>
 
+  <pool-config-go-here xmlns=""/>
+  
   <xs:complexType name="NLogTargets">
     <xs:choice minOccurs="0" maxOccurs="unbounded">
       <xs:element name="default-wrapper" type="WrapperTargetBase" />

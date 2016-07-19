@@ -178,4 +178,3 @@ Steps to set up [AppVeyor](https://ci.appveyor.com)/[Travis](https://travis-ci.o
 3. Select your fork
 4. Wait for a build on AppVeyor. All the config is already in appveyor.yml. The first report can take some minutes after the first build.
 
-

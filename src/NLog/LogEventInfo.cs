@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal.Pooling.Pools;
+
 namespace NLog
 {
     using System;
@@ -44,6 +46,8 @@ namespace NLog
     using NLog.Internal;
     using NLog.Layouts;
     using NLog.Time;
+    using Internal.Pooling;
+
 
     /// <summary>
     /// Represents the logging event.
@@ -67,13 +71,45 @@ namespace NLog
         private IDictionary<object, object> properties;
         private IDictionary eventContextAdapter;
 
+        private LogEventInfoPool pool;
+        
+        internal LogEventInfo(LogEventInfoPool pool) : this()
+        {
+            this.pool = pool;
+            this.CreatePutbackDelegate();
+        }
+
+        private void CreatePutbackDelegate()
+        {
+            if (this.PutBackDelegate != null)
+            {
+                return;
+            }
+            this.PutBackDelegate = ex =>
+                {
+                    try
+                    {
+                        if (ex != null)
+                        {
+                            if (ex.MustBeRethrown())
+                            {
+                                throw ex;
+                            }
+                        }
+                    }
+                    finally
+                    {
+                        this.PutBack();
+                    }
+                };
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
         /// </summary>
         public LogEventInfo()
         {
-            this.TimeStamp = TimeSource.Current.Time;
-            this.SequenceID = Interlocked.Increment(ref globalSequenceId);
+            Init();
         }
 
         /// <summary>
@@ -297,7 +333,7 @@ namespace NLog
         /// <returns>Null log event.</returns>
         public static LogEventInfo CreateNullEvent()
         {
-            return new LogEventInfo(LogLevel.Off, string.Empty, string.Empty);
+            return Create(LogLevel.Off, string.Empty, string.Empty);
         }
 
         /// <summary>
@@ -309,7 +345,7 @@ namespace NLog
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
         public static LogEventInfo Create(LogLevel logLevel, string loggerName, [Localizable(false)] string message)
         {
-            return new LogEventInfo(logLevel, loggerName, null, message, null);
+            return Create(logLevel, loggerName, null, null, message, null);
         }
 
         /// <summary>
@@ -323,7 +359,7 @@ namespace NLog
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
         public static LogEventInfo Create(LogLevel logLevel, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters)
         {
-            return new LogEventInfo(logLevel, loggerName, formatProvider, message, parameters);
+            return  new LogEventInfo(logLevel, loggerName, formatProvider, message, parameters);
         }
 
         /// <summary>
@@ -336,7 +372,7 @@ namespace NLog
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
         public static LogEventInfo Create(LogLevel logLevel, string loggerName, IFormatProvider formatProvider, object message)
         {
-            return new LogEventInfo(logLevel, loggerName, formatProvider, "{0}", new[] { message });
+            return Create(logLevel, loggerName, null, formatProvider,"{0}",  new[] { message });
         }
 
         /// <summary>
@@ -350,7 +386,7 @@ namespace NLog
         [Obsolete("use Create(LogLevel logLevel, string loggerName, Exception exception, IFormatProvider formatProvider, string message)")]
         public static LogEventInfo Create(LogLevel logLevel, string loggerName, [Localizable(false)] string message, Exception exception)
         {
-            return new LogEventInfo(logLevel, loggerName, null, message, null, exception);
+            return Create(logLevel, loggerName, exception, null, message, null);
         }
 
         /// <summary>
@@ -379,7 +415,7 @@ namespace NLog
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
         public static LogEventInfo Create(LogLevel logLevel, string loggerName, Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters)
         {
-            return new LogEventInfo(logLevel, loggerName,formatProvider, message, parameters, exception);
+            return  new LogEventInfo(logLevel, loggerName, formatProvider, message, parameters, exception);
         }
 
         /// <summary>
@@ -490,6 +526,14 @@ namespace NLog
             return value.GetType().IsPrimitive || (value is string);
         }
 
+        internal void CalcFormattedMessageIfNeeded()
+        {
+            if (NeedToPreformatMessage(this.Parameters))
+            {
+                this.CalcFormattedMessage();
+            }
+        }
+
         private void CalcFormattedMessage()
         {
             if (this.Parameters == null || this.Parameters.Length == 0)
@@ -524,6 +568,126 @@ namespace NLog
         {
             this.properties = new Dictionary<object, object>();
             this.eventContextAdapter = new DictionaryAdapter<object, object>(this.properties);
+        }
+
+        /// <summary>
+        /// Clears the log event info for reuse purposes
+        /// </summary>
+        internal void Clear()
+        {
+            this.properties = null;
+            this.eventContextAdapter = null;
+            this.parameters=null;
+            this.formatProvider=null;
+            if (this.layoutCache != null)
+            {
+                // just reset, so we dont have to allocate another dictionary
+                this.layoutCache.Clear();
+            }
+            
+            this.Exception = null;
+            this.formattedMessage = null;
+            this.Level = null;
+            this.LoggerName = null;
+            this.message = null;
+            this.SequenceID = 0;
+            this.StackTrace = null;
+            this.TimeStamp = default(DateTime);
+            this.UserStackFrameNumber = 0;
+        }
+
+        internal void Init()
+        {
+            this.TimeStamp = TimeSource.Current.Time;
+            this.SequenceID = Interlocked.Increment(ref globalSequenceId);
+            this.CreatePutbackDelegate();
+        }
+
+
+        internal void SetPool(LogEventInfoPool pool)
+        {
+            this.pool = pool;
+        }
+
+        internal void PutBack()
+        {
+            try
+            {
+                //InternalLogger.Trace(" - trying to put pooled LogEventInfo back into the pool");
+                var infoPool = Interlocked.Exchange(ref this.pool, null);
+                if (infoPool != null)
+                {
+                    infoPool.PutBack(this);
+                }
+                else
+                {
+                    InternalLogger.Trace("No pool available for LogEventInfo to be put back to");
+                }
+            }
+            catch (Exception e)
+            {
+                InternalLogger.Error(" - Error occured while putting back log event into the pool:{0}", e);
+            }
+        }
+
+        internal AsyncContinuation PutBackDelegate;
+
+        // Remember to update this when adding new properties that is required for message rendering in layouts or rendererer
+        // TODO: create a test that assign values to all properties and clone it.
+        internal LogEventInfo Clone()
+        {
+            LogEventInfo info;
+            if (this.pool != null)
+            {
+                info = this.pool.Get(
+                    this.Level,
+                    this.LoggerName,
+                    this.FormatProvider,
+                    this.message,
+                    this.parameters,
+                    this.Exception);
+
+            }
+            else
+            {
+                info = new LogEventInfo(
+                    this.Level,
+                    this.LoggerName,
+                    this.FormatProvider,
+                    this.message,
+                    this.parameters,
+                    this.Exception);
+            }
+
+            foreach (var key in this.Properties.Keys)
+            {
+                info.Properties[key] = this.Properties[key];
+            }
+            info.StackTrace = this.StackTrace;
+            info.SequenceID = this.SequenceID;
+            info.TimeStamp = this.TimeStamp;
+            info.UserStackFrameNumber = this.UserStackFrameNumber;
+            info.CalcFormattedMessageIfNeeded();
+            return info;
+        }
+
+        /// <summary>
+        /// Allows an object to try to free resources and perform other cleanup operations before it is reclaimed by garbage collection.
+        /// </summary>
+        ~LogEventInfo()
+        {
+#if !SILVERLIGHT
+            if (!AppDomain.CurrentDomain.IsFinalizingForUnload())
+            {
+                if (InternalLogger.IsTraceEnabled)
+                {
+                    if (this.pool != null)
+                    {
+                        InternalLogger.Trace(string.Format("Pooled LogEventInfo with SequenceID:{0} was collected by garbage collector even if not shutting down",this.SequenceID));
+                    }
+                }
+            }
+#endif
         }
     }
 }

@@ -245,7 +245,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 #if NET4_5
 
 
-        const string WsAddress = "http://localhost:9000/";
+        //const string WsAddress = "http://localhost:9000/";
 
         /// <summary>
         /// Test the Webservice with REST api - <see cref="WebServiceProtocol.HttpPost"/> (only checking for no exception)
@@ -253,7 +253,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_httppost()
         {
-
+            const string WsAddress = "http://localhost:9000/";
 
             var configuration = CreateConfigurationFromString(string.Format(@"
                 <nlog throwExceptions='true'>
@@ -288,7 +288,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             {
 
                 logger.Info("message 1 with a post");
-            });
+            }, WsAddress);
 
 
         }
@@ -299,16 +299,18 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_httpget()
         {
-            WebServiceTest_httpget("api/logme");
+            const string WsAddress = "http://localhost:9001/";
+            WebServiceTest_httpget("api/logme",WsAddress);
         }
 
         [Fact]
         public void WebServiceTest_restapi_httpget_querystring()
         {
-            WebServiceTest_httpget("api/logme?paramFromConfig=valueFromConfig");
+            const string WsAddress = "http://localhost:9002/";
+            WebServiceTest_httpget("api/logme?paramFromConfig=valueFromConfig",WsAddress);
         }
         
-        private void WebServiceTest_httpget(string relativeUrl)
+        private void WebServiceTest_httpget(string relativeUrl, string url)
         {
             var configuration = CreateConfigurationFromString(string.Format(@"
                 <nlog throwExceptions='true' >
@@ -329,7 +331,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                        
                       </logger>
                     </rules>
-                </nlog>", WsAddress, relativeUrl));
+                </nlog>", url, relativeUrl));
 
 
             LogManager.Configuration = configuration;
@@ -340,7 +342,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             StartOwinTest(() =>
             {
                 logger.Info("message 1 with a post");
-            });
+            },url);
         }
 
 
@@ -359,7 +361,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_httppost_checkingLost()
         {
-
+            const string WsAddress = "http://localhost:9003/";
 
             var configuration = CreateConfigurationFromString(string.Format(@"
                 <nlog throwExceptions='true'>
@@ -388,7 +390,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
 
 
-            const int messageCount = 1000;
+            const int messageCount = 500;
             var createdMessages = new List<string>(messageCount);
 
             for (int i = 0; i < messageCount; i++)
@@ -408,7 +410,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                     logger.Info(createdMessage);
                 }
 
-            });
+            }, WsAddress);
 
 
 
@@ -494,7 +496,12 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             {
 
                 RecievedLogsGetParam1.Add(param1);
-                return new string[] { "value1", "value2" };
+                var result =  new string[] { "value1", "value2" };
+                if (CountdownEvent != null)
+                {
+                    CountdownEvent.Signal();
+                }
+                return result;
             }
 
             /// <summary>
@@ -534,12 +541,12 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
 
 
-        internal static void StartOwinTest(Action testsFunc)
+        internal static void StartOwinTest(Action testsFunc, string url)
         {
             // HttpSelfHostConfiguration. So info: http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api
 
             // Start webservice 
-            using (WebApp.Start<Startup>(url: WsAddress))
+            using (WebApp.Start<Startup>(url: url))
             {
                 testsFunc();
 

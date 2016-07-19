@@ -435,7 +435,7 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                CreateConfigurationFromString(
+                LogManager.Configuration = CreateConfigurationFromString(
                 "<nlog internalLogFile='" + tempFileName + @"' internalLogLevel='Warn'>
                     <targets>
                         <target name='d1' type='Debug' />
@@ -450,7 +450,7 @@ namespace NLog.UnitTests.Config
                            <logger name='*' level='Debug' writeTo='d1,d2,d3' />
                     </rules>
                 </nlog>");
-
+                LogManager.Shutdown();
                 AssertFileContains(tempFileName, "Unused target detected. Add a rule for this target to the configuration. TargetName: d4", Encoding.UTF8);
 
                 AssertFileContains(tempFileName, "Unused target detected. Add a rule for this target to the configuration. TargetName: d5", Encoding.UTF8);

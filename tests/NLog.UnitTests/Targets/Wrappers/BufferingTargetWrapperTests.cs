@@ -32,6 +32,7 @@
 // 
 
 using System.Diagnostics;
+using System.Linq;
 
 namespace NLog.UnitTests.Targets.Wrappers
 {
@@ -521,15 +522,21 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 throw new NotSupportedException();
             }
-
+      
             protected override void Write(AsyncLogEventInfo[] logEvents)
             {
-                this.BufferedWriteCount++;
-                this.BufferedTotalEvents += logEvents.Length;
+                this.Write(new ArraySegment<AsyncLogEventInfo>(logEvents));
+            }
 
-                foreach (var logEvent in logEvents)
+            protected override void Write(ArraySegment<AsyncLogEventInfo> logEvents)
+            {
+                this.BufferedWriteCount++;
+                this.BufferedTotalEvents += logEvents.Count;
+
+                for(int x=0;x<logEvents.Count;x++)
                 {
-                    var @event = logEvent;
+                    var evt = logEvents.Array[x];
+                    var @event = evt;
                     ThreadPool.QueueUserWorkItem(
                         s =>
                         {
@@ -569,6 +576,13 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 this.BufferedWriteCount++;
                 this.BufferedTotalEvents += logEvents.Length;
+                base.Write(logEvents);
+            }
+
+            protected override void Write(ArraySegment<AsyncLogEventInfo> logEvents)
+            {
+                this.BufferedWriteCount++;
+                this.BufferedTotalEvents += logEvents.Count;
                 base.Write(logEvents);
             }
 
