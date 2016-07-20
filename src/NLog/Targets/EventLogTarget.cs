@@ -349,7 +349,9 @@ namespace NLog.Targets
         /// <returns></returns>
         private EventLog GetEventLog(LogEventInfo logEvent)
         {
-            return eventLogInstance ?? (eventLogInstance = new EventLog(this.Log, this.MachineName, this.Source.Render(logEvent)));
+            if (eventLogInstance?.Source == this.Source.Render(logEvent))
+                return eventLogInstance ?? (eventLogInstance = new EventLog(this.Log, this.MachineName, this.Source.Render(logEvent)));
+            return eventLogInstance = new EventLog(this.Log, this.MachineName, this.Source.Render(logEvent));            
         }
 
         /// <summary>
