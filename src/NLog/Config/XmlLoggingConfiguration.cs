@@ -530,7 +530,7 @@ namespace NLog.Config
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);
             InternalLogger.LogToConsoleError = nlogElement.GetOptionalBooleanAttribute("internalLogToConsoleError", InternalLogger.LogToConsoleError);
             InternalLogger.LogFile = nlogElement.GetOptionalAttribute("internalLogFile", InternalLogger.LogFile);
-            
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             InternalLogger.LogToTrace = nlogElement.GetOptionalBooleanAttribute("internalLogToTrace", InternalLogger.LogToTrace);
 #endif
@@ -1092,7 +1092,9 @@ namespace NLog.Config
             if (elementType != null)
             {
                 IList propertyValue = (IList)propInfo.GetValue(o, null);
-                object arrayItem = FactoryHelper.CreateInstance(elementType);
+                object arrayItem = CreateArrayItemInstance(element, elementType);
+                if (arrayItem == null)
+                    return false;
                 this.ConfigureObjectFromAttributes(arrayItem, element, true);
                 this.ConfigureObjectFromElement(arrayItem, element);
                 propertyValue.Add(arrayItem);
@@ -1100,6 +1102,15 @@ namespace NLog.Config
             }
 
             return false;
+        }
+
+        private object CreateArrayItemInstance(NLogXmlElement element, Type elementType)
+        {
+            if (elementType != typeof(Layout))
+                return FactoryHelper.CreateInstance(elementType);
+
+            string layoutTypeName = StripOptionalNamespacePrefix(element.GetOptionalAttribute("type", null));
+            return layoutTypeName == null ? null : ConfigurationItemFactory.Layouts.CreateInstance(ExpandSimpleVariables(layoutTypeName));
         }
 
         private void ConfigureObjectFromAttributes(object targetObject, NLogXmlElement element, bool ignoreType)
