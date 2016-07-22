@@ -79,7 +79,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             try
             {
-               
+
                 ConfigurationItemFactory.Default.Targets
                             .RegisterDefinition("CSharpEventTarget", typeof(CSharpEventTarget));
 
@@ -121,10 +121,10 @@ namespace NLog.UnitTests.LayoutRenderers
 
                      target.EventWritten += (logevent, rendered1, asyncThreadId1) =>
                     {
-                        continuationHit.Set();
                         rendered = rendered1;
                         asyncThreadId = asyncThreadId1;
                         lastLogEvent = logevent;
+                        continuationHit.Set();
                     };
 
 
@@ -139,10 +139,10 @@ namespace NLog.UnitTests.LayoutRenderers
                     //should be written in another thread.
                     Assert.NotEqual(threadId, asyncThreadId);
 
-                   
+
                     Assert.Equal("auth:CustomAuth:SOMEDOMAIN\\SomeUser", rendered);
-                  
-                 
+
+
 
                 }
                 finally
