@@ -60,6 +60,16 @@ namespace NLog.Layouts
         public IList<Layout> Layouts { get; private set; }
 
         /// <summary>
+        /// Initializes the layout.
+        /// </summary>
+        protected override void InitializeLayout()
+        {
+            base.InitializeLayout();
+            foreach (var layout in Layouts)
+                layout.Initialize(this.LoggingConfiguration);
+        }
+
+            /// <summary>
         /// Formats the log event relying on inner layouts.
         /// </summary>
         /// <param name="logEvent">The log event to be formatted.</param>
@@ -70,6 +80,16 @@ namespace NLog.Layouts
             foreach (var layout in Layouts)
                 sb.Append(layout.Render(logEvent));
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Closes the layout.
+        /// </summary>
+        protected override void CloseLayout()
+        {
+            foreach (var layout in Layouts)
+                layout.Close();
+            base.CloseLayout();
         }
     }
 }
