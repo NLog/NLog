@@ -349,9 +349,15 @@ namespace NLog.Targets
         /// <returns></returns>
         private EventLog GetEventLog(LogEventInfo logEvent)
         {
-            if (eventLogInstance?.Source == this.Source.Render(logEvent) && eventLogInstance?.Log == this.Log && eventLogInstance?.MachineName == this.MachineName)
-                return eventLogInstance ?? (eventLogInstance = new EventLog(this.Log, this.MachineName, this.Source.Render(logEvent)));
-            return eventLogInstance = new EventLog(this.Log, this.MachineName, this.Source.Render(logEvent));            
+            var renderedSource = this.Source?.Render(logEvent);
+            var isCacheUpToDate = eventLogInstance != null && renderedSource == eventLogInstance.Source &&
+                                   eventLogInstance.Log == this.Log && eventLogInstance.MachineName == this.MachineName;
+
+            if (!isCacheUpToDate)
+            {
+                eventLogInstance = new EventLog(this.Log, this.MachineName, renderedSource);
+            }
+            return eventLogInstance;
         }
 
         /// <summary>
