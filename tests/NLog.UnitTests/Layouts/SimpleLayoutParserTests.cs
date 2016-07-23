@@ -539,6 +539,7 @@ namespace NLog.UnitTests.Layouts
         [InlineData("Ignore,Neutral,Ignore", "enums", "Ignore-Neutral-Ignore")]
         [InlineData("ASCII,ISO-8859-1, UTF-8", "encodings", "System.Text.ASCIIEncoding-System.Text.Latin1Encoding-System.Text.UTF8Encoding")]
         [InlineData("ASCII,ISO-8859-1,UTF-8", "encodings", "System.Text.ASCIIEncoding-System.Text.Latin1Encoding-System.Text.UTF8Encoding")]
+        [InlineData("Hidden,System,Archive", "FlagEnums", "Hidden-System-Archive")]
         public void LayoutWithListParamTest(string input, string propname, string expected)
         {
             ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("layoutrenderer-with-list", typeof(LayoutRendererWithListParam));
@@ -571,6 +572,8 @@ namespace NLog.UnitTests.Layouts
 
             public List<FilterResult> Enums { get; set; }
 
+            public List<Win32FileAttributes> FlagEnums { get; set; }
+
             public List<int> Numbers { get; set; }
 
             public List<string> Strings { get; set; }
@@ -589,6 +592,7 @@ namespace NLog.UnitTests.Layouts
                 Append(builder, Strings);
                 AppendFormattable(builder, Numbers);
                 AppendFormattable(builder, Enums);
+                AppendFormattable(builder, FlagEnums);
                 AppendFormattable(builder, Doubles);
                 Append(builder, Encodings);
                 Append(builder, Objects);
