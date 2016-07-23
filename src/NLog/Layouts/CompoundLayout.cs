@@ -39,7 +39,7 @@ namespace NLog.Layouts
     using System.Text;
 
     /// <summary>
-    /// A layout containig a nested layouts.
+    /// A layout containing one or more nested layouts.
     /// </summary>
     [Layout("CompoundLayout")]
     [ThreadAgnostic]
@@ -55,7 +55,7 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Gets the array of inner layouts.
+        /// Gets the inner layouts.
         /// </summary>
         /// <docgen category='CSV Options' order='10' />
         [ArrayParameter(typeof(Layout), "layout")]
