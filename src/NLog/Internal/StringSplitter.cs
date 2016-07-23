@@ -55,7 +55,7 @@ namespace NLog.Internal
         /// <returns></returns>
         public static IEnumerable<string> SplitWithSelfEscape(this string text, char splitChar)
         {
-            return SplitWithEscape(text, splitChar, splitChar);
+            return SplitWithSelfEscape2(text, splitChar);
         }
 
         /// <summary>
@@ -67,95 +67,125 @@ namespace NLog.Internal
         /// <returns></returns>
         public static IEnumerable<string> SplitWithEscape(this string text, char splitChar, char escapeChar)
         {
+            if (splitChar == escapeChar)
+            {
+                return SplitWithSelfEscape2(text, splitChar);
+            }
+
+            return SplitWithEscape2(text, splitChar, escapeChar);
+        }
+
+        private static IEnumerable<string> SplitWithEscape2(string text, char splitChar, char escapeChar)
+        {
             if (!string.IsNullOrEmpty(text))
             {
                 var prevWasEscape = false;
                 int i;
                 var sb = new StringBuilder();
-                if (splitChar == escapeChar)
+                for (i = 0; i < text.Length; i++)
                 {
-                    //if same, handle different
-                    for (i = 0; i < text.Length; i++)
+                    var c = text[i];
+
+                    //prev not escaped, then check splitchar
+                    var isSplitChar = c == splitChar;
+                    if (prevWasEscape)
                     {
-                        var c = text[i];
-                        var isSplitChar = c == splitChar;
-                        if (prevWasEscape)
+                        if (isSplitChar)
                         {
-                            if (isSplitChar)
-                            {
-                                prevWasEscape = false;
-                            }
-                            else
-                            {
-                                if (sb.Length > 0) sb.Length --;  
-                                var part = sb.ToString();
-                                //reset
-                                sb.Length = 0;
-                                prevWasEscape = false;
-                                sb.Append(c);
-                                yield return part;
-                            }
+                            //overwrite escapechar
+                            if (sb.Length > 0)
+                                sb.Length--;
+                            sb.Append(c);
+                            //if splitchar ==escapechar, then in this case it's used as split
+                            prevWasEscape = false;
                         }
                         else
                         {
                             sb.Append(c);
-                            if (isSplitChar)
-                            {
-                                prevWasEscape = true;
-                            }
+                            prevWasEscape = c == escapeChar;
                         }
                     }
-                }
-                else
-                {
-                    for (i = 0; i < text.Length; i++)
+                    else
                     {
-                        var c = text[i];
-
-                        //prev not escaped, then check splitchar
-                        var isSplitChar = c == splitChar;
-                        if (prevWasEscape)
+                        if (isSplitChar)
                         {
-                            if (isSplitChar)
-                            {
-                                //overwrite escapechar
-                                if (sb.Length > 0)
-                                    sb.Length--;
-                                sb.Append(c);
-                                //if splitchar ==escapechar, then in this case it's used as split
-                                prevWasEscape = false;
-                            }
-                            else
-                            {
-                                sb.Append(c);
-                                prevWasEscape = c == escapeChar;
-                            }
+                            var part = sb.ToString();
+                            //reset
+                            sb.Length = 0;
+                            prevWasEscape = false;
+                            yield return part;
                         }
                         else
                         {
-                            if (isSplitChar)
-                            {
-                                var part = sb.ToString();
-                                //reset
-                                sb.Length = 0;
-                                prevWasEscape = false;
-                                yield return part;
-                            }
-                            else
-                            {
-                                sb.Append(c);
-                                prevWasEscape = c == escapeChar;
-                            }
+                            sb.Append(c);
+                            prevWasEscape = c == escapeChar;
                         }
                     }
                 }
-                var length = sb.Length;
-                if (length > 0)
+                var lastPart = GetLastPart(sb);
+                if (lastPart != null)
                 {
-                    var lastPart = sb.ToString();
                     yield return lastPart;
                 }
             }
+           
+        }
+
+        private static IEnumerable<string> SplitWithSelfEscape2(string text, char splitChar)
+        {
+            if (!string.IsNullOrEmpty(text))
+            {
+                var prevWasEscape = false;
+                int i;
+                var sb = new StringBuilder();
+                //if same, handle different
+                for (i = 0; i < text.Length; i++)
+                {
+                    var c = text[i];
+                    var isSplitChar = c == splitChar;
+                    if (prevWasEscape)
+                    {
+                        if (isSplitChar)
+                        {
+                            prevWasEscape = false;
+                        }
+                        else
+                        {
+                            if (sb.Length > 0) sb.Length --;
+                            var part = sb.ToString();
+                            //reset
+                            sb.Length = 0;
+                            prevWasEscape = false;
+                            sb.Append(c);
+                            yield return part;
+                        }
+                    }
+                    else
+                    {
+                        sb.Append(c);
+                        if (isSplitChar)
+                        {
+                            prevWasEscape = true;
+                        }
+                    }
+                }
+                var lastPart = GetLastPart(sb);
+                if (lastPart != null)
+                {
+                    yield return lastPart;
+                }
+            }
+        }
+
+        private static string GetLastPart(StringBuilder sb)
+        {
+            var length = sb.Length;
+            if (length > 0)
+            {
+                var lastPart = sb.ToString();
+                return lastPart;
+            }
+            return null;
         }
     }
 }
