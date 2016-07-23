@@ -1092,9 +1092,12 @@ namespace NLog.Config
             if (elementType != null)
             {
                 IList propertyValue = (IList)propInfo.GetValue(o, null);
-                object arrayItem = CreateArrayItemInstance(element, elementType);
+
+                object arrayItem = TryCreateLayoutInstance(element, elementType);
+                // arrayItem is not a layout
                 if (arrayItem == null)
-                    return false;
+                    arrayItem = FactoryHelper.CreateInstance(elementType);
+
                 this.ConfigureObjectFromAttributes(arrayItem, element, true);
                 this.ConfigureObjectFromElement(arrayItem, element);
                 propertyValue.Add(arrayItem);
@@ -1102,15 +1105,6 @@ namespace NLog.Config
             }
 
             return false;
-        }
-
-        private object CreateArrayItemInstance(NLogXmlElement element, Type elementType)
-        {
-            if (elementType != typeof(Layout))
-                return FactoryHelper.CreateInstance(elementType);
-
-            string layoutTypeName = StripOptionalNamespacePrefix(element.GetOptionalAttribute("type", null));
-            return layoutTypeName == null ? null : ConfigurationItemFactory.Layouts.CreateInstance(ExpandSimpleVariables(layoutTypeName));
         }
 
         private void ConfigureObjectFromAttributes(object targetObject, NLogXmlElement element, bool ignoreType)
@@ -1138,21 +1132,15 @@ namespace NLog.Config
             // if property exists
             if (PropertyHelper.TryGetPropertyInfo(o, name, out targetPropertyInfo))
             {
-                // and is a Layout
-                if (typeof(Layout).IsAssignableFrom(targetPropertyInfo.PropertyType))
-                {
-                    string layoutTypeName = StripOptionalNamespacePrefix(layoutElement.GetOptionalAttribute("type", null));
+                Layout layout = TryCreateLayoutInstance(layoutElement, targetPropertyInfo.PropertyType);
 
-                    // and 'type' attribute has been specified
-                    if (layoutTypeName != null)
-                    {
-                        // configure it from current element
-                        Layout layout = this.ConfigurationItemFactory.Layouts.CreateInstance(this.ExpandSimpleVariables(layoutTypeName));
-                        this.ConfigureObjectFromAttributes(layout, layoutElement, true);
-                        this.ConfigureObjectFromElement(layout, layoutElement);
-                        targetPropertyInfo.SetValue(o, layout, null);
-                        return true;
-                    }
+                // and is a Layout and 'type' attribute has been specified
+                if (layout != null)
+                {
+                    this.ConfigureObjectFromAttributes(layout, layoutElement, true);
+                    this.ConfigureObjectFromElement(layout, layoutElement);
+                    targetPropertyInfo.SetValue(o, layout, null);
+                    return true;
                 }
             }
 
@@ -1214,6 +1202,21 @@ namespace NLog.Config
 
             InternalLogger.Debug("Wrapping target '{0}' with '{1}' and renaming to '{2}", wrapperTargetInstance.Name, wrapperTargetInstance.GetType().Name, t.Name);
             return wrapperTargetInstance;
+        }
+
+        private Layout TryCreateLayoutInstance(NLogXmlElement element, Type type)
+        {
+            // Check if it is a Layout
+            if (!typeof(Layout).IsAssignableFrom(type))
+                return null;
+
+            string layoutTypeName = StripOptionalNamespacePrefix(element.GetOptionalAttribute("type", null));
+
+            // Check if the 'type' attribute has been specified
+            if (layoutTypeName == null)
+                return null;
+
+            return this.ConfigurationItemFactory.Layouts.CreateInstance(this.ExpandSimpleVariables(layoutTypeName));
         }
 
         /// <summary>
