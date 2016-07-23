@@ -42,8 +42,6 @@ namespace NLog.Layouts
     /// A layout containing one or more nested layouts.
     /// </summary>
     [Layout("CompoundLayout")]
-    [ThreadAgnostic]
-    [AppDomainFixedOutput]
     public class CompoundLayout : Layout
     {
         /// <summary>
