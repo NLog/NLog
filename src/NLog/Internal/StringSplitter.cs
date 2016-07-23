@@ -233,17 +233,48 @@ namespace NLog.Internal
                             sb.Length = 0;
                           //  isInPart = false;
                             yield return part;
-                        }
-                        else if (isQuoteChar)
-                        {
-                            //skip quoteChar
-                            if (sb.Length > 0)
-                                sb.Length--;
-                            //isInPart = true;
-                            inQuotedMode = true;
-                            //todo check escape quoteChar
+                            //try next char
+                            i++;
+                            c = text[i];
+                            isQuoteChar = c == quoteChar;
+                            isEscapeChar = c == escapeChar;
+                            if (isEscapeChar)
+                            {
+                                var alsoQuote = isQuoteChar;
 
+                                //try next char
+                                i++;
+                                c = text[i];
+                                isQuoteChar = c == quoteChar;
+                                if (isQuoteChar)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    if (alsoQuote)
+                                    {
+                                        sb.Append(c);
+                                        isQuoteChar = true;
+                                    }
+                                }
+                            }
+
+                            if (isQuoteChar)
+                            {
+                                //skip quoteChar
+                                if (sb.Length > 0)
+                                    sb.Length--;
+                                //isInPart = true;
+                                inQuotedMode = true;
+                                //todo check escape quoteChar
+                            }
+                            else
+                            {
+                                sb.Append(c);
+                            }
                         }
+                       
 
                         else
                         {

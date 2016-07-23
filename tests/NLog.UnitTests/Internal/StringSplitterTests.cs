@@ -84,15 +84,17 @@ namespace NLog.UnitTests.Internal
         }
 
         [Theory]
-        [InlineData(@"abc", ';', ',', "abc")]
-        [InlineData(@"a;b;c", ';', '\'', "a,b,c")]
-        [InlineData(@"a;'b;c'", ';', '\'', "a,b;c")]
-        [InlineData(@"a;'b;c", ';', '\'', "a,'b;c")]
-      //  [InlineData(@"a;''b;c", ';', '\'',  "a,'b,c")]
+        [InlineData(@"abc", ';', ',', '\\', "abc")]
+        [InlineData(@"a;b;c", ';', '\'', '\\', "a,b,c")]
+        [InlineData(@"a;'b;c'", ';', '\'', '\\', "a,b;c")]
+        [InlineData(@"a;'b;c", ';', '\'', '\\', "a,'b;c")]
+        [InlineData(@"a;b'c;d", ';', '\'', '\\', "a,b'c,d")]
+        //[InlineData(@"a;\'b;c", ';', '\'', '\\', "a,'b,c")]
+        //[InlineData(@"a;''b;c", ';', '\'', '\'', "a,'b,c")]
 
-        void SplitStringWithQuotes(string input, char splitChar, char quoteChart, string output)
+        void SplitStringWithQuotes(string input, char splitChar, char quoteChar, char escapeChar, string output)
         {
-            var strings = input.SplitQuoted(splitChar, quoteChart, '0').ToArray();
+            var strings = input.SplitQuoted(splitChar, quoteChar, escapeChar).ToArray();
             var result = string.Join(",", strings);
             Assert.Equal(output, result);
         }
