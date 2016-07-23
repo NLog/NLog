@@ -70,15 +70,29 @@ namespace NLog.UnitTests.Internal
         [InlineData(@"a\;b\;c;d", ';', '\\', @"a;b;c,d")]
         [InlineData(@"a\;b;c\;d", ';', '\\', @"a;b,c;d")]
         [InlineData(@"a;b;;c", ';', ';', @"a,b;c")]
-        [InlineData(@"a;b;;;;c"   , ';', ';', @"a,b;;c")]
-        [InlineData(@"a;;b"   , ';', ';', @"a;b")]
-        [InlineData(@"abc"   , ';', ';', @"abc")]
-        [InlineData(@"abc\;"   , ';', '\\', @"abc;")]
-        [InlineData(@"abc;;"   , ';', ';', @"abc;")]
+        [InlineData(@"a;b;;;;c", ';', ';', @"a,b;;c")]
+        [InlineData(@"a;;b", ';', ';', @"a;b")]
+        [InlineData(@"abc", ';', ';', @"abc")]
+        [InlineData(@"abc\;", ';', '\\', @"abc;")]
+        [InlineData(@"abc;;", ';', ';', @"abc;")]
 
         void SplitStringWithEscape(string input, char splitChar, char escapeChar, string output)
         {
             var strings = input.SplitWithEscape(splitChar, escapeChar).ToArray();
+            var result = string.Join(",", strings);
+            Assert.Equal(output, result);
+        }
+
+        [Theory]
+        [InlineData(@"abc", ';', ',', "abc")]
+        [InlineData(@"a;b;c", ';', '\'', "a,b,c")]
+        [InlineData(@"a;'b;c'", ';', '\'', "a,b;c")]
+        [InlineData(@"a;'b;c", ';', '\'', "a,'b;c")]
+      //  [InlineData(@"a;''b;c", ';', '\'',  "a,'b,c")]
+
+        void SplitStringWithQuotes(string input, char splitChar, char quoteChart, string output)
+        {
+            var strings = input.SplitQuoted(splitChar, quoteChart, '0').ToArray();
             var result = string.Join(",", strings);
             Assert.Equal(output, result);
         }
