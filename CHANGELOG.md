@@ -2,6 +2,19 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
 
 This file is new since 4.3.4. If requested, we will try to add the older releases in this file.
 
+
+### V4.3.6 (2016/07/24)
+
+#### Features
+- [#1531](https://github.com/nlog/nlog/pull/1531) Support Android 4.4 (@304NotModified)
+- [#1551](https://github.com/nlog/nlog/pull/1551) Addded CompoundLayout (@luigiberrettini)
+
+#### Fixes
+- [#1548](https://github.com/nlog/nlog/pull/1548) Bugfix: Can't update EventLog's Source property (@304NotModified, @Page-Not-Found)
+- [#1553](https://github.com/nlog/nlog/pull/1553) Bugfix: Throw configException when registering invalid extension assembly/type. (@304NotModified, @Jeinhaus)
+- [#1547](https://github.com/nlog/nlog/pull/1547) LogReceiverWebServiceTarget is leaking communication channels (@MartinTherriault)
+
+
 ### V4.3.5 (2016/06/13)
 
 #### Features
