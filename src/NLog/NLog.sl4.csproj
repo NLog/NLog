@@ -293,6 +293,7 @@
     <Compile Include="LayoutRenderers\Wrappers\WrapLineLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WrapperLayoutRendererBase.cs" />
     <Compile Include="LayoutRenderers\Wrappers\XmlEncodeLayoutRendererWrapper.cs" />
+    <Compile Include="Layouts\CompoundLayout.cs" />
     <Compile Include="Layouts\CsvColumn.cs" />
     <Compile Include="Layouts\CsvColumnDelimiterMode.cs" />
     <Compile Include="Layouts\CsvLayout.cs" />

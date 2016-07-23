@@ -185,6 +185,7 @@
     <Compile Include="LayoutRenderers\Wrappers\WrapLineTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\XmlEncodeTests.cs" />
     <Compile Include="Layouts\AllEventPropertiesTests.cs" />
+    <Compile Include="Layouts\CompoundLayoutTests.cs" />
     <Compile Include="Layouts\CsvLayoutTests.cs" />
     <Compile Include="Layouts\JsonLayoutTests.cs" />
     <Compile Include="Layouts\SimpleLayoutOutputTests.cs" />
