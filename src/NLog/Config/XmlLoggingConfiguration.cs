@@ -406,7 +406,7 @@ namespace NLog.Config
 
                 if (!ignoreErrors)
                 {
-                    if (exception.MustBeRethrown())
+                    if (configurationException.MustBeRethrown())
                     {
                         throw configurationException;
                     }
@@ -909,26 +909,9 @@ namespace NLog.Config
                 string type = StripOptionalNamespacePrefix(addElement.GetOptionalAttribute("type", null));
                 if (type != null)
                 {
-                    this.ConfigurationItemFactory.RegisterType(Type.GetType(type, true), prefix);
-                }
-
-                string assemblyFile = addElement.GetOptionalAttribute("assemblyFile", null);
-                if (assemblyFile != null)
-                {
                     try
                     {
-#if SILVERLIGHT && !WINDOWS_PHONE
-                                var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
-                                var assemblyPart = new AssemblyPart();
-                                Assembly asm = assemblyPart.Load(si.Stream);
-#else
-
-                        string fullFileName = Path.Combine(baseDirectory, assemblyFile);
-                        InternalLogger.Info("Loading assembly file: {0}", fullFileName);
-
-                        Assembly asm = Assembly.LoadFrom(fullFileName);
-#endif
-                        this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
+                        this.ConfigurationItemFactory.RegisterType(Type.GetType(type, true), prefix);
                     }
                     catch (Exception exception)
                     {
@@ -938,10 +921,48 @@ namespace NLog.Config
                         }
 
                         InternalLogger.Error(exception, "Error loading extensions.");
+                        NLogConfigurationException configException =
+                            new NLogConfigurationException("Error loading extensions: " + type, exception);
 
-                        if (exception.MustBeRethrown())
+                        if (configException.MustBeRethrown())
                         {
-                            throw new NLogConfigurationException("Error loading extensions: " + assemblyFile, exception);
+                            throw configException;
+                        }
+                    }
+                }
+
+                string assemblyFile = addElement.GetOptionalAttribute("assemblyFile", null);
+                if (assemblyFile != null)
+                {
+                    try
+                    {
+#if SILVERLIGHT && !WINDOWS_PHONE
+                    var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
+                    var assemblyPart = new AssemblyPart();
+                    Assembly asm = assemblyPart.Load(si.Stream);
+#else
+                        string fullFileName = Path.Combine(baseDirectory, assemblyFile);
+                        InternalLogger.Info("Loading assembly file: {0}", fullFileName);
+
+                        Assembly asm = Assembly.LoadFrom(fullFileName);
+#endif
+                        this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
+
+                    }
+                    catch (Exception exception)
+                    {
+                        if (exception.MustBeRethrownImmediately())
+                        {
+                            throw;
+                        }
+
+                        InternalLogger.Error(exception, "Error loading extensions.");
+                        NLogConfigurationException configException =
+                            new NLogConfigurationException("Error loading extensions: " + assemblyFile, exception);
+
+                        if (configException.MustBeRethrown())
+                        {
+                            throw configException;
                         }
                     }
 
@@ -955,9 +976,9 @@ namespace NLog.Config
                     {
                         InternalLogger.Info("Loading assembly name: {0}", assemblyName);
 #if SILVERLIGHT && !WINDOWS_PHONE
-                        var si = Application.GetResourceStream(new Uri(assemblyName + ".dll", UriKind.Relative));
-                        var assemblyPart = new AssemblyPart();
-                        Assembly asm = assemblyPart.Load(si.Stream);
+                    var si = Application.GetResourceStream(new Uri(assemblyName + ".dll", UriKind.Relative));
+                    var assemblyPart = new AssemblyPart();
+                    Assembly asm = assemblyPart.Load(si.Stream);
 #else
                         Assembly asm = Assembly.Load(assemblyName);
 #endif
@@ -966,17 +987,18 @@ namespace NLog.Config
                     }
                     catch (Exception exception)
                     {
-
                         if (exception.MustBeRethrownImmediately())
                         {
                             throw;
                         }
 
                         InternalLogger.Error(exception, "Error loading extensions.");
+                        NLogConfigurationException configException =
+                            new NLogConfigurationException("Error loading extensions: " + assemblyName, exception);
 
-                        if (exception.MustBeRethrown())
+                        if (configException.MustBeRethrown())
                         {
-                            throw new NLogConfigurationException("Error loading extensions: " + assemblyName, exception);
+                            throw configException;
                         }
                     }
                 }

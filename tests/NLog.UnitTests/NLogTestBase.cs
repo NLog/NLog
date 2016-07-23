@@ -68,6 +68,7 @@ namespace NLog.UnitTests
             LogManager.Configuration = null;
             InternalLogger.Reset();
             LogManager.ThrowExceptions = false;
+            LogManager.ThrowConfigExceptions = null;
         }
 
         protected void AssertDebugCounter(string targetName, int val)
