@@ -181,9 +181,14 @@ namespace MakeNLogXSD
 
         private static IEnumerable<XElement> GetAttributeElements(XElement type)
         {
-            return type.Elements("property").Select(GetAttributeElement).ToList();
+            return type.Elements("property").Select(GetAttributeElement).Where(elem => elem != null).ToList();
         }
 
+        /// <summary>
+        /// Ignore if returns null
+        /// </summary>
+        /// <param name="propertyElement"></param>
+        /// <returns></returns>
         private static XElement GetAttributeElement(XElement propertyElement)
         {
             var result = new XElement(xsd + "attribute",
@@ -200,6 +205,10 @@ namespace MakeNLogXSD
                 string enumType = (string)propertyElement.Attribute("enumType");
 
                 result.Add(new XAttribute("type", enumType));
+            }
+            else if (IgnoreTypes.Contains(propertyType))
+            {
+                return null;
             }
             else
             {
@@ -239,12 +248,21 @@ namespace MakeNLogXSD
             var results = new List<XElement>();
             foreach (var propertyElement in type.Elements("property"))
             {
-                results.Add(GetPropertyElement(propertyElement));
+                var xElement = GetPropertyElement(propertyElement);
+                if (xElement != null)
+                {
+                    results.Add(xElement);
+                }
             }
 
             return results;
         }
 
+        /// <summary>
+        /// Ignore if returns null.
+        /// </summary>
+        /// <param name="propertyElement"></param>
+        /// <returns></returns>
         private static XElement GetPropertyElement(XElement propertyElement)
         {
             var result = new XElement(xsd + "element",
@@ -266,6 +284,10 @@ namespace MakeNLogXSD
                 result.Add(new XAttribute("maxOccurs", "1"));
                 result.Add(new XAttribute("type", enumType));
             }
+            else if (IgnoreTypes.Contains(propertyType))
+            {
+                return null;
+            }
             else
             {
                 result.Add(new XAttribute("maxOccurs", "1"));
@@ -274,6 +296,8 @@ namespace MakeNLogXSD
 
             return result;
         }
+
+        private static HashSet<string> IgnoreTypes = new HashSet<string> { "NLog.Targets.IFileCompressor" };
 
         private static string GetXsdType(string apiTypeName, bool attribute)
         {

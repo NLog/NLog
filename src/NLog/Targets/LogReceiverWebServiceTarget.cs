@@ -401,10 +401,17 @@ namespace NLog.Targets
 
         private void ClientOnProcessLogMessagesCompleted(object sender, AsyncCompletedEventArgs asyncCompletedEventArgs)
         {
-            var client = sender as WcfLogReceiverClient;
+            var client = sender as IWcfLogReceiverClient;
             if (client != null && client.State == CommunicationState.Opened)
             {
-                client.CloseCommunicationObject();
+                try
+                {
+                    client.Close();
+                }
+                catch
+                {
+                    client.Abort();
+                }
             }
         }
 #endif

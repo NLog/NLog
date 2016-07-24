@@ -405,7 +405,7 @@ namespace NLog.Config
 
                 if (!ignoreErrors)
                 {
-                    if (exception.MustBeRethrown())
+                    if (configurationException.MustBeRethrown())
                     {
                         throw configurationException;
                     }
@@ -914,7 +914,26 @@ namespace NLog.Config
                 string type = StripOptionalNamespacePrefix(addElement.GetOptionalAttribute("type", null));
                 if (type != null)
                 {
+                    try
+                    {
                     this.ConfigurationItemFactory.RegisterType(Type.GetType(type, true), prefix);
+                }
+                    catch (Exception exception)
+                    {
+                        if (exception.MustBeRethrownImmediately())
+                        {
+                            throw;
+                        }
+
+                        InternalLogger.Error(exception, "Error loading extensions.");
+                        NLogConfigurationException configException =
+                            new NLogConfigurationException("Error loading extensions: " + type, exception);
+
+                        if (configException.MustBeRethrown())
+                        {
+                            throw configException;
+                        }
+                    }
                 }
 
 #if !UWP10
@@ -925,6 +944,7 @@ namespace NLog.Config
                     {
                         var asm = AssemblyHelpers.LoadFromPath(assemblyFile);
                         this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
+
                     }
                     catch (Exception exception)
                     {
@@ -934,10 +954,12 @@ namespace NLog.Config
                         }
 
                         InternalLogger.Error(exception, "Error loading extensions.");
+                        NLogConfigurationException configException =
+                            new NLogConfigurationException("Error loading extensions: " + assemblyFile, exception);
 
-                        if (exception.MustBeRethrown())
+                        if (configException.MustBeRethrown())
                         {
-                            throw new NLogConfigurationException("Error loading extensions: " + assemblyFile, exception);
+                            throw configException;
                         }
                     }
 
@@ -956,17 +978,18 @@ namespace NLog.Config
                     }
                     catch (Exception exception)
                     {
-
                         if (exception.MustBeRethrownImmediately())
                         {
                             throw;
                         }
 
                         InternalLogger.Error(exception, "Error loading extensions.");
+                        NLogConfigurationException configException =
+                            new NLogConfigurationException("Error loading extensions: " + assemblyName, exception);
 
-                        if (exception.MustBeRethrown())
+                        if (configException.MustBeRethrown())
                         {
-                            throw new NLogConfigurationException("Error loading extensions: " + assemblyName, exception);
+                            throw configException;
                         }
                     }
                 }
@@ -1082,7 +1105,12 @@ namespace NLog.Config
             if (elementType != null)
             {
                 IList propertyValue = (IList)propInfo.GetValue(o, null);
-                object arrayItem = FactoryHelper.CreateInstance(elementType);
+
+                object arrayItem = TryCreateLayoutInstance(element, elementType);
+                // arrayItem is not a layout
+                if (arrayItem == null)
+                    arrayItem = FactoryHelper.CreateInstance(elementType);
+
                 this.ConfigureObjectFromAttributes(arrayItem, element, true);
                 this.ConfigureObjectFromElement(arrayItem, element);
                 propertyValue.Add(arrayItem);
@@ -1117,23 +1145,17 @@ namespace NLog.Config
             // if property exists
             if (PropertyHelper.TryGetPropertyInfo(o, name, out targetPropertyInfo))
             {
-                // and is a Layout
-                if (typeof(Layout).IsAssignableFrom(targetPropertyInfo.PropertyType))
-                {
-                    string layoutTypeName = StripOptionalNamespacePrefix(layoutElement.GetOptionalAttribute("type", null));
+                Layout layout = TryCreateLayoutInstance(layoutElement, targetPropertyInfo.PropertyType);
 
-                    // and 'type' attribute has been specified
-                    if (layoutTypeName != null)
+                // and is a Layout and 'type' attribute has been specified
+                if (layout != null)
                     {
-                        // configure it from current element
-                        Layout layout = this.ConfigurationItemFactory.Layouts.CreateInstance(this.ExpandSimpleVariables(layoutTypeName));
                         this.ConfigureObjectFromAttributes(layout, layoutElement, true);
                         this.ConfigureObjectFromElement(layout, layoutElement);
                         targetPropertyInfo.SetValue(o, layout, null);
                         return true;
                     }
                 }
-            }
 
             return false;
         }
@@ -1193,6 +1215,21 @@ namespace NLog.Config
 
             InternalLogger.Debug("Wrapping target '{0}' with '{1}' and renaming to '{2}", wrapperTargetInstance.Name, wrapperTargetInstance.GetType().Name, t.Name);
             return wrapperTargetInstance;
+        }
+
+        private Layout TryCreateLayoutInstance(NLogXmlElement element, Type type)
+        {
+            // Check if it is a Layout
+            if (!typeof(Layout).IsAssignableFrom(type))
+                return null;
+
+            string layoutTypeName = StripOptionalNamespacePrefix(element.GetOptionalAttribute("type", null));
+
+            // Check if the 'type' attribute has been specified
+            if (layoutTypeName == null)
+                return null;
+
+            return this.ConfigurationItemFactory.Layouts.CreateInstance(this.ExpandSimpleVariables(layoutTypeName));
         }
 
         /// <summary>
