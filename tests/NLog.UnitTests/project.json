@@ -103,6 +103,9 @@
   "buildOptions": {
     "keyFile": "NLogTests.snk",
     "nowarn": []
+  },
+  "runtimes": {
+    "win-anycpu": {}
   }
 
 }
