@@ -111,8 +111,8 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var culture = GetCulture(logEvent);
-            builder.Append(this.perfCounter.NextValue().ToString(culture));
+            var formatProvider = GetFormatProvider(logEvent);
+            builder.Append(this.perfCounter.NextValue().ToString(formatProvider));
         }
     }
 }

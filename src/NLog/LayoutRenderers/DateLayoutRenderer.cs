@@ -87,8 +87,8 @@ namespace NLog.LayoutRenderers
                 ts = ts.ToUniversalTime();
             }
 
-            var culture = GetCulture(logEvent, Culture);
-            builder.Append(ts.ToString(this.Format, culture));
+            var formatProvider = GetFormatProvider(logEvent, Culture);
+            builder.Append(ts.ToString(this.Format, formatProvider));
         }
     }
 }

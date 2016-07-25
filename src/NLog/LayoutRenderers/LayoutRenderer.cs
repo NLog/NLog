@@ -210,11 +210,36 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Get the culture for rendering the messages to a <see cref="string"/>
+        /// Get the <see cref="IFormatProvider"/> for rendering the messages to a <see cref="string"/>
         /// </summary>
         /// <param name="logEvent">LogEvent with culture</param>
         /// <param name="layoutCulture">Culture in on Layout level</param>
         /// <returns></returns>
+        protected IFormatProvider GetFormatProvider(LogEventInfo logEvent, IFormatProvider layoutCulture = null)
+        {
+            var culture = logEvent.FormatProvider;
+
+            if (culture == null)
+            {
+                culture = layoutCulture;
+            }
+
+            if (culture == null && this.LoggingConfiguration != null)
+            {
+                culture = this.LoggingConfiguration.DefaultCultureInfo;
+            }
+            return culture;
+        }
+
+        /// <summary>
+        /// Get the <see cref="CultureInfo"/> for rendering the messages to a <see cref="string"/>, needed for date and number formats
+        /// </summary>
+        /// <param name="logEvent">LogEvent with culture</param>
+        /// <param name="layoutCulture">Culture in on Layout level</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// <see cref="GetFormatProvider"/> is preferred
+        /// </remarks>
         protected CultureInfo GetCulture(LogEventInfo logEvent, CultureInfo layoutCulture = null)
         {
             var culture = logEvent.FormatProvider as CultureInfo;

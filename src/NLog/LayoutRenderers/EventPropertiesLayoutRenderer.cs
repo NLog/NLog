@@ -84,8 +84,8 @@ namespace NLog.LayoutRenderers
 
             if (logEvent.Properties.TryGetValue(this.Item, out value))
             {
-                var culture = GetCulture(logEvent, Culture);
-                builder.Append(value.ToStringWithOptionalFormat(Format, culture));
+                var formatProvider = GetFormatProvider(logEvent, Culture);
+                builder.Append(value.ToStringWithOptionalFormat(Format, formatProvider));
             }
         }
     }
