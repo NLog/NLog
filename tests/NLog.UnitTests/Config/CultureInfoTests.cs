@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.LayoutRenderers;
+
 namespace NLog.UnitTests.Config
 {
     using System;
@@ -103,6 +105,65 @@ namespace NLog.UnitTests.Config
                 logger.Debug(formatString, parameters);
                 Assert.Equal(expected, GetDebugLastMessage("debug", configuration));
             }
+        }
+
+        [Fact]
+        public void EventPropRendererCultureTest()
+        {
+            string cultureName = "de-DE";
+            string expected = "1,23";   // with decimal comma
+
+            var logEventInfo = new LogEventInfo(
+                LogLevel.Info,
+                "SomeName",
+                CultureInfo.GetCultureInfo(cultureName),
+                "SomeMessage",
+                null);
+            logEventInfo.Properties["ADouble"] = 1.23;
+
+            var renderer = new EventPropertiesLayoutRenderer();
+            renderer.Item = "ADouble";
+            string output = renderer.Render(logEventInfo);
+
+            Assert.Equal(expected, output);
+        }
+
+        [Fact]
+        public void TimeRendererCultureTest()
+        {
+            string cultureName = "de-DE";
+            string expected = ",";   // decimal comma as separator for ticks
+
+            var logEventInfo = new LogEventInfo(
+                LogLevel.Info,
+                "SomeName",
+                CultureInfo.GetCultureInfo(cultureName),
+                "${time}",
+                null);
+
+            var renderer = new TimeLayoutRenderer();
+            string output = renderer.Render(logEventInfo);
+
+            Assert.Equal(expected, output[8].ToString());
+        }
+
+        [Fact]
+        public void ProcessTimeRendererCultureTest()
+        {
+            string cultureName = "de-DE";
+            string expected = ",";   // decimal comma as separator for ticks
+
+            var logEventInfo = new LogEventInfo(
+                LogLevel.Info,
+                "SomeName",
+                CultureInfo.GetCultureInfo(cultureName),
+                "${processtime}",
+                null);
+
+            var renderer = new ProcessTimeLayoutRenderer();
+            string output = renderer.Render(logEventInfo);
+
+            Assert.Equal(expected, output[8].ToString());
         }
     }
 }
