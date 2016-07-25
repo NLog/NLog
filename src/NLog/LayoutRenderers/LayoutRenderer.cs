@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Globalization;
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -205,6 +207,28 @@ namespace NLog.LayoutRenderers
             {
                 this.Close();
             }
+        }
+
+        /// <summary>
+        /// Get the culture for rendering the messages to a <see cref="string"/>
+        /// </summary>
+        /// <param name="logEvent">LogEvent with culture</param>
+        /// <param name="layoutCulture">Culture in on Layout level</param>
+        /// <returns></returns>
+        protected CultureInfo GetCulture(LogEventInfo logEvent, CultureInfo layoutCulture = null)
+        {
+            var culture = logEvent.FormatProvider as CultureInfo;
+
+            if (culture == null)
+            {
+                culture = layoutCulture;
+            }
+
+            if (culture == null && this.LoggingConfiguration != null)
+            {
+                culture =  this.LoggingConfiguration.DefaultCultureInfo;
+            }
+            return culture;
         }
     }
 }
