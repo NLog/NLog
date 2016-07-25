@@ -72,7 +72,11 @@ namespace NLog.LayoutRenderers
             string ticksSeparator;
             if (culture != null)
             {
+#if !SILVERLIGHT
                 timeSeparator = culture.DateTimeFormat.TimeSeparator;
+#else
+                timeSeparator = ":"; 
+#endif
                 ticksSeparator = culture.NumberFormat.NumberDecimalSeparator;
             }
             else

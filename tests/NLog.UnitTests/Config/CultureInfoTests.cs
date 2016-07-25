@@ -106,6 +106,7 @@ namespace NLog.UnitTests.Config
                 Assert.Equal(expected, GetDebugLastMessage("debug", configuration));
             }
         }
+#if !SILVERLIGHT
 
         [Fact]
         public void EventPropRendererCultureTest()
@@ -165,5 +166,6 @@ namespace NLog.UnitTests.Config
 
             Assert.Equal(expected, output[8].ToString());
         }
+#endif
     }
 }
