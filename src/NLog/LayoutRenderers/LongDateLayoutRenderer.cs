@@ -66,6 +66,8 @@ namespace NLog.LayoutRenderers
             {
                 dt = dt.ToUniversalTime();
             }
+            
+            //no culture according to specs
 
             Append4DigitsZeroPadded(builder, dt.Year);
             builder.Append('-');

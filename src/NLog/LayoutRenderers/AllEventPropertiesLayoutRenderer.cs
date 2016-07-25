@@ -118,8 +118,10 @@ namespace NLog.LayoutRenderers
 
                 first = false;
 
-                var key = Convert.ToString(property.Key, CultureInfo.InvariantCulture);
-                var value = Convert.ToString(property.Value, CultureInfo.InvariantCulture);
+                var culture = GetCulture(logEvent);
+
+                var key = Convert.ToString(property.Key, culture);
+                var value = Convert.ToString(property.Value, culture);
                 var pair = Format.Replace("[key]", key)
                                  .Replace("[value]", value);
 

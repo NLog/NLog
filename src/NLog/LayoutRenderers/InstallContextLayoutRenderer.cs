@@ -63,7 +63,8 @@ namespace NLog.LayoutRenderers
 
             if (logEvent.Properties.TryGetValue(this.Parameter, out value))
             {
-                builder.Append(Convert.ToString(value, CultureInfo.InvariantCulture));
+                var culture = GetCulture(logEvent);
+                builder.Append(Convert.ToString(value, culture));
             }
         }
     }
