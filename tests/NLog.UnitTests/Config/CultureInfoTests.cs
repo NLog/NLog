@@ -33,6 +33,7 @@
 
 using NLog.LayoutRenderers;
 using NLog.Targets;
+using Xunit.Extensions;
 
 namespace NLog.UnitTests.Config
 {
@@ -42,7 +43,7 @@ namespace NLog.UnitTests.Config
     using Xunit;
 
     using NLog.Config;
-    
+
     public class CultureInfoTests : NLogTestBase
     {
         [Fact]
@@ -115,12 +116,7 @@ namespace NLog.UnitTests.Config
             string cultureName = "de-DE";
             string expected = "1,23";   // with decimal comma
 
-            var logEventInfo = new LogEventInfo(
-                LogLevel.Info,
-                "SomeName",
-                CultureInfo.GetCultureInfo(cultureName),
-                "SomeMessage",
-                null);
+            var logEventInfo = CreateLogEventInfo(cultureName);
             logEventInfo.Properties["ADouble"] = 1.23;
 
             var renderer = new EventPropertiesLayoutRenderer();
@@ -131,41 +127,84 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void TimeRendererCultureTest()
+        public void EventContextRendererCultureTest()
         {
             string cultureName = "de-DE";
-            string expected = ",";   // decimal comma as separator for ticks
+            string expected = "1,23";   // with decimal comma
 
-            var logEventInfo = new LogEventInfo(
-                LogLevel.Info,
-                "SomeName",
-                CultureInfo.GetCultureInfo(cultureName),
-                "${time}",
-                null);
+            var logEventInfo = CreateLogEventInfo(cultureName);
+            logEventInfo.Properties["ADouble"] = 1.23;
 
-            var renderer = new TimeLayoutRenderer();
+#pragma warning disable 618
+            var renderer = new EventContextLayoutRenderer();
+#pragma warning restore 618
+            renderer.Item = "ADouble";
             string output = renderer.Render(logEventInfo);
 
-            Assert.Equal(expected, output[8].ToString());
+            Assert.Equal(expected, output);
         }
 
-        [Fact]
-        public void ProcessTimeRendererCultureTest()
+
+
+        [Fact(Skip = "TimeSpan tostring isn't culture aware in .NET?")]
+        public void ProcessInfoLayoutRendererCultureTest()
         {
             string cultureName = "de-DE";
             string expected = ",";   // decimal comma as separator for ticks
 
+            var logEventInfo = CreateLogEventInfo(cultureName);
+
+            var renderer = new ProcessInfoLayoutRenderer();
+            renderer.Property = ProcessInfoProperty.TotalProcessorTime;
+            string output = renderer.Render(logEventInfo);
+
+            Assert.Contains(expected, output);
+            Assert.DoesNotContain(".", output);
+        }
+
+
+        [Fact]
+        public void AllEventPropRendererCultureTest()
+        {
+            string cultureName = "de-DE";
+            string expected = "ADouble=1,23";   // with decimal comma
+
+            var logEventInfo = CreateLogEventInfo(cultureName);
+            logEventInfo.Properties["ADouble"] = 1.23;
+
+            var renderer = new AllEventPropertiesLayoutRenderer();
+            string output = renderer.Render(logEventInfo);
+
+            Assert.Equal(expected, output);
+        }
+
+        [Theory]
+        [InlineData(typeof(TimeLayoutRenderer))]
+        [InlineData(typeof(ProcessTimeLayoutRenderer))]
+        public void DateTimeCultureTest(Type rendererType)
+        {
+            string cultureName = "de-DE";
+            string expected = ",";   // decimal comma as separator for ticks
+
+            var logEventInfo = CreateLogEventInfo(cultureName);
+
+            var renderer = Activator.CreateInstance(rendererType) as LayoutRenderer;
+            Assert.NotNull(renderer);
+            string output = renderer.Render(logEventInfo);
+
+            Assert.Contains(expected, output);
+            Assert.DoesNotContain(".", output);
+        }
+
+        private static LogEventInfo CreateLogEventInfo(string cultureName)
+        {
             var logEventInfo = new LogEventInfo(
                 LogLevel.Info,
                 "SomeName",
                 CultureInfo.GetCultureInfo(cultureName),
-                "${processtime}",
+                "SomeMessage",
                 null);
-
-            var renderer = new ProcessTimeLayoutRenderer();
-            string output = renderer.Render(logEventInfo);
-
-            Assert.Equal(expected, output[8].ToString());
+            return logEventInfo;
         }
 
         /// <summary>
@@ -185,9 +224,11 @@ namespace NLog.UnitTests.Config
             catch (Exception ex)
             {
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
                 logger.Error(ex, "");
 
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-DE");
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
                 logger.Error(ex, "");
 
                 Assert.Equal(2, target.Logs.Count);
