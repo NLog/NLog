@@ -535,7 +535,21 @@ namespace NLog.UnitTests.Targets
 
         public class MyTarget : Target
         {
+#if !UWP10
             private int inBlockingOperation;
+
+            private int InBlockingOperation
+            {
+                get { return InBlockingOperation; }
+            }
+#else
+            //avoid warning
+            //todo test blocking in 
+            private int InBlockingOperation
+            {
+                get { return 0; }
+            }
+#endif
 
             public int InitializeCount { get; set; }
             public int CloseCount { get; set; }
@@ -561,44 +575,47 @@ namespace NLog.UnitTests.Targets
                     throw new InvalidOperationException("Init error.");
                 }
 
-                Assert.Equal(0, this.inBlockingOperation);
+                Assert.Equal(0, InBlockingOperation);
                 this.InitializeCount++;
                 base.InitializeTarget();
             }
 
             protected override void CloseTarget()
             {
-                Assert.Equal(0, this.inBlockingOperation);
+                Assert.Equal(0, InBlockingOperation);
                 this.CloseCount++;
                 base.CloseTarget();
             }
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                Assert.Equal(0, this.inBlockingOperation);
+                Assert.Equal(0, InBlockingOperation);
                 this.FlushCount++;
                 base.FlushAsync(asyncContinuation);
             }
 
             protected override void Write(LogEventInfo logEvent)
             {
-                Assert.Equal(0, this.inBlockingOperation);
+                Assert.Equal(0, InBlockingOperation);
                 this.WriteCount++;
             }
 
             protected override void Write(AsyncLogEventInfo logEvent)
             {
-                Assert.Equal(0, this.inBlockingOperation);
+                Assert.Equal(0, InBlockingOperation);
                 this.WriteCount2++;
                 base.Write(logEvent);
             }
 
             protected override void Write(AsyncLogEventInfo[] logEvents)
             {
-                Assert.Equal(0, this.inBlockingOperation);
+                Assert.Equal(0, InBlockingOperation);
                 this.WriteCount3++;
                 base.Write(logEvents);
             }
+
+
+
 #if !UWP10
             public void BlockingOperation(int millisecondsTimeout)
             {
