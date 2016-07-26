@@ -90,8 +90,8 @@ namespace NLog.UnitTests.Web
             }
             using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
             {
-                Console.WriteLine(response.ContentLength);
-                Console.WriteLine(response.ContentType);
+                // Console.WriteLine(response.ContentLength);
+                // Console.WriteLine(response.ContentType);
                 byte[] data = new byte[4000];
                 int got;
 

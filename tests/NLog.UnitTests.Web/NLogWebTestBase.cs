@@ -63,7 +63,7 @@ namespace NLog.UnitTests.Web
         protected void AssertContains(string trace, string substr)
         {
             Assert.IsTrue(trace.IndexOf(substr) >= 0, "Trace doesn't contain a '" + substr + "' text.");
-            Console.WriteLine("Trace contains '{0}' text.", substr);
+            // Console.WriteLine("Trace contains '{0}' text.", substr);
 
         }
     }
