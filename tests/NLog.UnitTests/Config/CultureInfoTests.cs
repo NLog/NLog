@@ -32,6 +32,7 @@
 // 
 
 using NLog.LayoutRenderers;
+using NLog.Targets;
 
 namespace NLog.UnitTests.Config
 {
@@ -165,6 +166,35 @@ namespace NLog.UnitTests.Config
             string output = renderer.Render(logEventInfo);
 
             Assert.Equal(expected, output[8].ToString());
+        }
+
+        /// <summary>
+        /// expected: exactly the same exception message + stack trace regardless of the CurrentUICulture
+        /// </summary>
+        [Fact]
+        public void ExceptionTest()
+        {
+            var target = new MemoryTarget { Layout = @"${exception:format=tostring}" };
+            SimpleConfigurator.ConfigureForTargetLogging(target);
+            var logger = LogManager.GetCurrentClassLogger();
+
+            try
+            {
+                throw new InvalidOperationException();
+            }
+            catch (Exception ex)
+            {
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+                logger.Error(ex, "");
+
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-DE");
+                logger.Error(ex, "");
+
+                Assert.Equal(2, target.Logs.Count);
+                Assert.NotNull(target.Logs[0]);
+                Assert.NotNull(target.Logs[1]);
+                Assert.Equal(target.Logs[0], target.Logs[1]);
+            }
         }
 #endif
     }
