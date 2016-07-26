@@ -841,7 +841,8 @@ namespace NLog
                 this.GetTargetsByLevelForLogger(name, configuration.LoggingRules, targetsByLevel, lastTargetsByLevel, suppressedLevels);
             }
 
-            InternalLogger.Debug("Targets for {0} by level:", name);
+            InternalLogger.Trace("Targets for {0} by level:", name);
+
             for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
             {
                 StringBuilder sb = new StringBuilder();
@@ -855,7 +856,7 @@ namespace NLog
                     }
                 }
 
-                InternalLogger.Debug(sb.ToString());
+                InternalLogger.Trace(sb.ToString());
             }
 
 #pragma warning disable 618
