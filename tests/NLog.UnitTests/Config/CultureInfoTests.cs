@@ -33,7 +33,9 @@
 
 using NLog.LayoutRenderers;
 using NLog.Targets;
+#if !SILVERLIGHT
 using Xunit.Extensions;
+#endif
 
 namespace NLog.UnitTests.Config
 {
@@ -145,7 +147,7 @@ namespace NLog.UnitTests.Config
         }
 
 
-
+#if !MONO
         [Fact(Skip = "TimeSpan tostring isn't culture aware in .NET?")]
         public void ProcessInfoLayoutRendererCultureTest()
         {
@@ -161,6 +163,7 @@ namespace NLog.UnitTests.Config
             Assert.Contains(expected, output);
             Assert.DoesNotContain(".", output);
         }
+#endif
 
 
         [Fact]
