@@ -50,6 +50,7 @@ namespace NLog.UnitTests.Layouts
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
+    using static Config.TargetConfigurationTests;
 
     public class SimpleLayoutParserTests : NLogTestBase
     {
@@ -539,7 +540,7 @@ namespace NLog.UnitTests.Layouts
         [InlineData("Ignore,Neutral,Ignore", "enums", "Ignore-Neutral-Ignore")]
         [InlineData("ASCII,ISO-8859-1, UTF-8", "encodings", "System.Text.ASCIIEncoding-System.Text.Latin1Encoding-System.Text.UTF8Encoding")]
         [InlineData("ASCII,ISO-8859-1,UTF-8", "encodings", "System.Text.ASCIIEncoding-System.Text.Latin1Encoding-System.Text.UTF8Encoding")]
-        [InlineData("Hidden,System,Archive", "FlagEnums", "Hidden-System-Archive")]
+        [InlineData("Value1,Value3,Value2", "FlagEnums", "Value1-Value3-Value2")]
         public void LayoutWithListParamTest(string input, string propname, string expected)
         {
             ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("layoutrenderer-with-list", typeof(LayoutRendererWithListParam));
@@ -550,8 +551,11 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(expected, actual);
         }
 #endif
-        [Fact]
-        public void LayoutWithListParamTest_listint_empty()
+        [Theory]
+        [InlineData("2,3,4", "numbers")]
+        [InlineData("a,bc", "numbers")]
+        [InlineData("value1,value10", "FlagEnums")]
+        public void LayoutWithListParamTest_incorrect(string input, string propname)
         {
             //note flags enum already supported
 
@@ -566,13 +570,15 @@ namespace NLog.UnitTests.Layouts
         }
 
 
+
+
         private class LayoutRendererWithListParam : LayoutRenderer
         {
             public List<double> Doubles { get; set; }
 
             public List<FilterResult> Enums { get; set; }
 
-            public List<Win32FileAttributes> FlagEnums { get; set; }
+            public List<MyFlagsEnum> FlagEnums { get; set; }
 
             public List<int> Numbers { get; set; }
 
