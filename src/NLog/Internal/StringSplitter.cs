@@ -129,7 +129,7 @@ namespace NLog.Internal
                     yield return lastPart;
                 }
             }
-           
+
         }
 
         private static IEnumerable<string> SplitWithSelfEscape2(string text, char splitChar)
@@ -152,7 +152,7 @@ namespace NLog.Internal
                         }
                         else
                         {
-                            if (sb.Length > 0) sb.Length --;
+                            if (sb.Length > 0) sb.Length--;
                             var part = sb.ToString();
                             //reset
                             sb.Length = 0;
@@ -179,42 +179,143 @@ namespace NLog.Internal
         }
 
 
-
+        /// <summary>
+        /// Split a string, optional quoted value
+        /// </summary>
+        /// <param name="text">Text to split</param>
+        /// <param name="splitChar">Character to split the <paramref name="text"/></param>
+        /// <param name="quoteChar">Quote character</param>
+        /// <param name="escapeChar">Escape for the <paramref name="quoteChar"/>, not escape for the <paramref name="splitChar"/>, use quotes for that.</param>
+        /// <returns></returns>
         public static IEnumerable<string> SplitQuoted(this string text, char splitChar, char quoteChar, char escapeChar)
         {
             if (!string.IsNullOrEmpty(text))
             {
-                //var isInPart = false;
-                var inQuotedMode = false;
-                int i;
-                var sb = new StringBuilder();
-                for (i = 0; i < text.Length; i++)
+
+                if (splitChar == quoteChar)
                 {
-                    var c = text[i];
-
-                    //prev not escaped, then check splitchar
-                    var isSplitChar = c == splitChar;
-                    var isQuoteChar = c == quoteChar;
-                    var isEscapeChar = c == escapeChar;
-                 
+                    throw new NotImplementedException();
+                }
 
 
+                if (splitChar == escapeChar)
+                {
+                    throw new NotImplementedException();
+                }
+
+                if (quoteChar == escapeChar)
+                {
+                    throw new NotImplementedException();
+                }
 
 
-                    if (inQuotedMode)
+                return SplitQuoted2(text, splitChar, quoteChar, escapeChar);
+
+
+
+            }
+            return new List<string>();
+
+        }
+
+        private static IEnumerable<string> SplitQuoted2(string text, char splitChar, char quoteChar, char escapeChar)
+        {
+            var inQuotedMode = false;
+            int i;
+            var sb = new StringBuilder();
+
+            var prevIsEscape = false;
+            for (i = 0; i < text.Length; i++)
+            {
+                var c = text[i];
+
+                //prev not escaped, then check splitchar
+                var isSplitChar = c == splitChar;
+                var isQuoteChar = c == quoteChar;
+                var isEscapeChar = c == escapeChar;
+
+                if (inQuotedMode)
+                {
+                    if (isQuoteChar)
                     {
-                        if (isQuoteChar)
+                        if (prevIsEscape)
                         {
-                            //todo check quote
+                            sb.Append(c);
+                            break;
+                        }
 
-                            //skip quoteChar
-                            i++;
+
+                        //skip quoteChar
+                        i++;
                         //    isInPart = false;
-                            inQuotedMode = false;
-                            var part = sb.ToString();
-                            //reset
-                            sb.Length = 0;
-                            yield return part;
+                        inQuotedMode = false;
+                        var part = sb.ToString();
+                        //reset
+                        sb.Length = 0;
+                        yield return part;
+                    }
+
+                    else
+                    {
+                        prevIsEscape = isEscapeChar;
+
+                        sb.Append(c);
+                    }
+                }
+                else
+                {
+
+                    if (isSplitChar)
+                    {
+                        //end of part
+
+                        var part = sb.ToString();
+                        //reset
+                        sb.Length = 0;
+                        //  isInPart = false;
+                        yield return part;
+
+                        //now only quote for quotemode accepted
+                        i++;
+                        c = text[i];
+                        isQuoteChar = c == quoteChar;
+                        isEscapeChar = c == escapeChar;
+
+                        if (isEscapeChar)
+                        {
+                            //escape of the quote, if the quote is after this.
+
+                            i++;
+                            if (text.Length > i)
+                            {
+                                c = text[i];
+                                if (c == quoteChar)
+                                {
+                                    sb.Append(quoteChar);
+                                }
+                                else
+                                {
+                                    sb.Append(escapeChar);
+                                    sb.Append(quoteChar);
+                                }
+
+                            }
+                            else
+                            {
+                                sb.Append(escapeChar);
+                            }
+                            
+
+                        }
+
+                        else if (isQuoteChar)
+                        {
+                            //skip quoteChar
+                            if (sb.Length > 0)
+                                sb.Length--;
+                            //isInPart = true;
+                            inQuotedMode = true;
+                            //todo check escape quoteChar
                         }
                         else
                         {
@@ -223,80 +324,22 @@ namespace NLog.Internal
                     }
                     else
                     {
-                        if (isSplitChar)
-                        {
-                            //end of part
-                          
-
-                            var part = sb.ToString();
-                            //reset
-                            sb.Length = 0;
-                          //  isInPart = false;
-                            yield return part;
-                            //try next char
-                            i++;
-                            c = text[i];
-                            isQuoteChar = c == quoteChar;
-                            isEscapeChar = c == escapeChar;
-                            if (isEscapeChar)
-                            {
-                                var alsoQuote = isQuoteChar;
-
-                                //try next char
-                                i++;
-                                c = text[i];
-                                isQuoteChar = c == quoteChar;
-                                if (isQuoteChar)
-                                {
-                                    
-                                }
-                                else
-                                {
-                                    if (alsoQuote)
-                                    {
-                                        sb.Append(c);
-                                        isQuoteChar = true;
-                                    }
-                                }
-                            }
-
-                            if (isQuoteChar)
-                            {
-                                //skip quoteChar
-                                if (sb.Length > 0)
-                                    sb.Length--;
-                                //isInPart = true;
-                                inQuotedMode = true;
-                                //todo check escape quoteChar
-                            }
-                            else
-                            {
-                                sb.Append(c);
-                            }
-                        }
-                       
-
-                        else
-                        {
-                            sb.Append(c);
-                        }
+                        sb.Append(c);
                     }
-                }
-
-
-                var lastPart = GetLastPart(sb);
-                if (inQuotedMode)
-                {
-                    //append quote back
-                    lastPart = quoteChar + lastPart;
-                }
-
-                if (lastPart != null)
-                {
-                    yield return lastPart;
                 }
             }
 
+            var lastPart = GetLastPart(sb);
+            if (inQuotedMode)
+            {
+                //append quote back
+                lastPart = quoteChar + lastPart;
+            }
+
+            if (lastPart != null)
+            {
+                yield return lastPart;
+            }
         }
 
         private static string GetLastPart(StringBuilder sb)

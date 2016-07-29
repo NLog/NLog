@@ -46,34 +46,36 @@ namespace NLog.UnitTests.Internal
 {
     public class StringSplitterTests
     {
+        private const char SingleQuote = '\'';
+        private const char BackSlash = '\\';
 
         [Theory]
-        [InlineData("abc", ';', '\\', "abc")]
+        [InlineData("abc", ';', BackSlash, "abc")]
         [InlineData("abc", ';', ';', "abc")]
-        [InlineData("  abc", ';', '\\', "  abc")]
+        [InlineData("  abc", ';', BackSlash, "  abc")]
         [InlineData("  abc", ';', ';', "  abc")]
-        [InlineData(null, ';', '\\', "")]
+        [InlineData(null, ';', BackSlash, "")]
         [InlineData(null, ';', ';', "")]
-        [InlineData("", ';', '\\', "")]
+        [InlineData("", ';', BackSlash, "")]
         [InlineData("", ';', ';', "")]
-        [InlineData("   ", ';', '\\', "   ")]
+        [InlineData("   ", ';', BackSlash, "   ")]
         [InlineData("   ", ';', ';', "   ")]
         [InlineData(@"abc", ';', ',', "abc")]
-        [InlineData(@"a;b;c", ';', '\\', "a,b,c")]
-        [InlineData(@"a;b;c;", ';', '\\', "a,b,c")]
-        [InlineData(@";a;b;c", ';', '\\', ",a,b,c")]
-        [InlineData(@"a;;b;c;", ';', '\\', "a,,b,c")]
-        [InlineData(@"a\b;c", ';', '\\', @"a\b,c")]
-        [InlineData(@"a\;b;c", ';', '\\', @"a;b,c")]
-        [InlineData(@"a\;b\;c", ';', '\\', @"a;b;c")]
-        [InlineData(@"a\;b\;c;d", ';', '\\', @"a;b;c,d")]
-        [InlineData(@"a\;b\;c;d", ';', '\\', @"a;b;c,d")]
-        [InlineData(@"a\;b;c\;d", ';', '\\', @"a;b,c;d")]
+        [InlineData(@"a;b;c", ';', BackSlash, "a,b,c")]
+        [InlineData(@"a;b;c;", ';', BackSlash, "a,b,c")]
+        [InlineData(@";a;b;c", ';', BackSlash, ",a,b,c")]
+        [InlineData(@"a;;b;c;", ';', BackSlash, "a,,b,c")]
+        [InlineData(@"a\b;c", ';', BackSlash, @"a\b,c")]
+        [InlineData(@"a\;b;c", ';', BackSlash, @"a;b,c")]
+        [InlineData(@"a\;b\;c", ';', BackSlash, @"a;b;c")]
+        [InlineData(@"a\;b\;c;d", ';', BackSlash, @"a;b;c,d")]
+        [InlineData(@"a\;b\;c;d", ';', BackSlash, @"a;b;c,d")]
+        [InlineData(@"a\;b;c\;d", ';', BackSlash, @"a;b,c;d")]
         [InlineData(@"a;b;;c", ';', ';', @"a,b;c")]
         [InlineData(@"a;b;;;;c", ';', ';', @"a,b;;c")]
         [InlineData(@"a;;b", ';', ';', @"a;b")]
         [InlineData(@"abc", ';', ';', @"abc")]
-        [InlineData(@"abc\;", ';', '\\', @"abc;")]
+        [InlineData(@"abc\;", ';', BackSlash, @"abc;")]
         [InlineData(@"abc;;", ';', ';', @"abc;")]
 
         void SplitStringWithEscape(string input, char splitChar, char escapeChar, string output)
@@ -84,13 +86,13 @@ namespace NLog.UnitTests.Internal
         }
 
         [Theory]
-        [InlineData(@"abc", ';', ',', '\\', "abc")]
-        [InlineData(@"a;b;c", ';', '\'', '\\', "a,b,c")]
-        [InlineData(@"a;'b;c'", ';', '\'', '\\', "a,b;c")]
-        [InlineData(@"a;'b;c", ';', '\'', '\\', "a,'b;c")]
-        [InlineData(@"a;b'c;d", ';', '\'', '\\', "a,b'c,d")]
-        //[InlineData(@"a;\'b;c", ';', '\'', '\\', "a,'b,c")]
-        //[InlineData(@"a;''b;c", ';', '\'', '\'', "a,'b,c")]
+        [InlineData(@"abc", ';', ',', BackSlash, "abc")]
+        [InlineData(@"a;b;c", ';', SingleQuote, BackSlash, "a,b,c")]
+        [InlineData(@"a;'b;c'", ';', SingleQuote, BackSlash, "a,b;c")]
+        [InlineData(@"a;'b;c", ';', SingleQuote, BackSlash, "a,'b;c")]
+        [InlineData(@"a;b'c;d", ';', SingleQuote, BackSlash, "a,b'c,d")]
+        [InlineData(@"a;\'b;c", ';', SingleQuote, BackSlash, "a,'b,c")]
+        [InlineData(@"a;''b;c", ';', SingleQuote, SingleQuote, "a,'b,c")]
 
         void SplitStringWithQuotes(string input, char splitChar, char quoteChar, char escapeChar, string output)
         {
