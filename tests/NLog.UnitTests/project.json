@@ -44,7 +44,7 @@
       ]
 
     },
-    ".NETFramework,Version=v4.5": {
+    "net451": {
       "frameworkAssemblies": {
         "System.Runtime": "",
         "System.Xml": "",
@@ -57,7 +57,7 @@
         "System.IO.Compression": "",
         "System.Threading.Tasks": "",
         "System.Xml.Linq": "",
-        "System.DirectoryServices.AccountManagement": ""
+        "System.DirectoryServices.AccountManagement": ""  ,
 
 
 
@@ -69,7 +69,8 @@
         "Unity": "4.0.1",
         "Microsoft.AspNet.WebApi.OwinSelfHost": "5.2.3",
         "DotNetZip.Reduced": "1.9.1.8",
-        "xunit.runner.console": "2.2.0-beta2-build3300"
+        "xunit.runner.console": "2.2.0-beta2-build3300",
+        "Microsoft.NETCore.Platforms": "1.0.1"
 
       },
       "buildOptions": {
