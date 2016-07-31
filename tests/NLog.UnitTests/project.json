@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "NLog": "4.4.0-beta*",
-    "SampleExtensions": "4.4.0-beta*"
+    "SampleExtensions": "4.4.0-beta*",
+    "xunit": "2.2.0-beta2-build3300",
+    "dotnet-test-xunit": "2.2.0-preview2-build1029"
   },
   "testRunner": "xunit",
 
@@ -26,8 +28,6 @@
           "version": "1.0.0"
         },
         // "NLog.Extended": "4.4.0-beta*",
-        "dotnet-test-xunit": "2.2.0-preview2-build1029",
-        "xunit": "2.2.0-beta2-build3300",
         //  "Microsoft.AspNetCore.Mvc.WebApiCompatShim": "1.0.0",
         //  "Microsoft.AspNet.WebApi.Owin": "5.2.3",
         "System.Threading.Tasks.Parallel": "4.0.1",
@@ -65,11 +65,9 @@
       "dependencies": {
         "NLog.Extended": "4.4.0-beta*",
         "Microsoft.Owin.Hosting": "3.0.1",
-        "xunit": "2.2.0-beta2-build3300",
         "Unity": "4.0.1",
         "Microsoft.AspNet.WebApi.OwinSelfHost": "5.2.3",
         "DotNetZip.Reduced": "1.9.1.8",
-        "xunit.runner.console": "2.2.0-beta2-build3300",
         "Microsoft.NETCore.Platforms": "1.0.1"
 
       },
