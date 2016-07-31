@@ -125,7 +125,7 @@ namespace NLog.UnitTests.Targets
 
             int[] maxNumber = new int[numProcesses];
    
-            Console.WriteLine("Verifying output file {0}", logFile);
+            //Console.WriteLine("Verifying output file {0}", logFile);
             using (StreamReader sr = File.OpenText(logFile))
             {
                 string line;

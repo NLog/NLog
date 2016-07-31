@@ -842,6 +842,7 @@ namespace NLog
             }
 
             InternalLogger.Debug("Targets for {0} by level:", name);
+
             for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
             {
                 StringBuilder sb = new StringBuilder();
