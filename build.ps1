@@ -5,4 +5,4 @@ dotnet restore .\src\NLog.Extended\
 dotnet restore .\src\NLogAutoLoadExtension\ 
 dotnet pack .\src\NLog\  --configuration release   -o artifacts
 dotnet build .\src\NLog.Extended\  --configuration release 
-dotnet build .\src\NLogAutoLoadExtension\  --configuration release s 
+dotnet build .\src\NLogAutoLoadExtension\  --configuration release 
