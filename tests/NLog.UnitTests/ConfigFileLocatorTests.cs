@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections;
+using System.Linq;
 using System.Threading;
 
 #if !SILVERLIGHT
@@ -44,8 +46,9 @@ namespace NLog.UnitTests
     using System.Text;
     using Microsoft.CSharp;
     using Xunit;
+    using System.Collections.Generic;
 
-    public class ConfigFileLocatorTests
+    public class ConfigFileLocatorTests : NLogTestBase
     {
         private string appConfigContents = @"
 <configuration>
@@ -208,9 +211,57 @@ namespace NLog.UnitTests
 
         }
 
+        [Fact]
+        public void GetCandidateConfigTest()
+        {
+            Assert.NotNull(LogManager.GetCandidateConfigFilePaths());
+            var candidateConfigFilePaths = LogManager.GetCandidateConfigFilePaths();
+            var count = candidateConfigFilePaths.Count();
+            Assert.True(count > 0);
+
+        }
+
+        [Fact]
+        public void GetCandidateConfigTest_list_is_readonly()
+        {
+            Assert.Throws<NotSupportedException>(() =>
+            {
+                var list = new List<string> { "c:\\global\\temp.config" };
+                LogManager.SetCandidateConfigFilePaths(list);
+                var candidateConfigFilePaths = LogManager.GetCandidateConfigFilePaths();
+                var list2 = candidateConfigFilePaths as IList;
+                list2.Add("test");
+            });
+        }
+
+        [Fact]
+        public void SetCandidateConfigTest()
+        {
+            var list = new List<string> { "c:\\global\\temp.config" };
+            LogManager.SetCandidateConfigFilePaths(list);
+            Assert.Equal(1, LogManager.GetCandidateConfigFilePaths().Count());
+            //no side effects
+            list.Add("c:\\global\\temp2.config");
+            Assert.Equal(1, LogManager.GetCandidateConfigFilePaths().Count());
+
+        }
+
+        [Fact]
+        public void ClearCandidateConfigTest()
+        {
+            
+            var countBefore = LogManager.GetCandidateConfigFilePaths().Count();
+            var list = new List<string> { "c:\\global\\temp.config" };
+            LogManager.SetCandidateConfigFilePaths(list);
+            Assert.Equal(1, LogManager.GetCandidateConfigFilePaths().Count());
+            LogManager.ClearCandidateConfigFilePath();
+            Assert.Equal(countBefore, LogManager.GetCandidateConfigFilePaths().Count());
+
+        }
+
         private string RunTest()
         {
-        string sourceCode = @"
+            string sourceCode = @"
 using System;
 using System.Reflection;
 using NLog;
@@ -251,7 +302,7 @@ class C1
         public static string RunAndRedirectOutput(string exeFile)
         {
             using (var proc = new Process())
-			{
+            {
 #if MONO
 				var sb = new StringBuilder();
 				sb.AppendFormat("\"{0}\" ", exeFile);

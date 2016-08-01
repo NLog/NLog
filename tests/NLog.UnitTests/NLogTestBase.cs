@@ -69,6 +69,7 @@ namespace NLog.UnitTests
             InternalLogger.Reset();
             LogManager.ThrowExceptions = false;
             LogManager.ThrowConfigExceptions = null;
+            LogManager.ClearCandidateConfigFilePath();
         }
 
         protected void AssertDebugCounter(string targetName, int val)
