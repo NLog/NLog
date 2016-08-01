@@ -178,12 +178,29 @@ namespace NLog
         }
 
         /// <summary>
-        /// Overwrite possible file paths (including filename) for possible NLog config files. If this property is set to non-<c>null</c>, the default file paths are not used.
+        /// Get file paths (including filename) for the possible NLog config files. 
         /// </summary>
-        public static IList<string> CandidateConfigFileNames
+        /// <returns>The filepaths to the possible config file</returns>
+        public static IEnumerable<string> GetCandidateConfigFilePaths()
         {
-            get { return factory.CandidateConfigFileNames; }
-            set { factory.CandidateConfigFileNames = value; }
+            return factory.GetCandidateConfigFilePaths();
+        }
+
+        /// <summary>
+        /// Overwrite the paths (including filename) for the possible NLog config files.
+        /// </summary>
+        /// <param name="filePaths">The filepaths to the possible config file</param>
+        public static void SetCandidateConfigFilePaths(IEnumerable<string> filePaths)
+        {
+            factory.SetCandidateConfigFilePaths(filePaths);
+        }
+
+        /// <summary>
+        /// Clear the candidate file paths and return to the defaults.
+        /// </summary>
+        public static void ClearCandidateConfigFilePath()
+        {
+            factory.ClearCandidateConfigFilePath();
         }
 
         /// <summary>
