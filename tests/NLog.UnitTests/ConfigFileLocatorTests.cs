@@ -34,6 +34,8 @@
 using System.Collections;
 using System.Linq;
 using System.Threading;
+using System.Xml;
+using NLog.Config;
 
 #if !SILVERLIGHT
 
@@ -214,8 +216,8 @@ namespace NLog.UnitTests
         [Fact]
         public void GetCandidateConfigTest()
         {
-            Assert.NotNull(LogManager.GetCandidateConfigFilePaths());
-            var candidateConfigFilePaths = LogManager.GetCandidateConfigFilePaths();
+            Assert.NotNull(XmlLoggingConfiguration.GetCandidateConfigFilePaths());
+            var candidateConfigFilePaths = XmlLoggingConfiguration.GetCandidateConfigFilePaths();
             var count = candidateConfigFilePaths.Count();
             Assert.True(count > 0);
 
@@ -227,8 +229,8 @@ namespace NLog.UnitTests
             Assert.Throws<NotSupportedException>(() =>
             {
                 var list = new List<string> { "c:\\global\\temp.config" };
-                LogManager.SetCandidateConfigFilePaths(list);
-                var candidateConfigFilePaths = LogManager.GetCandidateConfigFilePaths();
+                XmlLoggingConfiguration.SetCandidateConfigFilePaths(list);
+                var candidateConfigFilePaths = XmlLoggingConfiguration.GetCandidateConfigFilePaths();
                 var list2 = candidateConfigFilePaths as IList;
                 list2.Add("test");
             });
@@ -238,11 +240,11 @@ namespace NLog.UnitTests
         public void SetCandidateConfigTest()
         {
             var list = new List<string> { "c:\\global\\temp.config" };
-            LogManager.SetCandidateConfigFilePaths(list);
-            Assert.Equal(1, LogManager.GetCandidateConfigFilePaths().Count());
+            XmlLoggingConfiguration.SetCandidateConfigFilePaths(list);
+            Assert.Equal(1, XmlLoggingConfiguration.GetCandidateConfigFilePaths().Count());
             //no side effects
             list.Add("c:\\global\\temp2.config");
-            Assert.Equal(1, LogManager.GetCandidateConfigFilePaths().Count());
+            Assert.Equal(1, XmlLoggingConfiguration.GetCandidateConfigFilePaths().Count());
 
         }
 
@@ -250,12 +252,12 @@ namespace NLog.UnitTests
         public void ResetCandidateConfigTest()
         {
             
-            var countBefore = LogManager.GetCandidateConfigFilePaths().Count();
+            var countBefore = XmlLoggingConfiguration.GetCandidateConfigFilePaths().Count();
             var list = new List<string> { "c:\\global\\temp.config" };
-            LogManager.SetCandidateConfigFilePaths(list);
-            Assert.Equal(1, LogManager.GetCandidateConfigFilePaths().Count());
-            LogManager.ResetCandidateConfigFilePath();
-            Assert.Equal(countBefore, LogManager.GetCandidateConfigFilePaths().Count());
+            XmlLoggingConfiguration.SetCandidateConfigFilePaths(list);
+            Assert.Equal(1, XmlLoggingConfiguration.GetCandidateConfigFilePaths().Count());
+            XmlLoggingConfiguration.ResetCandidateConfigFilePath();
+            Assert.Equal(countBefore, XmlLoggingConfiguration.GetCandidateConfigFilePaths().Count());
 
         }
 

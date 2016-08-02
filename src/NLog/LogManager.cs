@@ -178,32 +178,6 @@ namespace NLog
         }
 
         /// <summary>
-        /// Get file paths (including filename) for the possible NLog config files. 
-        /// </summary>
-        /// <returns>The filepaths to the possible config file</returns>
-        public static IEnumerable<string> GetCandidateConfigFilePaths()
-        {
-            return factory.GetCandidateConfigFilePaths();
-        }
-
-        /// <summary>
-        /// Overwrite the paths (including filename) for the possible NLog config files.
-        /// </summary>
-        /// <param name="filePaths">The filepaths to the possible config file</param>
-        public static void SetCandidateConfigFilePaths(IEnumerable<string> filePaths)
-        {
-            factory.SetCandidateConfigFilePaths(filePaths);
-        }
-
-        /// <summary>
-        /// Clear the candidate file paths and return to the defaults.
-        /// </summary>
-        public static void ResetCandidateConfigFilePath()
-        {
-            factory.ResetCandidateConfigFilePath();
-        }
-
-        /// <summary>
         /// Gets the logger with the name of the current class.  
         /// </summary>
         /// <returns>The logger.</returns>
