@@ -237,6 +237,7 @@
     <Compile Include="LayoutRenderers\EventPropertiesLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\ExceptionLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\FileContentsLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\FuncLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\GarbageCollectorInfoLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\GarbageCollectorProperty.cs" />
     <Compile Include="LayoutRenderers\GdcLayoutRenderer.cs" />
