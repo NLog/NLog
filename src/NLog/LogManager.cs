@@ -198,9 +198,9 @@ namespace NLog
         /// <summary>
         /// Clear the candidate file paths and return to the defaults.
         /// </summary>
-        public static void ClearCandidateConfigFilePath()
+        public static void ResetCandidateConfigFilePath()
         {
-            factory.ClearCandidateConfigFilePath();
+            factory.ResetCandidateConfigFilePath();
         }
 
         /// <summary>

@@ -896,16 +896,13 @@ namespace NLog
 
             if (filePaths != null)
             {
-                foreach (var filePath in filePaths)
-                {
-                    candidateConfigFilePaths.Add(filePath);
-                }
+                candidateConfigFilePaths.AddRange(filePaths);
             }
         }
         /// <summary>
         /// Clear the candidate file paths and return to the defaults.
         /// </summary>
-        public void ClearCandidateConfigFilePath()
+        public void ResetCandidateConfigFilePath()
         {
             candidateConfigFilePaths = null;
         }

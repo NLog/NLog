@@ -247,14 +247,14 @@ namespace NLog.UnitTests
         }
 
         [Fact]
-        public void ClearCandidateConfigTest()
+        public void ResetCandidateConfigTest()
         {
             
             var countBefore = LogManager.GetCandidateConfigFilePaths().Count();
             var list = new List<string> { "c:\\global\\temp.config" };
             LogManager.SetCandidateConfigFilePaths(list);
             Assert.Equal(1, LogManager.GetCandidateConfigFilePaths().Count());
-            LogManager.ClearCandidateConfigFilePath();
+            LogManager.ResetCandidateConfigFilePath();
             Assert.Equal(countBefore, LogManager.GetCandidateConfigFilePaths().Count());
 
         }
