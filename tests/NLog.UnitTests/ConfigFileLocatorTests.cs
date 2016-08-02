@@ -34,6 +34,7 @@
 using System.Collections;
 using System.Linq;
 using System.Threading;
+using NLog.LayoutRenderers;
 using System.Xml;
 using NLog.Config;
 
@@ -48,6 +49,7 @@ namespace NLog.UnitTests
     using System.Text;
     using Microsoft.CSharp;
     using Xunit;
+    using NLog.Layouts;
     using System.Collections.Generic;
 
     public class ConfigFileLocatorTests : NLogTestBase
@@ -214,6 +216,29 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        void TestAdhoc1()
+        {
+            //todo options as dictionary? or expanso-object?
+            LayoutRenderer.RegisterAdhocLayoutRenderer("the-answer", (info) => "42");
+            Layout l = "${the-answer}";
+            var result = l.Render(LogEventInfo.CreateNullEvent());
+            Assert.Equal("42", result);
+
+            //todo test with XML config
+        }
+
+        [Fact]
+        void TestAdhoc2()
+        {
+            LayoutRenderer.RegisterAdhocLayoutRenderer("message-length", (info) => info.Message.Length);
+            Layout l = "${message-length}";
+            var result = l.Render(LogEventInfo.Create(LogLevel.Error,"logger-adhoc","1234567890"));
+            Assert.Equal("10", result);
+
+            //todo test with XML config
+        }
+
+        [Fact]
         public void GetCandidateConfigTest()
         {
             Assert.NotNull(XmlLoggingConfiguration.GetCandidateConfigFilePaths());
@@ -263,6 +288,10 @@ namespace NLog.UnitTests
 
         private string RunTest()
         {
+
+
+
+
             string sourceCode = @"
 using System;
 using System.Reflection;

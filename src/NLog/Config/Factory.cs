@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.LayoutRenderers;
+
 namespace NLog.Config
 {
     using System;
@@ -44,7 +46,7 @@ namespace NLog.Config
     /// <typeparam name="TBaseType">The base type of each item.</typeparam>
     /// <typeparam name="TAttributeType">The type of the attribute used to annotate items.</typeparam>
     internal class Factory<TBaseType, TAttributeType> : INamedItemFactory<TBaseType, Type>, IFactory
-        where TBaseType : class 
+        where TBaseType : class
         where TAttributeType : NameBaseAttribute
     {
         private readonly Dictionary<string, GetTypeDelegate> items = new Dictionary<string, GetTypeDelegate>(StringComparer.OrdinalIgnoreCase);
@@ -73,12 +75,12 @@ namespace NLog.Config
                 catch (Exception exception)
                 {
                     InternalLogger.Error(exception, "Failed to add type '{0}'.", t.FullName);
-                    
+
                     if (exception.MustBeRethrown())
                     {
                         throw;
                     }
-                    
+
                 }
             }
         }
@@ -168,7 +170,7 @@ namespace NLog.Config
         /// <param name="itemName">Name of the item.</param>
         /// <param name="result">The result.</param>
         /// <returns>True if instance was created successfully, false otherwise.</returns>
-        public bool TryCreateInstance(string itemName, out TBaseType result)
+        public virtual bool TryCreateInstance(string itemName, out TBaseType result)
         {
             Type type;
 
@@ -187,7 +189,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="name">The name of the item.</param>
         /// <returns>Created item.</returns>
-        public TBaseType CreateInstance(string name)
+        public virtual TBaseType CreateInstance(string name)
         {
             TBaseType result;
 
@@ -198,5 +200,56 @@ namespace NLog.Config
 
             throw new ArgumentException(typeof(TBaseType).Name + " cannot be found: '" + name + "'");
         }
+    }
+
+    class FactoryWithAdhoc
+        <TBaseType, TAttributeType> : Factory<TBaseType, TAttributeType> where TBaseType : class where TAttributeType : NameBaseAttribute
+    {
+        public FactoryWithAdhoc(ConfigurationItemFactory parentFactory) : base(parentFactory)
+        {
+        }
+
+        private Dictionary<string, IAdhocLayoutRenderer> adhocRenderers;
+
+        public void RegisterAdhoc(string name, IAdhocLayoutRenderer renderer)
+        {
+            adhocRenderers = adhocRenderers ?? new Dictionary<string, IAdhocLayoutRenderer>(StringComparer.OrdinalIgnoreCase);
+            adhocRenderers.Add(name, renderer);
+        }
+
+        #region Overrides of Factory<TBaseType,TAttributeType>
+
+        #region Overrides of Factory<TBaseType,TAttributeType>
+
+        /// <summary>
+        /// Tries to create an item instance.
+        /// </summary>
+        /// <param name="itemName">Name of the item.</param>
+        /// <param name="result">The result.</param>
+        /// <returns>True if instance was created successfully, false otherwise.</returns>
+        public override bool TryCreateInstance(string itemName, out TBaseType result)
+        {
+
+            if (adhocRenderers != null)
+            {
+                //todo
+                IAdhocLayoutRenderer adhocResult;
+                var adhocSuccess = adhocRenderers.TryGetValue(itemName, out adhocResult);
+                if (adhocSuccess)
+                {
+                    //todo
+                    result = (TBaseType)(object)adhocResult;
+                    return true;
+                }
+            }
+
+            var success = base.TryCreateInstance(itemName, out result);
+
+            return success;
+        }
+
+        #endregion
+
+        #endregion
     }
 }

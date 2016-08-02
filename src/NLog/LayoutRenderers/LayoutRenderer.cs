@@ -255,5 +255,28 @@ namespace NLog.LayoutRenderers
             }
             return culture;
         }
+
+        /// <summary>
+        /// Register
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="func"></param>
+        public static void RegisterAdhocLayoutRenderer(string name, Func<LogEventInfo, object> func)
+        {
+            RegisterAdhocLayoutRenderer(name, (info, configuration) => func(info));
+        }
+
+        /// <summary>
+        /// Register
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="func"></param>
+        public static void RegisterAdhocLayoutRenderer(string name,
+            Func<LogEventInfo, LoggingConfiguration, object> func)
+        {
+            var layoutRenderer = new AdhocLayoutRenderer(name, func);
+            
+            ConfigurationItemFactory.Default.GetLayoutRenderers().RegisterAdhoc(name, layoutRenderer);
+        }
     }
 }

@@ -58,7 +58,7 @@ namespace NLog.Config
         private readonly IList<object> allFactories;
         private readonly Factory<Target, TargetAttribute> targets;
         private readonly Factory<Filter, FilterAttribute> filters;
-        private readonly Factory<LayoutRenderer, LayoutRendererAttribute> layoutRenderers;
+        private readonly FactoryWithAdhoc<LayoutRenderer, LayoutRendererAttribute> layoutRenderers;
         private readonly Factory<Layout, LayoutAttribute> layouts;
         private readonly MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute> conditionMethods;
         private readonly Factory<LayoutRenderer, AmbientPropertyAttribute> ambientProperties;
@@ -73,7 +73,7 @@ namespace NLog.Config
             this.CreateInstance = FactoryHelper.CreateInstance;
             this.targets = new Factory<Target, TargetAttribute>(this);
             this.filters = new Factory<Filter, FilterAttribute>(this);
-            this.layoutRenderers = new Factory<LayoutRenderer, LayoutRendererAttribute>(this);
+            this.layoutRenderers = new FactoryWithAdhoc<LayoutRenderer, LayoutRendererAttribute>(this);
             this.layouts = new Factory<Layout, LayoutAttribute>(this);
             this.conditionMethods = new MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute>();
             this.ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>(this);
@@ -137,6 +137,11 @@ namespace NLog.Config
         public INamedItemFactory<Filter, Type> Filters
         {
             get { return this.filters; }
+        }
+
+        internal FactoryWithAdhoc<LayoutRenderer, LayoutRendererAttribute> GetLayoutRenderers()
+        {
+            return this.layoutRenderers;
         }
 
         /// <summary>
