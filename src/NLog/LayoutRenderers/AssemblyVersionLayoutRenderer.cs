@@ -33,27 +33,26 @@
 
 namespace NLog.LayoutRenderers
 {
-    using System;
-    using System.Globalization;
-    using System.Runtime.InteropServices;
     using System.Text;
     using NLog.Config;
-    using NLog.Internal;
 #if SILVERLIGHT
 	using System.Windows;
-#if SILVERLIGHT5
-	using System.Reflection;
 #endif
-#else
-	using System.Reflection;
-#endif
+    using System.Reflection;
 
     /// <summary>
     /// Assembly version.
     /// </summary>
+    /// <remarks>The entry assembly can't be found in some cases e.g. ASP.NET, Unit tests etc.</remarks>
     [LayoutRenderer("assembly-version")]
     public class AssemblyVersionLayoutRenderer : LayoutRenderer
     {
+        /// <summary>
+        /// The (full) name of the assembly. If <c>null</c>, using the entry assembly.
+        /// </summary>
+        [DefaultParameter]
+        public string Name { get; set; }
+
         /// <summary>
         /// Renders assembly version and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
@@ -62,14 +61,39 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
 #if SILVERLIGHT
-			var assembly = Application.Current.GetType().Assembly;
+            string name;
 #else
-            var assembly = Assembly.GetEntryAssembly();
+            Assembly assembly;
 #endif
-#if !SILVERLIGHT5
-			var assemblyVersion = assembly == null ? "Could not find entry assembly" : assembly.GetName().Version.ToString();
+            
+
+            var nameNotEmpty = !string.IsNullOrEmpty(Name);
+            if (nameNotEmpty)
+            {
+#if SILVERLIGHT
+                name = Name;
 #else
-            var assemblyVersion = assembly == null ? "Could not find entry assembly" : new AssemblyName(assembly.FullName).Version.ToString();
+                assembly = Assembly.Load(new AssemblyName(Name));
+#endif
+            }
+            else
+            {
+
+#if SILVERLIGHT
+			    var assembly = Application.Current.GetType().Assembly;
+                
+                name = assembly.FullName;
+#else
+                assembly = Assembly.GetEntryAssembly();
+
+#endif
+            }
+            var message = string.Format("Could not find {0}", nameNotEmpty ? "assembly " + Name : "entry assembly");
+
+#if !SILVERLIGHT
+            var assemblyVersion = assembly == null ? message : assembly.GetName().Version.ToString();
+#else
+            var assemblyVersion = name == null ? message : new AssemblyName(name).Version.ToString();
 #endif
             builder.Append(assemblyVersion);
         }
