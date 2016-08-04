@@ -126,7 +126,7 @@ namespace NLog.Layouts
 
             var result = sb.ToString();
 
-            if (string.IsNullOrWhiteSpace(result) && !RenderEmptyObject)
+            if (string.IsNullOrEmpty(result.Trim()) && !RenderEmptyObject)
             {
                return string.Empty;
             }
