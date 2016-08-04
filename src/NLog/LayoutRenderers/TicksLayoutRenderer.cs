@@ -52,6 +52,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+            //no culture expected here
             builder.Append(logEvent.TimeStamp.Ticks.ToString(CultureInfo.InvariantCulture));
         }
     }

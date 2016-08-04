@@ -31,6 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.LayoutRenderers;
+using NLog.Targets;
+#if !SILVERLIGHT
+using Xunit.Extensions;
+#endif
+
 namespace NLog.UnitTests.Config
 {
     using System;
@@ -39,7 +45,7 @@ namespace NLog.UnitTests.Config
     using Xunit;
 
     using NLog.Config;
-    
+
     public class CultureInfoTests : NLogTestBase
     {
         [Fact]
@@ -104,5 +110,136 @@ namespace NLog.UnitTests.Config
                 Assert.Equal(expected, GetDebugLastMessage("debug", configuration));
             }
         }
+#if !SILVERLIGHT
+
+        [Fact]
+        public void EventPropRendererCultureTest()
+        {
+            string cultureName = "de-DE";
+            string expected = "1,23";   // with decimal comma
+
+            var logEventInfo = CreateLogEventInfo(cultureName);
+            logEventInfo.Properties["ADouble"] = 1.23;
+
+            var renderer = new EventPropertiesLayoutRenderer();
+            renderer.Item = "ADouble";
+            string output = renderer.Render(logEventInfo);
+
+            Assert.Equal(expected, output);
+        }
+
+        [Fact]
+        public void EventContextRendererCultureTest()
+        {
+            string cultureName = "de-DE";
+            string expected = "1,23";   // with decimal comma
+
+            var logEventInfo = CreateLogEventInfo(cultureName);
+            logEventInfo.Properties["ADouble"] = 1.23;
+
+#pragma warning disable 618
+            var renderer = new EventContextLayoutRenderer();
+#pragma warning restore 618
+            renderer.Item = "ADouble";
+            string output = renderer.Render(logEventInfo);
+
+            Assert.Equal(expected, output);
+        }
+
+
+#if !MONO
+        [Fact(Skip = "TimeSpan tostring isn't culture aware in .NET?")]
+        public void ProcessInfoLayoutRendererCultureTest()
+        {
+            string cultureName = "de-DE";
+            string expected = ",";   // decimal comma as separator for ticks
+
+            var logEventInfo = CreateLogEventInfo(cultureName);
+
+            var renderer = new ProcessInfoLayoutRenderer();
+            renderer.Property = ProcessInfoProperty.TotalProcessorTime;
+            string output = renderer.Render(logEventInfo);
+
+            Assert.Contains(expected, output);
+            Assert.DoesNotContain(".", output);
+        }
+#endif
+
+
+        [Fact]
+        public void AllEventPropRendererCultureTest()
+        {
+            string cultureName = "de-DE";
+            string expected = "ADouble=1,23";   // with decimal comma
+
+            var logEventInfo = CreateLogEventInfo(cultureName);
+            logEventInfo.Properties["ADouble"] = 1.23;
+
+            var renderer = new AllEventPropertiesLayoutRenderer();
+            string output = renderer.Render(logEventInfo);
+
+            Assert.Equal(expected, output);
+        }
+
+        [Theory]
+        [InlineData(typeof(TimeLayoutRenderer))]
+        [InlineData(typeof(ProcessTimeLayoutRenderer))]
+        public void DateTimeCultureTest(Type rendererType)
+        {
+            string cultureName = "de-DE";
+            string expected = ",";   // decimal comma as separator for ticks
+
+            var logEventInfo = CreateLogEventInfo(cultureName);
+
+            var renderer = Activator.CreateInstance(rendererType) as LayoutRenderer;
+            Assert.NotNull(renderer);
+            string output = renderer.Render(logEventInfo);
+
+            Assert.Contains(expected, output);
+            Assert.DoesNotContain(".", output);
+        }
+
+        private static LogEventInfo CreateLogEventInfo(string cultureName)
+        {
+            var logEventInfo = new LogEventInfo(
+                LogLevel.Info,
+                "SomeName",
+                CultureInfo.GetCultureInfo(cultureName),
+                "SomeMessage",
+                null);
+            return logEventInfo;
+        }
+
+        /// <summary>
+        /// expected: exactly the same exception message + stack trace regardless of the CurrentUICulture
+        /// </summary>
+        [Fact]
+        public void ExceptionTest()
+        {
+            var target = new MemoryTarget { Layout = @"${exception:format=tostring}" };
+            SimpleConfigurator.ConfigureForTargetLogging(target);
+            var logger = LogManager.GetCurrentClassLogger();
+
+            try
+            {
+                throw new InvalidOperationException();
+            }
+            catch (Exception ex)
+            {
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+                logger.Error(ex, "");
+
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-DE");
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
+                logger.Error(ex, "");
+
+                Assert.Equal(2, target.Logs.Count);
+                Assert.NotNull(target.Logs[0]);
+                Assert.NotNull(target.Logs[1]);
+                Assert.Equal(target.Logs[0], target.Logs[1]);
+            }
+        }
+#endif
     }
 }

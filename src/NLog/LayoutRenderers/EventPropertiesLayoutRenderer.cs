@@ -66,7 +66,7 @@ namespace NLog.LayoutRenderers
         /// Format string for conversion from object to string.
         /// </summary>
         public string Format { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the culture used for rendering. 
         /// </summary>
@@ -84,7 +84,8 @@ namespace NLog.LayoutRenderers
 
             if (logEvent.Properties.TryGetValue(this.Item, out value))
             {
-                builder.Append(value.ToStringWithOptionalFormat(Format, Culture));
+                var formatProvider = GetFormatProvider(logEvent, Culture);
+                builder.Append(value.ToStringWithOptionalFormat(Format, formatProvider));
             }
         }
     }
