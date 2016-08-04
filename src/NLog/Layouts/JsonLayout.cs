@@ -83,6 +83,7 @@ namespace NLog.Layouts
             var jsonWrapper = new JsonEncodeLayoutRendererWrapper();
             var sb = new StringBuilder();
             bool first = true;
+            bool hasContent = false;
 
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
@@ -117,12 +118,13 @@ namespace NLog.Layouts
                     }
 
                     sb.AppendFormat(format, col.Name, !this.SuppressSpaces ? " " : "", text);
+                    hasContent = true;
                 }
             }
 
             var result = sb.ToString();
 
-            if (string.IsNullOrEmpty(result.Trim()) && !RenderEmptyObject)
+            if (!hasContent && !RenderEmptyObject)
             {
                return string.Empty;
             }
