@@ -141,14 +141,5 @@ namespace NLog.Layouts
                 stringBuilder.Append(objectToAppend);
             }
         }
-
-        private static StringBuilder PrependIf<T>(bool condition, StringBuilder stringBuilder, T objectToPrepend)
-        {
-            if (condition)
-            {
-                return new StringBuilder(objectToPrepend + stringBuilder.ToString());
-            }
-            return stringBuilder;
-        }
     }
 }
