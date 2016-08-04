@@ -53,7 +53,7 @@ namespace NLog.Layouts
         public JsonLayout()
         {
             this.Attributes = new List<JsonAttribute>();
-            this.RenderEmptyLiteral = true;
+            this.RenderEmptyObject = true;
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the option to render the empty object value {}
         /// </summary>
-        public bool RenderEmptyLiteral { get; set; }
+        public bool RenderEmptyObject { get; set; }
 
         /// <summary>
         /// Formats the log event as a JSON document for writing.
@@ -82,7 +82,7 @@ namespace NLog.Layouts
         {
             var jsonWrapper = new JsonEncodeLayoutRendererWrapper();
             var sb = new StringBuilder();
-            sb.Append("{");
+            
             AppendIf(!this.SuppressSpaces, sb, " ");
             bool first = true;
 
@@ -123,19 +123,15 @@ namespace NLog.Layouts
             }
 
             AppendIf(!this.SuppressSpaces, sb, " ");
-            sb.Append("}");
-
 
             var result = sb.ToString();
 
-            if (!RenderEmptyLiteral)
+            if (string.IsNullOrWhiteSpace(result) && !RenderEmptyObject)
             {
-                if (result.Replace(" ", "") == "{}")
-                    return null;
+               return string.Empty;
             }
 
-
-            return result;
+            return "{" + result + "}";
         }
 
         private static void AppendIf<T>(bool condition, StringBuilder stringBuilder, T objectToAppend)

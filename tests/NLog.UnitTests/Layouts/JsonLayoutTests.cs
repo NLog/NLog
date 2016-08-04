@@ -217,7 +217,7 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-        public void NestedJsonAttrDoesNotRenderEmptyLiteralIfRenderEmptyLiteralIsFalseTest()
+        public void NestedJsonAttrDoesNotRenderEmptyLiteralIfRenderEmptyObjectIsFalseTest()
         {
             var jsonLayout = new JsonLayout
             {
@@ -233,7 +233,7 @@ namespace NLog.UnitTests.Layouts
                             new JsonAttribute("type", "${exception:format=:innerFormat=Type:MaxInnerExceptionLevel=1:InnerExceptionSeparator=}"),
                             new JsonAttribute("message", "${exception:format=:innerFormat=Message:MaxInnerExceptionLevel=1:InnerExceptionSeparator=}"),
                         },
-                        RenderEmptyLiteral = false
+                        RenderEmptyObject = false
                     },
                     //don't escape layout
                     false)
@@ -251,7 +251,7 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-        public void NestedJsonAttrRendersEmptyLiteralIfRenderEmptyLiteralIsTrueTest()
+        public void NestedJsonAttrRendersEmptyLiteralIfRenderEmptyObjectIsTrueTest()
         {
             var jsonLayout = new JsonLayout
             {
@@ -267,7 +267,7 @@ namespace NLog.UnitTests.Layouts
                             new JsonAttribute("type", "${exception:format=:innerFormat=Type:MaxInnerExceptionLevel=1:InnerExceptionSeparator=}"),
                             new JsonAttribute("message", "${exception:format=:innerFormat=Message:MaxInnerExceptionLevel=1:InnerExceptionSeparator=}"),
                         },
-                        RenderEmptyLiteral = true
+                        RenderEmptyObject = true
                     },
                     //don't escape layout
                     false)
