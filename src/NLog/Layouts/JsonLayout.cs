@@ -82,8 +82,6 @@ namespace NLog.Layouts
         {
             var jsonWrapper = new JsonEncodeLayoutRendererWrapper();
             var sb = new StringBuilder();
-            
-            AppendIf(!this.SuppressSpaces, sb, " ");
             bool first = true;
 
             //Memory profiling pointed out that using a foreach-loop was allocating
@@ -122,8 +120,6 @@ namespace NLog.Layouts
                 }
             }
 
-            AppendIf(!this.SuppressSpaces, sb, " ");
-
             var result = sb.ToString();
 
             if (string.IsNullOrEmpty(result.Trim()) && !RenderEmptyObject)
@@ -131,7 +127,11 @@ namespace NLog.Layouts
                return string.Empty;
             }
 
-            return "{" + result + "}";
+            if (SuppressSpaces)
+            {
+                return "{" + result + "}";
+            }
+            return "{ " + result + " }";
         }
 
         private static void AppendIf<T>(bool condition, StringBuilder stringBuilder, T objectToAppend)
@@ -140,6 +140,15 @@ namespace NLog.Layouts
             {
                 stringBuilder.Append(objectToAppend);
             }
+        }
+
+        private static StringBuilder PrependIf<T>(bool condition, StringBuilder stringBuilder, T objectToPrepend)
+        {
+            if (condition)
+            {
+                return new StringBuilder(objectToPrepend + stringBuilder.ToString());
+            }
+            return stringBuilder;
         }
     }
 }
