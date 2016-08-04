@@ -217,6 +217,74 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void NestedJsonAttrDoesNotRenderEmptyLiteralIfRenderEmptyLiteralIsFalseTest()
+        {
+            var jsonLayout = new JsonLayout
+            {
+                Attributes =
+                {
+                    new JsonAttribute("type", "${exception:format=Type}"),
+                    new JsonAttribute("message", "${exception:format=Message}"),
+                    new JsonAttribute("innerException", new JsonLayout
+                    {
+
+                        Attributes =
+                        {
+                            new JsonAttribute("type", "${exception:format=:innerFormat=Type:MaxInnerExceptionLevel=1:InnerExceptionSeparator=}"),
+                            new JsonAttribute("message", "${exception:format=:innerFormat=Message:MaxInnerExceptionLevel=1:InnerExceptionSeparator=}"),
+                        },
+                        RenderEmptyLiteral = false
+                    },
+                    //don't escape layout
+                    false)
+                }
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Exception = new NLogRuntimeException("test", (Exception)null)
+            };
+
+            var json = jsonLayout.Render(logEventInfo);
+            Assert.Equal("{ \"type\": \"NLog.NLogRuntimeException\", \"message\": \"test\" }", json);
+
+        }
+
+        [Fact]
+        public void NestedJsonAttrRendersEmptyLiteralIfRenderEmptyLiteralIsTrueTest()
+        {
+            var jsonLayout = new JsonLayout
+            {
+                Attributes =
+                {
+                    new JsonAttribute("type", "${exception:format=Type}"),
+                    new JsonAttribute("message", "${exception:format=Message}"),
+                    new JsonAttribute("innerException", new JsonLayout
+                    {
+
+                        Attributes =
+                        {
+                            new JsonAttribute("type", "${exception:format=:innerFormat=Type:MaxInnerExceptionLevel=1:InnerExceptionSeparator=}"),
+                            new JsonAttribute("message", "${exception:format=:innerFormat=Message:MaxInnerExceptionLevel=1:InnerExceptionSeparator=}"),
+                        },
+                        RenderEmptyLiteral = true
+                    },
+                    //don't escape layout
+                    false)
+                }
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Exception = new NLogRuntimeException("test", (Exception)null)
+            };
+
+            var json = jsonLayout.Render(logEventInfo);
+            Assert.Equal("{ \"type\": \"NLog.NLogRuntimeException\", \"message\": \"test\", \"innerException\": {  } }", json);
+
+        }
+
+        [Fact]
         public void NestedJsonAttrTestFromXML()
         {
             var configXml = @"

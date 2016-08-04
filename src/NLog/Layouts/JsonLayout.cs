@@ -53,6 +53,7 @@ namespace NLog.Layouts
         public JsonLayout()
         {
             this.Attributes = new List<JsonAttribute>();
+            this.RenderEmptyLiteral = true;
         }
 
         /// <summary>
@@ -66,6 +67,11 @@ namespace NLog.Layouts
         /// Gets or sets the option to suppress the extra spaces in the output json
         /// </summary>
         public bool SuppressSpaces { get; set; }
+
+        /// <summary>
+        /// Gets or sets the option to render the empty object value {}
+        /// </summary>
+        public bool RenderEmptyLiteral { get; set; }
 
         /// <summary>
         /// Formats the log event as a JSON document for writing.
@@ -119,7 +125,17 @@ namespace NLog.Layouts
             AppendIf(!this.SuppressSpaces, sb, " ");
             sb.Append("}");
 
-            return sb.ToString();
+
+            var result = sb.ToString();
+
+            if (!RenderEmptyLiteral)
+            {
+                if (result.Replace(" ", "") == "{}")
+                    return null;
+            }
+
+
+            return result;
         }
 
         private static void AppendIf<T>(bool condition, StringBuilder stringBuilder, T objectToAppend)
