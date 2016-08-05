@@ -59,6 +59,8 @@ namespace NLog.Config
     /// <summary>
     /// A class for configuring NLog through an XML configuration file 
     /// (App.config style or App.nlog style).
+    /// 
+    /// Parsing of the XML file is also implemented in this class.
     /// </summary>
     ///<remarks>This class is thread-safe.<c>.ToList()</c> is used for that purpose.</remarks>
     public class XmlLoggingConfiguration : LoggingConfiguration
@@ -76,7 +78,7 @@ namespace NLog.Config
         private readonly Dictionary<string, bool> fileMustAutoReloadLookup = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
         private string originalFileName;
-
+        
         private LogFactory logFactory = null;
 
         private ConfigurationItemFactory ConfigurationItemFactory
@@ -223,6 +225,8 @@ namespace NLog.Config
         /// <param name="ignoreErrors">If set to <c>true</c> errors will be ignored during file processing.</param>
         internal XmlLoggingConfiguration(XmlElement element, string fileName, bool ignoreErrors)
         {
+            logFactory = LogManager.LogFactory;
+
             using (var stringReader = new StringReader(element.OuterXml))
             {
                 XmlReader reader = XmlReader.Create(stringReader);
@@ -297,6 +301,32 @@ namespace NLog.Config
         public override LoggingConfiguration Reload()
         {
             return new XmlLoggingConfiguration(this.originalFileName);
+        }
+
+        /// <summary>
+        /// Get file paths (including filename) for the possible NLog config files. 
+        /// </summary>
+        /// <returns>The filepaths to the possible config file</returns>
+        public static IEnumerable<string> GetCandidateConfigFilePaths()
+        {
+            return LogManager.LogFactory.GetCandidateConfigFilePaths();
+        }
+
+        /// <summary>
+        /// Overwrite the paths (including filename) for the possible NLog config files.
+        /// </summary>
+        /// <param name="filePaths">The filepaths to the possible config file</param>
+        public static void SetCandidateConfigFilePaths(IEnumerable<string> filePaths)
+        {
+            LogManager.LogFactory.SetCandidateConfigFilePaths(filePaths);
+        }
+
+        /// <summary>
+        /// Clear the candidate file paths and return to the defaults.
+        /// </summary>
+        public static void ResetCandidateConfigFilePath()
+        {
+            LogManager.LogFactory.ResetCandidateConfigFilePath();
         }
 
         #endregion
