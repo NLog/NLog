@@ -85,7 +85,7 @@ namespace NLog.Targets
         /// <summary>
         /// Cached invalid filenames char array to avoid memory allocation everytime Path.GetInvalidFileNameChars() is called.
         /// </summary>
-        private readonly static char[] InvalidFileNameChars = Path.GetInvalidFileNameChars();
+        private readonly static HashSet<char> InvalidFileNameChars = new HashSet<char>(Path.GetInvalidFileNameChars());
 
 #endif 
         /// <summary>
@@ -2098,18 +2098,16 @@ namespace NLog.Targets
             var dirName = lastDirSeparator > 0 ? fileName.Substring(0, lastDirSeparator + 1) : string.Empty;
 
             char[] fileName1Chars = null;
-            foreach (var invalidChar in InvalidFileNameChars)
+
+            for (int i = 0; i < fileName1.Length; i++)
             {
-                for (int i = 0; i < fileName1.Length; i++)
+                if (InvalidFileNameChars.Contains(fileName1[i]))
                 {
-                    if (fileName1[i] == invalidChar)
-                    {
-                        //delay char[] creation until first invalid char
-                        //is found to avoid memory allocation.
-                        if (fileName1Chars == null)
-                            fileName1Chars = fileName1.ToCharArray();
-                        fileName1Chars[i] = '_';
-                    }
+                    //delay char[] creation until first invalid char
+                    //is found to avoid memory allocation.
+                    if (fileName1Chars == null)
+                        fileName1Chars = fileName1.ToCharArray();
+                    fileName1Chars[i] = '_';
                 }
             }
 
