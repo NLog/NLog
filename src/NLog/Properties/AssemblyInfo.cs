@@ -66,7 +66,7 @@ using System.Security;
 [assembly: AssemblyCompany("NLog")]
 [assembly: AssemblyCopyright("Copyright (c) 2004-2016 Jaroslaw Kowalski, Kim Christensen, Julian Verdurmen")]
 [assembly: AssemblyCulture("")]
-
+[assembly: AssemblyVersion("4.0.0.0")] //fixed for the whole 4.x.x release.
 [assembly: CLSCompliant(true)]
 [assembly: ComVisible(false)]
 #if __IOS__ || __ANDROID__ 
