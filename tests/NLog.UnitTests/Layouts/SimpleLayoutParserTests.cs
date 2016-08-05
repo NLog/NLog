@@ -202,6 +202,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void MissingLayoutRendererTest()
         {
+            LogManager.ThrowConfigExceptions = true;
             Assert.Throws<NLogConfigurationException>(() =>
             {
                 SimpleLayout l = "${rot13:${foobar}}";
