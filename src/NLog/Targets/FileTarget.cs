@@ -940,7 +940,7 @@ namespace NLog.Targets
             ProcessLogEvent(logEvent, fileName, bytes);
         }
 
-        private string GetCleanedFileName(LogEventInfo logEvent)
+        internal string GetCleanedFileName(LogEventInfo logEvent)
         {
             if (this.FileName == null)
             {
