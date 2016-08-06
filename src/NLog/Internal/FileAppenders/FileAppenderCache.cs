@@ -89,7 +89,7 @@ namespace NLog.Internal.FileAppenders
             if ((e.ChangeType & WatcherChangeTypes.Created) == WatcherChangeTypes.Created)
                 logFileWasArchived = true;
         }
-        
+
         /// <summary>
         /// The archive file path pattern that is used to detect when archiving occurs.
         /// </summary>
@@ -237,7 +237,7 @@ namespace NLog.Internal.FileAppenders
             {
                 dir = ".";
             }
-            return  Path.Combine(Path.GetFullPath(dir), filePattern);
+            return Path.Combine(Path.GetFullPath(dir), filePattern);
         }
 
         /// <summary>
@@ -326,11 +326,89 @@ namespace NLog.Internal.FileAppenders
             return null;
         }
 
+        private BaseFileAppender GetAppender(string fileName)
+        {
+            foreach (BaseFileAppender appender in appenders)
+            {
+                if (appender == null)
+                    break;
+
+                if (appender.FileName == fileName)
+                    return appender;
+            }
+
+            return null;
+        }
+
+        public DateTime? GetFileCreationTimeUtc(string filePath, bool fallback)
+        {
+            var appender = GetAppender(filePath);
+            DateTime? result = null;
+            if (appender != null)
+                result = appender.GetFileCreationTimeUtc();
+            if (result == null && fallback)
+            {
+                var fileInfo = new FileInfo(filePath);
+                if (fileInfo.Exists)
+                {
+#if !SILVERLIGHT
+                    return fileInfo.CreationTimeUtc;
+#else
+                    return fileInfo.CreationTime;
+#endif
+                }
+            }
+
+            return result;
+        }
+
+        public DateTime? GetFileLastWriteTimeUtc(string filePath, bool fallback)
+        {
+            var appender = GetAppender(filePath);
+            DateTime? result = null;
+            if (appender != null)
+                result = appender.GetFileLastWriteTimeUtc();
+            if (result == null && fallback)
+            {
+                var fileInfo = new FileInfo(filePath);
+                if (fileInfo.Exists)
+                {
+#if !SILVERLIGHT
+                    return fileInfo.LastWriteTimeUtc;
+#else
+                    return fileInfo.LastWriteTime;
+#endif
+                }
+            }
+
+            return result;
+        }
+
+        public long? GetFileLength(string filePath, bool fallback)
+        {
+            var appender = GetAppender(filePath);
+            long? result = null;
+            if (appender != null)
+                result = appender.GetFileLength();
+            if (result == null && fallback)
+            {
+                var fileInfo = new FileInfo(filePath);
+                if (fileInfo.Exists)
+                {
+                    return fileInfo.Length;
+                }
+            }
+
+            return result;
+        }
+
+
+
         /// <summary>
         /// Closes the specified appender and removes it from the list. 
         /// </summary>
-        /// <param name="fileName">File name of the appender to be closed.</param>
-        public void InvalidateAppender(string fileName)
+        /// <param name="filePath">File name of the appender to be closed.</param>
+        public void InvalidateAppender(string filePath)
         {
             for (int i = 0; i < appenders.Length; ++i)
             {
@@ -339,7 +417,7 @@ namespace NLog.Internal.FileAppenders
                     break;
                 }
 
-                if (appenders[i].FileName == fileName)
+                if (appenders[i].FileName == filePath)
                 {
                     CloseAppender(appenders[i]);
                     for (int j = i; j < appenders.Length - 1; ++j)
