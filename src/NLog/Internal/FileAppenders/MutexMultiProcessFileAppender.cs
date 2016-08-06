@@ -168,6 +168,28 @@ namespace NLog.Internal.FileAppenders
             return FileCharacteristicsHelper.Helper.GetFileCharacteristics(FileName, this.fileStream.SafeFileHandle.DangerousGetHandle());
         }
 
+
+        public override DateTime? GetFileCreationTimeUtc()
+        {
+            //todo
+            throw new NotImplementedException();
+          //  return this.CreationTime;
+        }
+
+        public override DateTime? GetFileLastWriteTimeUtc()
+        {
+            //todo
+            throw new NotImplementedException();
+          //  return this.LastWriteTime;
+        }
+
+        public override long? GetFileLength()
+        {
+            //todo
+            throw new NotImplementedException();
+            //return this.currentFileLength;
+        }
+
         private static Mutex CreateSharableMutex(string name)
         {
             // Creates a mutex sharable by more than one process

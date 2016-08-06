@@ -105,6 +105,49 @@ namespace NLog.Internal.FileAppenders
                 return null;
         }
 
+
+        public override DateTime? GetFileCreationTimeUtc()
+        {
+            FileInfo fileInfo = new FileInfo(FileName);
+            if (fileInfo.Exists)
+            {
+#if !SILVERLIGHT
+                return fileInfo.CreationTimeUtc;
+#else
+                return fileInfo.CreationTime;
+#endif
+            }
+            return null;
+        }
+
+        public override DateTime? GetFileLastWriteTimeUtc()
+        {
+            FileInfo fileInfo = new FileInfo(FileName);
+            if (fileInfo.Exists)
+            {
+#if !SILVERLIGHT
+                return fileInfo.LastWriteTimeUtc;
+#else
+                return  fileInfo.LastWriteTime;
+#endif
+            }
+            return null;
+        }
+
+        public override long? GetFileLength()
+        {
+            FileInfo fileInfo = new FileInfo(FileName);
+            if (fileInfo.Exists)
+            {
+#if !SILVERLIGHT
+                return fileInfo.Length;
+#else
+                return  fileInfo.Length;
+#endif
+            }
+            return null;
+        }
+
         /// <summary>
         /// Factory class.
         /// </summary>
