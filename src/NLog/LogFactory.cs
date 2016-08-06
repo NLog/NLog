@@ -603,7 +603,7 @@ namespace NLog
         /// </remarks>
         /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging. 
         /// To be used with C# <c>using ()</c> statement.</returns>
-        [Obsolete("Use SuspendLogging() instead.")]
+        [Obsolete("Use SuspendLogging() instead. This method will be removed in NLog 5.")]
         public IDisposable DisableLogging()
         {
             return SuspendLogging();
@@ -615,7 +615,7 @@ namespace NLog
         /// <remarks>
         /// Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater than 
         /// or equal to <see cref="SuspendLogging"/> calls.</remarks>
-        [Obsolete("Use ResumeLogging() instead.")]
+        [Obsolete("Use ResumeLogging() instead. This method will be removed in NLog 5.")]
         public void EnableLogging()
         {
             ResumeLogging();
