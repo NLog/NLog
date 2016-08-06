@@ -80,10 +80,14 @@ Frequently Asked Questions (FAQ)
   - NLog is fully written in C#, has many years of experience and is easy to extend!
 
 * **Is it free?**
-  - It's licensed under the BSD license, so you can use it in commercial (closed sourse) programs without problems. 
+  - Yes, it's licensed under the BSD license, so you can use it in commercial (closed sourse) programs without problems. 
   
 * **Show me the magic!**
   - Check the [tutorial](https://github.com/NLog/NLog/wiki/Tutorial) to get started!
+ 
+* **Just show me a config example**
+ - [voilà](https://github.com/NLog/NLog/wiki/NLog-config-Example)
+  
 
 * **I can't see anything?!**
   - NLog not working as expected? Check the [troubleshooting guide](https://github.com/NLog/NLog/wiki/Logging-troubleshooting). If you think it's a bug, please check [contributing.md](https://github.com/NLog/NLog/blob/master/CONTRIBUTING.md#bug-reports]) and [create a GitHub issue](https://github.com/NLog/NLog/issues/new)!
