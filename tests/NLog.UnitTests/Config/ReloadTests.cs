@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !MONO
+#if !SILVERLIGHT
 namespace NLog.UnitTests.Config
 {
     using NLog.Config;
@@ -133,7 +133,11 @@ namespace NLog.UnitTests.Config
             }
         }
 
+#if MONO
+        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
+#else
         [Fact]
+#endif
         public void TestAutoReloadOnFileMove()
         {
             string config1 = @"<nlog autoReload='true'>
