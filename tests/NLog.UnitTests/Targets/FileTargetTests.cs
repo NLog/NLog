@@ -359,8 +359,8 @@ namespace NLog.UnitTests.Targets
                 AssertFileContents(logFile, "Debug ddd\nInfo eee\nWarn fff\n", Encoding.UTF8);
                 Assert.True(File.Exists(archiveTempName));
 
-                var assertFileContents = ft.EnableArchiveFileCompression ? 
-                    new Action<string, string, Encoding>(AssertZipFileContents) : 
+                var assertFileContents = ft.EnableArchiveFileCompression ?
+                    new Action<string, string, Encoding>(AssertZipFileContents) :
                     AssertFileContents;
 
                 assertFileContents(archiveTempName, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n",
@@ -2684,6 +2684,26 @@ namespace NLog.UnitTests.Targets
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
+        }
+
+        [Fact]
+        public void TestFilenameCleanup()
+        {
+            var invalidChars = Path.GetInvalidFileNameChars();
+            var invalidFileName = "";
+            var expectedFileName = "";
+            for (int i = 0; i < invalidFileName.Count(); i++)
+            {
+                var invalidChar = invalidFileName[i];
+                invalidFileName += i + invalidChar;
+                //underscore is used for clean
+                expectedFileName += i + "_";
+            }
+            //CleanupFileName is default true;
+            var fileTarget = new FileTarget();
+            fileTarget.FileName = invalidFileName;
+            var path = fileTarget.GetCleanedFileName(LogEventInfo.CreateNullEvent());
+            Assert.Equal(expectedFileName, path);
         }
 
 
