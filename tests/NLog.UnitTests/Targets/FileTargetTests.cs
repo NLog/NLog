@@ -2690,15 +2690,23 @@ namespace NLog.UnitTests.Targets
         public void TestFilenameCleanup()
         {
             var invalidChars = Path.GetInvalidFileNameChars();
-            var invalidFileName = "";
+            var invalidFileName = Path.DirectorySeparatorChar.ToString();
             var expectedFileName = "";
-            for (int i = 0; i < invalidFileName.Count(); i++)
+            for (int i = 0; i < invalidChars.Count(); i++)
             {
-                var invalidChar = invalidFileName[i];
-                invalidFileName += i + invalidChar;
+                var invalidChar = invalidChars[i];
+                if (invalidChar == Path.DirectorySeparatorChar || invalidChar == Path.AltDirectorySeparatorChar)
+                {
+                    //ignore, won't used in cleanup (but for find filename in path)
+                    continue;
+                }
+
+                invalidFileName += i + invalidChar.ToString();
                 //underscore is used for clean
                 expectedFileName += i + "_";
             }
+            //under mono this the invalid chars is sometimes only 1 char (so min width 2)
+            Assert.True(invalidFileName.Length >= 2);
             //CleanupFileName is default true;
             var fileTarget = new FileTarget();
             fileTarget.FileName = invalidFileName;
