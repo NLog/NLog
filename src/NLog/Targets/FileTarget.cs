@@ -2026,6 +2026,9 @@ namespace NLog.Targets
         /// <param name="appender">File appender associated with the file.</param>
         private void WriteHeader(BaseFileAppender appender)
         {
+            //performance: cheap check before checking file info 
+            if (Header == null) return;
+
             //todo replace with hasWritten?
             var length = appender.GetFileLength();
             //  Write header only on empty files or if file info cannot be obtained.
@@ -2053,7 +2056,7 @@ namespace NLog.Targets
             {
                 return null;
             }
-
+            //todo remove 
             string renderedText = layout.Render(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
             return this.TransformBytes(this.Encoding.GetBytes(renderedText));
         }
