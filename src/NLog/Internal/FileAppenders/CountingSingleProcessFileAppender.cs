@@ -62,11 +62,7 @@ namespace NLog.Internal.FileAppenders
             var fileInfo = new FileInfo(fileName);
             if (fileInfo.Exists)
             {
-#if !SILVERLIGHT
-                FileTouched(fileInfo.LastWriteTimeUtc);
-#else
-                FileTouched(fileInfo.LastWriteTime);
-#endif
+                FileTouched(fileInfo.GetLastWriteTimeUtc());
                 this.currentFileLength = fileInfo.Length;
             }
             else

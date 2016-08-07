@@ -351,11 +351,7 @@ namespace NLog.Internal.FileAppenders
                 var fileInfo = new FileInfo(filePath);
                 if (fileInfo.Exists)
                 {
-#if !SILVERLIGHT
-                    return fileInfo.CreationTimeUtc;
-#else
-                    return fileInfo.CreationTime;
-#endif
+                    return fileInfo.GetCreationTimeUtc();
                 }
             }
 
@@ -373,11 +369,7 @@ namespace NLog.Internal.FileAppenders
                 var fileInfo = new FileInfo(filePath);
                 if (fileInfo.Exists)
                 {
-#if !SILVERLIGHT
-                    return fileInfo.LastWriteTimeUtc;
-#else
-                    return fileInfo.LastWriteTime;
-#endif
+                    return fileInfo.GetLastWriteTimeUtc();
                 }
             }
 

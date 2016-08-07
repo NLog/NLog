@@ -95,11 +95,7 @@ namespace NLog.Internal.FileAppenders
             FileInfo fileInfo = new FileInfo(FileName);
             if (fileInfo.Exists)
             {
-#if !SILVERLIGHT
-                return new FileCharacteristics(fileInfo.CreationTimeUtc, fileInfo.LastWriteTimeUtc, fileInfo.Length);
-#else
-                return new FileCharacteristics(fileInfo.CreationTime, fileInfo.LastWriteTime, fileInfo.Length);
-#endif
+                return new FileCharacteristics(fileInfo.GetCreationTimeUtc(), fileInfo.GetLastWriteTimeUtc(), fileInfo.Length);
             }
             else
                 return null;
@@ -111,11 +107,7 @@ namespace NLog.Internal.FileAppenders
             FileInfo fileInfo = new FileInfo(FileName);
             if (fileInfo.Exists)
             {
-#if !SILVERLIGHT
-                return fileInfo.CreationTimeUtc;
-#else
-                return fileInfo.CreationTime;
-#endif
+                return fileInfo.GetCreationTimeUtc();
             }
             return null;
         }
@@ -125,11 +117,7 @@ namespace NLog.Internal.FileAppenders
             FileInfo fileInfo = new FileInfo(FileName);
             if (fileInfo.Exists)
             {
-#if !SILVERLIGHT
-                return fileInfo.LastWriteTimeUtc;
-#else
-                return  fileInfo.LastWriteTime;
-#endif
+                return fileInfo.GetLastWriteTimeUtc();
             }
             return null;
         }
@@ -139,11 +127,7 @@ namespace NLog.Internal.FileAppenders
             FileInfo fileInfo = new FileInfo(FileName);
             if (fileInfo.Exists)
             {
-#if !SILVERLIGHT
                 return fileInfo.Length;
-#else
-                return  fileInfo.Length;
-#endif
             }
             return null;
         }
