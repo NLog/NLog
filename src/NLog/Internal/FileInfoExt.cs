@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NLog.Layouts;
 
 namespace NLog.Internal
 {
@@ -25,6 +26,8 @@ namespace NLog.Internal
             return fileInfo.CreationTime;
 #endif
         }
+
+       
 
     }
 }

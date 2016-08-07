@@ -2071,12 +2071,16 @@ namespace NLog.Targets
         /// <returns>The cleaned up file name without any invalid characters.</returns>
         private string CleanupInvalidFileNameChars(string fileName)
         {
-
             if (!this.CleanupFileName)
             {
                 return fileName;
             }
 
+            return CleanupInvalidFileNameChars2(fileName);
+        }
+
+        internal static string CleanupInvalidFileNameChars2(string fileName)
+        {
 #if !SILVERLIGHT
 
             var lastDirSeparator = fileName.LastIndexOfAny(DirectorySeparatorChars);
