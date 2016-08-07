@@ -110,11 +110,6 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public abstract void Close();
 
-        /// <summary>
-        /// Gets the file info.
-        /// </summary>
-        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public abstract FileCharacteristics GetFileCharacteristics();
         public abstract DateTime? GetFileCreationTimeUtc();
         public abstract DateTime? GetFileLastWriteTimeUtc();
         public abstract long? GetFileLength();

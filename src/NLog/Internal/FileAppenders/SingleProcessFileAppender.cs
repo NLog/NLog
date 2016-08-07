@@ -112,15 +112,6 @@ namespace NLog.Internal.FileAppenders
             this.file = null;
         }
 
-        /// <summary>
-        /// Gets the file info.
-        /// </summary>
-        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public override FileCharacteristics GetFileCharacteristics()
-        {
-            return file == null ? null : new FileCharacteristics(CreationTime, LastWriteTime, file.Length);
-        }
-
         public override DateTime? GetFileCreationTimeUtc()
         {
             return this.CreationTime;
