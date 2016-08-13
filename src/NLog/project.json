@@ -15,9 +15,6 @@
     }
 
   },
-  "dependencies": {
-
-  },
 
   "frameworks": {
     ".NETFramework,Version=v3.5": {
@@ -100,7 +97,7 @@
         "System.Net.NameResolution": "4.0.0"
       },
       "buildOptions": {
-        "define": [ "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD1_3", "ASYNC_SUPPORTED", "UWP10" ],
+        "define": [ "NET4_5", "NETSTANDARD_1plus", "ASYNC_SUPPORTED", "UWP10" ],
         "nowarn": [ "CS0436" ]
       }
     },
