@@ -53,6 +53,7 @@ namespace NLog.Layouts
         public JsonLayout()
         {
             this.Attributes = new List<JsonAttribute>();
+            this.RenderEmptyObject = true;
         }
 
         /// <summary>
@@ -68,6 +69,11 @@ namespace NLog.Layouts
         public bool SuppressSpaces { get; set; }
 
         /// <summary>
+        /// Gets or sets the option to render the empty object value {}
+        /// </summary>
+        public bool RenderEmptyObject { get; set; }
+
+        /// <summary>
         /// Formats the log event as a JSON document for writing.
         /// </summary>
         /// <param name="logEvent">The log event to be formatted.</param>
@@ -76,9 +82,8 @@ namespace NLog.Layouts
         {
             var jsonWrapper = new JsonEncodeLayoutRendererWrapper();
             var sb = new StringBuilder();
-            sb.Append("{");
-            AppendIf(!this.SuppressSpaces, sb, " ");
             bool first = true;
+            bool hasContent = false;
 
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
@@ -113,13 +118,22 @@ namespace NLog.Layouts
                     }
 
                     sb.AppendFormat(format, col.Name, !this.SuppressSpaces ? " " : "", text);
+                    hasContent = true;
                 }
             }
 
-            AppendIf(!this.SuppressSpaces, sb, " ");
-            sb.Append("}");
+            var result = sb.ToString();
 
-            return sb.ToString();
+            if (!hasContent && !RenderEmptyObject)
+            {
+               return string.Empty;
+            }
+
+            if (SuppressSpaces)
+            {
+                return "{" + result + "}";
+            }
+            return "{ " + result + " }";
         }
 
         private static void AppendIf<T>(bool condition, StringBuilder stringBuilder, T objectToAppend)

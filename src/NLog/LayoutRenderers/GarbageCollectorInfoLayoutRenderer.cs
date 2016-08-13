@@ -99,8 +99,9 @@ namespace NLog.LayoutRenderers
                     value = GC.MaxGeneration;
                     break;
             }
+            var formatProvider = GetFormatProvider(logEvent);
 
-            builder.Append(Convert.ToString(value, CultureInfo.InvariantCulture));
+            builder.Append(Convert.ToString(value, formatProvider));
         }
     }
 }

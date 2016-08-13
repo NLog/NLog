@@ -106,7 +106,8 @@ namespace NLog.LayoutRenderers
         {
             if (this.propertyInfo != null)
             {
-                builder.Append(Convert.ToString(this.propertyInfo.GetValue(this.process, null), CultureInfo.InvariantCulture));
+                var formatProvider = GetFormatProvider(logEvent);
+                builder.Append(Convert.ToString(this.propertyInfo.GetValue(this.process, null), formatProvider));
             }
         }
     }
