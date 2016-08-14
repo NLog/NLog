@@ -127,6 +127,11 @@ namespace NLog.Internal
             {
                 return cleanedFixedResult;
             }
+            if (_layout == null)
+            {
+                return null;
+            }
+
             var result = _layout.Render(logEvent);
             if (_cleanupInvalidChars)
             {
@@ -138,6 +143,11 @@ namespace NLog.Internal
         public string GetAsAbsolutePath(LogEventInfo logEvent)
         {
             var rendered = Render(logEvent);
+            if (string.IsNullOrEmpty(rendered))
+            {
+                return rendered;
+            }
+
             if (_filePathKind == FilePathKind.Absolute)
             {
                 return rendered;

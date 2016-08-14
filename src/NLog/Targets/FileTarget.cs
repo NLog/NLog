@@ -2117,6 +2117,11 @@ namespace NLog.Targets
         internal static string CleanupInvalidFileNameChars2(string fileName)
         {
 #if !SILVERLIGHT
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                return fileName;
+            }
+
 
             var lastDirSeparator = fileName.LastIndexOfAny(DirectorySeparatorChars);
 
