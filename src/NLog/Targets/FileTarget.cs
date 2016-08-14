@@ -75,7 +75,7 @@ namespace NLog.Targets
         /// </summary>
         private const int ArchiveAboveSizeDisabled = -1;
 
-       
+
         /// <summary>
         /// Holds the initialised files each given time by the <see cref="FileTarget"/> instance. Against each file, the last write time is stored. 
         /// </summary>
@@ -939,19 +939,12 @@ namespace NLog.Targets
             }
         }
 
-        internal string GetCleanedFileName(LogEventInfo logEvent)
-        {		
-            if (this.fileName == null)		
-            {		
-                return null;		
-            }
-            return this.fileName.GetAsAbsolutePath(logEvent);
-        }
 
-    /// <summary>
-    /// Closes the file(s) opened for writing.
-    /// </summary>
-    protected override void CloseTarget()
+
+        /// <summary>
+        /// Closes the file(s) opened for writing.
+        /// </summary>
+        protected override void CloseTarget()
         {
             base.CloseTarget();
 
@@ -982,6 +975,15 @@ namespace NLog.Targets
             var fileName = this.GetCleanedFileName(logEvent);
             byte[] bytes = this.GetBytesToWrite(logEvent);
             ProcessLogEvent(logEvent, fileName, bytes);
+        }
+
+        internal string GetCleanedFileName(LogEventInfo logEvent)
+        {
+            if (this.fileName == null)
+            {
+                return null;
+            }
+            return this.fileName.GetAsAbsolutePath(logEvent);
         }
 
         /// <summary>
@@ -1026,6 +1028,8 @@ namespace NLog.Targets
                 }
             }
         }
+
+
 
         private void ProcessLogEvent(LogEventInfo logEvent, string fileName, byte[] bytesToWrite)
         {
