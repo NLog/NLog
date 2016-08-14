@@ -2715,7 +2715,7 @@ namespace NLog.UnitTests.Targets
             var filePathLayout = new FilePathLayout(invalidFileName,true, FilePathKind.Absolute);
 
 
-            var path = filePathLayout.GetAsAbsolutePath(LogEventInfo.CreateNullEvent());
+            var path = filePathLayout.Render(LogEventInfo.CreateNullEvent());
             Assert.Equal(expectedFileName, path);
         }
 

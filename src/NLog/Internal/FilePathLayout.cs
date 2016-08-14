@@ -43,7 +43,7 @@ namespace NLog.Internal
     /// <summary>
     /// A layout that represents a filePath. 
     /// </summary>
-    internal class FilePathLayout
+    internal class FilePathLayout : IRenderable
     {
         /// <summary>
         /// Cached directory separator char array to avoid memory allocation on each method call.
@@ -142,7 +142,7 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         /// <returns>String representation of a layout.</returns>
-        private string Render(LogEventInfo logEvent)
+        private string GetCleanedFileName(LogEventInfo logEvent)
         {
             if (cleanedFixedResult != null)
             {
@@ -161,9 +161,9 @@ namespace NLog.Internal
             return result;
         }
 
-        public string GetAsAbsolutePath(LogEventInfo logEvent)
+        public string Render(LogEventInfo logEvent)
         {
-            var rendered = Render(logEvent);
+            var rendered = GetCleanedFileName(logEvent);
             if (String.IsNullOrEmpty(rendered))
             {
                 return rendered;

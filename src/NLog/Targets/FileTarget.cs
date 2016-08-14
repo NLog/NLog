@@ -123,12 +123,12 @@ namespace NLog.Targets
         /// <summary>
         /// The filename as target
         /// </summary>
-        private FilePathLayout fileName;
+        private FilePathLayout fullFileName;
 
         /// <summary>
         /// The archive file name as target
         /// </summary>
-        private FilePathLayout archiveFileName;
+        private FilePathLayout fullarchiveFileName;
 
         private FileArchivePeriod archiveEvery;
         private long archiveAboveSize;
@@ -230,14 +230,14 @@ namespace NLog.Targets
         {
             get
             {
-                if (fileName == null) return null;
+                if (fullFileName == null) return null;
 
-                return fileName.GetLayout();
+                return fullFileName.GetLayout();
             }
             set
             {
 
-                fileName = CreateFileNameLayout(value);
+                fullFileName = CreateFileNameLayout(value);
 
                 if (IsInitialized)
                 {
@@ -270,8 +270,8 @@ namespace NLog.Targets
             set
             {
                 _cleanupFileName = value;
-                fileName = CreateFileNameLayout(FileName);
-                archiveFileName = CreateFileNameLayout(ArchiveFileName);
+                fullFileName = CreateFileNameLayout(FileName);
+                fullarchiveFileName = CreateFileNameLayout(ArchiveFileName);
             }
         }
 
@@ -288,7 +288,7 @@ namespace NLog.Targets
             {
 
                 _fileNameKind = value;
-                fileName = CreateFileNameLayout(FileName);
+                fullFileName = CreateFileNameLayout(FileName);
             }
         }
 
@@ -595,7 +595,7 @@ namespace NLog.Targets
             set
             {
                 _archiveFileKind = value;
-                archiveFileName = CreateFileNameLayout(ArchiveFileName);
+                fullarchiveFileName = CreateFileNameLayout(ArchiveFileName);
             }
         }
 
@@ -613,13 +613,13 @@ namespace NLog.Targets
         {
             get
             {
-                if (archiveFileName == null) return null;
+                if (fullarchiveFileName == null) return null;
 
-                return archiveFileName.GetLayout();
+                return fullarchiveFileName.GetLayout();
             }
             set
             {
-                archiveFileName = CreateFileNameLayout(value);
+                fullarchiveFileName = CreateFileNameLayout(value);
                 if (IsInitialized)
                 {
                     //don't call before initialized because this could lead to stackoverflows.
@@ -972,18 +972,18 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            var fileName = this.GetCleanedFileName(logEvent);
+            var fullFileName = this.GetCleanedFileName(logEvent);
             byte[] bytes = this.GetBytesToWrite(logEvent);
-            ProcessLogEvent(logEvent, fileName, bytes);
+            ProcessLogEvent(logEvent, fullFileName, bytes);
         }
 
         internal string GetCleanedFileName(LogEventInfo logEvent)
         {
-            if (this.fileName == null)
+            if (this.fullFileName == null)
             {
                 return null;
             }
-            return this.fileName.GetAsAbsolutePath(logEvent);
+            return this.fullFileName.Render(logEvent);
         }
 
         /// <summary>
@@ -1740,7 +1740,7 @@ namespace NLog.Targets
         /// <returns>A string with a pattern that will match the archive filenames</returns>
         private string GetArchiveFileNamePattern(string fileName, LogEventInfo eventInfo)
         {
-            if (this.archiveFileName == null)
+            if (this.fullarchiveFileName == null)
             {
                 string ext = EnableArchiveFileCompression ? ".zip" : Path.GetExtension(fileName);
                 return Path.ChangeExtension(fileName, ".{#}" + ext);
@@ -1750,7 +1750,7 @@ namespace NLog.Targets
                 //The archive file name is given. There are two possibilities
                 //(1) User supplied the Filename with pattern
                 //(2) User supplied the normal filename
-                string archiveFileName = this.archiveFileName.GetAsAbsolutePath(eventInfo);
+                string archiveFileName = this.fullarchiveFileName.Render(eventInfo);
                 return archiveFileName;
             }
         }
