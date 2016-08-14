@@ -700,7 +700,7 @@ namespace NLog.Targets
         private void RefreshFileArchive()
         {
             var nullEvent = LogEventInfo.CreateNullEvent();
-            string fileNamePattern = GetArchiveFileNamePattern(GetCleanedFileName(nullEvent), nullEvent);
+            string fileNamePattern = GetArchiveFileNamePattern(GetFullFileName(nullEvent), nullEvent);
             if (fileNamePattern == null)
             {
                 InternalLogger.Debug("no RefreshFileArchive because fileName is NULL");
@@ -742,10 +742,11 @@ namespace NLog.Targets
                 if (mustWatchArchiving)
                 {
                     var nullEvent = LogEventInfo.CreateNullEvent();
-                    string fileNamePattern = GetArchiveFileNamePattern(GetCleanedFileName(nullEvent), nullEvent);
+                    string fileNamePattern = GetArchiveFileNamePattern(GetFullFileName(nullEvent), nullEvent);
                     if (!string.IsNullOrEmpty(fileNamePattern))
                     {
                         fileNamePattern = Path.Combine(Path.GetDirectoryName(fileNamePattern), ReplaceFileNamePattern(fileNamePattern, "*"));
+                        //fileNamePattern is absolute
                         this.fileAppenderCache.ArchiveFilePatternToWatch = fileNamePattern;
 
                         if ((EnableArchiveFileCompression) && (this.appenderInvalidatorThread == null))
@@ -972,12 +973,17 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            var fullFileName = this.GetCleanedFileName(logEvent);
+            var fullFileName = this.GetFullFileName(logEvent);
             byte[] bytes = this.GetBytesToWrite(logEvent);
             ProcessLogEvent(logEvent, fullFileName, bytes);
         }
 
-        internal string GetCleanedFileName(LogEventInfo logEvent)
+        /// <summary>
+        /// Get full filename (=absolute) and cleaned if needed.
+        /// </summary>
+        /// <param name="logEvent"></param>
+        /// <returns></returns>
+        internal string GetFullFileName(LogEventInfo logEvent)
         {
             if (this.fullFileName == null)
             {
@@ -998,7 +1004,7 @@ namespace NLog.Targets
         /// </remarks>
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
-            var buckets = logEvents.BucketSort(c => this.GetCleanedFileName(c.LogEvent));
+            var buckets = logEvents.BucketSort(c => this.GetFullFileName(c.LogEvent));
             using (var ms = new MemoryStream())
             {
                 var pendingContinuations = new List<AsyncContinuation>();
