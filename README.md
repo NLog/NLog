@@ -80,7 +80,7 @@ Frequently Asked Questions (FAQ)
   - NLog is fully written in C#, has many years of experience and is easy to extend!
 
 * **Is it free?**
-  - Yes, it's licensed under the BSD license, so you can use it in commercial (closed sourse) programs without problems. 
+  - Yes, it's licensed under the BSD license, so you can use it in commercial (closed source) programs without problems. 
   
 * **Show me the magic!**
   - Check the [tutorial](https://github.com/NLog/NLog/wiki/Tutorial) to get started!
