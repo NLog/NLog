@@ -191,18 +191,19 @@ namespace NLog.Internal
         /// <summary>
         /// Is this (templated/invalid) path an absolute, relative or unknown?
         /// </summary>
-        /// <returns> <c>true</c> for absolute, <c>false</c> for relative, <c>null</c> for unknown </returns>
         internal static FilePathKind DetectFilePathKind(Layout pathLayout)
         {
-            var pathLayout2 = pathLayout as SimpleLayout;
-            if (pathLayout2 == null)
+            var simpleLayout = pathLayout as SimpleLayout;
+            if (simpleLayout == null)
             {
                 return FilePathKind.Unknown;
             }
 
-            return DetectFilePathKind(pathLayout2);
+            return DetectFilePathKind(simpleLayout);
         }
-
+        /// <summary>
+        /// Is this (templated/invalid) path an absolute, relative or unknown?
+        /// </summary>
         private static FilePathKind DetectFilePathKind(SimpleLayout pathLayout)
         {
             var isFixedText = pathLayout.IsFixedText;
@@ -231,7 +232,13 @@ namespace NLog.Internal
                         var secondChar = path[1];
                         if (secondChar == Path.VolumeSeparatorChar)
                             return FilePathKind.Absolute;
+
                     }
+                    if (!isFixedText)
+                    {
+                        return FilePathKind.Unknown;
+                    }
+
 
                     //not a layout renderer, but text
                     return FilePathKind.Relative;
