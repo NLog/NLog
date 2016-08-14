@@ -56,17 +56,20 @@ namespace NLog.UnitTests.Internal
         [InlineData(@" d:\ test", FilePathKind.Absolute)]
         [InlineData(@" d:\ test", FilePathKind.Absolute)]
         [InlineData(@" d:\ test\a", FilePathKind.Absolute)]
-#endif
-        [InlineData(@"\ test\a", FilePathKind.Absolute)]
-        [InlineData(@"/ test\a", FilePathKind.Absolute)]
         [InlineData(@"\\test\a", FilePathKind.Absolute)]
         [InlineData(@"\\test/a", FilePathKind.Absolute)]
+        [InlineData(@"\ test\a", FilePathKind.Absolute)]
+        [InlineData(@" a\test.log ", FilePathKind.Relative)]
+#endif
+
+        [InlineData(@"/ test\a", FilePathKind.Absolute)]
+       
         [InlineData(@"test.log", FilePathKind.Relative)]
         [InlineData(@"test", FilePathKind.Relative)]
         [InlineData(@" test.log ", FilePathKind.Relative)]
         [InlineData(@" test.log ", FilePathKind.Relative)]
         [InlineData(@" a/test.log ", FilePathKind.Relative)]
-        [InlineData(@" a\test.log ", FilePathKind.Relative)]
+      
         [InlineData(@".test.log ", FilePathKind.Relative)]
         [InlineData(@"..test.log ", FilePathKind.Relative)]
         [InlineData(@" .. test.log ", FilePathKind.Relative)]
@@ -75,6 +78,12 @@ namespace NLog.UnitTests.Internal
         [InlineData(@"${BASEDIR}\test ", FilePathKind.Absolute)]
         [InlineData(@"${BASEDIR}\test ", FilePathKind.Absolute)]
         [InlineData(@"${level}\test ", FilePathKind.Unknown)]
+
+        [InlineData(@"${basedir}/test.log ", FilePathKind.Absolute)]
+        [InlineData(@"${BASEDIR}/test.log ", FilePathKind.Absolute)]
+        [InlineData(@"${BASEDIR}/test ", FilePathKind.Absolute)]
+        [InlineData(@"${BASEDIR}/test ", FilePathKind.Absolute)]
+        [InlineData(@"${level}/test ", FilePathKind.Unknown)]
         public void DetectFilePathKind(string path, FilePathKind expected)
         {
             Layout layout = path;
