@@ -268,6 +268,9 @@ namespace NLog
         {
             FilterResult result = FilterResult.Neutral;
 
+            if (filterChain == null || filterChain.Count == 0)
+                return result;
+
             try
             {
                 //Memory profiling pointed out that using a foreach-loop was allocating
