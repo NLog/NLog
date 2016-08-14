@@ -234,8 +234,9 @@ namespace NLog.Internal
                             return FilePathKind.Absolute;
 
                     }
-                    if (!isFixedText)
+                    if (!isFixedText && path.StartsWith("${", StringComparison.OrdinalIgnoreCase))
                     {
+                        //if first part is a layout, then unknown
                         return FilePathKind.Unknown;
                     }
 
