@@ -119,15 +119,33 @@ namespace NLog.Internal.FileAppenders
             this.file = null;
         }
 
+        public override DateTime? GetFileCreationTimeUtc()
+        {
+            FileInfo fileInfo = new FileInfo(FileName);
+            if (!fileInfo.Exists)
+                return null;
+            return fileInfo.CreationTime;
+        }
+
+        public override DateTime? GetFileLastWriteTimeUtc()
+        {
+            FileInfo fileInfo = new FileInfo(FileName);
+            if (!fileInfo.Exists)
+                return null;
+            return fileInfo.LastWriteTime;
+        }
+
+        public override long? GetFileLength()
+        {
+            FileInfo fileInfo = new FileInfo(FileName);
+            if (!fileInfo.Exists)
+                return null;
+            return fileInfo.Length;
+        }
+
         public override void Flush()
         {
             // do nothing, the stream is always flushed
-        }
-
-        public override FileCharacteristics GetFileCharacteristics()
-        {
-            FileInfo fileInfo = new FileInfo(FileName);
-            return fileInfo.Exists ? new FileCharacteristics(fileInfo.CreationTime, fileInfo.LastWriteTime, fileInfo.Length) : null;
         }
     }
 }
