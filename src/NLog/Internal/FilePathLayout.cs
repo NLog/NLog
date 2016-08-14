@@ -85,6 +85,12 @@ namespace NLog.Internal
             _filePathKind = filePathKind;
             _cleanupInvalidChars = cleanupInvalidChars;
 
+            if (_layout == null)
+            {
+                _filePathKind = FilePathKind.Unknown;
+                return;
+            }
+
             //do we have to the the layout?
             if (cleanupInvalidChars || _filePathKind == FilePathKind.Unknown)
             {

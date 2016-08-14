@@ -250,6 +250,9 @@ namespace NLog.Targets
 
         private FilePathLayout CreateFileNameLayout(Layout value)
         {
+            if (value == null)
+                return null;
+
             return new FilePathLayout(value, CleanupFileName, FileNameKind);
         }
 
@@ -697,7 +700,7 @@ namespace NLog.Targets
         private void RefreshFileArchive()
         {
             var nullEvent = LogEventInfo.CreateNullEvent();
-            string fileNamePattern = GetArchiveFileNamePattern(fileName.GetAsAbsolutePath(nullEvent), nullEvent);
+            string fileNamePattern = GetArchiveFileNamePattern(GetCleanedFileName(nullEvent), nullEvent);
             if (fileNamePattern == null)
             {
                 InternalLogger.Debug("no RefreshFileArchive because fileName is NULL");
@@ -739,7 +742,7 @@ namespace NLog.Targets
                 if (mustWatchArchiving)
                 {
                     var nullEvent = LogEventInfo.CreateNullEvent();
-                    string fileNamePattern = GetArchiveFileNamePattern(fileName.GetAsAbsolutePath(nullEvent), nullEvent);
+                    string fileNamePattern = GetArchiveFileNamePattern(GetCleanedFileName(nullEvent), nullEvent);
                     if (!string.IsNullOrEmpty(fileNamePattern))
                     {
                         fileNamePattern = Path.Combine(Path.GetDirectoryName(fileNamePattern), ReplaceFileNamePattern(fileNamePattern, "*"));
@@ -936,10 +939,19 @@ namespace NLog.Targets
             }
         }
 
-        /// <summary>
-        /// Closes the file(s) opened for writing.
-        /// </summary>
-        protected override void CloseTarget()
+        internal string GetCleanedFileName(LogEventInfo logEvent)
+        {		
+            if (this.fileName == null)		
+            {		
+                return null;		
+            }
+            return this.fileName.GetAsAbsolutePath(logEvent);
+        }
+
+    /// <summary>
+    /// Closes the file(s) opened for writing.
+    /// </summary>
+    protected override void CloseTarget()
         {
             base.CloseTarget();
 
@@ -967,7 +979,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            var fileName = this.fileName.GetAsAbsolutePath(logEvent);
+            var fileName = this.GetCleanedFileName(logEvent);
             byte[] bytes = this.GetBytesToWrite(logEvent);
             ProcessLogEvent(logEvent, fileName, bytes);
         }
@@ -984,7 +996,7 @@ namespace NLog.Targets
         /// </remarks>
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
-            var buckets = logEvents.BucketSort(c => this.FileName.Render(c.LogEvent));
+            var buckets = logEvents.BucketSort(c => this.GetCleanedFileName(c.LogEvent));
             using (var ms = new MemoryStream())
             {
                 var pendingContinuations = new List<AsyncContinuation>();

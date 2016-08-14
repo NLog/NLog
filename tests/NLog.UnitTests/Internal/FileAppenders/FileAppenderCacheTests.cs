@@ -178,7 +178,8 @@ namespace NLog.UnitTests.Internal.FileAppenders
             Assert.Null(emptyCache.GetFileLength("file.txt", false));
 
             IFileAppenderFactory appenderFactory = SingleProcessFileAppender.TheFactory;
-            ICreateFileParameters fileTarget = new FileTarget();
+            ICreateFileParameters fileTarget = new FileTarget() {ArchiveNumbering = ArchiveNumberingMode.Date};
+           
             FileAppenderCache cache = new FileAppenderCache(3, appenderFactory, fileTarget);
             // Invoke GetFileCharacteristics() on non-empty FileAppenderCache - Before allocating any appenders. 
             Assert.Null(emptyCache.GetFileCreationTimeUtc("file.txt", false));
