@@ -32,13 +32,8 @@
 // 
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NLog.Internal.Fakeables;
-using NLog.LayoutRenderers;
 using NLog.Layouts;
 using NLog.Targets;
 
@@ -47,16 +42,18 @@ namespace NLog.Internal
     /// <summary>
     /// A layout that represents a filePath. 
     /// </summary>
-    internal class FilePathLayout 
+    internal class FilePathLayout
     {
         private Layout _layout;
 
         private FilePathKind _filePathKind;
 
+#if !SILVERLIGHT
         /// <summary>
         /// not null when <see cref="_filePathKind"/> == <c>false</c>
         /// </summary>
         private string _baseDir;
+#endif
 
         /// <summary>
         /// non null is fixed,
@@ -102,11 +99,13 @@ namespace NLog.Internal
                     _filePathKind = FilePathKind.Unknown;
                 }
             }
+#if !SILVERLIGHT
 
             if (_filePathKind == FilePathKind.Relative)
             {
                 _baseDir = AppDomainWrapper.CurrentDomain.BaseDirectory;
             }
+#endif
 
         }
 
@@ -143,16 +142,16 @@ namespace NLog.Internal
             {
                 return rendered;
             }
-            else if (_filePathKind == FilePathKind.Relative)
+#if !SILVERLIGHT
+            if (_filePathKind == FilePathKind.Relative)
             {
                 return Path.Combine(_baseDir, rendered);
                 //use basedir, faster than Path.GetFullPath
             }
-            else
-            {
-                //unknown, use slow method
-                return Path.GetFullPath(rendered);
-            }
+#endif
+            //unknown, use slow method
+            return Path.GetFullPath(rendered);
+
         }
 
         #endregion
