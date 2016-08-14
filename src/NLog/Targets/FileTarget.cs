@@ -75,19 +75,7 @@ namespace NLog.Targets
         /// </summary>
         private const int ArchiveAboveSizeDisabled = -1;
 
-        /// <summary>
-        /// Cached directory separator char array to avoid memory allocation on each method call.
-        /// </summary>
-        private readonly static char[] DirectorySeparatorChars = new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar };
-
-#if !SILVERLIGHT
-
-        /// <summary>
-        /// Cached invalid filenames char array to avoid memory allocation everytime Path.GetInvalidFileNameChars() is called.
-        /// </summary>
-        private readonly static HashSet<char> InvalidFileNameChars = new HashSet<char>(Path.GetInvalidFileNameChars());
-
-#endif 
+       
         /// <summary>
         /// Holds the initialised files each given time by the <see cref="FileTarget"/> instance. Against each file, the last write time is stored. 
         /// </summary>
@@ -1003,7 +991,7 @@ namespace NLog.Targets
 
                 foreach (var bucket in buckets)
                 {
-                    string fileName = Path.GetFullPath(CleanupInvalidFileNameChars(bucket.Key));
+                    string fileName = bucket.Key;
 
                     ms.SetLength(0);
                     ms.Position = 0;
@@ -1736,7 +1724,7 @@ namespace NLog.Targets
         /// <returns>A string with a pattern that will match the archive filenames</returns>
         private string GetArchiveFileNamePattern(string fileName, LogEventInfo eventInfo)
         {
-            if (this.ArchiveFileName == null)
+            if (this.archiveFileName == null)
             {
                 string ext = EnableArchiveFileCompression ? ".zip" : Path.GetExtension(fileName);
                 return Path.ChangeExtension(fileName, ".{#}" + ext);
@@ -1746,9 +1734,8 @@ namespace NLog.Targets
                 //The archive file name is given. There are two possibilities
                 //(1) User supplied the Filename with pattern
                 //(2) User supplied the normal filename
-                string archiveFileName = this.ArchiveFileName.Render(eventInfo);
-                archiveFileName = CleanupInvalidFileNameChars(archiveFileName);
-                return Path.GetFullPath(archiveFileName);
+                string archiveFileName = this.archiveFileName.GetAsAbsolutePath(eventInfo);
+                return archiveFileName;
             }
         }
 
@@ -2094,67 +2081,6 @@ namespace NLog.Targets
             //todo remove 
             string renderedText = layout.Render(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
             return this.TransformBytes(this.Encoding.GetBytes(renderedText));
-        }
-
-        /// <summary>
-        /// Replaces any invalid characters found in the <paramref name="fileName"/> with underscore i.e _ character.
-        /// Invalid characters are defined by .NET framework and they returned by <see
-        /// cref="M:System.IO.Path.GetInvalidFileNameChars"/> method.
-        /// <para>Note: not implemented in Silverlight</para>
-        /// </summary>
-        /// <param name="fileName">The original file name which might contain invalid characters.</param>
-        /// <returns>The cleaned up file name without any invalid characters.</returns>
-        private string CleanupInvalidFileNameChars(string fileName)
-        {
-            if (!this.CleanupFileName)
-            {
-                return fileName;
-            }
-
-            return CleanupInvalidFileNameChars2(fileName);
-        }
-
-        internal static string CleanupInvalidFileNameChars2(string fileName)
-        {
-#if !SILVERLIGHT
-            if (string.IsNullOrWhiteSpace(fileName))
-            {
-                return fileName;
-            }
-
-
-            var lastDirSeparator = fileName.LastIndexOfAny(DirectorySeparatorChars);
-
-            var fileName1 = fileName.Substring(lastDirSeparator + 1);
-            //keep the / in the dirname, because dirname could be c:/ and combine of c: and file name won't work well.
-            var dirName = lastDirSeparator > 0 ? fileName.Substring(0, lastDirSeparator + 1) : string.Empty;
-
-            char[] fileName1Chars = null;
-
-            for (int i = 0; i < fileName1.Length; i++)
-            {
-                if (InvalidFileNameChars.Contains(fileName1[i]))
-                {
-                    //delay char[] creation until first invalid char
-                    //is found to avoid memory allocation.
-                    if (fileName1Chars == null)
-                        fileName1Chars = fileName1.ToCharArray();
-                    fileName1Chars[i] = '_';
-                }
-            }
-
-            //only if an invalid char was replaced do we create a new string.
-            if (fileName1Chars != null)
-            {
-                fileName1 = new string(fileName1Chars);
-                return Path.Combine(dirName, fileName1);
-            }
-            return fileName;
-
-
-#else
-            return fileName;
-#endif
         }
 
 

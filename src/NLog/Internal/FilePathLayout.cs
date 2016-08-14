@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using NLog.Internal.Fakeables;
 using NLog.Layouts;
@@ -44,6 +45,20 @@ namespace NLog.Internal
     /// </summary>
     internal class FilePathLayout
     {
+        /// <summary>
+        /// Cached directory separator char array to avoid memory allocation on each method call.
+        /// </summary>
+        private readonly static char[] DirectorySeparatorChars = new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar };
+
+#if !SILVERLIGHT
+
+        /// <summary>
+        /// Cached invalid filenames char array to avoid memory allocation everytime Path.GetInvalidFileNameChars() is called.
+        /// </summary>
+        private readonly static HashSet<char> InvalidFileNameChars = new HashSet<char>(Path.GetInvalidFileNameChars());
+
+#endif 
+
         private Layout _layout;
 
         private FilePathKind _filePathKind;
@@ -84,7 +99,7 @@ namespace NLog.Internal
                         if (cleanupInvalidChars)
                         {
                             //clean first
-                            cleanedFixedResult = FileTarget.CleanupInvalidFileNameChars2(cleanedFixedResult);
+                            cleanedFixedResult = CleanupInvalidFileName(cleanedFixedResult);
                         }
                     }
 
@@ -135,7 +150,7 @@ namespace NLog.Internal
             var result = _layout.Render(logEvent);
             if (_cleanupInvalidChars)
             {
-                return FileTarget.CleanupInvalidFileNameChars2(result);
+                return CleanupInvalidFileName(result);
             }
             return result;
         }
@@ -143,7 +158,7 @@ namespace NLog.Internal
         public string GetAsAbsolutePath(LogEventInfo logEvent)
         {
             var rendered = Render(logEvent);
-            if (string.IsNullOrEmpty(rendered))
+            if (String.IsNullOrEmpty(rendered))
             {
                 return rendered;
             }
@@ -227,6 +242,49 @@ namespace NLog.Internal
                 }
             }
             return FilePathKind.Unknown;
+        }
+
+        private static string CleanupInvalidFileName(string fileName)
+        {
+#if !SILVERLIGHT
+            if (String.IsNullOrWhiteSpace(fileName))
+            {
+                return fileName;
+            }
+
+
+            var lastDirSeparator = fileName.LastIndexOfAny(DirectorySeparatorChars);
+
+            var fileName1 = fileName.Substring(lastDirSeparator + 1);
+            //keep the / in the dirname, because dirname could be c:/ and combine of c: and file name won't work well.
+            var dirName = lastDirSeparator > 0 ? fileName.Substring(0, lastDirSeparator + 1) : String.Empty;
+
+            char[] fileName1Chars = null;
+
+            for (int i = 0; i < fileName1.Length; i++)
+            {
+                if (InvalidFileNameChars.Contains(fileName1[i]))
+                {
+                    //delay char[] creation until first invalid char
+                    //is found to avoid memory allocation.
+                    if (fileName1Chars == null)
+                        fileName1Chars = fileName1.ToCharArray();
+                    fileName1Chars[i] = '_';
+                }
+            }
+
+            //only if an invalid char was replaced do we create a new string.
+            if (fileName1Chars != null)
+            {
+                fileName1 = new string(fileName1Chars);
+                return Path.Combine(dirName, fileName1);
+            }
+            return fileName;
+
+
+#else
+            return fileName;
+#endif
         }
     }
 }
