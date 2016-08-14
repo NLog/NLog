@@ -135,22 +135,17 @@ namespace NLog.Targets
         /// <summary>
         /// The filename as target
         /// </summary>
-        private Layout fileName;
+        private FilePathLayout fileName;
 
         /// <summary>
         /// The archive file name as target
         /// </summary>
-        private Layout archiveFileName;
+        private FilePathLayout archiveFileName;
 
         private FileArchivePeriod archiveEvery;
         private long archiveAboveSize;
 
         private bool enableArchiveFileCompression;
-
-        /// <summary>
-        /// The filename if <see cref="FileName"/> is a fixed string
-        /// </summary>
-        private string cachedCleanedFileNamed;
 
         /// <summary>
         /// The date of the previous log event.
@@ -164,6 +159,9 @@ namespace NLog.Targets
 
         private bool concurrentWrites;
         private bool keepFileOpen;
+        private bool _cleanupFileName;
+        private FilePathKind _fileNameKind;
+        private FilePathKind _archiveFileKind;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
@@ -242,16 +240,19 @@ namespace NLog.Targets
         [RequiredParameter]
         public Layout FileName
         {
-            get { return fileName; }
+            get
+            {
+                if (fileName == null) return null;
+
+                return fileName.GetLayout();
+            }
             set
             {
 
-                fileName = value;
+                fileName = CreateFileNameLayout(value);
 
                 if (IsInitialized)
                 {
-                    SetCachedCleanedFileNamed(value);
-
                     //don't call before initialized because this could lead to stackoverflows.
                     RefreshFileArchive();
                     RefreshArchiveFilePatternToWatch();
@@ -259,34 +260,46 @@ namespace NLog.Targets
             }
         }
 
-        private void SetCachedCleanedFileNamed(Layout value)
+        private FilePathLayout CreateFileNameLayout(Layout value)
         {
-            var simpleLayout = value as SimpleLayout;
-            if (simpleLayout != null && simpleLayout.IsFixedText)
-            {
-                cachedCleanedFileNamed = CleanupInvalidFileNameChars(simpleLayout.FixedText);
-            }
-            else
-            {
-                //clear cache
-                cachedCleanedFileNamed = null;
-            }
-
-            fileName = value;
-
-            if (IsInitialized)
-            {
-                RefreshFileArchive();
-                RefreshArchiveFilePatternToWatch();
-            }
+            return new FilePathLayout(value, CleanupFileName, FileNameKind);
         }
+
 
         /// <summary>
         /// Cleanup invalid values in a filename, e.g. slashes in a filename. If set to <c>true</c>, this can impact the performance of massive writes. 
         /// If set to <c>false</c>, nothing gets written when the filename is wrong.
         /// </summary>
         [DefaultValue(true)]
-        public bool CleanupFileName { get; set; }
+        public bool CleanupFileName
+
+
+        {
+            get { return _cleanupFileName; }
+            set
+            {
+                _cleanupFileName = value;
+                fileName = CreateFileNameLayout(FileName);
+                archiveFileName = CreateFileNameLayout(ArchiveFileName);
+            }
+        }
+
+        /// <summary>
+        /// Is the  <see cref="FileName"/> an absolute or relative path?
+        /// </summary>
+        [DefaultValue(FilePathKind.Unknown)]
+        public FilePathKind FileNameKind
+
+
+        {
+            get { return _fileNameKind; }
+            set
+            {
+
+                _fileNameKind = value;
+                fileName = CreateFileNameLayout(FileName);
+            }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether to create directories if they do not exist.
@@ -569,6 +582,19 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Is the  <see cref="ArchiveFileName"/> an absolute or relative path?
+        /// </summary>
+        public FilePathKind ArchiveFileKind
+        {
+            get { return _archiveFileKind; }
+            set
+            {
+                _archiveFileKind = value;
+                archiveFileName = CreateFileNameLayout(ArchiveFileName);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the name of the file to be used for an archive.
         /// </summary>
         /// <remarks>
@@ -580,10 +606,15 @@ namespace NLog.Targets
         /// <docgen category='Archival Options' order='10' />
         public Layout ArchiveFileName
         {
-            get { return archiveFileName; }
+            get
+            {
+                if (archiveFileName == null) return null;
+
+                return archiveFileName.GetLayout();
+            }
             set
             {
-                archiveFileName = value;
+                archiveFileName = CreateFileNameLayout(value);
                 if (IsInitialized)
                 {
                     //don't call before initialized because this could lead to stackoverflows.
@@ -664,7 +695,7 @@ namespace NLog.Targets
         private void RefreshFileArchive()
         {
             var nullEvent = LogEventInfo.CreateNullEvent();
-            string fileNamePattern = GetArchiveFileNamePattern(GetCleanedFileName(nullEvent), nullEvent);
+            string fileNamePattern = GetArchiveFileNamePattern(fileName.GetAsAbsolutePath(nullEvent), nullEvent);
             if (fileNamePattern == null)
             {
                 InternalLogger.Debug("no RefreshFileArchive because fileName is NULL");
@@ -706,7 +737,7 @@ namespace NLog.Targets
                 if (mustWatchArchiving)
                 {
                     var nullEvent = LogEventInfo.CreateNullEvent();
-                    string fileNamePattern = GetArchiveFileNamePattern(GetCleanedFileName(nullEvent), nullEvent);
+                    string fileNamePattern = GetArchiveFileNamePattern(fileName.GetAsAbsolutePath(nullEvent), nullEvent);
                     if (!string.IsNullOrEmpty(fileNamePattern))
                     {
                         fileNamePattern = Path.Combine(Path.GetDirectoryName(fileNamePattern), ReplaceFileNamePattern(fileNamePattern, "*"));
@@ -887,7 +918,6 @@ namespace NLog.Targets
         {
             base.InitializeTarget();
 
-            SetCachedCleanedFileNamed(FileName);
             RefreshFileArchive();
             this.appenderFactory = GetFileAppenderFactory();
 
@@ -935,18 +965,9 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            var fileName = Path.GetFullPath(GetCleanedFileName(logEvent));
+            var fileName = this.fileName.GetAsAbsolutePath(logEvent);
             byte[] bytes = this.GetBytesToWrite(logEvent);
             ProcessLogEvent(logEvent, fileName, bytes);
-        }
-
-        internal string GetCleanedFileName(LogEventInfo logEvent)
-        {
-            if (this.FileName == null)
-            {
-                return null;
-            }
-            return cachedCleanedFileNamed ?? CleanupInvalidFileNameChars(this.FileName.Render(logEvent));
         }
 
         /// <summary>

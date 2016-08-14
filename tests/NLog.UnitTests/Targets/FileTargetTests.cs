@@ -46,6 +46,7 @@ namespace NLog.UnitTests.Targets
 
     using Mocks;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
@@ -2710,7 +2711,11 @@ namespace NLog.UnitTests.Targets
             //CleanupFileName is default true;
             var fileTarget = new FileTarget();
             fileTarget.FileName = invalidFileName;
-            var path = fileTarget.GetCleanedFileName(LogEventInfo.CreateNullEvent());
+
+            var filePathLayout = new FilePathLayout(invalidFileName,true, FilePathKind.Absolute);
+
+
+            var path = filePathLayout.GetAsAbsolutePath(LogEventInfo.CreateNullEvent());
             Assert.Equal(expectedFileName, path);
         }
 

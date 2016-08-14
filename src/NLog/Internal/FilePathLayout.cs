@@ -14,14 +14,14 @@ namespace NLog.Internal
     /// <summary>
     /// A layout that represents a filePath. 
     /// </summary>
-    internal class FilePathLayout : IRenderable
+    internal class FilePathLayout 
     {
         private Layout _layout;
 
-        private bool? _isAbsolute;
+        private FilePathKind _filePathKind;
 
         /// <summary>
-        /// not null when <see cref="_isAbsolute"/> == <c>false</c>
+        /// not null when <see cref="_filePathKind"/> == <c>false</c>
         /// </summary>
         private string _baseDir;
 
@@ -34,15 +34,14 @@ namespace NLog.Internal
 
         //TODO onInit maken
         /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
-        public FilePathLayout(Layout layout, bool cleanupInvalidChars, bool? isAbsoluteAlready)
+        public FilePathLayout(Layout layout, bool cleanupInvalidChars, FilePathKind filePathKind)
         {
             _layout = layout;
-
-            _isAbsolute = isAbsoluteAlready;
-
+            _filePathKind = filePathKind;
             _cleanupInvalidChars = cleanupInvalidChars;
 
-            if (cleanupInvalidChars || isAbsoluteAlready == null)
+            //do we have to the the layout?
+            if (cleanupInvalidChars || _filePathKind == FilePathKind.Unknown)
             {
                 //check if fixed 
                 var pathLayout2 = layout as SimpleLayout;
@@ -60,18 +59,18 @@ namespace NLog.Internal
                     }
 
                     //detect absolute
-                    if (isAbsoluteAlready == null)
+                    if (_filePathKind == FilePathKind.Unknown)
                     {
-                        _isAbsolute = IsAbsolutePath(pathLayout2, !isFixedText);
+                        _filePathKind = DetectFilePathKind(pathLayout2, !isFixedText);
                     }
                 }
                 else
                 {
-                    _isAbsolute = null;
+                    _filePathKind = FilePathKind.Unknown;
                 }
             }
 
-            if (_isAbsolute == false)
+            if (_filePathKind == FilePathKind.Relative)
             {
                 _baseDir = AppDomainWrapper.CurrentDomain.BaseDirectory;
             }
@@ -90,7 +89,7 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         /// <returns>String representation of a layout.</returns>
-        public string Render(LogEventInfo logEvent)
+        private string Render(LogEventInfo logEvent)
         {
             if (cleanedFixedResult != null)
             {
@@ -104,14 +103,14 @@ namespace NLog.Internal
             return result;
         }
 
-        public string RenderAsAbsolutePath(LogEventInfo logEvent)
+        public string GetAsAbsolutePath(LogEventInfo logEvent)
         {
             var rendered = Render(logEvent);
-            if (_isAbsolute == true)
+            if (_filePathKind == FilePathKind.Absolute)
             {
                 return rendered;
             }
-            else if (_isAbsolute == false)
+            else if (_filePathKind == FilePathKind.Relative)
             {
                 return Path.Combine(_baseDir, rendered);
                 //use basedir, faster than Path.GetFullPath
@@ -130,24 +129,22 @@ namespace NLog.Internal
         /// Is this (templated/invalid) path an absolute, relative or unknown?
         /// </summary>
         /// <returns> <c>true</c> for absolute, <c>false</c> for relative, <c>null</c> for unknown </returns>
-        internal static bool? IsAbsolutePath(Layout pathLayout)
+        internal static FilePathKind DetectFilePathKind(Layout pathLayout)
         {
             var pathLayout2 = pathLayout as SimpleLayout;
             if (pathLayout2 == null)
             {
-                return null;
+                return FilePathKind.Unknown;
             }
 
             var containsLayoutRenderers = !pathLayout2.IsFixedText;
 
-            return IsAbsolutePath(pathLayout2, containsLayoutRenderers);
+            return DetectFilePathKind(pathLayout2, containsLayoutRenderers);
         }
 
-        private static bool? IsAbsolutePath(SimpleLayout pathLayout2, bool containsLayoutRenderers)
+        private static FilePathKind DetectFilePathKind(SimpleLayout pathLayout2, bool containsLayoutRenderers)
         {
             var path = pathLayout2.OriginalText;
-            const bool absolute = true;
-            const bool relative = false;
 
             if (path != null)
             {
@@ -158,10 +155,10 @@ namespace NLog.Internal
                 {
                     var firstChar = path[0];
                     if (firstChar == Path.DirectorySeparatorChar || firstChar == Path.AltDirectorySeparatorChar)
-                        return absolute;
+                        return FilePathKind.Absolute;
                     if (firstChar == '.') //. and ..
                     {
-                        return relative;
+                        return FilePathKind.Relative;
                     }
 
 
@@ -169,25 +166,25 @@ namespace NLog.Internal
                     {
                         var secondChar = path[1];
                         if (secondChar == Path.VolumeSeparatorChar)
-                            return absolute;
+                            return FilePathKind.Absolute;
 
                         //starts with template-character, and not ${basedir}
                         if (containsLayoutRenderers && firstChar == '$' && secondChar == '{')
                         {
                             if (path.StartsWith("${basedir}", StringComparison.OrdinalIgnoreCase))
                             {
-                                return absolute;
+                                return FilePathKind.Absolute;
                             }
                             //unknown what this will render
-                            return null;
+                            return FilePathKind.Unknown;
                         }
                     }
 
                     //not a layout renderer, but text
-                    return relative;
+                    return FilePathKind.Relative;
                 }
             }
-            return null;
+            return FilePathKind.Unknown;
         }
     }
 }
