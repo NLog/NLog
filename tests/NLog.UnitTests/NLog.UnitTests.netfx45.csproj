@@ -9,8 +9,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ApplicationIcon></ApplicationIcon>
-    <AssemblyKeyContainerName></AssemblyKeyContainerName>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
     <AssemblyName>NLog.UnitTests</AssemblyName>
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -157,6 +159,7 @@
     <Compile Include="Internal\EnumHelpersTests.cs" />
     <Compile Include="Internal\ExceptionHelperTests.cs" />
     <Compile Include="Internal\FileAppenders\FileAppenderCacheTests.cs" />
+    <Compile Include="Internal\FilePathLayoutTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
     <Compile Include="Internal\StringHelpersTests.cs" />
@@ -205,8 +208,8 @@
     <Compile Include="LayoutRenderers\Wrappers\WrapLineTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\XmlEncodeTests.cs" />
     <Compile Include="Layouts\AllEventPropertiesTests.cs" />
-    <Compile Include="Layouts\CompoundLayoutTests.cs" />
     <Compile Include="Layouts\CsvLayoutTests.cs" />
+    <Compile Include="Layouts\CompoundLayoutTests.cs" />
     <Compile Include="Layouts\JsonLayoutTests.cs" />
     <Compile Include="Layouts\SimpleLayoutOutputTests.cs" />
     <Compile Include="Layouts\SimpleLayoutParserTests.cs" />

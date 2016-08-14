@@ -112,7 +112,7 @@ namespace NLog.Internal
                     //detect absolute
                     if (_filePathKind == FilePathKind.Unknown)
                     {
-                        _filePathKind = DetectFilePathKind(pathLayout2, !isFixedText);
+                        _filePathKind = DetectFilePathKind(pathLayout2);
                     }
                 }
                 else
@@ -200,14 +200,15 @@ namespace NLog.Internal
                 return FilePathKind.Unknown;
             }
 
-            var containsLayoutRenderers = !pathLayout2.IsFixedText;
-
-            return DetectFilePathKind(pathLayout2, containsLayoutRenderers);
+            return DetectFilePathKind(pathLayout2);
         }
 
-        private static FilePathKind DetectFilePathKind(SimpleLayout pathLayout2, bool containsLayoutRenderers)
+        private static FilePathKind DetectFilePathKind(SimpleLayout pathLayout)
         {
-            var path = pathLayout2.OriginalText;
+            var isFixedText = pathLayout.IsFixedText;
+
+            //nb: ${basedir} has already been rewritten in the SimpleLayout.compile
+            var path = isFixedText ? pathLayout.FixedText : pathLayout.Text;
 
             if (path != null)
             {
@@ -230,17 +231,6 @@ namespace NLog.Internal
                         var secondChar = path[1];
                         if (secondChar == Path.VolumeSeparatorChar)
                             return FilePathKind.Absolute;
-
-                        //starts with template-character, and not ${basedir}
-                        if (containsLayoutRenderers && firstChar == '$' && secondChar == '{')
-                        {
-                            if (path.StartsWith("${basedir}", StringComparison.OrdinalIgnoreCase))
-                            {
-                                return FilePathKind.Absolute;
-                            }
-                            //unknown what this will render
-                            return FilePathKind.Unknown;
-                        }
                     }
 
                     //not a layout renderer, but text
