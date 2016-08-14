@@ -56,14 +56,17 @@ namespace NLog.Internal.FileAppenders
         /// <param name="parameters">The parameters.</param>
         public SingleProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
-            var fileInfo = new FileInfo(fileName);
-            if (fileInfo.Exists)
+            if (CaptureLastWriteTime)
             {
-                FileTouched(fileInfo.GetLastWriteTimeUtc());
-            }
-            else
-            {
-                FileTouched();
+                var fileInfo = new FileInfo(fileName);
+                if (fileInfo.Exists)
+                {
+                    FileTouched(fileInfo.GetLastWriteTimeUtc());
+                }
+                else
+                {
+                    FileTouched();
+                }
             }
             this.file = CreateFileStream(false);
         }

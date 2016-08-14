@@ -377,7 +377,21 @@ namespace NLog.Targets
         /// <docgen category='Output Options' order='10' />
         [Advanced]
         public Win32FileAttributes FileAttributes { get; set; }
+
+
 #endif
+
+        /// <summary>
+        /// Should we capture the last write time of a file?
+        /// </summary>
+        bool ICreateFileParameters.CaptureLastWriteTime
+        {
+            get
+            {
+                return ArchiveNumbering == ArchiveNumberingMode.Date ||
+                       ArchiveNumbering == ArchiveNumberingMode.DateAndSequence;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line ending mode.
