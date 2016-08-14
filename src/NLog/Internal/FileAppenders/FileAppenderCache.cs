@@ -208,36 +208,16 @@ namespace NLog.Internal.FileAppenders
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 if (!string.IsNullOrEmpty(archiveFilePatternToWatch))
                 {
-                    var archiveFilePatternToWatchPath = GetFullPathForPattern(archiveFilePatternToWatch);
-
-                    string directoryPath = Path.GetDirectoryName(archiveFilePatternToWatchPath);
+                    string directoryPath = Path.GetDirectoryName(archiveFilePatternToWatch);
                     if (!Directory.Exists(directoryPath))
                         Directory.CreateDirectory(directoryPath);
 
-                    externalFileArchivingWatcher.Watch(archiveFilePatternToWatchPath);
+                    externalFileArchivingWatcher.Watch(archiveFilePatternToWatch);
                 }
 #endif
             }
 
             return appenderToWrite;
-        }
-
-        /// <summary>
-        /// Get fullpath for a relative file pattern,  e.g *.log 
-        /// <see cref="Path.GetFullPath"/> crashes on patterns: ArgumentException: Illegal characters in path.
-        /// </summary>
-        /// <param name="pattern"></param>
-        /// <returns></returns>
-        private static string GetFullPathForPattern(string pattern)
-        {
-            string filePattern = Path.GetFileName(pattern);
-            string dir = pattern.Substring(0, pattern.Length - filePattern.Length);
-            // Get absolute path (root+relative)
-            if (string.IsNullOrEmpty(dir))
-            {
-                dir = ".";
-            }
-            return Path.Combine(Path.GetFullPath(dir), filePattern);
         }
 
         /// <summary>
