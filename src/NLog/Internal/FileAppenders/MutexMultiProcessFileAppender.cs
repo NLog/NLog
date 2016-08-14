@@ -161,23 +161,27 @@ namespace NLog.Internal.FileAppenders
 
         public override DateTime? GetFileCreationTimeUtc()
         {
-            //todo
-            throw new NotImplementedException();
-          //  return this.CreationTime;
+           
+            var fileChars = GetFileCharacteristics();
+            return fileChars.CreationTimeUtc;
         }
 
         public override DateTime? GetFileLastWriteTimeUtc()
         {
-            //todo
-            throw new NotImplementedException();
-          //  return this.LastWriteTime;
+            var fileChars = GetFileCharacteristics();
+            return fileChars.LastWriteTimeUtc;
         }
 
         public override long? GetFileLength()
         {
-            //todo
-            throw new NotImplementedException();
-            //return this.currentFileLength;
+            var fileChars = GetFileCharacteristics();
+            return fileChars.FileLength;
+        }
+
+        private FileCharacteristics GetFileCharacteristics()
+        {
+            //todo not efficient to read all the whole FileCharacteristics and then using one property
+            return FileCharacteristicsHelper.Helper.GetFileCharacteristics(FileName, this.fileStream.SafeFileHandle.DangerousGetHandle());
         }
 
         private static Mutex CreateSharableMutex(string name)
