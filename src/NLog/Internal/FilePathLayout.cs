@@ -247,7 +247,7 @@ namespace NLog.Internal
         private static string CleanupInvalidFileName(string fileName)
         {
 #if !SILVERLIGHT
-            if (String.IsNullOrWhiteSpace(fileName))
+            if (StringHelpers.IsNullOrWhiteSpace(fileName))
             {
                 return fileName;
             }
