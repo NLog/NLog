@@ -84,6 +84,12 @@ namespace NLog
         private readonly LoggerCache loggerCache = new LoggerCache();
 
         /// <summary>
+        /// Overwrite possible file paths (including filename) for possible NLog config files. 
+        /// When this property is <c>null</c>, the default file paths (<see cref="GetCandidateConfigFilePaths"/> are used.
+        /// </summary>
+        private List<string> candidateConfigFilePaths;
+
+        /// <summary>
         /// Occurs when logging <see cref="Configuration" /> changes.
         /// </summary>
         public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
@@ -167,7 +173,7 @@ namespace NLog
                     if (this.configLoaded)
                         return this.config;
 
-#if !SILVERLIGHT  && !__IOS__ && !__ANDROID__ && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
                     if (this.config == null)
                     {
                         // Try to load default configuration.
@@ -177,7 +183,8 @@ namespace NLog
                     // Retest the condition as we might have loaded a config.
                     if (this.config == null)
                     {
-                        foreach (string configFile in GetCandidateConfigFileNames())
+                        var configFileNames = GetCandidateConfigFilePaths();
+                        foreach (string configFile in configFileNames)
                         {
 #if SILVERLIGHT
                             Uri configFileUri = new Uri(configFile, UriKind.Relative);
@@ -885,7 +892,45 @@ namespace NLog
 #endif
         }
 
-        private static IEnumerable<string> GetCandidateConfigFileNames()
+        /// <summary>
+        /// Get file paths (including filename) for the possible NLog config files. 
+        /// </summary>
+        /// <returns>The filepaths to the possible config file</returns>
+        public IEnumerable<string> GetCandidateConfigFilePaths()
+        {
+            if (candidateConfigFilePaths != null)
+            {
+                return candidateConfigFilePaths.AsReadOnly();
+            }
+
+            return GetDefaultCandidateConfigFilePaths();
+        }
+
+        /// <summary>
+        /// Overwrite the paths (including filename) for the possible NLog config files.
+        /// </summary>
+        /// <param name="filePaths">The filepaths to the possible config file</param>
+        public void SetCandidateConfigFilePaths(IEnumerable<string> filePaths)
+        {
+            candidateConfigFilePaths = new List<string>();
+
+            if (filePaths != null)
+            {
+                candidateConfigFilePaths.AddRange(filePaths);
+            }
+        }
+        /// <summary>
+        /// Clear the candidate file paths and return to the defaults.
+        /// </summary>
+        public void ResetCandidateConfigFilePath()
+        {
+            candidateConfigFilePaths = null;
+        }
+
+        /// <summary>
+        /// Get default file paths (including filename) for possible NLog config files. 
+        /// </summary>
+        private static IEnumerable<string> GetDefaultCandidateConfigFilePaths()
         {
 #if SILVERLIGHT || __ANDROID__ || __IOS__ || UWP10
             //try.nlog.config is ios/android/silverlight
