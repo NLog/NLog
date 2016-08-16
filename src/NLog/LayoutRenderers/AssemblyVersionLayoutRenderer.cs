@@ -67,7 +67,6 @@ namespace NLog.LayoutRenderers
 #else
             Assembly assembly;
 #endif
-            
 
             var nameNotEmpty = !string.IsNullOrEmpty(Name);
             if (nameNotEmpty)
