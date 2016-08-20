@@ -78,7 +78,6 @@ namespace NLog.UnitTests.Config
 </rules>
 </nlog>";
 
-
                 // configuration with current culture
                 var configuration1 = CreateConfigurationFromString(string.Format(configurationTemplate, false));
                 Assert.Equal(null, configuration1.DefaultCultureInfo);
@@ -95,7 +94,6 @@ namespace NLog.UnitTests.Config
 
                 AssertMessageFormattedWithCulture(configuration1, CultureInfo.CurrentCulture, formatString, testNumber, testDate);
                 AssertMessageFormattedWithCulture(configuration2, CultureInfo.InvariantCulture, formatString, testNumber, testDate);
-
             }
             finally
             {
@@ -103,7 +101,6 @@ namespace NLog.UnitTests.Config
                 Thread.CurrentThread.CurrentCulture = currentCulture;
             }
         }
-
 
         private void AssertMessageFormattedWithCulture(LoggingConfiguration configuration, CultureInfo culture, string formatString, params object[] parameters)
         {
@@ -153,7 +150,6 @@ namespace NLog.UnitTests.Config
             Assert.Equal(expected, output);
         }
 
-
 #if !MONO && !UWP10
         [Fact(Skip = "TimeSpan tostring isn't culture aware in .NET?")]
         public void ProcessInfoLayoutRendererCultureTest()
@@ -171,7 +167,6 @@ namespace NLog.UnitTests.Config
             Assert.DoesNotContain(".", output);
         }
 #endif
-
 
         [Fact]
         public void AllEventPropRendererCultureTest()
