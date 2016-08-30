@@ -431,6 +431,20 @@ namespace NLog.Layouts
                     else
                     {
                         InternalLogger.Warn("{0} has no default property", lr.GetType().FullName);
+
+                        Type wrapperType;
+
+                        if (configurationItemFactory.AmbientProperties.TryGetDefinition(parameterName, out wrapperType))
+                        {
+                            LayoutRenderer wrapperRenderer;
+
+                            if (!wrappers.TryGetValue(wrapperType, out wrapperRenderer))
+                            {
+                                wrapperRenderer = configurationItemFactory.AmbientProperties.CreateInstance(parameterName);
+                                wrappers[wrapperType] = wrapperRenderer;
+                                orderedWrappers.Add(wrapperRenderer);
+                            }
+                        }
                     }
                 }
 
