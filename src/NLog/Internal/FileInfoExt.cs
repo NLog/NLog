@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,31 +31,31 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+using System.IO;
+
 namespace NLog.Internal
 {
-    using System;
-    using System.IO;
-
-    /// <summary>
-    /// Portable implementation of <see cref="FileCharacteristicsHelper"/>.
-    /// </summary>
-    internal class PortableFileCharacteristicsHelper : FileCharacteristicsHelper
+    internal static class FileInfoExt
     {
-        /// <summary>
-        /// Gets the information about a file.
-        /// </summary>
-        /// <param name="fileName">Name of the file.</param>
-        /// <param name="fileHandle">The file handle.</param>
-        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public override FileCharacteristics GetFileCharacteristics(string fileName, IntPtr fileHandle)
+        public static DateTime GetLastWriteTimeUtc(this FileInfo fileInfo)
         {
-            var fileInfo = new FileInfo(fileName);
-            if (fileInfo.Exists)
-            {
-                return new FileCharacteristics(fileInfo.GetCreationTimeUtc(), fileInfo.GetLastWriteTimeUtc(), fileInfo.Length);
-            }
-            else
-                return null;
+#if !SILVERLIGHT
+            return fileInfo.LastWriteTimeUtc;
+#else
+            return fileInfo.LastWriteTime;
+#endif
         }
+        public static DateTime GetCreationTimeUtc(this FileInfo fileInfo)
+        {
+#if !SILVERLIGHT
+            return fileInfo.CreationTimeUtc;
+#else
+            return fileInfo.CreationTime;
+#endif
+        }
+
+       
+
     }
 }

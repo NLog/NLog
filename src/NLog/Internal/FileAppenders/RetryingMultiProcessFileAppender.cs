@@ -95,14 +95,9 @@ namespace NLog.Internal.FileAppenders
             FileInfo fileInfo = new FileInfo(FileName);
             if (fileInfo.Exists)
             {
-#if !SILVERLIGHT
-                return new FileCharacteristics(fileInfo.CreationTimeUtc, fileInfo.LastWriteTimeUtc, fileInfo.Length);
-#else
-                return new FileCharacteristics(fileInfo.CreationTime, fileInfo.LastWriteTime, fileInfo.Length);
-#endif
+                return fileInfo.GetCreationTimeUtc();
             }
-            else
-                return null;
+            return null;
         }
 
         /// <summary>

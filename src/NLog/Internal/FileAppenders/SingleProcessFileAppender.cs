@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
 using System.Security;
 
 namespace NLog.Internal.FileAppenders
@@ -55,18 +56,17 @@ namespace NLog.Internal.FileAppenders
         /// <param name="parameters">The parameters.</param>
         public SingleProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
-            var fileInfo = new FileInfo(fileName);
-            if (fileInfo.Exists)
+            if (CaptureLastWriteTime)
             {
-#if !SILVERLIGHT
-                FileTouched(fileInfo.LastWriteTimeUtc);
-#else
-                FileTouched(fileInfo.LastWriteTime);
-#endif
-            }
-            else
-            {
-                FileTouched();
+                var fileInfo = new FileInfo(fileName);
+                if (fileInfo.Exists)
+                {
+                    FileTouched(fileInfo.GetLastWriteTimeUtc());
+                }
+                else
+                {
+                    FileTouched();
+                }
             }
             this.file = CreateFileStream(false);
         }

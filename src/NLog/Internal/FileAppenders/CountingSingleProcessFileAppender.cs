@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
 using System.Security;
 
 namespace NLog.Internal.FileAppenders
@@ -61,11 +62,10 @@ namespace NLog.Internal.FileAppenders
             var fileInfo = new FileInfo(fileName);
             if (fileInfo.Exists)
             {
-#if !SILVERLIGHT
-                FileTouched(fileInfo.LastWriteTimeUtc);
-#else
-                FileTouched(fileInfo.LastWriteTime);
-#endif
+                if (CaptureLastWriteTime)
+                {
+                    FileTouched(fileInfo.GetLastWriteTimeUtc());
+                }
                 this.currentFileLength = fileInfo.Length;
             }
             else

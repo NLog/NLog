@@ -62,7 +62,10 @@ namespace NLog.Internal.FileAppenders
             this.FileName = fileName;
             this.OpenTime = DateTime.UtcNow; // to be consistent with timeToKill in FileTarget.AutoClosingTimerCallback
             this.LastWriteTime = DateTime.MinValue;
+            this.CaptureLastWriteTime = createParameters.CaptureLastWriteTime;
         }
+
+        protected bool CaptureLastWriteTime { get;  private set; }
 
         /// <summary>
         /// Gets the path of the file, including file extension.
@@ -142,7 +145,10 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         protected void FileTouched()
         {
-            FileTouched(DateTime.UtcNow);
+            if (CaptureLastWriteTime)
+            {
+                FileTouched(DateTime.UtcNow);
+            }
         }
 
         /// <summary>
