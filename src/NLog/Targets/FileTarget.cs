@@ -1807,7 +1807,7 @@ namespace NLog.Targets
                 return fileName;
             }
             
-            var fileLength = fileCharacteristics?.FileLength;
+            var fileLength = fileCharacteristics != null ? fileCharacteristics.FileLength : (long?) null;
             string fileToArchive = fileLength != null ? fileName : previousLogFileName;
             return fileToArchive;
         }
@@ -1833,7 +1833,7 @@ namespace NLog.Targets
                 return null;
             }
 
-            var length = fileCharacteristics?.FileLength;
+            var length = fileCharacteristics != null ? fileCharacteristics.FileLength : (long?) null;
             if (length == null)
             {
                 return null;
@@ -1869,7 +1869,7 @@ namespace NLog.Targets
                 return null;
             }
 
-            var creationTimeUtc = fileCharacteristics?.CreationTimeUtc;
+            var creationTimeUtc = fileCharacteristics != null ? fileCharacteristics.CreationTimeUtc : (DateTime?) null;
             if (creationTimeUtc == null)
             {
                 return null;
@@ -2127,7 +2127,7 @@ namespace NLog.Targets
             if (Header == null) return;
 
             //todo replace with hasWritten?
-            var length = appender.GetFileCharacteristics()?.FileLength;
+            var length = appender.GetFileCharacteristics() != null ? appender.GetFileCharacteristics().FileLength : (long?) null;
             //  Write header only on empty files or if file info cannot be obtained.
             if (length == null || length == 0)
             {
