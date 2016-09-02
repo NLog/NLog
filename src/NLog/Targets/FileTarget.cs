@@ -1643,7 +1643,7 @@ namespace NLog.Targets
                 return previousLogEventTimestamp.Value;
             }
 
-            if (previousLogEventTimestamp.HasValue && PreviousLogOverlappedPeriod(logEvent, fileCharacteristics.LastWriteTimeUtc))
+            if (previousLogEventTimestamp.HasValue && PreviousLogOverlappedPeriod(logEvent, lastWriteTime))
             {
                 InternalLogger.Trace("Using previous log event time (previous log overlapped period)");
                 return previousLogEventTimestamp.Value;
@@ -1653,13 +1653,13 @@ namespace NLog.Targets
             return lastWriteTime;
         }
 
-        private bool PreviousLogOverlappedPeriod(LogEventInfo logEvent, DateTime lastWriteTimeUtc)
+        private bool PreviousLogOverlappedPeriod(LogEventInfo logEvent, DateTime lastWriteTime)
         {
             if (!previousLogEventTimestamp.HasValue)
                 return false;
 
             string formatString = GetArchiveDateFormatString(string.Empty);
-            string lastWriteTimeString = TimeSource.Current.FromSystemTime(lastWriteTimeUtc).ToString(formatString, CultureInfo.InvariantCulture);
+            string lastWriteTimeString = lastWriteTime.ToString(formatString, CultureInfo.InvariantCulture);
             string logEventTimeString = logEvent.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
 
             if (lastWriteTimeString != logEventTimeString)
