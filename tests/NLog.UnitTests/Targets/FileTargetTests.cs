@@ -252,6 +252,25 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        /// <summary>
+        /// todo not needed to execute twice.
+        /// </summary>
+        [Fact]
+        public void DeleteFileOnStartTest_noExceptionWhenMissing()
+        {
+            LogManager.Configuration = this.CreateConfigurationFromString(@"<nlog throwExceptions='true'>
+    <targets>
+      <target name='file1' encoding='UTF-8' type='File'  deleteOldFileOnStartup='true' fileName='c://temp2/logs/i-dont-exist.log' layout='${message} ' />
+    </targets>
+    <rules>
+      <logger name='*' minlevel='Trace' writeTo='file1' />
+    </rules>
+</nlog>
+");
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Trace("running test");
+        }
+
 #if NET3_5 || NET4_0 || NET4_5
         public static IEnumerable<object[]> ArchiveFileOnStartTests_TestParameters
         {

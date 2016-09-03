@@ -1959,6 +1959,12 @@ namespace NLog.Targets
                 {
                     File.Delete(fileName);
                 }
+                catch (DirectoryNotFoundException exception)
+                {
+                    //never rethrow this, as this isn't an exceptional case.
+                    InternalLogger.Debug(exception, "Unable to delete old log file '{0}' as directory is missing.", fileName);
+                }
+
                 catch (Exception exception)
                 {
                     InternalLogger.Warn(exception, "Unable to delete old log file '{0}'.", fileName);
