@@ -105,7 +105,7 @@ namespace NLog.Internal
                         if (cleanupInvalidChars)
                         {
                             //clean first
-                            cleanedFixedResult = CleanupInvalidFileName(cleanedFixedResult);
+                            cleanedFixedResult = CleanupInvalidFilePath(cleanedFixedResult);
                         }
                     }
 
@@ -156,7 +156,7 @@ namespace NLog.Internal
             var result = _layout.Render(logEvent);
             if (_cleanupInvalidChars)
             {
-                return CleanupInvalidFileName(result);
+                return CleanupInvalidFilePath(result);
             }
             return result;
         }
@@ -249,46 +249,46 @@ namespace NLog.Internal
             return FilePathKind.Unknown;
         }
 
-        private static string CleanupInvalidFileName(string fileName)
+        private static string CleanupInvalidFilePath(string filePath)
         {
 #if !SILVERLIGHT
-            if (StringHelpers.IsNullOrWhiteSpace(fileName))
+            if (StringHelpers.IsNullOrWhiteSpace(filePath))
             {
-                return fileName;
+                return filePath;
             }
 
 
-            var lastDirSeparator = fileName.LastIndexOfAny(DirectorySeparatorChars);
+            var lastDirSeparator = filePath.LastIndexOfAny(DirectorySeparatorChars);
 
-            var fileName1 = fileName.Substring(lastDirSeparator + 1);
+            var fileName = filePath.Substring(lastDirSeparator + 1);
             //keep the / in the dirname, because dirname could be c:/ and combine of c: and file name won't work well.
-            var dirName = lastDirSeparator > 0 ? fileName.Substring(0, lastDirSeparator + 1) : String.Empty;
+            var dirName = lastDirSeparator > 0 ? filePath.Substring(0, lastDirSeparator + 1) : String.Empty;
 
-            char[] fileName1Chars = null;
+            char[] fileNameChars = null;
 
-            for (int i = 0; i < fileName1.Length; i++)
+            for (int i = 0; i < fileName.Length; i++)
             {
-                if (InvalidFileNameChars.Contains(fileName1[i]))
+                if (InvalidFileNameChars.Contains(fileName[i]))
                 {
                     //delay char[] creation until first invalid char
                     //is found to avoid memory allocation.
-                    if (fileName1Chars == null)
-                        fileName1Chars = fileName1.ToCharArray();
-                    fileName1Chars[i] = '_';
+                    if (fileNameChars == null)
+                        fileNameChars = fileName.ToCharArray();
+                    fileNameChars[i] = '_';
                 }
             }
 
             //only if an invalid char was replaced do we create a new string.
-            if (fileName1Chars != null)
+            if (fileNameChars != null)
             {
-                fileName1 = new string(fileName1Chars);
-                return Path.Combine(dirName, fileName1);
+                fileName = new string(fileNameChars);
+                return Path.Combine(dirName, fileName);
             }
-            return fileName;
+            return filePath;
 
 
 #else
-            return fileName;
+            return filePath;
 #endif
         }
     }
