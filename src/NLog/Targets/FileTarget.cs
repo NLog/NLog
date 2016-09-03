@@ -254,7 +254,7 @@ namespace NLog.Targets
                 return null;
 
             return new FilePathLayout(value, CleanupFileName, FileNameKind);
-        }
+            }
 
 
         /// <summary>
@@ -265,7 +265,7 @@ namespace NLog.Targets
         public bool CleanupFileName
 
 
-        {
+            {
             get { return _cleanupFileName; }
             set
             {
@@ -391,15 +391,9 @@ namespace NLog.Targets
         [Advanced]
         public LineEndingMode LineEnding
         {
-            get
-            {
-                return this.lineEndingMode;
-            }
+            get { return this.lineEndingMode; }
 
-            set
-            {
-                this.lineEndingMode = value;
-            }
+            set { this.lineEndingMode = value; }
         }
 
         /// <summary>
@@ -636,10 +630,7 @@ namespace NLog.Targets
         [DefaultValue(0)]
         public int MaxArchiveFiles
         {
-            get
-            {
-                return maxArchiveFiles;
-            }
+            get { return maxArchiveFiles; }
             set
             {
                 maxArchiveFiles = value;
@@ -691,10 +682,7 @@ namespace NLog.Targets
         /// </summary>
         protected internal string NewLineChars
         {
-            get
-            {
-                return lineEndingMode.NewLineCharacters;
-            }
+            get { return lineEndingMode.NewLineCharacters; }
         }
 
         private void RefreshFileArchive()
@@ -745,7 +733,8 @@ namespace NLog.Targets
                     string fileNamePattern = GetArchiveFileNamePattern(GetFullFileName(nullEvent), nullEvent);
                     if (!string.IsNullOrEmpty(fileNamePattern))
                     {
-                        fileNamePattern = Path.Combine(Path.GetDirectoryName(fileNamePattern), ReplaceFileNamePattern(fileNamePattern, "*"));
+                        fileNamePattern = Path.Combine(Path.GetDirectoryName(fileNamePattern),
+                            ReplaceFileNamePattern(fileNamePattern, "*"));
                         //fileNamePattern is absolute
                         this.fileAppenderCache.ArchiveFilePatternToWatch = fileNamePattern;
 
@@ -890,9 +879,9 @@ namespace NLog.Targets
 #if SILVERLIGHT
                 return RetryingMultiProcessFileAppender.TheFactory;
 #elif MONO
-                //
-                // mono on Windows uses mutexes, on Unix - special appender
-                //
+//
+// mono on Windows uses mutexes, on Unix - special appender
+//
                 if (PlatformDetector.IsUnix)
                 {
                     return UnixMultiProcessFileAppender.TheFactory;
@@ -913,7 +902,8 @@ namespace NLog.Targets
 
         private bool IsArchivingEnabled()
         {
-            return this.ArchiveAboveSize != FileTarget.ArchiveAboveSizeDisabled || this.ArchiveEvery != FileArchivePeriod.None;
+            return this.ArchiveAboveSize != FileTarget.ArchiveAboveSizeDisabled ||
+                   this.ArchiveEvery != FileArchivePeriod.None;
         }
 
         /// <summary>
@@ -935,8 +925,8 @@ namespace NLog.Targets
                 this.autoClosingTimer = new Timer(
                     this.AutoClosingTimerCallback,
                     null,
-                    this.OpenFileCacheTimeout * 1000,
-                    this.OpenFileCacheTimeout * 1000);
+                    this.OpenFileCacheTimeout*1000,
+                    this.OpenFileCacheTimeout*1000);
             }
         }
 
@@ -1118,10 +1108,12 @@ namespace NLog.Targets
             int lastPart = pattern.IndexOf("#}", StringComparison.Ordinal) + 2;
             int numDigits = lastPart - firstPart - 2;
 
-            return pattern.Substring(0, firstPart) + Convert.ToString(value, 10).PadLeft(numDigits, '0') + pattern.Substring(lastPart);
+            return pattern.Substring(0, firstPart) + Convert.ToString(value, 10).PadLeft(numDigits, '0') +
+                   pattern.Substring(lastPart);
         }
 
-        private void FlushCurrentFileWrites(string currentFileName, LogEventInfo firstLogEvent, MemoryStream ms, List<AsyncContinuation> pendingContinuations)
+        private void FlushCurrentFileWrites(string currentFileName, LogEventInfo firstLogEvent, MemoryStream ms,
+            List<AsyncContinuation> pendingContinuations)
         {
             Exception lastException = null;
 
@@ -1198,18 +1190,29 @@ namespace NLog.Targets
             if (archiveNumber == 0)
                 ArchiveFile(fileName, newFileName);
             else
-                RollArchiveForward(fileName, newFileName);
-        }
-
-        /// <summary>
-        /// Moves the archive file to the specified file name.
-        /// </summary>
-        /// <param name="existingFileName">The archive file to move.</param>
-        /// <param name="newFileName">The destination file name.</param>
-        private void RollArchiveForward(string existingFileName, string newFileName)
-        {
-            InternalLogger.Info("Roll archive {0} to {1}", existingFileName, newFileName);
-            File.Move(existingFileName, newFileName);
+            {
+                InternalLogger.Info("Roll archive {0} to {1}", fileName, newFileName);
+                try
+                {
+                    File.Move(fileName, newFileName);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Warn(ex, "Roll archive {0} to {1} failed", fileName, newFileName);
+                    //if failed due to a race condition (file exists suddenly), then retry with a new number.
+                    if (File.Exists(newFileName))
+                    {
+                        InternalLogger.Debug(ex, "Roll archive {0} to {1} failed because of a race condition. Retry with new name", fileName, newFileName);
+                        RollArchivesForward(newFileName, pattern, archiveNumber + 1);
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+               
+               
+            }
         }
 
         /// <summary>
@@ -1783,7 +1786,7 @@ namespace NLog.Targets
             {
                 return DirectorySeparatorCharForFileSize(fileName, upcomingWriteSize) ??
                        DirectorySeparatorCharForTime(fileName, ev);
-            }
+        }
 
             return null;
         }
@@ -1840,7 +1843,7 @@ namespace NLog.Targets
             if (length == null)
             {
                 return null;
-            }
+        }
 
             var shouldArchive = length.Value + upcomingWriteSize > this.ArchiveAboveSize;
             if (shouldArchive)
@@ -1889,7 +1892,7 @@ namespace NLog.Targets
             if (shouldArchive)
             {
                 return fileName;
-            }
+        }
             return null;
         }
 
