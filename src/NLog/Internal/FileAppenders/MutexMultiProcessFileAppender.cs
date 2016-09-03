@@ -121,7 +121,10 @@ namespace NLog.Internal.FileAppenders
                 this.fileStream.Seek(0, SeekOrigin.End);
                 this.fileStream.Write(bytes, 0, bytes.Length);
                 this.fileStream.Flush();
-                FileTouched();
+                if (CaptureLastWriteTime)
+                {
+                    FileTouched();
+                }
             }
             finally
             {
@@ -158,13 +161,29 @@ namespace NLog.Internal.FileAppenders
             // do nothing, the stream is always flushed
         }
 
-        /// <summary>
-        /// Gets the file info.
-        /// </summary>
-        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2001:AvoidCallingProblematicMethods", MessageId = "System.Runtime.InteropServices.SafeHandle.DangerousGetHandle", Justification = "Optimization")]
-        public override FileCharacteristics GetFileCharacteristics()
+
+        public override DateTime? GetFileCreationTimeUtc()
         {
+           
+            var fileChars = GetFileCharacteristics();
+            return fileChars.CreationTimeUtc;
+        }
+
+        public override DateTime? GetFileLastWriteTimeUtc()
+        {
+            var fileChars = GetFileCharacteristics();
+            return fileChars.LastWriteTimeUtc;
+        }
+
+        public override long? GetFileLength()
+        {
+            var fileChars = GetFileCharacteristics();
+            return fileChars.FileLength;
+        }
+
+        private FileCharacteristics GetFileCharacteristics()
+        {
+            //todo not efficient to read all the whole FileCharacteristics and then using one property
             return FileCharacteristicsHelper.Helper.GetFileCharacteristics(FileName, this.fileStream.SafeFileHandle.DangerousGetHandle());
         }
 

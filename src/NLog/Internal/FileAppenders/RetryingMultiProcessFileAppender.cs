@@ -67,7 +67,10 @@ namespace NLog.Internal.FileAppenders
                 fileStream.Write(bytes, 0, bytes.Length);
             }
 
-            FileTouched();
+            if (CaptureLastWriteTime)
+            {
+                FileTouched();
+            }
         }
 
         /// <summary>
@@ -86,23 +89,35 @@ namespace NLog.Internal.FileAppenders
             // nothing to do
         }
 
-        /// <summary>
-        /// Gets the file info.
-        /// </summary>
-        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public override FileCharacteristics GetFileCharacteristics()
+
+        public override DateTime? GetFileCreationTimeUtc()
         {
             FileInfo fileInfo = new FileInfo(FileName);
             if (fileInfo.Exists)
             {
-#if !SILVERLIGHT
-                return new FileCharacteristics(fileInfo.CreationTimeUtc, fileInfo.LastWriteTimeUtc, fileInfo.Length);
-#else
-                return new FileCharacteristics(fileInfo.CreationTime, fileInfo.LastWriteTime, fileInfo.Length);
-#endif
+                return fileInfo.GetCreationTimeUtc();
             }
-            else
-                return null;
+            return null;
+        }
+
+        public override DateTime? GetFileLastWriteTimeUtc()
+        {
+            FileInfo fileInfo = new FileInfo(FileName);
+            if (fileInfo.Exists)
+            {
+                return fileInfo.GetLastWriteTimeUtc();
+            }
+            return null;
+        }
+
+        public override long? GetFileLength()
+        {
+            FileInfo fileInfo = new FileInfo(FileName);
+            if (fileInfo.Exists)
+            {
+                return fileInfo.Length;
+            }
+            return null;
         }
 
         /// <summary>

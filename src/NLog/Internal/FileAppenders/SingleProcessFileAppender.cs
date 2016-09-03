@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
 using System.Security;
 
 namespace NLog.Internal.FileAppenders
@@ -55,18 +56,17 @@ namespace NLog.Internal.FileAppenders
         /// <param name="parameters">The parameters.</param>
         public SingleProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
-            var fileInfo = new FileInfo(fileName);
-            if (fileInfo.Exists)
+            if (CaptureLastWriteTime)
             {
-#if !SILVERLIGHT
-                FileTouched(fileInfo.LastWriteTimeUtc);
-#else
-                FileTouched(fileInfo.LastWriteTime);
-#endif
-            }
-            else
-            {
-                FileTouched();
+                var fileInfo = new FileInfo(fileName);
+                if (fileInfo.Exists)
+                {
+                    FileTouched(fileInfo.GetLastWriteTimeUtc());
+                }
+                else
+                {
+                    FileTouched();
+                }
             }
             this.file = CreateFileStream(false);
         }
@@ -83,7 +83,10 @@ namespace NLog.Internal.FileAppenders
             }
 
             this.file.Write(bytes, 0, bytes.Length);
-            FileTouched();
+            if (CaptureLastWriteTime)
+            {
+                FileTouched();
+            }
         }
 
         /// <summary>
@@ -115,13 +118,20 @@ namespace NLog.Internal.FileAppenders
             this.file = null;
         }
 
-        /// <summary>
-        /// Gets the file info.
-        /// </summary>
-        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public override FileCharacteristics GetFileCharacteristics()
+        public override DateTime? GetFileCreationTimeUtc()
         {
-            return file == null ? null : new FileCharacteristics(CreationTime, LastWriteTime, file.Length);
+            return this.CreationTime;
+        }
+
+        public override DateTime? GetFileLastWriteTimeUtc()
+        {
+            return this.LastWriteTime;
+        }
+
+        public override long? GetFileLength()
+        {
+            if (file == null) return null;
+            return file.Length;
         }
 
         /// <summary>

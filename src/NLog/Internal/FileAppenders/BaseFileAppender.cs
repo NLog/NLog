@@ -62,7 +62,10 @@ namespace NLog.Internal.FileAppenders
             this.FileName = fileName;
             this.OpenTime = DateTime.UtcNow; // to be consistent with timeToKill in FileTarget.AutoClosingTimerCallback
             this.LastWriteTime = DateTime.MinValue;
+            this.CaptureLastWriteTime = createParameters.CaptureLastWriteTime;
         }
+
+        protected bool CaptureLastWriteTime { get;  private set; }
 
         /// <summary>
         /// Gets the path of the file, including file extension.
@@ -110,11 +113,9 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public abstract void Close();
 
-        /// <summary>
-        /// Gets the file info.
-        /// </summary>
-        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public abstract FileCharacteristics GetFileCharacteristics();
+        public abstract DateTime? GetFileCreationTimeUtc();
+        public abstract DateTime? GetFileLastWriteTimeUtc();
+        public abstract long? GetFileLength();
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -142,7 +143,10 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         protected void FileTouched()
         {
-            FileTouched(DateTime.UtcNow);
+            if (CaptureLastWriteTime)
+            {
+                FileTouched(DateTime.UtcNow);
+            }
         }
 
         /// <summary>

@@ -186,6 +186,8 @@
     <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileCharacteristics.cs" />
     <Compile Include="Internal\FileCharacteristicsHelper.cs" />
+    <Compile Include="Internal\FileInfoExt.cs" />
+    <Compile Include="Internal\FilePathLayout.cs" />
     <Compile Include="Internal\FormatHelper.cs" />
     <Compile Include="Internal\IConfigurationManager.cs" />
     <Compile Include="Internal\IRenderable.cs" />
@@ -390,6 +392,7 @@
     <Compile Include="Targets\EventLogTarget.cs" />
     <Compile Include="Targets\EventLogTargetOverflowAction.cs" />
     <Compile Include="Targets\FileArchivePeriod.cs" />
+    <Compile Include="Targets\FilePathKind.cs" />
     <Compile Include="Targets\FileTarget.cs" />
     <Compile Include="Targets\IFileCompressor.cs" />
     <Compile Include="Targets\LineEndingMode.cs" />
