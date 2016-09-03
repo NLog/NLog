@@ -1637,14 +1637,14 @@ namespace NLog.Targets
 
             InternalLogger.Trace("Calculating archive date. Last write time: {0}; Previous log event time: {1}", lastWriteTime, previousLogEventTimestamp);
 
-            bool previousLogIsMoreRecent = (previousLogEventTimestamp.HasValue) && (previousLogEventTimestamp.Value > lastWriteTime);
+            bool previousLogIsMoreRecent = previousLogEventTimestamp.HasValue && (previousLogEventTimestamp.Value > lastWriteTime);
             if (previousLogIsMoreRecent)
             {
                 InternalLogger.Trace("Using previous log event time (is more recent)");
                 return previousLogEventTimestamp.Value;
             }
 
-            if (PreviousLogOverlappedPeriod(logEvent, lastWriteTimeUtc.Value))
+            if (previousLogEventTimestamp.HasValue && PreviousLogOverlappedPeriod(logEvent, lastWriteTime))
             {
                 InternalLogger.Trace("Using previous log event time (previous log overlapped period)");
                 return previousLogEventTimestamp.Value;
@@ -1654,13 +1654,13 @@ namespace NLog.Targets
             return lastWriteTime;
         }
 
-        private bool PreviousLogOverlappedPeriod(LogEventInfo logEvent, DateTime lastWriteTimeUtc)
+        private bool PreviousLogOverlappedPeriod(LogEventInfo logEvent, DateTime lastWrite)
         {
             if (!previousLogEventTimestamp.HasValue)
                 return false;
 
             string formatString = GetArchiveDateFormatString(string.Empty);
-            string lastWriteTimeString = TimeSource.Current.FromSystemTime(lastWriteTimeUtc).ToString(formatString, CultureInfo.InvariantCulture);
+            string lastWriteTimeString = lastWrite.ToString(formatString, CultureInfo.InvariantCulture);
             string logEventTimeString = logEvent.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
 
             if (lastWriteTimeString != logEventTimeString)
