@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,31 +31,26 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal
+namespace NLog.Targets
 {
-    using System;
-    using System.IO;
-
     /// <summary>
-    /// Portable implementation of <see cref="FileCharacteristicsHelper"/>.
+    /// Type of filepath
     /// </summary>
-    internal class PortableFileCharacteristicsHelper : FileCharacteristicsHelper
+    public enum FilePathKind : byte
     {
         /// <summary>
-        /// Gets the information about a file.
+        /// Detect of relative or absolute
         /// </summary>
-        /// <param name="fileName">Name of the file.</param>
-        /// <param name="fileHandle">The file handle.</param>
-        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public override FileCharacteristics GetFileCharacteristics(string fileName, IntPtr fileHandle)
-        {
-            var fileInfo = new FileInfo(fileName);
-            if (fileInfo.Exists)
-            {
-                return new FileCharacteristics(fileInfo.GetCreationTimeUtc(), fileInfo.GetLastWriteTimeUtc(), fileInfo.Length);
-            }
-            else
-                return null;
-        }
+        Unknown,
+        /// <summary>
+        /// Relative path
+        /// </summary>
+        Relative,
+
+        /// <summary>
+        /// Absolute path
+        /// </summary>
+        /// <remarks>Best for performance</remarks>
+        Absolute
     }
 }
