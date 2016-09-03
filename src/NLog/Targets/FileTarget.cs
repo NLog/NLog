@@ -1042,7 +1042,7 @@ namespace NLog.Targets
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
 #endif
-            var archiveFile = this.ShouldAutoArchive(fileName, logEvent, bytesToWrite.Length);
+            var archiveFile = this.GetAutoArchiveFileName(fileName, logEvent, bytesToWrite.Length);
             if (!string.IsNullOrEmpty(archiveFile))
             {
                 this.DoAutoArchive(archiveFile, logEvent);
@@ -1630,7 +1630,6 @@ namespace NLog.Targets
 
         private DateTime GetArchiveDate(string fileName, LogEventInfo logEvent)
         {
-            //var fileCharacteristics = GetFileCharacteristics(fileName);
             var lastWriteTimeUtc = this.fileAppenderCache.GetFileLastWriteTimeUtc(fileName, true);
 
             //todo null check
@@ -1777,13 +1776,13 @@ namespace NLog.Targets
         /// <param name="ev">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
         /// <param name="upcomingWriteSize">The size in bytes of the next chunk of data to be written in the file.</param>
         /// <returns>Filename to archive. If <c>null</c>, then nothing to archive.</returns>
-        private string ShouldAutoArchive(string fileName, LogEventInfo ev, int upcomingWriteSize)
+        private string GetAutoArchiveFileName(string fileName, LogEventInfo ev, int upcomingWriteSize)
         {
             var hasFileName = !(fileName == null && previousLogFileName == null);
             if (hasFileName)
             {
-                return ShouldAutoArchiveBasedOnFileSize(fileName, upcomingWriteSize) ??
-                       ShouldAutoArchiveBasedOnTime(fileName, ev);
+                return DirectorySeparatorCharForFileSize(fileName, upcomingWriteSize) ??
+                       DirectorySeparatorCharForTime(fileName, ev);
             }
 
             return null;
@@ -1793,7 +1792,7 @@ namespace NLog.Targets
         /// Returns the correct filename to archive
         /// </summary>
         /// <returns></returns>
-        private string GetFileForArchiving(string fileName)
+        private string GetPotentialFileForArchiving(string fileName)
         {
             if (fileName == previousLogFileName)
             {
@@ -1823,21 +1822,20 @@ namespace NLog.Targets
         /// <param name="fileName">File name to be written.</param>
         /// <param name="upcomingWriteSize">The size in bytes of the next chunk of data to be written in the file.</param>
         /// <returns>Filename to archive. If <c>null</c>, then nothing to archive.</returns>
-        private string ShouldAutoArchiveBasedOnFileSize(string fileName, int upcomingWriteSize)
+        private string DirectorySeparatorCharForFileSize(string fileName, int upcomingWriteSize)
         {
-            if (this.ArchiveAboveSize == FileTarget.ArchiveAboveSizeDisabled)
+            if (this.ArchiveAboveSize == ArchiveAboveSizeDisabled)
             {
                 return null;
             }
 
-            fileName = GetFileForArchiving(fileName);
+            fileName = GetPotentialFileForArchiving(fileName);
 
             if (fileName == null)
             {
                 return null;
             }
 
-            //var fileCharacteristics = this.GetFileCharacteristics(fileName);
             var length = this.fileAppenderCache.GetFileLength(fileName, true);
             if (length == null)
             {
@@ -1859,21 +1857,20 @@ namespace NLog.Targets
         /// <param name="fileName">File name to be written.</param>
         /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
         /// <returns>Filename to archive. If <c>null</c>, then nothing to archive.</returns>
-        private string ShouldAutoArchiveBasedOnTime(string fileName, LogEventInfo logEvent)
+        private string DirectorySeparatorCharForTime(string fileName, LogEventInfo logEvent)
         {
             if (this.ArchiveEvery == FileArchivePeriod.None)
             {
                 return null;
             }
 
-            fileName = GetFileForArchiving(fileName);
+            fileName = GetPotentialFileForArchiving(fileName);
 
             if (fileName == null)
             {
                 return null;
             }
 
-            //  var fileCharacteristics = this.GetFileCharacteristics(fileName);
             var creationTimeUtc = this.fileAppenderCache.GetFileCreationTimeUtc(fileName, true);
             if (creationTimeUtc == null)
             {

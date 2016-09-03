@@ -50,10 +50,11 @@ namespace NLog.UnitTests.Internal
         [InlineData(@" ", FilePathKind.Unknown)]
         [InlineData(null, FilePathKind.Unknown)]
 #if !MONO 
+
+        //no forwardslash on mono
         [InlineData(@"d:\test.log", FilePathKind.Absolute)]
         [InlineData(@"d:\test", FilePathKind.Absolute)]
         [InlineData(@" d:\test", FilePathKind.Absolute)]
-        [InlineData(@" d:\ test", FilePathKind.Absolute)]
         [InlineData(@" d:\ test", FilePathKind.Absolute)]
         [InlineData(@" d:\ test\a", FilePathKind.Absolute)]
         [InlineData(@"\\test\a", FilePathKind.Absolute)]
@@ -66,7 +67,6 @@ namespace NLog.UnitTests.Internal
 
         [InlineData(@"test.log", FilePathKind.Relative)]
         [InlineData(@"test", FilePathKind.Relative)]
-        [InlineData(@" test.log ", FilePathKind.Relative)]
         [InlineData(@" test.log ", FilePathKind.Relative)]
         [InlineData(@" a/test.log ", FilePathKind.Relative)]
 
