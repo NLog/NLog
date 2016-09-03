@@ -764,6 +764,49 @@ Dispose()
         }
 
         [Fact]
+        public void SqlServer_NoParamTypeShouldSetValueTest()
+        {
+            SqlServerTest.RecreateDatabase();
+            SqlServerTest.IssueCommand(@"
+CREATE TABLE dbo.NLogSqlServerTest (
+    Id       int               NOT NULL IDENTITY(1,1) PRIMARY KEY CLUSTERED,
+    Uid      uniqueidentifier  NULL
+);");
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
+                  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='true'>
+                <targets>
+                    <target name='database' xsi:type='Database'
+                        commandText='insert into dbo.NLogSqlServerTest (Uid) values (@uid);'>
+                        <parameter name='@uid' layout='${event-properties:uid}' />
+                    </target>
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='database' />
+                </rules>
+            </nlog>");
+            var logger = LogManager.GetLogger("A");
+            var target = (DatabaseTarget)logger.Factory.Configuration.AllTargets.First();
+            target.ConnectionString = SqlServerTest.GetConnectionString();
+
+            var uid = new Guid("e7c648b4-3508-4df2-b001-753148659d6d");
+            var logEvent = new LogEventInfo(LogLevel.Info, null, null);
+            logEvent.Properties["uid"] = uid;
+            var exceptions = new List<Exception>();
+            target.WriteAsyncLogEvent(logEvent.WithContinuation(exceptions.Add));
+
+            foreach (var ex in exceptions)
+            {
+                Assert.Null(ex);
+            }
+            var result = SqlServerTest.IssueScalarQuery("SELECT Uid FROM dbo.NLogSqlServerTest");
+            Assert.Equal(uid, result);
+
+            SqlServerTest.DropDatabase();
+        }
+
+        [Fact]
         public void Oracle_SetParamTypeShouldSetCustomEnumValueTest()
         {
             var expected = OracleDbType.Clob;
@@ -1478,6 +1521,58 @@ Dispose()
             public override ConnectionState State
             {
                 get { throw new NotImplementedException(); }
+            }
+        }
+
+        public static class SqlServerTest
+        {
+            public static string GetConnectionString()
+            {
+                var connectionString = ConfigurationManager.AppSettings["SqlServerTestConnectionString"];
+                if (String.IsNullOrWhiteSpace(connectionString))
+                {
+                    connectionString = @"Data Source=(localdb)\MSSQLLocalDB; Database=NLogTest; Integrated Security=True;";
+                }
+                return connectionString;
+            }
+
+            public static void RecreateDatabase()
+            {
+                IssueCommand("CREATE DATABASE NLogTest", @"Data Source=(localdb)\MSSQLLocalDB; Database=master; Integrated Security=True;");
+            }
+
+            public static void IssueCommand(string commandString, string connectionString = null)
+            {
+                using (var connection = new SqlConnection(connectionString ?? GetConnectionString()))
+                {
+                    connection.Open();
+                    if (connectionString == null)
+                        connection.ChangeDatabase("NLogTest");
+                    using (var command = new SqlCommand(commandString, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+
+            public static object IssueScalarQuery(string commandString, string connectionString = null)
+            {
+                using (var connection = new SqlConnection(connectionString ?? GetConnectionString()))
+                {
+                    connection.Open();
+                    if (connectionString == null)
+                        connection.ChangeDatabase("NLogTest");
+                    using (var command = new SqlCommand(commandString, connection))
+                    {
+                        var scalar = command.ExecuteScalar();
+                        return scalar;
+                    }
+                }
+            }
+
+            public static void DropDatabase()
+            {
+                IssueCommand("ALTER DATABASE [NLogTest] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE NLogTest;", @"Data Source=(localdb)\MSSQLLocalDB; Database=master; Integrated Security=True;");
             }
         }
     }
