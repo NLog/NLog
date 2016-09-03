@@ -230,7 +230,8 @@ namespace NLog.Internal
                     if (length >= 2)
                     {
                         var secondChar = path[1];
-                        if (secondChar == Path.VolumeSeparatorChar)
+                        //on unix VolumeSeparatorChar == DirectorySeparatorChar
+                        if (Path.VolumeSeparatorChar != Path.DirectorySeparatorChar && secondChar == Path.VolumeSeparatorChar)
                             return FilePathKind.Absolute;
 
                     }
