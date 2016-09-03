@@ -162,7 +162,8 @@ namespace NLog
                     {
                         var next = allStackFrames[last.StackFrameIndex + 1];
                         var declaringType = next.StackFrame.GetMethod().DeclaringType;
-                        if (declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder))
+                        if (declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder) || 
+                            declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder<>))
                         {
                             //async, search futher
                             candidateStackFrames = candidateStackFrames.Skip(1).ToList();
@@ -269,6 +270,9 @@ namespace NLog
         {
             FilterResult result = FilterResult.Neutral;
 
+            if (filterChain == null || filterChain.Count == 0)
+                return result;
+
             try
             {
                 //Memory profiling pointed out that using a foreach-loop was allocating
@@ -301,6 +305,7 @@ namespace NLog
         /// <summary>
         /// Stackframe with correspending index on the stracktrace
         /// </summary>
+       [DebuggerDisplay("{StackFrameIndex} => {StackFrame}")]
         private class StackFrameWithIndex
         {
             /// <summary>

@@ -33,6 +33,8 @@ tools/FAKE/
 packages/
 *.sublime-*
 *.DotSettings
+*.vshost.*
+/.vs
 src/NLog/project.lock.json*.vshost.*
 **/project.lock.json
 artifacts/

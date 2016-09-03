@@ -76,11 +76,10 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             var oldPrincipal = Thread.CurrentPrincipal;
 
-            Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("SOMEDOMAIN\\SomeUser", "CustomAuth"), new[] { "Role1", "Role2" });
 
             try
             {
-               
+
                 ConfigurationItemFactory.Default.Targets
                             .RegisterDefinition("CSharpEventTarget", typeof(CSharpEventTarget));
 
@@ -122,24 +121,28 @@ namespace NLog.UnitTests.LayoutRenderers
 
                      target.EventWritten += (logevent, rendered1, asyncThreadId1) =>
                     {
-                        continuationHit.Set();
                         rendered = rendered1;
                         asyncThreadId = asyncThreadId1;
                         lastLogEvent = logevent;
+                        continuationHit.Set();
                     };
 
 
-                 
+                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("SOMEDOMAIN\\SomeUser", "CustomAuth"), new[] { "Role1", "Role2" });
+
                     var logger = LogManager.GetCurrentClassLogger();
                     logger.Debug("test write");
 
 
                     Assert.True(continuationHit.WaitOne());
-                    Assert.Equal("auth:CustomAuth:SOMEDOMAIN\\SomeUser", rendered);
                     Assert.NotNull(lastLogEvent);
-                   
                     //should be written in another thread.
                     Assert.NotEqual(threadId, asyncThreadId);
+
+
+                    Assert.Equal("auth:CustomAuth:SOMEDOMAIN\\SomeUser", rendered);
+
+
 
                 }
                 finally

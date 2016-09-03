@@ -74,10 +74,19 @@ namespace NLog.UnitTests
             {
                 //flush all events if needed.
                 LogManager.Configuration.Close();
+                
             }
+
+            if (LogManager.LogFactory != null)
+            {
+                LogManager.LogFactory.ResetCandidateConfigFilePath();
+            }
+
             LogManager.Configuration = null;
             InternalLogger.Reset();
             LogManager.ThrowExceptions = false;
+            LogManager.ThrowConfigExceptions = null;
+            
         }
 
         protected void AssertDebugCounter(string targetName, int val)

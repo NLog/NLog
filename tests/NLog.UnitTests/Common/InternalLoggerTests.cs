@@ -240,6 +240,8 @@ namespace NLog.UnitTests.Common
 
                 TestWriter(expected, consoleOutWriter2);
             }
+
+            InternalLogger.LogToConsole = false;
         }
 
         [Fact]
@@ -355,6 +357,8 @@ namespace NLog.UnitTests.Common
             InternalLogger.Debug("DDD");
             InternalLogger.Info("III");
 
+            InternalLogger.LogToConsole = false;
+
             string expectedDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
 
             var strings = consoleOutWriter.ToString().Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
@@ -412,6 +416,9 @@ namespace NLog.UnitTests.Common
 
                 consoleOutWriter.Flush();
                 var strings = consoleOutWriter.ToString();
+
+                InternalLogger.LogToConsole = false;
+
                 Assert.Equal(expected, strings);
             }
 

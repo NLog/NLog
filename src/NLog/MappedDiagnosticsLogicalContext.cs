@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
 using NLog.Internal;
 
 namespace NLog
@@ -125,6 +126,15 @@ namespace NLog
         public static void Set(string item, object value)
         {
             LogicalThreadDictionary[item] = value;
+        }
+
+        /// <summary>
+        /// Returns all item names
+        /// </summary>
+        /// <returns>A collection of the names of all items in current logical context.</returns>
+        public static ICollection<string> GetNames()
+        {
+            return LogicalThreadDictionary.Keys;
         }
 
         /// <summary>

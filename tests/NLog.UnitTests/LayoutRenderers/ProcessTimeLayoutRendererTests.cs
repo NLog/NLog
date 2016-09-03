@@ -65,7 +65,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var time = new TimeSpan(day, hour, min, sec, milisec);
 
             var sb = new StringBuilder();
-            ProcessTimeLayoutRenderer.WritetTimestamp(sb, time);
+            ProcessTimeLayoutRenderer.WritetTimestamp(sb, time, null);
             var result = sb.ToString();
             Assert.Equal(expected, result);
         }

@@ -31,62 +31,65 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Internal;
 
-namespace NLog.LayoutRenderers
+namespace NLog.Layouts
 {
-    using System;
-    using System.Globalization;
+    using Config;
+    using System.Collections.Generic;
     using System.Text;
-    using NLog.Config;
 
     /// <summary>
-    /// Log event context data. See <see cref="LogEventInfo.Properties"/>.
+    /// A layout containing one or more nested layouts.
     /// </summary>
-    [LayoutRenderer("event-properties")]
-    public class EventPropertiesLayoutRenderer : LayoutRenderer
+    [Layout("CompoundLayout")]
+    public class CompoundLayout : Layout
     {
         /// <summary>
-        ///  Log event context data with default options.
+        /// Initializes a new instance of the <see cref="CompoundLayout"/> class.
         /// </summary>
-        public EventPropertiesLayoutRenderer()
+        public CompoundLayout()
         {
-            Culture = CultureInfo.InvariantCulture;
+            Layouts = new List<Layout>();
         }
 
         /// <summary>
-        /// Gets or sets the name of the item.
+        /// Gets the inner layouts.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [RequiredParameter]
-        [DefaultParameter]
-        public string Item { get; set; }
+        /// <docgen category='CSV Options' order='10' />
+        [ArrayParameter(typeof(Layout), "layout")]
+        public IList<Layout> Layouts { get; private set; }
 
         /// <summary>
-        /// Format string for conversion from object to string.
+        /// Initializes the layout.
         /// </summary>
-        public string Format { get; set; }
-
-        /// <summary>
-        /// Gets or sets the culture used for rendering. 
-        /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        public CultureInfo Culture { get; set; }
-
-        /// <summary>
-        /// Renders the specified log event context item and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        protected override void InitializeLayout()
         {
-            object value;
+            base.InitializeLayout();
+            foreach (var layout in Layouts)
+                layout.Initialize(this.LoggingConfiguration);
+        }
 
-            if (logEvent.Properties.TryGetValue(this.Item, out value))
-            {
-                var formatProvider = GetFormatProvider(logEvent, Culture);
-                builder.Append(value.ToStringWithOptionalFormat(Format, formatProvider));
-            }
+            /// <summary>
+        /// Formats the log event relying on inner layouts.
+        /// </summary>
+        /// <param name="logEvent">The log event to be formatted.</param>
+        /// <returns>A string representation of the log event.</returns>
+        protected override string GetFormattedMessage(LogEventInfo logEvent)
+        {
+            var sb = new StringBuilder();
+            foreach (var layout in Layouts)
+                sb.Append(layout.Render(logEvent));
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Closes the layout.
+        /// </summary>
+        protected override void CloseLayout()
+        {
+            foreach (var layout in Layouts)
+                layout.Close();
+            base.CloseLayout();
         }
     }
 }

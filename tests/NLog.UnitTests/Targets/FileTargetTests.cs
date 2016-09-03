@@ -369,8 +369,8 @@ namespace NLog.UnitTests.Targets
                 AssertFileContents(logFile, "Debug ddd\nInfo eee\nWarn fff\n", Encoding.UTF8);
                 Assert.True(File.Exists(archiveTempName));
 
-                var assertFileContents = ft.EnableArchiveFileCompression ? 
-                    new Action<string, string, Encoding>(AssertZipFileContents) : 
+                var assertFileContents = ft.EnableArchiveFileCompression ?
+                    new Action<string, string, Encoding>(AssertZipFileContents) :
                     AssertFileContents;
 
                 assertFileContents(archiveTempName, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n",
@@ -2717,6 +2717,34 @@ namespace NLog.UnitTests.Targets
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
+        }
+
+        [Fact]
+        public void TestFilenameCleanup()
+        {
+            var invalidChars = Path.GetInvalidFileNameChars();
+            var invalidFileName = Path.DirectorySeparatorChar.ToString();
+            var expectedFileName = "";
+            for (int i = 0; i < invalidChars.Count(); i++)
+            {
+                var invalidChar = invalidChars[i];
+                if (invalidChar == Path.DirectorySeparatorChar || invalidChar == Path.AltDirectorySeparatorChar)
+                {
+                    //ignore, won't used in cleanup (but for find filename in path)
+                    continue;
+                }
+
+                invalidFileName += i + invalidChar.ToString();
+                //underscore is used for clean
+                expectedFileName += i + "_";
+            }
+            //under mono this the invalid chars is sometimes only 1 char (so min width 2)
+            Assert.True(invalidFileName.Length >= 2);
+            //CleanupFileName is default true;
+            var fileTarget = new FileTarget();
+            fileTarget.FileName = invalidFileName;
+            var path = fileTarget.GetCleanedFileName(LogEventInfo.CreateNullEvent());
+            Assert.Equal(expectedFileName, path);
         }
 
 

@@ -30,6 +30,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
+using System.Linq;
+
 namespace NLog
 {
     using System;
@@ -47,7 +49,7 @@ namespace NLog
     {
         private static readonly object dataSlot = ThreadLocalStorageHelper.AllocateDataSlot();
 
-        internal static IDictionary<string, object> ThreadDictionary
+        private static IDictionary<string, object> ThreadDictionary
         {
             get { return ThreadLocalStorageHelper.GetDataForSlot<Dictionary<string, object>>(dataSlot); }
         }
@@ -108,6 +110,15 @@ namespace NLog
                 o = null;
 
             return o;
+        }
+
+        /// <summary>
+        /// Returns all item names
+        /// </summary>
+        /// <returns>A set of the names of all items in current thread-MDC.</returns>
+        public static ICollection<string> GetNames()
+        {
+            return ThreadDictionary.Keys;
         }
 
         /// <summary>

@@ -1,23 +1,20 @@
 {
-    "version": "4.4.0-beta13",
-    "description": "NLog is a logging platform for .NET with rich log routing and management capabilities. It can help you produce and manage high-quality logs for your application regardless of its size or complexity. This package installs NLog.dll with includes core logging functionality. For your main project also need to install 'NLog Configuration' package.",
-    "authors": [ "NLog" ],
-    "packOptions": {
-        "summary": "NLog - Flexible & free open-source logging for .NET",
-        "tags": [ "logging", "log", "tracing", "logfiles", "NLog", "database", "eventlog", "email", "wcf", "netcore", "dynamic" ],
-        "projectUrl": "http://nlog-project.org/",
-        "licenseUrl": "http://raw.github.com/NLog/NLog/master/LICENSE.txt",
-        "requireLicenseAcceptance": false,
-        "iconUrl": "http://nlog-project.org/N.png",
-        "repository": {
-            "type": "git",
-            "url": "git://github.com/NLog/NLog"
-        }
-        
-    },
-    "dependencies": {
+  "version": "4.4.0-betaV15",
+  "description": "NLog is a logging platform for .NET with rich log routing and management capabilities. It can help you produce and manage high-quality logs for your application regardless of its size or complexity. This package installs NLog.dll with includes core logging functionality. For your main project also need to install 'NLog Configuration' package.",
+  "authors": [ "Kim Christensen, Julian Verdurmen" ],
+  "packOptions": {
+    "summary": "NLog - Flexible & free open-source logging for .NET",
+    "tags": [ "logging", "log", "tracing", "logfiles", "NLog", "database", "eventlog", "email", "wcf", "netcore", "dynamic" ],
+    "projectUrl": "http://nlog-project.org/",
+    "licenseUrl": "http://raw.github.com/NLog/NLog/master/LICENSE.txt",
+    "requireLicenseAcceptance": false,
+    "iconUrl": "http://nlog-project.org/N.png",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/NLog/NLog"
+    }
 
-    },
+  },
 
   "frameworks": {
     ".NETFramework,Version=v3.5": {
@@ -100,7 +97,8 @@
         "System.Net.NameResolution": "4.0.0"
       },
       "buildOptions": {
-        "define": [ "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD1_3", "ASYNC_SUPPORTED", "UWP10" ]
+        "define": [ "NET4_5", "NETSTANDARD_1plus", "ASYNC_SUPPORTED", "UWP10" ],
+        "nowarn": [ "CS0436" ]
       }
     },
     "netstandard1.5": {
@@ -123,7 +121,8 @@
         "System.Net.NameResolution": "4.0.0"
       },
       "buildOptions": {
-        "define": [ "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD1_3", "NETSTANDARD1_5", "ASYNC_SUPPORTED", "UWP10" ]
+        "define": [ "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD1_3", "NETSTANDARD1_5", "ASYNC_SUPPORTED", "UWP10" ],
+        "nowarn": [ "CS0436" ]
       }
     },
     "Silverlight,Version=v4.0": {
@@ -142,6 +141,7 @@
       },
       "buildOptions": {
         "define": [ "SILVERLIGHT", "SILVERLIGHT4", "WCF_SUPPORTED" ]
+      
       }
     },
     "Silverlight,Version=v5.0": {
@@ -160,6 +160,7 @@
       },
       "buildOptions": {
         "define": [ "SILVERLIGHT", "SILVERLIGHT5", "WCF_SUPPORTED" ]
+     
       }
     },
 
@@ -177,11 +178,37 @@
       "buildOptions": {
         "define": [ "SILVERLIGHT", "WINDOWS_PHONE" ]
       }
+    },
+    "monoandroid2.3": {
+      "frameworkAssemblies": {
+        "mscorlib": "",
+        "Mono.Android": "",
+        "System": "",
+        "System.Core": "",
+        "System.Xml": ""
+      },
+      "buildOptions": {
+        "define": [ "__ANDROID__" ]
+      }
+    },
+    "xamarin.ios10": {
+      "frameworkAssemblies": {
+        "mscorlib": "",
+        "Xamarin.iOS": "",
+        "System": "",
+        "System.Core": "",
+        "System.Xml": ""
+      },
+      "buildOptions": {
+        "define": [ "__IOS__" ]
+      }
     }
 
 
   },
-    "buildOptions": {
-        "keyFile": "NLog.snk"
-    }
+  "buildOptions": {
+    "keyFile": "NLog.snk",
+    "xmlDoc": true
+
+  }
 }

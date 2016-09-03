@@ -1,13 +1,12 @@
-version: 4.4.0-Alpha{build}
+
+version: 4.4.0-beta{build}
 clone_folder: c:\projects\nlog
-branches:
-  only:
-  - coreCLR
 build_script:
-  - build-simple.bat
+  - ps: .\build.ps1
 
-
+test_script:
+  - ps: .\run-tests.ps1
 
 deploy: off
 artifacts:
-- path: '**\*.nupkg'
+- path: 'artifacts\*.nupkg'

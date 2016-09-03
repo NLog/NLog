@@ -77,28 +77,19 @@ namespace NLog.Common
         /// </summary>
         public static void Reset()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
+#if !UWP10 || NETSTANDARD1_3
             LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
+#endif
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
             LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             LogToTrace = GetSetting("nlog.internalLogToTrace", "NLOG_INTERNAL_LOG_TO_TRACE", false);
-            IncludeTimestamp = GetSetting("nlog.internalLogIncludeTimestamp", "NLOG_INTERNAL_INCLUDE_TIMESTAMP", true);
-            
-#else
-            LogLevel = LogLevel.Info;
-            LogFile = string.Empty;
-            IncludeTimestamp = true;
-
-#if !UWP10 || NETSTANDARD1_3
-            LogToConsole = false;
-            LogToConsoleError = false;
 #endif
+            IncludeTimestamp = GetSetting("nlog.internalLogIncludeTimestamp", "NLOG_INTERNAL_INCLUDE_TIMESTAMP", true);
+
             ExceptionThrowWhenWriting = false;
             LogWriter = null;
-
-#endif
-
 
         }
 
@@ -334,7 +325,7 @@ namespace NLog.Common
                 return false;
             }
 
-            return !string.IsNullOrEmpty(LogFile)  ||
+            return !string.IsNullOrEmpty(LogFile) ||
 #if !UWP10 || NETSTANDARD1_3
             LogToConsole || LogToConsoleError ||
 #endif
@@ -362,7 +353,7 @@ namespace NLog.Common
             {
                 return;
             }
-            
+
             System.Diagnostics.Trace.WriteLine(message, "NLog");
         }
 
@@ -393,6 +384,9 @@ namespace NLog.Common
         }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
+        /// <summary>
+        /// Get the setting value from config/Environment.
+        /// </summary>
         private static string GetSettingString(string configName, string envName)
         {
             string settingValue = ConfigurationManager.AppSettings[configName];
@@ -413,9 +407,13 @@ namespace NLog.Common
 
             return settingValue;
         }
-
+#endif
+        /// <summary>
+        /// Get the setting value from config/Environment. For unsupported platforms, just return <paramref name="defaultValue"/>
+        /// </summary>
         private static LogLevel GetSetting(string configName, string envName, LogLevel defaultValue)
         {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
             string value = GetSettingString(configName, envName);
             if (value == null)
             {
@@ -435,10 +433,17 @@ namespace NLog.Common
 
                 return defaultValue;
             }
+#else
+            return defaultValue;
+#endif
         }
 
+        /// <summary>
+        /// Get the setting value from config/Environment. For unsupported platforms, just return <paramref name="defaultValue"/>
+        /// </summary>
         private static T GetSetting<T>(string configName, string envName, T defaultValue)
         {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
             string value = GetSettingString(configName, envName);
             if (value == null)
             {
@@ -458,9 +463,12 @@ namespace NLog.Common
 
                 return defaultValue;
             }
-        }
-  
+#else
+            return defaultValue;
 #endif
+        }
+
+
 
         private static void CreateDirectoriesIfNeeded(string filename)
         {
@@ -475,7 +483,7 @@ namespace NLog.Common
                 if (!string.IsNullOrEmpty(parentDirectory))
                 {
                     Directory.CreateDirectory(parentDirectory);
-            }
+                }
             }
             catch (Exception exception)
             {

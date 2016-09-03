@@ -246,6 +246,7 @@ namespace NLog
         /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
         /// <param name="loggerType">The logger class. The class must inherit from <see cref="Logger" />.</param>
+        /// <param name="path">CallerFilePath</param>
         /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
         /// <remarks>This is a slow-running method. Make sure you're not doing this in a loop.</remarks>
         [CLSCompliant(false)]

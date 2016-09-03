@@ -1,0 +1,11 @@
+coverage:
+  precision: 0
+  round: nearest
+  range: "50...90"
+  status:
+    patch:
+      default:
+        target: 50
+comment:
+  layout: "header, diff, changes, sunburst, uncovered"
+  branches: null
