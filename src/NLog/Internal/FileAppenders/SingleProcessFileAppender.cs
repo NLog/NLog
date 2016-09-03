@@ -83,7 +83,10 @@ namespace NLog.Internal.FileAppenders
             }
 
             this.file.Write(bytes, 0, bytes.Length);
-            FileTouched();
+            if (CaptureLastWriteTime)
+            {
+                FileTouched();
+            }
         }
 
         /// <summary>
