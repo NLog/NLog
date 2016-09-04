@@ -81,6 +81,7 @@ namespace NLog.UnitTests.Internal
 
         [InlineData(@"${basedir}/test.log ", FilePathKind.Absolute)]
         [InlineData(@"${BASEDIR}/test.log ", FilePathKind.Absolute)]
+        [InlineData(@"${specialfolder:applicationdata}/test.log ", FilePathKind.Absolute)]
         [InlineData(@"${BASEDIR}/test ", FilePathKind.Absolute)]
         [InlineData(@"${BASEDIR}/test ", FilePathKind.Absolute)]
         [InlineData(@"${level}/test ", FilePathKind.Unknown)]
