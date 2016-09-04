@@ -99,6 +99,7 @@ namespace NLog.Targets
             this.KeepConnection = true;
             this.MaxMessageSize = 65000;
             this.ConnectionCacheSize = 5;
+            this.EndOfLineValue = "\r\n";
         }
 
         /// <summary>
@@ -146,6 +147,13 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='10' />
         [DefaultValue(false)]
         public bool NewLine { get; set; }
+
+        /// <summary>
+        /// Gets or sets the end of line value if a newline is appended at the end of log message <see cref="NewLine"/>.
+        /// </summary>
+        /// <docgen category='Layout Options' order='10' />
+        [DefaultValue("\r\n")]
+        public string EndOfLineValue { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum message size in bytes.
@@ -376,7 +384,7 @@ namespace NLog.Targets
 
             if (this.NewLine)
             {
-                text = this.Layout.Render(logEvent) + "\r\n";
+                text = this.Layout.Render(logEvent) + this.EndOfLineValue;
             }
             else
             {

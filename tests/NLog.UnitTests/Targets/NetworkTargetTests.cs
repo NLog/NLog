@@ -57,6 +57,7 @@ namespace NLog.UnitTests.Targets
             target.SenderFactory = senderFactory;
             target.Layout = "${message}";
             target.NewLine = true;
+            target.EndOfLineValue = "\n";
             target.KeepConnection = true;
             target.Initialize(null);
 
@@ -93,17 +94,32 @@ namespace NLog.UnitTests.Targets
             var sender = senderFactory.Senders[0];
             target.Close();
 
-            Assert.Equal(18L, sender.MemoryStream.Length);
-            Assert.Equal("msg1\r\nmsg2\r\nmsg3\r\n", target.Encoding.GetString(sender.MemoryStream.GetBuffer(), 0, (int)sender.MemoryStream.Length));
+            Assert.Equal(15L, sender.MemoryStream.Length);
+            Assert.Equal("msg1\nmsg2\nmsg3\n", target.Encoding.GetString(sender.MemoryStream.GetBuffer(), 0, (int)sender.MemoryStream.Length));
 
             // we invoke the sender 3 times, each time sending 4 bytes
             var actual = senderFactory.Log.ToString();
 
             Assert.True(actual.IndexOf("1: connect tcp://someaddress/") != -1);
-            Assert.True(actual.IndexOf("1: send 0 6") != -1);
-            Assert.True(actual.IndexOf("1: send 0 6") != -1);
-            Assert.True(actual.IndexOf("1: send 0 6") != -1);
+            Assert.True(actual.IndexOf("1: send 0 5") != -1);
+            Assert.True(actual.IndexOf("1: send 0 5") != -1);
+            Assert.True(actual.IndexOf("1: send 0 5") != -1);
             Assert.True(actual.IndexOf("1: close") != -1);
+        }
+
+        [Fact]
+        public void NetworkTargetDefaultsTest()
+        {
+            var target = new NetworkTarget();
+
+            Assert.True(target.KeepConnection);
+            Assert.False(target.NewLine);
+            Assert.Equal("\r\n", target.EndOfLineValue);
+            Assert.Equal(65000, target.MaxMessageSize);
+            Assert.Equal(5, target.ConnectionCacheSize);
+            Assert.Equal(0, target.MaxConnections);
+            Assert.Equal(0, target.MaxQueueSize);
+            Assert.Equal(Encoding.UTF8, target.Encoding);
         }
 
         [Fact]
