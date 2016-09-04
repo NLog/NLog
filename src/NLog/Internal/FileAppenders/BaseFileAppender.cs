@@ -65,7 +65,7 @@ namespace NLog.Internal.FileAppenders
             this.CaptureLastWriteTime = createParameters.CaptureLastWriteTime;
         }
 
-        protected bool CaptureLastWriteTime { get;  private set; }
+        protected bool CaptureLastWriteTime { get; private set; }
 
         /// <summary>
         /// Gets the path of the file, including file extension.
@@ -157,7 +157,7 @@ namespace NLog.Internal.FileAppenders
         {
             this.LastWriteTime = dateTime;
         }
-        
+
         /// <summary>
         /// Creates the file stream.
         /// </summary>
@@ -178,13 +178,21 @@ namespace NLog.Internal.FileAppenders
                     }
                     catch (DirectoryNotFoundException)
                     {
+                        var directoryName = Path.GetDirectoryName(this.FileName);
                         if (!this.CreateFileParameters.CreateDirs)
                         {
                             throw;
                         }
-
-                        Directory.CreateDirectory(Path.GetDirectoryName(this.FileName));
+                        try
+                        {
+                            Directory.CreateDirectory(directoryName);
+                        }
+                        catch (DirectoryNotFoundException)
+                        {
+                            throw new NLogRuntimeException("Could not create directory {0}", directoryName);
+                        }
                         return this.TryCreateFileStream(allowFileSharedWriting);
+
                     }
                 }
                 catch (IOException)
@@ -301,7 +309,7 @@ namespace NLog.Internal.FileAppenders
             else
             {
                 File.Create(this.FileName).Dispose();
-                
+
 #if !SILVERLIGHT
                 this.CreationTime = DateTime.UtcNow;
                 // Set the file's creation time to avoid being thwarted by Windows' Tunneling capabilities (https://support.microsoft.com/en-us/kb/172190).
