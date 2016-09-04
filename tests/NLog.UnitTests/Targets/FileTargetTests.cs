@@ -140,6 +140,60 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+#if !SILVERLIGHT && !MONO
+        const int FIVE_SECONDS = 5000;
+
+        /// <summary>
+        /// If a drive doesn't existing, before repeatatly creating a dir was tried. This test was taking +60 seconds 
+        /// </summary>
+        [Theory(Timeout = FIVE_SECONDS)]
+        [PropertyData("SimpleFileTest_TestParameters")]
+        public void NonExistingDriveShouldNotDelayMuch(bool concurrentWrites, bool keepFileOpen, bool networkWrites)
+        {
+            var nonExistingDrive = GetFirstNonExistingDriveWindows();
+
+            var logFile = nonExistingDrive + "://dont-extist/no-timeout.log";
+
+            try
+            {
+                var fileTarget = WrapFileTarget(new FileTarget
+                {
+                    FileName = logFile,
+                    Layout = "${level} ${message}",
+                    ConcurrentWrites = concurrentWrites,
+                    KeepFileOpen = keepFileOpen,
+                    NetworkWrites = networkWrites
+                });
+
+                SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+                for (int i = 0; i < 300; i++)
+                {
+                    logger.Debug("aaa");
+                }
+            }
+            finally
+            {
+                //should not be necessary
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
+            }
+        }
+
+        /// <summary>
+        /// Get first drive letter of non-existing drive
+        /// </summary>
+        /// <returns></returns>
+        private static char GetFirstNonExistingDriveWindows()
+        {
+            var existingDrives = new HashSet<string>(Environment.GetLogicalDrives().Select(d => d[0].ToString()),
+                StringComparer.OrdinalIgnoreCase);
+            var nonExistingDrive =
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToList().First(driveLetter => !existingDrives.Contains(driveLetter.ToString()));
+            return nonExistingDrive;
+        }
+
+#endif
+
         [Fact]
         public void CsvHeaderTest()
         {
@@ -2731,7 +2785,7 @@ namespace NLog.UnitTests.Targets
             var fileTarget = new FileTarget();
             fileTarget.FileName = invalidFileName;
 
-            var filePathLayout = new FilePathLayout(invalidFileName,true, FilePathKind.Absolute);
+            var filePathLayout = new FilePathLayout(invalidFileName, true, FilePathKind.Absolute);
 
 
             var path = filePathLayout.Render(LogEventInfo.CreateNullEvent());
