@@ -200,7 +200,6 @@
     <Compile Include="Internal\Win32ThreadIDHelper.cs" />
     <Compile Include="Internal\XmlHelper.cs" />
     <Compile Include="ISuppress.cs" />
-    <Compile Include="LayoutRenderers\AdhocLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AllEventPropertiesLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AmbientPropertyAttribute.cs" />
     <Compile Include="LayoutRenderers\AppDomainLayoutRenderer.cs" />
@@ -219,11 +218,11 @@
     <Compile Include="LayoutRenderers\EventPropertiesLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\ExceptionLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\FileContentsLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\FuncLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\GarbageCollectorInfoLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\GarbageCollectorProperty.cs" />
     <Compile Include="LayoutRenderers\GdcLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\GuidLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\IAdhocLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\IdentityLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\InstallContextLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\LayoutRenderer.cs" />

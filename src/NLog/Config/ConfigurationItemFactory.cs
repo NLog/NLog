@@ -58,7 +58,7 @@ namespace NLog.Config
         private readonly IList<object> allFactories;
         private readonly Factory<Target, TargetAttribute> targets;
         private readonly Factory<Filter, FilterAttribute> filters;
-        private readonly FactoryWithAdhoc<LayoutRenderer, LayoutRendererAttribute> layoutRenderers;
+        private readonly LayoutRendererFactory layoutRenderers;
         private readonly Factory<Layout, LayoutAttribute> layouts;
         private readonly MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute> conditionMethods;
         private readonly Factory<LayoutRenderer, AmbientPropertyAttribute> ambientProperties;
@@ -73,7 +73,7 @@ namespace NLog.Config
             this.CreateInstance = FactoryHelper.CreateInstance;
             this.targets = new Factory<Target, TargetAttribute>(this);
             this.filters = new Factory<Filter, FilterAttribute>(this);
-            this.layoutRenderers = new FactoryWithAdhoc<LayoutRenderer, LayoutRendererAttribute>(this);
+            this.layoutRenderers = new LayoutRendererFactory(this);
             this.layouts = new Factory<Layout, LayoutAttribute>(this);
             this.conditionMethods = new MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute>();
             this.ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>(this);
@@ -139,7 +139,12 @@ namespace NLog.Config
             get { return this.filters; }
         }
 
-        internal FactoryWithAdhoc<LayoutRenderer, LayoutRendererAttribute> GetLayoutRenderers()
+        /// <summary>
+        /// gets the <see cref="LayoutRenderer"/> factory
+        /// </summary>
+        /// <remarks>not using <see cref="layoutRenderers"/> due to backwardscomp.</remarks>
+        /// <returns></returns>
+        internal LayoutRendererFactory GetLayoutRenderers()
         {
             return this.layoutRenderers;
         }

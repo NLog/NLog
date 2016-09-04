@@ -257,26 +257,25 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Register
+        /// Register a layout renderer with a callback function <paramref name="func"/>. The callback recieves the logEvent.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="func"></param>
-        public static void RegisterAdhocLayoutRenderer(string name, Func<LogEventInfo, object> func)
+        /// <param name="name">Name of the layoutrenderer, without ${}.</param>
+        /// <param name="func">Callback that returns the value for the layout renderer.</param>
+        public static void RegisterFuncLayoutRenderer(string name, Func<LogEventInfo, object> func)
         {
-            RegisterAdhocLayoutRenderer(name, (info, configuration) => func(info));
+            RegisterFuncLayoutRenderer(name, (info, configuration) => func(info));
         }
 
         /// <summary>
-        /// Register
+        /// Register a layout renderer with a callback function <paramref name="func"/>. The callback recieves the logEvent and the current configuration.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="func"></param>
-        public static void RegisterAdhocLayoutRenderer(string name,
-            Func<LogEventInfo, LoggingConfiguration, object> func)
+        /// <param name="name">Name of the layoutrenderer, without ${}.</param>
+        /// <param name="func">Callback that returns the value for the layout renderer.</param>
+        public static void RegisterFuncLayoutRenderer(string name, Func<LogEventInfo, LoggingConfiguration, object> func)
         {
-            var layoutRenderer = new AdhocLayoutRenderer(name, func);
+            var layoutRenderer = new FuncLayoutRenderer(name, func);
             
-            ConfigurationItemFactory.Default.GetLayoutRenderers().RegisterAdhoc(name, layoutRenderer);
+            ConfigurationItemFactory.Default.GetLayoutRenderers().RegisterFuncLayout(name, layoutRenderer);
         }
     }
 }

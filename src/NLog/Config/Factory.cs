@@ -202,24 +202,38 @@ namespace NLog.Config
         }
     }
 
-    class FactoryWithAdhoc
-        <TBaseType, TAttributeType> : Factory<TBaseType, TAttributeType> where TBaseType : class where TAttributeType : NameBaseAttribute
+    /// <summary>
+    /// Factory specialized for <see cref="LayoutRenderer"/>s. 
+    /// </summary>
+    class LayoutRendererFactory : Factory<LayoutRenderer, LayoutRendererAttribute>
     {
-        public FactoryWithAdhoc(ConfigurationItemFactory parentFactory) : base(parentFactory)
+        public LayoutRendererFactory(ConfigurationItemFactory parentFactory) : base(parentFactory)
         {
         }
 
-        private Dictionary<string, IAdhocLayoutRenderer> adhocRenderers;
+        private Dictionary<string, FuncLayoutRenderer> funcRenderers;
 
-        public void RegisterAdhoc(string name, IAdhocLayoutRenderer renderer)
+        /// <summary>
+        /// Clear all func layouts
+        /// </summary>
+        public void ClearFuncLayouts()
         {
-            adhocRenderers = adhocRenderers ?? new Dictionary<string, IAdhocLayoutRenderer>(StringComparer.OrdinalIgnoreCase);
-            adhocRenderers.Add(name, renderer);
+            funcRenderers = null;
         }
 
-        #region Overrides of Factory<TBaseType,TAttributeType>
+        /// <summary>
+        /// Register a layout renderer with a callback function.
+        /// </summary>
+        /// <param name="name">Name of the layoutrenderer, without ${}.</param>
+        /// <param name="renderer">the renderer that renders the value.</param>
+        public void RegisterFuncLayout(string name, FuncLayoutRenderer renderer)
+        {
+            funcRenderers = funcRenderers ?? new Dictionary<string, FuncLayoutRenderer>(StringComparer.OrdinalIgnoreCase);
 
-        #region Overrides of Factory<TBaseType,TAttributeType>
+            //overwrite current if there is one
+            funcRenderers[name] = renderer;
+        }
+
 
         /// <summary>
         /// Tries to create an item instance.
@@ -227,18 +241,16 @@ namespace NLog.Config
         /// <param name="itemName">Name of the item.</param>
         /// <param name="result">The result.</param>
         /// <returns>True if instance was created successfully, false otherwise.</returns>
-        public override bool TryCreateInstance(string itemName, out TBaseType result)
+        public override bool TryCreateInstance(string itemName, out LayoutRenderer result)
         {
-
-            if (adhocRenderers != null)
+            //first try func renderers, as they should have the possiblity to overwrite a current one.
+            if (funcRenderers != null)
             {
-                //todo
-                IAdhocLayoutRenderer adhocResult;
-                var adhocSuccess = adhocRenderers.TryGetValue(itemName, out adhocResult);
-                if (adhocSuccess)
+                FuncLayoutRenderer funcResult;
+                var succesAsFunc = funcRenderers.TryGetValue(itemName, out funcResult);
+                if (succesAsFunc)
                 {
-                    //todo
-                    result = (TBaseType)(object)adhocResult;
+                    result = funcResult;
                     return true;
                 }
             }
@@ -248,8 +260,5 @@ namespace NLog.Config
             return success;
         }
 
-        #endregion
-
-        #endregion
     }
 }

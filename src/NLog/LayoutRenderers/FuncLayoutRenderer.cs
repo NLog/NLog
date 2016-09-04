@@ -40,14 +40,14 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// A layout renderer which could have different behavriour per instance.
     /// </summary>
-    public class AdhocLayoutRenderer : LayoutRenderer, IAdhocLayoutRenderer
+    public class FuncLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="layoutRendererName"></param>
         /// <param name="renderFunc"></param>
-        public AdhocLayoutRenderer( string layoutRendererName, Func<LogEventInfo, LoggingConfiguration, object> renderFunc)
+        public FuncLayoutRenderer( string layoutRendererName, Func<LogEventInfo, LoggingConfiguration, object> renderFunc)
         {
             RenderFunc = renderFunc;
             LayoutRendererName = layoutRendererName;
