@@ -2,6 +2,20 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
 
 This file is new since 4.3.4. If requested, we will try to add the older releases in this file.
 
+
+### V4.3.8 (2016/09/05)
+
+#### Features
+- [#1619](https://github.com/NLog/NLog/pull/1619) NetworkTarget: Added option to specify EOL (@kevindaub)
+
+#### Improvements    
+- [#1596](https://github.com/NLog/NLog/pull/1596) Performance tweak in NLog routing (@304NotModified)
+- [#1593](https://github.com/NLog/NLog/pull/1593) FileTarget: large performance improvement - back to 1 million/sec (@304NotModified)
+- [#1621](https://github.com/nlog/nlog/pull/1621) FileTarget: writing to non-existing drive was slowing down NLog a lot (@304NotModified)
+
+#### Fixes
+- [#1616](https://github.com/nlog/nlog/pull/1616) FileTarget: Don't throw an exception if a dir is missing when deleting old files on startup (@304NotModified)
+
 ### V4.3.7 (2016/08/06)
 
 #### Features
