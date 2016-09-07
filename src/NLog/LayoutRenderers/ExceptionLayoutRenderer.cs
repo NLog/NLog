@@ -314,7 +314,16 @@ namespace NLog.LayoutRenderers
             {
                 sb.Append(separator);
                 sb.AppendFormat("{0}: {1}", key, ex.Data[key]);
-                separator = ";";
+                
+                //backward compatibility when using default value of Separator
+                if (Separator.Equals(" "))
+                {
+                    separator = ";";
+                }
+                else
+                {
+                    separator = Separator;
+                }
             }
         }
 
