@@ -1464,12 +1464,27 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// Parse filename with date and sequence pattern
+        /// </summary>
+        /// <param name="archiveFileNameWithoutPath"></param>
+        /// <param name="dateFormat">dateformat for archive</param>
+        /// <param name="fileTemplate"></param>
+        /// <param name="date">the found pattern. When failed, then default</param>
+        /// <param name="sequence">the found pattern. When failed, then default</param>
+        /// <returns></returns>
         private static bool TryParseDateAndSequence(string archiveFileNameWithoutPath, string dateFormat, FileNameTemplate fileTemplate, out DateTime date, out int sequence)
         {
             int trailerLength = fileTemplate.Template.Length - fileTemplate.EndAt;
             int dateAndSequenceIndex = fileTemplate.BeginAt;
             int dateAndSequenceLength = archiveFileNameWithoutPath.Length - trailerLength - dateAndSequenceIndex;
 
+            if (dateAndSequenceLength < 0)
+            {
+                date = default(DateTime);
+                sequence = 0;
+                return false;
+            }
             string dateAndSequence = archiveFileNameWithoutPath.Substring(dateAndSequenceIndex, dateAndSequenceLength);
             int sequenceIndex = dateAndSequence.LastIndexOf('.') + 1;
 

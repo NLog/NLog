@@ -1851,25 +1851,31 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void FileTarget_ArchiveNumbering_DateAndSequence()
         {
-            FileTarget_ArchiveNumbering_DateAndSequenceTests(enableCompression: false);
+            FileTarget_ArchiveNumbering_DateAndSequenceTests(enableCompression: false, fileTxt: "file.txt", archiveFileName: Path.Combine("archive", "{#}.txt"));
+        }
+
+        [Fact]
+        public void FileTarget_ArchiveNumbering_DateAndSequence_archive_same_as_log_name()
+        {
+            FileTarget_ArchiveNumbering_DateAndSequenceTests(enableCompression: false, fileTxt: "file-${date:format=yyyy-MM-dd}.txt", archiveFileName: "file-{#}.txt");
         }
 
 #if NET4_5
         [Fact]
         public void FileTarget_ArchiveNumbering_DateAndSequence_WithCompression()
         {
-            FileTarget_ArchiveNumbering_DateAndSequenceTests(enableCompression: true);
+            FileTarget_ArchiveNumbering_DateAndSequenceTests(enableCompression: true, fileTxt: "file.txt", archiveFileName: Path.Combine("archive", "{#}.zip"));
         }
 #endif
 
-        private void FileTarget_ArchiveNumbering_DateAndSequenceTests(bool enableCompression)
+        private void FileTarget_ArchiveNumbering_DateAndSequenceTests(bool enableCompression, string fileTxt, string archiveFileName)
         {
             const string archiveDateFormat = "yyyy-MM-dd";
             const int archiveAboveSize = 1000;
 
             var tempPath = ArchiveFileNameHelper.GenerateTempPath();
-            var logFile = Path.Combine(tempPath, "file.txt");
-            var archiveExtension = enableCompression ? "zip" : "txt";
+            Layout logFile = Path.Combine(tempPath, fileTxt);
+            var logFileName = logFile.Render(LogEventInfo.CreateNullEvent());
             try
             {
                 var fileTarget = WrapFileTarget(new FileTarget
@@ -1878,7 +1884,7 @@ namespace NLog.UnitTests.Targets
                     EnableArchiveFileCompression = enableCompression,
 #endif
                     FileName = logFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive", "{#}." + archiveExtension),
+                    ArchiveFileName = Path.Combine(tempPath, archiveFileName),
                     ArchiveDateFormat = archiveDateFormat,
                     ArchiveAboveSize = archiveAboveSize,
                     LineEnding = LineEndingMode.LF,
@@ -1898,7 +1904,7 @@ namespace NLog.UnitTests.Targets
                 Generate1000BytesLog('d');
                 Generate1000BytesLog('e');
 
-                string archiveFilename = DateTime.Now.ToString(archiveDateFormat);
+                string renderedArchiveFileName = archiveFileName.Replace("{#}", DateTime.Now.ToString(archiveDateFormat));
 
                 LogManager.Configuration = null;
 
@@ -1908,9 +1914,12 @@ namespace NLog.UnitTests.Targets
 #else
                 var assertFileContents = new Action<string, string, Encoding>(AssertFileContents);
 #endif
-                ArchiveFileNameHelper helper = new ArchiveFileNameHelper(Path.Combine(tempPath, "archive"), archiveFilename, archiveExtension);
+                var extension = Path.GetExtension(renderedArchiveFileName);
+                var fileNameWithoutExt = renderedArchiveFileName.Substring(0, renderedArchiveFileName.Length - extension.Length);
+                ArchiveFileNameHelper helper = new ArchiveFileNameHelper(tempPath, fileNameWithoutExt, extension);
 
-                AssertFileContents(logFile,
+
+                AssertFileContents(logFileName,
                     StringRepeat(250, "eee\n"),
                     Encoding.UTF8);
 
@@ -1923,8 +1932,8 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                if (File.Exists(logFile))
-                    File.Delete(logFile);
+                if (File.Exists(logFileName))
+                    File.Delete(logFileName);
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -2355,12 +2364,14 @@ namespace NLog.UnitTests.Targets
             /// </summary>
             public string Ext { get; set; }
 
+
+
             /// <summary>
             /// Initializes a new instance of the <see cref="T:System.Object"/> class.
             /// </summary>
             public ArchiveFileNameHelper(string folderName, string fileName, string ext)
             {
-                Ext = ext;
+                Ext = ext.TrimStart('.');
                 FileName = fileName;
                 FolderName = folderName;
             }
