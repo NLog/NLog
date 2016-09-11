@@ -143,6 +143,7 @@
     <Compile Include="LayoutRenderers\Rot13Tests.cs" />
     <Compile Include="LayoutRenderers\ShortDateTests.cs" />
     <Compile Include="LayoutRenderers\SpecialFolderTests.cs" />
+    <Compile Include="LayoutRenderers\StackTraceRendererTests.cs" />
     <Compile Include="LayoutRenderers\ThreadNameTests.cs" />
     <Compile Include="LayoutRenderers\TicksLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\TimeTests.cs" />
