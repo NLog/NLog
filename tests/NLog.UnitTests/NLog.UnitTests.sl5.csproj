@@ -160,13 +160,13 @@
     <Compile Include="LayoutRenderers\MdlcLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\MessageTests.cs" />
     <Compile Include="LayoutRenderers\NDCTests.cs" />
-    <Compile Include="LayoutRenderers\NLogDirRendererTests.cs" />
+    <Compile Include="LayoutRenderers\ProcessIdLayoutRendererTests.cs" />
+    <Compile Include="LayoutRenderers\ProcessNameLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\ProcessTimeLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\RegistryTests.cs" />
     <Compile Include="LayoutRenderers\Rot13Tests.cs" />
     <Compile Include="LayoutRenderers\ShortDateTests.cs" />
     <Compile Include="LayoutRenderers\SpecialFolderTests.cs" />
-    <Compile Include="LayoutRenderers\TempDirRendererTests.cs" />
     <Compile Include="LayoutRenderers\ThreadNameTests.cs" />
     <Compile Include="LayoutRenderers\TicksLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\TimeTests.cs" />
