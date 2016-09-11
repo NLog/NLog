@@ -34,15 +34,10 @@
 //no silverlight because of xUnit needed
 #if !SILVERLIGHT && !__IOS__
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NLog.LayoutRenderers;
 using Xunit;
-using Xunit.Extensions;
 using NLog.Layouts;
 
 namespace NLog.UnitTests.LayoutRenderers
