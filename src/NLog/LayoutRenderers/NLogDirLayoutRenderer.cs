@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal;
+
 #if !SILVERLIGHT
 
 namespace NLog.LayoutRenderers
@@ -82,20 +84,8 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string baseDir = NLogDir;
-
-            if (this.File != null)
-            {
-                builder.Append(Path.Combine(baseDir, this.File));
-            }
-            else if (this.Dir != null)
-            {
-                builder.Append(Path.Combine(baseDir, this.Dir));
-            }
-            else
-            {
-                builder.Append(baseDir);
-            }
+            var path = PathHelpers.CombinePaths(NLogDir, this.Dir, this.File);
+            builder.Append(path);
         }
     }
 }

@@ -31,44 +31,44 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
+using System.IO;
+using Xunit;
+using NLog.Layouts;
+
+namespace NLog.UnitTests.LayoutRenderers
 {
-    using System.IO;
-    using System.Text;
-
-    using NLog.Config;
-    using NLog.Internal;
-
-    /// <summary>
-    /// A temporary directory.
-    /// </summary>
-    [LayoutRenderer("tempdir")]
-    [AppDomainFixedOutput]
-    public class TempDirLayoutRenderer : LayoutRenderer
+    public class NLogDirRendererTests : NLogTestBase
     {
-        private static string tempDir = Path.GetTempPath();
-
-        /// <summary>
-        /// Gets or sets the name of the file to be Path.Combine()'d with the directory name.
-        /// </summary>
-        /// <docgen category='Advanced Options' order='10' />
-        public string File { get; set; }
-
-        /// <summary>
-        /// Gets or sets the name of the directory to be Path.Combine()'d with the directory name.
-        /// </summary>
-        /// <docgen category='Advanced Options' order='10' />
-        public string Dir { get; set; }
-
-        /// <summary>
-        /// Renders the directory where NLog is located and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        [Fact]
+        public void RenderNLogDir()
         {
-            var path = PathHelpers.CombinePaths(tempDir, this.Dir, this.File);
-            builder.Append(path);
+            Layout layout = "${nlogdir}";
+
+            layout.Initialize(null);
+            string actual = layout.Render(LogEventInfo.CreateNullEvent());
+            layout.Close();
+
+            Assert.NotNull(actual);
+
+            Assert.True(File.Exists(Path.Combine(actual, "nlog.dll")), string.Format("cannot find nlog.dll in '{0}'", actual));
+        }
+
+
+        [Fact]
+        public void RenderNLogDir_with_file_and_dir()
+        {
+            Layout layout = "${nlogdir:dir=test:file=file1.txt}";
+
+            Layout nlogdirLayout = "${nlogdir}";
+            var nlogDir = nlogdirLayout.Render(LogEventInfo.CreateNullEvent());
+
+            layout.Initialize(null);
+            string actual = layout.Render(LogEventInfo.CreateNullEvent());
+            layout.Close();
+
+            Assert.NotNull(actual);
+
+            Assert.Equal(Path.Combine(Path.Combine(nlogDir, "test\\"), "file1.txt"), actual);
         }
     }
 }
