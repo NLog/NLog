@@ -31,39 +31,44 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
 using Xunit;
 using NLog.Layouts;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    public class TicksLayoutRendererTests : NLogTestBase
+    public class UpperCaseLayoutRendererTests : NLogTestBase
     {
         [Fact]
-        public void RenderTicksLayoutRenderer()
+        public void RenderUpperCaseLayoutRenderer()
         {
-            Layout layout = "${ticks}";
+            Layout layout = "${message:uppercase=true}";
 
             layout.Initialize(null);
-            var now = DateTime.Now;
-            var currentTicks = now.Ticks;
             var logEventInfo = LogEventInfo.CreateNullEvent();
-            logEventInfo.TimeStamp = now;
+            logEventInfo.Message = "Hello test";
+            string actual = layout.Render(logEventInfo);
+            layout.Close();
+
+            Assert.NotNull(actual);
+         
+            Assert.Equal("HELLO TEST", actual);
+        }
+
+        [Fact]
+        public void RenderUpperCaseLayoutRenderer_false()
+        {
+            Layout layout = "${uppercase:uppercase=false:inner=${message}}";
+
+            layout.Initialize(null);
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.Message = "Hello test";
             string actual = layout.Render(logEventInfo);
             layout.Close();
 
             Assert.NotNull(actual);
 
-            long number;
-            if (!long.TryParse(actual, out number))
-            {
-                Assert.True(false, "ticks is not a number");
-            }
-
-            Assert.Equal(currentTicks, number);
-            Assert.True(number > 0, "number > 0");
+            Assert.Equal("Hello test", actual);
         }
 
-      
     }
 }
