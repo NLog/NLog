@@ -52,7 +52,7 @@ namespace NLog.UnitTests.LayoutRenderers
             </nlog>");
 
             RenderMe("I am:");
-            AssertDebugLastMessage("debug", "I am: RuntimeMethodHandle.InvokeMethod => StackTraceRendererTests.RenderStackTrace => StackTraceRendererTests.RenderMe");
+            AssertDebugLastMessageContains("debug", " => StackTraceRendererTests.RenderStackTrace => StackTraceRendererTests.RenderMe");
         }
 
         [Fact]
@@ -82,7 +82,7 @@ namespace NLog.UnitTests.LayoutRenderers
             </nlog>");
 
             RenderMe("I am:");
-            AssertDebugLastMessage("debug", "I am: RuntimeMethodHandle.InvokeMethod => StackTraceRendererTests.RenderStackTrace_skipframes");
+            AssertDebugLastMessageContains("debug", " => StackTraceRendererTests.RenderStackTrace_skipframes");
         }
 
 
@@ -99,11 +99,10 @@ namespace NLog.UnitTests.LayoutRenderers
 
             RenderMe("I am:");
 
-            var message = GetDebugLastMessage("debug");
+            AssertDebugLastMessageContains("debug", "RenderStackTrace_raw at offset ");
+            AssertDebugLastMessageContains("debug", "RenderMe at offset ");
+            AssertDebugLastMessageContains("debug", "<filename unknown>");
 
-            //remove newlines
-            message = message.Replace("\n", "").Replace("\r", "");
-            Assert.Equal("I am: InvokeMethod at offset 0 in file:line:column <filename unknown>:0:0RenderStackTrace_raw at offset 85 in file:line:column <filename unknown>:0:0RenderMe at offset 66 in file:line:column <filename unknown>:0:0", message);
         }
 
         [Fact]
@@ -118,7 +117,7 @@ namespace NLog.UnitTests.LayoutRenderers
             </nlog>");
 
             RenderMe("I am:");
-            AssertDebugLastMessage("debug", "I am: [System.Object InvokeMethod(System.Object, System.Object[], System.Signature, Boolean)] => [Void RenderStackTrace_DetailedFlat()] => [Void RenderMe(System.String)]");
+            AssertDebugLastMessageContains("debug", " => [Void RenderStackTrace_DetailedFlat()] => [Void RenderMe(System.String)]");
         }
 
 
