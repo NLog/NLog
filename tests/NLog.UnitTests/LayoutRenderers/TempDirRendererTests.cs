@@ -64,7 +64,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             Assert.NotNull(actual);
 
-            Assert.Equal(Path.Combine(Path.Combine(Path.GetTempPath(), "test\\"), "file1.txt"), actual);
+            Assert.Equal(Path.Combine(Path.Combine(Path.GetTempPath(), "test" + Path.DirectorySeparatorChar), "file1.txt"), actual);
         }
     }
 }

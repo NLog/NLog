@@ -50,7 +50,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             Assert.NotNull(actual);
 
-            Assert.True(File.Exists(Path.Combine(actual, "nlog.dll")), string.Format("cannot find nlog.dll in '{0}'", actual));
+            Assert.True(File.Exists(Path.Combine(actual, "NLog.dll")), string.Format("cannot find NLog.dll in '{0}'", actual));
         }
 
 
@@ -68,7 +68,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             Assert.NotNull(actual);
 
-            Assert.Equal(Path.Combine(Path.Combine(nlogDir, "test\\"), "file1.txt"), actual);
+            Assert.Equal(Path.Combine(Path.Combine(nlogDir, "test" + Path.DirectorySeparatorChar), "file1.txt"), actual);
         }
     }
 }
