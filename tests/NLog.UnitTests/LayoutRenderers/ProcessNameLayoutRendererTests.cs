@@ -32,54 +32,52 @@
 // 
 
 //no silverlight because of xUnit needed
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
 
-using System;
-using System.Text;
-using NLog.LayoutRenderers;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Xunit;
-using Xunit.Extensions;
+using NLog.Layouts;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    public class ProcessTimeLayoutRendererTests : NLogTestBase
+    public class ProcessNameLayoutRendererTests : NLogTestBase
     {
-        [Theory]
-        [InlineData(0, 1, 2, 30, 0, "01:02:30.000")]
-        [InlineData(0, 1, 2, 30, 1, "01:02:30.001")]
-        [InlineData(0, 1, 2, 30, 20, "01:02:30.020")]
-        [InlineData(0, 11, 2, 30, 20, "11:02:30.020")]
-        [InlineData(0, 50, 2, 30, 20, "02:02:30.020")]
-        [InlineData(0, 1, 2, 30, 506, "01:02:30.506")]
-        [InlineData(0, 1, 2, 30, -506, "01:02:29.494")]
-        [InlineData(0, 0, 0, 0, -506, "00:00:00.000")]
-        [InlineData(0, 0, 0, 0, 0, "00:00:00.000")]
-        [InlineData(1, 0, 0, 0, 0, "00:00:00.000")]
-        [InlineData(1, 0, 0, 0, 0, "00:00:00.000")]
-        public void RenderTimeSpanTest(int day, int hour, int min, int sec, int milisec, string expected)
+        [Fact]
+        public void RenderProcessNameLayoutRenderer()
         {
+            Layout layout = "${processname}";
 
-            var time = new TimeSpan(day, hour, min, sec, milisec);
+            layout.Initialize(null);
+            string actual = layout.Render(LogEventInfo.CreateNullEvent());
+            layout.Close();
 
-            var sb = new StringBuilder();
-            ProcessTimeLayoutRenderer.WritetTimestamp(sb, time, null);
-            var result = sb.ToString();
-            Assert.Equal(expected, result);
+
+            Assert.NotNull(actual);
+            Assert.True(actual.Length > 0, "actual.Length > 0");
+            var lower = actual.ToLower();
+
+            //lowercase
+            var allowedProcessNames = new List<string> {"vstest.executionengine", "xunit", "mono-sgen"};
+            
+            Assert.True(allowedProcessNames.Any(p => lower.Contains(p)), string.Format("validating processname failed. Please add (if correct) '{0}' to 'allowedProcessNames'", actual));
         }
-
-#if !NET3_5
 
         [Fact]
-        public void RenderProcessTimeLayoutRenderer()
+        public void RenderProcessNameLayoutRenderer_fullname()
         {
-            var layout = "${processtime}";
-            var logEvent = new LogEventInfo(LogLevel.Debug, "logger1", "message1");
-            var time = logEvent.TimeStamp.ToUniversalTime() - LogEventInfo.ZeroDate;
+            Layout layout = "${processname:fullname=true}";
 
-            var expected = time.ToString("hh\\:mm\\:ss\\.fff");
-            AssertLayoutRendererOutput(layout, logEvent, expected);
+            layout.Initialize(null);
+            string actual = layout.Render(LogEventInfo.CreateNullEvent());
+            layout.Close();
+
+
+            Assert.NotNull(actual);
+            Assert.True(actual.Length > 0, "actual.Length > 0");
+            Assert.True(File.Exists(actual), "process not found");
         }
-#endif
     }
 }
 #endif

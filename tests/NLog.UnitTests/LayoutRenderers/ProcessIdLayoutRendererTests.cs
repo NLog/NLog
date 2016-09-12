@@ -32,54 +32,31 @@
 // 
 
 //no silverlight because of xUnit needed
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
 
-using System;
-using System.Text;
-using NLog.LayoutRenderers;
 using Xunit;
-using Xunit.Extensions;
+using NLog.Layouts;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    public class ProcessTimeLayoutRendererTests : NLogTestBase
+    public class ProcessIdLayoutRendererTests : NLogTestBase
     {
-        [Theory]
-        [InlineData(0, 1, 2, 30, 0, "01:02:30.000")]
-        [InlineData(0, 1, 2, 30, 1, "01:02:30.001")]
-        [InlineData(0, 1, 2, 30, 20, "01:02:30.020")]
-        [InlineData(0, 11, 2, 30, 20, "11:02:30.020")]
-        [InlineData(0, 50, 2, 30, 20, "02:02:30.020")]
-        [InlineData(0, 1, 2, 30, 506, "01:02:30.506")]
-        [InlineData(0, 1, 2, 30, -506, "01:02:29.494")]
-        [InlineData(0, 0, 0, 0, -506, "00:00:00.000")]
-        [InlineData(0, 0, 0, 0, 0, "00:00:00.000")]
-        [InlineData(1, 0, 0, 0, 0, "00:00:00.000")]
-        [InlineData(1, 0, 0, 0, 0, "00:00:00.000")]
-        public void RenderTimeSpanTest(int day, int hour, int min, int sec, int milisec, string expected)
-        {
-
-            var time = new TimeSpan(day, hour, min, sec, milisec);
-
-            var sb = new StringBuilder();
-            ProcessTimeLayoutRenderer.WritetTimestamp(sb, time, null);
-            var result = sb.ToString();
-            Assert.Equal(expected, result);
-        }
-
-#if !NET3_5
-
         [Fact]
-        public void RenderProcessTimeLayoutRenderer()
+        public void RenderProcessIdLayoutRenderer()
         {
-            var layout = "${processtime}";
-            var logEvent = new LogEventInfo(LogLevel.Debug, "logger1", "message1");
-            var time = logEvent.TimeStamp.ToUniversalTime() - LogEventInfo.ZeroDate;
+            Layout layout = "${processid}";
 
-            var expected = time.ToString("hh\\:mm\\:ss\\.fff");
-            AssertLayoutRendererOutput(layout, logEvent, expected);
+            layout.Initialize(null);
+            string actual = layout.Render(LogEventInfo.CreateNullEvent());
+            layout.Close();
+            int number;
+            if(!int.TryParse(actual, out number))
+            {
+                Assert.True(false,"processid is not a number");
+            }
+            
+            Assert.True(number > 0, "processid is not > 0");
         }
-#endif
     }
 }
 #endif
