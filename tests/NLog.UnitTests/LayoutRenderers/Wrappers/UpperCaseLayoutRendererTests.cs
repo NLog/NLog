@@ -34,7 +34,7 @@
 using Xunit;
 using NLog.Layouts;
 
-namespace NLog.UnitTests.LayoutRenderers
+namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     public class UpperCaseLayoutRendererTests : NLogTestBase
     {
