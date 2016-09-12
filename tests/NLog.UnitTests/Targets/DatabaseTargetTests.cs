@@ -771,6 +771,12 @@ Dispose()
         public void SqlServer_InstallAndLogMessage()
         {
 
+            if (SqlServerTest.IsTravis())
+            {
+                Console.WriteLine("skipping test SqlServer_InstallAndLogMessage because we are running in Travis");
+                return;
+            }
+
             SqlServerTest.TryDropDatabase();
 
             try
@@ -1431,12 +1437,22 @@ Dispose()
             }
 
             /// <summary>
-            /// Are we running on AppVeyor
+            /// Are we running on AppVeyor?
             /// </summary>
             /// <returns></returns>
             private static bool IsAppVeyor()
             {
                 var val = Environment.GetEnvironmentVariable("APPVEYOR");
+                return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
+            }
+
+            /// <summary>
+            /// Are we running on Travis?
+            /// </summary>
+            /// <returns></returns>
+            public static bool IsTravis()
+            {
+                var val = Environment.GetEnvironmentVariable("TRAVIS");
                 return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
             }
 
