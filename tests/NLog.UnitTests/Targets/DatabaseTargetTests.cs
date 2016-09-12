@@ -32,6 +32,8 @@
 // 
 
 
+
+
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
@@ -57,7 +59,7 @@ namespace NLog.UnitTests.Targets
 #if !MONO
         static DatabaseTargetTests()
         {
-            var data = (DataSet) ConfigurationManager.GetSection("system.data");
+            var data = (DataSet)ConfigurationManager.GetSection("system.data");
             var providerFactories = data.Tables["DBProviderFactories"];
             providerFactories.Rows.Add("MockDb Provider", "MockDb Provider", "MockDb",
                 typeof(MockDbFactory).AssemblyQualifiedName);
@@ -720,7 +722,7 @@ Dispose()
         [Fact]
         public void SqlServerShorthandNotationTest()
         {
-            foreach (string provName in new[] {"microsoft", "msde", "mssql", "sqlserver"})
+            foreach (string provName in new[] { "microsoft", "msde", "mssql", "sqlserver" })
             {
                 var dt = new DatabaseTarget()
                 {
@@ -766,55 +768,68 @@ Dispose()
         }
 
         [Fact]
-        public void SqlServer_NoParamTypeShouldSetValueTest()
+        public void SqlServer_InstallAndLogMessage()
         {
+
+            SqlServerTest.TryDropDatabase();
+
             try
             {
-                SqlServerTest.DropDatabase();
-            }
-            catch (Exception)
-            {
-                //ignore
-            }
-          
-            SqlServerTest.RecreateDatabase();
-            SqlServerTest.IssueCommand(@"
-CREATE TABLE dbo.NLogSqlServerTest (
-    Id       int               NOT NULL IDENTITY(1,1) PRIMARY KEY CLUSTERED,
-    Uid      uniqueidentifier  NULL
-);");
+                SqlServerTest.CreateDatabase();
 
-            LogManager.Configuration = CreateConfigurationFromString(@"
+                var connectionString = SqlServerTest.GetConnectionString();
+                LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
                   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='true'>
                 <targets>
-                    <target name='database' xsi:type='Database'
+                    <target name='database' xsi:type='Database' connectionstring=""" + connectionString + @"""
                         commandText='insert into dbo.NLogSqlServerTest (Uid) values (@uid);'>
                         <parameter name='@uid' layout='${event-properties:uid}' />
+<install-command ignoreFailures=""false""
+                 text=""CREATE TABLE dbo.NLogSqlServerTest (
+    Id       int               NOT NULL IDENTITY(1,1) PRIMARY KEY CLUSTERED,
+    Uid      uniqueidentifier  NULL
+);""/>
+
                     </target>
                 </targets>
                 <rules>
                     <logger name='*' writeTo='database' />
                 </rules>
             </nlog>");
-            var logger = LogManager.GetLogger("A");
-            var target = LogManager.Configuration.FindTargetByName<DatabaseTarget>("database");
-            target.ConnectionString = SqlServerTest.GetConnectionString();
 
-            var uid = new Guid("e7c648b4-3508-4df2-b001-753148659d6d");
-            var logEvent = new LogEventInfo(LogLevel.Info, null, null);
-            logEvent.Properties["uid"] = uid;
-            var exceptions = new List<Exception>();
-            target.WriteAsyncLogEvent(logEvent.WithContinuation(exceptions.Add));
+                //install 
+                InstallationContext context = new InstallationContext();
+                LogManager.Configuration.Install(context);
 
-            foreach (var ex in exceptions)
-            {
-                Assert.Null(ex);
+                var tableCatalog = SqlServerTest.IssueScalarQuery(@"SELECT TABLE_CATALOG FROM INFORMATION_SCHEMA.TABLES
+                 WHERE TABLE_SCHEMA = 'Dbo'
+                 AND  TABLE_NAME = 'NLogSqlServerTest'");
+
+                //check if table exists
+                Assert.Equal("NLogTest", tableCatalog);
+
+                var logger = LogManager.GetLogger("A");
+                var target = LogManager.Configuration.FindTargetByName<DatabaseTarget>("database");
+
+                var uid = new Guid("e7c648b4-3508-4df2-b001-753148659d6d");
+                var logEvent = new LogEventInfo(LogLevel.Info, null, null);
+                logEvent.Properties["uid"] = uid;
+                logger.Log(logEvent);
+
+                var count = SqlServerTest.IssueScalarQuery("SELECT count(1) FROM dbo.NLogSqlServerTest");
+
+                Assert.Equal(1, count);
+
+                var result = SqlServerTest.IssueScalarQuery("SELECT Uid FROM dbo.NLogSqlServerTest");
+
+                Assert.Equal(uid, result);
             }
-            var result = SqlServerTest.IssueScalarQuery("SELECT Uid FROM dbo.NLogSqlServerTest");
-            Assert.Equal(uid, result);
+            finally
+            {
+                SqlServerTest.TryDropDatabase();
+            }
 
-            SqlServerTest.DropDatabase();
         }
 
         public void GetProviderNameFromAppConfig()
@@ -1363,7 +1378,7 @@ CREATE TABLE dbo.NLogSqlServerTest (
             }
         }
 
-        public static class SqlServerTest
+        private static class SqlServerTest
         {
 
 
@@ -1384,17 +1399,30 @@ CREATE TABLE dbo.NLogSqlServerTest (
             /// <summary>
             /// AppVeyor connectionstring for SQL 2012, see https://www.appveyor.com/docs/services-databases/
             /// </summary>
-            private const string AppVeyorConnectionStringMaster = @"Server=(local)\SQL2012SP1;Database=master;User ID=sa;Password=Password12!";
+            private const string AppVeyorConnectionStringMaster =
+                @"Server=(local)\SQL2012SP1;Database=master;User ID=sa;Password=Password12!";
 
-            private const string AppVeyorConnectionStringNLogTest = @"Server=(local)\SQL2012SP1;Database=NLogTest;User ID=sa;Password=Password12!";
+            private const string AppVeyorConnectionStringNLogTest =
+                @"Server=(local)\SQL2012SP1;Database=NLogTest;User ID=sa;Password=Password12!";
 
-            private const string LocalConnectionStringMaster = @"Data Source=(localdb)\MSSQLLocalDB; Database=master; Integrated Security=True;";
+            private const string LocalConnectionStringMaster =
+                @"Data Source=(localdb)\MSSQLLocalDB; Database=master; Integrated Security=True;";
 
-            private const string LocalConnectionStringNLogTest = @"Data Source=(localdb)\MSSQLLocalDB; Database=NLogTest; Integrated Security=True;";
-            public static void RecreateDatabase()
+            private const string LocalConnectionStringNLogTest =
+                @"Data Source=(localdb)\MSSQLLocalDB; Database=NLogTest; Integrated Security=True;";
+
+            public static void CreateDatabase()
             {
                 var connectionString = GetMasterConnectionString();
                 IssueCommand("CREATE DATABASE NLogTest", connectionString);
+            }
+
+            public static bool NLogTestDatabaseExists()
+            {
+                var connectionString = GetMasterConnectionString();
+                var dbId = IssueScalarQuery("select db_id('NLogTest')", connectionString);
+                return dbId != null && dbId != DBNull.Value;
+
             }
 
             private static string GetMasterConnectionString()
@@ -1441,10 +1469,31 @@ CREATE TABLE dbo.NLogSqlServerTest (
                 }
             }
 
-            public static void DropDatabase()
+            /// <summary>
+            /// Try dropping. IF fail, not exception
+            /// </summary>
+            public static bool TryDropDatabase()
             {
-                var connectionString = GetMasterConnectionString();
-                IssueCommand("ALTER DATABASE [NLogTest] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE NLogTest;", connectionString);
+                try
+                {
+                    if (NLogTestDatabaseExists())
+                    {
+                        var connectionString = GetMasterConnectionString();
+                        IssueCommand(
+                            "ALTER DATABASE [NLogTest] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE NLogTest;",
+                            connectionString);
+                        return true;
+                    }
+                    return false;
+
+                }
+                catch (Exception)
+                {
+
+                    //ignore
+                    return false;
+                }
+
             }
         }
     }
