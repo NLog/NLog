@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
@@ -767,6 +768,15 @@ Dispose()
         [Fact]
         public void SqlServer_NoParamTypeShouldSetValueTest()
         {
+            try
+            {
+                SqlServerTest.DropDatabase();
+            }
+            catch (Exception)
+            {
+                //ignore
+            }
+          
             SqlServerTest.RecreateDatabase();
             SqlServerTest.IssueCommand(@"
 CREATE TABLE dbo.NLogSqlServerTest (
@@ -788,7 +798,7 @@ CREATE TABLE dbo.NLogSqlServerTest (
                 </rules>
             </nlog>");
             var logger = LogManager.GetLogger("A");
-            var target = (DatabaseTarget) logger.Factory.Configuration.AllTargets.First();
+            var target = LogManager.Configuration.FindTargetByName<DatabaseTarget>("database");
             target.ConnectionString = SqlServerTest.GetConnectionString();
 
             var uid = new Guid("e7c648b4-3508-4df2-b001-753148659d6d");
@@ -956,7 +966,7 @@ CREATE TABLE dbo.NLogSqlServerTest (
 
             public IDbCommand CreateCommand()
             {
-                return new MockDbCommand() {Connection = this};
+                return new MockDbCommand() { Connection = this };
             }
 
             public string Database
@@ -1025,13 +1035,13 @@ CREATE TABLE dbo.NLogSqlServerTest (
 
             public IDbDataParameter CreateParameter()
             {
-                ((MockDbConnection) this.Connection).AddToLog("CreateParameter({0})", this.paramCount);
+                ((MockDbConnection)this.Connection).AddToLog("CreateParameter({0})", this.paramCount);
                 return new MockDbParameter(this, paramCount++);
             }
 
             public int ExecuteNonQuery()
             {
-                ((MockDbConnection) this.Connection).AddToLog("ExecuteNonQuery: {0}", this.CommandText);
+                ((MockDbConnection)this.Connection).AddToLog("ExecuteNonQuery: {0}", this.CommandText);
                 if (this.Connection.ConnectionString == "cannotexecute")
                 {
                     throw new InvalidOperationException("Failure during ExecuteNonQuery");
@@ -1104,7 +1114,7 @@ CREATE TABLE dbo.NLogSqlServerTest (
                 get { throw new NotImplementedException(); }
                 set
                 {
-                    ((MockDbConnection) mockDbCommand.Connection).AddToLog("Parameter #{0} Direction={1}", paramId,
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Direction={1}", paramId,
                         value);
                 }
             }
@@ -1119,7 +1129,7 @@ CREATE TABLE dbo.NLogSqlServerTest (
                 get { return this.parameterName; }
                 set
                 {
-                    ((MockDbConnection) mockDbCommand.Connection).AddToLog("Parameter #{0} Name={1}", paramId, value);
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Name={1}", paramId, value);
                     this.parameterName = value;
                 }
             }
@@ -1141,7 +1151,7 @@ CREATE TABLE dbo.NLogSqlServerTest (
                 get { return this.parameterValue; }
                 set
                 {
-                    ((MockDbConnection) mockDbCommand.Connection).AddToLog("Parameter #{0} Value={1}", paramId, value);
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Value={1}", paramId, value);
                     this.parameterValue = value;
                 }
             }
@@ -1151,7 +1161,7 @@ CREATE TABLE dbo.NLogSqlServerTest (
                 get { throw new NotImplementedException(); }
                 set
                 {
-                    ((MockDbConnection) mockDbCommand.Connection).AddToLog("Parameter #{0} Precision={1}", paramId,
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Precision={1}", paramId,
                         value);
                 }
             }
@@ -1161,7 +1171,7 @@ CREATE TABLE dbo.NLogSqlServerTest (
                 get { throw new NotImplementedException(); }
                 set
                 {
-                    ((MockDbConnection) mockDbCommand.Connection).AddToLog("Parameter #{0} Scale={1}", paramId, value);
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Scale={1}", paramId, value);
                 }
             }
 
@@ -1170,7 +1180,7 @@ CREATE TABLE dbo.NLogSqlServerTest (
                 get { throw new NotImplementedException(); }
                 set
                 {
-                    ((MockDbConnection) mockDbCommand.Connection).AddToLog("Parameter #{0} Size={1}", paramId, value);
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Size={1}", paramId, value);
                 }
             }
 
@@ -1216,7 +1226,7 @@ CREATE TABLE dbo.NLogSqlServerTest (
 
             public int Add(object value)
             {
-                ((MockDbConnection) command.Connection).AddToLog("Add Parameter {0}", value);
+                ((MockDbConnection)command.Connection).AddToLog("Add Parameter {0}", value);
                 return 0;
             }
 
@@ -1355,21 +1365,51 @@ CREATE TABLE dbo.NLogSqlServerTest (
 
         public static class SqlServerTest
         {
+
+
+            static SqlServerTest()
+            {
+            }
+
             public static string GetConnectionString()
             {
                 var connectionString = ConfigurationManager.AppSettings["SqlServerTestConnectionString"];
                 if (String.IsNullOrWhiteSpace(connectionString))
                 {
-                    connectionString =
-                        @"Data Source=(localdb)\MSSQLLocalDB; Database=NLogTest; Integrated Security=True;";
+                    connectionString = IsAppVeyor() ? AppVeyorConnectionStringNLogTest : LocalConnectionStringNLogTest;
                 }
                 return connectionString;
             }
 
+            /// <summary>
+            /// AppVeyor connectionstring for SQL 2012, see https://www.appveyor.com/docs/services-databases/
+            /// </summary>
+            private const string AppVeyorConnectionStringMaster = @"Server=(local)\SQL2012SP1;Database=master;User ID=sa;Password=Password12!";
+
+            private const string AppVeyorConnectionStringNLogTest = @"Server=(local)\SQL2012SP1;Database=NLogTest;User ID=sa;Password=Password12!";
+
+            private const string LocalConnectionStringMaster = @"Data Source=(localdb)\MSSQLLocalDB; Database=master; Integrated Security=True;";
+
+            private const string LocalConnectionStringNLogTest = @"Data Source=(localdb)\MSSQLLocalDB; Database=NLogTest; Integrated Security=True;";
             public static void RecreateDatabase()
             {
-                IssueCommand("CREATE DATABASE NLogTest",
-                    @"Data Source=(localdb)\MSSQLLocalDB; Database=master; Integrated Security=True;");
+                var connectionString = GetMasterConnectionString();
+                IssueCommand("CREATE DATABASE NLogTest", connectionString);
+            }
+
+            private static string GetMasterConnectionString()
+            {
+                return IsAppVeyor() ? AppVeyorConnectionStringMaster : LocalConnectionStringMaster;
+            }
+
+            /// <summary>
+            /// Are we running on AppVeyor
+            /// </summary>
+            /// <returns></returns>
+            private static bool IsAppVeyor()
+            {
+                var val = Environment.GetEnvironmentVariable("APPVEYOR");
+                return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
             }
 
             public static void IssueCommand(string commandString, string connectionString = null)
@@ -1403,9 +1443,8 @@ CREATE TABLE dbo.NLogSqlServerTest (
 
             public static void DropDatabase()
             {
-                IssueCommand(
-                    "ALTER DATABASE [NLogTest] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE NLogTest;",
-                    @"Data Source=(localdb)\MSSQLLocalDB; Database=master; Integrated Security=True;");
+                var connectionString = GetMasterConnectionString();
+                IssueCommand("ALTER DATABASE [NLogTest] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE NLogTest;", connectionString);
             }
         }
     }
