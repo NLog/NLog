@@ -76,6 +76,7 @@ namespace NLog.UnitTests
                 }
 
                 ILogger logger = LogManager.GetLogger("A");
+                LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
 
                 logger.Trace("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
@@ -92,8 +93,9 @@ namespace NLog.UnitTests
                 logger.Trace("message{0}{1}{2}", 1, 2, 3);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message123");
 
-                LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
-                
+                logger.Trace(NLCulture, "message{0}{1}{2}", 1.4, 2.5, 3.6);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,42,53,6");
+
                 logger.Trace("message{0}", (float)2.3);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
 
@@ -251,9 +253,40 @@ namespace NLog.UnitTests
                 }
 
                 ILogger logger = LogManager.GetLogger("A");
+                LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
 
                 logger.Debug("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Debug((object)"message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", (object)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.Debug("message{0}{1}", 1, 2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message12");
+
+                logger.Debug("message{0}{1}{2}", 1, 2, 3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message123");
+
+                logger.Debug(NLCulture, "message{0}{1}{2}", 1.4, 2.5, 3.6);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,42,53,6");
+
+                logger.Debug("message{0}", (float)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Debug("message{0}", (double)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Debug("message{0}", (decimal)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Debug("message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Debug(NLCulture, "message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2,3");
 
                 logger.Debug("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
@@ -352,10 +385,13 @@ namespace NLog.UnitTests
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
 #pragma warning disable 0618
-                // Obsolete method requires testing until completely removed.
+                // Obsolete method requires testing until removed.
                 logger.DebugException("message", new Exception("test"));
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 #pragma warning restore 0618
+
+                logger.Debug(new Exception("test"), "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
                 logger.Debug(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -394,9 +430,40 @@ namespace NLog.UnitTests
                 }
 
                 ILogger logger = LogManager.GetLogger("A");
+                LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
 
                 logger.Info("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Info((object)"message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", (object)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.Info("message{0}{1}", 1, 2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message12");
+
+                logger.Info("message{0}{1}{2}", 1, 2, 3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message123");
+
+                logger.Info(NLCulture, "message{0}{1}{2}", 1.4, 2.5, 3.6);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,42,53,6");
+
+                logger.Info("message{0}", (float)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Info("message{0}", (double)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Info("message{0}", (decimal)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Info("message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Info(NLCulture, "message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2,3");
 
                 logger.Info("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
@@ -540,9 +607,40 @@ namespace NLog.UnitTests
                 }
 
                 ILogger logger = LogManager.GetLogger("A");
+                LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
 
                 logger.Warn("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Warn((object)"message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", (object)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.Warn("message{0}{1}", 1, 2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message12");
+
+                logger.Warn("message{0}{1}{2}", 1, 2, 3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message123");
+
+                logger.Warn(NLCulture, "message{0}{1}{2}", 1.4, 2.5, 3.6);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,42,53,6");
+
+                logger.Warn("message{0}", (float)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Warn("message{0}", (double)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Warn("message{0}", (decimal)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Warn("message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Warn(NLCulture, "message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2,3");
 
                 logger.Warn("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
@@ -686,9 +784,40 @@ namespace NLog.UnitTests
                 }
 
                 ILogger logger = LogManager.GetLogger("A");
+                LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
 
                 logger.Error("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Error((object)"message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", (object)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.Error("message{0}{1}", 1, 2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message12");
+
+                logger.Error("message{0}{1}{2}", 1, 2, 3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message123");
+
+                logger.Error(NLCulture, "message{0}{1}{2}", 1.4, 2.5, 3.6);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,42,53,6");
+
+                logger.Error("message{0}", (float)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Error("message{0}", (double)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Error("message{0}", (decimal)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Error("message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Error(NLCulture, "message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2,3");
 
                 logger.Error("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
@@ -787,7 +916,7 @@ namespace NLog.UnitTests
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
 #pragma warning disable 0618
-                // Obsolete method requires testing until completely removed.
+                // Obsolete method requires testing until removed.
                 logger.ErrorException("message", new Exception("test"));
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 #pragma warning restore 0618
@@ -832,9 +961,40 @@ namespace NLog.UnitTests
                 }
 
                 ILogger logger = LogManager.GetLogger("A");
+                LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
 
                 logger.Fatal("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Fatal((object)"message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (object)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.Fatal("message{0}{1}", 1, 2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message12");
+
+                logger.Fatal("message{0}{1}{2}", 1, 2, 3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message123");
+
+                logger.Fatal(NLCulture, "message{0}{1}{2}", 1.4, 2.5, 3.6);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,42,53,6");
+
+                logger.Fatal("message{0}", (float)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Fatal("message{0}", (double)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Fatal("message{0}", (decimal)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Fatal("message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Fatal(NLCulture, "message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2,3");
 
                 logger.Fatal("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
@@ -1262,7 +1422,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -1272,7 +1432,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='Debug' writeTo='debug' />
                     </rules>
@@ -1283,6 +1443,12 @@ namespace NLog.UnitTests
 
                 logger.ConditionalDebug("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.ConditionalDebug(404);
+                if (enabled == 1) AssertDebugLastMessage("debug", "404");
+
+                logger.ConditionalDebug(NLCulture, 404.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "404,5");
 
                 logger.ConditionalDebug("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
