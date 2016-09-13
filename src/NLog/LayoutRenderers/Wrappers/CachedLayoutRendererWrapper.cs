@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Layouts;
+
 namespace NLog.LayoutRenderers.Wrappers
 {
     using NLog.Config;
@@ -64,6 +66,7 @@ namespace NLog.LayoutRenderers.Wrappers
         }
 
         private string cachedValue = null;
+        private string renderedCacheKey = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CachedLayoutRendererWrapper"/> class.
@@ -85,6 +88,11 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets a value indicating when the cache is cleared.
         /// </summary>
         public ClearCacheOption ClearCache { get; set; }
+
+        /// <summary>
+        /// Cachekey. If the cachekey changes, resets the value. For example, the cachekey would be the current day.s
+        /// </summary>
+        public Layout CacheKey { get; set; }
 
         /// <summary>
         /// Initializes the layout renderer.
@@ -125,9 +133,11 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (this.Cached)
             {
-                if (this.cachedValue == null)
+                var newCacheKey = CacheKey == null ? null: CacheKey.Render(logEvent);
+                if (this.cachedValue == null || this.renderedCacheKey != newCacheKey)
                 {
                     this.cachedValue = base.RenderInner(logEvent);
+                    this.renderedCacheKey = newCacheKey;
                 }
 
                 return this.cachedValue;

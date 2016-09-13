@@ -31,44 +31,53 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
+//no silverlight because of xUnit needed
+#if !SILVERLIGHT && !__IOS__
+
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Xunit;
+using NLog.Layouts;
+
+namespace NLog.UnitTests.LayoutRenderers
 {
-    using System.IO;
-    using System.Text;
-
-    using NLog.Config;
-    using NLog.Internal;
-
-    /// <summary>
-    /// A temporary directory.
-    /// </summary>
-    [LayoutRenderer("tempdir")]
-    [AppDomainFixedOutput]
-    public class TempDirLayoutRenderer : LayoutRenderer
+    public class ProcessNameLayoutRendererTests : NLogTestBase
     {
-        private static string tempDir = Path.GetTempPath();
-
-        /// <summary>
-        /// Gets or sets the name of the file to be Path.Combine()'d with the directory name.
-        /// </summary>
-        /// <docgen category='Advanced Options' order='10' />
-        public string File { get; set; }
-
-        /// <summary>
-        /// Gets or sets the name of the directory to be Path.Combine()'d with the directory name.
-        /// </summary>
-        /// <docgen category='Advanced Options' order='10' />
-        public string Dir { get; set; }
-
-        /// <summary>
-        /// Renders the directory where NLog is located and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        [Fact]
+        public void RenderProcessNameLayoutRenderer()
         {
-            var path = PathHelpers.CombinePaths(tempDir, this.Dir, this.File);
-            builder.Append(path);
+            Layout layout = "${processname}";
+
+            layout.Initialize(null);
+            string actual = layout.Render(LogEventInfo.CreateNullEvent());
+            layout.Close();
+
+
+            Assert.NotNull(actual);
+            Assert.True(actual.Length > 0, "actual.Length > 0");
+            var lower = actual.ToLower();
+
+            //lowercase
+            var allowedProcessNames = new List<string> {"vstest.executionengine", "xunit", "mono-sgen"};
+            
+            Assert.True(allowedProcessNames.Any(p => lower.Contains(p)), string.Format("validating processname failed. Please add (if correct) '{0}' to 'allowedProcessNames'", actual));
+        }
+
+        [Fact]
+        public void RenderProcessNameLayoutRenderer_fullname()
+        {
+            Layout layout = "${processname:fullname=true}";
+
+            layout.Initialize(null);
+            string actual = layout.Render(LogEventInfo.CreateNullEvent());
+            layout.Close();
+
+
+            Assert.NotNull(actual);
+            Assert.True(actual.Length > 0, "actual.Length > 0");
+            Assert.True(File.Exists(actual), "process not found");
         }
     }
 }
+#endif

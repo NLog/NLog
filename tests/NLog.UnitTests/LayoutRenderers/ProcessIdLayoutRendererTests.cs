@@ -31,44 +31,32 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
+//no silverlight because of xUnit needed
+#if !SILVERLIGHT && !__IOS__
+
+using Xunit;
+using NLog.Layouts;
+
+namespace NLog.UnitTests.LayoutRenderers
 {
-    using System.IO;
-    using System.Text;
-
-    using NLog.Config;
-    using NLog.Internal;
-
-    /// <summary>
-    /// A temporary directory.
-    /// </summary>
-    [LayoutRenderer("tempdir")]
-    [AppDomainFixedOutput]
-    public class TempDirLayoutRenderer : LayoutRenderer
+    public class ProcessIdLayoutRendererTests : NLogTestBase
     {
-        private static string tempDir = Path.GetTempPath();
-
-        /// <summary>
-        /// Gets or sets the name of the file to be Path.Combine()'d with the directory name.
-        /// </summary>
-        /// <docgen category='Advanced Options' order='10' />
-        public string File { get; set; }
-
-        /// <summary>
-        /// Gets or sets the name of the directory to be Path.Combine()'d with the directory name.
-        /// </summary>
-        /// <docgen category='Advanced Options' order='10' />
-        public string Dir { get; set; }
-
-        /// <summary>
-        /// Renders the directory where NLog is located and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        [Fact]
+        public void RenderProcessIdLayoutRenderer()
         {
-            var path = PathHelpers.CombinePaths(tempDir, this.Dir, this.File);
-            builder.Append(path);
+            Layout layout = "${processid}";
+
+            layout.Initialize(null);
+            string actual = layout.Render(LogEventInfo.CreateNullEvent());
+            layout.Close();
+            int number;
+            if(!int.TryParse(actual, out number))
+            {
+                Assert.True(false,"processid is not a number");
+            }
+            
+            Assert.True(number > 0, "processid is not > 0");
         }
     }
 }
+#endif

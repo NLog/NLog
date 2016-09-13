@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,44 +31,31 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
+using System.IO;
+
+namespace NLog.Internal
 {
-    using System.IO;
-    using System.Text;
-
-    using NLog.Config;
-    using NLog.Internal;
-
-    /// <summary>
-    /// A temporary directory.
-    /// </summary>
-    [LayoutRenderer("tempdir")]
-    [AppDomainFixedOutput]
-    public class TempDirLayoutRenderer : LayoutRenderer
+    internal class PathHelpers
     {
-        private static string tempDir = Path.GetTempPath();
-
         /// <summary>
-        /// Gets or sets the name of the file to be Path.Combine()'d with the directory name.
+        /// Combine paths
         /// </summary>
-        /// <docgen category='Advanced Options' order='10' />
-        public string File { get; set; }
-
-        /// <summary>
-        /// Gets or sets the name of the directory to be Path.Combine()'d with the directory name.
-        /// </summary>
-        /// <docgen category='Advanced Options' order='10' />
-        public string Dir { get; set; }
-
-        /// <summary>
-        /// Renders the directory where NLog is located and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        /// <param name="path">basepath, not null</param>
+        /// <param name="dir">optional dir</param>
+        /// <param name="file">optional file</param>
+        /// <returns></returns>
+        internal static string CombinePaths(string path, string dir, string file)
         {
-            var path = PathHelpers.CombinePaths(tempDir, this.Dir, this.File);
-            builder.Append(path);
+            if (dir != null)
+            {
+                path = Path.Combine(path, dir);
+            }
+
+            if (file != null)
+            {
+                path = Path.Combine(path, file);
+            }
+            return path;
         }
     }
 }

@@ -52,5 +52,39 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Debug("a");
             AssertDebugLastMessage("debug", "A a");
         }
+
+
+        [Fact]
+        public void LoggerShortNameTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${logger:ShortName=true} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A.B.C");
+            logger.Debug("a");
+            AssertDebugLastMessage("debug", "C a");
+        }
+
+
+        [Fact]
+        public void LoggerShortNameTest_false()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${logger:ShortName=false} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A.B.C");
+            logger.Debug("a");
+            AssertDebugLastMessage("debug", "A.B.C a");
+        }
     }
 }

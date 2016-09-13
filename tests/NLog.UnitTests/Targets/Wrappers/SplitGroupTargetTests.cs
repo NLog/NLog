@@ -121,6 +121,22 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(1, myTarget3.FlushCount);
         }
 
+
+        [Fact]
+        public void SplitGroupToStringTest()
+        {
+            var myTarget1 = new MyTarget();
+            var myTarget2 = new FileTarget("file1");
+            var myTarget3 = new ConsoleTarget("Console2");
+
+            var wrapper = new SplitGroupTarget()
+            {
+                Targets = { myTarget1, myTarget2, myTarget3 },
+            };
+
+            Assert.Equal("SplitGroup Target[(unnamed)](MyTarget, File Target[file1], Console Target[Console2])", wrapper.ToString());
+        }
+
         [Fact]
         public void SplitGroupSyncTest2()
         {
