@@ -1319,12 +1319,10 @@ namespace NLog.UnitTests
 
 
                 logger.ConditionalTrace(argException, NLCulture, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
-                if (enabled == 1) AssertDebugLastMessage("debug", @"we've got error 500, 501, 502, 503,5 ...arg1 is obvious wrong
-Parameter name: arg1");
+                if (enabled == 1) AssertDebugLastMessage("debug", "we\'ve got error 500, 501, 502, 503,5 ...arg1 is obvious wrong\r\nParameter name: arg1");
 
                 logger.ConditionalTrace(argException, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
-                if (enabled == 1) AssertDebugLastMessage("debug", @"we've got error 500, 501, 502, 503.5 ...arg1 is obvious wrong
-Parameter name: arg1");
+                if (enabled == 1) AssertDebugLastMessage("debug", "we\'ve got error 500, 501, 502, 503.5 ...arg1 is obvious wrong\r\nParameter name: arg1");
 
                 logger.ConditionalTrace("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
@@ -1490,12 +1488,10 @@ Parameter name: arg1");
 
 
                 logger.ConditionalDebug(argException, NLCulture, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
-                if (enabled == 1) AssertDebugLastMessage("debug", @"we've got error 500, 501, 502, 503,5 ...arg1 is obvious wrong
-Parameter name: arg1");
+                if (enabled == 1) AssertDebugLastMessage("debug", "we\'ve got error 500, 501, 502, 503,5 ...arg1 is obvious wrong\r\nParameter name: arg1");
                 
                 logger.ConditionalDebug(argException, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
-                if (enabled == 1) AssertDebugLastMessage("debug", @"we've got error 500, 501, 502, 503.5 ...arg1 is obvious wrong
-Parameter name: arg1");
+                if (enabled == 1) AssertDebugLastMessage("debug", "we\'ve got error 500, 501, 502, 503.5 ...arg1 is obvious wrong\r\nParameter name: arg1");
 
                 logger.ConditionalDebug("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
