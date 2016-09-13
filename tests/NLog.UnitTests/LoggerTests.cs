@@ -1273,7 +1273,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -1283,7 +1283,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='Trace' writeTo='debug' />
                     </rules>
@@ -1292,18 +1292,40 @@ namespace NLog.UnitTests
 
                 var logger = LogManager.GetLogger("A");
 
+                var argException = new ArgumentException("arg1 is obvious wrong", "arg1");
+
+                LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
+
                 logger.ConditionalTrace("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
-                logger.ConditionalTrace(123);
-                if (enabled == 1) AssertDebugLastMessage("debug", "123");
+                logger.ConditionalTrace(404);
+                if (enabled == 1) AssertDebugLastMessage("debug", "404");
 
-                logger.ConditionalTrace(NLCulture, 123.4);
-                if (enabled == 1) AssertDebugLastMessage("debug", "123,4");
+                logger.ConditionalTrace(NLCulture, 404.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "404,5");
 
-                logger.ConditionalTrace(NLCulture, "message {0}" ,123.4);
-                if (enabled == 1) AssertDebugLastMessage("debug", "message 123,4");
-                
+                logger.ConditionalTrace(NLCulture, "hello error {0} !", 404.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "hello error 404,5 !");
+
+                logger.ConditionalTrace(NLCulture, "hello error {0} and {1} !", 404.5, 401);
+                if (enabled == 1) AssertDebugLastMessage("debug", "hello error 404,5 and 401 !");
+
+                logger.ConditionalTrace(NLCulture, "hello error {0}, {1} & {2} !", 404.5, 401, 500);
+                if (enabled == 1) AssertDebugLastMessage("debug", "hello error 404,5, 401 & 500 !");
+
+                logger.ConditionalTrace(NLCulture, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503);
+                if (enabled == 1) AssertDebugLastMessage("debug", "we've got error 500, 501, 502, 503 ...");
+
+
+                logger.ConditionalTrace(argException, NLCulture, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", @"we've got error 500, 501, 502, 503,5 ...arg1 is obvious wrong
+Parameter name: arg1");
+
+                logger.ConditionalTrace(argException, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", @"we've got error 500, 501, 502, 503.5 ...arg1 is obvious wrong
+Parameter name: arg1");
+
                 logger.ConditionalTrace("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
 
@@ -1401,7 +1423,7 @@ namespace NLog.UnitTests
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
                 logger.ConditionalTrace(new Exception("test"), "message");
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
 
                 logger.ConditionalTrace(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -1441,6 +1463,10 @@ namespace NLog.UnitTests
 
                 var logger = LogManager.GetLogger("A");
 
+                var argException = new ArgumentException("arg1 is obvious wrong", "arg1");
+
+                LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
+
                 logger.ConditionalDebug("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
@@ -1449,6 +1475,27 @@ namespace NLog.UnitTests
 
                 logger.ConditionalDebug(NLCulture, 404.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "404,5");
+
+                logger.ConditionalDebug(NLCulture, "hello error {0} !", 404.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "hello error 404,5 !");
+
+                logger.ConditionalDebug(NLCulture, "hello error {0} and {1} !", 404.5, 401);
+                if (enabled == 1) AssertDebugLastMessage("debug", "hello error 404,5 and 401 !");
+
+                logger.ConditionalDebug(NLCulture, "hello error {0}, {1} & {2} !", 404.5, 401, 500);
+                if (enabled == 1) AssertDebugLastMessage("debug", "hello error 404,5, 401 & 500 !");
+
+                logger.ConditionalDebug(NLCulture, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503);
+                if (enabled == 1) AssertDebugLastMessage("debug", "we've got error 500, 501, 502, 503 ...");
+
+
+                logger.ConditionalDebug(argException, NLCulture, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", @"we've got error 500, 501, 502, 503,5 ...arg1 is obvious wrong
+Parameter name: arg1");
+                
+                logger.ConditionalDebug(argException, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", @"we've got error 500, 501, 502, 503.5 ...arg1 is obvious wrong
+Parameter name: arg1");
 
                 logger.ConditionalDebug("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
@@ -1545,6 +1592,9 @@ namespace NLog.UnitTests
 
                 logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+
+                logger.ConditionalDebug(new Exception("test"), "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
 
                 logger.ConditionalDebug(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
