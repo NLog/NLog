@@ -72,7 +72,7 @@ namespace NLog.LayoutRenderers
         {
             this.Format = "message";
             this.Separator = " ";
-            this.SeparatorData = ";";
+            this.ExceptionDataSeparator = ";";
             this.InnerExceptionSeparator = EnvironmentHelper.NewLine;
             this.MaxInnerExceptionLevel = 0;
 
@@ -143,7 +143,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(";")]
-        public string SeparatorData { get; set; }
+        public string ExceptionDataSeparator { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum number of inner exceptions to include in the output.
@@ -323,7 +323,7 @@ namespace NLog.LayoutRenderers
                 sb.Append(separator);
                 sb.AppendFormat("{0}: {1}", key, ex.Data[key]);
 
-                separator = SeparatorData;
+                separator = ExceptionDataSeparator;
             }
         }
 
