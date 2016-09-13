@@ -78,6 +78,35 @@ namespace NLog.UnitTests
                 logger.Trace("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
+                logger.Trace((object)"message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Trace(CultureInfo.InvariantCulture, "message{0}", (object)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+                
+                logger.Trace("message{0}{1}", 1,2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message12");
+
+                logger.Trace("message{0}{1}{2}", 1, 2, 3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message123");
+
+                LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
+                
+                logger.Trace("message{0}", (float)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Trace("message{0}", (double)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Trace("message{0}", (decimal)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Trace("message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Trace(CultureInfo.GetCultureInfo("nl-nl"),  "message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2,3");
+
                 logger.Trace("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
 
