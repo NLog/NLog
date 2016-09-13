@@ -45,6 +45,8 @@ namespace NLog.UnitTests
     using System.Threading;
     public class LoggerTests : NLogTestBase
     {
+        private CultureInfo NLCulture = new CultureInfo("nl-nl");
+
         [Fact]
         public void TraceTest()
         {
@@ -104,7 +106,7 @@ namespace NLog.UnitTests
                 logger.Trace("message{0}", (object)2.3);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
 
-                logger.Trace(CultureInfo.GetCultureInfo("nl-nl"),  "message{0}", (object)2.3);
+                logger.Trace(NLCulture,  "message{0}", (object)2.3);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2,3");
 
                 logger.Trace("message{0}", (ulong)1);
@@ -1136,10 +1138,10 @@ namespace NLog.UnitTests
                 logger.ConditionalTrace(123);
                 if (enabled == 1) AssertDebugLastMessage("debug", "123");
 
-                logger.ConditionalTrace(CultureInfo.GetCultureInfo("nl-nl"), 123.4);
+                logger.ConditionalTrace(NLCulture, 123.4);
                 if (enabled == 1) AssertDebugLastMessage("debug", "123,4");
 
-                logger.ConditionalTrace(CultureInfo.GetCultureInfo("nl-nl"), "message {0}" ,123.4);
+                logger.ConditionalTrace(NLCulture, "message {0}" ,123.4);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message 123,4");
                 
                 logger.ConditionalTrace("message{0}", (ulong)1);
