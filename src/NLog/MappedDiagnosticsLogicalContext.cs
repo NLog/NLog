@@ -32,6 +32,7 @@
 // 
 
 using System.Linq;
+using System.Threading;
 using NLog.Internal;
 
 namespace NLog
@@ -55,6 +56,7 @@ namespace NLog
     public static class MappedDiagnosticsLogicalContext
     {
         private const string LogicalThreadDictionaryKey = "NLog.AsyncableMappedDiagnosticsContext";
+        private const string LogicalThreadDictionaryOwnerKey = "NLog.AsyncableMappedDiagnosticsContextOwner";
 
         private static IDictionary<string, object> LogicalThreadDictionary
         {
@@ -65,6 +67,14 @@ namespace NLog
                 {
                     dictionary = new ConcurrentDictionary<string, object>();
                     CallContext.LogicalSetData(LogicalThreadDictionaryKey, dictionary);
+                    CallContext.LogicalSetData(LogicalThreadDictionaryOwnerKey, Thread.CurrentThread.ManagedThreadId);
+                }
+                else if ((int)CallContext.LogicalGetData(LogicalThreadDictionaryOwnerKey) != Thread.CurrentThread.ManagedThreadId)
+                {
+                    // Clone dictionary for every new thread
+                    dictionary = new ConcurrentDictionary<string, object>(dictionary);
+                    CallContext.LogicalSetData(LogicalThreadDictionaryKey, dictionary);
+                    CallContext.LogicalSetData(LogicalThreadDictionaryOwnerKey, Thread.CurrentThread.ManagedThreadId);
                 }
                 return dictionary;
             }

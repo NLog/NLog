@@ -32,6 +32,7 @@
 // 
 
 using System.Linq;
+using System.Threading;
 
 namespace NLog.UnitTests.Contexts
 {
@@ -245,6 +246,54 @@ namespace NLog.UnitTests.Contexts
             Assert.Equal(task1.Result, valueForLogicalThread1);
             Assert.Equal(task2.Result, valueForLogicalThread2);
             Assert.Equal(task3.Result, valueForLogicalThread3);
+        }
+
+        [Fact]
+        public void parent_thread_assigns_different_values_to_childs()
+        {
+            const string parentKey = "ParentKey";
+            const string parentValueForLogicalThread1 = "Parent1";
+            const string parentValueForLogicalThread2 = "Parent2";
+
+            const string childKey = "ChildKey";
+            const string valueForChildThread1 = "Child1";
+            const string valueForChildThread2 = "Child2";
+
+
+            MappedDiagnosticsLogicalContext.Clear(true);
+            var exitAllTasks = new ManualResetEvent(false);
+
+            MappedDiagnosticsLogicalContext.Set(parentKey, parentValueForLogicalThread1);
+            var task1Initialized = new ManualResetEvent(false);
+
+            var task1 = Task.Factory.StartNew(() =>
+            {
+                MappedDiagnosticsLogicalContext.Set(childKey, valueForChildThread1);   // LogicalThreadDictionary is cloned here
+                task1Initialized.Set();
+                exitAllTasks.WaitOne();
+                return MappedDiagnosticsLogicalContext.Get(parentKey) + "," + MappedDiagnosticsLogicalContext.Get(childKey);
+            });
+
+            task1Initialized.WaitOne(); // Wait for LogicalThreadDictionary cloning occurs
+
+            MappedDiagnosticsLogicalContext.Set(parentKey, parentValueForLogicalThread2);
+            var task2Initialized = new ManualResetEvent(false);
+
+            var task2 = Task.Factory.StartNew(() =>
+            {
+                MappedDiagnosticsLogicalContext.Set(childKey, valueForChildThread2);   // LogicalThreadDictionary is cloned here
+                task2Initialized.Set();
+                exitAllTasks.WaitOne();
+                return MappedDiagnosticsLogicalContext.Get(parentKey) + "," + MappedDiagnosticsLogicalContext.Get(childKey);
+            });
+
+            task2Initialized.WaitOne(); // Wait for LogicalThreadDictionary cloning occurs
+
+            exitAllTasks.Set();
+            Task.WaitAll();
+
+            Assert.Equal(task1.Result, parentValueForLogicalThread1 + "," + valueForChildThread1);
+            Assert.Equal(task2.Result, parentValueForLogicalThread2 + "," + valueForChildThread2);
         }
     }
 #endif
