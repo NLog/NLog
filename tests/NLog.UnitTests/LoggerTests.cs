@@ -1133,6 +1133,15 @@ namespace NLog.UnitTests
                 logger.ConditionalTrace("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
+                logger.ConditionalTrace(123);
+                if (enabled == 1) AssertDebugLastMessage("debug", "123");
+
+                logger.ConditionalTrace(CultureInfo.GetCultureInfo("nl-nl"), 123.4);
+                if (enabled == 1) AssertDebugLastMessage("debug", "123,4");
+
+                logger.ConditionalTrace(CultureInfo.GetCultureInfo("nl-nl"), "message {0}" ,123.4);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message 123,4");
+                
                 logger.ConditionalTrace("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
 
