@@ -51,6 +51,8 @@ namespace NLog.Internal
         /// <returns>Encoded url.</returns>
         internal static string UrlEncode(string str, bool spaceAsPlus)
         {
+            if (str == null) return string.Empty;
+
             StringBuilder result = new StringBuilder(str.Length + 20);
             for (int i = 0; i < str.Length; ++i)
             {
