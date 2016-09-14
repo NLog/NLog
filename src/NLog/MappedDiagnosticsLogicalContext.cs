@@ -36,6 +36,7 @@ using NLog.Internal;
 namespace NLog
 {
 #if NET4_0 || NET4_5
+    using Config;
     using System;
     using System.Collections.Generic;
     using System.Runtime.Remoting.Messaging;
