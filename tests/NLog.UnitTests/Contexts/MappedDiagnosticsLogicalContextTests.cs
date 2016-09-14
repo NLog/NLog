@@ -259,42 +259,33 @@ namespace NLog.UnitTests.Contexts
             const string valueForChildThread1 = "Child1";
             const string valueForChildThread2 = "Child2";
 
-
             MappedDiagnosticsLogicalContext.Clear(true);
             var exitAllTasks = new ManualResetEvent(false);
 
             MappedDiagnosticsLogicalContext.Set(parentKey, parentValueForLogicalThread1);
-            var task1Initialized = new ManualResetEvent(false);
 
             var task1 = Task.Factory.StartNew(() =>
             {
-                MappedDiagnosticsLogicalContext.Set(childKey, valueForChildThread1);   // LogicalThreadDictionary is cloned here
-                task1Initialized.Set();
+                MappedDiagnosticsLogicalContext.Set(childKey, valueForChildThread1);
                 exitAllTasks.WaitOne();
                 return MappedDiagnosticsLogicalContext.Get(parentKey) + "," + MappedDiagnosticsLogicalContext.Get(childKey);
             });
 
-            task1Initialized.WaitOne(); // Wait for LogicalThreadDictionary cloning occurs
-
             MappedDiagnosticsLogicalContext.Set(parentKey, parentValueForLogicalThread2);
-            var task2Initialized = new ManualResetEvent(false);
 
             var task2 = Task.Factory.StartNew(() =>
             {
-                MappedDiagnosticsLogicalContext.Set(childKey, valueForChildThread2);   // LogicalThreadDictionary is cloned here
-                task2Initialized.Set();
+                MappedDiagnosticsLogicalContext.Set(childKey, valueForChildThread2);
                 exitAllTasks.WaitOne();
                 return MappedDiagnosticsLogicalContext.Get(parentKey) + "," + MappedDiagnosticsLogicalContext.Get(childKey);
             });
-
-            task2Initialized.WaitOne(); // Wait for LogicalThreadDictionary cloning occurs
 
             exitAllTasks.Set();
             Task.WaitAll();
 
             Assert.Equal(task1.Result, parentValueForLogicalThread1 + "," + valueForChildThread1);
             Assert.Equal(task2.Result, parentValueForLogicalThread2 + "," + valueForChildThread2);
-        }
+       }
     }
 #endif
 }
