@@ -64,7 +64,7 @@ namespace NLog.UnitTests
             {
                 //flush all events if needed.
                 LogManager.Configuration.Close();
-                
+
             }
 
             if (LogManager.LogFactory != null)
@@ -76,7 +76,7 @@ namespace NLog.UnitTests
             InternalLogger.Reset();
             LogManager.ThrowExceptions = false;
             LogManager.ThrowConfigExceptions = null;
-            
+
         }
 
         protected void AssertDebugCounter(string targetName, int val)
@@ -311,7 +311,7 @@ namespace NLog.UnitTests
 
 #endif
 
-        protected XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
+        protected static XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
         {
 #if SILVERLIGHT
             XElement element = XElement.Parse(configXml);
