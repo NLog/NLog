@@ -37,6 +37,7 @@ namespace NLog.Internal.FileAppenders
 {
     using System;
     using System.IO;
+    using System.Threading;
 
     /// <summary>
     /// Multi-process and multi-host file appender which attempts
@@ -118,6 +119,15 @@ namespace NLog.Internal.FileAppenders
                 return fileInfo.Length;
             }
             return null;
+        }
+
+        /// <summary>
+        /// Creates a mutually-exclusive lock for archiving files.
+        /// </summary>
+        /// <returns>A <see cref="Mutex"/> object which can be used for controlling the archiving of files.</returns>
+        protected override Mutex CreateArchiveMutex()
+        {
+            return CreateSharableArchiveMutex();
         }
 
         /// <summary>
