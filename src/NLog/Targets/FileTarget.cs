@@ -147,9 +147,9 @@ namespace NLog.Targets
 
         private bool concurrentWrites;
         private bool keepFileOpen;
-        private bool _cleanupFileName;
-        private FilePathKind _fileNameKind;
-        private FilePathKind _archiveFileKind;
+        private bool cleanupFileName;
+        private FilePathKind fileNameKind;
+        private FilePathKind archiveFileKind;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
@@ -189,6 +189,8 @@ namespace NLog.Targets
             this.previousFileNames = new Queue<string>(this.maxLogFilenames);
             this.fileAppenderCache = FileAppenderCache.Empty;
             this.CleanupFileName = true;
+
+            this.WriteFooterOnArchivingOnly = false;
         }
 
 #if NET4_5
@@ -254,7 +256,7 @@ namespace NLog.Targets
                 return null;
 
             return new FilePathLayout(value, CleanupFileName, FileNameKind);
-            }
+        }
 
 
         /// <summary>
@@ -263,13 +265,11 @@ namespace NLog.Targets
         /// </summary>
         [DefaultValue(true)]
         public bool CleanupFileName
-
-
-            {
-            get { return _cleanupFileName; }
+        {
+            get { return cleanupFileName; }
             set
             {
-                _cleanupFileName = value;
+                cleanupFileName = value;
                 fullFileName = CreateFileNameLayout(FileName);
                 fullarchiveFileName = CreateFileNameLayout(ArchiveFileName);
             }
@@ -280,14 +280,12 @@ namespace NLog.Targets
         /// </summary>
         [DefaultValue(FilePathKind.Unknown)]
         public FilePathKind FileNameKind
-
-
         {
-            get { return _fileNameKind; }
+            get { return fileNameKind; }
             set
             {
 
-                _fileNameKind = value;
+                fileNameKind = value;
                 fullFileName = CreateFileNameLayout(FileName);
             }
         }
@@ -585,10 +583,10 @@ namespace NLog.Targets
         /// </summary>
         public FilePathKind ArchiveFileKind
         {
-            get { return _archiveFileKind; }
+            get { return archiveFileKind; }
             set
             {
-                _archiveFileKind = value;
+                archiveFileKind = value;
                 fullarchiveFileName = CreateFileNameLayout(ArchiveFileName);
             }
         }
@@ -669,13 +667,18 @@ namespace NLog.Targets
                 }
             }
         }
-
-
+        
         /// <summary>
         /// Gets or set a value indicating whether a managed file stream is forced, instead of used the native implementation.
         /// </summary>
         [DefaultValue(false)]
         public bool ForceManaged { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the footer should be written only when the file is archived.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool WriteFooterOnArchivingOnly { get; set; }
 
         /// <summary>
         /// Gets the characters that are appended after each line.
@@ -813,21 +816,21 @@ namespace NLog.Targets
         /// </remarks>
         public void CleanupInitializedFiles(DateTime cleanupThreshold)
         {
-            var filesToUninitialize = new List<string>();
+            var filesToFinalize = new List<string>();
 
-            // Select the files require to be uninitialized.
+            // Select the files require to be finalized.
             foreach (var file in this.initializedFiles)
             {
                 if (file.Value < cleanupThreshold)
                 {
-                    filesToUninitialize.Add(file.Key);
+                    filesToFinalize.Add(file.Key);
                 }
             }
 
-            // Uninitialize the files.
-            foreach (string fileName in filesToUninitialize)
+            // Finalize the files.
+            foreach (string fileName in filesToFinalize)
             {
-                this.UninitializeFile(fileName);
+                this.FinalizeFile(fileName);
             }
         }
 
@@ -941,7 +944,7 @@ namespace NLog.Targets
 
             foreach (string fileName in new List<string>(this.initializedFiles.Keys))
             {
-                this.UninitializeFile(fileName);
+                this.FinalizeFile(fileName);
             }
 
             if (this.autoClosingTimer != null)
@@ -1272,7 +1275,7 @@ namespace NLog.Targets
         /// <param name="archiveFileName">Name of the archive file.</param>
         private void ArchiveFile(string fileName, string archiveFileName)
         {
-            UninitializeFile(fileName);
+            FinalizeFile(fileName, isArchiving: true);
 
             string archiveFolderPath = Path.GetDirectoryName(archiveFileName);
             if (!Directory.Exists(archiveFolderPath))
@@ -1772,7 +1775,7 @@ namespace NLog.Targets
         /// <param name="upcomingWriteSize">The size in bytes of the next chunk of data to be written in the file.</param>
         private void TryArchiveFile(string fileName, LogEventInfo ev, int upcomingWriteSize)
         {
-            var archiveFile = this.GetAutoArchiveFileName(fileName, ev, upcomingWriteSize);
+            var archiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
             if (!string.IsNullOrEmpty(archiveFile))
             {
 #if !SILVERLIGHT
@@ -1791,7 +1794,7 @@ namespace NLog.Targets
 #endif
                 try
                 {
-                    archiveFile = this.GetAutoArchiveFileName(fileName, ev, upcomingWriteSize);
+                    archiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
                     if (!string.IsNullOrEmpty(archiveFile))
                     {
                         this.DoAutoArchive(archiveFile, ev);
@@ -1814,13 +1817,13 @@ namespace NLog.Targets
         /// <param name="ev">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
         /// <param name="upcomingWriteSize">The size in bytes of the next chunk of data to be written in the file.</param>
         /// <returns>Filename to archive. If <c>null</c>, then nothing to archive.</returns>
-        private string GetAutoArchiveFileName(string fileName, LogEventInfo ev, int upcomingWriteSize)
+        private string GetArchiveFileName(string fileName, LogEventInfo ev, int upcomingWriteSize)
         {
             var hasFileName = !(fileName == null && previousLogFileName == null);
             if (hasFileName)
             {
-                return DirectorySeparatorCharForFileSize(fileName, upcomingWriteSize) ??
-                       DirectorySeparatorCharForTime(fileName, ev);
+                return GetArchiveFileNameBasedOnFileSize(fileName, upcomingWriteSize) ??
+                       GetArchiveFileNameBasedOnTime(fileName, ev);
             }
 
             return null;
@@ -1855,12 +1858,12 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Indicates if the automatic archiving process should be executed based on file size constrains.
+        /// Gets the file name for archiving, or null if archiving should not occur based on file size.
         /// </summary>
         /// <param name="fileName">File name to be written.</param>
         /// <param name="upcomingWriteSize">The size in bytes of the next chunk of data to be written in the file.</param>
         /// <returns>Filename to archive. If <c>null</c>, then nothing to archive.</returns>
-        private string DirectorySeparatorCharForFileSize(string fileName, int upcomingWriteSize)
+        private string GetArchiveFileNameBasedOnFileSize(string fileName, int upcomingWriteSize)
         {
             if (this.ArchiveAboveSize == ArchiveAboveSizeDisabled)
             {
@@ -1878,7 +1881,7 @@ namespace NLog.Targets
             if (length == null)
             {
                 return null;
-        }
+            }
 
             var shouldArchive = length.Value + upcomingWriteSize > this.ArchiveAboveSize;
             if (shouldArchive)
@@ -1890,12 +1893,12 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Indicates if the automatic archiving process should be executed based on date/time constrains.
+        /// Returns the file name for archiving, or null if archiving should not occur based on date/time.
         /// </summary>
         /// <param name="fileName">File name to be written.</param>
         /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
         /// <returns>Filename to archive. If <c>null</c>, then nothing to archive.</returns>
-        private string DirectorySeparatorCharForTime(string fileName, LogEventInfo logEvent)
+        private string GetArchiveFileNameBasedOnTime(string fileName, LogEventInfo logEvent)
         {
             if (this.ArchiveEvery == FileArchivePeriod.None)
             {
@@ -1927,7 +1930,7 @@ namespace NLog.Targets
             if (shouldArchive)
             {
                 return fileName;
-        }
+            }
             return null;
         }
 
@@ -2045,12 +2048,14 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Writes the file footer and uninitialises the file in <see cref="FileTarget"/> instance internal structures.
+        /// Writes the file footer and finalizes the file in <see cref="FileTarget"/> instance internal structures.
         /// </summary>
         /// <param name="fileName">File name to close.</param>
-        private void UninitializeFile(string fileName)
+        /// <param name="isArchiving">Indicates if the file is being finalized for archiving.</param>
+        private void FinalizeFile(string fileName, bool isArchiving = false)
         {
-            WriteFooter(fileName);
+            if ((isArchiving) || (!this.WriteFooterOnArchivingOnly))
+                WriteFooter(fileName);
 
             this.fileAppenderCache.InvalidateAppender(fileName);
             this.initializedFiles.Remove(fileName);
