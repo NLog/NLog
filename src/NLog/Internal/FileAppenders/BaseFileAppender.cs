@@ -41,9 +41,11 @@ namespace NLog.Internal.FileAppenders
     using NLog.Common;
     using NLog.Internal;
     using System.Threading;
+#if !SILVERLIGHT
     using System.Security.AccessControl;
     using System.Security.Principal;
     using System.Security.Cryptography;
+#endif
     using System.Text;
 
     /// <summary>
