@@ -70,6 +70,23 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "C a");
         }
 
+        [Fact]
+        public void LoggerShortNameTest2()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${logger:ShortName=true} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("C");
+            logger.Debug("a");
+            AssertDebugLastMessage("debug", "C a");
+        }
+
+
 
         [Fact]
         public void LoggerShortNameTest_false()
