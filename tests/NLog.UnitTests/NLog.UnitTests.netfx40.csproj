@@ -157,6 +157,7 @@
     <Compile Include="LayoutRenderers\StackTraceRendererTests.cs" />
     <Compile Include="LayoutRenderers\TempDirRendererTests.cs" />
     <Compile Include="LayoutRenderers\ThreadNameTests.cs" />
+    <Compile Include="LayoutRenderers\TicksLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\TimeTests.cs" />
     <Compile Include="LayoutRenderers\VariableLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\CachedTests.cs" />
