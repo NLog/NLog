@@ -32,6 +32,7 @@
 // 
 
 using System.Collections.Generic;
+using System.Globalization;
 using NLog.Config;
 using NLog.Targets;
 using NLog.UnitTests.Common;
@@ -437,6 +438,55 @@ namespace NLog.UnitTests.Fluent
 
             var expectedEvent = new LogEventInfo(LogLevel.Error, "logger1", null) { Exception = ex };
             AssertLastLogEventTarget(expectedEvent);
+        }
+
+        [Fact]
+        public void LogBuilder_null_logLevel()
+        {
+            Assert.Throws<ArgumentNullException>(() => _logger.Error().Level(null));
+        }
+
+        [Fact]
+        public void LogBuilder_message_overloadsTest()
+        {
+            LogManager.ThrowExceptions = true;
+
+            _logger.Debug()
+              .Message("Message with {0} arg", 1)
+              .Write();
+            AssertDebugLastMessage("t2", "Message with 1 arg");
+
+            _logger.Debug()
+              .Message("Message with {0} args. {1}", 2, "YES")
+              .Write();
+            AssertDebugLastMessage("t2", "Message with 2 args. YES");
+
+            _logger.Debug()
+              .Message("Message with {0} args. {1} {2}", 3, ":) ", 2)
+              .Write();
+            AssertDebugLastMessage("t2", "Message with 3 args. :)  2");
+
+            _logger.Debug()
+              .Message("Message with {0} args. {1} {2}{3}", "more", ":) ", 2, "b")
+              .Write();
+            AssertDebugLastMessage("t2", "Message with more args. :)  2b");
+        }
+
+        [Fact]
+        public void LogBuilder_message_cultureTest()
+        {
+
+            LogManager.Configuration.DefaultCultureInfo = new CultureInfo("en-us");
+
+            _logger.Debug()
+             .Message("Message with {0} {1} {2} {3}", 4.1, 4.001, new DateTime(2016, 12, 31), true)
+             .Write();
+            AssertDebugLastMessage("t2", "Message with 4.1 4.001 12/31/2016 12:00:00 AM True");
+
+            _logger.Debug()
+           .Message(new CultureInfo("nl-nl"), "Message with {0} {1} {2} {3}", 4.1, 4.001, new DateTime(2016, 12, 31), true)
+           .Write();
+            AssertDebugLastMessage("t2", "Message with 4,1 4,001 31-12-2016 00:00:00 True");
         }
 
         ///<remarks>
