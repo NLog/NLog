@@ -47,6 +47,7 @@ namespace NLog.UnitTests.Internal
             var async2 = new AsyncLogEventInfo(logEvent1, cont1);
             Assert.True(async1.Equals(async2));
             Assert.True(async1 == async2);
+            Assert.False(async1 != async2);
             Assert.Equal(async1.GetHashCode(), async2.GetHashCode());
         }
 
@@ -60,6 +61,7 @@ namespace NLog.UnitTests.Internal
             var async2 = new AsyncLogEventInfo(logEvent1, cont2);
             Assert.False(async1.Equals(async2));
             Assert.False(async1 == async2);
+            Assert.True(async1 != async2);
 
             //2 delegates will return the same hashcode, http://stackoverflow.com/questions/6624151/why-do-2-delegate-instances-return-the-same-hashcode
             //and that isn't really bad, so ignore this
@@ -76,6 +78,8 @@ namespace NLog.UnitTests.Internal
             var async2 = new AsyncLogEventInfo(logEvent2, cont);
             Assert.False(async1.Equals(async2));
             Assert.False(async1 == async2);
+            Assert.True(async1 != async2);
+
             Assert.NotEqual(async1.GetHashCode(), async2.GetHashCode());
         }
 
