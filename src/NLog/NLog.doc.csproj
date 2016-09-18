@@ -136,9 +136,6 @@
     <Compile Include="ILoggerBase-V1.cs" />
     <Compile Include="ILogger-V1.cs" />
     <Compile Include="Internal\ArrayHelper.cs" />
-    <Compile Include="Internal\AspHelper.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
     <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
     <Compile Include="Internal\EncodingHelpers.cs" />
@@ -215,9 +212,6 @@
     <Compile Include="LayoutRenderers\AllEventPropertiesLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AmbientPropertyAttribute.cs" />
     <Compile Include="LayoutRenderers\AppDomainLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspApplicationValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspRequestValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspSessionValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AssemblyVersionLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\BaseDirLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\CallSiteLayoutRenderer.cs" />
@@ -350,7 +344,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Targets\ArchiveNumberingMode.cs" />
-    <Compile Include="Targets\AspResponseTarget.cs" />
     <Compile Include="Targets\ChainsawTarget.cs" />
     <Compile Include="Targets\ColoredConsoleTarget.cs" />
     <Compile Include="Targets\ConsoleOutputColor.cs" />
