@@ -1035,11 +1035,7 @@ namespace NLog.Targets
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
 #endif
-            var archiveFile = this.GetArchiveFileName(fileName, logEvent, bytesToWrite.Length);
-            if (!string.IsNullOrEmpty(archiveFile))
-            {
-                this.DoAutoArchive(archiveFile, logEvent);
-            }
+            TryArchiveFile(fileName, logEvent, bytesToWrite.Length);
 
             // Clean up old archives if this is the first time a log record is being written to
             // this log file and the archiving system is date/time based.
@@ -1195,26 +1191,7 @@ namespace NLog.Targets
             else
             {
                 InternalLogger.Info("Roll archive {0} to {1}", fileName, newFileName);
-                try
-                {
-                    File.Move(fileName, newFileName);
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Warn(ex, "Roll archive {0} to {1} failed", fileName, newFileName);
-                    //if failed due to a race condition (file exists suddenly), then retry with a new number.
-                    if (File.Exists(newFileName))
-                    {
-                        InternalLogger.Debug(ex, "Roll archive {0} to {1} failed because of a race condition. Retry with new name", fileName, newFileName);
-                        RollArchivesForward(newFileName, pattern, archiveNumber + 1);
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-               
-               
+                File.Move(fileName, newFileName);
             }
         }
 
@@ -1791,7 +1768,50 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets the file name for archiving, or null if archiving should not occur.
+        /// Archives the file if it should be archived.
+        /// </summary>
+        /// <param name="fileName">The file name to check for.</param>
+        /// <param name="ev">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
+        /// <param name="upcomingWriteSize">The size in bytes of the next chunk of data to be written in the file.</param>
+        private void TryArchiveFile(string fileName, LogEventInfo ev, int upcomingWriteSize)
+        {
+            var archiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
+            if (!string.IsNullOrEmpty(archiveFile))
+            {
+#if !SILVERLIGHT
+                Mutex archiveMutex = this.fileAppenderCache.GetArchiveMutex(fileName);
+                try
+                {
+                    if (archiveMutex != null)
+                        archiveMutex.WaitOne();
+                }
+                catch (AbandonedMutexException)
+                {
+                    // ignore the exception, another process was killed without properly releasing the mutex
+                    // the mutex has been acquired, so proceed to writing
+                    // See: http://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
+                }
+#endif
+                try
+                {
+                    archiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
+                    if (!string.IsNullOrEmpty(archiveFile))
+                    {
+                        this.DoAutoArchive(archiveFile, ev);
+                    }
+                }
+                finally
+                {
+#if !SILVERLIGHT
+                    if (archiveMutex != null)
+                        archiveMutex.ReleaseMutex();
+#endif
+                }
+            }
+        }
+
+        /// <summary>
+        /// Indicates if the automatic archiving process should be executed.
         /// </summary>
         /// <param name="fileName">File name to be written.</param>
         /// <param name="ev">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
@@ -1804,7 +1824,7 @@ namespace NLog.Targets
             {
                 return GetArchiveFileNameBasedOnFileSize(fileName, upcomingWriteSize) ??
                        GetArchiveFileNameBasedOnTime(fileName, ev);
-        }
+            }
 
             return null;
         }

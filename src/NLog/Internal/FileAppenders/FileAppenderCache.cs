@@ -301,6 +301,14 @@ namespace NLog.Internal.FileAppenders
             return null;
         }
 
+#if !SILVERLIGHT
+        public Mutex GetArchiveMutex(string fileName)
+        {
+            var appender = GetAppender(fileName);
+            return appender == null ? null : appender.ArchiveMutex;
+        }
+#endif
+
         public DateTime? GetFileCreationTimeUtc(string filePath, bool fallback)
         {
             var appender = GetAppender(filePath);
@@ -354,9 +362,7 @@ namespace NLog.Internal.FileAppenders
 
             return result;
         }
-
-
-
+        
         /// <summary>
         /// Closes the specified appender and removes it from the list. 
         /// </summary>
