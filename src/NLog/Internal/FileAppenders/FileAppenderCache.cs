@@ -301,11 +301,13 @@ namespace NLog.Internal.FileAppenders
             return null;
         }
 
+#if !SILVERLIGHT
         public Mutex GetArchiveMutex(string fileName)
         {
             var appender = GetAppender(fileName);
             return appender == null ? null : appender.ArchiveMutex;
         }
+#endif
 
         public DateTime? GetFileCreationTimeUtc(string filePath, bool fallback)
         {

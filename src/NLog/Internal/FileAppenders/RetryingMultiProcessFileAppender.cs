@@ -121,6 +121,7 @@ namespace NLog.Internal.FileAppenders
             return null;
         }
 
+#if !SILVERLIGHT
         /// <summary>
         /// Creates a mutually-exclusive lock for archiving files.
         /// </summary>
@@ -129,6 +130,7 @@ namespace NLog.Internal.FileAppenders
         {
             return CreateSharableArchiveMutex();
         }
+#endif
 
         /// <summary>
         /// Factory class.

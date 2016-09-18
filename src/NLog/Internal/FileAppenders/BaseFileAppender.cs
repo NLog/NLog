@@ -66,7 +66,9 @@ namespace NLog.Internal.FileAppenders
             this.OpenTime = DateTime.UtcNow; // to be consistent with timeToKill in FileTarget.AutoClosingTimerCallback
             this.LastWriteTime = DateTime.MinValue;
             this.CaptureLastWriteTime = createParameters.CaptureLastWriteTime;
+#if !SILVERLIGHT
             this.ArchiveMutex = CreateArchiveMutex();
+#endif
         }
 
         protected bool CaptureLastWriteTime { get; private set; }
@@ -101,11 +103,13 @@ namespace NLog.Internal.FileAppenders
         /// <value>The file creation parameters.</value>
         public ICreateFileParameters CreateFileParameters { get; private set; }
 
+#if !SILVERLIGHT
         /// <summary>
         /// Gets the mutually-exclusive lock for archiving files.
         /// </summary>
         /// <value>The mutex for archiving.</value>
         public Mutex ArchiveMutex { get; private set; }
+#endif
 
         /// <summary>
         /// Writes the specified bytes.
@@ -168,6 +172,7 @@ namespace NLog.Internal.FileAppenders
             this.LastWriteTime = dateTime;
         }
 
+#if !SILVERLIGHT
         /// <summary>
         /// Creates a mutually-exclusive lock for archiving files.
         /// </summary>
@@ -237,6 +242,7 @@ namespace NLog.Internal.FileAppenders
             int cutOffIndex = canonicalName.Length - (maxMutexNameLength - mutexName.Length);
             return mutexName + canonicalName.Substring(cutOffIndex);
         }
+#endif
 
         /// <summary>
         /// Creates the file stream.
