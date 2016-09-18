@@ -77,8 +77,6 @@ namespace NLog.Internal
         [DllImport("kernel32.dll", SetLastError = true, PreserveSig = true, CharSet = CharSet.Unicode)]
         internal static extern uint GetModuleFileName([In] IntPtr hModule, [Out] StringBuilder lpFilename, [In] [MarshalAs(UnmanagedType.U4)] int nSize);
 
-        [DllImport("ole32.dll")]
-        internal static extern int CoGetObjectContext(ref Guid iid, out AspHelper.IObjectContext g);
     }
 }
 
