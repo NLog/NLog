@@ -35,9 +35,7 @@
 
 namespace NLog.Targets
 {
-    using System;
     using System.ComponentModel;
-    using System.Text;
     using System.Text.RegularExpressions;
     using NLog.Config;
 
@@ -176,27 +174,7 @@ namespace NLog.Targets
             return regexpression;
         }
 
-        /// <summary>
-        /// Replace regex result
-        /// </summary>
-        /// <param name="m"></param>
-        /// <returns></returns>
-        private string MatchEvaluator(Match m)
-        {
-            StringBuilder result = new StringBuilder(m.Value.Length + 5);
-
-            result.Append('\a');
-            result.Append((char)((int)this.ForegroundColor + 'A'));
-            result.Append((char)((int)this.BackgroundColor + 'A'));
-            result.Append(m.Value);
-            result.Append('\a');
-            result.Append('X');
-
-            return result.ToString();
-        }
-
-
-        internal string ReplaceWithEscapeSequences(string message)
+        internal string Replace(string message, MatchEvaluator matchEvaluator)
         {
             if (CompileRegex)
             {
@@ -207,7 +185,7 @@ namespace NLog.Targets
                     return message;
                 }
 
-                return regex.Replace(message, this.MatchEvaluator);
+                return regex.Replace(message, matchEvaluator);
             }
             //use regex cache
             var expression = GetRegexExpression();
@@ -215,9 +193,33 @@ namespace NLog.Targets
             {
                 RegexOptions regexOptions = GetRegexOptions(RegexOptions.None);
                 //the static methods of Regex will cache the regex
-                return System.Text.RegularExpressions.Regex.Replace(message, expression, this.MatchEvaluator, regexOptions);
+                return System.Text.RegularExpressions.Regex.Replace(message, expression, matchEvaluator, regexOptions);
             }
             return message;
+        }
+        
+        internal MatchCollection Matches(string message)
+        {
+            if (CompileRegex)
+            {
+                var regex = this.CompiledRegex;
+                if (regex == null)
+                {
+                    //empty regex so nothing todo
+                    return null;
+                }
+
+                return regex.Matches(message);
+            }
+            //use regex cache
+            var expression = GetRegexExpression();
+            if (expression != null)
+            {
+                RegexOptions regexOptions = GetRegexOptions(RegexOptions.None);
+                //the static methods of Regex will cache the regex
+                return System.Text.RegularExpressions.Regex.Matches(message, expression, regexOptions);
+            }
+            return null;
         }
     }
 }

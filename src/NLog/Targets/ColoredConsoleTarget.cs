@@ -36,11 +36,12 @@
 namespace NLog.Targets
 {
     using System;
-    using System.Text;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.IO;
+    using System.Text;
+    using NLog.Internal;
     using NLog.Config;
+    using System.IO;
 
     /// <summary>
     /// Writes log messages to the console with customizable coloring.
@@ -49,16 +50,6 @@ namespace NLog.Targets
     [Target("ColoredConsole")]
     public sealed class ColoredConsoleTarget : TargetWithLayoutHeaderAndFooter
     {
-        private static readonly IList<ConsoleRowHighlightingRule> defaultConsoleRowHighlightingRules = new List<ConsoleRowHighlightingRule>()
-        {
-            new ConsoleRowHighlightingRule("level == LogLevel.Fatal", ConsoleOutputColor.Red, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Error", ConsoleOutputColor.Yellow, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Warn", ConsoleOutputColor.Magenta, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Info", ConsoleOutputColor.White, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Debug", ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Trace", ConsoleOutputColor.DarkGray, ConsoleOutputColor.NoChange),
-        };
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ColoredConsoleTarget" /> class.
         /// </summary>
@@ -95,43 +86,25 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to use default row highlighting rules.
         /// </summary>
         /// <remarks>
-        /// The default rules are:
+        /// The default rules for Windows are:
         /// <table>
-        /// <tr>
-        /// <th>Condition</th>
-        /// <th>Foreground Color</th>
-        /// <th>Background Color</th>
-        /// </tr>
-        /// <tr>
-        /// <td>level == LogLevel.Fatal</td>
-        /// <td>Red</td>
-        /// <td>NoChange</td>
-        /// </tr>
-        /// <tr>
-        /// <td>level == LogLevel.Error</td>
-        /// <td>Yellow</td>
-        /// <td>NoChange</td>
-        /// </tr>
-        /// <tr>
-        /// <td>level == LogLevel.Warn</td>
-        /// <td>Magenta</td>
-        /// <td>NoChange</td>
-        /// </tr>
-        /// <tr>
-        /// <td>level == LogLevel.Info</td>
-        /// <td>White</td>
-        /// <td>NoChange</td>
-        /// </tr>
-        /// <tr>
-        /// <td>level == LogLevel.Debug</td>
-        /// <td>Gray</td>
-        /// <td>NoChange</td>
-        /// </tr>
-        /// <tr>
-        /// <td>level == LogLevel.Trace</td>
-        /// <td>DarkGray</td>
-        /// <td>NoChange</td>
-        /// </tr>
+        /// <tr><th>Condition</th><th>Foreground Color</th><th>Background Color</th></tr>
+        /// <tr><td>level == LogLevel.Fatal</td><td>Red</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Error</td><td>Yellow</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Warn</td><td>Magenta</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Info</td><td>White</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Debug</td><td>Gray</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Trace</td><td>DarkGray</td><td>NoChange</td></tr>
+        /// </table>
+        /// The default rules for Unix based systems are:
+        /// <table>
+        /// <tr><th>Condition</th><th>Foreground Color</th><th>Background Color</th></tr>
+        /// <tr><td>level == LogLevel.Fatal</td><td>DarkRed</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Error</td><td>DarkYellow</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Warn</td><td>DarkMagenta</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Info</td><td>DarkGreen</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Debug</td><td>Gray</td><td>NoChange</td></tr>
+        /// <tr><td>level == LogLevel.Trace</td><td>Gray</td><td>NoChange</td></tr>
         /// </table>
         /// </remarks>
         /// <docgen category='Highlighting Rules' order='9' />
@@ -204,51 +177,25 @@ namespace NLog.Targets
 
         private void Output(LogEventInfo logEvent, string message)
         {
-            ConsoleColor oldForegroundColor = Console.ForegroundColor;
-            ConsoleColor oldBackgroundColor = Console.BackgroundColor;
-            bool didChangeForegroundColor = false, didChangeBackgroundColor = false;
+            var colorizer = CreateConsoleColorizer(message);       
 
-            try
-            {
-                var matchingRule = GetMatchingRowHighlightingRule(logEvent);
+            var matchingRule = GetMatchingRowHighlightingRule(logEvent, colorizer.DefaultConsoleRowHighlightingRules);
+            colorizer.RowHighlightingRule = matchingRule;
+            colorizer.WordHighlightingRules = this.WordHighlightingRules;
 
-                didChangeForegroundColor = IsColorChange(matchingRule.ForegroundColor, oldForegroundColor);
-                if (didChangeForegroundColor)
-                    Console.ForegroundColor = (ConsoleColor)matchingRule.ForegroundColor;
-
-                didChangeBackgroundColor = IsColorChange(matchingRule.BackgroundColor, oldBackgroundColor);
-                if (didChangeBackgroundColor)
-                    Console.BackgroundColor = (ConsoleColor)matchingRule.BackgroundColor;
-
-                var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
-                if (this.WordHighlightingRules.Count == 0)
-                {
-                    consoleStream.WriteLine(message);
-                }
-                else
-                {
-                    message = message.Replace("\a", "\a\a");
-                    foreach (ConsoleWordHighlightingRule hl in this.WordHighlightingRules)
-                    {
-                        message = hl.ReplaceWithEscapeSequences(message);
-                    }
-
-                    ColorizeEscapeSequences(consoleStream, message, new ColorPair(Console.ForegroundColor, Console.BackgroundColor), new ColorPair(oldForegroundColor, oldBackgroundColor));
-                    consoleStream.WriteLine();
-
-                    didChangeForegroundColor = didChangeBackgroundColor = true;
-                }
-            }
-            finally
-            {
-                if (didChangeForegroundColor)
-                    Console.ForegroundColor = oldForegroundColor;
-                if (didChangeBackgroundColor)
-                    Console.BackgroundColor = oldBackgroundColor;
-            }
+            var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
+            colorizer.ColorizeMessage(consoleStream);
         }
 
-        private ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(LogEventInfo logEvent)
+        private IConsoleColorizer CreateConsoleColorizer(string message)
+        {
+            if (!PlatformDetector.IsUnix)
+                return new ConsoleColorizer(message);
+            else
+                return new AnsiConsoleColorizer(message);
+        }
+
+        private ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(LogEventInfo logEvent, IList<ConsoleRowHighlightingRule> defaultConsoleRowHighlightingRules)
         {
             foreach (ConsoleRowHighlightingRule rule in this.RowHighlightingRules)
             {
@@ -266,134 +213,6 @@ namespace NLog.Targets
             }
 
             return ConsoleRowHighlightingRule.Default;
-        }
-
-        private static bool IsColorChange(ConsoleOutputColor targetColor, ConsoleColor oldColor)
-        {
-            return (targetColor != ConsoleOutputColor.NoChange) && ((ConsoleColor)targetColor != oldColor);
-        }
-
-        private static void ColorizeEscapeSequences(
-            TextWriter output,
-            string message,
-            ColorPair startingColor,
-            ColorPair defaultColor)
-        {
-            var colorStack = new Stack<ColorPair>();
-
-            colorStack.Push(startingColor);
-
-            int p0 = 0;
-
-            while (p0 < message.Length)
-            {
-                int p1 = p0;
-                while (p1 < message.Length && message[p1] >= 32)
-                {
-                    p1++;
-                }
-
-                // text
-                if (p1 != p0)
-                {
-                    output.Write(message.Substring(p0, p1 - p0));
-                }
-
-                if (p1 >= message.Length)
-                {
-                    p0 = p1;
-                    break;
-                }
-
-                // control characters
-                char c1 = message[p1];
-                char c2 = (char)0;
-
-                if (p1 + 1 < message.Length)
-                {
-                    c2 = message[p1 + 1];
-                }
-
-                if (c1 == '\a' && c2 == '\a')
-                {
-                    output.Write('\a');
-                    p0 = p1 + 2;
-                    continue;
-                }
-
-                if (c1 == '\r' || c1 == '\n')
-                {
-                    Console.ForegroundColor = defaultColor.ForegroundColor;
-                    Console.BackgroundColor = defaultColor.BackgroundColor;
-                    output.Write(c1);
-                    Console.ForegroundColor = colorStack.Peek().ForegroundColor;
-                    Console.BackgroundColor = colorStack.Peek().BackgroundColor;
-                    p0 = p1 + 1;
-                    continue;
-                }
-
-                if (c1 == '\a')
-                {
-                    if (c2 == 'X')
-                    {
-                        colorStack.Pop();
-                        Console.ForegroundColor = colorStack.Peek().ForegroundColor;
-                        Console.BackgroundColor = colorStack.Peek().BackgroundColor;
-                        p0 = p1 + 2;
-                        continue;
-                    }
-
-                    var foreground = (ConsoleOutputColor)(c2 - 'A');
-                    var background = (ConsoleOutputColor)(message[p1 + 2] - 'A');
-
-                    if (foreground != ConsoleOutputColor.NoChange)
-                    {
-                        Console.ForegroundColor = (ConsoleColor)foreground;
-                    }
-
-                    if (background != ConsoleOutputColor.NoChange)
-                    {
-                        Console.BackgroundColor = (ConsoleColor)background;
-                    }
-
-                    colorStack.Push(new ColorPair(Console.ForegroundColor, Console.BackgroundColor));
-                    p0 = p1 + 3;
-                    continue;
-                }
-
-                output.Write(c1);
-                p0 = p1 + 1;
-            }
-
-            if (p0 < message.Length)
-            {
-                output.Write(message.Substring(p0));
-            }
-        }
-
-        /// <summary>
-        /// Color pair (foreground and background).
-        /// </summary>
-        internal struct ColorPair
-        {
-            private readonly ConsoleColor foregroundColor;
-            private readonly ConsoleColor backgroundColor;
-
-            internal ColorPair(ConsoleColor foregroundColor, ConsoleColor backgroundColor)
-            {
-                this.foregroundColor = foregroundColor;
-                this.backgroundColor = backgroundColor;
-            }
-
-            internal ConsoleColor BackgroundColor
-            {
-                get { return this.backgroundColor; }
-            }
-
-            internal ConsoleColor ForegroundColor
-            {
-                get { return this.foregroundColor; }
-            }
         }
     }
 }
