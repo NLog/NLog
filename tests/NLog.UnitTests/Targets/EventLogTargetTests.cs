@@ -89,9 +89,11 @@ namespace NLog.UnitTests.Targets
         [Theory]
         [InlineData(0)]
         [InlineData(-1)]
-        public void ConfigurationShouldThrowException_WhenMaxMessageLengthIsNegativeOrZero(int maxMessageLength)
+        public void MaxMessageLengthShouldSetToDefault_WhenConfigurationIsNegativeOrZero(int maxMessageLength)
         {
-            string configrationText = string.Format(@"
+            const int expectedMaxMessageLength = 16384;
+
+            LoggingConfiguration c = CreateConfigurationFromString(string.Format(@"
             <nlog ThrowExceptions='true'>
                 <targets>
                     <target type='EventLog' name='eventLog1' layout='${{message}}' maxmessagelength='{0}' />
@@ -100,24 +102,23 @@ namespace NLog.UnitTests.Targets
                       <logger name='*' writeTo='eventLog1'>
                       </logger>
                     </rules>
-            </nlog>", maxMessageLength);
+            </nlog>", maxMessageLength));
 
-            NLogConfigurationException ex = Assert.Throws<NLogConfigurationException>(() => CreateConfigurationFromString(configrationText));
-            Assert.Equal("MaxMessageLength cannot be zero or negative.", ex.InnerException.InnerException.Message);
+            var eventLog1 = c.FindTargetByName<EventLogTarget>("eventLog1");
+            Assert.Equal(expectedMaxMessageLength, eventLog1.MaxMessageLength);
         }
 
         [Theory]
         [InlineData(0)]
         [InlineData(-1)]
-        public void ShouldThrowException_WhenMaxMessageLengthSetNegativeOrZero(int maxMessageLength)
+        public void MaxMessageLengthShouldSetToDefault_WhenSetNegativeOrZero(int maxMessageLength)
         {
-            ArgumentException ex = Assert.Throws<ArgumentException>(() =>
-            {
-                var target = new EventLogTarget();
-                target.MaxMessageLength = maxMessageLength;
-            });
+            const int expectedMaxMessageLength = 16384;
 
-            Assert.Equal("MaxMessageLength cannot be zero or negative.", ex.Message);
+            var target = new EventLogTarget();
+            target.MaxMessageLength = maxMessageLength;
+
+            Assert.Equal(expectedMaxMessageLength, target.MaxMessageLength);
         }
 
 
@@ -391,8 +392,8 @@ namespace NLog.UnitTests.Targets
             var logger = LogManager.GetLogger("WriteEventLogEntry");
 
             var sourceName = "NLog.UnitTests" + Guid.NewGuid().ToString("N");
-            var logEvent = CreateLogEventWithDynamicSource(expectedMessage, LogLevel.Trace, "DynamicSource", sourceName);           
-            
+            var logEvent = CreateLogEventWithDynamicSource(expectedMessage, LogLevel.Trace, "DynamicSource", sourceName);
+
             logger.Log(logEvent);
 
             var eventLog = new EventLog(target.Log);
