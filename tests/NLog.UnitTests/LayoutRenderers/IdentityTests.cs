@@ -32,12 +32,17 @@
 // 
 
 using System;
+
 using NLog.Common;
 using NLog.Config;
 using NLog.Targets;
 using NLog.Targets.Wrappers;
 using NLog.UnitTests.Common;
 using NLog.UnitTests.Targets.Wrappers;
+
+#if !NET3_5 && !NET4_0
+using System.Threading.Tasks;
+#endif
 
 namespace NLog.UnitTests.LayoutRenderers
 {
@@ -128,10 +133,10 @@ namespace NLog.UnitTests.LayoutRenderers
                     target.BeforeWrite += (logevent, rendered1, asyncThreadId1) =>
                     {
                         //clear in current thread before write
-                        Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("ANOTHER user", "type"), null);
+                        Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("ANOTHER user", "type"),null);
                     };
 
-                    target.EventWritten += (logevent, rendered1, asyncThreadId1) =>
+                     target.EventWritten += (logevent, rendered1, asyncThreadId1) =>
                     {
                         rendered = rendered1;
                         asyncThreadId = asyncThreadId1;
@@ -169,6 +174,121 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
+#if !NET3_5 && !NET4_0
+
+        /// <summary>
+        /// Test writing ${identity} async
+        /// </summary>
+        [Fact]
+        public async Task MultiThreadedIdentityTestAsync_asyncTargets()
+        {
+            await MultiThreadedIdentityTestAsync_inner(true);
+        }
+
+        /// <summary>
+        /// Test writing ${identity} async
+        /// </summary>
+        [Fact]
+        public async Task MultiThreadedIdentityTestAsync_syncTargets()
+        {
+            await MultiThreadedIdentityTestAsync_inner(false);
+        }
+
+        private static async Task MultiThreadedIdentityTestAsync_inner(bool async)
+        {
+            var oldPrincipal = Thread.CurrentPrincipal;
+
+
+            try
+            {
+                ConfigurationItemFactory.Default.Targets
+                    .RegisterDefinition("CSharpEventTarget", typeof(CSharpEventTarget));
+
+                var targetsAttr = @async ? "async='true'" : string.Empty;
+                LogManager.Configuration = CreateConfigurationFromString(string.Format(@"<?xml version='1.0' encoding='utf-8' ?>
+<nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
+      xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+ 
+      internalLogLevel='Debug'
+      throwExceptions='true' >
+
+  <targets {0}>
+    <target name='target1' xsi:type='CSharpEventTarget' layout='${{identity}}' />
+  </targets>
+
+  <rules>
+    <logger name='*' writeTo='target1' />
+  </rules>
+</nlog>
+", targetsAttr));
+
+                try
+                {
+
+                    
+                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("USER", "type"), null);
+                    var continuationHit = new ManualResetEvent(false);
+                    int threadId = Thread.CurrentThread.ManagedThreadId;
+                    int asyncThreadId = 0;
+                    
+                    CSharpEventTarget target;
+
+                    if (async)
+                    {
+                        var asyncTarget = LogManager.Configuration.FindTargetByName<AsyncTargetWrapper>("target1");
+                        target = asyncTarget?.WrappedTarget as CSharpEventTarget;
+                    }
+                    else
+                    {
+                        target = LogManager.Configuration.FindTargetByName<CSharpEventTarget>("target1");
+                    }
+                    Assert.NotNull(target);
+
+                    string rendered = "notset";
+                    target.EventWritten += (logevent, rendered1, asyncThreadId1) =>
+                    {
+                        rendered = rendered1;
+                        asyncThreadId = Thread.CurrentThread.ManagedThreadId;
+                        continuationHit.Set();
+                    };
+
+                    var logger = LogManager.GetCurrentClassLogger();
+                    await Task.Delay(1);
+                    logger.Debug("test write");
+
+                    Assert.True(continuationHit.WaitOne());
+
+                    //should be written in another thread.
+                    Assert.Equal("auth:type:USER", rendered);
+                    Assert.NotEqual(threadId, asyncThreadId);
+
+
+                    //now change the user
+
+                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("USER2", "type"), null);
+                    continuationHit = new ManualResetEvent(false);
+
+                    await Task.Delay(1);
+                    logger.Debug("test write2");
+
+                    Assert.True(continuationHit.WaitOne());
+                    Assert.Equal("auth:type:USER2", rendered);
+
+
+                }
+                finally
+                {
+                    LogManager.Configuration.Close();
+                }
+            }
+            finally
+            {
+                Thread.CurrentPrincipal = oldPrincipal;
+            }
+        }
+
+#endif
+
         [Fact]
         public void IdentityTest2()
         {
@@ -196,7 +316,7 @@ namespace NLog.UnitTests.LayoutRenderers
             {
             }
 
-#region Overrides of GenericIdentity
+            #region Overrides of GenericIdentity
 
             /// <summary>
             /// Gets a value indicating whether the user has been authenticated.
@@ -209,7 +329,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 get { return false; }
             }
 
-#endregion
+            #endregion
         }
     }
 }
