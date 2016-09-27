@@ -119,6 +119,8 @@ namespace NLog.Internal.FileAppenders
         /// <param name="bytes">The bytes.</param>
         public abstract void Write(byte[] bytes);
 
+        public abstract void Write(byte[] bytes, int offset, int count);
+
         /// <summary>
         /// Flushes this instance.
         /// </summary>

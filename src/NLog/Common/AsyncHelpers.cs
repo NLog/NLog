@@ -73,7 +73,7 @@ namespace NLog.Common
                     return;
                 }
 
-                action(enumerator.Current, PreventMultipleCalls(invokeNext));
+                action(enumerator.Current, PreventMultipleCalls(invokeNext, null));
             };
 
             invokeNext(null);
@@ -105,7 +105,7 @@ namespace NLog.Common
                         return;
                     }
 
-                    action(PreventMultipleCalls(invokeNext));
+                    action(PreventMultipleCalls(invokeNext, null));
                 };
 
             invokeNext(null);
@@ -132,7 +132,7 @@ namespace NLog.Common
                     }
 
                     // call the action and continue
-                    action(PreventMultipleCalls(asyncContinuation));
+                    action(PreventMultipleCalls(asyncContinuation, null));
                 };
 
             return continuation;
@@ -202,7 +202,7 @@ namespace NLog.Common
             {
                 T itemCopy = item;
 
-                ThreadPool.QueueUserWorkItem(s => action(itemCopy, PreventMultipleCalls(continuation)));
+                ThreadPool.QueueUserWorkItem(s => action(itemCopy, PreventMultipleCalls(continuation, null)));
             }
         }
 
@@ -219,7 +219,7 @@ namespace NLog.Common
             var ev = new ManualResetEvent(false);
             Exception lastException = null;
 
-            action(PreventMultipleCalls(ex => { lastException = ex; ev.Set(); }));
+            action(PreventMultipleCalls(ex => { lastException = ex; ev.Set(); }, null));
             ev.WaitOne();
             if (lastException != null)
             {
@@ -232,15 +232,18 @@ namespace NLog.Common
         /// is invoked only once.
         /// </summary>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        /// <param name="logEvent">The asynchronous continuation.</param>
         /// <returns>Wrapped asynchronous continuation.</returns>
-        public static AsyncContinuation PreventMultipleCalls(AsyncContinuation asyncContinuation)
+        public static AsyncContinuation PreventMultipleCalls(AsyncContinuation asyncContinuation, LogEventInfo logEvent = null)
         {
-            if (asyncContinuation.Target is SingleCallContinuation)
+            SingleCallContinuation target = asyncContinuation.Target as SingleCallContinuation;
+            if (target != null)
             {
+                target.AllowExceptions = false; // Async target cannot propagate exceptions
                 return asyncContinuation;
             }
 
-            return new SingleCallContinuation(asyncContinuation).Function;
+            return new SingleCallContinuation(asyncContinuation, logEvent?.SequenceID ?? 0).Function;
         }
 
         /// <summary>

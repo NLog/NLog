@@ -97,7 +97,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">Logging event to be written out.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(AsyncHelpers.PrecededBy(logEvent.Continuation, this.WrappedTarget.Flush)));
+            this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(AsyncHelpers.PrecededBy(logEvent.Continuation, this.WrappedTarget.Flush), logEvent));
         }
     }
 }

@@ -45,12 +45,21 @@ namespace NLog.Internal
         private AsyncContinuation asyncContinuation;
 
         /// <summary>
+        /// Should exceptions be thrown from Target to original logger (False when Async-Target)
+        /// </summary>
+        internal bool AllowExceptions { get; set; }
+
+        internal int LogEventSeqNo { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="SingleCallContinuation"/> class.
         /// </summary>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        public SingleCallContinuation(AsyncContinuation asyncContinuation)
+        /// <param name="logEventSeqNo">The asynchronous continuation.</param>
+        public SingleCallContinuation(AsyncContinuation asyncContinuation, int logEventSeqNo)
         {
             this.asyncContinuation = asyncContinuation;
+            this.LogEventSeqNo = logEventSeqNo;
         }
 
         /// <summary>
@@ -71,12 +80,10 @@ namespace NLog.Internal
             {
                 InternalLogger.Error(ex, "Exception in asynchronous handler.");
 
-                if (ex.MustBeRethrown())
+                if (AllowExceptions || ex.MustBeRethrown())
                 {
                     throw;
                 }
-
-                
             }
         }
     }

@@ -69,6 +69,7 @@
       <DependentUpon>InternalLogger.tt</DependentUpon>
     </Compile>
     <Compile Include="Common\LogEventInfoBuffer.cs" />
+    <Compile Include="Common\PoolSetup.cs" />
     <Compile Include="Conditions\ConditionAndExpression.cs" />
     <Compile Include="Conditions\ConditionEvaluationException.cs" />
     <Compile Include="Conditions\ConditionExpression.cs" />
@@ -138,11 +139,13 @@
     <Compile Include="Internal\AspHelper.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="Internal\CompleteWhenAllContinuation.cs" />
     <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
     <Compile Include="Internal\EncodingHelpers.cs" />
     <Compile Include="Internal\EnumHelpers.cs" />
     <Compile Include="Internal\EnvironmentHelper.cs" />
+    <Compile Include="Internal\ExceptionHandlerContinuation.cs" />
     <Compile Include="Internal\ExceptionHelper.cs" />
     <Compile Include="Internal\FactoryHelper.cs" />
     <Compile Include="Internal\Fakeables\AppDomainWrapper.cs" />
@@ -153,6 +156,7 @@
     <Compile Include="Internal\FileAppenders\ICreateFileParameters.cs" />
     <Compile Include="Internal\FileAppenders\IFileAppenderFactory.cs" />
     <Compile Include="Internal\FileAppenders\MutexMultiProcessFileAppender.cs" />
+    <Compile Include="Internal\FileAppenders\NullAppender.cs" />
     <Compile Include="Internal\FileAppenders\RetryingMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\SingleProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
@@ -187,6 +191,14 @@
     <Compile Include="Internal\ParameterUtils.cs" />
     <Compile Include="Internal\PathHelpers.cs" />
     <Compile Include="Internal\PlatformDetector.cs" />
+    <Compile Include="Internal\PoolFactory\ILogEventObjectFactory.cs" />
+    <Compile Include="Internal\PoolFactory\IPoolObject.cs" />
+    <Compile Include="Internal\PoolFactory\LogEventObjectFactory.cs" />
+    <Compile Include="Internal\PoolFactory\LogEventPoolFactory.cs" />
+    <Compile Include="Internal\PoolFactory\PoolConfiguration.cs" />
+    <Compile Include="Internal\PoolFactory\ReusableAsyncLogEventInfoArray.cs" />
+    <Compile Include="Internal\PoolFactory\ReusableMemoryStream.cs" />
+    <Compile Include="Internal\PoolFactory\ReusableStringBuilder.cs" />
     <Compile Include="Internal\PortableFileCharacteristicsHelper.cs" />
     <Compile Include="Internal\PortableThreadIDHelper.cs" />
     <Compile Include="Internal\PropertyHelper.cs" />
@@ -288,6 +300,7 @@
     <Compile Include="LayoutRenderers\Wrappers\WhenLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WrapLineLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WrapperLayoutRendererBase.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\WrapperLayoutRendererBuilderBase.cs" />
     <Compile Include="LayoutRenderers\Wrappers\XmlEncodeLayoutRendererWrapper.cs" />
     <Compile Include="Layouts\CompoundLayout.cs" />
     <Compile Include="Layouts\CsvColumn.cs" />

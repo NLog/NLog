@@ -94,7 +94,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">The log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            AsyncHelpers.ForEachItemSequentially(this.Targets, logEvent.Continuation, (t, cont) => t.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(cont)));
+            AsyncHelpers.ForEachItemSequentially(this.Targets, logEvent.Continuation, (t, cont) => t.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(cont, logEvent)));
         }
 
         /// <summary>
@@ -103,18 +103,18 @@ namespace NLog.Targets.Wrappers
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
-        protected override void Write(AsyncLogEventInfo[] logEvents)
+        protected override void Write(ArraySegment<AsyncLogEventInfo> logEvents)
         {
-            InternalLogger.Trace("Writing {0} events", logEvents.Length);
+            InternalLogger.Trace("Writing {0} events", logEvents.Count);
 
-            for (int i = 0; i < logEvents.Length; ++i)
+            for (int i = logEvents.Offset; i < (logEvents.Offset + logEvents.Count); ++i)
             {
-                logEvents[i].Continuation = CountedWrap(logEvents[i].Continuation, this.Targets.Count);
+                logEvents.Array[i].Continuation = CountedWrap(logEvents.Array[i].Continuation, this.Targets.Count);
             }
 
             foreach (var t in this.Targets)
             {
-                InternalLogger.Trace("Sending {0} events to {1}", logEvents.Length, t);
+                InternalLogger.Trace("Sending {0} events to {1}", logEvents.Count, t);
                 t.WriteAsyncLogEvents(logEvents);
             }
         }

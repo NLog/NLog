@@ -551,6 +551,10 @@ namespace NLog.Config
             this.ExceptionLoggingOldStyle = nlogElement.GetOptionalBooleanAttribute("exceptionLoggingOldStyle", false);
 #pragma warning restore 618
 
+            string defaultPoolSetup = nlogElement.GetOptionalAttribute("defaultPoolSetup", "");
+            if (!string.IsNullOrEmpty(defaultPoolSetup))
+                PropertyHelper.SetPropertyFromString(this, "DefaultPoolSetup", defaultPoolSetup, this.ConfigurationItemFactory);
+
             bool autoReload = nlogElement.GetOptionalBooleanAttribute("autoReload", autoReloadDefault);
             if (filePath != null)
                 this.fileMustAutoReloadLookup[GetFileLookupKey(filePath)] = autoReload;

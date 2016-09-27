@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("rot13")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    public sealed class Rot13LayoutRendererWrapper : WrapperLayoutRendererBase
+    public sealed class Rot13LayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
         /// <summary>
         /// Gets or sets the layout to be wrapped.
@@ -63,31 +63,39 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Encodes/Decodes ROT-13-encoded string.
         /// </summary>
         /// <param name="encodedValue">The string to be encoded/decoded.</param>
-        /// <returns>Encoded/Decoded text.</returns>
-        public static string DecodeRot13(string encodedValue)
+        public static void DecodeRot13(System.Text.StringBuilder encodedValue)
         {
             if (encodedValue == null)
             {
-                return null;
+                return;
             }
 
-            char[] chars = encodedValue.ToCharArray();
-            for (int i = 0; i < chars.Length; ++i)
+            for (int i = 0; i < encodedValue.Length; ++i)
             {
-                chars[i] = DecodeRot13Char(chars[i]);
+                encodedValue[i] = DecodeRot13Char(encodedValue[i]);
             }
-
-            return new string(chars);
         }
 
         /// <summary>
-        /// Transforms the output of another layout.
+        /// Encodes/Decodes ROT-13-encoded string.
         /// </summary>
-        /// <param name="text">Output to be transform.</param>
-        /// <returns>Transformed text.</returns>
-        protected override string Transform(string text)
+        /// <param name="encodedValue">The string to be encoded/decoded.</param>
+        /// <returns>Encoded/Decoded text.</returns>
+        public static string DecodeRot13(string encodedValue)
         {
-            return DecodeRot13(text);
+            System.Text.StringBuilder sb = new System.Text.StringBuilder(encodedValue.Length);
+            sb.Append(encodedValue);
+            DecodeRot13(sb);
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Post-processes the rendered message. 
+        /// </summary>
+        /// <param name="target">Output to be transform.</param>
+        protected override void TransformFormattedMesssage(System.Text.StringBuilder target)
+        {
+            DecodeRot13(target);
         }
 
         private static char DecodeRot13Char(char c)

@@ -437,7 +437,7 @@ namespace NLog.Targets
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
-        protected override void Write(AsyncLogEventInfo[] logEvents)
+        protected override void Write(ArraySegment<AsyncLogEventInfo> logEvents)
         {
             var buckets = SortHelpers.BucketSort(logEvents, c => this.BuildConnectionString(c.LogEvent));
 

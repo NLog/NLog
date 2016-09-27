@@ -138,10 +138,10 @@ namespace NLog.Targets.Wrappers
 
                     // sleep and try again
                     Thread.Sleep(this.RetryDelayMilliseconds);
-                    this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
+                    this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation, logEvent));
                 };
 
-            this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
+            this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation, logEvent));
         }
     }
 }

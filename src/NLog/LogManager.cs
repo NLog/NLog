@@ -251,6 +251,18 @@ namespace NLog
         }
 
         /// <summary>
+        /// Gets the specified named logger.
+        /// </summary>
+        /// <param name="name">Name of the logger.</param>
+        /// <param name="poolSetup">Object pool configuration for the logger.</param>
+        /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
+        [CLSCompliant(false)]
+        public static Logger GetLogger(string name, PoolSetup poolSetup)
+        {
+            return factory.GetLogger(name, poolSetup);
+        }
+
+        /// <summary>
         /// Gets the specified named custom logger.  Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
         /// <param name="name">Name of the logger.</param>

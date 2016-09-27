@@ -96,6 +96,11 @@ namespace NLog.Internal.FileAppenders
         /// <param name="bytes">The bytes to be written.</param>
         public override void Write(byte[] bytes)
         {
+            Write(bytes, 0, bytes.Length);
+        }
+
+        public override void Write(byte[] bytes, int offset, int count)
+        {
             if (this.mutex == null)
             {
                 return;
@@ -115,7 +120,7 @@ namespace NLog.Internal.FileAppenders
             try
             {
                 this.fileStream.Seek(0, SeekOrigin.End);
-                this.fileStream.Write(bytes, 0, bytes.Length);
+                this.fileStream.Write(bytes, offset, count);
                 this.fileStream.Flush();
                 if (CaptureLastWriteTime)
                 {

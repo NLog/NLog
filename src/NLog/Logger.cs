@@ -35,6 +35,7 @@ namespace NLog
 {
     using System;
     using System.ComponentModel;
+    using NLog.Common;
     using NLog.Internal;
     using JetBrains.Annotations;
 #if ASYNC_SUPPORTED
@@ -57,6 +58,8 @@ namespace NLog
         private volatile bool isErrorEnabled;
         private volatile bool isFatalEnabled;
 
+        private Internal.PoolFactory.ILogEventObjectFactory _objectFactory = Internal.PoolFactory.LogEventObjectFactory.Instance;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Logger"/> class.
         /// </summary>
@@ -78,6 +81,12 @@ namespace NLog
         /// Gets the factory that created this logger.
         /// </summary>
         public LogFactory Factory { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public PoolSetup PoolSetup { get { return poolSetup.HasValue ? poolSetup.Value : (Factory != null && Factory.Configuration != null) ? Factory.Configuration.DefaultPoolSetup : PoolSetup.None; } set { poolSetup = value; } }
+        private PoolSetup? poolSetup;
 
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the specified level.
@@ -383,14 +392,15 @@ namespace NLog
 
         internal void WriteToTargets(LogLevel level, Exception ex, [Localizable(false)] string message, object[] args)
         {
-            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, ex, this.Factory.DefaultCultureInfo, message, args)), this.Factory);
+            LogEventInfo logEvent = this._objectFactory.CreateLogEvent(level, this.Name, this.Factory.DefaultCultureInfo, message, args, ex);
+            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(logEvent), this.Factory);
         }
 
         internal void WriteToTargets(LogLevel level, Exception ex, IFormatProvider formatProvider, [Localizable(false)] string message, object[] args)
         {
-            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, ex, formatProvider, message, args)), this.Factory);
+            LogEventInfo logEvent  = this._objectFactory.CreateLogEvent(level, this.Name, formatProvider, message, args, ex);
+            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(logEvent), this.Factory);
         }
-
 
         private LogEventInfo PrepareLogEventInfo(LogEventInfo logEvent)
         {
@@ -543,41 +553,40 @@ namespace NLog
         {
             this.Name = name;
             this.Factory = factory;
+            if (this.Factory != null && this.Factory.Configuration != null)
+                this.Factory.Configuration.ConfigurePool(ref _objectFactory, Name, PoolSetup, true, 0);
             this.SetConfiguration(loggerConfiguration);
         }
 
         internal void WriteToTargets(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, object[] args)
         {
-            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, formatProvider, message, args)), this.Factory);
+            LogEventInfo logEvent = this._objectFactory.CreateLogEvent(level, this.Name, formatProvider, message, args, null);
+            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(logEvent), this.Factory);
         }
 
         internal void WriteToTargets(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message)
         {
             // please note that this overload calls the overload of LogEventInfo.Create with object[] parameter on purpose -
             // to avoid unnecessary string.Format (in case of calling Create(LogLevel, string, IFormatProvider, object))
-            var logEvent = LogEventInfo.Create(level, this.Name, formatProvider, message, (object[])null);
+            LogEventInfo logEvent = this._objectFactory.CreateLogEvent(level, this.Name, formatProvider, message, (object[])null, null);
             LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(logEvent), this.Factory);
         }
 
         internal void WriteToTargets<T>(LogLevel level, IFormatProvider formatProvider, T value)
         {
-            var logEvent = PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, formatProvider, value));
-            var ex = value as Exception;
-            if (ex != null)
-            {
-                //also record exception
-                logEvent.Exception = ex;
-             
-            }
+            var ex = value as Exception;    // also record exception
+            LogEventInfo logEvent = this._objectFactory.CreateLogEvent(level, this.Name, formatProvider, "{0}", new object[] { value }, ex);
+            logEvent = PrepareLogEventInfo(logEvent);
             LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), logEvent, this.Factory);
         }
 
         [Obsolete("Use WriteToTargets(Exception ex, LogLevel level, IFormatProvider formatProvider, string message, object[] args) method instead.")]
         internal void WriteToTargets(LogLevel level, [Localizable(false)] string message, Exception ex)
         {
-            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, message, ex)), this.Factory);
+            LogEventInfo logEvent = this._objectFactory.CreateLogEvent(level, this.Name, null, message, (object[])null, ex);
+            logEvent = PrepareLogEventInfo(logEvent);
+            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), logEvent, this.Factory);
         }
-
 
         internal void WriteToTargets(LogLevel level, [Localizable(false)] string message, object[] args)
         {

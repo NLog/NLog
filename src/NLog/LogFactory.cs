@@ -468,6 +468,18 @@ namespace NLog
         }
 
         /// <summary>
+        /// Gets the specified named logger.
+        /// </summary>
+        /// <param name="name">Name of the logger.</param>
+        /// <param name="poolSetup">Object pool configuration for the logger.</param>
+        /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument 
+        /// are not guaranteed to return the same logger reference.</returns>
+        public Logger GetLogger(string name, PoolSetup poolSetup)
+        {
+            return this.GetLogger(new LoggerCacheKey(name, typeof(Logger)), poolSetup);
+        }
+
+        /// <summary>
         /// Gets the specified named logger.  Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
         /// <param name="name">Name of the logger.</param>
@@ -962,6 +974,11 @@ namespace NLog
 
         private Logger GetLogger(LoggerCacheKey cacheKey)
         {
+            return GetLogger(cacheKey, default(PoolSetup?));
+        }
+
+        private Logger GetLogger(LoggerCacheKey cacheKey, PoolSetup? poolSetup)
+        {
             lock (this.syncRoot)
             {
                 Logger existingLogger = loggerCache.Retrieve(cacheKey);
@@ -1033,6 +1050,8 @@ namespace NLog
 
                 if (cacheKey.ConcreteType != null)
                 {
+                    if (poolSetup.HasValue)
+                        newLogger.PoolSetup = poolSetup.Value;
                     newLogger.Initialize(cacheKey.Name, this.GetConfigurationForLogger(cacheKey.Name, this.Configuration), this);
                 }
 
