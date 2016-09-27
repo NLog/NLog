@@ -66,6 +66,7 @@ namespace NLog.Internal.PoolFactory
 
         public void CopyTo(StringBuilder builder)
         {
+#if !SILVERLIGHT4
             char[] workBuffer = GetWorkBuffer();
             if (workBuffer == null)
                 workBuffer = new char[1024];
@@ -75,6 +76,9 @@ namespace NLog.Internal.PoolFactory
                 _result.CopyTo(i, workBuffer, 0, charCount);
                 builder.Append(workBuffer, 0, charCount);
             }
+#else
+            builder.Apppend(_result.ToString());
+#endif
         }
 
         void IDisposable.Dispose()

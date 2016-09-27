@@ -37,6 +37,7 @@ namespace NLog.UnitTests
 {
     using System;
     using NLog.Common;
+    using NLog.Internal;    // PlatformDetector
     using System.IO;
     using System.Text;
 
