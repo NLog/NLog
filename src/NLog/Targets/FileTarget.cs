@@ -1115,14 +1115,8 @@ namespace NLog.Targets
 
         private ArraySegment<byte> TransformBuilder(StringBuilder builder, char[] transformBuffer, MemoryStream workStream)
         {
-            if (workStream == null || transformBuffer == null)
-            {
-                // Faster than MemoryStream, but generates garbage. Array must be allocated, so it will survieve leaving this scope
-                var str = builder.ToString();
-                byte[] bytes = this.Encoding.GetBytes(str);
-                return TransformBytes(new ArraySegment<byte>(bytes));
-            }
-            else
+#if !SILVERLIGHT4
+            if (workStream != null && transformBuffer != null)
             {
                 for (int i = 0; i < builder.Length; i += transformBuffer.Length)
                 {
@@ -1134,6 +1128,14 @@ namespace NLog.Targets
                     workStream.Position = workStream.Length;
                 }
                 return TransformBytes(new ArraySegment<byte>(workStream.GetBuffer(), 0, (int)workStream.Length));
+            }
+            else
+#endif
+            {
+                // Faster than MemoryStream, but generates garbage. Array must be allocated, so it will survieve leaving this scope
+                var str = builder.ToString();
+                byte[] bytes = this.Encoding.GetBytes(str);
+                return TransformBytes(new ArraySegment<byte>(bytes));
             }
         }
 
