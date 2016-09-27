@@ -33,9 +33,9 @@
 
 namespace NLog.Targets.Wrappers
 {
+    using System;
     using System.Collections.Generic;
     using NLog.Common;
-    using NLog.Internal;
 
     /// <summary>
     /// Asynchronous request queue.
@@ -90,7 +90,9 @@ namespace NLog.Targets.Wrappers
                     {
                         case AsyncTargetWrapperOverflowAction.Discard:
                             InternalLogger.Debug("Discarding one element from queue");
-                            this.logEventInfoQueue.Dequeue();
+                            var discarded = this.logEventInfoQueue.Dequeue();
+                            if (discarded.LogEvent != null && discarded.LogEvent.PoolReleaseContinuation != null)
+                                discarded.LogEvent.PoolReleaseContinuation.Delegate.Invoke(null);
                             break;
 
                         case AsyncTargetWrapperOverflowAction.Grow:
@@ -122,18 +124,17 @@ namespace NLog.Targets.Wrappers
         /// <returns>The array of log events.</returns>
         public AsyncLogEventInfo[] DequeueBatch(int count)
         {
-            var resultEvents = new List<AsyncLogEventInfo>();
+            AsyncLogEventInfo[] resultEvents;
 
             lock (this)
             {
+                if (this.logEventInfoQueue.Count < count)
+                    count = this.logEventInfoQueue.Count;
+
+                resultEvents = new AsyncLogEventInfo[count];
                 for (int i = 0; i < count; ++i)
                 {
-                    if (this.logEventInfoQueue.Count <= 0)
-                    {
-                        break;
-                    }
-
-                    resultEvents.Add(this.logEventInfoQueue.Dequeue());
+                    resultEvents[i] = this.logEventInfoQueue.Dequeue();
                 }
 
                 if (this.OnOverflow == AsyncTargetWrapperOverflowAction.Block)
@@ -142,7 +143,32 @@ namespace NLog.Targets.Wrappers
                 }
             }
 
-            return resultEvents.ToArray();
+            return resultEvents;
+        }
+
+        /// <summary>
+        /// Dequeues into a preallocated array, instead of allocating a new one
+        /// </summary>
+        /// <param name="result">Preallocated array</param>
+        /// <returns>ArraySegment that specifies how many items that was dequeued.</returns>
+        public ArraySegment<AsyncLogEventInfo> DequeueBatch(AsyncLogEventInfo[] result)
+        {
+            int count = result.Length;
+            lock (this)
+            {
+                if (this.logEventInfoQueue.Count < count)
+                    count = this.logEventInfoQueue.Count;
+                for (int i = 0; i < count; ++i)
+                {
+                    result[i] = this.logEventInfoQueue.Dequeue();
+                }
+
+                if (this.OnOverflow == AsyncTargetWrapperOverflowAction.Block)
+                {
+                    System.Threading.Monitor.PulseAll(this);
+                }
+            }
+            return new ArraySegment<AsyncLogEventInfo>(result, 0, count);
         }
 
         /// <summary>

@@ -67,9 +67,9 @@ namespace NLog.Internal.FileAppenders
 
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
-        public class Factory : IFileAppenderFactory
+        private class Factory : IFileAppenderFactory
         {
-            public BaseFileAppender Open(string fileName, ICreateFileParameters parameters)
+            BaseFileAppender IFileAppenderFactory.Open(string fileName, ICreateFileParameters parameters)
             {
                 return new UnixMultiProcessFileAppender(fileName, parameters);
             }
@@ -105,9 +105,14 @@ namespace NLog.Internal.FileAppenders
 
         public override void Write(byte[] bytes)
         {
+            this.Write(bytes, 0, bytes.Length);
+        }
+
+        public override void Write(byte[] bytes, int offset, int count)
+        {
             if (this.file == null)
                 return;
-            this.file.Write(bytes, 0, bytes.Length);
+            this.file.Write(bytes, offset, count);
         }
 
         public override void Close()

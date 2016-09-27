@@ -54,6 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
+    <Reference Include="Mono.Posix" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.ServiceModel" />
@@ -112,6 +113,12 @@
     <Compile Include="Internal\FilePathLayoutTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
+    <Compile Include="Internal\PoolFactory\AsyncLogEventArrayTests.cs" />
+    <Compile Include="Internal\PoolFactory\LogEventPoolFactoryTests.cs" />
+    <Compile Include="Internal\PoolFactory\MemoryStreamTargetTests.cs" />
+    <Compile Include="Internal\PoolFactory\PoolConfigurationTests.cs" />
+    <Compile Include="Internal\PoolFactory\StringBuilderTargetTests.cs" />
+    <Compile Include="Internal\SortHelpersTests.cs" />
     <Compile Include="Internal\StringHelpersTests.cs" />
     <Compile Include="Internal\UrlHelperTests.cs" />
     <Compile Include="LayoutRenderers\AppDomainLayoutRendererTests.cs" />
@@ -148,6 +155,7 @@
     <Compile Include="LayoutRenderers\SpecialFolderTests.cs" />
     <Compile Include="LayoutRenderers\StackTraceRendererTests.cs" />
     <Compile Include="LayoutRenderers\TempDirRendererTests.cs" />
+    <Compile Include="LayoutRenderers\ThreadIdTests.cs" />
     <Compile Include="LayoutRenderers\ThreadNameTests.cs" />
     <Compile Include="LayoutRenderers\TicksLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\TimeTests.cs" />

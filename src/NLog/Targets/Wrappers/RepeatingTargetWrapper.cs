@@ -103,7 +103,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">The log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            AsyncHelpers.Repeat(this.RepeatCount, logEvent.Continuation, cont => this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(cont)));
+            AsyncHelpers.Repeat(this.RepeatCount, logEvent.Continuation, cont => this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(cont, logEvent)));
         }
     }
 }
