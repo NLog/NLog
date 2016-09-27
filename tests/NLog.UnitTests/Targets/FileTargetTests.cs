@@ -111,7 +111,6 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void SimpleFileTestInRoot()
         {
-
             if (NLog.Internal.PlatformDetector.IsWin32)
             {
                 var logFile = "c:\\nlog-test.log";
@@ -2848,12 +2847,21 @@ namespace NLog.UnitTests.Targets
 
     }
 
-
     public class WrappedFileTargetTests : FileTargetTests
     {
         protected override Target WrapFileTarget(FileTarget target)
         {
             return new MockTargetWrapper { WrappedTarget = target };
+        }
+    }
+
+    public class PoolSetupFileTargetTests : FileTargetTests
+    {
+        protected override Target WrapFileTarget(FileTarget target)
+        {
+            var wrapper = new AsyncTargetWrapper { WrappedTarget = target, QueueLimit = 100, TimeToSleepBetweenBatches = 1 };
+            wrapper.PoolSetup = NLog.Common.PoolSetup.Active;
+            return wrapper;
         }
     }
 }
