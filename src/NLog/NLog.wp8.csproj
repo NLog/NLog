@@ -168,13 +168,13 @@
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Internal\CombinedAsyncContinuation.cs" />
-    <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\CompleteWhenAllContinuation.cs" />
+    <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
     <Compile Include="Internal\EncodingHelpers.cs" />
     <Compile Include="Internal\EnumHelpers.cs" />
     <Compile Include="Internal\EnvironmentHelper.cs" />
-    <Compile Include="Internal\ExceptionHandlerContin
+    <Compile Include="Internal\ExceptionHandlerContinuation.cs" />
     <Compile Include="Internal\ExceptionHelper.cs" />
     <Compile Include="Internal\FactoryHelper.cs" />
     <Compile Include="Internal\Fakeables\AppDomainWrapper.cs" />
