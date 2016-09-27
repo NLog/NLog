@@ -1,4 +1,4 @@
-﻿/ 
+﻿//
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -37,7 +37,6 @@ namespace NLog.Common
 {
     /// <summary>
     /// Object Pool Configuration for Target and Logger
-    /// 
     /// </summary>
     [Flags]
     public enum PoolSetup
