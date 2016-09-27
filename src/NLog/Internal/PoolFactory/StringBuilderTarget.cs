@@ -66,7 +66,7 @@ namespace NLog.Internal.PoolFactory
 
         public void CopyTo(StringBuilder builder)
         {
-#if !SILVERLIGHT4
+#if !SILVERLIGHT
             char[] workBuffer = GetWorkBuffer();
             if (workBuffer == null)
                 workBuffer = new char[1024];

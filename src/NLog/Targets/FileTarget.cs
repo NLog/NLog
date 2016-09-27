@@ -1115,7 +1115,7 @@ namespace NLog.Targets
 
         private ArraySegment<byte> TransformBuilder(StringBuilder builder, char[] transformBuffer, MemoryStream workStream)
         {
-#if !SILVERLIGHT4
+#if !SILVERLIGHT
             if (workStream != null && transformBuffer != null)
             {
                 for (int i = 0; i < builder.Length; i += transformBuffer.Length)
