@@ -147,8 +147,8 @@
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Internal\CombinedAsyncContinuation.cs" />
-    <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\CompleteWhenAllContinuation.cs" />
+    <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
     <Compile Include="Internal\EncodingHelpers.cs" />
     <Compile Include="Internal\EnumHelpers.cs" />
