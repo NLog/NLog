@@ -87,8 +87,8 @@ namespace NLog.UnitTests
             InternalLogger.Reset();
             LogManager.ThrowExceptions = false;
             LogManager.ThrowConfigExceptions = null;
-            System.Diagnostics.Trace.Listeners.Clear();
 #if !SILVERLIGHT
+            System.Diagnostics.Trace.Listeners.Clear();
             System.Diagnostics.Debug.Listeners.Clear();
 #endif
         }
