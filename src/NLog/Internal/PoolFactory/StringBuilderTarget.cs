@@ -77,7 +77,7 @@ namespace NLog.Internal.PoolFactory
                 builder.Append(workBuffer, 0, charCount);
             }
 #else
-            builder.Apppend(_result.ToString());
+            builder.Append(_result.ToString());
 #endif
         }
 

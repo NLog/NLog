@@ -100,7 +100,11 @@ namespace NLog.UnitTests.Internal.PoolFactory
             Assert.NotEqual(0, sb.Length);  // Report without numbers
         }
 
+#if MONO
+        [Fact(Skip="Not working under MONO - Probably the forced GC calls")]
+#else
         [Fact]
+#endif
         public void TestPoolWeakReference()
         {
             PoolConfiguration poolConfig = new PoolConfiguration();
