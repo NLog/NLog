@@ -95,15 +95,44 @@ namespace NLog.LayoutRenderers
                 initialLength = MaxInitialRenderBufferLength;
             }
 
-            var builder = new StringBuilder(initialLength);
-
-            this.Render(builder, logEvent);
-            if (builder.Length > this.maxRenderedLength)
+            using (var builderTarget = logEvent.ObjectFactory.CreateStringBuilder(initialLength))
             {
-                this.maxRenderedLength = builder.Length;
+                this.RenderAppendBuilder(logEvent, builderTarget.Result);
+                if (builderTarget.Result.Length > this.maxRenderedLength)
+                {
+                    this.maxRenderedLength = builderTarget.Result.Length;
+                }
+
+                return builderTarget.Result.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Renders the the value of layout renderer in the context of the specified log event.
+        /// </summary>
+        /// <param name="logEvent"></param>
+        /// <param name="target"></param>
+        public void RenderAppendBuilder(LogEventInfo logEvent, StringBuilder target)
+        {
+            if (!this.isInitialized)
+            {
+                this.isInitialized = true;
+                this.InitializeLayoutRenderer();
             }
 
-            return builder.ToString();
+            try
+            {
+                this.Append(target, logEvent);
+            }
+            catch (Exception exception)
+            {
+                InternalLogger.Warn(exception, "Exception in layout renderer.");
+
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+            }
         }
 
         /// <summary>
@@ -149,30 +178,6 @@ namespace NLog.LayoutRenderers
                 this.LoggingConfiguration = null;
                 this.isInitialized = false;
                 this.CloseLayoutRenderer();
-            }
-        }
-
-        internal void Render(StringBuilder builder, LogEventInfo logEvent)
-        {
-            if (!this.isInitialized)
-            {
-                this.isInitialized = true;
-                this.InitializeLayoutRenderer();
-            }
-
-            try
-            {
-                this.Append(builder, logEvent);
-            }
-            catch (Exception exception)
-            {
-                InternalLogger.Warn(exception, "Exception in layout renderer.");
-
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
-              
             }
         }
 

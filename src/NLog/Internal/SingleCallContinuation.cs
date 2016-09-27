@@ -40,7 +40,7 @@ namespace NLog.Internal
     /// <summary>
     /// Implements a single-call guard around given continuation function.
     /// </summary>
-    internal class SingleCallContinuation
+    internal class SingleCallContinuation : PoolFactory.IPoolObject
     {
         private AsyncContinuation asyncContinuation;
 
@@ -50,8 +50,22 @@ namespace NLog.Internal
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public SingleCallContinuation(AsyncContinuation asyncContinuation)
         {
+            this.Delegate = this.Function;
+            Init(asyncContinuation);
+        }
+
+        internal void Init(AsyncContinuation asyncContinuation)
+        {
             this.asyncContinuation = asyncContinuation;
         }
+
+        /// <summary>
+        /// Delegate, so that we dont have to allocate one every time we pass .Function as a delegate
+        /// </summary>
+        public readonly AsyncContinuation Delegate;
+
+        private PoolFactory.ILogEventObjectFactory _owner;
+        object PoolFactory.IPoolObject.Owner { get { return _owner; } set { _owner = (PoolFactory.ILogEventObjectFactory)value; } }
 
         /// <summary>
         /// Continuation function which implements the single-call guard.
@@ -75,9 +89,18 @@ namespace NLog.Internal
                 {
                     throw;
                 }
-
-                
             }
+            finally
+            {
+                if (_owner != null)
+                    _owner.ReleaseSingleCallContinuation(this);
+            }
+        }
+
+        void PoolFactory.IPoolObject.Clear()
+        {
+            if (this.asyncContinuation != null)
+                this.asyncContinuation = null;
         }
     }
 }

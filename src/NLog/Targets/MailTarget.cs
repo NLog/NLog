@@ -346,7 +346,7 @@ namespace NLog.Targets
         /// Renders an array logging events.
         /// </summary>
         /// <param name="logEvents">Array of logging events.</param>
-        protected override void Write(AsyncLogEventInfo[] logEvents)
+        protected override void Write(ArraySegment<AsyncLogEventInfo> logEvents)
         {
             foreach (var bucket in logEvents.BucketSort(c => this.GetSmtpSettingsKey(c.LogEvent)))
             {
@@ -372,7 +372,7 @@ namespace NLog.Targets
         /// Create mail and send with SMTP
         /// </summary>
         /// <param name="events">event printed in the body of the event</param>
-        private void ProcessSingleMailMessage([NotNull] List<AsyncLogEventInfo> events)
+        private void ProcessSingleMailMessage([NotNull] IList<AsyncLogEventInfo> events)
         {
 
             try

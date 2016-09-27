@@ -35,7 +35,6 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
-    using System.Threading;
 
     using NLog.Common;
     using NLog.Config;
@@ -48,16 +47,24 @@ namespace NLog.Targets
     [NLogConfigurationItem]
     public abstract class Target : ISupportsInitialize, IDisposable
     {
-        private object lockObject = new object();
+        private readonly object lockObject = new object();
         private List<Layout> allLayouts;
         private bool scannedForLayouts;
         private Exception initializeException;
+
+        internal Internal.PoolFactory.ILogEventObjectFactory _objectFactory = Internal.PoolFactory.LogEventObjectFactory.Instance;
 
         /// <summary>
         /// Gets or sets the name of the target.
         /// </summary>
         /// <docgen category='General Options' order='10' />
         public string Name { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public PoolSetup PoolSetup { get { return _poolSetup; } set { _poolSetup = value; } }
+        PoolSetup _poolSetup;
 
         /// <summary>
         /// Gets the object which can be used to synchronize asynchronous operations that must rely on the .
@@ -169,8 +176,9 @@ namespace NLog.Targets
                 {
                     if (this.allLayouts != null)
                     {
-                        foreach (Layout l in this.allLayouts)
+                        for (int x = 0; x < this.allLayouts.Count; x++)
                         {
+                            Layout l = this.allLayouts[x];
                             l.Precalculate(logEvent);
                         }
                     }
@@ -215,7 +223,15 @@ namespace NLog.Targets
                     return;
                 }
 
-                var wrappedContinuation = AsyncHelpers.PreventMultipleCalls(logEvent.Continuation);
+                var objectFactory = _poolSetup != PoolSetup.None && ReferenceEquals(Internal.PoolFactory.LogEventObjectFactory.Instance, logEvent.LogEvent.ObjectFactory)
+                    ? _objectFactory                    // Use our own, as logger is not using pool-factory
+                    : logEvent.LogEvent.ObjectFactory;  // Split the CreateSingleCallContinuation() workload between logger-pool and target-pool
+                var wrappedContinuation = AsyncHelpers.PreventMultipleCalls(logEvent.Continuation, objectFactory);
+                if (logEvent.LogEvent.PoolReleaseContinuation != null)
+                {
+                    logEvent.LogEvent.PoolReleaseContinuation.InitFirst(wrappedContinuation);
+                    wrappedContinuation = logEvent.LogEvent.PoolReleaseContinuation.Delegate;
+                }
 
                 try
                 {
@@ -244,13 +260,27 @@ namespace NLog.Targets
                 return;
             }
 
+            WriteAsyncLogEvents(new ArraySegment<AsyncLogEventInfo>(logEvents));
+        }
+
+        /// <summary>
+        /// Writes the array of log events.
+        /// </summary>
+        /// <param name="logEvents">The log events.</param>
+        public void WriteAsyncLogEvents(ArraySegment<AsyncLogEventInfo> logEvents)
+        {
+            if (logEvents.Count == 0)
+            {
+                return;
+            }
+
             lock (this.SyncRoot)
             {
                 if (!this.IsInitialized)
                 {
-                    foreach (var ev in logEvents)
+                    for (int x = logEvents.Offset; x < logEvents.Offset + logEvents.Count; ++x)
                     {
-                        ev.Continuation(null);
+                        logEvents.Array[x].Continuation(null);
                     }
 
                     return;
@@ -258,35 +288,38 @@ namespace NLog.Targets
 
                 if (this.initializeException != null)
                 {
-                    foreach (var ev in logEvents)
+                    for (int x = logEvents.Offset; x < logEvents.Offset + logEvents.Count; ++x)
                     {
-                        ev.Continuation(this.CreateInitException());
+                        logEvents.Array[x].Continuation(this.CreateInitException());
                     }
 
                     return;
                 }
 
-                var wrappedEvents = new AsyncLogEventInfo[logEvents.Length];
-                for (int i = 0; i < logEvents.Length; ++i)
+                using (var wrappedArray = _objectFactory.CreateAsyncLogEventArray(logEvents.Count))
                 {
-                    wrappedEvents[i] = logEvents[i].LogEvent.WithContinuation(AsyncHelpers.PreventMultipleCalls(logEvents[i].Continuation));
-                }
-
-                try
-                {
-                    this.Write(wrappedEvents);
-                }
-                catch (Exception exception)
-                {
-                    if (exception.MustBeRethrown())
+                    for (int x = 0; x < logEvents.Count; ++x)
                     {
-                        throw;
+                        var ev = logEvents.Array[x + logEvents.Offset];
+                        wrappedArray.Buffer[x] = ev.LogEvent.WithContinuation(AsyncHelpers.PreventMultipleCalls(ev.Continuation, _objectFactory));
                     }
 
-                    // in case of synchronous failure, assume that nothing is running asynchronously
-                    foreach (var ev in wrappedEvents)
+                    try
                     {
-                        ev.Continuation(exception);
+                        this.Write(new ArraySegment<AsyncLogEventInfo>(wrappedArray.Buffer, 0, logEvents.Count));
+                    }
+                    catch (Exception exception)
+                    {
+                        if (exception.MustBeRethrown())
+                        {
+                            throw;
+                        }
+
+                        // in case of synchronous failure, assume that nothing is running asynchronously
+                        for (int x = 0; x < logEvents.Count; ++x)
+                        {
+                            wrappedArray.Buffer[x].Continuation(exception);
+                        }
                     }
                 }
             }
@@ -367,32 +400,29 @@ namespace NLog.Targets
             }
         }
 
-        internal void WriteAsyncLogEvents(AsyncLogEventInfo[] logEventInfos, AsyncContinuation continuation)
+        internal void WriteAsyncLogEvents(ArraySegment<AsyncLogEventInfo> logEvents, AsyncContinuation continuation)
         {
-            if (logEventInfos.Length == 0)
+            if (logEvents.Count == 0)
             {
                 continuation(null);
             }
             else
             {
-                var wrappedLogEventInfos = new AsyncLogEventInfo[logEventInfos.Length];
-                int remaining = logEventInfos.Length;
-                for (int i = 0; i < logEventInfos.Length; ++i)
+                using (var wrappedArray = _objectFactory.CreateAsyncLogEventArray(logEvents.Count))
                 {
-                    AsyncContinuation originalContinuation = logEventInfos[i].Continuation;
-                    AsyncContinuation wrappedContinuation = ex =>
-                                                                {
-                                                                    originalContinuation(ex);
-                                                                    if (0 == Interlocked.Decrement(ref remaining))
-                                                                    {
-                                                                        continuation(null);
-                                                                    }
-                                                                };
+                    CompleteWhenAllContinuation.Counter remaining = new CompleteWhenAllContinuation.Counter();
+                    remaining.Reset(logEvents.Count);
 
-                    wrappedLogEventInfos[i] = logEventInfos[i].LogEvent.WithContinuation(wrappedContinuation);
+                    for (int i = 0; i <  logEvents.Count; ++i)
+                    {
+                        AsyncLogEventInfo ev = logEvents.Array[i + logEvents.Offset];
+                        CompleteWhenAllContinuation wrappedContinuation = _objectFactory.CreateCompleteWhenAllContinuation();
+                        wrappedContinuation.Reset(remaining, ev.Continuation, continuation);
+                        wrappedArray.Buffer[i] = ev.LogEvent.WithContinuation(wrappedContinuation.Delegate);
+                    }
+
+                    this.WriteAsyncLogEvents(new ArraySegment<AsyncLogEventInfo>(wrappedArray.Buffer, 0, logEvents.Count));
                 }
-
-                this.WriteAsyncLogEvents(wrappedLogEventInfos);
             }
         }
 
@@ -414,6 +444,8 @@ namespace NLog.Targets
         /// </summary>
         protected virtual void InitializeTarget()
         {
+            if (LoggingConfiguration != null)
+                LoggingConfiguration.ConfigurePool(ref _objectFactory, Name, PoolSetup, false, 0);
             //rescan as amount layouts can be changed.
             FindAllLayouts();
         }
@@ -484,11 +516,22 @@ namespace NLog.Targets
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
-        protected virtual void Write(AsyncLogEventInfo[] logEvents)
+        protected void Write(AsyncLogEventInfo[] logEvents)
         {
-            for (int i = 0; i < logEvents.Length; ++i)
+            Write(new ArraySegment<AsyncLogEventInfo>(logEvents));
+        }
+
+        /// <summary>
+        /// Writes an array of logging events to the log target. By default it iterates on all
+        /// events and passes them to "Write" method. Inheriting classes can use this method to
+        /// optimize batch writes.
+        /// </summary>
+        /// <param name="logEvents">Logging events to be written out.</param>
+        protected virtual void Write(ArraySegment<AsyncLogEventInfo> logEvents)
+        {
+            for (int i = logEvents.Offset; i < (logEvents.Offset + logEvents.Count); ++i)
             {
-                this.Write(logEvents[i]);
+                this.Write(logEvents.Array[i]);
             }
         }
 

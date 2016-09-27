@@ -240,7 +240,24 @@ namespace NLog.Common
                 return asyncContinuation;
             }
 
-            return new SingleCallContinuation(asyncContinuation).Function;
+            return new SingleCallContinuation(asyncContinuation).Delegate;
+        }
+
+        /// <summary>
+        /// Wraps the continuation with a guard which will only make sure that the continuation function
+        /// is invoked only once.
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        /// <param name="objectFactory"></param>
+        /// <returns>Wrapped asynchronous continuation.</returns>
+        internal static AsyncContinuation PreventMultipleCalls(AsyncContinuation asyncContinuation, Internal.PoolFactory.ILogEventObjectFactory objectFactory)
+        {
+            if (asyncContinuation.Target is SingleCallContinuation)
+            {
+                return asyncContinuation;
+            }
+
+            return objectFactory.CreateSingleCallContinuation(asyncContinuation).Delegate;
         }
 
         /// <summary>

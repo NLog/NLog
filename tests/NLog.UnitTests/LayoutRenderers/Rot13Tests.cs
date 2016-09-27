@@ -33,6 +33,7 @@
 
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using System.Text;
     using NLog.Layouts;
     using NLog.LayoutRenderers.Wrappers;
     using Xunit;
@@ -42,13 +43,20 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Test1()
         {
-            Assert.Equal("NOPQRSTUVWXYZABCDEFGHIJKLM",
-                    Rot13LayoutRendererWrapper.DecodeRot13("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
-            Assert.Equal("nopqrstuvwxyzabcdefghijklm0123456789",
-                    Rot13LayoutRendererWrapper.DecodeRot13("abcdefghijklmnopqrstuvwxyz0123456789"));
+            StringBuilder sb;
+
+            sb = new StringBuilder("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+            Rot13LayoutRendererWrapper.DecodeRot13(sb);
+            Assert.Equal("NOPQRSTUVWXYZABCDEFGHIJKLM", sb.ToString());
+
+            sb = new StringBuilder("abcdefghijklmnopqrstuvwxyz0123456789");
+            Rot13LayoutRendererWrapper.DecodeRot13(sb);
+            Assert.Equal("nopqrstuvwxyzabcdefghijklm0123456789", sb.ToString());
+
+            sb = new StringBuilder("Ubj pna lbh gryy na rkgebireg sebz na vagebireg ng AFN? In the elevators, the extroverts look at the OTHER guy's shoes.");
+            Rot13LayoutRendererWrapper.DecodeRot13(sb);
             Assert.Equal("How can you tell an extrovert from an introvert at NSA? Va gur ryringbef, gur rkgebiregf ybbx ng gur BGURE thl'f fubrf.",
-            Rot13LayoutRendererWrapper.DecodeRot13(
-                            "Ubj pna lbh gryy na rkgebireg sebz na vagebireg ng AFN? In the elevators, the extroverts look at the OTHER guy's shoes."));
+                sb.ToString());
         }
 
         [Fact]

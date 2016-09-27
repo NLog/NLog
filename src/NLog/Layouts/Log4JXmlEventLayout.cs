@@ -73,5 +73,29 @@ namespace NLog.Layouts
 
             return logEvent.AddCachedLayoutValue(this, this.Renderer.Render(logEvent));
         }
+
+        /// <summary>
+        /// Renders the layout for the specified logging event by invoking layout renderers.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        /// <param name="target">Initially empty <see cref="System.Text.StringBuilder"/> for the result</param>
+        protected override void RenderFormattedMessage(LogEventInfo logEvent, System.Text.StringBuilder target)
+        {
+            if (!this.IsThreadAgnostic)
+            {
+                string cachedValue;
+                if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
+                {
+                    target.Append(cachedValue);
+                    return;
+                }
+            }
+
+            this.Renderer.RenderAppendBuilder(logEvent, target);
+            if (!this.IsThreadAgnostic)
+            {
+                logEvent.AddCachedLayoutValue(this, target.ToString());
+            }
+        }
     }
 }

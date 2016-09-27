@@ -43,7 +43,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("lowercase")]
     [AmbientProperty("Lowercase")]
     [ThreadAgnostic]
-    public sealed class LowercaseLayoutRendererWrapper : WrapperLayoutRendererBase
+    public sealed class LowercaseLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="LowercaseLayoutRendererWrapper" /> class.
@@ -71,11 +71,15 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Post-processes the rendered message. 
         /// </summary>
-        /// <param name="text">The text to be post-processed.</param>
-        /// <returns>Padded and trimmed string.</returns>
-        protected override string Transform(string text)
+        /// <param name="target">Output to be post-processed.</param>
+        protected override void TransformFormattedMesssage(System.Text.StringBuilder target)
         {
-            return this.Lowercase ? text.ToLower(this.Culture) : text;
+            if (this.Lowercase)
+            {
+                CultureInfo culture = this.Culture;
+                for (int i = 0; i < target.Length; ++i)
+                    target[i] = char.ToLower(target[i], culture);
+            }
         }
     }
 }

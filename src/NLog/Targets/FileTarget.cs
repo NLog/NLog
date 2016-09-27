@@ -151,6 +151,7 @@ namespace NLog.Targets
         private FilePathKind fileNameKind;
         private FilePathKind archiveFileKind;
 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
         /// </summary>
@@ -439,6 +440,14 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public Encoding Encoding { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether or not this target should just discard all data that its asked to write.
+        /// Mostly used for when testing NLog Stack except final write
+        /// </summary>
+        [DefaultValue(false)]
+        [Advanced]
+        public bool DiscardAll { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether concurrent writes to the log file by multiple processes on the same host.
@@ -869,7 +878,11 @@ namespace NLog.Targets
         /// <returns><see cref="IFileAppenderFactory"/> suitable for this instance.</returns>
         private IFileAppenderFactory GetFileAppenderFactory()
         {
-            if (!this.KeepFileOpen)
+            if (this.DiscardAll)
+            {
+                return NullAppender.TheFactory;
+            }
+            else if (!this.KeepFileOpen)
             {
                 return RetryingMultiProcessFileAppender.TheFactory;
             }
@@ -966,9 +979,12 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            var fullFileName = this.GetFullFileName(logEvent);
-            byte[] bytes = this.GetBytesToWrite(logEvent);
-            ProcessLogEvent(logEvent, fullFileName, bytes);
+            var logFileName = this.GetFullFileName(logEvent);
+            using (var builderTarget = _objectFactory.CreateStringBuilder())
+            {
+                ArraySegment<byte> bytesToWrite = this.GetBytesToWrite(logEvent, builderTarget.Result, null, null);
+                ProcessLogEvent(logEvent, logFileName, bytesToWrite);
+            }
         }
 
         /// <summary>
@@ -995,47 +1011,56 @@ namespace NLog.Targets
         /// the requests by filename. This optimizes the number of open/close calls
         /// and can help improve performance.
         /// </remarks>
-        protected override void Write(AsyncLogEventInfo[] logEvents)
+        protected override void Write(ArraySegment<AsyncLogEventInfo> logEvents)
         {
             var buckets = logEvents.BucketSort(c => this.GetFullFileName(c.LogEvent));
-            using (var ms = new MemoryStream())
-            {
-                var pendingContinuations = new List<AsyncContinuation>();
 
+            using (var ms = _objectFactory.CreateMemoryStream(256 * logEvents.Count))
+            using (var targetStream = _objectFactory.CreateMemoryStream(1024))
+            using (var targetBuilder = _objectFactory.CreateStringBuilder(1024))
+            {
                 foreach (var bucket in buckets)
                 {
                     string fileName = bucket.Key;
 
-                    ms.SetLength(0);
-                    ms.Position = 0;
+                    ms.Result.SetLength(0);
+                    ms.Result.Position = 0;
 
                     LogEventInfo firstLogEvent = null;
 
-                    foreach (AsyncLogEventInfo ev in bucket.Value)
+                    int bucketCount = bucket.Value.Count;
+                    for (int i = 0; i < bucketCount; ++i)
                     {
+                        AsyncLogEventInfo ev = bucket.Value[i];
                         if (firstLogEvent == null)
                         {
                             firstLogEvent = ev.LogEvent;
                         }
 
-                        byte[] bytes = this.GetBytesToWrite(ev.LogEvent);
-                        ms.Write(bytes, 0, bytes.Length);
-                        pendingContinuations.Add(ev.Continuation);
+                        targetBuilder.Clear();
+                        targetStream.Result.SetLength(0);
+                        targetStream.Result.Position = 0;
+                        ArraySegment<byte> bytes = GetBytesToWrite(ev.LogEvent, targetBuilder.Result, targetBuilder.GetWorkBuffer(), targetStream.Result);
+                        ms.Result.Write(bytes.Array, bytes.Offset, bytes.Count);
                     }
 
-                    this.FlushCurrentFileWrites(fileName, firstLogEvent, ms, pendingContinuations);
+                    Exception lastException;
+                    this.FlushCurrentFileWrites(fileName, firstLogEvent, ms.Result, out lastException);
+
+                    for (int i = 0; i < bucketCount; ++i)
+                    {
+                        bucket.Value[i].Continuation(lastException);
+                    }
                 }
             }
         }
 
-
-
-        private void ProcessLogEvent(LogEventInfo logEvent, string fileName, byte[] bytesToWrite)
+        private void ProcessLogEvent(LogEventInfo logEvent, string fileName, ArraySegment<byte> bytesToWrite)
         {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
 #endif
-            TryArchiveFile(fileName, logEvent, bytesToWrite.Length);
+            TryArchiveFile(fileName, logEvent, bytesToWrite.Count);
 
             // Clean up old archives if this is the first time a log record is being written to
             // this log file and the archiving system is date/time based.
@@ -1068,21 +1093,48 @@ namespace NLog.Targets
         /// Formats the log event for write.
         /// </summary>
         /// <param name="logEvent">The log event to be formatted.</param>
-        /// <returns>A string representation of the log event.</returns>
-        protected virtual string GetFormattedMessage(LogEventInfo logEvent)
+        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result.</param>
+        protected virtual void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            return this.Layout.Render(logEvent);
+            this.Layout.RenderAppendBuilder(logEvent, target);
         }
 
         /// <summary>
         /// Gets the bytes to be written to the file.
         /// </summary>
-        /// <param name="logEvent">Log event.</param>
-        /// <returns>Array of bytes that are ready to be written.</returns>
-        protected virtual byte[] GetBytesToWrite(LogEventInfo logEvent)
+        /// <param name="logEvent">The log event to be formatted.</param>
+        /// <param name="formatBuilder"><see cref="StringBuilder"/> to help format log event.</param>
+        /// <param name="transformBuffer">Optional temporary char-array to help format log event.</param>
+        /// <param name="streamTarget">Optional <see cref="MemoryStream"/> to encode to bytes.</param>
+        protected virtual ArraySegment<byte> GetBytesToWrite(LogEventInfo logEvent, StringBuilder formatBuilder, char[] transformBuffer, MemoryStream streamTarget)
         {
-            string renderedText = this.GetFormattedMessage(logEvent) + this.NewLineChars;
-            return this.TransformBytes(this.Encoding.GetBytes(renderedText));
+            RenderFormattedMessage(logEvent, formatBuilder);
+            formatBuilder.Append(NewLineChars);
+            return TransformBuilder(formatBuilder, transformBuffer, streamTarget);
+        }
+
+        private ArraySegment<byte> TransformBuilder(StringBuilder builder, char[] transformBuffer, MemoryStream workStream)
+        {
+            if (workStream == null || transformBuffer == null)
+            {
+                // Faster than MemoryStream, but generates garbage. Array must be allocated, so it will survieve leaving this scope
+                var str = builder.ToString();
+                byte[] bytes = this.Encoding.GetBytes(str);
+                return TransformBytes(new ArraySegment<byte>(bytes));
+            }
+            else
+            {
+                for (int i = 0; i < builder.Length; i += transformBuffer.Length)
+                {
+                    int charCount = Math.Min(builder.Length - i, transformBuffer.Length);
+                    builder.CopyTo(i, transformBuffer, 0, charCount);
+                    int byteCount = this.Encoding.GetByteCount(transformBuffer, 0, charCount);
+                    workStream.SetLength(workStream.Length + byteCount);
+                    this.Encoding.GetBytes(transformBuffer, 0, charCount, workStream.GetBuffer(), (int)workStream.Position);
+                    workStream.Position = workStream.Length;
+                }
+                return TransformBytes(new ArraySegment<byte>(workStream.GetBuffer(), 0, (int)workStream.Length));
+            }
         }
 
         /// <summary>
@@ -1090,7 +1142,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="value">The byte array.</param>
         /// <returns>The modified byte array. The function can do the modification in-place.</returns>
-        protected virtual byte[] TransformBytes(byte[] value)
+        protected virtual ArraySegment<byte> TransformBytes(ArraySegment<byte> value)
         {
             return value;
         }
@@ -1111,15 +1163,17 @@ namespace NLog.Targets
                    pattern.Substring(lastPart);
         }
 
-        private void FlushCurrentFileWrites(string currentFileName, LogEventInfo firstLogEvent, MemoryStream ms,
-            List<AsyncContinuation> pendingContinuations)
+        private void FlushCurrentFileWrites(string currentFileName, LogEventInfo firstLogEvent, MemoryStream ms, out Exception lastException)
         {
-            Exception lastException = null;
+            lastException = null;
 
             try
             {
                 if (currentFileName != null)
-                    ProcessLogEvent(firstLogEvent, currentFileName, ms.ToArray());
+                {
+                    ArraySegment<byte> bytes = new ArraySegment<byte>(ms.GetBuffer(), 0, (int)ms.Length);
+                    ProcessLogEvent(firstLogEvent, currentFileName, bytes);
+                }
             }
             catch (Exception exception)
             {
@@ -1130,13 +1184,6 @@ namespace NLog.Targets
 
                 lastException = exception;
             }
-
-            foreach (AsyncContinuation cont in pendingContinuations)
-            {
-                cont(lastException);
-            }
-
-            pendingContinuations.Clear();
         }
 
         /// <summary>
@@ -1961,24 +2008,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// The sequence of <see langword="byte"/> to be written for the file header.
-        /// </summary>
-        /// <returns>Sequence of <see langword="byte"/> to be written.</returns>
-        private byte[] GetHeaderBytes()
-        {
-            return this.GetLayoutBytes(this.Header);
-        }
-
-        /// <summary>
-        /// The sequence of <see langword="byte"/> to be written for the file footer.
-        /// </summary>
-        /// <returns>Sequence of <see langword="byte"/> to be written.</returns>        
-        private byte[] GetFooterBytes()
-        {
-            return this.GetLayoutBytes(this.Footer);
-        }
-
-        /// <summary>
         /// Evaluates which parts of a file should be written (header, content, footer) based on various properties of
         /// <see cref="FileTarget"/> instance and writes them.
         /// </summary>
@@ -1986,7 +2015,7 @@ namespace NLog.Targets
         /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
         /// <param name="bytes">Raw sequence of <see langword="byte"/> to be written into the content part of the file.</param>        
         /// <param name="justData">Indicates that only content section should be written in the file.</param>
-        private void WriteToFile(string fileName, LogEventInfo logEvent, byte[] bytes, bool justData)
+        private void WriteToFile(string fileName, LogEventInfo logEvent, ArraySegment<byte> bytes, bool justData)
         {
             if (this.ReplaceFileContentsOnEachWrite)
             {
@@ -2002,7 +2031,7 @@ namespace NLog.Targets
                 this.WriteHeader(appender);
             }
 
-            appender.Write(bytes);
+            appender.Write(bytes.Array, bytes.Offset, bytes.Count);
 
             if (this.AutoFlush)
             {
@@ -2026,7 +2055,8 @@ namespace NLog.Targets
             {
                 //UtcNow is much faster then .now. This was a bottleneck in writing a lot of files after CPU test.
                 var now = DateTime.UtcNow;
-                if (!this.initializedFiles.ContainsKey(fileName))
+                DateTime lastTime;
+                if (!this.initializedFiles.TryGetValue(fileName, out lastTime))
                 {
                     ProcessOnStartup(fileName, logEvent);
 
@@ -2040,8 +2070,8 @@ namespace NLog.Targets
                         this.CleanupInitializedFiles();
                     }
                 }
-
-                this.initializedFiles[fileName] = now;
+                if (lastTime != now)
+                    this.initializedFiles[fileName] = now;
             }
 
             return writeHeader;
@@ -2067,8 +2097,8 @@ namespace NLog.Targets
         /// <param name="fileName">The file path to write to.</param>
         private void WriteFooter(string fileName)
         {
-            byte[] footerBytes = this.GetFooterBytes();
-            if (footerBytes != null)
+            ArraySegment<byte> footerBytes = this.GetLayoutBytes(Footer);
+            if (footerBytes.Count > 0)
             {
                 if (File.Exists(fileName))
                 {
@@ -2135,24 +2165,24 @@ namespace NLog.Targets
         /// <param name="bytes">Sequence of <see langword="byte"/> to be written in the content section of the file.</param>
         /// <param name="firstAttempt">First attempt to write?</param>
         /// <remarks>This method is used when the content of the log file is re-written on every write.</remarks>
-        private void ReplaceFileContent(string fileName, byte[] bytes, bool firstAttempt)
+        private void ReplaceFileContent(string fileName, ArraySegment<byte> bytes, bool firstAttempt)
         {
             try
             {
                 using (FileStream fs = File.Create(fileName))
                 {
-                    byte[] headerBytes = this.GetHeaderBytes();
-                    if (headerBytes != null)
+                    ArraySegment<byte> headerBytes = this.GetLayoutBytes(Header);
+                    if (headerBytes.Count > 0)
                     {
-                        fs.Write(headerBytes, 0, headerBytes.Length);
+                        fs.Write(headerBytes.Array, headerBytes.Offset, headerBytes.Count);
                     }
 
-                    fs.Write(bytes, 0, bytes.Length);
+                    fs.Write(bytes.Array, bytes.Offset, bytes.Count);
 
-                    byte[] footerBytes = this.GetFooterBytes();
-                    if (footerBytes != null)
+                    ArraySegment<byte> footerBytes = this.GetLayoutBytes(Footer);
+                    if (footerBytes.Count > 0)
                     {
-                        fs.Write(footerBytes, 0, footerBytes.Length);
+                        fs.Write(footerBytes.Array, footerBytes.Offset, footerBytes.Count);
                     }
                 }
             }
@@ -2182,10 +2212,10 @@ namespace NLog.Targets
             //  Write header only on empty files or if file info cannot be obtained.
             if (length == null || length == 0)
             {
-                byte[] headerBytes = this.GetHeaderBytes();
-                if (headerBytes != null)
+                ArraySegment<byte> headerBytes = this.GetLayoutBytes(Header);
+                if (headerBytes.Count > 0)
                 {
-                    appender.Write(headerBytes);
+                    appender.Write(headerBytes.Array, headerBytes.Offset, headerBytes.Count);
                 }
             }
         }
@@ -2198,17 +2228,20 @@ namespace NLog.Targets
         /// <param name="layout">The layout used to render output message.</param>
         /// <returns>Sequence of <see langword="byte"/> to be written.</returns>
         /// <remarks>Usually it is used to render the header and hooter of the files.</remarks>
-        private byte[] GetLayoutBytes(Layout layout)
+        private ArraySegment<byte> GetLayoutBytes(Layout layout)
         {
             if (layout == null)
             {
-                return null;
+                return default(ArraySegment<byte>);
             }
-            //todo remove 
-            string renderedText = layout.Render(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
-            return this.TransformBytes(this.Encoding.GetBytes(renderedText));
-        }
 
+            using (var builderTarget = _objectFactory.CreateStringBuilder())
+            {
+                layout.RenderAppendBuilder(LogEventInfo.CreateNullEvent(), builderTarget.Result);
+                builderTarget.Result.Append(NewLineChars);
+                return TransformBuilder(builderTarget.Result, null, null);
+            }
+        }
 
         private class DynamicFileArchive
         {

@@ -157,22 +157,22 @@ namespace NLog.Targets
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
-        protected override void Write(AsyncLogEventInfo[] logEvents)
-        {
+        protected override void Write(ArraySegment<AsyncLogEventInfo> logEvents)
+        {            
             // if web service call is being processed, buffer new events and return
             // lock is being held here
             if (this.inCall)
             {
-                foreach (var ev in logEvents)
+                for (int i = logEvents.Offset; i < (logEvents.Offset + logEvents.Count); ++i)
                 {
-                    this.buffer.Append(ev);
+                    this.buffer.Append(logEvents.Array[i]);
                 }
 
                 return;
             }
 
             var networkLogEvents = this.TranslateLogEvents(logEvents);
-            this.Send(networkLogEvents, logEvents);
+            this.Send(networkLogEvents, new SortHelpers.ReadOnlyArrayList<AsyncLogEventInfo>(logEvents));
         }
 
         /// <summary>
@@ -211,9 +211,9 @@ namespace NLog.Targets
             return stringIndex;
         }
 
-        private NLogEvents TranslateLogEvents(AsyncLogEventInfo[] logEvents)
+        private NLogEvents TranslateLogEvents(ArraySegment<AsyncLogEventInfo> logEvents)
         {
-            if (logEvents.Length == 0 && !LogManager.ThrowExceptions)
+            if (logEvents.Count == 0 && !LogManager.ThrowExceptions)
             {
                 InternalLogger.Error("LogEvents array is empty, sending empty event...");
                 return new NLogEvents();
@@ -222,7 +222,7 @@ namespace NLog.Targets
             string clientID = string.Empty;
             if (this.ClientId != null)
             {
-                clientID = this.ClientId.Render(logEvents[0].LogEvent);
+                clientID = this.ClientId.Render(logEvents.Array[logEvents.Offset].LogEvent);
             }
 
             var networkLogEvents = new NLogEvents
@@ -230,7 +230,7 @@ namespace NLog.Targets
                 ClientName = clientID,
                 LayoutNames = new StringCollection(),
                 Strings = new StringCollection(),
-                BaseTimeUtc = logEvents[0].LogEvent.TimeStamp.ToUniversalTime().Ticks
+                BaseTimeUtc = logEvents.Array[logEvents.Offset].LogEvent.TimeStamp.ToUniversalTime().Ticks
             };
 
             var stringTable = new Dictionary<string, int>();
@@ -242,9 +242,9 @@ namespace NLog.Targets
 
             if (this.IncludeEventProperties)
             {
-                for (int i = 0; i < logEvents.Length; ++i)
+                for (int i = logEvents.Offset; i < (logEvents.Offset + logEvents.Count); ++i)
                 {
-                    var ev = logEvents[i].LogEvent;
+                    var ev = logEvents.Array[i].LogEvent;
 
                     // add all event-level property names in 'LayoutNames' collection.
                     foreach (var prop in ev.Properties)
@@ -261,10 +261,11 @@ namespace NLog.Targets
                 }
             }
 
-            networkLogEvents.Events = new NLogEvent[logEvents.Length];
-            for (int i = 0; i < logEvents.Length; ++i)
+            networkLogEvents.Events = new NLogEvent[logEvents.Count];
+            for (int i = 0; i < logEvents.Count; ++i)
             {
-                networkLogEvents.Events[i] = this.TranslateEvent(logEvents[i].LogEvent, networkLogEvents, stringTable);
+                AsyncLogEventInfo ev = logEvents.Array[i + logEvents.Offset];
+                networkLogEvents.Events[i] = this.TranslateEvent(ev.LogEvent, networkLogEvents, stringTable);
             }
 
             return networkLogEvents;
@@ -424,7 +425,7 @@ namespace NLog.Targets
                 AsyncLogEventInfo[] bufferedEvents = this.buffer.GetEventsAndClear();
                 if (bufferedEvents.Length > 0)
                 {
-                    var networkLogEvents = this.TranslateLogEvents(bufferedEvents);
+                    var networkLogEvents = this.TranslateLogEvents(new ArraySegment<AsyncLogEventInfo>(bufferedEvents));
                     this.Send(networkLogEvents, bufferedEvents);
                 }
                 else

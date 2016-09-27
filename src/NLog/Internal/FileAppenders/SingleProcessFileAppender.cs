@@ -77,12 +77,17 @@ namespace NLog.Internal.FileAppenders
         /// <param name="bytes">The bytes.</param>
         public override void Write(byte[] bytes)
         {
+            Write(bytes, 0, bytes.Length);
+        }
+
+        public override void Write(byte[] bytes, int offset, int count)
+        {
             if (this.file == null)
             {
                 return;
             }
 
-            this.file.Write(bytes, 0, bytes.Length);
+            this.file.Write(bytes, offset, count);
             if (CaptureLastWriteTime)
             {
                 FileTouched();

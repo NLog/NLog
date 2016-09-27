@@ -48,7 +48,7 @@ namespace NLog
     /// <summary>
     /// Represents the logging event.
     /// </summary>
-    public class LogEventInfo
+    public class LogEventInfo : Internal.PoolFactory.IPoolObject
     {
         /// <summary>
         /// Gets the date of the first log event created.
@@ -67,6 +67,12 @@ namespace NLog
         private IDictionary<object, object> properties;
         private IDictionary eventContextAdapter;
 
+        private Internal.PoolFactory.ILogEventObjectFactory _owner;
+        object Internal.PoolFactory.IPoolObject.Owner { get { return _owner; } set { _owner = (Internal.PoolFactory.ILogEventObjectFactory)value; } }
+        internal Internal.PoolFactory.ILogEventObjectFactory ObjectFactory { get { return _owner != null ? _owner : Internal.PoolFactory.LogEventObjectFactory.Instance; } }
+        internal readonly CombinedAsyncContinuation PoolReleaseContinuation;
+        private readonly AsyncContinuation _poolReleaseDelegate;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
         /// </summary>
@@ -74,6 +80,44 @@ namespace NLog
         {
             this.TimeStamp = TimeSource.Current.Time;
             this.SequenceID = Interlocked.Increment(ref globalSequenceId);
+        }
+
+        internal LogEventInfo(Internal.PoolFactory.LogEventPoolFactory owner)
+        {
+            this._owner = owner;
+            _poolReleaseDelegate = new AsyncContinuation(ex =>
+            {
+                try
+                {
+                    if (ex != null)
+                    {
+                        if (ex.MustBeRethrown())
+                        {
+                            throw ex;
+                        }
+                    }
+                }
+                finally
+                {
+                    _owner.ReleaseLogEvent(this);
+                }
+            });
+            PoolReleaseContinuation = new CombinedAsyncContinuation();
+        }
+
+        internal void Init(LogLevel level, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters, Exception exception)
+        {
+            this.TimeStamp = TimeSource.Current.Time;
+            this.SequenceID = Interlocked.Increment(ref globalSequenceId);
+            this.Level = level;
+            this.LoggerName = loggerName;
+            this.Message = message;
+            this.Parameters = parameters;
+            this.FormatProvider = formatProvider;
+            this.Exception = exception;
+            CalcFormattedMessageIfNeeded();
+            if (PoolReleaseContinuation != null)
+                PoolReleaseContinuation.InitContinueWith(_poolReleaseDelegate);
         }
 
         /// <summary>
@@ -109,20 +153,9 @@ namespace NLog
         /// <param name="message">Log message including parameter placeholders.</param>
         /// <param name="parameters">Parameter array.</param>
         /// <param name="exception">Exception information.</param>
-        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters, Exception exception): this()
+        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters, Exception exception)
         {
-            
-            this.Level = level;
-            this.LoggerName = loggerName;
-            this.Message = message;
-            this.Parameters = parameters;
-            this.FormatProvider = formatProvider;
-            this.Exception = exception;
-         
-            if (NeedToPreformatMessage(parameters))
-            {
-                this.CalcFormattedMessage();
-            }
+            Init(level, loggerName, formatProvider, message, parameters, exception);
         }
 
         /// <summary>
@@ -490,6 +523,14 @@ namespace NLog
             return value.GetType().IsPrimitive || (value is string);
         }
 
+        internal void CalcFormattedMessageIfNeeded()
+        {
+            if (NeedToPreformatMessage(this.Parameters))
+            {
+                this.CalcFormattedMessage();
+            }
+        }
+
         private void CalcFormattedMessage()
         {
             if (this.Parameters == null || this.Parameters.Length == 0)
@@ -525,5 +566,97 @@ namespace NLog
             this.properties = new Dictionary<object, object>();
             this.eventContextAdapter = new DictionaryAdapter<object, object>(this.properties);
         }
+
+        // Remember to update this when adding new properties that is required for message rendering in layouts or rendererer
+        // TODO: create a test that assign values to all properties and clone it.
+        internal LogEventInfo Clone()
+        {
+            LogEventInfo info;
+            if (this._owner != null)
+            {
+                info = this._owner.CreateLogEvent(
+                    this.Level,
+                    this.LoggerName,
+                    this.FormatProvider,
+                    this.message,
+                    this.parameters,
+                    this.Exception);
+            }
+            else
+            {
+                info = new LogEventInfo(
+                    this.Level,
+                    this.LoggerName,
+                    this.FormatProvider,
+                    this.message,
+                    this.parameters,
+                    this.Exception);
+            }
+            foreach (var key in this.Properties.Keys)
+            {
+                info.Properties[key] = this.Properties[key];
+            }
+            info.StackTrace = this.StackTrace;
+            info.SequenceID = this.SequenceID;
+            info.TimeStamp = this.TimeStamp;
+            info.UserStackFrameNumber = this.UserStackFrameNumber;
+            info.CalcFormattedMessageIfNeeded();
+            return info;
+        }
+
+        /// <summary>
+        /// Clears the log event info for reuse purposes
+        /// </summary>
+        void Internal.PoolFactory.IPoolObject.Clear()
+        {
+            if (this.properties != null)
+            {
+                // just reset, so we dont have to allocate another dictionary
+                this.properties.Clear();
+            }
+            else
+            {
+                this.eventContextAdapter = null;
+            }
+            this.parameters = null;
+            this.formatProvider = null;
+            if (this.layoutCache != null)
+            {
+                // just reset, so we dont have to allocate another dictionary
+                this.layoutCache.Clear();
+            }
+
+            this.Exception = null;
+            this.formattedMessage = null;
+            this.Level = null;
+            this.LoggerName = null;
+            this.message = null;
+            this.SequenceID = 0;
+            this.StackTrace = null;
+            this.TimeStamp = default(DateTime);
+            this.UserStackFrameNumber = 0;
+            this.PoolReleaseContinuation.Clear();
+        }
+
+#if DEBUG
+#if !SILVERLIGHT
+        /// <summary>
+        /// Allows an object to try to free resources and perform other cleanup operations before it is reclaimed by garbage collection.
+        /// </summary>
+        ~LogEventInfo()
+        {
+            if (!AppDomain.CurrentDomain.IsFinalizingForUnload())
+            {
+                if (InternalLogger.IsTraceEnabled)
+                {
+                    if (this._owner != null)
+                    {
+                        InternalLogger.Trace(string.Format("Pooled LogEventInfo with SequenceID:{0} was collected by garbage collector even if not shutting down", this.SequenceID));
+                    }
+                }
+            }
+        }
+#endif
+#endif
     }
 }

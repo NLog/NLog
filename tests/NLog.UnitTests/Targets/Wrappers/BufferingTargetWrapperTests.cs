@@ -522,14 +522,14 @@ namespace NLog.UnitTests.Targets.Wrappers
                 throw new NotSupportedException();
             }
 
-            protected override void Write(AsyncLogEventInfo[] logEvents)
+            protected override void Write(ArraySegment<AsyncLogEventInfo> logEvents)
             {
                 this.BufferedWriteCount++;
-                this.BufferedTotalEvents += logEvents.Length;
+                this.BufferedTotalEvents += logEvents.Count;
 
-                foreach (var logEvent in logEvents)
+                for (int i = logEvents.Offset; i < logEvents.Offset + logEvents.Count; ++i)
                 {
-                    var @event = logEvent;
+                    var @event = logEvents.Array[i];
                     ThreadPool.QueueUserWorkItem(
                         s =>
                         {
@@ -565,10 +565,10 @@ namespace NLog.UnitTests.Targets.Wrappers
             public bool ThrowException { get; set; }
             public int FailCounter { get; set; }
 
-            protected override void Write(AsyncLogEventInfo[] logEvents)
+            protected override void Write(ArraySegment<AsyncLogEventInfo> logEvents)
             {
                 this.BufferedWriteCount++;
-                this.BufferedTotalEvents += logEvents.Length;
+                this.BufferedTotalEvents += logEvents.Count;
                 base.Write(logEvents);
             }
 

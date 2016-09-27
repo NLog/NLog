@@ -589,7 +589,7 @@ namespace NLog.UnitTests.Targets
                 base.Write(logEvent);
             }
 
-            protected override void Write(AsyncLogEventInfo[] logEvents)
+            protected override void Write(ArraySegment<AsyncLogEventInfo> logEvents)
             {
                 Assert.Equal(0, this.inBlockingOperation);
                 this.WriteCount3++;

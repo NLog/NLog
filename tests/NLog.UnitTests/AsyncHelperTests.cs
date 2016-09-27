@@ -37,6 +37,7 @@ namespace NLog.UnitTests
     using System.Collections.Generic;
     using System.Threading;
     using NLog.Common;
+    using NLog.Internal;
     using Xunit;
 
     public class AsyncHelperTests : NLogTestBase
@@ -513,6 +514,29 @@ namespace NLog.UnitTests
             Assert.NotNull(lastException);
             Assert.IsType(typeof(NLogRuntimeException), lastException);
             Assert.True(lastException.Message.StartsWith("Got multiple exceptions:\r\n"));
+        }
+
+        [Fact]
+        public void TestPreventMultipleCalls()
+        {
+            var finalContinuationInvoked = new ManualResetEvent(false);
+            int sum = 0;
+            AsyncContinuation finalContinuation = ex =>
+            {
+                Interlocked.Add(ref sum, 1);
+                finalContinuationInvoked.Set();
+            };
+
+            for (int x = 0; x < 10; x++)
+            {
+                AsyncContinuation cont = ex =>
+                {
+                    Interlocked.Add(ref sum, 1);
+                };
+                ThreadPool.QueueUserWorkItem(o => new AsyncContinuation(new SingleCallContinuation(finalContinuation).Delegate).Invoke(null));
+            }
+
+            finalContinuationInvoked.WaitOne();
         }
 
         [Fact]
