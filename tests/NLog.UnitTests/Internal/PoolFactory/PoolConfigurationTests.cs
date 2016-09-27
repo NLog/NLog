@@ -122,7 +122,9 @@ namespace NLog.UnitTests.Internal.PoolFactory
 
             GC.Collect();
             GC.WaitForPendingFinalizers();
+#if !SILVERLIGHT
             GC.WaitForFullGCComplete();
+#endif
             GC.Collect();
 
             StringBuilder sb = new StringBuilder();
