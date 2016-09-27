@@ -100,8 +100,8 @@ namespace NLog.UnitTests.Internal.PoolFactory
             Assert.NotEqual(0, sb.Length);  // Report without numbers
         }
 
-#if MONO
-        [Fact(Skip="Not working under MONO - Probably the forced GC calls")]
+#if MONO || SILVERLIGHT
+        [Fact(Skip="Not working under MONO / Silverlight - Probably the forced GC calls")]
 #else
         [Fact]
 #endif
