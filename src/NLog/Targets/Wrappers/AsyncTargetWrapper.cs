@@ -172,13 +172,39 @@ namespace NLog.Targets.Wrappers
 
         /// <summary>
         /// Waits for the lazy writer thread to finish writing messages.
+        /// Blocking call as it should be, otherwise AsyncTargetWrapper might not have flushed all messages before call returns
+        /// if <see cref="TimeToSleepBetweenBatches"/> is too high.
         /// </summary>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            lock (continuationQueueLock)
+            Exception exception = null;
+            try
             {
-                this.flushAllContinuations.Enqueue(asyncContinuation);
+                using (ManualResetEvent evt = new ManualResetEvent(false))
+                {
+                    AsyncContinuation waiter = ex =>
+                    {
+                        exception = ex;
+                        evt.Set();
+                    };
+
+                    lock (continuationQueueLock)
+                    {
+                        this.flushAllContinuations.Enqueue(waiter);
+                    }
+
+                    // Wait for flush to happen
+                    evt.WaitOne();
+                }
+            }
+            catch (Exception e)
+            {
+                exception = AsyncHelpers.GetCombinedException(new[] { exception, e });
+            }
+            finally
+            {
+                asyncContinuation(exception);
             }
         }
 
