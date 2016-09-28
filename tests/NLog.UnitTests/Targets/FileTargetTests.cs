@@ -1794,7 +1794,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void ThreadAgnosticFileWrite()
+        public void AsyncMultiFileWrite()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             try
@@ -1806,14 +1806,17 @@ namespace NLog.UnitTests.Targets
                     Layout = "${message} ${threadid}"
                 });
 
-                // Checks that thread-volatile layouts
+                // this also checks that thread-volatile layouts
                 // such as ${threadid} are properly cached and not recalculated
                 // in logging threads.
 
                 var threadID = Thread.CurrentThread.ManagedThreadId.ToString();
 
-                SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
-
+                SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(fileTarget, 1000, AsyncTargetWrapperOverflowAction.Grow)
+                {
+                    Name = "AsyncMultiFileWrite_wrapper",
+                    TimeToSleepBetweenBatches = 1,
+                }, LogLevel.Debug);
                 LogManager.ThrowExceptions = true;
 
                 for (var i = 0; i < 250; ++i)
@@ -1825,6 +1828,79 @@ namespace NLog.UnitTests.Targets
                     logger.Error("ddd");
                     logger.Fatal("eee");
                 }
+
+                LogManager.Configuration = null;    // Flush
+
+                Assert.False(File.Exists(Path.Combine(tempPath, "Trace.txt")));
+
+                AssertFileContents(Path.Combine(tempPath, "Debug.txt"),
+                    StringRepeat(250, "aaa " + threadID + "\n"), Encoding.UTF8);
+
+                AssertFileContents(Path.Combine(tempPath, "Info.txt"),
+                    StringRepeat(250, "bbb " + threadID + "\n"), Encoding.UTF8);
+
+                AssertFileContents(Path.Combine(tempPath, "Warn.txt"),
+                    StringRepeat(250, "ccc " + threadID + "\n"), Encoding.UTF8);
+
+                AssertFileContents(Path.Combine(tempPath, "Error.txt"),
+                    StringRepeat(250, "ddd " + threadID + "\n"), Encoding.UTF8);
+
+                AssertFileContents(Path.Combine(tempPath, "Fatal.txt"),
+                    StringRepeat(250, "eee " + threadID + "\n"), Encoding.UTF8);
+            }
+            finally
+            {
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+
+                // Clean up configuration change, breaks onetimeonlyexceptioninhandlertest
+                LogManager.ThrowExceptions = true;
+            }
+        }
+
+        [Fact]
+        public void PoolSetupAsyncMultiFileWrite()
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            try
+            {
+                var fileTarget = WrapFileTarget(new FileTarget
+                {
+                    Name = "FileWriter",
+                    FileName = Path.Combine(tempPath, "${level}.txt"),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${message} ${threadid}"
+                });
+
+                // this also checks that thread-volatile layouts
+                // such as ${threadid} are properly cached and not recalculated
+                // in logging threads.
+
+                var threadID = Thread.CurrentThread.ManagedThreadId.ToString();
+
+                SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(fileTarget, 10, AsyncTargetWrapperOverflowAction.Block)
+                {
+                    Name = "AsyncMultiFileWrite_wrapper",
+                    PoolSetup = NLog.Common.PoolSetup.Active,
+                    TimeToSleepBetweenBatches = 1,
+                }, LogLevel.Debug);
+                LogManager.ThrowExceptions = true;
+
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Trace("@@@");
+                    logger.Debug("aaa");
+                    logger.Info("bbb");
+                    logger.Warn("ccc");
+                    logger.Error("ddd");
+                    logger.Fatal("eee");
+                }
+
+                // Verify that pool has been activated, and been used
+                StringBuilder sb = new StringBuilder();
+                LogManager.Configuration.GetPoolStatistics(sb);
+                Assert.NotEqual(0, sb.Length);
+                Assert.Contains("AsyncMultiFileWrite_wrapper", sb.ToString());
 
                 LogManager.Configuration = null;    // Flush
 
@@ -2884,16 +2960,6 @@ namespace NLog.UnitTests.Targets
         protected override Target WrapFileTarget(FileTarget target)
         {
             return new MockTargetWrapper { WrappedTarget = target };
-        }
-    }
-
-    public class PoolSetupAsyncFileTargetTests : FileTargetTests
-    {
-        protected override Target WrapFileTarget(FileTarget target)
-        {
-            var wrapper = new AsyncTargetWrapper { WrappedTarget = target, QueueLimit = 1, TimeToSleepBetweenBatches = 1, OverflowAction = AsyncTargetWrapperOverflowAction.Block };
-            wrapper.PoolSetup = NLog.Common.PoolSetup.Active;
-            return wrapper;
         }
     }
 }
