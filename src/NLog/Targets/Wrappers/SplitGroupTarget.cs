@@ -94,7 +94,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">The log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            AsyncHelpers.ForEachItemSequentially(this.Targets, logEvent.Continuation, (t, cont) => t.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(cont, logEvent)));
+            AsyncHelpers.ForEachItemSequentially(this.Targets, logEvent.Continuation, (t, cont) => t.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(cont)));
         }
 
         /// <summary>

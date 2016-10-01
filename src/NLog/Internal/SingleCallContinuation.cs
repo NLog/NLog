@@ -49,17 +49,13 @@ namespace NLog.Internal
         /// </summary>
         internal bool AllowExceptions { get; set; }
 
-        internal int LogEventSeqNo { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="SingleCallContinuation"/> class.
         /// </summary>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        /// <param name="logEventSeqNo">The asynchronous continuation.</param>
-        public SingleCallContinuation(AsyncContinuation asyncContinuation, int logEventSeqNo)
+        public SingleCallContinuation(AsyncContinuation asyncContinuation)
         {
             this.asyncContinuation = asyncContinuation;
-            this.LogEventSeqNo = logEventSeqNo;
         }
 
         /// <summary>

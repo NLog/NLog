@@ -151,7 +151,7 @@ namespace NLog.Targets.Wrappers
 
                     if (targetToInvoke >= 0)
                     {
-                        this.Targets[targetToInvoke].WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation, logEvent));
+                        this.Targets[targetToInvoke].WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
                     }
                     else
                     {
@@ -164,7 +164,7 @@ namespace NLog.Targets.Wrappers
                 targetToInvoke = this.currentTarget;
             }
 
-            this.Targets[targetToInvoke].WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation, logEvent));
+            this.Targets[targetToInvoke].WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
         }
     }
 }

@@ -143,7 +143,7 @@ namespace NLog.Targets
                     return;
                 }
 
-                asyncContinuation = AsyncHelpers.PreventMultipleCalls(asyncContinuation, null);
+                asyncContinuation = AsyncHelpers.PreventMultipleCalls(asyncContinuation);
 
                 try
                 {
@@ -223,11 +223,11 @@ namespace NLog.Targets
                     return;
                 }
 
-                var wrappedContinuation = AsyncHelpers.PreventMultipleCalls(logEvent.Continuation, logEvent.LogEvent);
+                var wrappedContinuation = AsyncHelpers.PreventMultipleCalls(logEvent.Continuation);
 
                 try
                 {
-                    this.Write(logEvent.LogEvent.WithContinuation(wrappedContinuation, logEvent));
+                    this.Write(logEvent.LogEvent.WithContinuation(wrappedContinuation));
                 }
                 catch (Exception exception)
                 {
@@ -293,7 +293,7 @@ namespace NLog.Targets
                     for (int x = 0; x < logEvents.Count; ++x)
                     {
                         var ev = logEvents.Array[x + logEvents.Offset];
-                        wrappedArray.Buffer[x] = ev.LogEvent.WithContinuation(AsyncHelpers.PreventMultipleCalls(ev.Continuation, ev.LogEvent), ev);
+                        wrappedArray.Buffer[x] = ev.LogEvent.WithContinuation(AsyncHelpers.PreventMultipleCalls(ev.Continuation));
                     }
 
                     try
@@ -405,16 +405,12 @@ namespace NLog.Targets
                     CompleteWhenAllContinuation.Counter remainingCounter = new CompleteWhenAllContinuation.Counter();
                     remainingCounter.Increment();
 
-                    int chainIndex = 0;
                     for (int i = 0; i < logEvents.Count; ++i)
                     {
                         CompleteWhenAllContinuation completeWhenAllDone = _objectFactory.CreateCompleteWhenAllContinuation(remainingCounter);
 
                         AsyncLogEventInfo ev = logEvents.Array[i + logEvents.Offset];
-#if DEBUG
-                        chainIndex = ev.ChainIndex;
-#endif 
-                        wrappedArray.Buffer[i] = ev.LogEvent.WithContinuation(completeWhenAllDone.StartContinuationChain(ev.Continuation, continuation, chainIndex, ev.LogEvent.SequenceID), ev);
+                        wrappedArray.Buffer[i] = ev.LogEvent.WithContinuation(completeWhenAllDone.CreateContinuation(ev.Continuation, continuation));
                     }
 
                     this.WriteAsyncLogEvents(new ArraySegment<AsyncLogEventInfo>(wrappedArray.Buffer, 0, logEvents.Count));

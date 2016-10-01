@@ -394,43 +394,29 @@ namespace NLog
         }
 
         /// <summary>
-        /// 
+        /// Creates the initial <see cref="AsyncLogEventInfo"/> from this <see cref="LogEventInfo"/> by attaching the specified asynchronous continuation.
         /// </summary>
         /// <param name="asyncContinuation"></param>
         /// <returns></returns>
         public AsyncLogEventInfo StartContinuation(AsyncContinuation asyncContinuation)
         {
-            int chainIndex = 0;
             if (_poolHandler != null)
             {
-#if DEBUG
-                chainIndex = AsyncLogEventInfo.GenerateChainIndex();
-#endif
                 // Ensure that the LogEvent is only released once
-                var singleCallContinuation = new SingleCallContinuation(_poolHandler.PoolReleaseContinuation.StartContinuationChain(asyncContinuation, _poolHandler.PoolReleaseDelegate, chainIndex, this.SequenceID), this.SequenceID);
+                var singleCallContinuation = new SingleCallContinuation(_poolHandler.PoolReleaseContinuation.CreateContinuation(asyncContinuation, _poolHandler.PoolReleaseDelegate));
                 singleCallContinuation.AllowExceptions = true;  // Allows synchronous targets to throw exceptions back to Logger. Async-Targets will automatically change it to false.
                 asyncContinuation = singleCallContinuation.Function;
             }
-            return new AsyncLogEventInfo(this, asyncContinuation, chainIndex);
+            return new AsyncLogEventInfo(this, asyncContinuation);
         }
 
         /// <summary>
         /// Creates <see cref="AsyncLogEventInfo"/> from this <see cref="LogEventInfo"/> by attaching the specified asynchronous continuation.
         /// </summary>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        /// <param name="oldChain">The asynchronous continuation.</param>
         /// <returns>Instance of <see cref="AsyncLogEventInfo"/> with attached continuation.</returns>
-        public AsyncLogEventInfo WithContinuation(AsyncContinuation asyncContinuation, AsyncLogEventInfo oldChain = default(AsyncLogEventInfo))
+        public AsyncLogEventInfo WithContinuation(AsyncContinuation asyncContinuation)
         {
-            if (_poolHandler != null)
-            {
-                int chainIndex = 0;
-#if DEBUG
-                chainIndex = oldChain.ChainIndex;
-#endif
-                asyncContinuation = _poolHandler.PoolReleaseContinuation.WithContinuationChain(chainIndex, asyncContinuation);
-                return new AsyncLogEventInfo(this, asyncContinuation, chainIndex);
-            }
             return new AsyncLogEventInfo(this, asyncContinuation);
         }
 
