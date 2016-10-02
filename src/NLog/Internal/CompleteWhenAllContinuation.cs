@@ -114,7 +114,7 @@ namespace NLog.Internal
         /// <summary>
         /// Reset the continuation for reuse
         /// </summary>
-        void Clear()
+        public void Clear()
         {
             this.remainingCounter = null;
             this.originalContinuation = null;
