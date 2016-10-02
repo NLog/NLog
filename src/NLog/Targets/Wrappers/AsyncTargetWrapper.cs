@@ -276,7 +276,7 @@ namespace NLog.Targets.Wrappers
         {
             this.MergeEventProperties(logEvent.LogEvent);
             this.PrecalculateVolatileLayouts(logEvent.LogEvent);
-            bool queueWasEmpty = this.RequestQueue.Enqueue(logEvent);
+            bool queueWasEmpty = this.RequestQueue.EnqueueCheckWasEmpty(logEvent);
             if (queueWasEmpty && TimeToSleepBetweenBatches <= 0)
                 StartInstantWriterTimer();
         }
@@ -292,8 +292,7 @@ namespace NLog.Targets.Wrappers
                 this.flushAllContinuations.Clear();
             }
 
-            bool checkedQueueWasEmpty = false;
-            bool checkedQueueWasNotEmpty = false;
+            bool? checkedQueueIsEmpty = null;
 
             try
             {
@@ -313,9 +312,9 @@ namespace NLog.Targets.Wrappers
 
                     AsyncLogEventInfo[] logEventInfos = this.RequestQueue.DequeueBatch(count);
                     if (count == -1 || count > logEventInfos.Length)
-                        checkedQueueWasEmpty = true;
+                        checkedQueueIsEmpty = true;
                     else
-                        checkedQueueWasNotEmpty = true;
+                        checkedQueueIsEmpty = false;
 
                     InternalLogger.Trace("AsyncWrapper '{0}': Flushing {1} events.", Name, logEventInfos.Length);
 
@@ -333,7 +332,7 @@ namespace NLog.Targets.Wrappers
             }
             catch (Exception exception)
             {
-                checkedQueueWasEmpty = checkedQueueWasNotEmpty = false; // Something went wrong, lets throttle retry
+                checkedQueueIsEmpty = null; // Something went wrong, lets throttle retry
                 InternalLogger.Error(exception, "AsyncWrapper '{0}': Error in lazy writer timer procedure.", Name);
 
                 if (exception.MustBeRethrown())
@@ -345,9 +344,9 @@ namespace NLog.Targets.Wrappers
             {
                 if (TimeToSleepBetweenBatches <= 0)
                 {
-                    if (!checkedQueueWasEmpty && !checkedQueueWasNotEmpty)
+                    if (!checkedQueueIsEmpty.HasValue)
                         this.StartLazyWriterTimer();    // Something went wrong, lets throttle retry
-                    else if (checkedQueueWasNotEmpty)
+                    else if (!checkedQueueIsEmpty.Value)
                         this.StartInstantWriterTimer();
                 }
                 else
