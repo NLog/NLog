@@ -66,9 +66,10 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Registers 
+        /// Registers the final <see cref="AsyncContinuation"/> to be executed, when remaining number of
+        /// scheduled continuations has completed
         /// </summary>
-        /// <param name="originalContinuation"></param>
+        /// <param name="originalContinuation">Continuation to be scheduled</param>
         /// <param name="whenAllDone">The final continuation when all are completed</param>
         /// <returns></returns>
         public AsyncContinuation CreateContinuation(AsyncContinuation originalContinuation, AsyncContinuation whenAllDone)
@@ -84,11 +85,17 @@ namespace NLog.Internal
             return this.Delegate;
         }
 
+        /// <summary>
+        /// Should be called before using <see cref="CreateContinuation"/> to prevent premature completion
+        /// </summary>
         public void BeginTargetWrite()
         {
             this.remainingCounter.Increment();
         }
 
+        /// <summary>
+        /// Should be called when done making <see cref="CreateContinuation"/> to allow completion
+        /// </summary>
         public void EndTargetWrite(Exception ex)
         {
             int finalResult = this.remainingCounter.Decrement();
@@ -104,6 +111,16 @@ namespace NLog.Internal
                 _owner.ReleaseCompleteWhenAllContinuation(this);
         }
 
+        /// <summary>
+        /// Reset the continuation for reuse
+        /// </summary>
+        void Clear()
+        {
+            this.remainingCounter = null;
+            this.originalContinuation = null;
+            this.completedContinuation = null;
+        }
+
         private void Function(Exception ex)
         {
             try
@@ -114,13 +131,6 @@ namespace NLog.Internal
             {
                 EndTargetWrite(ex);
             }
-        }
-
-        public void Clear()
-        {
-            this.remainingCounter = null;
-            this.originalContinuation = null;
-            this.completedContinuation = null;
         }
 
         internal class Counter

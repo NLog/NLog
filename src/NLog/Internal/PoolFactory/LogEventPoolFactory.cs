@@ -169,9 +169,8 @@ namespace NLog.Internal.PoolFactory
         {
             if (((IPoolObject)item).Owner != this)
                 throw new InvalidOperationException();
-            int seqno = item.SequenceID;
+
             _logEventPool.TryClearPush(item);
-            //System.Diagnostics.Debug.WriteLine(string.Format("Release {0}", seqno));
         }
 
         const int SmallBuilderMaxSize = 1024;
@@ -252,11 +251,6 @@ namespace NLog.Internal.PoolFactory
         const int BigArrayMaxSize = 10000;
         const int HugeArrayMaxSize = 100000;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="capacity"></param>
-        /// <returns></returns>
         public ReusableAsyncLogEventInfoArray CreateAsyncLogEventArray(int capacity = 0)
         {
             ReusableAsyncLogEventInfoArray item = null;
