@@ -98,6 +98,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     var logEvent = new LogEventInfo();
                     targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(handler));
                 }
+                targetWrapper.Flush((ex) => { });
                 for (int i = 0; i < 5000 && counter != 2500; ++i)
                     System.Threading.Thread.Sleep(1);
                 long elapsedMilliseconds = (Environment.TickCount - startTicks);

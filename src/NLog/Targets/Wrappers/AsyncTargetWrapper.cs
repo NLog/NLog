@@ -176,10 +176,15 @@ namespace NLog.Targets.Wrappers
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            lock (continuationQueueLock)
+            bool queueWasEmpty = false;
+            lock (this.continuationQueueLock)
             {
                 this.flushAllContinuations.Enqueue(asyncContinuation);
+                if (this.flushAllContinuations.Count == 1)
+                    queueWasEmpty = RequestQueue.RequestCount == 0;
             }
+            if (queueWasEmpty && TimeToSleepBetweenBatches <= 0)
+                StartInstantWriterTimer();
         }
 
         /// <summary>
@@ -220,6 +225,8 @@ namespace NLog.Targets.Wrappers
                 {
                     if (this.TimeToSleepBetweenBatches <= 0)
                     {
+                        if (InternalLogger.IsTraceEnabled)
+                            InternalLogger.Trace("AsyncWrapper '{0}': Timer throttle activated as timer-method failed", Name);
                         this.lazyWriterTimer.Change(1, Timeout.Infinite);
                     }
                     else
@@ -316,7 +323,8 @@ namespace NLog.Targets.Wrappers
                     else
                         checkedQueueIsEmpty = false;
 
-                    InternalLogger.Trace("AsyncWrapper '{0}': Flushing {1} events.", Name, logEventInfos.Length);
+                    if (InternalLogger.IsTraceEnabled)
+                        InternalLogger.Trace("AsyncWrapper '{0}': Flushing {1} events.", Name, logEventInfos.Length);
 
                     if (continuation != null)
                     {
@@ -333,6 +341,7 @@ namespace NLog.Targets.Wrappers
             catch (Exception exception)
             {
                 checkedQueueIsEmpty = null; // Something went wrong, lets throttle retry
+
                 InternalLogger.Error(exception, "AsyncWrapper '{0}': Error in lazy writer timer procedure.", Name);
 
                 if (exception.MustBeRethrown())
