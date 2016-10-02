@@ -169,6 +169,12 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to auto-check if the console is available
+        /// </summary>
+        [DefaultValue(false)]
+        public bool DetectConsoleAvailable { get; set; }
+
+        /// <summary>
         /// Gets the row highlighting rules.
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
@@ -188,6 +194,10 @@ namespace NLog.Targets
         protected override void InitializeTarget()
         {
             this.PauseLogging = false;
+            if (DetectConsoleAvailable)
+            {
+                PauseLogging = !IsConsoleAvailable();
+            }
             base.InitializeTarget();
             if (Header != null)
             {
@@ -208,6 +218,31 @@ namespace NLog.Targets
             }
 
             base.CloseTarget();
+        }
+
+        private static bool IsConsoleAvailable()
+        {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
+            try
+            {
+                if (!Environment.UserInteractive)
+                {
+                    InternalLogger.Info("Environment.UserInteractive = False. Console has been turned off. Disable DetectUserInteractive to skip detection.");
+                    return false;
+                }
+                else if (Console.OpenStandardInput(1) == Stream.Null)
+                {
+                    InternalLogger.Info("Console.OpenStandardInput = Null. Console has been turned off. Disable DetectUserInteractive to skip detection.");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "Failed to detect whether console is available. Console has been turned off. Disable DetectUserInteractive to skip detection.");
+                return false;
+            }
+#endif
+            return true;
         }
 
         /// <summary>

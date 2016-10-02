@@ -99,6 +99,12 @@ namespace NLog.Targets
 #endif
 
         /// <summary>
+        /// Gets or sets a value indicating whether to auto-check if the console is available
+        /// </summary>
+        [DefaultValue(false)]
+        public bool DetectConsoleAvailable { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleTarget" /> class.
         /// </summary>
         /// <remarks>
@@ -110,6 +116,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// 
         /// Initializes a new instance of the <see cref="ConsoleTarget" /> class.
         /// </summary>
         /// <remarks>
@@ -127,6 +134,10 @@ namespace NLog.Targets
         protected override void InitializeTarget()
         {
             PauseLogging = false;
+            if (DetectConsoleAvailable)
+            {
+                PauseLogging = !IsConsoleAvailable();
+            }
             base.InitializeTarget();
             if (Header != null)
             {
@@ -145,6 +156,31 @@ namespace NLog.Targets
             }
 
             base.CloseTarget();
+        }
+
+        private static bool IsConsoleAvailable()
+        {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
+            try
+            {
+                if (!Environment.UserInteractive)
+                {
+                    InternalLogger.Info("Environment.UserInteractive = False. Console has been turned off. Disable DetectUserInteractive to skip detection.");
+                    return false;
+                }
+                else if (Console.OpenStandardInput(1) == Stream.Null)
+                {
+                    InternalLogger.Info("Console.OpenStandardInput = Null. Console has been turned off. Disable DetectUserInteractive to skip detection.");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "Failed to detect whether console is available. Console has been turned off. Disable DetectUserInteractive to skip detection.");
+                return false;
+            }
+#endif
+            return true;
         }
 
         /// <summary>
