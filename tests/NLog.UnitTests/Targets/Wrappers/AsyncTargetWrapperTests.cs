@@ -92,8 +92,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 int counter = 0;
                 AsyncContinuation handler = (ex) => { ++counter; };
-                System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
-                sw.Start();
+                long startTicks = Environment.TickCount;
                 for (int i = 0; i < 2500; ++i)
                 {
                     var logEvent = new LogEventInfo();
@@ -101,10 +100,10 @@ namespace NLog.UnitTests.Targets.Wrappers
                 }
                 for (int i = 0; i < 5000 && counter != 2500; ++i)
                     System.Threading.Thread.Sleep(1);
-                sw.Stop();
+                long elapsedMilliseconds = (Environment.TickCount - startTicks);
                 Assert.Equal(2500, counter);
 #if NET4 || NET4_5
-                Assert.True(sw.ElapsedMilliseconds < 5000);
+                Assert.True(elapsedMilliseconds < 5000);
 #endif
             }
             finally
