@@ -226,7 +226,7 @@ namespace NLog.Targets.Wrappers
                     if (this.TimeToSleepBetweenBatches <= 0)
                     {
                         if (InternalLogger.IsTraceEnabled)
-                            InternalLogger.Trace("AsyncWrapper '{0}': Timer throttle activated as timer-method failed", Name);
+                            InternalLogger.Trace("AsyncWrapper '{0}': Throttled timer scheduled", Name);
                         this.lazyWriterTimer.Change(1, Timeout.Infinite);
                     }
                     else
