@@ -59,5 +59,39 @@ namespace NLog.Internal
             builder.Append(Convert.ToString(o, formatProvider));
         }
 
+        /// <summary>
+        /// Copies content of the builder and appends it to target
+        /// </summary>
+        /// <param name="source">Source of the content</param>
+        /// <param name="target">Destination of the content</param>
+        /// <param name="workBuffer">Helper buffer to perform the copy [optional]</param>
+        public static void CopyToBuilder(this StringBuilder source, StringBuilder target, char[] workBuffer = null)
+        {
+#if !SILVERLIGHT
+            if (workBuffer == null)
+                workBuffer = new char[1024];
+            for (int i = 0; i < source.Length; i += workBuffer.Length)
+            {
+                int charCount = Math.Min(source.Length - i, workBuffer.Length);
+                source.CopyTo(i, workBuffer, 0, charCount);
+                target.Append(workBuffer, 0, charCount);
+            }
+#else
+            target.Append(source.ToString());
+#endif
+        }
+
+        /// <summary>
+        /// Clears the provider StringBuilder
+        /// </summary>
+        /// <param name="builder"></param>
+        public static void ClearBuilder(this StringBuilder builder)
+        {
+#if NET4 || NET4_5
+            builder.Clear();
+#else
+            builder.Length = 0;
+#endif
+        }
     }
 }

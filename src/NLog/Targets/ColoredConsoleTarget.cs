@@ -112,12 +112,6 @@ namespace NLog.Targets
         public bool ErrorStream { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to auto-check if the console is available
-        /// </summary>
-        [DefaultValue(false)]
-        public bool DetectUserInteractive { get; set; }
-
-        /// <summary>
         /// Gets or sets a value indicating whether to use default row highlighting rules.
         /// </summary>
         /// <remarks>
@@ -195,29 +189,6 @@ namespace NLog.Targets
         {
             this.PauseLogging = false;
             base.InitializeTarget();
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
-            if (DetectUserInteractive)
-            {
-                try
-                {
-                    if (!Environment.UserInteractive)
-                    {
-                        InternalLogger.Info("Environment.UserInteractive = False. Console has been turned off. Disable DetectUserInteractive to skip detection.");
-                        PauseLogging = true;
-                    }
-                    else if (Console.OpenStandardInput(1) == Stream.Null)
-                    {
-                        InternalLogger.Info("Console.OpenStandardInput = Null. Console has been turned off. Disable DetectUserInteractive to skip detection.");
-                        PauseLogging = true;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Warn(ex, "Failed to detect whether console is available. Console has been turned off. Disable DetectUserInteractive to skip detection.");
-                    PauseLogging = true;
-                }
-            }
-#endif
             if (Header != null)
             {
                 LogEventInfo lei = LogEventInfo.CreateNullEvent();

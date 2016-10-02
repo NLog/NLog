@@ -298,7 +298,17 @@ namespace NLog.Targets
 
                     try
                     {
-                        this.Write(new ArraySegment<AsyncLogEventInfo>(wrappedArray.Buffer, 0, logEvents.Count));
+                        if (ReferenceEquals(_objectFactory, Internal.PoolFactory.LogEventObjectFactory.Instance))
+                        {
+                            // Backwards compatibility
+#pragma warning disable 612, 618
+                            this.Write(wrappedArray.Buffer);
+#pragma warning restore 612, 618
+                        }
+                        else
+                        {
+                            this.Write(new ArraySegment<AsyncLogEventInfo>(wrappedArray.Buffer, 0, logEvents.Count));
+                        }
                     }
                     catch (Exception exception)
                     {
@@ -513,7 +523,8 @@ namespace NLog.Targets
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
-        protected void Write(AsyncLogEventInfo[] logEvents)
+        [Obsolete("Instead use Write(ArraySegment<AsyncLogEventInfo> logEvents)")]
+        protected virtual void Write(AsyncLogEventInfo[] logEvents)
         {
             Write(new ArraySegment<AsyncLogEventInfo>(logEvents));
         }

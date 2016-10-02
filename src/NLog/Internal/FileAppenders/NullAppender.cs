@@ -71,13 +71,10 @@ namespace NLog.Internal.FileAppenders
             return 0;
         }
 
-        public override void Write(byte[] bytes)
-        {
-        }
-
         public override void Write(byte[] bytes, int offset, int count)
         {
         }
+ 
         /// <summary>
         /// Factory class.
         /// </summary>

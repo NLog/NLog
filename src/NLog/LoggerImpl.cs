@@ -274,8 +274,6 @@ namespace NLog
                 return true;
             }
 
-            //if (logEvent.PoolReleaseContinuation != null)
-            //    logEvent.PoolReleaseContinuation.BeginTargetWrite();
             targetListHead.Target.WriteAsyncLogEvent(logEvent.StartContinuation(onException));
             if (result == FilterResult.LogFinal)
             {

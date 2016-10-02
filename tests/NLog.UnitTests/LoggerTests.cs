@@ -86,7 +86,7 @@ namespace NLog.UnitTests
 
                 logger.Trace(CultureInfo.InvariantCulture, "message{0}", (object)2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2");
-                
+
                 logger.Trace("message{0}{1}", 1,2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message12");
 

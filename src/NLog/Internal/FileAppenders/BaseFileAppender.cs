@@ -117,7 +117,10 @@ namespace NLog.Internal.FileAppenders
         /// Writes the specified bytes.
         /// </summary>
         /// <param name="bytes">The bytes.</param>
-        public abstract void Write(byte[] bytes);
+        public void Write(byte[] bytes)
+        {
+            Write(bytes, 0, bytes.Length);
+        }
 
         public abstract void Write(byte[] bytes, int offset, int count);
 

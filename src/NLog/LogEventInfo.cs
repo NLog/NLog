@@ -95,7 +95,10 @@ namespace NLog
             this.Parameters = parameters;
             this.FormatProvider = formatProvider;
             this.Exception = exception;
-            CalcFormattedMessageIfNeeded();
+            if (NeedToPreformatMessage(this.Parameters))
+            {
+                this.CalcFormattedMessage();
+            }
         }
 
         /// <summary>
@@ -398,7 +401,7 @@ namespace NLog
         /// </summary>
         /// <param name="asyncContinuation"></param>
         /// <returns></returns>
-        public AsyncLogEventInfo StartContinuation(AsyncContinuation asyncContinuation)
+        internal AsyncLogEventInfo StartContinuation(AsyncContinuation asyncContinuation)
         {
             if (_poolHandler != null)
             {
@@ -516,14 +519,6 @@ namespace NLog
             }
 
             return value.GetType().IsPrimitive || (value is string);
-        }
-
-        internal void CalcFormattedMessageIfNeeded()
-        {
-            if (NeedToPreformatMessage(this.Parameters))
-            {
-                this.CalcFormattedMessage();
-            }
         }
 
         private void CalcFormattedMessage()

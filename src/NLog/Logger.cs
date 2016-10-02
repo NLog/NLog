@@ -83,9 +83,9 @@ namespace NLog
         public LogFactory Factory { get; private set; }
 
         /// <summary>
-        /// 
+        /// Configures whether to use object pooling
         /// </summary>
-        public PoolSetup PoolSetup { get { return poolSetup.HasValue ? poolSetup.Value : (Factory != null && Factory.Configuration != null) ? Factory.Configuration.DefaultPoolSetup : PoolSetup.None; } set { poolSetup = value; } }
+        public PoolSetup PoolSetup { get { return poolSetup.HasValue ? poolSetup.Value : (Factory != null && Factory.Configuration != null) ? Factory.Configuration.DefaultPoolSetup : PoolSetup.None; } internal set { poolSetup = value; } }
         private PoolSetup? poolSetup;
 
         /// <summary>

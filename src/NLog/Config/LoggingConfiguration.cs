@@ -80,7 +80,7 @@ namespace NLog.Config
         public bool ExceptionLoggingOldStyle { get; set; }
 
         /// <summary>
-        /// 
+        /// Configures whether created <see cref="Logger"/>s should use object pooling by default
         /// </summary>
         public PoolSetup DefaultPoolSetup { get; set; }
 

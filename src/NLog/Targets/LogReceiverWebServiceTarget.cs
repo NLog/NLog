@@ -148,7 +148,7 @@ namespace NLog.Targets
         /// <param name="logEvent">Logging event to be written out.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            this.Write(new[] { logEvent });
+            this.Write(new ArraySegment<AsyncLogEventInfo>(new[] { logEvent }));
         }
 
         /// <summary>

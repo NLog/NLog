@@ -33,6 +33,9 @@
 
 namespace NLog.Internal.PoolFactory
 {
+    /// <summary>
+    /// Interface that enables an object to be used by the <see cref="LogEventPoolFactory"/> 
+    /// </summary>
     internal interface IPoolObject
     {
         object Owner { get; set; }

@@ -67,19 +67,7 @@ namespace NLog.Internal.PoolFactory
 
         public void CopyTo(StringBuilder builder)
         {
-#if !SILVERLIGHT
-            char[] workBuffer = GetWorkBuffer();
-            if (workBuffer == null)
-                workBuffer = new char[1024];
-            for (int i = 0; i < _result.Length; i += workBuffer.Length)
-            {
-                int charCount = Math.Min(_result.Length - i, workBuffer.Length);
-                _result.CopyTo(i, workBuffer, 0, charCount);
-                builder.Append(workBuffer, 0, charCount);
-            }
-#else
-            builder.Append(_result.ToString());
-#endif
+            StringBuilderExt.CopyToBuilder(_result, builder, GetWorkBuffer());
         }
 
         /// <summary>
@@ -87,11 +75,7 @@ namespace NLog.Internal.PoolFactory
         /// </summary>
         public void Clear()
         {
-#if NET4_0 || NET4_5
-            _result.Clear();
-#else
-            _result.Length = 0;
-#endif
+            StringBuilderExt.ClearBuilder(_result);
         }
 
         /// <summary>
