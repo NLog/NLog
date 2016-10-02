@@ -323,7 +323,7 @@ namespace NLog.Targets.Wrappers
                     else
                         checkedQueueIsEmpty = false;
 
-                    if (InternalLogger.IsTraceEnabled)
+                    if (InternalLogger.IsTraceEnabled || continuation != null)
                         InternalLogger.Trace("AsyncWrapper '{0}': Flushing {1} events.", Name, logEventInfos.Length);
 
                     if (continuation != null)
