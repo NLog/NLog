@@ -176,10 +176,15 @@ namespace NLog.Targets.Wrappers
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            lock (continuationQueueLock)
+            bool queueWasEmpty = false;
+            lock (this.continuationQueueLock)
             {
                 this.flushAllContinuations.Enqueue(asyncContinuation);
+                if (this.flushAllContinuations.Count == 1)
+                    queueWasEmpty = RequestQueue.RequestCount == 0;
             }
+            if (queueWasEmpty && TimeToSleepBetweenBatches <= 0)
+                StartLazyWriterTimer(); // Will schedule new timer-worker-thread, after waiting for the current to have completed its last batch
         }
 
         /// <summary>
@@ -187,10 +192,6 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected override void InitializeTarget()
         {
-            if (this.TimeToSleepBetweenBatches <= 0) {
-                throw new NLogConfigurationException("The AysncTargetWrapper\'s TimeToSleepBetweenBatches property must be > 0");
-            }
-
             base.InitializeTarget();
             this.RequestQueue.Clear();
             InternalLogger.Trace("AsyncWrapper '{0}': start timer", Name);
@@ -222,8 +223,50 @@ namespace NLog.Targets.Wrappers
             {
                 if (this.lazyWriterTimer != null)
                 {
-                    this.lazyWriterTimer.Change(this.TimeToSleepBetweenBatches, Timeout.Infinite);
+                    if (this.TimeToSleepBetweenBatches <= 0)
+                    {
+                        if (InternalLogger.IsTraceEnabled)
+                            InternalLogger.Trace("AsyncWrapper '{0}': Throttled timer scheduled", Name);
+                        this.lazyWriterTimer.Change(1, Timeout.Infinite);
+                    }
+                    else
+                    {
+                        this.lazyWriterTimer.Change(this.TimeToSleepBetweenBatches, Timeout.Infinite);
+                    }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Starts the lazy writer thread which periodically writes
+        /// queued log messages.
+        /// </summary>
+        protected virtual void StartInstantWriterTimer()
+        {
+            bool lockTaken = false;
+            try
+            {
+                lockTaken = Monitor.TryEnter(this.lockObject);
+                if (lockTaken)
+                {
+                    // Lock taken means no timer-worker-thread is active, schedule now
+                    if (this.lazyWriterTimer != null)
+                    {
+                        if (this.TimeToSleepBetweenBatches <= 0)
+                        {
+                            // Not optimal to shedule timer-worker-thread while holding lock,
+                            // as the newly scheduled timer-worker-thread will hammer into the lockObject
+                            this.lazyWriterTimer.Change(0, Timeout.Infinite);
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                // If not able to take lock, then it means timer-worker-thread is already active,
+                // and timer-worker-thread will check RequestQueue after leaving lockObject
+                if (lockTaken)
+                    Monitor.Exit(this.lockObject);
             }
         }
 
@@ -255,22 +298,32 @@ namespace NLog.Targets.Wrappers
         {
             this.MergeEventProperties(logEvent.LogEvent);
             this.PrecalculateVolatileLayouts(logEvent.LogEvent);
-            this.RequestQueue.Enqueue(logEvent);
+            bool queueWasEmpty = this.RequestQueue.EnqueueCheckWasEmpty(logEvent);
+            if (queueWasEmpty && TimeToSleepBetweenBatches <= 0)
+                StartInstantWriterTimer();
         }
 
         private void ProcessPendingEvents(object state)
         {
+            bool checkedQueueWasEmpty = false;
             AsyncContinuation[] continuations;
-            lock (this.continuationQueueLock)
-            {
-                continuations = this.flushAllContinuations.Count > 0
-                    ? this.flushAllContinuations.ToArray()
-                    : new AsyncContinuation[] { null };
-                this.flushAllContinuations.Clear();
-            }
+            bool lockTaken = false;
 
             try
             {
+                if (TimeToSleepBetweenBatches <= 0)
+                {
+                    Monitor.Enter(this.lockObject);
+                    lockTaken = true;
+                }
+
+                lock (this.continuationQueueLock)
+                {
+                    continuations = this.flushAllContinuations.Count > 0
+                        ? this.flushAllContinuations.ToArray()
+                        : new AsyncContinuation[] { null };
+                    this.flushAllContinuations.Clear();
+                }
 
                 if (this.WrappedTarget == null)
                 {
@@ -283,19 +336,15 @@ namespace NLog.Targets.Wrappers
                     int count = this.BatchSize;
                     if (continuation != null)
                     {
-                        count = this.RequestQueue.RequestCount;
-                    }
-                    InternalLogger.Trace("AsyncWrapper '{0}': Flushing {1} events.", Name, count);
-
-                    if (this.RequestQueue.RequestCount == 0)
-                    {
-                        if (continuation != null)
-                        {
-                            continuation(null);
-                        }
+                        count = -1; // Dequeue all
                     }
 
                     AsyncLogEventInfo[] logEventInfos = this.RequestQueue.DequeueBatch(count);
+                    if (logEventInfos.Length == 0)
+                        checkedQueueWasEmpty = true;
+
+                    if (InternalLogger.IsTraceEnabled || continuation != null)
+                        InternalLogger.Trace("AsyncWrapper '{0}': Flushing {1} events.", Name, logEventInfos.Length);
 
                     if (continuation != null)
                     {
@@ -311,17 +360,30 @@ namespace NLog.Targets.Wrappers
             }
             catch (Exception exception)
             {
+                checkedQueueWasEmpty = false; // Something went wrong, lets throttle retry
+
                 InternalLogger.Error(exception, "AsyncWrapper '{0}': Error in lazy writer timer procedure.", Name);
 
                 if (exception.MustBeRethrown())
                 {
                     throw;
                 }
-
             }
             finally
             {
-                this.StartLazyWriterTimer();
+                if (lockTaken)
+                    Monitor.Exit(this.lockObject);
+
+                if (TimeToSleepBetweenBatches <= 0)
+                {
+                    // Queue was not empty, so more might have arrived while writing the first batch
+                    if (!checkedQueueWasEmpty || this.RequestQueue.RequestCount > 0)
+                        this.StartLazyWriterTimer();    // Schedule throttled so we can write in batches (faster)
+                }
+                else
+                {
+                    this.StartLazyWriterTimer();
+                }
             }
         }
     }
