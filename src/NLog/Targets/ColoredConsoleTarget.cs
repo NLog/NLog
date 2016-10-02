@@ -197,6 +197,11 @@ namespace NLog.Targets
             if (DetectConsoleAvailable)
             {
                 PauseLogging = !IsConsoleAvailable();
+                if (PauseLogging && LoggingConfiguration != null)
+                {
+                    foreach (var loggingRule in LoggingConfiguration.LoggingRules)
+                        loggingRule.Targets.Remove(this);
+                }
             }
             base.InitializeTarget();
             if (Header != null)
