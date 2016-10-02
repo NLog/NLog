@@ -187,10 +187,6 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected override void InitializeTarget()
         {
-            if (this.TimeToSleepBetweenBatches <= 0) {
-                throw new NLogConfigurationException("The AysncTargetWrapper\'s TimeToSleepBetweenBatches property must be > 0");
-            }
-
             base.InitializeTarget();
             this.RequestQueue.Clear();
             InternalLogger.Trace("AsyncWrapper '{0}': start timer", Name);
@@ -222,7 +218,32 @@ namespace NLog.Targets.Wrappers
             {
                 if (this.lazyWriterTimer != null)
                 {
-                    this.lazyWriterTimer.Change(this.TimeToSleepBetweenBatches, Timeout.Infinite);
+                    if (this.TimeToSleepBetweenBatches <= 0)
+                    {
+                        this.lazyWriterTimer.Change(1, Timeout.Infinite);
+                    }
+                    else
+                    {
+                        this.lazyWriterTimer.Change(this.TimeToSleepBetweenBatches, Timeout.Infinite);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Starts the lazy writer thread which periodically writes
+        /// queued log messages.
+        /// </summary>
+        protected virtual void StartInstantWriterTimer()
+        {
+            lock (this.lockObject)
+            {
+                if (this.lazyWriterTimer != null)
+                {
+                    if (this.TimeToSleepBetweenBatches <= 0)
+                    {
+                        this.lazyWriterTimer.Change(0, Timeout.Infinite);
+                    }
                 }
             }
         }
@@ -255,7 +276,9 @@ namespace NLog.Targets.Wrappers
         {
             this.MergeEventProperties(logEvent.LogEvent);
             this.PrecalculateVolatileLayouts(logEvent.LogEvent);
-            this.RequestQueue.Enqueue(logEvent);
+            bool queueWasEmpty = this.RequestQueue.Enqueue(logEvent);
+            if (queueWasEmpty && TimeToSleepBetweenBatches <= 0)
+                StartInstantWriterTimer();
         }
 
         private void ProcessPendingEvents(object state)
@@ -269,9 +292,11 @@ namespace NLog.Targets.Wrappers
                 this.flushAllContinuations.Clear();
             }
 
+            bool checkedQueueWasEmpty = false;
+            bool checkedQueueWasNotEmpty = false;
+
             try
             {
-
                 if (this.WrappedTarget == null)
                 {
                     InternalLogger.Error("AsyncWrapper '{0}': WrappedTarget is NULL", Name);
@@ -283,19 +308,16 @@ namespace NLog.Targets.Wrappers
                     int count = this.BatchSize;
                     if (continuation != null)
                     {
-                        count = this.RequestQueue.RequestCount;
-                    }
-                    InternalLogger.Trace("AsyncWrapper '{0}': Flushing {1} events.", Name, count);
-
-                    if (this.RequestQueue.RequestCount == 0)
-                    {
-                        if (continuation != null)
-                        {
-                            continuation(null);
-                        }
+                        count = -1; // Dequeue all
                     }
 
                     AsyncLogEventInfo[] logEventInfos = this.RequestQueue.DequeueBatch(count);
+                    if (count == -1 || count > logEventInfos.Length)
+                        checkedQueueWasEmpty = true;
+                    else
+                        checkedQueueWasNotEmpty = true;
+
+                    InternalLogger.Trace("AsyncWrapper '{0}': Flushing {1} events.", Name, logEventInfos.Length);
 
                     if (continuation != null)
                     {
@@ -311,17 +333,27 @@ namespace NLog.Targets.Wrappers
             }
             catch (Exception exception)
             {
+                checkedQueueWasEmpty = checkedQueueWasNotEmpty = false; // Something went wrong, lets throttle retry
                 InternalLogger.Error(exception, "AsyncWrapper '{0}': Error in lazy writer timer procedure.", Name);
 
                 if (exception.MustBeRethrown())
                 {
                     throw;
                 }
-
             }
             finally
             {
-                this.StartLazyWriterTimer();
+                if (TimeToSleepBetweenBatches <= 0)
+                {
+                    if (!checkedQueueWasEmpty && !checkedQueueWasNotEmpty)
+                        this.StartLazyWriterTimer();    // Something went wrong, lets throttle retry
+                    else if (checkedQueueWasNotEmpty)
+                        this.StartInstantWriterTimer();
+                }
+                else
+                {
+                    this.StartLazyWriterTimer();
+                }
             }
         }
     }

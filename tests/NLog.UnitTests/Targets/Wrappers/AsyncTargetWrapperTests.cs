@@ -70,18 +70,48 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         /// <summary>
-        /// Test for https://github.com/NLog/NLog/issues/1069
+        /// Test Fix for https://github.com/NLog/NLog/issues/1069
         /// </summary>
         [Fact]
-        public void AsyncTargetWrapperInitTest_WhenTimeToSleepBetweenBatchesIsEqualToZero_ShouldThrowNLogConfigurationException() {
+        public void AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero()
+        {
             LogManager.ThrowConfigExceptions = true;
 
             var myTarget = new MyTarget();
             var targetWrapper = new AsyncTargetWrapper() {
                 WrappedTarget = myTarget,
                 TimeToSleepBetweenBatches = 0,
+                BatchSize = 4,
+                QueueLimit = 2, // Will make it "sleep" between every second write
+                OverflowAction = AsyncTargetWrapperOverflowAction.Block
             };
-            Assert.Throws<NLogConfigurationException>(() => targetWrapper.Initialize(null));
+            targetWrapper.Initialize(null);
+            myTarget.Initialize(null);
+
+            try
+            {
+                int counter = 0;
+                AsyncContinuation handler = (ex) => { ++counter; };
+                System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+                sw.Start();
+                for (int i = 0; i < 2500; ++i)
+                {
+                    var logEvent = new LogEventInfo();
+                    targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(handler));
+                }
+                for (int i = 0; i < 5000 && counter != 2500; ++i)
+                    System.Threading.Thread.Sleep(1);
+                sw.Stop();
+                Assert.Equal(2500, counter);
+#if NET4 || NET4_5
+                Assert.True(sw.ElapsedMilliseconds < 5000);
+#endif
+            }
+            finally
+            {
+                myTarget.Close();
+                targetWrapper.Close();
+            }
         }
 
         [Fact]
