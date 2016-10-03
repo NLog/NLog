@@ -90,38 +90,41 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             try
             {
-                List<int> logEventList = new List<int>(2500);
+                long elapsedMilliseconds = 0;
                 int flushCounter = 0;
                 AsyncContinuation flushHandler = (ex) => { ++flushCounter; };
-                long startTicks = Environment.TickCount;
-                for (int i = 0; i < 2500; ++i)
+                for (int x = 0; x < 2; ++x)
                 {
-                    var logEvent = new LogEventInfo();
-                    int sequenceID = logEvent.SequenceID;
-                    targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation((ex) => logEventList.Add(sequenceID)));
+                    List<int> logEventList = new List<int>(2500);
+                    long startTicks = Environment.TickCount;
+                    for (int i = 0; i < 2500; ++i)
+                    {
+                        var logEvent = new LogEventInfo();
+                        int sequenceID = logEvent.SequenceID;
+                        targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation((ex) => logEventList.Add(sequenceID)));
+                    }
+                    targetWrapper.Flush(flushHandler);
+
+                    for (int i = 0; i < 5000 && logEventList.Count != 2500; ++i)
+                        System.Threading.Thread.Sleep(1);
+
+                    Assert.Equal(2500, logEventList.Count);
+                    int prevSequenceID = 0;
+                    for (int i = 0; i < logEventList.Count; ++i)
+                    {
+                        Assert.True(prevSequenceID < logEventList[i]);
+                        prevSequenceID = logEventList[i];
+                    }
+
+                    elapsedMilliseconds = (Environment.TickCount - startTicks);
                 }
-                targetWrapper.Flush(flushHandler);
 
-                for (int i = 0; i < 5000 && logEventList.Count != 2500; ++i)
-                    System.Threading.Thread.Sleep(1);
-
-                long elapsedMilliseconds = (Environment.TickCount - startTicks);
-#if NET4 || NET4_5
                 Assert.True(elapsedMilliseconds < 5000);
-#endif
-
-                Assert.Equal(2500, logEventList.Count);
-                int prevSequenceID = 0;
-                for (int i = 0; i < logEventList.Count; ++i)
-                {
-                    Assert.True(prevSequenceID < logEventList[i]);
-                    prevSequenceID = logEventList[i];
-                }
 
                 targetWrapper.Flush(flushHandler);
-                for (int i = 0; i < 2000 && flushCounter != 2; ++i)
+                for (int i = 0; i < 2000 && flushCounter != 3; ++i)
                     System.Threading.Thread.Sleep(1);
-                Assert.Equal(2, flushCounter);
+                Assert.Equal(3, flushCounter);
             }
             finally
             {
