@@ -106,7 +106,9 @@ namespace NLog.UnitTests.Targets.Wrappers
                     System.Threading.Thread.Sleep(1);
 
                 long elapsedMilliseconds = (Environment.TickCount - startTicks);
+#if NET4 || NET4_5
                 Assert.True(elapsedMilliseconds < 5000);
+#endif
 
                 Assert.Equal(2500, logEventList.Count);
                 int prevSequenceID = 0;
