@@ -90,24 +90,32 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             try
             {
-                int writeCounter = 0;
+                List<int> logEventList = new List<int>(2500);
                 int flushCounter = 0;
-                AsyncContinuation writeHandler = (ex) => { ++writeCounter; };
                 AsyncContinuation flushHandler = (ex) => { ++flushCounter; };
                 long startTicks = Environment.TickCount;
                 for (int i = 0; i < 2500; ++i)
                 {
                     var logEvent = new LogEventInfo();
-                    targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(writeHandler));
+                    int sequenceID = logEvent.SequenceID;
+                    targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation((ex) => logEventList.Add(sequenceID)));
                 }
                 targetWrapper.Flush(flushHandler);
-                for (int i = 0; i < 5000 && writeCounter != 2500; ++i)
+
+                for (int i = 0; i < 5000 && logEventList.Count != 2500; ++i)
                     System.Threading.Thread.Sleep(1);
+
                 long elapsedMilliseconds = (Environment.TickCount - startTicks);
-                Assert.Equal(2500, writeCounter);
-#if NET4 || NET4_5
                 Assert.True(elapsedMilliseconds < 5000);
-#endif
+
+                Assert.Equal(2500, logEventList.Count);
+                int prevSequenceID = 0;
+                for (int i = 0; i < logEventList.Count; ++i)
+                {
+                    Assert.True(prevSequenceID < logEventList[i]);
+                    prevSequenceID = logEventList[i];
+                }
+
                 targetWrapper.Flush(flushHandler);
                 for (int i = 0; i < 2000 && flushCounter != 2; ++i)
                     System.Threading.Thread.Sleep(1);
