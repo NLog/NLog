@@ -90,49 +90,48 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             try
             {
-                long elapsedMilliseconds = long.MaxValue;
                 int flushCounter = 0;
                 AsyncContinuation flushHandler = (ex) => { ++flushCounter; };
-                for (int x = 0; x < 2; ++x)
+
+                List<KeyValuePair<LogEventInfo, AsyncContinuation>> itemPrepareList = new List<KeyValuePair<LogEventInfo, AsyncContinuation>>(2500);
+                List<int> itemWrittenList = new List<int>(itemPrepareList.Capacity);
+                for (int i = 0; i< itemPrepareList.Capacity; ++i)
                 {
-                    List<KeyValuePair<LogEventInfo, AsyncContinuation>> itemPrepareList = new List<KeyValuePair<LogEventInfo, AsyncContinuation>>(2500);
-                    List<int> itemWrittenList = new List<int>(itemPrepareList.Capacity);
-                    for (int i = 0; i< itemPrepareList.Capacity; ++i)
-                    {
-                        var logEvent = new LogEventInfo();
-                        int sequenceID = logEvent.SequenceID;
-                        itemPrepareList.Add(new KeyValuePair<LogEventInfo, AsyncContinuation>(logEvent, (ex) => itemWrittenList.Add(sequenceID)));
-                    }
-
-                    long startTicks = Environment.TickCount;
-                    for (int i = 0; i < itemPrepareList.Count; ++i)
-                    {
-                        var logEvent = itemPrepareList[i].Key;
-                        targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(itemPrepareList[i].Value));
-                    }
-
-                    targetWrapper.Flush(flushHandler);
-
-                    for (int i = 0; i < itemPrepareList.Count * 2 && itemWrittenList.Count != itemPrepareList.Count; ++i)
-                        System.Threading.Thread.Sleep(1);
-
-                    elapsedMilliseconds = Math.Min((Environment.TickCount - startTicks), elapsedMilliseconds);
-
-                    Assert.Equal(itemPrepareList.Count, itemWrittenList.Count);
-                    int prevSequenceID = 0;
-                    for (int i = 0; i < itemWrittenList.Count; ++i)
-                    {
-                        Assert.True(prevSequenceID < itemWrittenList[i]);
-                        prevSequenceID = itemWrittenList[i];
-                    }
+                    var logEvent = new LogEventInfo();
+                    int sequenceID = logEvent.SequenceID;
+                    itemPrepareList.Add(new KeyValuePair<LogEventInfo, AsyncContinuation>(logEvent, (ex) => itemWrittenList.Add(sequenceID)));
                 }
 
-                Assert.True(elapsedMilliseconds < 9000);
+                long startTicks = Environment.TickCount;
+                for (int i = 0; i < itemPrepareList.Count; ++i)
+                {
+                    var logEvent = itemPrepareList[i].Key;
+                    targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(itemPrepareList[i].Value));
+                }
 
                 targetWrapper.Flush(flushHandler);
-                for (int i = 0; i < 2000 && flushCounter != 3; ++i)
+
+                for (int i = 0; i < itemPrepareList.Count * 2 && itemWrittenList.Count != itemPrepareList.Count; ++i)
                     System.Threading.Thread.Sleep(1);
-                Assert.Equal(3, flushCounter);
+
+                long elapsedMilliseconds = Environment.TickCount - startTicks;
+
+                Assert.Equal(itemPrepareList.Count, itemWrittenList.Count);
+                int prevSequenceID = 0;
+                for (int i = 0; i < itemWrittenList.Count; ++i)
+                {
+                    Assert.True(prevSequenceID < itemWrittenList[i]);
+                    prevSequenceID = itemWrittenList[i];
+                }
+
+#if MONO || NET3_5
+                Assert.True(elapsedMilliseconds < 2500);    // Skip timing test when running within OpenCover.Console.exe
+#endif
+
+                targetWrapper.Flush(flushHandler);
+                for (int i = 0; i < 2000 && flushCounter != 2; ++i)
+                    System.Threading.Thread.Sleep(1);
+                Assert.Equal(2, flushCounter);
             }
             finally
             {
