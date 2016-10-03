@@ -95,10 +95,9 @@ namespace NLog.UnitTests.Targets.Wrappers
                 AsyncContinuation flushHandler = (ex) => { ++flushCounter; };
                 for (int x = 0; x < 2; ++x)
                 {
-                    List<int> itemWrittenList = new List<int>(2500);
-
-                    List<KeyValuePair<LogEventInfo, AsyncContinuation>> itemPrepareList = new List<KeyValuePair<LogEventInfo, AsyncContinuation>>();
-                    for (int i = 0; i< 2500; ++i)
+                    List<KeyValuePair<LogEventInfo, AsyncContinuation>> itemPrepareList = new List<KeyValuePair<LogEventInfo, AsyncContinuation>>(2500);
+                    List<int> itemWrittenList = new List<int>(itemPrepareList.Capacity);
+                    for (int i = 0; i< itemPrepareList.Capacity; ++i)
                     {
                         var logEvent = new LogEventInfo();
                         int sequenceID = logEvent.SequenceID;
@@ -128,7 +127,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     }
                 }
 
-                Assert.True(elapsedMilliseconds < 5000);
+                Assert.True(elapsedMilliseconds < 9000);
 
                 targetWrapper.Flush(flushHandler);
                 for (int i = 0; i < 2000 && flushCounter != 3; ++i)
