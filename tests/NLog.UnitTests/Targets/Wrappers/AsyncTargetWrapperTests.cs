@@ -90,22 +90,28 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             try
             {
-                int counter = 0;
-                AsyncContinuation handler = (ex) => { ++counter; };
+                int writeCounter = 0;
+                int flushCounter = 0;
+                AsyncContinuation writeHandler = (ex) => { ++writeCounter; };
+                AsyncContinuation flushHandler = (ex) => { ++flushCounter; };
                 long startTicks = Environment.TickCount;
                 for (int i = 0; i < 2500; ++i)
                 {
                     var logEvent = new LogEventInfo();
-                    targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(handler));
+                    targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(writeHandler));
                 }
-                targetWrapper.Flush((ex) => { });
-                for (int i = 0; i < 5000 && counter != 2500; ++i)
+                targetWrapper.Flush(flushHandler);
+                for (int i = 0; i < 5000 && writeCounter != 2500; ++i)
                     System.Threading.Thread.Sleep(1);
                 long elapsedMilliseconds = (Environment.TickCount - startTicks);
-                Assert.Equal(2500, counter);
+                Assert.Equal(2500, writeCounter);
 #if NET4 || NET4_5
                 Assert.True(elapsedMilliseconds < 5000);
 #endif
+                targetWrapper.Flush(flushHandler);
+                for (int i = 0; i < 2000 && flushCounter != 2; ++i)
+                    System.Threading.Thread.Sleep(1);
+                Assert.Equal(2, flushCounter);
             }
             finally
             {
