@@ -238,10 +238,11 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Starts the lazy writer thread which periodically writes
+        /// Attempts to start an instant timer-worker-thread which can write
         /// queued log messages.
         /// </summary>
-        protected virtual void StartInstantWriterTimer()
+        /// <returns>Returns true when scheduled a timer-worker-thread</returns>
+        protected virtual bool StartInstantWriterTimer()
         {
             bool lockTaken = false;
             try
@@ -257,9 +258,12 @@ namespace NLog.Targets.Wrappers
                             // Not optimal to shedule timer-worker-thread while holding lock,
                             // as the newly scheduled timer-worker-thread will hammer into the lockObject
                             this.lazyWriterTimer.Change(0, Timeout.Infinite);
+                            return true;
                         }
                     }
                 }
+
+                return false;
             }
             finally
             {
@@ -305,7 +309,7 @@ namespace NLog.Targets.Wrappers
 
         private void ProcessPendingEvents(object state)
         {
-            bool checkedQueueWasEmpty = false;
+            bool checkedQueueWasFull = false, checkedQueueWasEmpty = false;
             AsyncContinuation[] continuations;
             bool lockTaken = false;
 
@@ -331,8 +335,10 @@ namespace NLog.Targets.Wrappers
                     return;
                 }
 
-                foreach (var continuation in continuations)
+                for (int x = 0; x < continuations.Length; x++)
                 {
+                    var continuation = continuations[x];
+
                     int count = this.BatchSize;
                     if (continuation != null)
                     {
@@ -342,6 +348,8 @@ namespace NLog.Targets.Wrappers
                     AsyncLogEventInfo[] logEventInfos = this.RequestQueue.DequeueBatch(count);
                     if (logEventInfos.Length == 0)
                         checkedQueueWasEmpty = true;
+                    else if (logEventInfos.Length == BatchSize)
+                        checkedQueueWasFull = true;
 
                     if (InternalLogger.IsTraceEnabled || continuation != null)
                         InternalLogger.Trace("AsyncWrapper '{0}': Flushing {1} events.", Name, logEventInfos.Length);
@@ -360,9 +368,9 @@ namespace NLog.Targets.Wrappers
             }
             catch (Exception exception)
             {
-                checkedQueueWasEmpty = false; // Something went wrong, lets throttle retry
+                checkedQueueWasFull = checkedQueueWasEmpty = false; // Something went wrong, lets throttle retry
 
-                InternalLogger.Error(exception, "AsyncWrapper '{0}': Error in lazy writer timer procedure.", Name);
+                InternalLogger.Error(exception, "AsyncWrapper '{0}': Error in lazy writer timer procedure.", this.Name);
 
                 if (exception.MustBeRethrown())
                 {
@@ -371,14 +379,22 @@ namespace NLog.Targets.Wrappers
             }
             finally
             {
+                if (TimeToSleepBetweenBatches <= 0 && checkedQueueWasFull)
+                    this.StartInstantWriterTimer(); // Shedule while holding lock, so we don't pile up
+
                 if (lockTaken)
                     Monitor.Exit(this.lockObject);
 
                 if (TimeToSleepBetweenBatches <= 0)
                 {
                     // Queue was not empty, so more might have arrived while writing the first batch
-                    if (!checkedQueueWasEmpty || this.RequestQueue.RequestCount > 0)
-                        this.StartLazyWriterTimer();    // Schedule throttled so we can write in batches (faster)
+                    if (!checkedQueueWasFull)
+                    {
+                        if (!checkedQueueWasEmpty || this.RequestQueue.RequestCount > 0)
+                        {
+                            this.StartLazyWriterTimer();    // Schedule throttled so we can write in batches (faster)
+                        }
+                    }
                 }
                 else
                 {
