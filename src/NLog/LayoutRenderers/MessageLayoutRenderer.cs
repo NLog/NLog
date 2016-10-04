@@ -74,7 +74,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(logEvent.FormattedMessage);
+            logEvent.AppendFormattedMessage(builder, null);
             if (this.WithException && logEvent.Exception != null)
             {
                 builder.Append(this.ExceptionSeparator);

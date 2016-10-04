@@ -39,6 +39,7 @@ namespace NLog
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Globalization;
+    using System.Text;
     using System.Threading;
     using NLog.Common;
     using NLog.Internal;
@@ -59,6 +60,7 @@ namespace NLog
 
         private readonly object layoutCacheLock = new object();
 
+        private StringBuilder messageBuilder;
         private string formattedMessage;
         private string message;
         private object[] parameters;
@@ -111,7 +113,6 @@ namespace NLog
         /// <param name="exception">Exception information.</param>
         public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters, Exception exception): this()
         {
-            
             this.Level = level;
             this.LoggerName = loggerName;
             this.Message = message;
@@ -254,7 +255,43 @@ namespace NLog
                     this.CalcFormattedMessage();
                 }
 
+                if (this.messageBuilder != null)
+                {
+                    if (InternalLogger.IsTraceEnabled)
+                        InternalLogger.Trace("LogEvent {0} discarded internal StringBuilder", SequenceID);
+                    this.formattedMessage = this.messageBuilder.ToString();
+                    StringBuilderExt.ClearBuilder(this.messageBuilder);
+                    this.messageBuilder = null;
+                }
                 return this.formattedMessage;
+            }
+        }
+
+        /// <summary>
+        /// Appends the formatted message to the provided builder
+        /// </summary>
+        /// <param name="builder">Target for the formatted message</param>
+        /// <param name="workBuffer">Work-buffer to perform the copy [optional]</param>
+        internal void AppendFormattedMessage(StringBuilder builder, char[] workBuffer)
+        {
+            if (this.formattedMessage != null)
+            {
+                builder.Append(formattedMessage);
+            }
+            else if (this.messageBuilder != null)
+            {
+                if (this.Parameters == null || this.Parameters.Length == 0)
+                    StringBuilderExt.CopyToBuilder(this.messageBuilder, builder, workBuffer);
+                else
+                    builder.Append(this.FormattedMessage);
+            }
+            else if (this.Parameters == null || this.Parameters.Length == 0)
+            {
+                builder.Append(this.message);
+            }
+            else
+            {
+                builder.Append(this.FormattedMessage);
             }
         }
 
@@ -494,10 +531,26 @@ namespace NLog
         {
             if (this.Parameters == null || this.Parameters.Length == 0)
             {
-                this.formattedMessage = this.Message;
+                if (this.messageBuilder == null)
+                    this.formattedMessage = this.Message;
             }
             else
             {
+                if (this.parameters.Length == 1 && this.message == "{0}" && this.parameters[0] is StringBuilder)
+                {
+                    // Hidden StringBuilder optimization where we clone the StringBuilder to avoid Large-Object-Heap
+                    StringBuilder sb = parameters[0] as StringBuilder;
+                    if (sb.Length > 4096)
+                    {
+                        ResetFormattedMessage();
+                        this.messageBuilder = new StringBuilder(sb.Length);
+                        StringBuilderExt.CopyToBuilder(sb, this.messageBuilder);
+                        this.parameters = null;
+                        this.message = string.Empty;
+                        return;
+                    }
+                }
+
                 try
                 {
                     this.formattedMessage = string.Format(this.FormatProvider ?? CultureInfo.CurrentCulture, this.Message, this.Parameters);
@@ -518,6 +571,11 @@ namespace NLog
         private void ResetFormattedMessage()
         {
             this.formattedMessage = null;
+            if (this.messageBuilder != null)
+            {
+                StringBuilderExt.ClearBuilder(this.messageBuilder);
+                this.messageBuilder = null;
+            }
         }
 
         private void InitEventContext()

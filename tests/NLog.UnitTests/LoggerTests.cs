@@ -1721,6 +1721,67 @@ namespace NLog.UnitTests
             Assert.Throws<InvalidOperationException>(() => logger.Log(new LogEventInfo()));
         }
 
+        [Fact]
+        public void WhenLoggingStringBuilderSkipLargeObjectHeap()
+        {
+            var config = new LoggingConfiguration();
+            var target = new MyTarget();
+            config.LoggingRules.Add(new LoggingRule("*", LogLevel.Trace, target));
+            LogManager.Configuration = config;
+            var logger = LogManager.GetLogger("A");
+
+            long currentMemory = GC.GetTotalMemory(true);
+            System.Text.StringBuilder sb = new System.Text.StringBuilder(100000);
+            for (int i = 0; i < sb.Capacity ; ++i)
+                sb.Append('a');
+
+            long stringBuilderMemory = GC.GetTotalMemory(true);
+
+            {
+                NLog.Internal.StringBuilderExt.ClearBuilder(sb);
+                for (int i = 0; i < sb.Capacity; ++i)
+                    sb.Append('b');
+                string string1 = sb.ToString();
+                logger.Log(LogLevel.Trace, string1);
+                NLog.Internal.StringBuilderExt.ClearBuilder(sb);
+                target.LastEvent.AppendFormattedMessage(sb, null);
+                Assert.Equal(100000, sb.Length);
+                logger.Log(LogLevel.Trace, string.Empty);   // Clear LastEvent
+            }
+            long string1AllocatedMemory = GC.GetTotalMemory(true);
+
+            {
+                NLog.Internal.StringBuilderExt.ClearBuilder(sb);
+                for (int i = 0; i < sb.Capacity; ++i)
+                    sb.Append('c');
+                string string2 = sb.ToString();
+                logger.Log(LogLevel.Trace, string2);
+                NLog.Internal.StringBuilderExt.ClearBuilder(sb);
+                target.LastEvent.AppendFormattedMessage(sb, null);
+                Assert.Equal(100000, sb.Length);
+                logger.Log(LogLevel.Trace, string.Empty);   // Clear LastEvent
+            }
+
+            long string2AllocatedMemory = GC.GetTotalMemory(true);
+
+            {
+                NLog.Internal.StringBuilderExt.ClearBuilder(sb);
+                for (int i = 0; i < sb.Capacity; ++i)
+                    sb.Append('d');
+                logger.Log(LogLevel.Trace, sb);
+                NLog.Internal.StringBuilderExt.ClearBuilder(sb);
+                target.LastEvent.AppendFormattedMessage(sb, null);
+                Assert.Equal(100000, sb.Length);
+                logger.Log(LogLevel.Trace, string.Empty);   // Clear LastEvent
+            }
+            long noStringAllocatedMemory = GC.GetTotalMemory(true);
+
+#if !SILVERLIGHT
+            Assert.True((noStringAllocatedMemory - string2AllocatedMemory) < sizeof(char) * 10000);
+#endif
+        }
+
+
         public abstract class BaseWrapper
         {
             public void Log(string what)
