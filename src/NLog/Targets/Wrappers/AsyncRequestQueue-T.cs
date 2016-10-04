@@ -85,18 +85,8 @@ namespace NLog.Targets.Wrappers
         /// action is taken as specified by <see cref="OnOverflow"/>.
         /// </summary>
         /// <param name="logEventInfo">The log event info.</param>
-        public void Enqueue(AsyncLogEventInfo logEventInfo)
-        {
-            EnqueueCheckWasEmpty(logEventInfo);
-        }
-
-        /// <summary>
-        /// Enqueues another item. If the queue is overflown the appropriate
-        /// action is taken as specified by <see cref="OnOverflow"/>.
-        /// </summary>
-        /// <param name="logEventInfo">The log event info.</param>
         /// <returns>Queue was empty before enqueue</returns>
-        public bool EnqueueCheckWasEmpty(AsyncLogEventInfo logEventInfo)
+        public bool Enqueue(AsyncLogEventInfo logEventInfo)
         {
             lock (this)
             {

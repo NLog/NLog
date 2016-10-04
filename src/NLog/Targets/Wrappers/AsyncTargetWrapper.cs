@@ -302,7 +302,7 @@ namespace NLog.Targets.Wrappers
         {
             this.MergeEventProperties(logEvent.LogEvent);
             this.PrecalculateVolatileLayouts(logEvent.LogEvent);
-            bool queueWasEmpty = this.RequestQueue.EnqueueCheckWasEmpty(logEvent);
+            bool queueWasEmpty = this.RequestQueue.Enqueue(logEvent);
             if (queueWasEmpty && TimeToSleepBetweenBatches <= 0)
                 StartInstantWriterTimer();
         }
