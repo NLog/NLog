@@ -260,7 +260,7 @@ namespace NLog
                     if (InternalLogger.IsTraceEnabled)
                         InternalLogger.Trace("LogEvent {0} discarded internal StringBuilder", SequenceID);
                     this.formattedMessage = this.messageBuilder.ToString();
-                    this.messageBuilder.Clear();
+                    StringBuilderExt.ClearBuilder(this.messageBuilder);
                     this.messageBuilder = null;
                 }
                 return this.formattedMessage;
@@ -573,7 +573,7 @@ namespace NLog
             this.formattedMessage = null;
             if (this.messageBuilder != null)
             {
-                this.messageBuilder.Clear();
+                StringBuilderExt.ClearBuilder(this.messageBuilder);
                 this.messageBuilder = null;
             }
         }

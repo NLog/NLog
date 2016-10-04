@@ -1738,12 +1738,12 @@ namespace NLog.UnitTests
             long stringBuilderMemory = GC.GetTotalMemory(true);
 
             {
-                sb.Clear();
+                NLog.Internal.StringBuilderExt.ClearBuilder(sb);
                 for (int i = 0; i < sb.Capacity; ++i)
                     sb.Append('b');
                 string string1 = sb.ToString();
                 logger.Log(LogLevel.Trace, string1);
-                sb.Clear();
+                NLog.Internal.StringBuilderExt.ClearBuilder(sb);
                 target.LastEvent.AppendFormattedMessage(sb, null);
                 Assert.Equal(100000, sb.Length);
                 logger.Log(LogLevel.Trace, string.Empty);   // Clear LastEvent
@@ -1751,12 +1751,12 @@ namespace NLog.UnitTests
             long string1AllocatedMemory = GC.GetTotalMemory(true);
 
             {
-                sb.Clear();
+                NLog.Internal.StringBuilderExt.ClearBuilder(sb);
                 for (int i = 0; i < sb.Capacity; ++i)
                     sb.Append('c');
                 string string2 = sb.ToString();
                 logger.Log(LogLevel.Trace, string2);
-                sb.Clear();
+                NLog.Internal.StringBuilderExt.ClearBuilder(sb);
                 target.LastEvent.AppendFormattedMessage(sb, null);
                 Assert.Equal(100000, sb.Length);
                 logger.Log(LogLevel.Trace, string.Empty);   // Clear LastEvent
@@ -1765,18 +1765,20 @@ namespace NLog.UnitTests
             long string2AllocatedMemory = GC.GetTotalMemory(true);
 
             {
-                sb.Clear();
+                NLog.Internal.StringBuilderExt.ClearBuilder(sb);
                 for (int i = 0; i < sb.Capacity; ++i)
                     sb.Append('d');
                 logger.Log(LogLevel.Trace, sb);
-                sb.Clear();
+                NLog.Internal.StringBuilderExt.ClearBuilder(sb);
                 target.LastEvent.AppendFormattedMessage(sb, null);
                 Assert.Equal(100000, sb.Length);
                 logger.Log(LogLevel.Trace, string.Empty);   // Clear LastEvent
             }
             long noStringAllocatedMemory = GC.GetTotalMemory(true);
 
+#if !SILVERLIGHT
             Assert.True((noStringAllocatedMemory - string2AllocatedMemory) < sizeof(char) * 10000);
+#endif
         }
 
 

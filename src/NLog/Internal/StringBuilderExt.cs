@@ -80,5 +80,14 @@ namespace NLog.Internal
             target.Append(source.ToString());
 #endif
         }
+
+        public static void ClearBuilder(this StringBuilder target)
+        {
+#if NET4 || NET4_5
+            target.Clear();
+#else
+            target.Length = 0;
+#endif
+        }
     }
 }
