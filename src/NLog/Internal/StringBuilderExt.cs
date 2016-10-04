@@ -77,7 +77,7 @@ namespace NLog.Internal
                 target.Append(workBuffer, 0, charCount);
             }
 #else
-            builder.Append(_result.ToString());
+            target.Append(source.ToString());
 #endif
         }
     }
