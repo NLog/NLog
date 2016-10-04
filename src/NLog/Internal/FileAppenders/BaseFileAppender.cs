@@ -31,7 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !__ANDROID__ && !__IOS__
+// Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) 
+#define SupportsMutex
+#endif
+
 using System.Security;
+
+
 
 namespace NLog.Internal.FileAppenders
 {
@@ -41,7 +48,7 @@ namespace NLog.Internal.FileAppenders
     using NLog.Common;
     using NLog.Internal;
     using System.Threading;
-#if !SILVERLIGHT
+#if SupportsMutex
     using System.Security.AccessControl;
     using System.Security.Principal;
     using System.Security.Cryptography;
@@ -68,7 +75,8 @@ namespace NLog.Internal.FileAppenders
             this.OpenTime = DateTime.UtcNow; // to be consistent with timeToKill in FileTarget.AutoClosingTimerCallback
             this.LastWriteTime = DateTime.MinValue;
             this.CaptureLastWriteTime = createParameters.CaptureLastWriteTime;
-#if !SILVERLIGHT
+#if SupportsMutex
+           
             this.ArchiveMutex = CreateArchiveMutex();
 #endif
         }
@@ -174,7 +182,7 @@ namespace NLog.Internal.FileAppenders
             this.LastWriteTime = dateTime;
         }
 
-#if !SILVERLIGHT
+#if SupportsMutex
         /// <summary>
         /// Creates a mutually-exclusive lock for archiving files.
         /// </summary>
