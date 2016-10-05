@@ -170,7 +170,9 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to auto-check if the console is available
+        /// Gets or sets a value indicating whether to auto-check if the console is available.
+        ///  - Disables console writing if Environment.UserInteractive = False (Windows Service)
+        ///  - Disables console writing if Console Standard Input is not available (Non-Console-App)
         /// </summary>
         [DefaultValue(true)]
         public bool DetectConsoleAvailable { get; set; }
@@ -197,11 +199,11 @@ namespace NLog.Targets
             this.PauseLogging = false;
             if (DetectConsoleAvailable)
             {
-                PauseLogging = !IsConsoleAvailable();
-                if (PauseLogging && LoggingConfiguration != null)
+                string reason;
+                PauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
+                if (PauseLogging)
                 {
-                    foreach (var loggingRule in LoggingConfiguration.LoggingRules)
-                        loggingRule.Targets.Remove(this);
+                    InternalLogger.Info("Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {0}", reason);
                 }
             }
             base.InitializeTarget();
@@ -224,31 +226,6 @@ namespace NLog.Targets
             }
 
             base.CloseTarget();
-        }
-
-        private static bool IsConsoleAvailable()
-        {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
-            try
-            {
-                if (!Environment.UserInteractive)
-                {
-                    InternalLogger.Info("Environment.UserInteractive = False. Console has been turned off. Disable DetectConsoleAvailable to skip detection.");
-                    return false;
-                }
-                else if (Console.OpenStandardInput(1) == Stream.Null)
-                {
-                    InternalLogger.Info("Console.OpenStandardInput = Null. Console has been turned off. Disable DetectConsoleAvailable to skip detection.");
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Warn(ex, "Failed to detect whether console is available. Console has been turned off. Disable DetectConsoleAvailable to skip detection.");
-                return false;
-            }
-#endif
-            return true;
         }
 
         /// <summary>
