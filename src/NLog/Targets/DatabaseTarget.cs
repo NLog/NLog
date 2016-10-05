@@ -445,8 +445,10 @@ namespace NLog.Targets
             {
                 foreach (var kvp in buckets)
                 {
-                    foreach (AsyncLogEventInfo ev in kvp.Value)
+                    for (int i = 0; i < kvp.Value.Count; ++i)
                     {
+                        AsyncLogEventInfo ev = kvp.Value[i];
+
                         try
                         {
                             this.WriteEventToDatabase(ev.LogEvent);
