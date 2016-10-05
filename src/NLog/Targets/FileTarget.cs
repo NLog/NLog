@@ -1290,7 +1290,32 @@ namespace NLog.Targets
             else
             {
                 InternalLogger.Info("Archiving {0} to {1}", fileName, archiveFileName);
-                File.Move(fileName, archiveFileName);
+                if (File.Exists(archiveFileName))
+                {
+                    //todo handle double footer
+                    InternalLogger.Info("Already exists, append to {0}", archiveFileName);
+                    
+                    //todo maybe needs a better filelock behaviour
+
+                    //copy to archive file.
+                    using (FileStream fileStream = File.Open(fileName, FileMode.Open))
+                    using (FileStream archiveFileStream = File.Open(archiveFileName, FileMode.Append ))
+                    {
+                        fileStream.CopyAndSkipBom(archiveFileStream, Encoding);
+                        //clear old content
+                        fileStream.SetLength(0);
+                        fileStream.Close(); // This flushes the content, too.
+#if NET3_5
+                        archiveFileStream.Flush();
+#else
+                        archiveFileStream.Flush(true);
+#endif
+                    }
+                }
+                else
+                {
+                    File.Move(fileName, archiveFileName);
+                }
             }
         }
 
@@ -1478,7 +1503,14 @@ namespace NLog.Targets
                 return false;
             }
 
-            string datePart = dateAndSequence.Substring(0, dateAndSequence.Length - sequencePart.Length - 1);
+            var dateAndSequenceLength2 = dateAndSequence.Length - sequencePart.Length - 1;
+            if (dateAndSequenceLength2 < 0)
+            {
+                date = default(DateTime);
+                return false;
+            }
+
+            string datePart = dateAndSequence.Substring(0, dateAndSequenceLength2);
             if (!DateTime.TryParseExact(datePart, dateFormat, CultureInfo.CurrentCulture, DateTimeStyles.None,
                 out date))
             {
