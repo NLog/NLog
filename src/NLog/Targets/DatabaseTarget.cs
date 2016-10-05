@@ -439,7 +439,7 @@ namespace NLog.Targets
         /// <param name="logEvents">Logging events to be written out.</param>
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
-            var buckets = SortHelpers.BucketSort(logEvents, c => this.BuildConnectionString(c.LogEvent));
+            var buckets = new ArraySegment<AsyncLogEventInfo>(logEvents).BucketSort(c => this.BuildConnectionString(c.LogEvent));
 
             try
             {

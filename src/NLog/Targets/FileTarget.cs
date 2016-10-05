@@ -997,7 +997,7 @@ namespace NLog.Targets
         /// </remarks>
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
-            var buckets = logEvents.BucketSort(c => this.GetFullFileName(c.LogEvent));
+            var buckets = new ArraySegment<AsyncLogEventInfo>(logEvents).BucketSort(c => this.GetFullFileName(c.LogEvent));
             using (var ms = new MemoryStream())
             {
                 var pendingContinuations = new List<AsyncContinuation>();
