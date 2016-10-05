@@ -180,10 +180,10 @@ namespace NLog.Targets.Wrappers
             lock (this.continuationQueueLock)
             {
                 this.flushAllContinuations.Enqueue(asyncContinuation);
-                if (this.flushAllContinuations.Count == 1)
+                if (TimeToSleepBetweenBatches <= 0 && this.flushAllContinuations.Count == 1)
                     queueWasEmpty = RequestQueue.RequestCount == 0;
             }
-            if (queueWasEmpty && TimeToSleepBetweenBatches <= 0)
+            if (queueWasEmpty)
                 StartLazyWriterTimer(); // Will schedule new timer-worker-thread, after waiting for the current to have completed its last batch
         }
 
@@ -309,7 +309,7 @@ namespace NLog.Targets.Wrappers
 
         private void ProcessPendingEvents(object state)
         {
-            bool checkedQueueWasFull = false, checkedQueueWasEmpty = false;
+            bool? wroteFullBatchSize = false;
             AsyncContinuation[] continuations;
             bool lockTaken = false;
 
@@ -347,9 +347,9 @@ namespace NLog.Targets.Wrappers
 
                     AsyncLogEventInfo[] logEventInfos = this.RequestQueue.DequeueBatch(count);
                     if (logEventInfos.Length == 0)
-                        checkedQueueWasEmpty = true;
+                        wroteFullBatchSize = null;    // Nothing to write
                     else if (logEventInfos.Length == BatchSize)
-                        checkedQueueWasFull = true;
+                        wroteFullBatchSize = true;
 
                     if (InternalLogger.IsTraceEnabled || continuation != null)
                         InternalLogger.Trace("AsyncWrapper '{0}': Flushing {1} events.", Name, logEventInfos.Length);
@@ -368,7 +368,7 @@ namespace NLog.Targets.Wrappers
             }
             catch (Exception exception)
             {
-                checkedQueueWasFull = checkedQueueWasEmpty = false; // Something went wrong, lets throttle retry
+                wroteFullBatchSize = false; // Something went wrong, lets throttle retry
 
                 InternalLogger.Error(exception, "AsyncWrapper '{0}': Error in lazy writer timer procedure.", this.Name);
 
@@ -379,18 +379,18 @@ namespace NLog.Targets.Wrappers
             }
             finally
             {
-                if (TimeToSleepBetweenBatches <= 0 && checkedQueueWasFull)
-                    this.StartInstantWriterTimer(); // Shedule while holding lock, so we don't pile up
+                if (TimeToSleepBetweenBatches <= 0 && wroteFullBatchSize.HasValue && wroteFullBatchSize.Value)
+                    this.StartInstantWriterTimer(); // Found full batch, fast schedule to take next batch (within lock to avoid pile up)
 
                 if (lockTaken)
                     Monitor.Exit(this.lockObject);
 
                 if (TimeToSleepBetweenBatches <= 0)
                 {
-                    // Queue was not empty, so more might have arrived while writing the first batch
-                    if (!checkedQueueWasFull)
+                    // If queue was not empty, then more might have arrived while writing the first batch
+                    if (wroteFullBatchSize.HasValue && !wroteFullBatchSize.Value)
                     {
-                        if (!checkedQueueWasEmpty || this.RequestQueue.RequestCount > 0)
+                        if (this.RequestQueue.RequestCount > 0)
                         {
                             this.StartLazyWriterTimer();    // Schedule throttled so we can write in batches (faster)
                         }
