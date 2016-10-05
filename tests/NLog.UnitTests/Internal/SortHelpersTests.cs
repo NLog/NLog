@@ -31,10 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
-#if !SILVERLIGHT
-//no silverlight for xunit InlineData
-
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -346,6 +342,7 @@ namespace NLog.UnitTests.Internal
             Assert.Throws<System.NotSupportedException>(() => dict[string.Empty] = new string[0]);
         }
 
+#if NET3_5 || SILVERLIGHT || MONO
         [Fact]
         public void ReadOnlyArrayList_EmptyTest()
         {
@@ -406,6 +403,6 @@ namespace NLog.UnitTests.Internal
 
             Assert.Throws<NotSupportedException>(() => list[0] = string.Empty);
         }
+#endif
     }
 }
-#endif
