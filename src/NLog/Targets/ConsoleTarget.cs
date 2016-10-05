@@ -101,7 +101,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to auto-check if the console is available
         /// </summary>
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool DetectConsoleAvailable { get; set; }
 
         /// <summary>
@@ -113,6 +113,7 @@ namespace NLog.Targets
         public ConsoleTarget() : base()
         {
             PauseLogging = false;
+            DetectConsoleAvailable = true;
         }
 
         /// <summary>
@@ -170,18 +171,18 @@ namespace NLog.Targets
             {
                 if (!Environment.UserInteractive)
                 {
-                    InternalLogger.Info("Environment.UserInteractive = False. Console has been turned off. Disable DetectUserInteractive to skip detection.");
+                    InternalLogger.Info("Environment.UserInteractive = False. Console has been turned off. Disable DetectConsoleAvailable to skip detection.");
                     return false;
                 }
                 else if (Console.OpenStandardInput(1) == Stream.Null)
                 {
-                    InternalLogger.Info("Console.OpenStandardInput = Null. Console has been turned off. Disable DetectUserInteractive to skip detection.");
+                    InternalLogger.Info("Console.OpenStandardInput = Null. Console has been turned off. Disable DetectConsoleAvailable to skip detection.");
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                InternalLogger.Warn(ex, "Failed to detect whether console is available. Console has been turned off. Disable DetectUserInteractive to skip detection.");
+                InternalLogger.Warn(ex, "Failed to detect whether console is available. Console has been turned off. Disable DetectConsoleAvailable to skip detection.");
                 return false;
             }
 #endif
