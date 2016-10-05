@@ -121,6 +121,7 @@
     <Compile Include="Internal\FilePathLayoutTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
+    <Compile Include="Internal\SortHelpersTests.cs" />
     <Compile Include="Internal\StringHelpersTests.cs" />
     <Compile Include="Internal\UrlHelperTests.cs" />
     <Compile Include="LayoutRenderers\AppDomainLayoutRendererTests.cs" />
