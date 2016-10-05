@@ -379,7 +379,7 @@ namespace NLog.Targets.Wrappers
             }
             finally
             {
-                if (TimeToSleepBetweenBatches <= 0 && wroteFullBatchSize.HasValue && wroteFullBatchSize.Value)
+                if (TimeToSleepBetweenBatches <= 0 && wroteFullBatchSize == true)
                     this.StartInstantWriterTimer(); // Found full batch, fast schedule to take next batch (within lock to avoid pile up)
 
                 if (lockTaken)
@@ -388,11 +388,18 @@ namespace NLog.Targets.Wrappers
                 if (TimeToSleepBetweenBatches <= 0)
                 {
                     // If queue was not empty, then more might have arrived while writing the first batch
+                    // Uses throttled timer here, so we can process in batches (faster)
                     if (wroteFullBatchSize.HasValue && !wroteFullBatchSize.Value)
+                        this.StartLazyWriterTimer();    // Queue was not empty, more might have come (Skip expensive RequestQueue-check)
+                    else if (!wroteFullBatchSize.HasValue)
                     {
                         if (this.RequestQueue.RequestCount > 0)
+                            this.StartLazyWriterTimer();    // Queue was checked as empty, but now we have more
+                        else
                         {
-                            this.StartLazyWriterTimer();    // Schedule throttled so we can write in batches (faster)
+                            lock (this.continuationQueueLock)
+                                if (this.flushAllContinuations.Count > 0)
+                                    this.StartLazyWriterTimer();    // Flush queue was checked as empty, but now we have more
                         }
                     }
                 }
