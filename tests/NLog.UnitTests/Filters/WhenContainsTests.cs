@@ -86,5 +86,60 @@ namespace NLog.UnitTests.Filters
             logger.Debug("aaa");
             AssertDebugCounter("debug", 2);
         }
+
+        [Fact]
+        public void WhenContainsQuoteTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug'>
+                    <filters>
+                        <whenContains layout='${message}' substring='&apos;' action='Ignore' ignoreCase='true' />
+                    </filters>
+                    </logger>
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("'");
+            AssertDebugCounter("debug", 0);
+            logger.Debug("a'a");
+            AssertDebugCounter("debug", 0);
+            logger.Debug("a");
+            AssertDebugCounter("debug", 1);
+            logger.Debug("aaa");
+            AssertDebugCounter("debug", 2);
+        }
+
+        [Fact]
+        public void WhenContainsQuoteTestComplex()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog throwExceptions='true'>
+                <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug'>
+                    <filters>
+                        <when condition=""contains('${message}', 'Cannot insert the value NULL into column ''Col1')"" action=""Log""></when>
+                        <when condition='true' action='Ignore' />
+                    </filters>
+                    </logger>
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("Test");
+            AssertDebugCounter("debug", 0);
+            logger.Debug("Cannot insert the value NULL into column 'Col1");
+            AssertDebugCounter("debug", 1);
+            logger.Debug("Cannot insert the value NULL into column 'Col1'");
+            AssertDebugCounter("debug", 2);
+            logger.Debug("Cannot insert the value NULL into column Col1");
+            AssertDebugCounter("debug", 2);
+            logger.Debug("Cannot insert the value NULL into column 'COL1'");
+            AssertDebugCounter("debug", 3);
+        }
     }
 }
