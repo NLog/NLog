@@ -128,5 +128,55 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             }
         }
 
+        [Fact]
+        public void WhenLogLevelConditionTestLayoutRenderer()
+        {
+            //else cannot be invoked ambiently. First param is inner
+            SimpleLayout l = @"${when:when=level<=LogLevel.Info:inner=Good:else=Bad}";
+
+            {
+                var le = LogEventInfo.Create(LogLevel.Debug, "logger", "message");
+                Assert.Equal("Good", l.Render(le));
+            }
+            {
+                var le = LogEventInfo.Create(LogLevel.Error, "logger1", "message");
+                Assert.Equal("Bad", l.Render(le));
+            }
+
+        }
+
+        [Fact]
+        public void WhenLogLevelConditionTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog throwExceptions='true'>
+                <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Trace' writeTo='debug'>
+                    <filters>
+                        <when condition=""level>=LogLevel.Info"" action=""Log""></when>
+                        <when condition='true' action='Ignore' />
+                    </filters>
+                    </logger>
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Trace("Test");
+           
+            AssertDebugCounter("debug", 0);
+            logger.Debug("Test");
+            AssertDebugCounter("debug", 0);
+            logger.Info("Test");
+            AssertDebugCounter("debug", 1);
+            logger.Warn("Test");
+            AssertDebugCounter("debug", 2);
+            logger.Error("Test");
+            AssertDebugCounter("debug", 3);
+            logger.Fatal("Test");
+            AssertDebugCounter("debug", 4);
+          
+        }
+
     }
 }
