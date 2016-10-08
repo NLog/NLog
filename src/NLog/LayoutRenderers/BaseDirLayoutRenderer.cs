@@ -76,7 +76,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
         /// </summary>
-        public BaseDirLayoutRenderer(IAppDomain appDomain)
+        internal BaseDirLayoutRenderer(IAppDomain appDomain)
         {
             _baseDir = appDomain.BaseDirectory;
         }

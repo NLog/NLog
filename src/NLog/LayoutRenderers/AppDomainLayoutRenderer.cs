@@ -68,7 +68,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Create a new renderer
         /// </summary>
-        public AppDomainLayoutRenderer(IAppDomain currentDomain)
+        internal AppDomainLayoutRenderer(IAppDomain currentDomain)
         {
             _currentDomain = currentDomain;
             Format = LongFormatCode;

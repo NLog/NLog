@@ -139,7 +139,7 @@ namespace NLog
         /// <summary>
         /// Gets the current <see cref="IAppDomain"/>.
         /// </summary>
-        public static IAppDomain CurrentAppDomain
+        internal static IAppDomain CurrentAppDomain
         {
             get
             {

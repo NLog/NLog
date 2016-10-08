@@ -40,7 +40,7 @@ namespace NLog.Internal.Fakeables
     /// <summary>
     /// Interface for fakeable the current <see cref="LogFactory.CurrentAppDomain"/>. Not fully implemented, please methods/properties as necessary.
     /// </summary>
-    public interface IAppDomain
+    internal interface IAppDomain
     {
         /// <summary>
         /// Gets or sets the base directory that the assembly resolver uses to probe for assemblies.
