@@ -32,7 +32,7 @@
 // 
 
 using System;
-using System.Threading.Tasks;
+
 using NLog.Common;
 using NLog.Config;
 using NLog.Targets;
@@ -40,7 +40,13 @@ using NLog.Targets.Wrappers;
 using NLog.UnitTests.Common;
 using NLog.UnitTests.Targets.Wrappers;
 
+
+
 #if !SILVERLIGHT
+
+#if !NET3_5
+using System.Threading.Tasks;
+#endif
 
 namespace NLog.UnitTests.LayoutRenderers
 {
@@ -157,6 +163,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
+#if !NET3_5
 
         /// <summary>
         /// Test writing ${identity} async
@@ -268,6 +275,8 @@ namespace NLog.UnitTests.LayoutRenderers
                 Thread.CurrentPrincipal = oldPrincipal;
             }
         }
+
+#endif
 
         [Fact]
         public void IdentityTest2()
