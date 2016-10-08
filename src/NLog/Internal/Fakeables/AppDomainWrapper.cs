@@ -41,6 +41,8 @@ namespace NLog.Internal.Fakeables
     /// </summary>
     public class AppDomainWrapper : IAppDomain
     {
+        private readonly AppDomain currentAppDomain;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AppDomainWrapper"/> class.
         /// </summary>
@@ -48,6 +50,7 @@ namespace NLog.Internal.Fakeables
         public AppDomainWrapper(AppDomain appDomain)
         {
 #if !SILVERLIGHT
+            currentAppDomain = appDomain;
             BaseDirectory = appDomain.BaseDirectory;
             ConfigurationFile = appDomain.SetupInformation.ConfigurationFile;
 
@@ -58,11 +61,6 @@ namespace NLog.Internal.Fakeables
                                                                                    StringSplitOptions.RemoveEmptyEntries);
             FriendlyName = appDomain.FriendlyName;
             Id = appDomain.Id;
-            
-#endif
-#if !SILVERLIGHT
-            appDomain.ProcessExit += OnProcessExit;
-            appDomain.DomainUnload += OnDomainUnload;
 #endif
         }
 
@@ -102,29 +100,19 @@ namespace NLog.Internal.Fakeables
         /// <summary>
         /// Process exit event.
         /// </summary>
-        public event EventHandler<EventArgs> ProcessExit;
+        public event EventHandler ProcessExit
+        {
+            add { this.currentAppDomain.ProcessExit += value; }
+            remove { this.currentAppDomain.ProcessExit -= value; }
+        }
 
         /// <summary>
         /// Domain unloaded event.
         /// </summary>
-        public event EventHandler<EventArgs> DomainUnload;
-
-        private void OnDomainUnload(object sender, EventArgs e)
+        public event EventHandler DomainUnload
         {
-            System.AppDomain appDomain = sender as System.AppDomain;
-            if (appDomain != null)
-            {
-                appDomain.ProcessExit -= OnProcessExit;
-                appDomain.DomainUnload -= OnDomainUnload;
-            }
-            var handler = DomainUnload;
-            if (handler != null) handler(sender, e);
-        }
-
-        private void OnProcessExit(object sender, EventArgs eventArgs)
-        {
-            var handler = ProcessExit;
-            if (handler != null) handler(sender, eventArgs);
+            add { this.currentAppDomain.DomainUnload += value; }
+            remove { this.currentAppDomain.DomainUnload -= value; }
         }
 #endif
     }

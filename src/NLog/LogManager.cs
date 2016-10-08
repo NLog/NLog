@@ -141,8 +141,11 @@ namespace NLog
             set
             {
 #if !SILVERLIGHT && !MONO
-                currentAppDomain.DomainUnload -= TurnOffLogging;
-                currentAppDomain.ProcessExit -= TurnOffLogging;
+                if (currentAppDomain != null)
+                {
+                    currentAppDomain.DomainUnload -= TurnOffLogging;
+                    currentAppDomain.ProcessExit -= TurnOffLogging;
+                }
 #endif
                 currentAppDomain = value;
             }
