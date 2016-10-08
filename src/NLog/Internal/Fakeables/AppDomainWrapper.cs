@@ -111,6 +111,12 @@ namespace NLog.Internal.Fakeables
 
         private void OnDomainUnload(object sender, EventArgs e)
         {
+            System.AppDomain appDomain = sender as System.AppDomain;
+            if (appDomain != null)
+            {
+                appDomain.ProcessExit -= OnProcessExit;
+                appDomain.DomainUnload -= OnDomainUnload;
+            }
             var handler = DomainUnload;
             if (handler != null) handler(sender, e);
         }

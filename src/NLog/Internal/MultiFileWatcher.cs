@@ -71,6 +71,7 @@ namespace NLog.Internal
         /// </summary>
         public void Dispose()
         {
+            this.OnChange = null;   // Release event listeners
             this.StopWatching();
             GC.SuppressFinalize(this);
         }
