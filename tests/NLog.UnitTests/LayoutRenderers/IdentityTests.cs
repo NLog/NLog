@@ -190,14 +190,15 @@ namespace NLog.UnitTests.LayoutRenderers
                     var continuationHit = new ManualResetEvent(false);
                     int threadId = Thread.CurrentThread.ManagedThreadId;
                     int asyncThreadId = 0;
-                    IIdentity asyncThreadIdentity = null;
 
                     var asyncTarget = LogManager.Configuration.FindTargetByName<AsyncTargetWrapper>("target1");
                     var target = asyncTarget?.WrappedTarget as CSharpEventTarget;
                     Assert.NotNull(target);
 
-                    target.EventWritten += (logevent, rendered1, asyncThreadId1) => {
-                        asyncThreadIdentity = Thread.CurrentPrincipal.Identity;
+                    string rendered = "notset";
+                    target.EventWritten += (logevent, rendered1, asyncThreadId1) =>
+                    {
+                        rendered = rendered1;
                         asyncThreadId = Thread.CurrentThread.ManagedThreadId;
                         continuationHit.Set();
                     };
@@ -209,7 +210,7 @@ namespace NLog.UnitTests.LayoutRenderers
                     Assert.True(continuationHit.WaitOne());
 
                     //should be written in another thread.
-                    Assert.Equal("USER", asyncThreadIdentity?.Name);
+                    Assert.Equal("auth:type:USER", rendered);
                     Assert.NotEqual(threadId, asyncThreadId);
                 } finally {
                     LogManager.Configuration.Close();
