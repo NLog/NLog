@@ -39,7 +39,7 @@ namespace NLog.Internal.Fakeables
     /// <summary>
     /// Adapter for <see cref="AppDomain"/> to <see cref="IAppDomain"/>
     /// </summary>
-    public class AppDomainWrapper : IAppDomain
+    internal class AppDomainWrapper : IAppDomain
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AppDomainWrapper"/> class.

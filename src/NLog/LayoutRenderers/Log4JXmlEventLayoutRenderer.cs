@@ -64,11 +64,11 @@ namespace NLog.LayoutRenderers
         public Log4JXmlEventLayoutRenderer() : this(AppDomainWrapper.CurrentDomain)
         {
         }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
-        public Log4JXmlEventLayoutRenderer(IAppDomain appDomain)
+        internal Log4JXmlEventLayoutRenderer(IAppDomain appDomain)
         {
             this.IncludeNLogData = true;
             this.NdcItemSeparator = " ";

@@ -39,7 +39,7 @@ namespace NLog.Internal.Fakeables
     /// <summary>
     /// Interface for fakeable the current <see cref="AppDomain"/>. Not fully implemented, please methods/properties as necessary.
     /// </summary>
-    public interface IAppDomain
+    internal interface IAppDomain
     {
 #if !SILVERLIGHT
         /// <summary>

@@ -81,7 +81,7 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
-        public EventLogTarget(IAppDomain appDomain)
+        internal EventLogTarget(IAppDomain appDomain)
         {
             this.Source = appDomain.FriendlyName;
             this.Log = "Application";
