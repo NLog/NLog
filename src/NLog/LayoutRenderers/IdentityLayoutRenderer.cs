@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 #if !SILVERLIGHT
 
 namespace NLog.LayoutRenderers

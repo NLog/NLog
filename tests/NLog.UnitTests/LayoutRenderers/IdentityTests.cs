@@ -206,6 +206,8 @@ namespace NLog.UnitTests.LayoutRenderers
 
                 try
                 {
+
+                    
                     Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("USER", "type"), null);
                     var continuationHit = new ManualResetEvent(false);
                     int threadId = Thread.CurrentThread.ManagedThreadId;
@@ -241,6 +243,20 @@ namespace NLog.UnitTests.LayoutRenderers
                     //should be written in another thread.
                     Assert.Equal("auth:type:USER", rendered);
                     Assert.NotEqual(threadId, asyncThreadId);
+
+
+                    //now change the user
+
+                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("USER2", "type"), null);
+                    continuationHit = new ManualResetEvent(false);
+
+                    await Task.Delay(1);
+                    logger.Debug("test write2");
+
+                    Assert.True(continuationHit.WaitOne());
+                    Assert.Equal("auth:type:USER2", rendered);
+
+
                 }
                 finally
                 {
