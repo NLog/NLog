@@ -355,6 +355,7 @@
     <Compile Include="Targets\ConsoleOutputColor.cs" />
     <Compile Include="Targets\ConsoleRowHighlightingRule.cs" />
     <Compile Include="Targets\ConsoleTarget.cs" />
+    <Compile Include="Targets\ConsoleTargetHelper.cs" />
     <Compile Include="Targets\ConsoleWordHighlightingRule.cs" />
     <Compile Include="Targets\DatabaseCommandInfo.cs" />
     <Compile Include="Targets\DatabaseParameterInfo.cs" />

@@ -31,6 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !__ANDROID__ && !__IOS__
+// Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) so the BaseFileAppender class now throws an exception in the constructor.
+#define SupportsMutex
+#endif
+
 namespace NLog.Targets
 {
     using System;
@@ -879,7 +884,7 @@ namespace NLog.Targets
             }
             else if (this.ConcurrentWrites)
             {
-#if SILVERLIGHT
+#if !SupportsMutex
                 return RetryingMultiProcessFileAppender.TheFactory;
 #elif MONO
 //
@@ -1291,7 +1296,32 @@ namespace NLog.Targets
             else
             {
                 InternalLogger.Info("Archiving {0} to {1}", fileName, archiveFileName);
-                File.Move(fileName, archiveFileName);
+                if (File.Exists(archiveFileName))
+                {
+                    //todo handle double footer
+                    InternalLogger.Info("Already exists, append to {0}", archiveFileName);
+                    
+                    //todo maybe needs a better filelock behaviour
+
+                    //copy to archive file.
+                    using (FileStream fileStream = File.Open(fileName, FileMode.Open))
+                    using (FileStream archiveFileStream = File.Open(archiveFileName, FileMode.Append ))
+                    {
+                        fileStream.CopyAndSkipBom(archiveFileStream, Encoding);
+                        //clear old content
+                        fileStream.SetLength(0);
+                        fileStream.Close(); // This flushes the content, too.
+#if NET3_5
+                        archiveFileStream.Flush();
+#else
+                        archiveFileStream.Flush(true);
+#endif
+                    }
+                }
+                else
+                {
+                    File.Move(fileName, archiveFileName);
+                }
             }
         }
 
@@ -1479,7 +1509,14 @@ namespace NLog.Targets
                 return false;
             }
 
-            string datePart = dateAndSequence.Substring(0, dateAndSequence.Length - sequencePart.Length - 1);
+            var dateAndSequenceLength2 = dateAndSequence.Length - sequencePart.Length - 1;
+            if (dateAndSequenceLength2 < 0)
+            {
+                date = default(DateTime);
+                return false;
+            }
+
+            string datePart = dateAndSequence.Substring(0, dateAndSequenceLength2);
             if (!DateTime.TryParseExact(datePart, dateFormat, CultureInfo.CurrentCulture, DateTimeStyles.None,
                 out date))
             {
@@ -1779,7 +1816,7 @@ namespace NLog.Targets
             var archiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
             if (!string.IsNullOrEmpty(archiveFile))
             {
-#if !SILVERLIGHT
+#if SupportsMutex
                 Mutex archiveMutex = this.fileAppenderCache.GetArchiveMutex(fileName);
                 try
                 {
@@ -1801,9 +1838,18 @@ namespace NLog.Targets
                         this.DoAutoArchive(archiveFile, ev);
                     }
                 }
+                catch (Exception exception)
+                {
+                    InternalLogger.Warn(exception, "Failed to archive file '{0}'.", archiveFile);
+
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+                }
                 finally
                 {
-#if !SILVERLIGHT
+#if SupportsMutex
                     if (archiveMutex != null)
                         archiveMutex.ReleaseMutex();
 #endif

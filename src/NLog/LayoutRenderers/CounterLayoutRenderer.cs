@@ -96,7 +96,7 @@ namespace NLog.LayoutRenderers
                 this.Value += this.Increment;
             }
 
-            builder.Append(v.ToString(CultureInfo.InvariantCulture));
+            Internal.StringBuilderExt.AppendInvariant(builder, v);
         }
 
         private static int GetNextSequenceValue(string sequenceName, int defaultValue, int increment)

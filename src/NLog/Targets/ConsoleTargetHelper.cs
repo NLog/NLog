@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,26 +31,39 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
-{
-    using System.Text;
-    using System.Threading;
+using System;
+using System.IO;
+using NLog.Common;
 
-    /// <summary>
-    /// The identifier of the current thread.
-    /// </summary>
-    [LayoutRenderer("threadid")]
-    public class ThreadIdLayoutRenderer : LayoutRenderer
+namespace NLog.Targets
+{
+    internal static class ConsoleTargetHelper
     {
-        /// <summary>
-        /// Renders the current thread identifier and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        public static bool IsConsoleAvailable(out string reason)
         {
-            //no culture needed for ints
-            Internal.StringBuilderExt.AppendInvariant(builder, Thread.CurrentThread.ManagedThreadId);
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
+            try
+            {
+                if (!Environment.UserInteractive)
+                {
+                    reason = "Environment.UserInteractive = False";
+                    return false;
+                }
+                else if (Console.OpenStandardInput(1) == Stream.Null)
+                {
+                    reason = "Console.OpenStandardInput = Null";
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                reason = string.Format("Unexpected exception: {0}:{1}", ex.GetType().Name, ex.Message);
+                InternalLogger.Warn(ex, "Failed to detect whether console is available.");
+                return false;
+            }
+#endif
+            reason = string.Empty;
+            return true;
         }
     }
 }
