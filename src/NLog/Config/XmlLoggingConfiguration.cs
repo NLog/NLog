@@ -551,9 +551,19 @@ namespace NLog.Config
             this.ExceptionLoggingOldStyle = nlogElement.GetOptionalBooleanAttribute("exceptionLoggingOldStyle", false);
 #pragma warning restore 618
 
-            string defaultPoolSetup = nlogElement.GetOptionalAttribute("defaultPoolSetup", "");
-            if (!string.IsNullOrEmpty(defaultPoolSetup))
-                PropertyHelper.SetPropertyFromString(this, "DefaultPoolSetup", defaultPoolSetup, this.ConfigurationItemFactory);
+            string defaultPoolSetupAttrib = nlogElement.GetOptionalAttribute("defaultPoolSetup", "");
+            if (!string.IsNullOrEmpty(defaultPoolSetupAttrib))
+            {
+                PoolSetup defaultPoolSetup;
+#if NET3_5 || SILVERLIGHT || MONO
+                defaultPoolSetup = PoolSetup.None;
+                if (Enum.IsDefined(defaultPoolSetup.GetType(), defaultPoolSetupAttrib))
+                    logFactory.DefaultPoolSetup = (PoolSetup)Enum.Parse(defaultPoolSetup.GetType(), defaultPoolSetupAttrib, true);
+#else
+                if (Enum.TryParse(defaultPoolSetupAttrib, out defaultPoolSetup))
+                    logFactory.DefaultPoolSetup = defaultPoolSetup;
+#endif
+            }
 
             bool autoReload = nlogElement.GetOptionalBooleanAttribute("autoReload", autoReloadDefault);
             if (filePath != null)
@@ -1101,7 +1111,7 @@ namespace NLog.Config
             TimeSource.Current = newTimeSource;
         }
 
-        #endregion
+#endregion
 
         private static string GetFileLookupKey(string fileName)
         {

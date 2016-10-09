@@ -148,7 +148,7 @@ namespace NLog.Targets
         /// <param name="logEvent">Logging event to be written out.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            this.Write(new[] { logEvent });
+            this.Write(new ArraySegment<AsyncLogEventInfo>(new[] { logEvent }));
         }
 
         /// <summary>
@@ -172,7 +172,13 @@ namespace NLog.Targets
             }
 
             var networkLogEvents = this.TranslateLogEvents(logEvents);
-            this.Send(networkLogEvents, new SortHelpers.ReadOnlyArrayList<AsyncLogEventInfo>(logEvents));
+            IList<AsyncLogEventInfo> logEventList =
+#if NET3_5 || SILVERLIGHT || MONO || NET4_0
+                new SortHelpers.ReadOnlyArrayList<AsyncLogEventInfo>(logEvents);
+#else
+                logEvents;
+#endif
+            this.Send(networkLogEvents, logEventList);
         }
 
         /// <summary>
@@ -295,7 +301,7 @@ namespace NLog.Targets
                 };
 
             this.inCall = true;
-#if SILVERLIGHT 
+#if SILVERLIGHT
             if (!Deployment.Current.Dispatcher.CheckAccess())
             {
                 Deployment.Current.Dispatcher.BeginInvoke(() => client.ProcessLogMessagesAsync(events));

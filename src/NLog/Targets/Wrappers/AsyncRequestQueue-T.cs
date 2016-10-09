@@ -132,26 +132,19 @@ namespace NLog.Targets.Wrappers
         /// <returns>The array of log events.</returns>
         public AsyncLogEventInfo[] DequeueBatch(int count)
         {
-            AsyncLogEventInfo[] resultEvents;
-
+            ArraySegment<AsyncLogEventInfo> batch;
             lock (this)
             {
                 if (count == -1 || this.logEventInfoQueue.Count < count)
                     count = this.logEventInfoQueue.Count;
 
-                resultEvents = new AsyncLogEventInfo[count];
-                for (int i = 0; i < count; ++i)
-                {
-                    resultEvents[i] = this.logEventInfoQueue.Dequeue();
-                }
-
+                batch = DequeueBatchUnsafe(new AsyncLogEventInfo[count]);
                 if (this.OnOverflow == AsyncTargetWrapperOverflowAction.Block)
                 {
                     System.Threading.Monitor.PulseAll(this);
                 }
             }
-
-            return resultEvents;
+            return batch.Array;
         }
 
         /// <summary>
@@ -161,20 +154,26 @@ namespace NLog.Targets.Wrappers
         /// <returns>ArraySegment that specifies how many items that was dequeued.</returns>
         public ArraySegment<AsyncLogEventInfo> DequeueBatch(AsyncLogEventInfo[] result)
         {
-            int count = result.Length;
+            ArraySegment<AsyncLogEventInfo> batch;
             lock (this)
             {
-                if (this.logEventInfoQueue.Count < count)
-                    count = this.logEventInfoQueue.Count;
-                for (int i = 0; i < count; ++i)
-                {
-                    result[i] = this.logEventInfoQueue.Dequeue();
-                }
-
+                batch = DequeueBatchUnsafe(result);
                 if (this.OnOverflow == AsyncTargetWrapperOverflowAction.Block)
                 {
                     System.Threading.Monitor.PulseAll(this);
                 }
+            }
+            return batch;
+        }
+
+        private ArraySegment<AsyncLogEventInfo> DequeueBatchUnsafe(AsyncLogEventInfo[] result)
+        {
+            int count = result.Length;
+            if (this.logEventInfoQueue.Count < count)
+                count = this.logEventInfoQueue.Count;
+            for (int i = 0; i < count; ++i)
+            {
+                result[i] = this.logEventInfoQueue.Dequeue();
             }
             return new ArraySegment<AsyncLogEventInfo>(result, 0, count);
         }

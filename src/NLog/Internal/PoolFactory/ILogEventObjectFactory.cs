@@ -43,32 +43,75 @@ namespace NLog.Internal.PoolFactory
     /// </summary>
     internal interface ILogEventObjectFactory
     {
+        /// <summary>
+        /// Current pool configuration used by this object factory
+        /// </summary>
         PoolSetup PoolSetup { get; }
 
+        /// <summary>
+        /// Outputs the <see cref="Logger"/>s and <see cref="Targets.Target"/>s and their pool usage
+        /// </summary>
+        /// <param name="builder"></param>
         void GetPoolsStats(System.Text.StringBuilder builder);
 
+        /// <summary>
+        /// Factory method for <see cref="LogEventInfo"/> 
+        /// </summary>
         LogEventInfo CreateLogEvent(LogLevel level, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters, Exception exception);
 
+        /// <summary>
+        /// Put back <see cref="LogEventInfo"/> into object pool after usage for reuse
+        /// </summary>
         void ReleaseLogEvent(LogEventInfo item);
 
+        /// <summary>
+        /// Factory method for <see cref="ReusableStringBuilder"/> 
+        /// </summary>
         ReusableStringBuilder CreateStringBuilder(int capacity = 0);
 
+        /// <summary>
+        /// Put back <see cref="ReusableStringBuilder"/> into object pool after usage for reuse
+        /// </summary>
         void ReleaseStringBuilder(ReusableStringBuilder item);
 
+        /// <summary>
+        /// Factory method for <see cref="ReusableMemoryStream"/> 
+        /// </summary>
         ReusableMemoryStream CreateMemoryStream(int capacity = 0);
 
+        /// <summary>
+        /// Put back <see cref="ReusableMemoryStream"/> into object pool after usage for reuse
+        /// </summary>
         void ReleaseMemoryStream(ReusableMemoryStream item);
 
+        /// <summary>
+        /// Factory method for <see cref="ReusableAsyncLogEventInfoArray"/> 
+        /// </summary>
         ReusableAsyncLogEventInfoArray CreateAsyncLogEventArray(int capacity = 0);
 
+        /// <summary>
+        /// Put back <see cref="ReusableAsyncLogEventInfoArray"/> into object pool after usage for reuse
+        /// </summary>
         void ReleaseAsyncLogEventArray(ReusableAsyncLogEventInfoArray item);
 
+        /// <summary>
+        /// Factory method for <see cref="ExceptionHandlerContinuation"/> 
+        /// </summary>
         ExceptionHandlerContinuation CreateExceptionHandlerContinuation(int originalThreadId, bool throwExceptions);
 
+        /// <summary>
+        /// Put back <see cref="ExceptionHandlerContinuation"/> into object pool after usage for reuse
+        /// </summary>
         void ReleaseExceptionHandlerContinuation(ExceptionHandlerContinuation item);
 
+        /// <summary>
+        /// Factory method for <see cref="CompleteWhenAllContinuation"/> 
+        /// </summary>
         CompleteWhenAllContinuation CreateCompleteWhenAllContinuation(CompleteWhenAllContinuation.Counter externalCounter = null);
 
+        /// <summary>
+        /// Put back <see cref="CompleteWhenAllContinuation"/> into object pool after usage for reuse
+        /// </summary>
         void ReleaseCompleteWhenAllContinuation(CompleteWhenAllContinuation item);
     }
 }

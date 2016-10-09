@@ -134,10 +134,18 @@ namespace NLog.Internal
                     eventsInBucket.Add(inputs.Array[i]);
                 }
             }
-            if (buckets != null || inputs.Count == 0)
-                return new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(buckets != null ? buckets : new Dictionary<TKey, IList<TValue>>());
+            if (buckets != null)
+            {
+                return new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(buckets);
+            }
             else
+            {
+#if NET3_5 || SILVERLIGHT || MONO || NET4_0
                 return new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(new KeyValuePair<TKey, IList<TValue>>(singleBucketKey, new ReadOnlyArrayList<TValue>(inputs)));
+#else
+                return new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(new KeyValuePair<TKey, IList<TValue>>(singleBucketKey, inputs));
+#endif
+            }               
         }
 
         /// <summary>
@@ -398,8 +406,9 @@ namespace NLog.Internal
             }
         }
 
+#if NET3_5 || SILVERLIGHT || MONO || NET4_0
         /// <summary>
-        /// Exposes an ArraySegment to have IList-interface (Only needed for NET3_5 / Silverlight)
+        /// Exposes an ArraySegment to have IList-interface
         /// </summary>
         /// <typeparam name="TValue"></typeparam>
         internal struct ReadOnlyArrayList<TValue> : IList<TValue>
@@ -511,5 +520,6 @@ namespace NLog.Internal
                 throw new NotSupportedException("Readonly");
             }
         }
+#endif
     }
 }

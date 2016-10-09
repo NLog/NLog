@@ -80,11 +80,6 @@ namespace NLog.Config
         public bool ExceptionLoggingOldStyle { get; set; }
 
         /// <summary>
-        /// 
-        /// </summary>
-        public PoolSetup DefaultPoolSetup { get; set; }
-
-        /// <summary>
         /// Gets the variables defined in the configuration.
         /// </summary>
         public IDictionary<string, SimpleLayout> Variables

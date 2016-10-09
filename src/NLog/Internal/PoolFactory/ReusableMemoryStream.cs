@@ -47,7 +47,7 @@ namespace NLog.Internal.PoolFactory
 
         public MemoryStream Result { get { return _result; } }
 
-        object IPoolObject.Owner { get { return _owner; } set { _owner = (ILogEventObjectFactory)value; } }
+        object IPoolObject.OwnerPool { get { return _owner; } set { _owner = (ILogEventObjectFactory)value; } }
 
         internal ReusableMemoryStream(MemoryStream result)
         {

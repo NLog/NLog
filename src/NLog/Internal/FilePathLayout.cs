@@ -153,12 +153,27 @@ namespace NLog.Internal
                 return null;
             }
 
-            var result = _layout.Render(logEvent);
-            if (_cleanupInvalidChars)
+            if (logEvent.PoolReleaseContinuation != null)
             {
-                return CleanupInvalidFilePath(result);
+                using (var target = logEvent.ObjectFactory.CreateStringBuilder())
+                {
+                    _layout.RenderAppendBuilder(logEvent, target.Result);
+                    if (_cleanupInvalidChars)
+                    {
+                        return CleanupInvalidFilePath(target.ToString());
+                    }
+                    return target.ToString();
+                }
             }
-            return result;
+            else
+            {
+                var result = _layout.Render(logEvent);
+                if (_cleanupInvalidChars)
+                {
+                    return CleanupInvalidFilePath(result);
+                }
+                return result;
+            }
         }
 
         public string Render(LogEventInfo logEvent)
@@ -184,9 +199,7 @@ namespace NLog.Internal
             return Path.GetFullPath(rendered);
 
         }
-
         #endregion
-
 
         /// <summary>
         /// Is this (templated/invalid) path an absolute, relative or unknown?

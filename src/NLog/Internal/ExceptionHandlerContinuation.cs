@@ -44,30 +44,32 @@ namespace NLog.Internal
     /// </summary>
     internal class ExceptionHandlerContinuation : PoolFactory.IPoolObject
     {
-        public int OriginalThreadId { get; private set; }
+        private int _originalThreadId;
+        private bool _throwExceptions;
 
-        public bool ThrowExceptions { get; private set; }
-
+        /// <summary>
+        /// Prevents capture of this-reference when calling <see cref="Handler"/> 
+        /// </summary>
         public readonly AsyncContinuation Delegate;
 
         private PoolFactory.ILogEventObjectFactory _owner;
-        object PoolFactory.IPoolObject.Owner { get { return _owner; } set { _owner = (PoolFactory.ILogEventObjectFactory)value; } }
-
-        internal ExceptionHandlerContinuation(int originalThreadId, bool throwExceptions)
-        {
-            this.Delegate = this.Handler;
-            Init(originalThreadId, throwExceptions);
-        }
+        object PoolFactory.IPoolObject.OwnerPool { get { return _owner; } set { _owner = (PoolFactory.ILogEventObjectFactory)value; } }
 
         /// <summary>
         /// Captures the exception-handle-state for the thread that called the <see cref="Logger"/>
         /// </summary>
         /// <param name="originalThreadId">ThreadId for the thread calling Logger</param>
         /// <param name="throwExceptions"><see cref="LogFactory.ThrowExceptions"/> policy</param>
+        public ExceptionHandlerContinuation(int originalThreadId, bool throwExceptions)
+        {
+            this.Delegate = this.Handler;
+            Init(originalThreadId, throwExceptions);
+        }
+
         internal void Init(int originalThreadId, bool throwExceptions)
         {
-            this.OriginalThreadId = originalThreadId;
-            this.ThrowExceptions = throwExceptions;
+            this._originalThreadId = originalThreadId;
+            this._throwExceptions = throwExceptions;
         }
 
         private void Handler(Exception ex)
@@ -76,7 +78,7 @@ namespace NLog.Internal
             {
                 if (ex != null)
                 {
-                    if (this.ThrowExceptions && Thread.CurrentThread.ManagedThreadId == this.OriginalThreadId)
+                    if (this._throwExceptions && Thread.CurrentThread.ManagedThreadId == this._originalThreadId)
                     {
                         throw new NLogRuntimeException("Exception occurred in NLog", ex);
                     }

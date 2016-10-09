@@ -47,7 +47,7 @@ namespace NLog.Internal
         public readonly AsyncContinuation Delegate;
 
         private PoolFactory.ILogEventObjectFactory _owner;
-        object PoolFactory.IPoolObject.Owner { get { return _owner; } set { _owner = (PoolFactory.ILogEventObjectFactory)value; } }
+        object PoolFactory.IPoolObject.OwnerPool { get { return _owner; } set { _owner = (PoolFactory.ILogEventObjectFactory)value; } }
 
         private Counter remainingCounter = null;
 
@@ -66,9 +66,10 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Registers 
+        /// Registers the final <see cref="AsyncContinuation"/> to be executed, when remaining number of
+        /// scheduled continuations has completed
         /// </summary>
-        /// <param name="originalContinuation"></param>
+        /// <param name="originalContinuation">Continuation to be scheduled</param>
         /// <param name="whenAllDone">The final continuation when all are completed</param>
         /// <returns></returns>
         public AsyncContinuation CreateContinuation(AsyncContinuation originalContinuation, AsyncContinuation whenAllDone)
@@ -84,11 +85,17 @@ namespace NLog.Internal
             return this.Delegate;
         }
 
+        /// <summary>
+        /// Should be called before using <see cref="CreateContinuation"/> to prevent premature completion
+        /// </summary>
         public void BeginTargetWrite()
         {
             this.remainingCounter.Increment();
         }
 
+        /// <summary>
+        /// Should be called when done making <see cref="CreateContinuation"/> to allow completion
+        /// </summary>
         public void EndTargetWrite(Exception ex)
         {
             int finalResult = this.remainingCounter.Decrement();
@@ -97,11 +104,23 @@ namespace NLog.Internal
 
             if (finalResult == 0)
             {
-                this.completedContinuation(ex);
+                // If no Target wanted the LogEvent, then continuation is never configured
+                if (this.completedContinuation != null)
+                    this.completedContinuation(ex);
             }
 
             if (_owner != null)
                 _owner.ReleaseCompleteWhenAllContinuation(this);
+        }
+
+        /// <summary>
+        /// Reset the continuation for reuse
+        /// </summary>
+        public void Clear()
+        {
+            this.remainingCounter = null;
+            this.originalContinuation = null;
+            this.completedContinuation = null;
         }
 
         private void Function(Exception ex)
@@ -114,13 +133,6 @@ namespace NLog.Internal
             {
                 EndTargetWrite(ex);
             }
-        }
-
-        public void Clear()
-        {
-            this.remainingCounter = null;
-            this.originalContinuation = null;
-            this.completedContinuation = null;
         }
 
         internal class Counter

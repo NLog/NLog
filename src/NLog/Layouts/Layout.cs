@@ -124,7 +124,22 @@ namespace NLog.Layouts
         {
             if (!this.threadAgnostic)
             {
-                this.Render(logEvent);
+                if (logEvent.PoolReleaseContinuation != null)
+                {
+                    int initialLength = this.maxRenderedLength;
+                    if (initialLength > MaxInitialRenderBufferLength)
+                    {
+                        initialLength = MaxInitialRenderBufferLength;
+                    }
+                    using (var localTarget = logEvent.ObjectFactory.CreateStringBuilder(initialLength))
+                    {
+                        this.RenderAppendBuilder(logEvent, localTarget.Result);
+                    }
+                }
+                else
+                {
+                    this.Render(logEvent);
+                }
             }
         }
 
@@ -157,6 +172,16 @@ namespace NLog.Layouts
                 this.InitializeLayout();
             }
 
+            if (!this.IsThreadAgnostic)
+            {
+                string cachedValue;
+                if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
+                {
+                    target.Append(cachedValue);
+                    return;
+                }
+            }
+
             int initialLength = this.maxRenderedLength;
             if (initialLength > MaxInitialRenderBufferLength)
             {
@@ -171,6 +196,13 @@ namespace NLog.Layouts
                 {
                     this.maxRenderedLength = localTarget.Length;
                 }
+
+                if (!this.IsThreadAgnostic)
+                {
+                    // when needed as it generates garbage
+                    logEvent.AddCachedLayoutValue(this, localTarget.ToString());
+                }
+
                 if (newBuilder != null)
                     newBuilder.CopyTo(target);
             }

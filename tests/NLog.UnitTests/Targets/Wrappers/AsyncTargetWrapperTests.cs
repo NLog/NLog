@@ -83,7 +83,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 TimeToSleepBetweenBatches = 0,
                 BatchSize = 4,
                 QueueLimit = 2, // Will make it "sleep" between every second write
-                OverflowAction = AsyncTargetWrapperOverflowAction.Block
+                OverflowAction = AsyncTargetWrapperOverflowAction.Block,
             };
             targetWrapper.Initialize(null);
             myTarget.Initialize(null);

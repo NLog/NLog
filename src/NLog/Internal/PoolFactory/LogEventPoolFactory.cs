@@ -160,18 +160,17 @@ namespace NLog.Internal.PoolFactory
             if (logEvent == null)
                 logEvent = new LogEventInfo(this);
 
-            ((IPoolObject)logEvent).Owner = this;
+            ((IPoolObject)logEvent).OwnerPool = this;
             logEvent.Init(level, loggerName, formatProvider, message, parameters, exception);
             return logEvent;
         }
 
         public void ReleaseLogEvent(LogEventInfo item)
         {
-            if (((IPoolObject)item).Owner != this)
+            if (((IPoolObject)item).OwnerPool != this)
                 throw new InvalidOperationException();
-            int seqno = item.SequenceID;
+
             _logEventPool.TryClearPush(item);
-            //System.Diagnostics.Debug.WriteLine(string.Format("Release {0}", seqno));
         }
 
         const int SmallBuilderMaxSize = 1024;
@@ -183,7 +182,7 @@ namespace NLog.Internal.PoolFactory
                 ReusableStringBuilder builder = _smallBuilderPool.TryPop();
                 if (builder != null)
                 {
-                    ((IPoolObject)builder).Owner = this;
+                    ((IPoolObject)builder).OwnerPool = this;
                     return builder;
                 }
             }
@@ -191,18 +190,18 @@ namespace NLog.Internal.PoolFactory
             ReusableStringBuilder bigBuilder = _bigBuilderPool.TryPop();
             if (bigBuilder != null)
             {
-                ((IPoolObject)bigBuilder).Owner = this;
+                ((IPoolObject)bigBuilder).OwnerPool = this;
                 return bigBuilder;
             }
 
             ReusableStringBuilder newBuilder = _newFactory.CreateStringBuilder(capacity < 256 ? 256 : capacity);
-            ((IPoolObject)newBuilder).Owner = this;
+            ((IPoolObject)newBuilder).OwnerPool = this;
             return newBuilder;
         }
 
         public void ReleaseStringBuilder(ReusableStringBuilder item)
         {
-            if (((IPoolObject)item).Owner != this)
+            if (((IPoolObject)item).OwnerPool != this)
                 throw new InvalidOperationException();
 
             if (item.Result.Capacity < SmallBuilderMaxSize)
@@ -220,7 +219,7 @@ namespace NLog.Internal.PoolFactory
                 ReusableMemoryStream builder = _smallStreamPool.TryPop();
                 if (builder != null)
                 {
-                    ((IPoolObject)builder).Owner = this;
+                    ((IPoolObject)builder).OwnerPool = this;
                     return builder;
                 }
             }
@@ -228,18 +227,18 @@ namespace NLog.Internal.PoolFactory
             ReusableMemoryStream bigStream = _bigStreamPool.TryPop();
             if (bigStream != null)
             {
-                ((IPoolObject)bigStream).Owner = this;
+                ((IPoolObject)bigStream).OwnerPool = this;
                 return bigStream;
             }
 
             ReusableMemoryStream newStream = _newFactory.CreateMemoryStream(capacity < 1024 ? 1024 : capacity);
-            ((IPoolObject)newStream).Owner = this;
+            ((IPoolObject)newStream).OwnerPool = this;
             return newStream;
         }
 
         public void ReleaseMemoryStream(ReusableMemoryStream item)
         {
-            if (((IPoolObject)item).Owner != this)
+            if (((IPoolObject)item).OwnerPool != this)
                 throw new InvalidOperationException();
 
             if (item.Result.Capacity < SmallStreamMaxSize)
@@ -252,11 +251,6 @@ namespace NLog.Internal.PoolFactory
         const int BigArrayMaxSize = 10000;
         const int HugeArrayMaxSize = 100000;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="capacity"></param>
-        /// <returns></returns>
         public ReusableAsyncLogEventInfoArray CreateAsyncLogEventArray(int capacity = 0)
         {
             ReusableAsyncLogEventInfoArray item = null;
@@ -278,13 +272,13 @@ namespace NLog.Internal.PoolFactory
 
             if (item == null)
                 item = _newFactory.CreateAsyncLogEventArray(capacity);
-            ((IPoolObject)item).Owner = this;
+            ((IPoolObject)item).OwnerPool = this;
             return item;
         }
 
         public void ReleaseAsyncLogEventArray(ReusableAsyncLogEventInfoArray item)
         {
-            if (((IPoolObject)item).Owner != this)
+            if (((IPoolObject)item).OwnerPool != this)
                 throw new InvalidOperationException();
 
             if (item.Buffer.Length <= SmallArrayMaxSize)
@@ -343,13 +337,13 @@ namespace NLog.Internal.PoolFactory
             if (item == null)
                 item = _newFactory.CreateCompleteWhenAllContinuation();
             item.Init(externalCounter);
-            ((IPoolObject)item).Owner = this;
+            ((IPoolObject)item).OwnerPool = this;
             return item;
         }
 
         public void ReleaseCompleteWhenAllContinuation(CompleteWhenAllContinuation item)
         {
-            if (((IPoolObject)item).Owner != this)
+            if (((IPoolObject)item).OwnerPool != this)
                 throw new InvalidOperationException();
 
             _continueWhenAllPool.TryClearPush(item);
@@ -437,8 +431,8 @@ namespace NLog.Internal.PoolFactory
 
             public bool TryClearPush(T item)
             {
-                item.Owner = null;
                 item.Clear();   // Clear without holding locks
+                item.OwnerPool = null;
                 return TryPush(item);
             }
 

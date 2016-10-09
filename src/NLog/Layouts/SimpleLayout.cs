@@ -362,22 +362,7 @@ namespace NLog.Layouts
                 return;
             }
 
-            if (!this.IsThreadAgnostic)
-            {
-                string cachedValue;
-                if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
-                {
-                    target.Append(cachedValue);
-                    return;
-                }
-            }
-
             RenderAllRenderers(logEvent, target);
-
-            if (!this.IsThreadAgnostic)
-            {
-                logEvent.AddCachedLayoutValue(this, target.ToString());
-            }
         }
     }
 }

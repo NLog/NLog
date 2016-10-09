@@ -99,6 +99,11 @@ namespace NLog
 #endif
 
         /// <summary>
+        /// Configures whether created <see cref="Logger"/>s should use object pooling by default
+        /// </summary>
+        internal PoolSetup DefaultPoolSetup { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
         /// </summary>
         public LogFactory()

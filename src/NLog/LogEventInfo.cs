@@ -95,7 +95,10 @@ namespace NLog
             this.Parameters = parameters;
             this.FormatProvider = formatProvider;
             this.Exception = exception;
-            CalcFormattedMessageIfNeeded();
+            if (NeedToPreformatMessage(this.Parameters))
+            {
+                this.CalcFormattedMessage();
+            }
         }
 
         /// <summary>
@@ -398,7 +401,7 @@ namespace NLog
         /// </summary>
         /// <param name="asyncContinuation"></param>
         /// <returns></returns>
-        public AsyncLogEventInfo StartContinuation(AsyncContinuation asyncContinuation)
+        internal AsyncLogEventInfo StartContinuation(AsyncContinuation asyncContinuation)
         {
             if (_poolHandler != null)
             {
@@ -459,7 +462,7 @@ namespace NLog
         {
             lock (this.layoutCacheLock)
             {
-                if (this.layoutCache == null)
+                if (this.layoutCache == null || this.layoutCache.Count == 0)
                 {
                     value = null;
                     return false;
@@ -516,14 +519,6 @@ namespace NLog
             }
 
             return value.GetType().IsPrimitive || (value is string);
-        }
-
-        internal void CalcFormattedMessageIfNeeded()
-        {
-            if (NeedToPreformatMessage(this.Parameters))
-            {
-                this.CalcFormattedMessage();
-            }
         }
 
         private void CalcFormattedMessage()
@@ -589,7 +584,7 @@ namespace NLog
             }
         }
 
-        object Internal.PoolFactory.IPoolObject.Owner { get { return _poolHandler.Owner; } set { _poolHandler.Owner = (Internal.PoolFactory.ILogEventObjectFactory)value; } }
+        object Internal.PoolFactory.IPoolObject.OwnerPool { get { return _poolHandler.Owner; } set { _poolHandler.Owner = (Internal.PoolFactory.ILogEventObjectFactory)value; } }
         internal Internal.PoolFactory.ILogEventObjectFactory ObjectFactory { get { return _poolHandler != null ? _poolHandler.Owner : Internal.PoolFactory.LogEventObjectFactory.Instance; } }
         internal CompleteWhenAllContinuation PoolReleaseContinuation { get { return _poolHandler != null ? _poolHandler.PoolReleaseContinuation : null; } }
 

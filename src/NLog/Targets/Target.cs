@@ -63,8 +63,7 @@ namespace NLog.Targets
         /// <summary>
         /// Get or sets the object-factory-pool configuration <see cref="PoolSetup"/> for the Target
         /// </summary>
-        public PoolSetup PoolSetup { get { return _poolSetup; } set { _poolSetup = value; } }
-        PoolSetup _poolSetup;
+        public PoolSetup PoolSetup { get; set; }
 
         /// <summary>
         /// Gets the object which can be used to synchronize asynchronous operations that must rely on the .
@@ -298,7 +297,17 @@ namespace NLog.Targets
 
                     try
                     {
-                        this.Write(new ArraySegment<AsyncLogEventInfo>(wrappedArray.Buffer, 0, logEvents.Count));
+                        if (ReferenceEquals(_objectFactory, Internal.PoolFactory.LogEventObjectFactory.Instance))
+                        {
+                            // Backwards compatibility
+#pragma warning disable 612, 618
+                            this.Write(wrappedArray.Buffer);
+#pragma warning restore 612, 618
+                        }
+                        else
+                        {
+                            this.Write(new ArraySegment<AsyncLogEventInfo>(wrappedArray.Buffer, 0, logEvents.Count));
+                        }
                     }
                     catch (Exception exception)
                     {
@@ -513,7 +522,8 @@ namespace NLog.Targets
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
-        protected void Write(AsyncLogEventInfo[] logEvents)
+        [Obsolete("Instead use Write(ArraySegment<AsyncLogEventInfo> logEvents)")]
+        protected virtual void Write(AsyncLogEventInfo[] logEvents)
         {
             Write(new ArraySegment<AsyncLogEventInfo>(logEvents));
         }
@@ -549,9 +559,11 @@ namespace NLog.Targets
                 return;
             }
 
-            foreach (var item in logEvent.Parameters)
-            {
-                var logEventParameter = item as LogEventInfo;
+            //Memory profiling pointed out that using a foreach-loop was allocating
+            //an Enumerator. Switching to a for-loop avoids the memory allocation.
+            for (int i = 0; i< logEvent.Parameters.Length; ++i)
+            { 
+                var logEventParameter = logEvent.Parameters[i] as LogEventInfo;
                 if (logEventParameter != null)
                 {
                     foreach (var key in logEventParameter.Properties.Keys)
