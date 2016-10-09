@@ -142,6 +142,7 @@
     <Compile Include="Internal\PoolFactory\PoolConfigurationTests.cs" />
     <Compile Include="Internal\PoolFactory\StringBuilderTargetTests.cs" />
     <Compile Include="Internal\SortHelpersTests.cs" />
+    <Compile Include="Internal\StringBuilderExtTests.cs" />
     <Compile Include="Internal\StringHelpersTests.cs" />
     <Compile Include="Internal\UrlHelperTests.cs" />
     <Compile Include="LayoutRenderers\AppDomainLayoutRendererTests.cs" />

@@ -1931,6 +1931,15 @@ namespace NLog.Targets
                         this.DoAutoArchive(archiveFile, ev);
                     }
                 }
+                catch (Exception exception)
+                {
+                    InternalLogger.Warn(exception, "Failed to archive file '{0}'.", archiveFile);
+
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+                }
                 finally
                 {
 #if SupportsMutex

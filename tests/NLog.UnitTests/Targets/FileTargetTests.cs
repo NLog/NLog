@@ -3072,6 +3072,68 @@ namespace NLog.UnitTests.Targets
                 }
             }
         }
+
+        [Fact]
+        public void DontCrashWhenDateAndSequenceDoesntMatchFiles()
+        {
+            var tempDir = Path.Combine(Path.GetTempPath(), "DontCrashWhenDateAndSequenceDoesntMatchFiles-" + Guid.NewGuid());
+            string logFile = Path.Combine(tempDir, "log.txt");
+            try
+            {
+                // set log file access times the same way as when this issue comes up.
+                Directory.CreateDirectory(tempDir);
+                
+                File.WriteAllText(logFile, "some content" + Environment.NewLine);
+                var oldTime = DateTime.Now.AddDays(-2);
+                File.SetCreationTime(logFile, oldTime);
+                File.SetLastWriteTime(logFile, oldTime);
+                File.SetLastAccessTime(logFile, oldTime);
+
+                //write to archive directly
+                var archiveDateFormat = "yyyyMMdd";
+                var archiveFileNamePattern = Path.Combine(tempDir, "log-{#}.txt");
+                var archiveFileName = archiveFileNamePattern.Replace("{#}", oldTime.ToString(archiveDateFormat));
+                File.WriteAllText(archiveFileName, "some archive content");
+
+                LogManager.ThrowExceptions = true;
+
+                // configure nlog
+
+
+                var fileTarget = new FileTarget("file")
+                {
+                    FileName = logFile,
+                    ArchiveEvery = FileArchivePeriod.Day,
+                    ArchiveFileName = "log-{#}.txt",
+                    ArchiveNumbering = ArchiveNumberingMode.DateAndSequence,
+                    ArchiveAboveSize = 50000,
+                    MaxArchiveFiles = 7
+                };
+
+                
+                var config = new LoggingConfiguration();
+                config.AddRuleForAllLevels(fileTarget);
+                LogManager.Configuration = config;
+
+                // write
+                var logger = LogManager.GetLogger("DontCrashWhenDateAndSequenceDoesntMatchFiles");
+                logger.Info("Log message");
+
+                LogManager.Flush();
+            }
+            finally
+            {
+                try
+                {
+                    if (File.Exists(logFile))
+                        File.Delete(logFile);
+                    Directory.Delete(tempDir, true);
+                }
+                catch (Exception)
+                {
+                }
+            }
+        }
     }
 
     public class WrappedFileTargetTests : FileTargetTests
