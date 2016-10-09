@@ -2632,6 +2632,278 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void HandleArchiveFilesMultipleContextMultipleTargetTest(bool changeCreationAndWriteTime)
+        {
+            string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string archivePath = Path.Combine(logdir, "archive");
+            HandleArchiveFilesMultipleContextMultipleTargetsTest(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm", changeCreationAndWriteTime);
+        }
+
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void HandleArchiveFilesMultipleContextSingleTargetTest_ascii(bool changeCreationAndWriteTime)
+        {
+            string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string archivePath = Path.Combine(logdir, "archive");
+            HandleArchiveFilesMultipleContextSingleTargetsTest(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm", changeCreationAndWriteTime);
+        }
+
+        /// <summary>
+        /// Test the case when multiple applications are archiving to the same directory and using multiple targets.
+        /// Only the archives for this application instance should be deleted per the target archive rules.
+        /// </summary>
+        /// <param name="archivePath">Base path to the archive directory</param>
+        /// <param name="logdir">Base path the log file</param>
+        /// <param name="maxArchiveFilesConfig"># to use for maxArchiveFiles in NLog configuration.</param>
+        /// <param name="expectedArchiveFiles">Expected number of archive files after archiving has occured.</param>
+        /// <param name="dateFormat">string to be used for formatting log file names</param>
+        /// <param name="changeCreationAndWriteTime"></param>
+        private void HandleArchiveFilesMultipleContextMultipleTargetsTest(string archivePath, string logdir,
+            int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
+        {
+            var archiveDir = new DirectoryInfo(archivePath);
+            try
+            {
+                archiveDir.Create();
+                //set-up, create files.
+                var numberFilesCreatedPerTargetArchive = 30;
+
+                // use same config vars for mock files, as for nlog config
+                var fileExt = ".log";
+                var app1TraceNm = "App1_Trace";
+                var app1DebugNm = "App1_Debug";
+                var app2Nm = "App2";
+
+                #region Create Mock Archive Files
+                var now = DateTime.Now;
+                var i = 0;
+                // create mock app1_trace archives (matches app1 config for trace target)
+                foreach (string filePath in ArchiveFileNamesGenerator(archivePath, dateFormat, app1TraceNm + fileExt).Take(numberFilesCreatedPerTargetArchive))
+                {
+                    File.WriteAllLines(filePath, new[] { "test archive ", "=====", filePath });
+                    var time = now.AddDays(i);
+                    if (changeCreationAndWriteTime)
+                    {
+                        File.SetCreationTime(filePath, time);
+                        File.SetLastWriteTime(filePath, time);
+                    }
+                    i--;
+                }
+                i = 0;
+                // create mock app1_debug archives (matches app1 config for debug target)
+                foreach (string filePath in ArchiveFileNamesGenerator(archivePath, dateFormat, app1DebugNm + fileExt).Take(numberFilesCreatedPerTargetArchive))
+                {
+                    File.WriteAllLines(filePath, new[] { "test archive ", "=====", filePath });
+                    var time = now.AddDays(i);
+                    if (changeCreationAndWriteTime)
+                    {
+                        File.SetCreationTime(filePath, time);
+                        File.SetLastWriteTime(filePath, time);
+                    }
+                    i--;
+                }
+                i = 0;
+                // create mock app2 archives (matches app2 config for target)
+                foreach (string filePath in ArchiveFileNamesGenerator(archivePath, dateFormat, app2Nm + fileExt).Take(numberFilesCreatedPerTargetArchive))
+                {
+                    File.WriteAllLines(filePath, new[] { "test archive ", "=====", filePath });
+                    var time = now.AddDays(i);
+                    if (changeCreationAndWriteTime)
+                    {
+                        File.SetCreationTime(filePath, time);
+                        File.SetLastWriteTime(filePath, time);
+                    }
+                    i--;
+                }
+                #endregion
+
+                // Create same app1 Debug file as config defines. Will force archiving to happen on startup
+                File.WriteAllLines(logdir + "\\" + app1DebugNm + fileExt, new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
+
+                var app1Config = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
+                                    <targets>
+                                      <target name='traceFile' type='File' 
+                                        fileName='" + logdir + "\\" + app1TraceNm + fileExt + @"'
+                                        archiveFileName='" + archivePath + @"\${date:format=" + dateFormat + "}-" + app1TraceNm + fileExt + @"' 
+                                        archiveEvery='minute' 
+                                        archiveOldFileOnStartup='true'
+                                        maxArchiveFiles='" + maxArchiveFilesConfig + @"'
+                                        layout='${longdate} [${level}] [${callsite}] ${message}' 
+                                        concurrentWrites='true' keepFileOpen='false' />
+                                    <target name='debugFile' type='File' 
+                                        fileName='" + logdir + "\\" + app1DebugNm + fileExt + @"'
+                                        archiveFileName='" + archivePath + @"\${date:format=" + dateFormat + "}-" + app1DebugNm + fileExt + @"' 
+                                        archiveEvery='minute' 
+                                        archiveOldFileOnStartup='true'
+                                        maxArchiveFiles='" + maxArchiveFilesConfig + @"'
+                                        layout='${longdate} [${level}] [${callsite}] ${message}' 
+                                        concurrentWrites='true' keepFileOpen='false' />
+                                    </targets>
+                                    <rules>
+                                      <logger name='*' minLevel='Trace' writeTo='traceFile' />
+                                      <logger name='*' minLevel='Debug' writeTo='debugFile' />
+                                    </rules>
+                                  </nlog>");
+                
+                var app2Config = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
+                                    <targets>
+                                      <target name='logfile' type='File' 
+                                        fileName='" + logdir + "\\" + app2Nm + fileExt + @"'
+                                        archiveFileName='" + archivePath + @"\${date:format=" + dateFormat + "}-" + app2Nm + fileExt + @"' 
+                                        archiveEvery='minute' 
+                                        archiveOldFileOnStartup='true'
+                                        maxArchiveFiles='" + maxArchiveFilesConfig + @"'
+                                        layout='${longdate} [${level}] [${callsite}] ${message}' 
+                                        concurrentWrites='true' keepFileOpen='false' />
+                                    </targets>;
+                                    <rules>
+                                      <logger name='*' minLevel='Trace' writeTo='logfile' />
+                                    </rules>
+                                  </nlog>");
+
+                LogManager.Configuration = app1Config;
+                
+                var logger = LogManager.GetCurrentClassLogger();
+                // Trigger archive to happen on startup
+                logger.Debug("Test 1 - Write to the log file that already exists; trigger archive to happen because archiveOldFileOnStartup='true'");
+                
+                // TODO: perhaps extra App1 Debug and Trace files should both be deleted?  (then app1TraceTargetFileCnt would be expected to = expectedArchiveFiles too)
+                    // I think it depends on how NLog works with logging to both of those files in the call to logger.Debug() above
+
+                // verify file counts. EXPECTED OUTCOME:
+                    // app1 debug target: removed all extra
+                    // app1 trace target: has all extra files
+                    // app2: has all extra files
+                var app1TraceTargetFileCnt = archiveDir.GetFiles("*" + app1TraceNm + "*").Length;
+                var app1DebugTargetFileCnt = archiveDir.GetFiles("*" + app1DebugNm + "*").Length;
+                var app2FileTargetCnt = archiveDir.GetFiles("*" + app2Nm + "*").Length;
+                
+                Assert.Equal(numberFilesCreatedPerTargetArchive, app1TraceTargetFileCnt);
+                Assert.Equal(numberFilesCreatedPerTargetArchive, app2FileTargetCnt);
+                Assert.Equal(expectedArchiveFiles, app1DebugTargetFileCnt);
+            }
+            finally
+            {
+                //cleanup
+                archiveDir.Delete(true);
+            }
+        }
+        
+        /// <summary>
+        /// Test the case when multiple applications are archiving to the same directory.
+        /// Only the archives for this application instance should be deleted per the target archive rules.
+        /// </summary>
+        /// <param name="archivePath">Base path to the archive directory</param>
+        /// <param name="logdir">Base path the log file</param>
+        /// <param name="maxArchiveFilesConfig"># to use for maxArchiveFiles in NLog configuration.</param>
+        /// <param name="expectedArchiveFiles">Expected number of archive files after archiving has occured.</param>
+        /// <param name="dateFormat">string to be used for formatting log file names</param>
+        /// <param name="changeCreationAndWriteTime"></param>
+        private void HandleArchiveFilesMultipleContextSingleTargetsTest(string archivePath, string logdir,
+            int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
+        {
+            var archiveDir = new DirectoryInfo(archivePath);
+            try
+            {
+                archiveDir.Create();
+                var numberFilesCreatedPerTargetArchive = 30;
+
+                // use same config vars for mock files, as for nlog config
+                var fileExt = ".log";
+                var app1Nm = "App1";
+                var app2Nm = "App2";
+
+                #region Create Mock Archive Files
+                var now = DateTime.Now;
+                var i = 0;
+                // create mock app1 archives (matches app1 config for target)
+                foreach (string filePath in ArchiveFileNamesGenerator(archivePath, dateFormat, app1Nm + fileExt).Take(numberFilesCreatedPerTargetArchive))
+                {
+                    File.WriteAllLines(filePath, new[] { "test archive ", "=====", filePath });
+                    var time = now.AddDays(i);
+                    if (changeCreationAndWriteTime)
+                    {
+                        File.SetCreationTime(filePath, time);
+                        File.SetLastWriteTime(filePath, time);
+                    }
+                    i--;
+                }
+                i = 0;
+                // create mock app2 archives (matches app2 config for target)
+                foreach (string filePath in ArchiveFileNamesGenerator(archivePath, dateFormat, app2Nm + fileExt).Take(numberFilesCreatedPerTargetArchive))
+                {
+                    File.WriteAllLines(filePath, new[] { "test archive ", "=====", filePath });
+                    var time = now.AddDays(i);
+                    if (changeCreationAndWriteTime)
+                    {
+                        File.SetCreationTime(filePath, time);
+                        File.SetLastWriteTime(filePath, time);
+                    }
+                    i--;
+                }
+                #endregion
+
+                // Create same app1 file as config defines. Will force archiving to happen on startup
+                File.WriteAllLines(logdir + "\\" + app1Nm + fileExt, new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
+
+                var app1Config = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
+                                    <targets>
+                                      <target name='logfile' type='File' 
+                                        fileName='" + logdir + "\\" + app1Nm + fileExt + @"'
+                                        archiveFileName='" + archivePath + @"\${date:format=" + dateFormat + "}-" + app1Nm + fileExt + @"' 
+                                        archiveEvery='minute' 
+                                        archiveOldFileOnStartup='true'
+                                        maxArchiveFiles='" + maxArchiveFilesConfig + @"'
+                                        layout='${longdate} [${level}] [${callsite}] ${message}' 
+                                        concurrentWrites='true' keepFileOpen='false' />
+                                    </targets>;
+                                    <rules>
+                                      <logger name='*' minLevel='Trace' writeTo='logfile' />
+                                    </rules>
+                                  </nlog>");
+
+                var app2Config = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
+                                    <targets>
+                                      <target name='logfile' type='File' 
+                                        fileName='" + logdir + "\\" + app2Nm + fileExt + @"'
+                                        archiveFileName='" + archivePath + @"\${date:format=" + dateFormat + "}-" + app2Nm + fileExt + @"' 
+                                        archiveEvery='minute' 
+                                        archiveOldFileOnStartup='true'
+                                        maxArchiveFiles='" + maxArchiveFilesConfig + @"'
+                                        layout='${longdate} [${level}] [${callsite}] ${message}' 
+                                        concurrentWrites='true' keepFileOpen='false' />
+                                    </targets>;
+                                    <rules>
+                                      <logger name='*' minLevel='Trace' writeTo='logfile' />
+                                    </rules>
+                                  </nlog>");
+
+                LogManager.Configuration = app1Config;
+
+                var logger = LogManager.GetCurrentClassLogger();
+                // Trigger archive to happen on startup
+                logger.Debug("Test 1 - Write to the log file that already exists; trigger archive to happen because archiveOldFileOnStartup='true'");
+
+                // verify file counts. EXPECTED OUTCOME:
+                    // app1: Removed extra archives
+                    // app2: Has all extra archives
+                var app1TargetFileCnt = archiveDir.GetFiles("*" + app1Nm + "*").Length;
+                var app2FileTargetCnt = archiveDir.GetFiles("*" + app2Nm + "*").Length;
+                
+                Assert.Equal(numberFilesCreatedPerTargetArchive, app2FileTargetCnt);
+                Assert.Equal(expectedArchiveFiles, app1TargetFileCnt);
+            }
+            finally
+            {
+                //cleanup
+                archiveDir.Delete(true);
+            }
+        }
         /// <summary>
         /// Generate unlimited archivefiles names. Don't use toList on this ;)
         /// </summary>
