@@ -71,7 +71,13 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         public int RequestCount
         {
-            get { return this.logEventInfoQueue.Count; }
+            get
+            {
+                lock (this)
+                {
+                    return this.logEventInfoQueue.Count;
+                }
+            }
         }
 
         /// <summary>
@@ -79,7 +85,8 @@ namespace NLog.Targets.Wrappers
         /// action is taken as specified by <see cref="OnOverflow"/>.
         /// </summary>
         /// <param name="logEventInfo">The log event info.</param>
-        public void Enqueue(AsyncLogEventInfo logEventInfo)
+        /// <returns>Queue was empty before enqueue</returns>
+        public bool Enqueue(AsyncLogEventInfo logEventInfo)
         {
             lock (this)
             {
@@ -113,6 +120,7 @@ namespace NLog.Targets.Wrappers
                 }
 
                 this.logEventInfoQueue.Enqueue(logEventInfo);
+                return this.logEventInfoQueue.Count == 1;
             }
         }
 
@@ -120,7 +128,7 @@ namespace NLog.Targets.Wrappers
         /// Dequeues a maximum of <c>count</c> items from the queue
         /// and adds returns the list containing them.
         /// </summary>
-        /// <param name="count">Maximum number of items to be dequeued.</param>
+        /// <param name="count">Maximum number of items to be dequeued (-1 means everything).</param>
         /// <returns>The array of log events.</returns>
         public AsyncLogEventInfo[] DequeueBatch(int count)
         {
@@ -128,7 +136,7 @@ namespace NLog.Targets.Wrappers
 
             lock (this)
             {
-                if (this.logEventInfoQueue.Count < count)
+                if (count == -1 || this.logEventInfoQueue.Count < count)
                     count = this.logEventInfoQueue.Count;
 
                 resultEvents = new AsyncLogEventInfo[count];

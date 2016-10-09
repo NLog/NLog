@@ -2979,6 +2979,99 @@ namespace NLog.UnitTests.Targets
             Assert.NotNull(exceptions[2]);
             Assert.NotNull(exceptions[3]);
         }
+
+        [Fact]
+        public void HandleArchiveFileAlreadyExistsTest_noBom()
+        {
+            //NO bom
+            var utf8nobom = new UTF8Encoding(false);
+
+            HandleArchiveFileAlreadyExistsTest(utf8nobom, false);
+        }
+
+        [Fact]
+        public void HandleArchiveFileAlreadyExistsTest_withBom()
+        {
+            // bom
+            var utf8nobom = new UTF8Encoding(true);
+
+            HandleArchiveFileAlreadyExistsTest(utf8nobom, true);
+        }
+
+        [Fact]
+        public void HandleArchiveFileAlreadyExistsTest_ascii()
+        {
+            //NO bom
+            var encoding = Encoding.ASCII;
+
+            HandleArchiveFileAlreadyExistsTest(encoding, false);
+        }
+
+        private void HandleArchiveFileAlreadyExistsTest(Encoding encoding, bool hasBom)
+        {
+            var tempDir = Path.Combine(Path.GetTempPath(), "HandleArchiveFileAlreadyExistsTest-" + Guid.NewGuid());
+            string logFile = Path.Combine(tempDir, "log.txt");
+            try
+            {
+                // set log file access times the same way as when this issue comes up.
+                Directory.CreateDirectory(tempDir);
+
+
+                File.WriteAllText(logFile, "some content" + Environment.NewLine, encoding);
+                var oldTime = DateTime.Now.AddDays(-2);
+                File.SetCreationTime(logFile, oldTime);
+                File.SetLastWriteTime(logFile, oldTime);
+                File.SetLastAccessTime(logFile, oldTime);
+
+                //write to archive directly
+                var archiveDateFormat = "yyyy-MM-dd";
+                var archiveFileNamePattern = Path.Combine(tempDir, "log-{#}.txt");
+                var archiveFileName = archiveFileNamePattern.Replace("{#}", oldTime.ToString(archiveDateFormat));
+                File.WriteAllText(archiveFileName, "message already in archive" + Environment.NewLine, encoding);
+
+                LogManager.ThrowExceptions = true;
+
+                // configure nlog
+
+
+                var fileTarget = new FileTarget("file")
+                {
+                    FileName = logFile,
+                    ArchiveEvery = FileArchivePeriod.Day,
+                    ArchiveFileName = archiveFileNamePattern,
+                    ArchiveNumbering = ArchiveNumberingMode.Date,
+                    ArchiveDateFormat = archiveDateFormat,
+                    Encoding = encoding
+                };
+
+
+                var config = new LoggingConfiguration();
+                config.AddTarget(fileTarget);
+                config.AddRuleForAllLevels(fileTarget);
+
+                LogManager.Configuration = config;
+
+                var logger = LogManager.GetLogger("HandleArchiveFileAlreadyExistsTest");
+                // write, this should append.
+                logger.Info("log to force archiving");
+
+
+                LogManager.Flush();
+                AssertFileContents(archiveFileName, "message already in archive" + Environment.NewLine + "some content" + Environment.NewLine, encoding, hasBom);
+            }
+            finally
+            {
+                try
+                {
+                    if (File.Exists(logFile))
+                        File.Delete(logFile);
+                    Directory.Delete(tempDir, true);
+                }
+                catch (Exception)
+                {
+                }
+            }
+        }
     }
 
     public class WrappedFileTargetTests : FileTargetTests

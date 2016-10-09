@@ -71,7 +71,7 @@ namespace NLog.Targets
     /// <code lang="C#" source="examples/targets/Configuration API/Database/MSSQL/Example.cs" height="630" />
     /// </example>
     [Target("Database")]
-    public sealed class DatabaseTarget : Target, IInstallable
+    public class DatabaseTarget : Target, IInstallable
     {
         private static Assembly systemDataAssembly = typeof(IDbConnection).Assembly;
 
@@ -536,8 +536,16 @@ namespace NLog.Targets
                 transactionScope.Complete();
             }
         }
-
-        private string BuildConnectionString(LogEventInfo logEvent)
+        /// <summary>
+        /// Build the connectionstring from the properties. 
+        /// </summary>
+        /// <remarks>
+        ///  Using <see cref="ConnectionString"/> at first, and falls back to the properties <see cref="DBHost"/>, 
+        ///  <see cref="DBUserName"/>, <see cref="DBPassword"/> and <see cref="DBDatabase"/>
+        /// </remarks>
+        /// <param name="logEvent">Event to render the layout inside the properties.</param>
+        /// <returns></returns>
+        protected string BuildConnectionString(LogEventInfo logEvent)
         {
             if (this.ConnectionString != null)
             {

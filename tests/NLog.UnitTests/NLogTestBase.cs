@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace NLog.UnitTests
@@ -252,6 +253,11 @@ namespace NLog.UnitTests
 
         protected void AssertFileContents(string fileName, string contents, Encoding encoding)
         {
+            AssertFileContents(fileName, contents, encoding, false);
+        }
+
+        protected void AssertFileContents(string fileName, string contents, Encoding encoding, bool addBom)
+        {
 #if MONO
             if (PlatformDetector.IsUnix)
             {
@@ -266,6 +272,19 @@ namespace NLog.UnitTests
                 Assert.True(false, "File '" + fileName + "' doesn't exist.");
 
             byte[] encodedBuf = encoding.GetBytes(contents);
+
+            //add bom if needed
+            if (addBom)
+            {
+                var preamble = encoding.GetPreamble();
+                if (preamble.Length > 0)
+                {
+                    //insert before
+
+                    encodedBuf = preamble.Concat(encodedBuf).ToArray();
+
+                }
+            }
             Assert.Equal(encodedBuf.Length, fi.Length);
 
             byte[] buf = File.ReadAllBytes(fileName);
