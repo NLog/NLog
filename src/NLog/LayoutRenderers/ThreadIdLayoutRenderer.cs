@@ -33,7 +33,6 @@
 
 namespace NLog.LayoutRenderers
 {
-    using System.Globalization;
     using System.Text;
     using System.Threading;
 
