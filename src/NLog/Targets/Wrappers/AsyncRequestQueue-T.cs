@@ -130,21 +130,17 @@ namespace NLog.Targets.Wrappers
         /// <returns>The array of log events.</returns>
         public AsyncLogEventInfo[] DequeueBatch(int count)
         {
-            var resultEvents = new List<AsyncLogEventInfo>();
+            AsyncLogEventInfo[] resultEvents;
 
             lock (this)
             {
-                if (count == -1)
+                if (count == -1 || this.logEventInfoQueue.Count < count)
                     count = this.logEventInfoQueue.Count;
 
+                resultEvents = new AsyncLogEventInfo[count];
                 for (int i = 0; i < count; ++i)
                 {
-                    if (this.logEventInfoQueue.Count <= 0)
-                    {
-                        break;
-                    }
-
-                    resultEvents.Add(this.logEventInfoQueue.Dequeue());
+                    resultEvents[i] = this.logEventInfoQueue.Dequeue();
                 }
 
                 if (this.OnOverflow == AsyncTargetWrapperOverflowAction.Block)
@@ -153,7 +149,7 @@ namespace NLog.Targets.Wrappers
                 }
             }
 
-            return resultEvents.ToArray();
+            return resultEvents;
         }
 
         /// <summary>
