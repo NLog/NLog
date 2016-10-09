@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,26 +31,53 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
-{
-    using System.Text;
-    using System.Threading;
+#if !SILVERLIGHT
+//no silverlight for xunit InlineData
 
-    /// <summary>
-    /// The identifier of the current thread.
-    /// </summary>
-    [LayoutRenderer("threadid")]
-    public class ThreadIdLayoutRenderer : LayoutRenderer
+using System.Text;
+using NLog.Internal;
+using Xunit;
+using Xunit.Extensions;
+
+namespace NLog.UnitTests.Internal
+{
+    public class StringBuilderExtTests : NLogTestBase
     {
-        /// <summary>
-        /// Renders the current thread identifier and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        [InlineData(9)]
+        [InlineData(10)]
+        [InlineData(12)]
+        [InlineData(123)]
+        [InlineData(1234)]
+        [InlineData(12345)]
+        [InlineData(123456)]
+        [InlineData(1234567)]
+        [InlineData(12345678)]
+        [InlineData(123456789)]
+        [InlineData(1234567890)]
+        [InlineData(int.MaxValue)]
+        [InlineData(int.MinValue)]
+        void TestAppendInvariant(int input)
         {
-            //no culture needed for ints
-            Internal.StringBuilderExt.AppendInvariant(builder, Thread.CurrentThread.ManagedThreadId);
+            StringBuilder sb = new StringBuilder();
+            StringBuilderExt.AppendInvariant(sb, input);
+            Assert.Equal(input.ToString(System.Globalization.CultureInfo.InvariantCulture), sb.ToString());
+
+            input = 0 - input;
+            sb.Clear();
+            StringBuilderExt.AppendInvariant(sb, input);
+            Assert.Equal(input.ToString(System.Globalization.CultureInfo.InvariantCulture), sb.ToString());
         }
     }
 }
+
+#endif
