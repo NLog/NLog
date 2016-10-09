@@ -257,36 +257,34 @@ namespace NLog.Internal
                 return filePath;
             }
 
-
             var lastDirSeparator = filePath.LastIndexOfAny(DirectorySeparatorChars);
-
-            var fileName = filePath.Substring(lastDirSeparator + 1);
-            //keep the / in the dirname, because dirname could be c:/ and combine of c: and file name won't work well.
-            var dirName = lastDirSeparator > 0 ? filePath.Substring(0, lastDirSeparator + 1) : String.Empty;
 
             char[] fileNameChars = null;
 
-            for (int i = 0; i < fileName.Length; i++)
+            for (int i = lastDirSeparator + 1; i < filePath.Length; i++)
             {
-                if (InvalidFileNameChars.Contains(fileName[i]))
+                if (InvalidFileNameChars.Contains(filePath[i]))
                 {
                     //delay char[] creation until first invalid char
                     //is found to avoid memory allocation.
                     if (fileNameChars == null)
-                        fileNameChars = fileName.ToCharArray();
-                    fileNameChars[i] = '_';
+                    {
+                        fileNameChars = filePath.Substring(lastDirSeparator + 1).ToCharArray();
+                    }
+                    fileNameChars[i - (lastDirSeparator + 1)] = '_';
                 }
             }
 
             //only if an invalid char was replaced do we create a new string.
             if (fileNameChars != null)
             {
-                fileName = new string(fileNameChars);
+                //keep the / in the dirname, because dirname could be c:/ and combine of c: and file name won't work well.
+                var dirName = lastDirSeparator > 0 ? filePath.Substring(0, lastDirSeparator + 1) : String.Empty;
+                string fileName = new string(fileNameChars);
                 return Path.Combine(dirName, fileName);
             }
+
             return filePath;
-
-
 #else
             return filePath;
 #endif
