@@ -88,16 +88,52 @@ namespace NLog.Internal
         /// <param name="value">value to append</param>
         public static void AppendInvariant(this StringBuilder builder, uint value)
         {
-            // Calculate length of integer when written out
-            int length = 0;
-            uint length_calc = value;
-
-            do
+            if (value == 0)
             {
-                length_calc /= 10;
-                length++;
+                builder.Append('0');
+                return;
             }
-            while (length_calc > 0);
+
+            // Calculate length of integer when written out
+            int length;
+            if (value >= 10000)
+            {
+                if (value >= 10000000)
+                {
+                    if (value >= 1000000000)
+                        length = 10;
+                    else if (value >= 100000000)
+                        length = 9;
+                    else
+                        length = 8;
+                }
+                else
+                {
+                    if (value >= 1000000)
+                        length = 7;
+                    else if (value >= 100000)
+                        length = 6;
+                    else
+                        length = 5;
+                }
+            }
+            else
+            {
+                if (value >= 100)
+                {
+                    if (value >= 1000)
+                        length = 4;
+                    else
+                        length = 3;
+                }
+                else
+                {
+                    if (value >= 10)
+                        length = 2;
+                    else
+                        length = 1;
+                }
+            }
 
             // Pad out space for writing.
             builder.Append('0', length);
