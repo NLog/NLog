@@ -75,7 +75,21 @@ namespace NLog.Targets
         /// <summary>
         /// Gets a value indicating whether the target has been initialized.
         /// </summary>
-        protected bool IsInitialized { get; private set; }
+        protected bool IsInitialized
+        {
+            get
+            {
+                if (this.isInitialized)
+                    return true;    // Initialization has completed
+
+                // Lets wait for initialization to complete, and then check again
+                lock (this.SyncRoot)
+                {
+                    return this.isInitialized;
+                }
+            }
+        }
+        private volatile bool isInitialized;
 
         /// <summary>
         /// Get all used layouts in this target.
@@ -128,29 +142,35 @@ namespace NLog.Targets
                 throw new ArgumentNullException("asyncContinuation");
             }
 
-            lock (this.SyncRoot)
+            if (!this.IsInitialized)
             {
-                if (!this.IsInitialized)
-                {
-                    asyncContinuation(null);
-                    return;
-                }
+                asyncContinuation(null);
+                return;
+            }
 
-                asyncContinuation = AsyncHelpers.PreventMultipleCalls(asyncContinuation);
+            asyncContinuation = AsyncHelpers.PreventMultipleCalls(asyncContinuation);
 
-                try
+            try
+            {
+                lock (this.SyncRoot)
                 {
+                    if (!this.IsInitialized)
+                    {
+                        // In case target was Closed
+                        asyncContinuation(null);
+                        return;
+                    }
                     this.FlushAsync(asyncContinuation);
                 }
-                catch (Exception exception)
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrown())
                 {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-
-                    asyncContinuation(exception);
+                    throw;
                 }
+
+                asyncContinuation(exception);
             }
         }
 
@@ -163,16 +183,14 @@ namespace NLog.Targets
         /// </param>
         public void PrecalculateVolatileLayouts(LogEventInfo logEvent)
         {
-            lock (this.SyncRoot)
+            if (this.IsInitialized)
             {
-                if (this.IsInitialized)
+                var currentLayouts = this.allLayouts;
+                if (currentLayouts != null)
                 {
-                    if (this.allLayouts != null)
+                    foreach (Layout l in currentLayouts)
                     {
-                        foreach (Layout l in this.allLayouts)
-                        {
-                            l.Precalculate(logEvent);
-                        }
+                        l.Precalculate(logEvent);
                     }
                 }
             }
@@ -201,35 +219,42 @@ namespace NLog.Targets
         /// <param name="logEvent">Log event to write.</param>
         public void WriteAsyncLogEvent(AsyncLogEventInfo logEvent)
         {
-            lock (this.SyncRoot)
+            if (!this.IsInitialized)
             {
-                if (!this.IsInitialized)
-                {
-                    logEvent.Continuation(null);
-                    return;
-                }
+                logEvent.Continuation(null);
+                return;
+            }
 
-                if (this.initializeException != null)
-                {
-                    logEvent.Continuation(this.CreateInitException());
-                    return;
-                }
+            if (this.initializeException != null)
+            {
+                logEvent.Continuation(this.CreateInitException());
+                return;
+            }
 
-                var wrappedContinuation = AsyncHelpers.PreventMultipleCalls(logEvent.Continuation);
+            var wrappedContinuation = AsyncHelpers.PreventMultipleCalls(logEvent.Continuation);
+            var wrappedLogEvent = logEvent.LogEvent.WithContinuation(wrappedContinuation);
 
-                try
+            try
+            {
+                lock (this.SyncRoot)
                 {
-                    this.Write(logEvent.LogEvent.WithContinuation(wrappedContinuation));
-                }
-                catch (Exception exception)
-                {
-                    if (exception.MustBeRethrown())
+                    if (!this.IsInitialized)
                     {
-                        throw;
+                        // In case target was Closed
+                        logEvent.Continuation(null);
+                        return;
                     }
-
-                    wrappedContinuation(exception);
+                    this.Write(wrappedLogEvent);
                 }
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                wrappedContinuation(exception);
             }
         }
 
@@ -244,50 +269,58 @@ namespace NLog.Targets
                 return;
             }
 
-            lock (this.SyncRoot)
+            if (!this.IsInitialized)
             {
-                if (!this.IsInitialized)
+                foreach (var ev in logEvents)
                 {
-                    foreach (var ev in logEvents)
+                    ev.Continuation(null);
+                }
+                return;
+            }
+
+            if (this.initializeException != null)
+            {
+                foreach (var ev in logEvents)
+                {
+                    ev.Continuation(this.CreateInitException());
+                }
+
+                return;
+            }
+
+            var wrappedEvents = new AsyncLogEventInfo[logEvents.Length];
+            for (int i = 0; i < logEvents.Length; ++i)
+            {
+                wrappedEvents[i] = logEvents[i].LogEvent.WithContinuation(AsyncHelpers.PreventMultipleCalls(logEvents[i].Continuation));
+            }
+
+            try
+            {
+                lock (this.SyncRoot)
+                {
+                    if (!this.IsInitialized)
                     {
-                        ev.Continuation(null);
+                        // In case target was Closed
+                        foreach (var ev in logEvents)
+                        {
+                            ev.Continuation(null);
+                        }
+                        return;
                     }
-
-                    return;
-                }
-
-                if (this.initializeException != null)
-                {
-                    foreach (var ev in logEvents)
-                    {
-                        ev.Continuation(this.CreateInitException());
-                    }
-
-                    return;
-                }
-
-                var wrappedEvents = new AsyncLogEventInfo[logEvents.Length];
-                for (int i = 0; i < logEvents.Length; ++i)
-                {
-                    wrappedEvents[i] = logEvents[i].LogEvent.WithContinuation(AsyncHelpers.PreventMultipleCalls(logEvents[i].Continuation));
-                }
-
-                try
-                {
                     this.Write(wrappedEvents);
                 }
-                catch (Exception exception)
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrown())
                 {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
+                    throw;
+                }
 
-                    // in case of synchronous failure, assume that nothing is running asynchronously
-                    foreach (var ev in wrappedEvents)
-                    {
-                        ev.Continuation(exception);
-                    }
+                // in case of synchronous failure, assume that nothing is running asynchronously
+                foreach (var ev in wrappedEvents)
+                {
+                    ev.Continuation(exception);
                 }
             }
         }
@@ -305,7 +338,6 @@ namespace NLog.Targets
                 if (!this.IsInitialized)
                 {
                     PropertyHelper.CheckRequiredParameters(this);
-                    this.IsInitialized = true;
                     try
                     {
                         this.InitializeTarget();
@@ -327,7 +359,10 @@ namespace NLog.Targets
                         {
                             throw;
                         }
-
+                    }
+                    finally
+                    {
+                        this.isInitialized = true;
                     }
                 }
             }
@@ -344,7 +379,7 @@ namespace NLog.Targets
 
                 if (this.IsInitialized)
                 {
-                    this.IsInitialized = false;
+                    this.isInitialized = false;
 
                     try
                     {
@@ -509,9 +544,11 @@ namespace NLog.Targets
                 return;
             }
 
-            foreach (var item in logEvent.Parameters)
+            //Memory profiling pointed out that using a foreach-loop was allocating
+            //an Enumerator. Switching to a for-loop avoids the memory allocation.
+            for (int i = 0; i < logEvent.Parameters.Length; ++i)
             {
-                var logEventParameter = item as LogEventInfo;
+                var logEventParameter = logEvent.Parameters[i] as LogEventInfo;
                 if (logEventParameter != null)
                 {
                     foreach (var key in logEventParameter.Properties.Keys)
