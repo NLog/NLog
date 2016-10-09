@@ -44,7 +44,7 @@ using NLog.UnitTests.Targets.Wrappers;
 
 #if !SILVERLIGHT
 
-#if !NET3_5
+#if !NET3_5 && !NET4_0
 using System.Threading.Tasks;
 #endif
 
@@ -163,7 +163,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-#if !NET3_5
+#if !NET3_5 && !NET4_0
 
         /// <summary>
         /// Test writing ${identity} async
