@@ -236,16 +236,7 @@ namespace NLog.Targets
 
             try
             {
-                lock (this.SyncRoot)
-                {
-                    if (!this.IsInitialized)
-                    {
-                        // In case target was Closed
-                        logEvent.Continuation(null);
-                        return;
-                    }
-                    this.Write(wrappedLogEvent);
-                }
+                this.WriteAsyncThreadSafe(wrappedLogEvent);
             }
             catch (Exception exception)
             {
@@ -296,19 +287,7 @@ namespace NLog.Targets
 
             try
             {
-                lock (this.SyncRoot)
-                {
-                    if (!this.IsInitialized)
-                    {
-                        // In case target was Closed
-                        foreach (var ev in logEvents)
-                        {
-                            ev.Continuation(null);
-                        }
-                        return;
-                    }
-                    this.Write(wrappedEvents);
-                }
+                this.WriteAsyncThreadSafe(wrappedEvents);
             }
             catch (Exception exception)
             {
@@ -514,6 +493,24 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Writes a log event to the log target, in a thread safe manner.
+        /// </summary>
+        /// <param name="logEvent">Log event to be written out.</param>
+        protected virtual void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
+        {
+            lock (this.SyncRoot)
+            {
+                if (!this.IsInitialized)
+                {
+                    // In case target was Closed
+                    logEvent.Continuation(null);
+                    return;
+                }
+                this.Write(logEvent);
+            }
+        }
+
+        /// <summary>
         /// Writes an array of logging events to the log target. By default it iterates on all
         /// events and passes them to "Write" method. Inheriting classes can use this method to
         /// optimize batch writes.
@@ -524,6 +521,27 @@ namespace NLog.Targets
             for (int i = 0; i < logEvents.Length; ++i)
             {
                 this.Write(logEvents[i]);
+            }
+        }
+
+        /// <summary>
+        /// Writes an array of logging events to the log target, in a thread safe manner.
+        /// </summary>
+        /// <param name="logEvents">Logging events to be written out.</param>
+        protected virtual void WriteAsyncThreadSafe(AsyncLogEventInfo[] logEvents)
+        {
+            lock (this.SyncRoot)
+            {
+                if (!this.IsInitialized)
+                {
+                    // In case target was Closed
+                    foreach (var ev in logEvents)
+                    {
+                        ev.Continuation(null);
+                    }
+                    return;
+                }
+                this.Write(logEvents);
             }
         }
 
@@ -539,7 +557,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The event info object to perform the merge to.</param>
         protected void MergeEventProperties(LogEventInfo logEvent)
         {
-            if (logEvent.Parameters == null)
+            if (logEvent.Parameters == null || logEvent.Parameters.Length == 0)
             {
                 return;
             }

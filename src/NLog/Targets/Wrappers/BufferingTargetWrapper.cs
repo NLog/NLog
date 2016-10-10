@@ -179,24 +179,53 @@ namespace NLog.Targets.Wrappers
         {
             this.WrappedTarget.PrecalculateVolatileLayouts(logEvent.LogEvent);
 
-            int count = this.buffer.Append(logEvent);
-            if (count >= this.BufferSize)
+            // lock is needed here, because of the special logic when exceeding buffersize
+            lock (this.SyncRoot)
             {
-                InternalLogger.Trace("BufferingWrapper '{0}': writing {1} events because of exceeding buffersize ({0}).", Name, count);
-                AsyncLogEventInfo[] events = this.buffer.GetEventsAndClear();
-                this.WrappedTarget.WriteAsyncLogEvents(events);
-            }
-            else
-            {
-                if (this.FlushTimeout > 0)
+                if (!this.IsInitialized)
                 {
-                    // reset the timer on first item added to the buffer or whenever SlidingTimeout is set to true
-                    if (this.SlidingTimeout || count == 1)
+                    // In case target was Closed
+                    logEvent.Continuation(null);
+                    return;
+                }
+
+                int count = this.buffer.Append(logEvent);
+                if (count >= this.BufferSize)
+                {
+                    InternalLogger.Trace("BufferingWrapper '{0}': writing {1} events because of exceeding buffersize ({0}).", Name, count);
+                    AsyncLogEventInfo[] events = this.buffer.GetEventsAndClear();
+                    this.WrappedTarget.WriteAsyncLogEvents(events);
+                }
+                else
+                {
+                    if (this.FlushTimeout > 0)
                     {
-                        this.flushTimer.Change(this.FlushTimeout, -1);
+                        // reset the timer on first item added to the buffer or whenever SlidingTimeout is set to true
+                        if (this.SlidingTimeout || count == 1)
+                        {
+                            this.flushTimer.Change(this.FlushTimeout, -1);
+                        }
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Write to queue without holding global lock
+        /// </summary>
+        /// <param name="logEvent"></param>
+        protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
+        {
+            this.Write(logEvent);
+        }
+
+        /// <summary>
+        /// Write to queue without holding global lock
+        /// </summary>
+        /// <param name="logEvents"></param>
+        protected override void WriteAsyncThreadSafe(AsyncLogEventInfo[] logEvents)
+        {
+            this.Write(logEvents);
         }
 
         private void FlushCallback(object state)
