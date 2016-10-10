@@ -344,6 +344,16 @@ namespace NLog.Targets.Wrappers
                 StartInstantWriterTimer();
         }
 
+        internal override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
+        {
+            this.Write(logEvent);   // Write to queue without holding global lock
+        }
+
+        internal override void WriteAsyncThreadSafe(ArraySegment<AsyncLogEventInfo> logEvents)
+        {
+            this.Write(logEvents);  // Write to queue without holding global lock
+        }
+
         private void ProcessPendingEvents(object state)
         {
             bool? wroteFullBatchSize = false;

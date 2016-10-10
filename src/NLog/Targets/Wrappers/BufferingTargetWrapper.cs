@@ -200,6 +200,16 @@ namespace NLog.Targets.Wrappers
             }
         }
 
+        internal override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
+        {
+            this.Write(logEvent);   // Write to queue without holding global lock
+        }
+
+        internal override void WriteAsyncThreadSafe(ArraySegment<AsyncLogEventInfo> logEvents)
+        {
+            this.Write(logEvents);  // Write to queue without holding global lock
+        }
+
         private void FlushCallback(object state)
         {
             lock (this.SyncRoot)

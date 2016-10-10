@@ -185,11 +185,12 @@ namespace NLog.Targets
         {
             if (this.IsInitialized)
             {
-                if (this.allLayouts != null)
+                var currentLayouts = this.allLayouts;
+                if (currentLayouts != null)
                 {
-                    for (int x = 0; x < this.allLayouts.Count; x++)
+                    for (int x = 0; x < currentLayouts.Count; x++)
                     {
-                        Layout l = this.allLayouts[x];
+                        Layout l = currentLayouts[x];
                         l.Precalculate(logEvent);
                     }
                 }
@@ -236,10 +237,7 @@ namespace NLog.Targets
 
             try
             {
-                lock (this.SyncRoot)
-                {
-                    this.Write(wrappedLogEvent);
-                }
+                this.WriteAsyncThreadSafe(wrappedLogEvent);
             }
             catch (Exception exception)
             {
@@ -307,20 +305,7 @@ namespace NLog.Targets
 
                 try
                 {
-                    lock (this.SyncRoot)
-                    {
-                        if (ReferenceEquals(_objectFactory, Internal.PoolFactory.LogEventObjectFactory.Instance))
-                        {
-                            // Backwards compatibility
-#pragma warning disable 612, 618
-                            this.Write(wrappedArray.Buffer);
-#pragma warning restore 612, 618
-                        }
-                        else
-                        {
-                            this.Write(new ArraySegment<AsyncLogEventInfo>(wrappedArray.Buffer, 0, logEvents.Count));
-                        }
-                    }
+                    this.WriteAsyncThreadSafe(new ArraySegment<AsyncLogEventInfo>(wrappedArray.Buffer, 0, logEvents.Count));
                 }
                 catch (Exception exception)
                 {
@@ -531,6 +516,24 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Writes a log event to the log target, in a thread safe manner.
+        /// </summary>
+        /// <param name="logEvent">Log event to be written out.</param>
+        internal virtual void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
+        {
+            lock (this.SyncRoot)
+            {
+                if (!this.IsInitialized)
+                {
+                    // In case target was Closed
+                    logEvent.Continuation(null);
+                    return;
+                }
+                this.Write(logEvent);
+            }
+        }
+
+        /// <summary>
         /// Writes an array of logging events to the log target. By default it iterates on all
         /// events and passes them to "Write" method. Inheriting classes can use this method to
         /// optimize batch writes.
@@ -553,6 +556,38 @@ namespace NLog.Targets
             for (int i = logEvents.Offset; i < (logEvents.Offset + logEvents.Count); ++i)
             {
                 this.Write(logEvents.Array[i]);
+            }
+        }
+
+        /// <summary>
+        /// Writes an array of logging events to the log target, in a thread safe manner.
+        /// </summary>
+        /// <param name="logEvents">Logging events to be written out.</param>
+        internal virtual void WriteAsyncThreadSafe(ArraySegment<AsyncLogEventInfo> logEvents)
+        {
+            lock (this.SyncRoot)
+            {
+                if (!this.IsInitialized)
+                {
+                    // In case target was Closed
+                    for (int i = logEvents.Offset; i < (logEvents.Offset + logEvents.Count); ++i)
+                    {
+                        logEvents.Array[i].Continuation(null);
+                    }
+                    return;
+                }
+
+                if (ReferenceEquals(_objectFactory, Internal.PoolFactory.LogEventObjectFactory.Instance) && logEvents.Count == logEvents.Array.Length)
+                {
+                    // Backwards compatibility
+#pragma warning disable 612, 618
+                    this.Write(logEvents);
+#pragma warning restore 612, 618
+                }
+                else
+                {
+                    this.Write(logEvents);
+                }
             }
         }
 

@@ -552,17 +552,11 @@ namespace NLog.Config
 #pragma warning restore 618
 
             string defaultPoolSetupAttrib = nlogElement.GetOptionalAttribute("defaultPoolSetup", "");
-            if (!string.IsNullOrEmpty(defaultPoolSetupAttrib))
+            if (!StringHelpers.IsNullOrWhiteSpace(defaultPoolSetupAttrib))
             {
                 PoolSetup defaultPoolSetup;
-#if NET3_5 || SILVERLIGHT || MONO
-                defaultPoolSetup = PoolSetup.None;
-                if (Enum.IsDefined(defaultPoolSetup.GetType(), defaultPoolSetupAttrib))
-                    logFactory.DefaultPoolSetup = (PoolSetup)Enum.Parse(defaultPoolSetup.GetType(), defaultPoolSetupAttrib, true);
-#else
-                if (Enum.TryParse(defaultPoolSetupAttrib, out defaultPoolSetup))
+                if (EnumHelpers.TryParse(defaultPoolSetupAttrib, out defaultPoolSetup))
                     logFactory.DefaultPoolSetup = defaultPoolSetup;
-#endif
             }
 
             bool autoReload = nlogElement.GetOptionalBooleanAttribute("autoReload", autoReloadDefault);
