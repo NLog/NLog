@@ -7,7 +7,7 @@ This file is new since 4.3.4. If requested, we will try to add the older release
 #### Features
 - [#1680](https://github.com/nlog/nlog/pull/1680) Append to existing archive file (@304NotModified)     
 - [#1669](https://github.com/nlog/nlog/pull/1669) AsyncTargetWrapper - Allow TimeToSleepBetweenBatches = 0 (@snakefoot)
-- [#1668](https://github.com/nlog/nlog/pull/1668) Console Target Automatic Detect if console is available
+- [#1668](https://github.com/nlog/nlog/pull/1668) Console Target Automatic Detect if console is available (@snakefoot)
 
 
 #### Improvements
