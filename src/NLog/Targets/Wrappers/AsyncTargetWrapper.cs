@@ -231,7 +231,7 @@ namespace NLog.Targets.Wrappers
                 WrappedTarget._objectFactory = _objectFactory;
             }
             this.RequestQueue.Clear();
-            InternalLogger.Trace("AsyncWrapper '{0}': start timer", Name);
+            InternalLogger.Trace("AsyncWrapper '{0}': start timer", this.Name);
             this.lazyWriterTimer = new Timer(this.ProcessPendingEvents, null, Timeout.Infinite, Timeout.Infinite);
             this.StartLazyWriterTimer();
         }
@@ -262,8 +262,7 @@ namespace NLog.Targets.Wrappers
                 {
                     if (this.TimeToSleepBetweenBatches <= 0)
                     {
-                        if (InternalLogger.IsTraceEnabled)
-                            InternalLogger.Trace("AsyncWrapper '{0}': Throttled timer scheduled", Name);
+                        InternalLogger.Trace("AsyncWrapper '{0}': Throttled timer scheduled", this.Name);
                         this.lazyWriterTimer.Change(1, Timeout.Infinite);
                     }
                     else
@@ -378,7 +377,7 @@ namespace NLog.Targets.Wrappers
 
                 if (this.WrappedTarget == null)
                 {
-                    InternalLogger.Error("AsyncWrapper '{0}': WrappedTarget is NULL", Name);
+                    InternalLogger.Error("AsyncWrapper '{0}': WrappedTarget is NULL", this.Name);
                     return;
                 }
 
@@ -459,7 +458,7 @@ namespace NLog.Targets.Wrappers
 
         private int WriteLogEventBatch(ArraySegment<AsyncLogEventInfo> logEvents, AsyncContinuation continuation)
         {
-            if (InternalLogger.IsTraceEnabled)
+            if (InternalLogger.IsTraceEnabled || continuation != null)
             {
                 InternalLogger.Trace("AsyncWrapper '{0}': Flushing {1} events.", this.Name, logEvents.Count);
             }
