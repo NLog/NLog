@@ -225,8 +225,7 @@ namespace NLog.Targets.Wrappers
                 {
                     if (this.TimeToSleepBetweenBatches <= 0)
                     {
-                        if (InternalLogger.IsTraceEnabled)
-                            InternalLogger.Trace("AsyncWrapper '{0}': Throttled timer scheduled", Name);
+                        InternalLogger.Trace("AsyncWrapper '{0}': Throttled timer scheduled", this.Name);
                         this.lazyWriterTimer.Change(1, Timeout.Infinite);
                     }
                     else
@@ -331,7 +330,7 @@ namespace NLog.Targets.Wrappers
 
                 if (this.WrappedTarget == null)
                 {
-                    InternalLogger.Error("AsyncWrapper '{0}': WrappedTarget is NULL", Name);
+                    InternalLogger.Error("AsyncWrapper '{0}': WrappedTarget is NULL", this.Name);
                     return;
                 }
 
@@ -352,7 +351,7 @@ namespace NLog.Targets.Wrappers
                         wroteFullBatchSize = true;
 
                     if (InternalLogger.IsTraceEnabled || continuation != null)
-                        InternalLogger.Trace("AsyncWrapper '{0}': Flushing {1} events.", Name, logEventInfos.Length);
+                        InternalLogger.Trace("AsyncWrapper '{0}': Flushing {1} events.", this.Name, logEventInfos.Length);
 
                     if (continuation != null)
                     {

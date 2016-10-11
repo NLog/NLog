@@ -94,6 +94,45 @@ namespace NLog.Common
         }
 
         /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void <#=level#>([Localizable(false)] string message, object arg0)
+        {
+            if (Is<#=level#>Enabled)
+                Log(null, LogLevel.<#=level#>, message, arg0);
+        }
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        /// <param name="arg1">Argument {1} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void <#=level#>([Localizable(false)] string message, object arg0, object arg1)
+        {
+            if (Is<#=level#>Enabled)
+                Log(null, LogLevel.<#=level#>, message, arg0, arg1);
+        }
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        /// <param name="arg1">Argument {1} to the message.</param>
+		/// <param name="arg2">Argument {2} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void <#=level#>([Localizable(false)] string message, object arg0, object arg1, object arg2)
+        {
+            if (Is<#=level#>Enabled)
+                Log(null, LogLevel.<#=level#>, message, arg0, arg1, arg2);
+        }
+
+        /// <summary>
         /// Logs the specified message with an <see cref="Exception"/> at the <#=level#> level.
         /// </summary>
 		/// <param name="ex">Exception to be logged.</param>
