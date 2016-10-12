@@ -71,7 +71,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(typeof(DebugTarget), resolvedTypes[0]);
         }
 
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !NETSTANDARD
         // this is just to force reference to NLog.Extended.dll
         public Type ForceExtendedReference = typeof(MessageQueueTarget).DeclaringType;
 

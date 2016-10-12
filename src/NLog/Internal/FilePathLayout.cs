@@ -35,7 +35,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-#if !UWP10
+#if !NETSTANDARD
 using NLog.Internal.Fakeables;
 #endif
 
@@ -124,7 +124,7 @@ namespace NLog.Internal
                     _filePathKind = FilePathKind.Unknown;
                 }
             }
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !NETSTANDARD
 
             if (_filePathKind == FilePathKind.Relative)
             {

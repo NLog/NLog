@@ -33,7 +33,7 @@
 
 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__  && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__  && !NETSTANDARD
 
 namespace NLog.Targets
 {

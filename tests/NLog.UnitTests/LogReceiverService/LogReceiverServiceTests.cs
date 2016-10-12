@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !UWP10 && !SILVERLIGHT && !NET3_5
+#if !NETSTANDARD && !SILVERLIGHT && !NET3_5
 
 namespace NLog.UnitTests.LogReceiverService
 {
@@ -174,7 +174,7 @@ namespace NLog.UnitTests.LogReceiverService
             Assert.Equal(LogLevel.Warn, converted[1].Level);
         }
 
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !NETSTANDARD
         /// <summary>
         /// Ensures that serialization formats of DataContractSerializer and XmlSerializer are the same
         /// on the same <see cref="NLogEvents"/> object.

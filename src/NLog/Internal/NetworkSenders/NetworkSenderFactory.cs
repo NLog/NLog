@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !UWP10 || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3
 namespace NLog.Internal.NetworkSenders
 {
     using System;

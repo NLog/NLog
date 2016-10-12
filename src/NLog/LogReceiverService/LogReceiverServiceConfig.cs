@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !UWP10
+#if !NETSTANDARD
 namespace NLog.LogReceiverService
 {
     /// <summary>

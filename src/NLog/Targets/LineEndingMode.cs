@@ -42,7 +42,7 @@ namespace NLog.Targets
     /// <summary>
     /// Line ending mode.
     /// </summary>
-#if !UWP10
+#if !NETSTANDARD
     [TypeConverter(typeof(LineEndingModeConverter))]
 #endif
     public sealed class LineEndingMode 
@@ -226,7 +226,7 @@ namespace NLog.Targets
             return this.NewLineCharacters == other.NewLineCharacters;
         }
 
-#if !UWP10
+#if !NETSTANDARD
 
         /// <summary>
         /// Provides a type converter to convert <see cref="LineEndingMode"/> objects to and from other representations.

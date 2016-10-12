@@ -166,7 +166,7 @@ namespace NLog.Targets
             this.ArchiveAboveSize = FileTarget.ArchiveAboveSizeDisabled;
             this.ConcurrentWriteAttempts = 10;
             this.ConcurrentWrites = true;
-#if SILVERLIGHT || UWP10
+#if SILVERLIGHT || NETSTANDARD
             this.Encoding = Encoding.UTF8;
 #else
             this.Encoding = Encoding.Default;
@@ -726,7 +726,7 @@ namespace NLog.Targets
         /// </summary>
         private void RefreshArchiveFilePatternToWatch()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD_1plus && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD_1plus && !NETSTANDARD
             if (this.fileAppenderCache != null)
             {
                 bool mustWatchArchiving = IsArchivingEnabled() && ConcurrentWrites && KeepFileOpen;
@@ -1032,7 +1032,7 @@ namespace NLog.Targets
 
         private void ProcessLogEvent(LogEventInfo logEvent, string fileName, byte[] bytesToWrite)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
             this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
 #endif
             TryArchiveFile(fileName, logEvent, bytesToWrite.Length);

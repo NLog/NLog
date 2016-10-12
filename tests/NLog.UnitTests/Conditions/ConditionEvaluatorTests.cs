@@ -38,7 +38,7 @@ namespace NLog.UnitTests.Conditions
     using System;
     using System.Globalization;
     using System.IO;
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !NETSTANDARD
     using System.Runtime.Serialization.Formatters.Binary;
 #endif
     using NLog.Conditions;
@@ -271,7 +271,7 @@ namespace NLog.UnitTests.Conditions
             Assert.Same(inner, ex1.InnerException);
         }
 
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !NETSTANDARD
         [Fact]
         public void ExceptionTest4()
         {
@@ -311,7 +311,7 @@ namespace NLog.UnitTests.Conditions
             Assert.Same(inner, ex1.InnerException);
         }
 
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !NETSTANDARD
         [Fact]
         public void ExceptionTest14()
         {

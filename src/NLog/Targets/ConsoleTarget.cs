@@ -32,7 +32,7 @@
 // 
 
 
-#if !UWP10 || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3
 using System.IO;
 using NLog.Common;
 

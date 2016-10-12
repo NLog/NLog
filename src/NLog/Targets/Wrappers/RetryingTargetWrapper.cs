@@ -137,7 +137,7 @@ namespace NLog.Targets.Wrappers
                     }
 
                     // sleep and try again
-#if !UWP10
+#if !NETSTANDARD
                     Thread.Sleep(this.RetryDelayMilliseconds);
 #endif
                     this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));

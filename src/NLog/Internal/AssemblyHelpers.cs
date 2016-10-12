@@ -52,7 +52,7 @@ namespace NLog.Internal
     internal class AssemblyHelpers
     {
 
-#if !UWP10
+#if !NETSTANDARD
 
         /// <summary>
         /// Load from url
@@ -89,7 +89,7 @@ namespace NLog.Internal
         public static Assembly LoadFromName(string assemblyName)
         {
             InternalLogger.Info("Loading assembly: {0}", assemblyName);
-#if UWP10 || WINDOWS_PHONE
+#if NETSTANDARD || WINDOWS_PHONE
 
             var name = new AssemblyName(assemblyName);
 

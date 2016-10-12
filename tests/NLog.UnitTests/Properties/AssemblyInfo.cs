@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-#if UWP10
+#if NETSTANDARD
 [assembly: AssemblyMetadata("TargetPlatform","UAP")]
 #endif
 

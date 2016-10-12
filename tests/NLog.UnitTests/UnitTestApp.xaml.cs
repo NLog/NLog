@@ -1,4 +1,4 @@
-﻿#if UWP10 && !NETSTANDARD_1plus
+﻿#if NETSTANDARD && !NETSTANDARD_1plus
 using System;
 using System.Collections.Generic;
 using System.IO;

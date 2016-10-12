@@ -162,7 +162,7 @@ namespace NLog.UnitTests
             Assert.Equal(1, exceptions.Count);
         }
 
-#if !UWP10
+#if !NETSTANDARD
         [Fact]
         public void ContinuationTimeoutNotHitTest()
         {

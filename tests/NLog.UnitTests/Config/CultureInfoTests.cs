@@ -59,7 +59,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(CultureInfo.InvariantCulture, configuration.DefaultCultureInfo);
         }
 
-#if !UWP10
+#if !NETSTANDARD
         [Fact]
         public void DifferentConfigurations_UseDifferentDefaultCulture()
         {
@@ -150,7 +150,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(expected, output);
         }
 
-#if !MONO && !UWP10
+#if !MONO && !NETSTANDARD
         [Fact(Skip = "TimeSpan tostring isn't culture aware in .NET?")]
         public void ProcessInfoLayoutRendererCultureTest()
         {

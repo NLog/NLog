@@ -42,7 +42,7 @@ namespace NLog.UnitTests.Conditions
     using NLog.Layouts;
     using Xunit;
 
-#if UWP10
+#if NETSTANDARD
     using System.Reflection;
 #endif
 

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !UWP10 || NETSTANDARD1_3
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
 
 namespace NLog.UnitTests.Internal.NetworkSenders
 {

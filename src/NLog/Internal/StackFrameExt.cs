@@ -45,7 +45,7 @@ namespace NLog.Internal
     internal static class StackFrameExt
     {
 
-#if UWP10 || NETSTANDARD_1plus
+#if NETSTANDARD || NETSTANDARD_1plus
     /// <summary>
     /// Null
     /// </summary>

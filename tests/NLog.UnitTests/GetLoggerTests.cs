@@ -42,7 +42,7 @@ namespace NLog.UnitTests
         public void GetCurrentClassLoggerTest()
         {
             ILogger logger = LogManager.GetCurrentClassLogger();
-#if UWP10
+#if NETSTANDARD
 
             Assert.Equal("GetLoggerTests", logger.Name);
 #else
@@ -73,7 +73,7 @@ namespace NLog.UnitTests
             Assert.Equal("AAA", l3.Name);
         }
 
-#if !UWP10
+#if !NETSTANDARD
         [Fact]
         public void TypedGetCurrentClassLoggerTest()
         {
@@ -124,7 +124,7 @@ namespace NLog.UnitTests
 
             Assert.Same(l1, l2);
 
-#if UWP10
+#if NETSTANDARD
 
             Assert.Equal("GetLoggerTests", l1.Name);
 #else

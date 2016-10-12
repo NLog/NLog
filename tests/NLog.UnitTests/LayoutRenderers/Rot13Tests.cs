@@ -76,7 +76,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("URYYB", l.Render(lei));
         }
 
-#if !UWP10
+#if !NETSTANDARD
         [Fact]
         public void Test5()
         {

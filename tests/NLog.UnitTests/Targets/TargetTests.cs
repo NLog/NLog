@@ -456,7 +456,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(2, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
         }
 
-#if !UWP10
+#if !NETSTANDARD
         [Fact]
         public void LockingTest()
         {
@@ -535,7 +535,7 @@ namespace NLog.UnitTests.Targets
 
         public class MyTarget : Target
         {
-#if !UWP10
+#if !NETSTANDARD
             private int inBlockingOperation;
 
             private int InBlockingOperation
@@ -616,7 +616,7 @@ namespace NLog.UnitTests.Targets
 
 
 
-#if !UWP10
+#if !NETSTANDARD
             public void BlockingOperation(int millisecondsTimeout)
             {
                 lock (this.SyncRoot)

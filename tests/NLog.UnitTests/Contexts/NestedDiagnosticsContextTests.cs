@@ -32,7 +32,7 @@
 // 
 
 
-#if !UWP10
+#if !NETSTANDARD
 using System.Linq;
 using System.Text;
 

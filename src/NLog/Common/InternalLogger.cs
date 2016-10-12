@@ -36,7 +36,7 @@ namespace NLog.Common
     using JetBrains.Annotations;
     using System;
     using System.ComponentModel;
-#if !UWP10
+#if !NETSTANDARD
     using System.Configuration;
 #endif
     using System.Globalization;
@@ -45,7 +45,7 @@ namespace NLog.Common
     using System.Text;
     using Internal;
     using Time;
-#if !SILVERLIGHT && !UWP10 && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !NETSTANDARD && !__IOS__ && !__ANDROID__
     using ConfigurationManager = System.Configuration.ConfigurationManager;
     using System.Diagnostics;
 #endif
@@ -77,7 +77,7 @@ namespace NLog.Common
         /// </summary>
         public static void Reset()
         {
-#if !UWP10 || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3
             LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
 #endif
@@ -99,7 +99,7 @@ namespace NLog.Common
         /// <example>If set to <see cref="NLog.LogLevel.Info"/>, then messages of the levels <see cref="NLog.LogLevel.Info"/>, <see cref="NLog.LogLevel.Error"/> and <see cref="NLog.LogLevel.Fatal"/> will be written.</example>
         public static LogLevel LogLevel { get; set; }
 
-#if !UWP10 || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3
         /// <summary>
         /// Gets or sets a value indicating whether internal messages should be written to the console output stream.
         /// </summary>
@@ -273,7 +273,7 @@ namespace NLog.Common
                         writer.WriteLine(msg);
                     }
                 }
-#if !UWP10 || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3
                 // log to console
                 if (LogToConsole)
                 {
@@ -326,7 +326,7 @@ namespace NLog.Common
             }
 
             return !string.IsNullOrEmpty(LogFile) ||
-#if !UWP10 || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3
             LogToConsole || LogToConsoleError ||
 #endif
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
@@ -367,7 +367,7 @@ namespace NLog.Common
         {
             try
             {
-#if SILVERLIGHT || __IOS__ || __ANDROID__ || UWP10
+#if SILVERLIGHT || __IOS__ || __ANDROID__ || NETSTANDARD
                 Info(assembly.FullName);
 #else
                 var fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
@@ -383,7 +383,7 @@ namespace NLog.Common
             }
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
         /// <summary>
         /// Get the setting value from config/Environment.
         /// </summary>
@@ -413,7 +413,7 @@ namespace NLog.Common
         /// </summary>
         private static LogLevel GetSetting(string configName, string envName, LogLevel defaultValue)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
             string value = GetSettingString(configName, envName);
             if (value == null)
             {
@@ -443,7 +443,7 @@ namespace NLog.Common
         /// </summary>
         private static T GetSetting<T>(string configName, string envName, T defaultValue)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
             string value = GetSettingString(configName, envName);
             if (value == null)
             {

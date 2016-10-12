@@ -41,7 +41,7 @@ namespace NLog.Targets
     {
         public static bool IsConsoleAvailable(out string reason)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO && !NETSTANDARD
             try
             {
                 if (!Environment.UserInteractive)

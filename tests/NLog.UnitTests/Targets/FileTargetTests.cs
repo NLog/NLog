@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !UWP10 || NETSTANDARD_1plus
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD_1plus
 
 namespace NLog.UnitTests.Targets
 {
@@ -144,7 +144,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-#if !SILVERLIGHT && !MONO && !UWP10
+#if !SILVERLIGHT && !MONO && !NETSTANDARD
         const int FIVE_SECONDS = 5000;
 
         /// <summary>
@@ -1832,7 +1832,7 @@ namespace NLog.UnitTests.Targets
                     logger.Error("ddd");
                     logger.Fatal("eee");
                 }
-#if (NETSTANDARD_1plus || UWP10) && !NETSTANDARD1_3
+#if (NETSTANDARD_1plus || NETSTANDARD) && !NETSTANDARD1_3
                 LogManager.Flush(null);
 #else
                 LogManager.Flush();

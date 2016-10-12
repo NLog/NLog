@@ -202,7 +202,7 @@ namespace NLog.Internal.FileAppenders
         protected Mutex CreateSharableMutex(string mutexNamePrefix)
         {
             var name = GetMutexName(mutexNamePrefix);
-#if !UWP10
+#if !NETSTANDARD
 
             // Creates a mutex sharable by more than one process
             var mutexSecurity = new MutexSecurity();
@@ -300,7 +300,7 @@ namespace NLog.Internal.FileAppenders
                     {
                         throw; // rethrow
                     }
-#if !UWP10
+#if !NETSTANDARD
                     int actualDelay = this.random.Next(currentDelay);
                     InternalLogger.Warn("Attempt #{0} to open {1} failed. Sleeping for {2}ms", i, this.FileName, actualDelay);
                     currentDelay *= 2;
@@ -313,7 +313,7 @@ namespace NLog.Internal.FileAppenders
             throw new InvalidOperationException("Should not be reached.");
         }
 
-#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__ && !UWP10
+#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__ && !NETSTANDARD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Objects are disposed elsewhere")]
         private FileStream WindowsCreateFile(string fileName, bool allowFileSharedWriting)
         {
@@ -369,7 +369,7 @@ namespace NLog.Internal.FileAppenders
         {
             UpdateCreationTime();
 
-#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__ && !UWP10
+#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__ && !NETSTANDARD
             try
             {
                 if (!this.CreateFileParameters.ForceManaged && PlatformDetector.IsDesktopWin32)

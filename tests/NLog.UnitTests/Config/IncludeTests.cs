@@ -84,7 +84,7 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !NETSTANDARD
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
 #endif
@@ -117,7 +117,7 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !NETSTANDARD
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
 #endif
@@ -154,7 +154,7 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !NETSTANDARD
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
 #endif

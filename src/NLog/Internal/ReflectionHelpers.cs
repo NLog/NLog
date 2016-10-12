@@ -95,7 +95,7 @@ namespace NLog.Internal
         public static TAttr GetCustomAttribute<TAttr>(this Type type)
             where TAttr : Attribute
         {
-#if !UWP10
+#if !NETSTANDARD
             return (TAttr)Attribute.GetCustomAttribute(type, typeof(TAttr));
 #else
 
@@ -126,7 +126,7 @@ namespace NLog.Internal
         public static IEnumerable<TAttr> GetCustomAttributes<TAttr>(Type type, bool inherit)
                 where TAttr : Attribute
         {
-#if !UWP10
+#if !NETSTANDARD
             return (TAttr[])Attribute.GetCustomAttributes(type, typeof(TAttr));
 #else
 
@@ -137,7 +137,7 @@ namespace NLog.Internal
 
         public static bool IsDefined<TAttr>(this Type type, bool inherit)
         {
-#if !UWP10
+#if !NETSTANDARD
             return type.IsDefined(typeof(TAttr), inherit);
 #else
             var typeInfo = type.GetTypeInfo();
@@ -147,7 +147,7 @@ namespace NLog.Internal
 
         public static bool IsEnum(this Type type)
         {
-#if !UWP10
+#if !NETSTANDARD
             return type.IsEnum;
 #else
             var typeInfo = type.GetTypeInfo();
@@ -157,7 +157,7 @@ namespace NLog.Internal
 
         public static bool IsNestedPrivate(this Type type)
         {
-#if !UWP10
+#if !NETSTANDARD
             return type.IsNestedPrivate;
 #else
             var typeInfo = type.GetTypeInfo();
@@ -166,7 +166,7 @@ namespace NLog.Internal
         }
         public static bool IsGenericTypeDefinition(this Type type)
         {
-#if !UWP10
+#if !NETSTANDARD
             return type.IsGenericTypeDefinition;
 #else
             var typeInfo = type.GetTypeInfo();
@@ -176,7 +176,7 @@ namespace NLog.Internal
 
         public static bool IsGenericType(this Type type)
         {
-#if !UWP10
+#if !NETSTANDARD
             return type.IsGenericType;
 #else
             var typeInfo = type.GetTypeInfo();
@@ -185,7 +185,7 @@ namespace NLog.Internal
         }
         public static Type GetBaseType(this Type type)
         {
-#if !UWP10
+#if !NETSTANDARD
             return type.BaseType;
 #else
             var typeInfo = type.GetTypeInfo();
@@ -195,7 +195,7 @@ namespace NLog.Internal
 
         public static bool IsPublic(this Type type)
         {
-#if !UWP10
+#if !NETSTANDARD
             return type.IsPublic;
 #else
             var typeInfo = type.GetTypeInfo();
@@ -206,7 +206,7 @@ namespace NLog.Internal
 
         public static bool IsInterface(this Type type)
         {
-#if !UWP10
+#if !NETSTANDARD
             return type.IsInterface;
 #else
             var typeInfo = type.GetTypeInfo();
@@ -216,7 +216,7 @@ namespace NLog.Internal
 
         public static bool IsAbstract(this Type type)
         {
-#if !UWP10
+#if !NETSTANDARD
             return type.IsAbstract;
 #else
             var typeInfo = type.GetTypeInfo();
@@ -226,7 +226,7 @@ namespace NLog.Internal
 
         public static bool IsPrimitive(this Type type)
         {
-#if !UWP10
+#if !NETSTANDARD
             return type.IsPrimitive;
 #else
             var typeInfo = type.GetTypeInfo();
@@ -235,7 +235,7 @@ namespace NLog.Internal
         }
         public static bool IsClass(this Type type)
         {
-#if !UWP10
+#if !NETSTANDARD
             return type.IsClass;
 #else
             var typeInfo = type.GetTypeInfo();
@@ -244,7 +244,7 @@ namespace NLog.Internal
         }
         public static bool IsSealed(this Type type)
         {
-#if !UWP10
+#if !NETSTANDARD
             return type.IsSealed;
 #else
             var typeInfo = type.GetTypeInfo();
@@ -256,7 +256,7 @@ namespace NLog.Internal
 
         public static Assembly GetAssembly(this Type type)
         {
-#if !UWP10
+#if !NETSTANDARD
             return type.Assembly;
 #else
             var typeInfo = type.GetTypeInfo();
@@ -267,7 +267,7 @@ namespace NLog.Internal
 
         public static Module GetModule(this Type type)
         {
-#if !UWP10
+#if !NETSTANDARD
             return type.Module;
 #else
             var typeInfo = type.GetTypeInfo();
@@ -276,14 +276,14 @@ namespace NLog.Internal
         }
         public static object InvokeMethod(this MethodInfo methodInfo, string methodName, object[] callParameters)
         {
-#if !UWP10
+#if !NETSTANDARD
             return methodInfo.DeclaringType.InvokeMember(
                  methodName,
                  BindingFlags.InvokeMethod | BindingFlags.Static | BindingFlags.Public | BindingFlags.OptionalParamBinding,
                  null,
                  null,
                  callParameters);
-#elif !SILVERLIGHT && !UWP10
+#elif !SILVERLIGHT && !NETSTANDARD
                 , CultureInfo.InvariantCulture
 #else
 
@@ -305,7 +305,7 @@ namespace NLog.Internal
 
         public static Assembly GetAssembly(this Module module)
         {
-#if !UWP10
+#if !NETSTANDARD
             return module.Assembly;
 #else
             //TODO check this
@@ -313,7 +313,7 @@ namespace NLog.Internal
             return typeInfo.Assembly;
 #endif
         }
-#if !UWP10 && !WINDOWS_PHONE
+#if !NETSTANDARD && !WINDOWS_PHONE
 
         public static string GetCodeBase(this Assembly assembly)
         {
@@ -323,7 +323,7 @@ namespace NLog.Internal
 
 #endif
 
-#if !UWP10 && !WINDOWS_PHONE
+#if !NETSTANDARD && !WINDOWS_PHONE
         public static string GetLocation(this Assembly assembly)
         {
             return assembly.Location;
@@ -331,7 +331,7 @@ namespace NLog.Internal
         }
 #endif
 
-#if UWP10
+#if NETSTANDARD
         public static bool IsSubclassOf(this Type type, Type subtype)
         {
             var typeInfo = type.GetTypeInfo();

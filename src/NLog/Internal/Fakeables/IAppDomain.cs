@@ -32,7 +32,7 @@
 // 
 
 
-#if !UWP10
+#if !NETSTANDARD
 
 namespace NLog.Internal.Fakeables
 {

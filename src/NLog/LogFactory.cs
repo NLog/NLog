@@ -51,7 +51,7 @@ namespace NLog
     using NLog.Config;
     using NLog.Internal;
     using NLog.Targets;
-#if !UWP10
+#if !NETSTANDARD
     using NLog.Internal.Fakeables;
 #endif
     using System.Reflection;
@@ -65,12 +65,12 @@ namespace NLog
     /// </summary>
     public class LogFactory : IDisposable
     {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
         private const int ReconfigAfterFileChangedTimeout = 1000;
         private Timer reloadTimer;
         private readonly MultiFileWatcher watcher;
 #endif
-#if !UWP10
+#if !NETSTANDARD
         private static IAppDomain currentAppDomain;
 #endif
         private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
@@ -106,7 +106,7 @@ namespace NLog
         /// </summary>
         public LogFactory()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
             this.watcher = new MultiFileWatcher();
             this.watcher.OnChange += this.ConfigFileChanged;
 #if ! NETSTANDARD1_3
@@ -125,7 +125,7 @@ namespace NLog
             this.Configuration = config;
         }
 
-#if !UWP10 
+#if !NETSTANDARD 
         /// <summary>
         /// Gets the current <see cref="IAppDomain"/>.
         /// </summary>
@@ -173,7 +173,7 @@ namespace NLog
                     if (this.configLoaded)
                         return this.config;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
                     if (this.config == null)
                     {
                         // Try to load default configuration.
@@ -230,7 +230,7 @@ namespace NLog
                     {
                         try
                         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
                             config.Dump();
 
                             try
@@ -263,7 +263,7 @@ namespace NLog
 
             set
             {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
                 try
                 {
                     this.watcher.StopWatching();
@@ -285,7 +285,7 @@ namespace NLog
                     if (oldConfig != null)
                     {
                         InternalLogger.Info("Closing old configuration.");
-#if !SILVERLIGHT && !UWP10 || NETSTANDARD1_3
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
                         this.Flush();
 #endif
                         oldConfig.Close();
@@ -303,7 +303,7 @@ namespace NLog
 
                             this.config.InitializeAll();
                             this.ReconfigExistingLoggers();
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
                             try
                             {
                                 this.watcher.Watch(this.config.FileNamesToWatch);
@@ -401,13 +401,13 @@ namespace NLog
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
-#if UWP10
+#if NETSTANDARD
         public Logger GetCurrentClassLogger([CallerFilePath] string path = "")
 #else
         public Logger GetCurrentClassLogger()
 #endif
         {
-#if !UWP10
+#if !NETSTANDARD
 #if SILVERLIGHT
             var frame = new StackFrame(1);
 #else
@@ -423,7 +423,7 @@ namespace NLog
 
         }
 
-#if !UWP10
+#if !NETSTANDARD
         /// <summary>
         /// Gets a custom logger with the name of the current class. Use <typeparamref name="T"/> to pass the type of the needed Logger.
         /// </summary>
@@ -519,7 +519,7 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT && !UWP10 || NETSTANDARD1_3
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
         /// </summary>
@@ -706,7 +706,7 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
         internal void ReloadConfigOnTimer(object state)
         {
             LoggingConfiguration configurationToReload = (LoggingConfiguration)state;
@@ -890,7 +890,7 @@ namespace NLog
             {
                 this.IsDisposing = true;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
                 if (this.reloadTimer != null)
                 {
                     var currentTimer = this.reloadTimer;
@@ -977,7 +977,7 @@ namespace NLog
         /// </summary>
         private static IEnumerable<string> GetDefaultCandidateConfigFilePaths()
         {
-#if SILVERLIGHT || __ANDROID__ || __IOS__ || UWP10
+#if SILVERLIGHT || __ANDROID__ || __IOS__ || NETSTANDARD
             //try.nlog.config is ios/android/silverlight
             yield return "NLog.config";
 #elif !SILVERLIGHT
@@ -1119,7 +1119,7 @@ namespace NLog
             return newLogger;
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
         private void ConfigFileChanged(object sender, EventArgs args)
         {
             InternalLogger.Info("Configuration file change detected! Reloading in {0}ms...", LogFactory.ReconfigAfterFileChangedTimeout);
@@ -1159,7 +1159,7 @@ namespace NLog
         }
 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
 
         private void currentAppDomain_DomainUnload(object sender, EventArgs e)
         {

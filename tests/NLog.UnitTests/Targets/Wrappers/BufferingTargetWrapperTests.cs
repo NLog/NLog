@@ -45,7 +45,7 @@ namespace NLog.UnitTests.Targets.Wrappers
     public class BufferingTargetWrapperTests : NLogTestBase
     {
 
-#if !UWP10
+#if !NETSTANDARD
         [Fact]
         public void BufferingTargetWrapperSyncTest1()
         {

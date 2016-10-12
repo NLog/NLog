@@ -190,7 +190,7 @@ namespace NLog.UnitTests.Common
             Assert.Equal(expected, writerOutput);
         }
 
-#if !SILVERLIGHT && !UWP10 || NETSTANDARD1_3
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
         [Fact]
         public void WriteToConsoleOutTests()
         {

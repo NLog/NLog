@@ -261,7 +261,7 @@ namespace NLog.UnitTests
             LogManager.Configuration = null;
         }
 
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !NETSTANDARD
         private int _reloadCounter = 0;
 
         private void WaitForConfigReload(int counter)
@@ -385,7 +385,7 @@ namespace NLog.UnitTests
         public void GivenCurrentClass_WhenGetCurrentClassLogger_ThenLoggerShouldBeCurrentClass()
         {
             var logger = LogManager.GetCurrentClassLogger();
-#if UWP10
+#if NETSTANDARD
             Assert.Equal(this.GetType().Name, logger.Name);
 #else
             Assert.Equal(this.GetType().FullName, logger.Name);

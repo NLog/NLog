@@ -66,7 +66,7 @@ namespace NLog.UnitTests.Config
             using (new InternalLoggerScope())
             {
                 InternalLogger.LogLevel = LogLevel.Error;
-#if !UWP10 || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3
                 InternalLogger.LogToConsole = true;
                 InternalLogger.LogToConsoleError = true;
 #endif
@@ -82,7 +82,7 @@ namespace NLog.UnitTests.Config
 </nlog>");
 
                 Assert.Same(LogLevel.Error, InternalLogger.LogLevel);
-#if !UWP10 || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3
                 Assert.True(InternalLogger.LogToConsole);
                 Assert.True(InternalLogger.LogToConsoleError);
 #endif
@@ -142,7 +142,7 @@ namespace NLog.UnitTests.Config
 
                 Assert.Equal(file, InternalLogger.LogFile);
 
-#if !UWP10 || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3
                 Assert.Equal(logToConsole, InternalLogger.LogToConsole);
 
                 Assert.Equal(logToConsoleError, InternalLogger.LogToConsoleError);

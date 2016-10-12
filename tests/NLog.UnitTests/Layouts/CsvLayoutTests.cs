@@ -42,7 +42,7 @@ namespace NLog.UnitTests.Layouts
 
     public class CsvLayoutTests : NLogTestBase
     {
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !NETSTANDARD
         [Fact]
         public void EndToEndTest()
         {

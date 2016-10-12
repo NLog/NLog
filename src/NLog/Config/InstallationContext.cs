@@ -46,7 +46,7 @@ namespace NLog.Config
     /// </summary>
     public sealed class InstallationContext : IDisposable
     {
-#if !SILVERLIGHT && !UWP10 && !NETSTANDARD1_0
+#if !SILVERLIGHT && !NETSTANDARD && !NETSTANDARD1_0
         /// <summary>
         /// Mapping between log levels and console output colors.
         /// </summary>
@@ -188,7 +188,7 @@ namespace NLog.Config
                     message = string.Format(CultureInfo.InvariantCulture, message, arguments);
                 }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
                 var oldColor = Console.ForegroundColor;
                 Console.ForegroundColor = logLevel2ConsoleColor[logLevel];
 

@@ -101,7 +101,7 @@
         "System.Threading.AccessControl": "4.0.0"
       },
       "buildOptions": {
-        "define": [ "NET4_5", "NETSTANDARD_1plus", "ASYNC_SUPPORTED", "UWP10", "SupportsMutex" ],
+        "define": [ "NET4_5", "NETSTANDARD_1plus", "ASYNC_SUPPORTED", "NETSTANDARD", "SupportsMutex" ],
         "nowarn": [ "CS0436" ]
       }
     },
@@ -129,7 +129,7 @@
         "System.Threading.AccessControl": "4.0.0"
       },
       "buildOptions": {
-        "define": [ "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD1_3", "NETSTANDARD1_5", "ASYNC_SUPPORTED", "UWP10", "SupportsMutex" ],
+        "define": [ "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD1_3", "NETSTANDARD1_5", "ASYNC_SUPPORTED", "NETSTANDARD", "SupportsMutex" ],
         "nowarn": [ "CS0436" ]
       }
     },

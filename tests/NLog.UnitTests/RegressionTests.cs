@@ -40,7 +40,7 @@ namespace NLog.UnitTests
 
     public class RegressionTests : NLogTestBase
     {
-#if !UWP10
+#if !NETSTANDARD
         [Fact]
         public void Bug3990StackOverflowWhenUsingNLogViewerTarget()
         {

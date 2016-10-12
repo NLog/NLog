@@ -90,7 +90,7 @@ namespace NLog.Internal
                 return RuntimeOS.Unix;
 
             return RuntimeOS.Unknown;
-#elif UWP10
+#elif NETSTANDARD
             return RuntimeOS.Unknown;
 #else
             PlatformID platformID = Environment.OSVersion.Platform;

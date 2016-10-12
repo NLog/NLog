@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID && !NETSTANDARD
 
 namespace NLog.Internal
 {

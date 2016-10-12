@@ -238,7 +238,7 @@ namespace NLog.Config
 
         #region public properties
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__  && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__  && !NETSTANDARD
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
         /// the application configuration file (<c>app.exe.config</c>).
@@ -568,7 +568,7 @@ namespace NLog.Config
 
             var children = nlogElement.Children.ToList();
 
-#if !UWP10
+#if !NETSTANDARD
             var stringComparison = StringComparison.InvariantCultureIgnoreCase;
 #else
             var stringComparison = StringComparison.OrdinalIgnoreCase;
@@ -966,7 +966,7 @@ namespace NLog.Config
                     }
                 }
 
-#if !UWP10
+#if !NETSTANDARD
                 string assemblyFile = addElement.GetOptionalAttribute("assemblyFile", null);
                 if (assemblyFile != null)
                 {

@@ -109,7 +109,7 @@ namespace NLog.Conditions
         /// <returns>Result of the given relational operator.</returns>
         private static object Compare(object leftValue, object rightValue, ConditionRelationalOperator relationalOperator)
         {
-#if !UWP10 
+#if !NETSTANDARD 
             StringComparer comparer = StringComparer.InvariantCulture;
 #else
             var comparer = new Comparer(CultureInfo.InvariantCulture);

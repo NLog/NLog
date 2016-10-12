@@ -38,7 +38,7 @@
         "System.Data.SqlClient": "4.1.0"
       },
       "buildOptions": {
-        "define": [ "XUNIT2", "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD1_3", "ASYNC_SUPPORTED", "UWP10" ]
+        "define": [ "XUNIT2", "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD1_3", "ASYNC_SUPPORTED", "NETSTANDARD" ]
       }
     },
     "net451": {

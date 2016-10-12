@@ -47,7 +47,7 @@
         "System.IO.Compression": "4.1.0"
       },
       "buildOptions": {
-        "define": [ "NET4_5", "NETSTANDARD_1plus", "UWP10" ]
+        "define": [ "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD" ]
       }
     },
 

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !UWP10 && !MONO && !NETSTANDARD_1plus
+#if !SILVERLIGHT && !NETSTANDARD && !MONO && !NETSTANDARD_1plus
 
 namespace NLog.UnitTests.Targets.Wrappers
 {

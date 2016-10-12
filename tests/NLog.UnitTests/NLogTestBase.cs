@@ -50,7 +50,7 @@ namespace NLog.UnitTests
     using NLog.Config;
     using NLog.Targets;
     using Xunit;
-#if SILVERLIGHT || UWP10
+#if SILVERLIGHT || NETSTANDARD
     using System.Xml.Linq;
 #else
     using System.Xml;
@@ -346,7 +346,7 @@ namespace NLog.UnitTests
 
         protected static XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
         {
-#if SILVERLIGHT || UWP10
+#if SILVERLIGHT || NETSTANDARD
             XElement element = XElement.Parse(configXml);
             return new XmlLoggingConfiguration(element.CreateReader(), "nlog.config");
 #else

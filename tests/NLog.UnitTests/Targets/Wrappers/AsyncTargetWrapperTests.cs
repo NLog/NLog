@@ -70,7 +70,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(100, targetWrapper.BatchSize);
         }
 
-#if !UWP10
+#if !NETSTANDARD
         /// <summary>
         /// Test Fix for https://github.com/NLog/NLog/issues/1069
         /// </summary>

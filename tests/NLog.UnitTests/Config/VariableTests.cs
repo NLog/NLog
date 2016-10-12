@@ -70,7 +70,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal("]]", lr3.Text);
         }
 
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !NETSTANDARD
 
         /// <summary>
         /// Expand of property which are not layoutable <see cref="Layout"/>, but still get expanded.

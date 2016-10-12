@@ -241,7 +241,7 @@ namespace NLog.Config
             var nlogAssembly = typeof(ILogger).GetAssembly();
             var factory = new ConfigurationItemFactory(nlogAssembly);
             factory.RegisterExtendedItems();
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !NETSTANDARD
 
             var assemblyLocation = Path.GetDirectoryName(new Uri(nlogAssembly.GetCodeBase()).LocalPath);
             if (assemblyLocation == null)

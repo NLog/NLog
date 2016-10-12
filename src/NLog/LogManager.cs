@@ -48,7 +48,7 @@ namespace NLog
     using NLog.Config;
     using NLog.Internal;
 
-#if !UWP10
+#if !NETSTANDARD
     using NLog.Internal.Fakeables;
 #endif
 
@@ -58,7 +58,7 @@ namespace NLog
     public sealed class LogManager
     {
         private static readonly LogFactory factory = new LogFactory();
-#if !UWP10
+#if !NETSTANDARD
         private static IAppDomain currentAppDomain;
 #endif
         private static ICollection<Assembly> _hiddenAssemblies;
@@ -72,7 +72,7 @@ namespace NLog
         [Obsolete]
         public delegate CultureInfo GetCultureInfo();
 
-#if !SILVERLIGHT && !MONO && !UWP10
+#if !SILVERLIGHT && !MONO && !NETSTANDARD
         /// <summary>
         /// Initializes static members of the LogManager class.
         /// </summary>
@@ -142,7 +142,7 @@ namespace NLog
             set { factory.ThrowConfigExceptions = value; }
         }
 
-#if !UWP10
+#if !NETSTANDARD
 
         internal static IAppDomain CurrentAppDomain
         {
@@ -190,7 +190,7 @@ namespace NLog
             set { throw new NotSupportedException("Setting the DefaultCultureInfo delegate is no longer supported. Use the Configuration.DefaultCultureInfo property to change the default CultureInfo."); }
         }
 
-#if UWP10
+#if NETSTANDARD
         /// <summary>
         /// Gets the logger with the name of the current class.  
         /// </summary>
@@ -244,7 +244,7 @@ namespace NLog
             }
         }
 
-#if UWP10
+#if NETSTANDARD
         /// <summary>
         /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
@@ -320,7 +320,7 @@ namespace NLog
             factory.ReconfigExistingLoggers();
         }
 
-#if !SILVERLIGHT && !UWP10 || NETSTANDARD1_3
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
         /// </summary>
@@ -425,7 +425,7 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT && !MONO && !UWP10
+#if !SILVERLIGHT && !MONO && !NETSTANDARD
         private static void SetupTerminationEvents()
         {
             try
@@ -445,7 +445,7 @@ namespace NLog
         }
 #endif
 
-#if !UWP10
+#if !NETSTANDARD
 
         /// <summary>
         /// Gets the fully qualified name of the class invoking the LogManager, including the 
@@ -491,7 +491,7 @@ namespace NLog
                 Configuration = null;
                 factory.Dispose();      // Release event listeners
             }
-#if !UWP10
+#if !NETSTANDARD
             CurrentAppDomain = null;    // No longer part of AppDomains
 #endif
             InternalLogger.Info("Logger has been shut down.");

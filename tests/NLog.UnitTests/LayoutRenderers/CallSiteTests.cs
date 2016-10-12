@@ -48,7 +48,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class CallSiteTests : NLogTestBase
     {
-#if !SILVERLIGHT && !UWP10 && !NETSTANDARD_1plus
+#if !SILVERLIGHT && !NETSTANDARD && !NETSTANDARD_1plus
         [Fact]
         public void HiddenAssemblyTest()
         {
@@ -117,7 +117,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 #endif
 
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !NETSTANDARD
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
@@ -149,7 +149,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 #endif
 
-#if !UWP10
+#if !NETSTANDARD
 
         [Fact]
         public void MethodNameTest()
@@ -374,7 +374,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame msg");
         }
 
-#if !UWP10
+#if !NETSTANDARD
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
 #else

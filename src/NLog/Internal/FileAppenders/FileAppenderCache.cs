@@ -43,7 +43,7 @@ namespace NLog.Internal.FileAppenders
     internal sealed class FileAppenderCache
     {
         private BaseFileAppender[] appenders;
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD_1plus && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD_1plus && !NETSTANDARD
         private string archiveFilePatternToWatch = null;
         private readonly MultiFileWatcher externalFileArchivingWatcher = new MultiFileWatcher(NotifyFilters.FileName);
         private bool logFileWasArchived = false;
@@ -78,12 +78,12 @@ namespace NLog.Internal.FileAppenders
 
             appenders = new BaseFileAppender[Size];
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD_1plus && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD_1plus && !NETSTANDARD
             externalFileArchivingWatcher.OnChange += ExternalFileArchivingWatcher_OnChange;
 #endif
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD_1plus && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD_1plus && !NETSTANDARD
         private void ExternalFileArchivingWatcher_OnChange(object sender, FileSystemEventArgs e)
         {
             if ((e.ChangeType & WatcherChangeTypes.Created) == WatcherChangeTypes.Created)
@@ -205,7 +205,7 @@ namespace NLog.Internal.FileAppenders
                 appenders[0] = newAppender;
                 appenderToWrite = newAppender;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD_1plus && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD_1plus && !NETSTANDARD
                 if (!string.IsNullOrEmpty(archiveFilePatternToWatch))
                 {
                     string directoryPath = Path.GetDirectoryName(archiveFilePatternToWatch);
@@ -394,7 +394,7 @@ namespace NLog.Internal.FileAppenders
         {
             appender.Close();
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD_1plus && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD_1plus && !NETSTANDARD
             externalFileArchivingWatcher.StopWatching();
 #endif
         }
