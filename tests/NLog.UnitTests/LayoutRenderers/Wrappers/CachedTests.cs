@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using NLog;
@@ -43,7 +45,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         public void CachedLayoutRendererWrapper()
         {
             SimpleLayout l = "${guid}";
-            
+
             string s1 = l.Render(LogEventInfo.CreateNullEvent());
             string s2 = l.Render(LogEventInfo.CreateNullEvent());
             string s3;
@@ -81,5 +83,40 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             s2 = l.Render(LogEventInfo.CreateNullEvent());
             Assert.NotEqual(s1, s2);
         }
+
+        /// <summary>
+        /// test the cachekey
+        /// </summary>
+        [Fact]
+        public void CacheKeyTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='debug' layout='${cached:${guid}:cached=true:cachekey=${var:var1}}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='debug' appendto='debug'>
+                       
+                    </logger>
+                </rules>
+            </nlog>");
+            LogManager.Configuration.Variables["var1"] = "a";
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            var s1 = GetDebugLastMessage("debug");
+            logger.Debug("msg");
+            var s2 = GetDebugLastMessage("debug");
+            Assert.NotEmpty(s1);
+            Assert.Equal(s1, s2);
+            //change var will reset cache
+            LogManager.Configuration.Variables["var1"] = "b";
+            logger.Debug("msg");
+            var s3 = GetDebugLastMessage("debug");
+            Assert.NotEmpty(s3);
+            Assert.NotEqual(s1, s3);
+
+        }
+
+
     }
 }

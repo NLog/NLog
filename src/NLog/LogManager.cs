@@ -150,8 +150,11 @@ namespace NLog
             set
             {
 #if !SILVERLIGHT && !MONO
-                currentAppDomain.DomainUnload -= TurnOffLogging;
-                currentAppDomain.ProcessExit -= TurnOffLogging;
+                if (currentAppDomain != null)
+                {
+                    currentAppDomain.DomainUnload -= TurnOffLogging;
+                    currentAppDomain.ProcessExit -= TurnOffLogging;
+                }
 #endif
                 currentAppDomain = value;
             }
@@ -483,7 +486,14 @@ namespace NLog
             // Reset logging configuration to null; this causes old configuration (if any) to be 
             // closed.
             InternalLogger.Info("Shutting down logging...");
-            Configuration = null;
+            if (Configuration != null)
+            {
+                Configuration = null;
+                factory.Dispose();      // Release event listeners
+            }
+#if !UWP10
+            CurrentAppDomain = null;    // No longer part of AppDomains
+#endif
             InternalLogger.Info("Logger has been shut down.");
         }
     }

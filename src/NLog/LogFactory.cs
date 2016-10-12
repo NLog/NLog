@@ -719,12 +719,8 @@ namespace NLog
                     this.reloadTimer.Dispose();
                     this.reloadTimer = null;
                 }
-                if (IsDisposing)
-                {
-                    //timer was disposed already. 
-                    this.watcher.Dispose();
-                    return;
-                }
+                if (this.IsDisposing)
+                    return; //timer was disposed already. 
 
                 this.watcher.StopWatching();
                 try
@@ -872,25 +868,74 @@ namespace NLog
         }
 
         /// <summary>
+        /// Is this in disposing state?
+        /// </summary>
+        private bool IsDisposing;
+
+        /// <summary>
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
         /// <param name="disposing"><c>True</c> to release both managed and unmanaged resources;
         /// <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
+
+            if (this.IsDisposing)
+                return;
+
+
+
+
             if (disposing)
             {
-                this.watcher.Dispose();
+                this.IsDisposing = true;
 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
                 if (this.reloadTimer != null)
                 {
-                    this.reloadTimer.Dispose();
-                    this.reloadTimer = null;
-                }
-            }
+                    var currentTimer = this.reloadTimer;
+                    this.reloadTimer = null;    // Mark that we have started to dispose the timer
+                    using (ManualResetEvent waitHandle = new ManualResetEvent(false))
+                    {
+
+#if NETSTANDARD1_3
+                        currentTimer.Dispose();
+                        waitHandle.WaitOne(500);
+#else
+
+                        if (currentTimer.Dispose(waitHandle))
+                        {
+                            // Timer has not been disposed by someone else
+                            waitHandle.WaitOne(500);
+                        }
 #endif
+                    }
+                }
+
+                if (this.watcher != null)
+                {
+                    // Dispose file-watcher after having dispose timer to avoid race
+                    this.watcher.OnChange -= this.ConfigFileChanged;
+                    this.watcher.Dispose();
+                }
+
+#if !NETSTANDARD1_3
+                if (currentAppDomain != null)
+                {
+                    // No longer belongs to the AppDomain
+                    currentAppDomain.DomainUnload -= this.currentAppDomain_DomainUnload;
+                    CurrentAppDomain = null;
+                }
+#endif
+
+                this.ConfigurationReloaded = null;   // Release event listeners
+#endif
+
+            }
+
+            this.ConfigurationChanged = null;    // Release event listeners
         }
+
 
         /// <summary>
         /// Get file paths (including filename) for the possible NLog config files. 
@@ -1086,6 +1131,9 @@ namespace NLog
             // the last change notification comes in.
             lock (this.syncRoot)
             {
+                if (IsDisposing)
+                    return;
+
                 if (this.reloadTimer == null)
                 {
                     this.reloadTimer = new Timer(
@@ -1112,10 +1160,6 @@ namespace NLog
 
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
-        /// <summary>
-        /// Is this in disposing state?
-        /// </summary>
-        private bool IsDisposing;
 
         private void currentAppDomain_DomainUnload(object sender, EventArgs e)
         {
@@ -1124,12 +1168,7 @@ namespace NLog
             //Message: Attempted to access an unloaded AppDomain.
             lock (this.syncRoot)
             {
-                IsDisposing = true;
-                if (this.reloadTimer != null)
-                {
-                    this.reloadTimer.Dispose();
-                    this.reloadTimer = null;
-                }
+                Dispose();
             }
         }
 

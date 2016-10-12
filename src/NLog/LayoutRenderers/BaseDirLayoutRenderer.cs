@@ -39,6 +39,7 @@ namespace NLog.LayoutRenderers
     using System.IO;
     using System.Text;
     using NLog.Config;
+    using NLog.Internal;
 
 #if !NETSTANDARD_1plus
     using Internal.Fakeables;
@@ -60,7 +61,7 @@ namespace NLog.LayoutRenderers
         public BaseDirLayoutRenderer() : this(AppDomainWrapper.CurrentDomain)
         {
         }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
         /// </summary>
@@ -103,19 +104,8 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string outputPath = this.baseDir;
-
-            if (this.Dir != null)
-            {
-                outputPath = Path.Combine(outputPath, this.Dir);
-            }
-
-            if (this.File != null)
-            {
-                outputPath = Path.Combine(outputPath, this.File);
-            }
-
-            builder.Append(outputPath);
+            var path = PathHelpers.CombinePaths(baseDir, this.Dir, this.File);
+            builder.Append(path);
         }
     }
 }

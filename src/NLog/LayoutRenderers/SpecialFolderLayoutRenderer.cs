@@ -32,6 +32,8 @@
 // 
 
 #if !UWP10
+using NLog.Internal;
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -85,20 +87,13 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string outputPath = Environment.GetFolderPath(this.Folder);
+            string basePath = Environment.GetFolderPath(this.Folder);
 
-            if (this.Dir != null)
-            {
-                outputPath = Path.Combine(outputPath, this.Dir);
-            }
+            var path = PathHelpers.CombinePaths(basePath, this.Dir, this.File);
 
-            if (this.File != null)
-            {
-                outputPath = Path.Combine(outputPath, this.File);
-            }
-   
-            builder.Append(outputPath);
+            builder.Append(path);
         }
     }
 }
+
 #endif

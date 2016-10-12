@@ -84,6 +84,80 @@ namespace NLog.UnitTests.Common
         [InlineData(true, null)]
         [InlineData(null, true)]
         [InlineData(true, true)]
+        public void VerifyInternalLoggerLevelFilter(bool? internalLogToTrace, bool? logToTrace)
+        {
+            foreach (LogLevel logLevelConfig in LogLevel.AllLevels)
+            {
+                var mockTraceListener = SetupTestConfiguration<MockTraceListener>(logLevelConfig, internalLogToTrace, logToTrace);
+
+                List<string> expected = new List<string>();
+
+                string input = "Logger1 Hello";
+                expected.Add(input);
+                InternalLogger.Trace(input);
+                InternalLogger.Debug(input);
+                InternalLogger.Info(input);
+                InternalLogger.Warn(input);
+                InternalLogger.Error(input);
+                InternalLogger.Fatal(input);
+                input += "No.{0}";
+                expected.Add(string.Format(input, 1));
+                InternalLogger.Trace(input, 1);
+                InternalLogger.Debug(input, 1);
+                InternalLogger.Info(input, 1);
+                InternalLogger.Warn(input, 1);
+                InternalLogger.Error(input, 1);
+                InternalLogger.Fatal(input, 1);
+                input += ", We come in {1}";
+                expected.Add(string.Format(input, 1, "Peace"));
+                InternalLogger.Trace(input, 1, "Peace");
+                InternalLogger.Debug(input, 1, "Peace");
+                InternalLogger.Info(input, 1, "Peace");
+                InternalLogger.Warn(input, 1, "Peace");
+                InternalLogger.Error(input, 1, "Peace");
+                InternalLogger.Fatal(input, 1, "Peace");
+                input += ", Please don't {2}";
+                expected.Add(string.Format(input, 1, "Peace", null));
+                InternalLogger.Trace(input, 1, "Peace", null);
+                InternalLogger.Debug(input, 1, "Peace", null);
+                InternalLogger.Info(input, 1, "Peace", null);
+                InternalLogger.Warn(input, 1, "Peace", null);
+                InternalLogger.Error(input, 1, "Peace", null);
+                InternalLogger.Fatal(input, 1, "Peace", null);
+                input += " the {3}";
+                expected.Add(string.Format(input, 1, "Peace", null, "Messenger"));
+                InternalLogger.Trace(input, 1, "Peace", null, "Messenger");
+                InternalLogger.Debug(input, 1, "Peace", null, "Messenger");
+                InternalLogger.Info(input, 1, "Peace", null, "Messenger");
+                InternalLogger.Warn(input, 1, "Peace", null, "Messenger");
+                InternalLogger.Error(input, 1, "Peace", null, "Messenger");
+                InternalLogger.Fatal(input, 1, "Peace", null, "Messenger");
+                input += " as we are {4} to god";
+                expected.Add(string.Format(input, 1, "Peace", null, "Messenger", true));
+                InternalLogger.Trace(input, 1, "Peace", null, "Messenger", true);
+                InternalLogger.Debug(input, 1, "Peace", null, "Messenger", true);
+                InternalLogger.Info(input, 1, "Peace", null, "Messenger", true);
+                InternalLogger.Warn(input, 1, "Peace", null, "Messenger", true);
+                InternalLogger.Error(input, 1, "Peace", null, "Messenger", true);
+                InternalLogger.Fatal(input, 1, "Peace", null, "Messenger", true);
+                Assert.Equal(expected.Count * (LogLevel.Fatal.Ordinal - logLevelConfig.Ordinal + 1), mockTraceListener.Messages.Count);
+                for (int i = 0; i < expected.Count; ++i)
+                {
+                    int msgCount = LogLevel.Fatal.Ordinal - logLevelConfig.Ordinal + 1;
+                    for (int j = 0; j < msgCount; ++j)
+                    {
+                        Assert.True(mockTraceListener.Messages.First().Contains(expected[i]));
+                        mockTraceListener.Messages.RemoveAt(0);
+                    }
+                }
+                Assert.Equal(0, mockTraceListener.Messages.Count);
+            }
+        }
+
+        [Theory]
+        [InlineData(true, null)]
+        [InlineData(null, true)]
+        [InlineData(true, true)]
         public void ShouldLogToTraceWhenInternalLogToTraceIsOnAndLogLevelIsTrace(bool? internalLogToTrace, bool? logToTrace)
         {
             var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Trace, internalLogToTrace, logToTrace);

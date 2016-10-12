@@ -32,6 +32,7 @@
 // 
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || NETSTANDARD1_3
+using NLog.Common;
 
 namespace NLog.Targets
 {
@@ -49,6 +50,23 @@ namespace NLog.Targets
     [Target("ColoredConsole")]
     public sealed class ColoredConsoleTarget : TargetWithLayoutHeaderAndFooter
     {
+        /// <summary>
+        /// Should logging being paused/stopped because of the race condition bug in Console.Writeline?
+        /// </summary>
+        /// <remarks>
+        ///   Console.Out.Writeline / Console.Error.Writeline could throw 'IndexOutOfRangeException', which is a bug. 
+        /// See http://stackoverflow.com/questions/33915790/console-out-and-console-error-race-condition-error-in-a-windows-service-written
+        /// and https://connect.microsoft.com/VisualStudio/feedback/details/2057284/console-out-probable-i-o-race-condition-issue-in-multi-threaded-windows-service
+        ///             
+        /// Full error: 
+        ///   Error during session close: System.IndexOutOfRangeException: Probable I/ O race condition detected while copying memory.
+        ///   The I/ O package is not thread safe by default.In multithreaded applications, 
+        ///   a stream must be accessed in a thread-safe way, such as a thread - safe wrapper returned by TextReader's or 
+        ///   TextWriter's Synchronized methods.This also applies to classes like StreamWriter and StreamReader.
+        /// 
+        /// </remarks>
+        private bool PauseLogging;
+
         private static readonly IList<ConsoleRowHighlightingRule> defaultConsoleRowHighlightingRules = new List<ConsoleRowHighlightingRule>()
         {
             new ConsoleRowHighlightingRule("level == LogLevel.Fatal", ConsoleOutputColor.Red, ConsoleOutputColor.NoChange),
@@ -70,6 +88,8 @@ namespace NLog.Targets
             this.WordHighlightingRules = new List<ConsoleWordHighlightingRule>();
             this.RowHighlightingRules = new List<ConsoleRowHighlightingRule>();
             this.UseDefaultRowHighlightingRules = true;
+            this.PauseLogging = false;
+            this.DetectConsoleAvailable = true;
         }
 
         /// <summary>
@@ -152,6 +172,14 @@ namespace NLog.Targets
 #endif
 
         /// <summary>
+        /// Gets or sets a value indicating whether to auto-check if the console is available.
+        ///  - Disables console writing if Environment.UserInteractive = False (Windows Service)
+        ///  - Disables console writing if Console Standard Input is not available (Non-Console-App)
+        /// </summary>
+        [DefaultValue(true)]
+        public bool DetectConsoleAvailable { get; set; }
+
+        /// <summary>
         /// Gets the row highlighting rules.
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
@@ -170,11 +198,21 @@ namespace NLog.Targets
         /// </summary>
         protected override void InitializeTarget()
         {
+            this.PauseLogging = false;
+            if (DetectConsoleAvailable)
+            {
+                string reason;
+                PauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
+                if (PauseLogging)
+                {
+                    InternalLogger.Info("Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {0}", reason);
+                }
+            }
             base.InitializeTarget();
             if (Header != null)
             {
                 LogEventInfo lei = LogEventInfo.CreateNullEvent();
-                this.Output(lei, Header.Render(lei));
+                this.WriteToOutput(lei, Header.Render(lei));
             }
         }
 
@@ -186,7 +224,7 @@ namespace NLog.Targets
             if (Footer != null)
             {
                 LogEventInfo lei = LogEventInfo.CreateNullEvent();
-                this.Output(lei, Footer.Render(lei));
+                this.WriteToOutput(lei, Footer.Render(lei));
             }
 
             base.CloseTarget();
@@ -199,10 +237,15 @@ namespace NLog.Targets
         /// <param name="logEvent">Log event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            this.Output(logEvent, this.Layout.Render(logEvent));
+            if (PauseLogging)
+            {
+                //check early for performance
+                return;
+        }
+            this.WriteToOutput(logEvent, this.Layout.Render(logEvent));
         }
 
-        private void Output(LogEventInfo logEvent, string message)
+        private void WriteToOutput(LogEventInfo logEvent, string message)
         {
             ConsoleColor oldForegroundColor = Console.ForegroundColor;
             ConsoleColor oldBackgroundColor = Console.BackgroundColor;
@@ -220,6 +263,9 @@ namespace NLog.Targets
                 if (didChangeBackgroundColor)
                     Console.BackgroundColor = (ConsoleColor)matchingRule.BackgroundColor;
 
+
+                try
+                {
                 var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
                 if (this.WordHighlightingRules.Count == 0)
                 {
@@ -237,6 +283,14 @@ namespace NLog.Targets
                     consoleStream.WriteLine();
 
                     didChangeForegroundColor = didChangeBackgroundColor = true;
+                }
+            }
+                catch (IndexOutOfRangeException ex)
+                {
+                    //this is a bug and therefor stopping logging. For docs, see PauseLogging property
+                    PauseLogging = true;
+                    InternalLogger.Warn(ex, "An IndexOutOfRangeException has been thrown and this is probably due to a race condition." +
+                                            "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
                 }
             }
             finally

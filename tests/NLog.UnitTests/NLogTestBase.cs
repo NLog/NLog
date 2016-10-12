@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+
+
 namespace NLog.UnitTests
 {
     using System;
@@ -233,11 +236,29 @@ namespace NLog.UnitTests
 
         protected void AssertFileContents(string fileName, string contents, Encoding encoding)
         {
+            AssertFileContents(fileName, contents, encoding, false);
+        }
+
+        protected void AssertFileContents(string fileName, string contents, Encoding encoding, bool addBom)
+        {
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
                 Assert.True(false, "File '" + fileName + "' doesn't exist.");
 
             byte[] encodedBuf = encoding.GetBytes(contents);
+
+            //add bom if needed
+            if (addBom)
+            {
+                var preamble = encoding.GetPreamble();
+                if (preamble.Length > 0)
+                {
+                    //insert before
+
+                    encodedBuf = preamble.Concat(encodedBuf).ToArray();
+
+                }
+            }
             Assert.Equal(encodedBuf.Length, fi.Length);
             byte[] buf = new byte[(int)fi.Length];
             using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
@@ -323,7 +344,7 @@ namespace NLog.UnitTests
 
 #endif
 
-        protected XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
+        protected static XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
         {
 #if SILVERLIGHT || UWP10
             XElement element = XElement.Parse(configXml);

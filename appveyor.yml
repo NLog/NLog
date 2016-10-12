@@ -10,3 +10,5 @@ test_script:
 deploy: off
 artifacts:
 - path: 'artifacts\*.nupkg'
+services:
+  - mssql2012sp1

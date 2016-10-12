@@ -29,7 +29,7 @@
         "System.Xml": ""
       },
       "buildOptions": {
-        "define": [ "NET3_5", "WCF_SUPPORTED" ]
+        "define": [ "NET3_5", "WCF_SUPPORTED", "SupportsMutex" ]
       }
     },
 
@@ -45,7 +45,7 @@
         "System.Xml": ""
       },
       "buildOptions": {
-        "define": [ "NET4_0", "WCF_SUPPORTED" ]
+        "define": [ "NET4_0", "WCF_SUPPORTED", "SupportsMutex" ]
       }
     },
     ".NETFramework,Version=v4.5": {
@@ -62,7 +62,7 @@
 
       },
       "buildOptions": {
-        "define": [ "NET4_5", "WCF_SUPPORTED", "ASYNC_SUPPORTED" ]
+        "define": [ "NET4_5", "WCF_SUPPORTED", "ASYNC_SUPPORTED", "SupportsMutex" ]
       }
     },
     //"netstandard1.0": {
@@ -91,13 +91,17 @@
         "System.Net.Requests": "4.0.11",
         "System.Reflection.TypeExtensions": "4.1.0",
         "System.Runtime.Serialization.Primitives": "4.1.1",
+        "System.Threading": "4.0.11",
         "System.Threading.Thread": "4.0.0",
         "System.Threading.ThreadPool": "4.0.10",
         "System.Xml.XmlDocument": "4.0.1",
-        "System.Net.NameResolution": "4.0.0"
+        "System.Net.NameResolution": "4.0.0",
+        "System.Security.AccessControl": "4.0.0",
+        "System.Security.Principal": "4.0.1",
+        "System.Threading.AccessControl": "4.0.0"
       },
       "buildOptions": {
-        "define": [ "NET4_5", "NETSTANDARD_1plus", "ASYNC_SUPPORTED", "UWP10" ],
+        "define": [ "NET4_5", "NETSTANDARD_1plus", "ASYNC_SUPPORTED", "UWP10", "SupportsMutex" ],
         "nowarn": [ "CS0436" ]
       }
     },
@@ -115,13 +119,17 @@
         "System.Net.Requests": "4.0.11",
         "System.Reflection.TypeExtensions": "4.1.0",
         "System.Runtime.Serialization.Primitives": "4.1.1",
+        "System.Threading": "4.0.11",
         "System.Threading.Thread": "4.0.0",
         "System.Threading.ThreadPool": "4.0.10",
         "System.Xml.XmlDocument": "4.0.1",
-        "System.Net.NameResolution": "4.0.0"
+        "System.Net.NameResolution": "4.0.0",
+        "System.Security.AccessControl": "4.0.0",
+        "System.Security.Principal": "4.0.1",
+        "System.Threading.AccessControl": "4.0.0"
       },
       "buildOptions": {
-        "define": [ "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD1_3", "NETSTANDARD1_5", "ASYNC_SUPPORTED", "UWP10" ],
+        "define": [ "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD1_3", "NETSTANDARD1_5", "ASYNC_SUPPORTED", "UWP10", "SupportsMutex" ],
         "nowarn": [ "CS0436" ]
       }
     },
@@ -188,6 +196,8 @@
         "System.Xml": ""
       },
       "buildOptions": {
+        // Unfortunately, Xamarin Android and Xamarin iOS throws runtime exceptions when using mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167)
+
         "define": [ "__ANDROID__" ]
       }
     },
@@ -200,6 +210,8 @@
         "System.Xml": ""
       },
       "buildOptions": {
+        // Unfortunately, Xamarin Android and Xamarin iOS throws runtime exceptions when using mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167)
+
         "define": [ "__IOS__" ]
       }
     }

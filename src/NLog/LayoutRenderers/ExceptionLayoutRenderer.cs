@@ -56,13 +56,13 @@ namespace NLog.LayoutRenderers
         
         private static readonly Dictionary<String, ExceptionRenderingFormat> _formatsMapping = new Dictionary<string, ExceptionRenderingFormat>(StringComparer.OrdinalIgnoreCase)
                                                                                                     {
-                                                                                                        {"MESSAGE",ExceptionRenderingFormat.Message}, 
-                                                                                                        {"TYPE", ExceptionRenderingFormat.Type}, 
-                                                                                                        {"SHORTTYPE",ExceptionRenderingFormat.ShortType}, 
-                                                                                                        {"TOSTRING",ExceptionRenderingFormat.ToString}, 
-                                                                                                        {"METHOD",ExceptionRenderingFormat.Method}, 
-                                                                                                        {"STACKTRACE", ExceptionRenderingFormat.StackTrace}, 
-                                                                                                        {"DATA",ExceptionRenderingFormat.Data}, 
+                                                                                                        {"MESSAGE",ExceptionRenderingFormat.Message},
+                                                                                                        {"TYPE", ExceptionRenderingFormat.Type},
+                                                                                                        {"SHORTTYPE",ExceptionRenderingFormat.ShortType},
+                                                                                                        {"TOSTRING",ExceptionRenderingFormat.ToString},
+                                                                                                        {"METHOD",ExceptionRenderingFormat.Method},
+                                                                                                        {"STACKTRACE", ExceptionRenderingFormat.StackTrace},
+                                                                                                        {"DATA",ExceptionRenderingFormat.Data},
                                                                                                     };
 
         /// <summary>
@@ -72,12 +72,13 @@ namespace NLog.LayoutRenderers
         {
             this.Format = "message";
             this.Separator = " ";
+            this.ExceptionDataSeparator = ";";
             this.InnerExceptionSeparator = EnvironmentHelper.NewLine;
             this.MaxInnerExceptionLevel = 0;
 
-            _renderingfunctions = new Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>>() 
+            _renderingfunctions = new Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>>()
                                                                                                     {
-                                                                                                        {ExceptionRenderingFormat.Message, AppendMessage}, 
+                                                                                                        {ExceptionRenderingFormat.Message, AppendMessage},
                                                                                                         {ExceptionRenderingFormat.Type, AppendType},
                                                                                                         {ExceptionRenderingFormat.ShortType, AppendShortType},
                                                                                                         {ExceptionRenderingFormat.ToString, AppendToString},
@@ -136,6 +137,13 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(" ")]
         public string Separator { get; set; }
+
+        /// <summary>
+        /// Gets or sets the separator used to concatenate exception data specified in the Format.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(";")]
+        public string ExceptionDataSeparator { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum number of inner exceptions to include in the output.
@@ -314,7 +322,8 @@ namespace NLog.LayoutRenderers
             {
                 sb.Append(separator);
                 sb.AppendFormat("{0}: {1}", key, ex.Data[key]);
-                separator = ";";
+
+                separator = ExceptionDataSeparator;
             }
         }
 

@@ -35,10 +35,7 @@
 #if !SILVERLIGHT
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using NLog.LayoutRenderers;
 using Xunit;
 using Xunit.Extensions;

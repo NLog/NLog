@@ -45,11 +45,13 @@ namespace NLog.UnitTests.Targets
     using System.Data.Common;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
     using NLog.Common;
     using NLog.Config;
     using NLog.Targets;
     using Xunit;
     using Xunit.Extensions;
+    using System.Data.SqlClient;
 
     public class DatabaseTargetTests : NLogTestBase
     {
@@ -58,7 +60,8 @@ namespace NLog.UnitTests.Targets
         {
             var data = (DataSet)ConfigurationManager.GetSection("system.data");
             var providerFactories = data.Tables["DBProviderFactories"];
-            providerFactories.Rows.Add("MockDb Provider", "MockDb Provider", "MockDb", typeof(MockDbFactory).AssemblyQualifiedName);
+            providerFactories.Rows.Add("MockDb Provider", "MockDb Provider", "MockDb",
+                typeof(MockDbFactory).AssemblyQualifiedName);
             providerFactories.AcceptChanges();
         }
 #endif
@@ -696,7 +699,9 @@ Dispose()
             }
             catch (NLogConfigurationException configurationException)
             {
-                Assert.Equal("Connection string 'MyConnectionString' is not declared in <connectionStrings /> section.", configurationException.Message);
+                Assert.Equal(
+                    "Connection string 'MyConnectionString' is not declared in <connectionStrings /> section.",
+                    configurationException.Message);
             }
         }
 
@@ -772,7 +777,77 @@ Dispose()
             Assert.Equal(typeof(System.Data.Odbc.OdbcConnection), dt.ConnectionType);
         }
 
-        [Fact]  
+        [Fact]
+        public void SqlServer_InstallAndLogMessage()
+        {
+
+            if (SqlServerTest.IsTravis())
+            {
+                Console.WriteLine("skipping test SqlServer_InstallAndLogMessage because we are running in Travis");
+                return;
+            }
+
+            SqlServerTest.TryDropDatabase();
+
+            try
+            {
+                SqlServerTest.CreateDatabase();
+
+                var connectionString = SqlServerTest.GetConnectionString();
+                LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
+                  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='true'>
+                <targets>
+                    <target name='database' xsi:type='Database' connectionstring=""" + connectionString + @"""
+                        commandText='insert into dbo.NLogSqlServerTest (Uid) values (@uid);'>
+                        <parameter name='@uid' layout='${event-properties:uid}' />
+<install-command ignoreFailures=""false""
+                 text=""CREATE TABLE dbo.NLogSqlServerTest (
+    Id       int               NOT NULL IDENTITY(1,1) PRIMARY KEY CLUSTERED,
+    Uid      uniqueidentifier  NULL
+);""/>
+
+                    </target>
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='database' />
+                </rules>
+            </nlog>");
+
+                //install 
+                InstallationContext context = new InstallationContext();
+                LogManager.Configuration.Install(context);
+
+                var tableCatalog = SqlServerTest.IssueScalarQuery(@"SELECT TABLE_CATALOG FROM INFORMATION_SCHEMA.TABLES
+                 WHERE TABLE_SCHEMA = 'Dbo'
+                 AND  TABLE_NAME = 'NLogSqlServerTest'");
+
+                //check if table exists
+                Assert.Equal("NLogTest", tableCatalog);
+
+                var logger = LogManager.GetLogger("A");
+                var target = LogManager.Configuration.FindTargetByName<DatabaseTarget>("database");
+
+                var uid = new Guid("e7c648b4-3508-4df2-b001-753148659d6d");
+                var logEvent = new LogEventInfo(LogLevel.Info, null, null);
+                logEvent.Properties["uid"] = uid;
+                logger.Log(logEvent);
+
+                var count = SqlServerTest.IssueScalarQuery("SELECT count(1) FROM dbo.NLogSqlServerTest");
+
+                Assert.Equal(1, count);
+
+                var result = SqlServerTest.IssueScalarQuery("SELECT Uid FROM dbo.NLogSqlServerTest");
+
+                Assert.Equal(uid, result);
+            }
+            finally
+            {
+                SqlServerTest.TryDropDatabase();
+            }
+
+        }
+
         public void GetProviderNameFromAppConfig()
         {
             LogManager.ThrowExceptions = true;
@@ -785,7 +860,8 @@ Dispose()
             databaseTarget.ConnectionStringsSettings = new ConnectionStringSettingsCollection()
             {
                 new ConnectionStringSettings("test_connectionstring_without_providerName","some connectionstring"),
-                new ConnectionStringSettings("test_connectionstring_with_providerName","some connectionstring","System.Data.SqlClient"),
+                new ConnectionStringSettings("test_connectionstring_with_providerName", "some connectionstring",
+                    "System.Data.SqlClient"),
             };
 
             databaseTarget.Initialize(null);
@@ -808,7 +884,8 @@ Dispose()
             databaseTarget.ConnectionStringsSettings = new ConnectionStringSettingsCollection()
             {
                 new ConnectionStringSettings("test_connectionstring_without_providerName","some connectionstring"),
-                new ConnectionStringSettings("test_connectionstring_with_providerName","some connectionstring","System.Data.SqlClient"),
+                new ConnectionStringSettings("test_connectionstring_with_providerName", "some connectionstring",
+                    "System.Data.SqlClient"),
             };
 
             databaseTarget.Initialize(null);
@@ -1035,14 +1112,8 @@ Dispose()
 
             public UpdateRowSource UpdatedRowSource
             {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-                set
-                {
-                    throw new NotImplementedException();
-                }
+                get { throw new NotImplementedException(); }
+                set { throw new NotImplementedException(); }
             }
 
             public void Dispose()
@@ -1074,7 +1145,11 @@ Dispose()
             public ParameterDirection Direction
             {
                 get { throw new NotImplementedException(); }
-                set { ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Direction={1}", paramId, value); }
+                set
+                {
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Direction={1}", paramId,
+                        value);
+                }
             }
 
             public bool IsNullable
@@ -1117,19 +1192,29 @@ Dispose()
             public byte Precision
             {
                 get { throw new NotImplementedException(); }
-                set { ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Precision={1}", paramId, value); }
+                set
+                {
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Precision={1}", paramId,
+                        value);
+                }
             }
 
             public byte Scale
             {
                 get { throw new NotImplementedException(); }
-                set { ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Scale={1}", paramId, value); }
+                set
+                {
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Scale={1}", paramId, value);
+                }
             }
 
             public int Size
             {
                 get { throw new NotImplementedException(); }
-                set { ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Size={1}", paramId, value); }
+                set
+                {
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Size={1}", paramId, value);
+                }
             }
 
             public override string ToString()
@@ -1310,7 +1395,134 @@ Dispose()
                 get { throw new NotImplementedException(); }
             }
         }
+
+        private static class SqlServerTest
+        {
+
+
+            static SqlServerTest()
+            {
+            }
+
+            public static string GetConnectionString()
+            {
+
+                var connectionString = IsAppVeyor() ? AppVeyorConnectionStringNLogTest : LocalConnectionStringNLogTest;
+                return connectionString;
+            }
+
+            /// <summary>
+            /// AppVeyor connectionstring for SQL 2012, see https://www.appveyor.com/docs/services-databases/
+            /// </summary>
+            private const string AppVeyorConnectionStringMaster =
+                @"Server=(local)\SQL2012SP1;Database=master;User ID=sa;Password=Password12!";
+
+            private const string AppVeyorConnectionStringNLogTest =
+                @"Server=(local)\SQL2012SP1;Database=NLogTest;User ID=sa;Password=Password12!";
+
+            private const string LocalConnectionStringMaster =
+                @"Data Source=(localdb)\MSSQLLocalDB; Database=master; Integrated Security=True;";
+
+            private const string LocalConnectionStringNLogTest =
+                @"Data Source=(localdb)\MSSQLLocalDB; Database=NLogTest; Integrated Security=True;";
+
+            public static void CreateDatabase()
+            {
+                var connectionString = GetMasterConnectionString();
+                IssueCommand("CREATE DATABASE NLogTest", connectionString);
+            }
+
+            public static bool NLogTestDatabaseExists()
+            {
+                var connectionString = GetMasterConnectionString();
+                var dbId = IssueScalarQuery("select db_id('NLogTest')", connectionString);
+                return dbId != null && dbId != DBNull.Value;
+
+            }
+
+            private static string GetMasterConnectionString()
+            {
+                return IsAppVeyor() ? AppVeyorConnectionStringMaster : LocalConnectionStringMaster;
+            }
+
+            /// <summary>
+            /// Are we running on AppVeyor?
+            /// </summary>
+            /// <returns></returns>
+            private static bool IsAppVeyor()
+            {
+                var val = Environment.GetEnvironmentVariable("APPVEYOR");
+                return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
+            }
+
+            /// <summary>
+            /// Are we running on Travis?
+            /// </summary>
+            /// <returns></returns>
+            public static bool IsTravis()
+            {
+                var val = Environment.GetEnvironmentVariable("TRAVIS");
+                return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
+            }
+
+            public static void IssueCommand(string commandString, string connectionString = null)
+            {
+                using (var connection = new SqlConnection(connectionString ?? GetConnectionString()))
+                {
+                    connection.Open();
+                    if (connectionString == null)
+                        connection.ChangeDatabase("NLogTest");
+                    using (var command = new SqlCommand(commandString, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+
+            public static object IssueScalarQuery(string commandString, string connectionString = null)
+            {
+                using (var connection = new SqlConnection(connectionString ?? GetConnectionString()))
+                {
+                    connection.Open();
+                    if (connectionString == null)
+                        connection.ChangeDatabase("NLogTest");
+                    using (var command = new SqlCommand(commandString, connection))
+                    {
+                        var scalar = command.ExecuteScalar();
+                        return scalar;
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Try dropping. IF fail, not exception
+            /// </summary>
+            public static bool TryDropDatabase()
+            {
+                try
+                {
+                    if (NLogTestDatabaseExists())
+                    {
+                        var connectionString = GetMasterConnectionString();
+                        IssueCommand(
+                            "ALTER DATABASE [NLogTest] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE NLogTest;",
+                            connectionString);
+                        return true;
+                    }
+                    return false;
+
+                }
+                catch (Exception)
+                {
+
+                    //ignore
+                    return false;
+                }
+
+            }
+        }
     }
+
 }
 
 #endif

@@ -89,7 +89,7 @@ namespace NLog.UnitTests
         [Fact]
         public void Bug5965StackOverflow()
         {
-            LogManager.Configuration = this.CreateConfigurationFromString(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
 <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
       xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
   

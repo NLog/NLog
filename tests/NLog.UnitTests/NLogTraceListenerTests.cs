@@ -139,10 +139,12 @@ namespace NLog.UnitTests
             listener.Attributes.Add("defaultLogLevel", "Warn");
             listener.Attributes.Add("forceLogLevel", "Error");
             listener.Attributes.Add("autoLoggerName", "1");
+            listener.Attributes.Add("DISABLEFLUSH", "true"); 
 
             Assert.Equal(LogLevel.Warn, listener.DefaultLogLevel);
             Assert.Equal(LogLevel.Error, listener.ForceLogLevel);
             Assert.True(listener.AutoLoggerName);
+            Assert.True(listener.DisableFlush);
         }
 
         [Fact]

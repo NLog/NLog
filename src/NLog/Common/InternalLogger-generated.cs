@@ -123,6 +123,45 @@ namespace NLog.Common
         }
 
         /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Trace([Localizable(false)] string message, object arg0)
+        {
+            if (IsTraceEnabled)
+                Log(null, LogLevel.Trace, message, arg0);
+        }
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        /// <param name="arg1">Argument {1} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Trace([Localizable(false)] string message, object arg0, object arg1)
+        {
+            if (IsTraceEnabled)
+                Log(null, LogLevel.Trace, message, arg0, arg1);
+        }
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        /// <param name="arg1">Argument {1} to the message.</param>
+		/// <param name="arg2">Argument {2} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Trace([Localizable(false)] string message, object arg0, object arg1, object arg2)
+        {
+            if (IsTraceEnabled)
+                Log(null, LogLevel.Trace, message, arg0, arg1, arg2);
+        }
+
+        /// <summary>
         /// Logs the specified message with an <see cref="Exception"/> at the Trace level.
         /// </summary>
 		/// <param name="ex">Exception to be logged.</param>
@@ -163,6 +202,45 @@ namespace NLog.Common
         public static void Debug(Exception ex, [Localizable(false)] string message, params object[] args)
         {
             Write(ex, LogLevel.Debug, message, args);
+        }
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Debug([Localizable(false)] string message, object arg0)
+        {
+            if (IsDebugEnabled)
+                Log(null, LogLevel.Debug, message, arg0);
+        }
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        /// <param name="arg1">Argument {1} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Debug([Localizable(false)] string message, object arg0, object arg1)
+        {
+            if (IsDebugEnabled)
+                Log(null, LogLevel.Debug, message, arg0, arg1);
+        }
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        /// <param name="arg1">Argument {1} to the message.</param>
+		/// <param name="arg2">Argument {2} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Debug([Localizable(false)] string message, object arg0, object arg1, object arg2)
+        {
+            if (IsDebugEnabled)
+                Log(null, LogLevel.Debug, message, arg0, arg1, arg2);
         }
 
         /// <summary>
@@ -209,6 +287,45 @@ namespace NLog.Common
         }
 
         /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Info([Localizable(false)] string message, object arg0)
+        {
+            if (IsInfoEnabled)
+                Log(null, LogLevel.Info, message, arg0);
+        }
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        /// <param name="arg1">Argument {1} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Info([Localizable(false)] string message, object arg0, object arg1)
+        {
+            if (IsInfoEnabled)
+                Log(null, LogLevel.Info, message, arg0, arg1);
+        }
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        /// <param name="arg1">Argument {1} to the message.</param>
+		/// <param name="arg2">Argument {2} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Info([Localizable(false)] string message, object arg0, object arg1, object arg2)
+        {
+            if (IsInfoEnabled)
+                Log(null, LogLevel.Info, message, arg0, arg1, arg2);
+        }
+
+        /// <summary>
         /// Logs the specified message with an <see cref="Exception"/> at the Info level.
         /// </summary>
 		/// <param name="ex">Exception to be logged.</param>
@@ -249,6 +366,45 @@ namespace NLog.Common
         public static void Warn(Exception ex, [Localizable(false)] string message, params object[] args)
         {
             Write(ex, LogLevel.Warn, message, args);
+        }
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Warn([Localizable(false)] string message, object arg0)
+        {
+            if (IsWarnEnabled)
+                Log(null, LogLevel.Warn, message, arg0);
+        }
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        /// <param name="arg1">Argument {1} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Warn([Localizable(false)] string message, object arg0, object arg1)
+        {
+            if (IsWarnEnabled)
+                Log(null, LogLevel.Warn, message, arg0, arg1);
+        }
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        /// <param name="arg1">Argument {1} to the message.</param>
+		/// <param name="arg2">Argument {2} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Warn([Localizable(false)] string message, object arg0, object arg1, object arg2)
+        {
+            if (IsWarnEnabled)
+                Log(null, LogLevel.Warn, message, arg0, arg1, arg2);
         }
 
         /// <summary>
@@ -295,6 +451,45 @@ namespace NLog.Common
         }
 
         /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Error([Localizable(false)] string message, object arg0)
+        {
+            if (IsErrorEnabled)
+                Log(null, LogLevel.Error, message, arg0);
+        }
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        /// <param name="arg1">Argument {1} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Error([Localizable(false)] string message, object arg0, object arg1)
+        {
+            if (IsErrorEnabled)
+                Log(null, LogLevel.Error, message, arg0, arg1);
+        }
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        /// <param name="arg1">Argument {1} to the message.</param>
+		/// <param name="arg2">Argument {2} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Error([Localizable(false)] string message, object arg0, object arg1, object arg2)
+        {
+            if (IsErrorEnabled)
+                Log(null, LogLevel.Error, message, arg0, arg1, arg2);
+        }
+
+        /// <summary>
         /// Logs the specified message with an <see cref="Exception"/> at the Error level.
         /// </summary>
 		/// <param name="ex">Exception to be logged.</param>
@@ -335,6 +530,45 @@ namespace NLog.Common
         public static void Fatal(Exception ex, [Localizable(false)] string message, params object[] args)
         {
             Write(ex, LogLevel.Fatal, message, args);
+        }
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Fatal([Localizable(false)] string message, object arg0)
+        {
+            if (IsFatalEnabled)
+                Log(null, LogLevel.Fatal, message, arg0);
+        }
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        /// <param name="arg1">Argument {1} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Fatal([Localizable(false)] string message, object arg0, object arg1)
+        {
+            if (IsFatalEnabled)
+                Log(null, LogLevel.Fatal, message, arg0, arg1);
+        }
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        /// <param name="arg1">Argument {1} to the message.</param>
+		/// <param name="arg2">Argument {2} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Fatal([Localizable(false)] string message, object arg0, object arg1, object arg2)
+        {
+            if (IsFatalEnabled)
+                Log(null, LogLevel.Fatal, message, arg0, arg1, arg2);
         }
 
         /// <summary>

@@ -7,14 +7,14 @@ Feature requests
 Please provide the following information:
 - The current NLog version
 - Any current work-arounds
-- Example of the config when implemented. Please use [fenced code blocks](https://help.github.com/articles/github-flavored-markdown/#fenced-code-blocks).
+- Example of the config when implemented. Please use [fenced code blocks](https://help.github.com/articles/creating-and-highlighting-code-blocks/#fenced-code-blocks).
 - Pull requests and unit tests are welcome! 
 
 Questions
 ----
 Please provide the following information:
 - The current NLog version
-- The current config (file content or API calls). Please use [fenced code blocks](https://help.github.com/articles/github-flavored-markdown/#fenced-code-blocks).
+- The current config (file content or API calls). Please use [fenced code blocks](https://help.github.com/articles/creating-and-highlighting-code-blocks/#fenced-code-blocks).
 - If relevant: the current result
 - If relevant: the expected result
 
@@ -24,12 +24,12 @@ Bug reports
 ----
 Please provide the following information:
 - The current NLog version
-- The error message and stacktrace. Please use [fenced code blocks](https://help.github.com/articles/github-flavored-markdown/#fenced-code-blocks).
+- The error message and stacktrace. Please use [fenced code blocks](https://help.github.com/articles/creating-and-highlighting-code-blocks/#fenced-code-blocks).
 - The internal log, `Debug` level. See [Internal Logging](https://github.com/NLog/NLog/wiki/Internal-Logging)
 - The current result
 - The expected result 
 - Any current work-arounds
-- The current config (file content or API calls). Please use [fenced code blocks](https://help.github.com/articles/github-flavored-markdown/#fenced-code-blocks).
+- The current config (file content or API calls). Please use [fenced code blocks](https://help.github.com/articles/creating-and-highlighting-code-blocks/#fenced-code-blocks).
 - Pull requests and unit tests are welcome!
 
 
