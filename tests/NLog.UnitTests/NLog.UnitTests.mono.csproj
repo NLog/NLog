@@ -112,6 +112,7 @@
     <Compile Include="Internal\FilePathLayoutTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
+    <Compile Include="Internal\PlatformDetectorTests.cs" />
     <Compile Include="Internal\SortHelpersTests.cs" />
     <Compile Include="Internal\StringBuilderExtTests.cs" />
     <Compile Include="Internal\StringHelpersTests.cs" />

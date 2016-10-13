@@ -31,42 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using NLog.Common;
+using NLog.Internal;
+using Xunit;
 
-namespace NLog.Targets
+namespace NLog.UnitTests.Internal
 {
-    internal static class ConsoleTargetHelper
+    public class PlatformDetectorTests : NLogTestBase
     {
-        public static bool IsConsoleAvailable(out string reason)
+        [Fact]
+        public void IsMonoTest()
         {
-            reason = string.Empty;
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
-            try
-            {
-                if (!Environment.UserInteractive)
-                {
-                    if (Internal.PlatformDetector.IsMono && Console.In is StreamReader)
-                        return true;    // Extra bonus check for Mono, that doesn't support Environment.UserInteractive
-
-                    reason = "Environment.UserInteractive = False";
-                    return false;
-                }
-                else if (Console.OpenStandardInput(1) == Stream.Null)
-                {
-                    reason = "Console.OpenStandardInput = Null";
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                reason = string.Format("Unexpected exception: {0}:{1}", ex.GetType().Name, ex.Message);
-                InternalLogger.Warn(ex, "Failed to detect whether console is available.");
-                return false;
-            }
+#if MONO
+            Assert.True(PlatformDetector.IsMono);
+#elif NET3_5 || NET4_0 || NET4_5
+            Assert.False(PlatformDetector.IsMono);
 #endif
-            return true;
         }
     }
 }
