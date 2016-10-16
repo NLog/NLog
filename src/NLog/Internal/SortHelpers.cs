@@ -92,15 +92,15 @@ namespace NLog.Internal
         /// <returns>
         /// Dictionary where keys are unique input keys, and values are lists of <see cref="AsyncLogEventInfo"/>.
         /// </returns>
-        public static ReadOnlySingleBucketDictionary<TKey, IList<TValue>> BucketSort<TValue, TKey>(this ArraySegment<TValue> inputs, KeySelector<TValue, TKey> keySelector)
+        public static ReadOnlySingleBucketDictionary<TKey, IList<TValue>> BucketSort<TValue, TKey>(this IList<TValue> inputs, KeySelector<TValue, TKey> keySelector)
         {
             Dictionary<TKey, IList<TValue>> buckets = null;
             bool singleBucketFirstKey = false;
             TKey singleBucketKey = default(TKey);
             EqualityComparer<TKey> c = EqualityComparer<TKey>.Default;
-            for (int i = inputs.Offset; i < (inputs.Offset + inputs.Count); ++i)
+            for (int i = 0; i < inputs.Count; i++)
             {
-                TKey keyValue = keySelector(inputs.Array[i]);
+                TKey keyValue = keySelector(inputs[i]);
                 if (!singleBucketFirstKey)
                 {
                     singleBucketFirstKey = true;
@@ -113,13 +113,13 @@ namespace NLog.Internal
                         // Multiple buckets needed, allocate full dictionary
                         buckets = new Dictionary<TKey, IList<TValue>>();
                         var bucket = new List<TValue>(i);
-                        for (int j = inputs.Offset; j < i; ++j)
+                        for (int j = 0; j < i; j++)
                         {
-                            bucket.Add(inputs.Array[j]);
+                            bucket.Add(inputs[j]);
                         }
                         buckets[singleBucketKey] = bucket;
                         bucket = new List<TValue>();
-                        bucket.Add(inputs.Array[i]);
+                        bucket.Add(inputs[i]);
                         buckets[keyValue] = bucket;
                     }
                 }
@@ -131,7 +131,7 @@ namespace NLog.Internal
                         eventsInBucket = new List<TValue>();
                         buckets.Add(keyValue, eventsInBucket);
                     }
-                    eventsInBucket.Add(inputs.Array[i]);
+                    eventsInBucket.Add(inputs[i]);
                 }
             }
 
@@ -141,11 +141,7 @@ namespace NLog.Internal
             }
             else
             {
-#if NET3_5 || SILVERLIGHT || MONO || NET4_0
-                return new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(new KeyValuePair<TKey, IList<TValue>>(singleBucketKey, new ReadOnlyArrayList<TValue>(inputs)));
-#else
                 return new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(new KeyValuePair<TKey, IList<TValue>>(singleBucketKey, inputs));
-#endif
             }
         }
 
@@ -301,6 +297,8 @@ namespace NLog.Internal
                 {
                     if (_multiBuckets != null)
                         _multiBuckets.Reset();
+                    else
+                        _singleBucketFirstRead = false;
                 }
             }
 
@@ -406,121 +404,5 @@ namespace NLog.Internal
                 throw new NotSupportedException();  // Readonly
             }
         }
-
-#if NET3_5 || SILVERLIGHT || MONO || NET4_0
-        /// <summary>
-        /// Exposes an ArraySegment to have IList-interface
-        /// </summary>
-        /// <typeparam name="TValue"></typeparam>
-        internal struct ReadOnlyArrayList<TValue> : IList<TValue>
-        {
-            readonly ArraySegment<TValue> _singleBucket;
-
-            public ReadOnlyArrayList(ArraySegment<TValue> singleBucket)
-            {
-                _singleBucket = singleBucket;
-            }
-
-            /// <summary>
-            /// Allows direct lookup of values at existing indexes. Throws exception if trying to assign value in array
-            /// </summary>
-            /// <param name="index">Array Index</param>
-            /// <returns>Array Item at index</returns>
-            public TValue this[int index]
-            {
-                get
-                {
-                    return _singleBucket.Array[_singleBucket.Offset + index];
-                }
-                set
-                {
-                    throw new NotSupportedException("Readonly");
-                }
-            }
-
-            /// <inheritDoc/>
-            public int Count
-            {
-                get
-                {
-                    return _singleBucket.Count;
-                }
-            }
-
-            /// <inheritDoc/>
-            bool ICollection<TValue>.IsReadOnly { get { return true; } }
-
-            /// <inheritDoc/>
-            IEnumerator<TValue> IEnumerable<TValue>.GetEnumerator()
-            {
-                return GetSingleBucketEnumerator();
-            }
-
-            /// <inheritDoc/>
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                return GetSingleBucketEnumerator();
-            }
-
-            IEnumerator<TValue> GetSingleBucketEnumerator()
-            {
-                for (int i = _singleBucket.Offset; i < (_singleBucket.Offset + _singleBucket.Count); i++)
-                    yield return _singleBucket.Array[i];
-            }
-
-            /// <inheritDoc/>
-            int IList<TValue>.IndexOf(TValue item)
-            {
-                EqualityComparer<TValue> c = EqualityComparer<TValue>.Default;
-                for (int i = 0; i < Count; ++i)
-                    if (c.Equals(this[i], item))
-                        return i;
-                return -1;
-            }
-
-            /// <summary>Will always throw, as array is readonly</summary>
-            void IList<TValue>.Insert(int index, TValue item)
-            {
-                throw new NotSupportedException("Readonly");
-            }
-
-            /// <summary>Will always throw, as array is readonly</summary>
-            void IList<TValue>.RemoveAt(int index)
-            {
-                throw new NotSupportedException("Readonly");
-            }
-
-            /// <summary>Will always throw, as array is readonly</summary>
-            void ICollection<TValue>.Add(TValue item)
-            {
-                throw new NotSupportedException("Readonly");
-            }
-
-            /// <summary>Will always throw, as array is readonly</summary>
-            void ICollection<TValue>.Clear()
-            {
-                throw new NotSupportedException("Readonly");
-            }
-
-            /// <inheritDoc/>
-            bool ICollection<TValue>.Contains(TValue item)
-            {
-                return ((IList<TValue>)this).IndexOf(item) != -1;
-            }
-
-            /// <inheritDoc/>
-            void ICollection<TValue>.CopyTo(TValue[] array, int arrayIndex)
-            {
-                for (int i = 0; i < Count; ++i)
-                    array[arrayIndex + i] = this[i];
-            }
-
-            /// <summary>Will always throw, as array is readonly</summary>
-            bool ICollection<TValue>.Remove(TValue item)
-            {
-                throw new NotSupportedException("Readonly");
-            }
-        }
-#endif
     }
 }

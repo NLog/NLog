@@ -1002,7 +1002,7 @@ namespace NLog.Targets
         /// </remarks>
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
-            var buckets = new ArraySegment<AsyncLogEventInfo>(logEvents).BucketSort(c => this.GetFullFileName(c.LogEvent));
+            var buckets = logEvents.BucketSort(c => this.GetFullFileName(c.LogEvent));
             using (var ms = new MemoryStream())
             {
                 var pendingContinuations = new List<AsyncContinuation>();
@@ -1016,7 +1016,7 @@ namespace NLog.Targets
 
                     LogEventInfo firstLogEvent = null;
 
-                    for (int i = 0; i < bucket.Value.Count; ++i)
+                    for (int i = 0; i < bucket.Value.Count; i++)
                     {
                         AsyncLogEventInfo ev = bucket.Value[i];
                         if (firstLogEvent == null)
