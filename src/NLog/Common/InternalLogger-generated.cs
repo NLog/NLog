@@ -125,10 +125,11 @@ namespace NLog.Common
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         [StringFormatMethod("message")]
-        public static void Trace([Localizable(false)] string message, object arg0)
+        public static void Trace<TArgument1>([Localizable(false)] string message, TArgument1 arg0)
         {
             if (IsTraceEnabled)
                 Log(null, LogLevel.Trace, message, arg0);
@@ -137,11 +138,13 @@ namespace NLog.Common
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
         [StringFormatMethod("message")]
-        public static void Trace([Localizable(false)] string message, object arg0, object arg1)
+        public static void Trace<TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1)
         {
             if (IsTraceEnabled)
                 Log(null, LogLevel.Trace, message, arg0, arg1);
@@ -150,12 +153,15 @@ namespace NLog.Common
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
 		/// <param name="arg2">Argument {2} to the message.</param>
         [StringFormatMethod("message")]
-        public static void Trace([Localizable(false)] string message, object arg0, object arg1, object arg2)
+        public static void Trace<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1, TArgument3 arg2)
         {
             if (IsTraceEnabled)
                 Log(null, LogLevel.Trace, message, arg0, arg1, arg2);
@@ -207,10 +213,11 @@ namespace NLog.Common
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         [StringFormatMethod("message")]
-        public static void Debug([Localizable(false)] string message, object arg0)
+        public static void Debug<TArgument1>([Localizable(false)] string message, TArgument1 arg0)
         {
             if (IsDebugEnabled)
                 Log(null, LogLevel.Debug, message, arg0);
@@ -219,11 +226,13 @@ namespace NLog.Common
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
         [StringFormatMethod("message")]
-        public static void Debug([Localizable(false)] string message, object arg0, object arg1)
+        public static void Debug<TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1)
         {
             if (IsDebugEnabled)
                 Log(null, LogLevel.Debug, message, arg0, arg1);
@@ -232,12 +241,15 @@ namespace NLog.Common
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
 		/// <param name="arg2">Argument {2} to the message.</param>
         [StringFormatMethod("message")]
-        public static void Debug([Localizable(false)] string message, object arg0, object arg1, object arg2)
+        public static void Debug<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1, TArgument3 arg2)
         {
             if (IsDebugEnabled)
                 Log(null, LogLevel.Debug, message, arg0, arg1, arg2);
@@ -289,10 +301,11 @@ namespace NLog.Common
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         [StringFormatMethod("message")]
-        public static void Info([Localizable(false)] string message, object arg0)
+        public static void Info<TArgument1>([Localizable(false)] string message, TArgument1 arg0)
         {
             if (IsInfoEnabled)
                 Log(null, LogLevel.Info, message, arg0);
@@ -301,11 +314,13 @@ namespace NLog.Common
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
         [StringFormatMethod("message")]
-        public static void Info([Localizable(false)] string message, object arg0, object arg1)
+        public static void Info<TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1)
         {
             if (IsInfoEnabled)
                 Log(null, LogLevel.Info, message, arg0, arg1);
@@ -314,12 +329,15 @@ namespace NLog.Common
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
 		/// <param name="arg2">Argument {2} to the message.</param>
         [StringFormatMethod("message")]
-        public static void Info([Localizable(false)] string message, object arg0, object arg1, object arg2)
+        public static void Info<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1, TArgument3 arg2)
         {
             if (IsInfoEnabled)
                 Log(null, LogLevel.Info, message, arg0, arg1, arg2);
@@ -371,10 +389,11 @@ namespace NLog.Common
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         [StringFormatMethod("message")]
-        public static void Warn([Localizable(false)] string message, object arg0)
+        public static void Warn<TArgument1>([Localizable(false)] string message, TArgument1 arg0)
         {
             if (IsWarnEnabled)
                 Log(null, LogLevel.Warn, message, arg0);
@@ -383,11 +402,13 @@ namespace NLog.Common
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
         [StringFormatMethod("message")]
-        public static void Warn([Localizable(false)] string message, object arg0, object arg1)
+        public static void Warn<TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1)
         {
             if (IsWarnEnabled)
                 Log(null, LogLevel.Warn, message, arg0, arg1);
@@ -396,12 +417,15 @@ namespace NLog.Common
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
 		/// <param name="arg2">Argument {2} to the message.</param>
         [StringFormatMethod("message")]
-        public static void Warn([Localizable(false)] string message, object arg0, object arg1, object arg2)
+        public static void Warn<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1, TArgument3 arg2)
         {
             if (IsWarnEnabled)
                 Log(null, LogLevel.Warn, message, arg0, arg1, arg2);
@@ -453,10 +477,11 @@ namespace NLog.Common
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         [StringFormatMethod("message")]
-        public static void Error([Localizable(false)] string message, object arg0)
+        public static void Error<TArgument1>([Localizable(false)] string message, TArgument1 arg0)
         {
             if (IsErrorEnabled)
                 Log(null, LogLevel.Error, message, arg0);
@@ -465,11 +490,13 @@ namespace NLog.Common
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
         [StringFormatMethod("message")]
-        public static void Error([Localizable(false)] string message, object arg0, object arg1)
+        public static void Error<TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1)
         {
             if (IsErrorEnabled)
                 Log(null, LogLevel.Error, message, arg0, arg1);
@@ -478,12 +505,15 @@ namespace NLog.Common
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
 		/// <param name="arg2">Argument {2} to the message.</param>
         [StringFormatMethod("message")]
-        public static void Error([Localizable(false)] string message, object arg0, object arg1, object arg2)
+        public static void Error<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1, TArgument3 arg2)
         {
             if (IsErrorEnabled)
                 Log(null, LogLevel.Error, message, arg0, arg1, arg2);
@@ -535,10 +565,11 @@ namespace NLog.Common
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         [StringFormatMethod("message")]
-        public static void Fatal([Localizable(false)] string message, object arg0)
+        public static void Fatal<TArgument1>([Localizable(false)] string message, TArgument1 arg0)
         {
             if (IsFatalEnabled)
                 Log(null, LogLevel.Fatal, message, arg0);
@@ -547,11 +578,13 @@ namespace NLog.Common
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
         [StringFormatMethod("message")]
-        public static void Fatal([Localizable(false)] string message, object arg0, object arg1)
+        public static void Fatal<TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1)
         {
             if (IsFatalEnabled)
                 Log(null, LogLevel.Fatal, message, arg0, arg1);
@@ -560,12 +593,15 @@ namespace NLog.Common
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
 		/// <param name="arg2">Argument {2} to the message.</param>
         [StringFormatMethod("message")]
-        public static void Fatal([Localizable(false)] string message, object arg0, object arg1, object arg2)
+        public static void Fatal<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1, TArgument3 arg2)
         {
             if (IsFatalEnabled)
                 Log(null, LogLevel.Fatal, message, arg0, arg1, arg2);
