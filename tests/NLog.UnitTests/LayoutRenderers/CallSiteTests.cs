@@ -43,7 +43,10 @@ namespace NLog.UnitTests.LayoutRenderers
     using System.IO;
     using System.Reflection;
     using System.Threading;
+
+#if !NET4_0 && !NET3_5
     using System.Threading.Tasks;
+#endif
     using Xunit;
 
     public class CallSiteTests : NLogTestBase
@@ -80,7 +83,11 @@ namespace NLog.UnitTests.LayoutRenderers
             // compile code and generate assembly
             System.CodeDom.Compiler.CompilerResults results = provider.CompileAssemblyFromSource(parameters, code);
 
+#if MONO_2_0
+            Assert.False(results.Errors.HasErrors, "Compiler errors: " + results.Errors);
+#else
             Assert.False(results.Errors.HasErrors, "Compiler errors: " + string.Join(";", results.Errors));
+#endif
 
             // create nlog configuration
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -119,7 +126,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
 #if !SILVERLIGHT
 #if MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
         [Fact]
 #endif
@@ -371,7 +378,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 #if MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
         [Fact]
 #endif
@@ -408,7 +415,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 #if MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
         [Fact]
 #endif
@@ -446,7 +453,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 #if MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
         [Fact]
 #endif
@@ -483,7 +490,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 #if MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
         [Fact]
 #endif
@@ -613,7 +620,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 
-        #region Compositio unit test
+#region Compositio unit test
 
         [Fact]
         public void When_WrappedInCompsition_Ignore_Wrapper_Methods_In_Callstack()
@@ -835,7 +842,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-        #endregion
+#endregion
 
         private class MyLogger : Logger
         {

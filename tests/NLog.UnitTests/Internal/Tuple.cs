@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,44 +31,49 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.UnitTests.Internal;
-
-#if !SILVERLIGHT
-
-namespace NLog.UnitTests.LayoutRenderers
+namespace NLog.UnitTests.Internal
 {
-    using System;
-    using System.IO;
-    using Xunit;
 
-    public class BaseDirTests : NLogTestBase
+#if NET3_5
+
+    public class Tuple<T1, T2>
     {
-        private string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-
-        [Fact]
-        public void BaseDirTest()
+        public T1 Item1 { get; private set; }
+        public T2 Item2 { get; private set; }
+        internal Tuple(T1 item1, T2 item2)
         {
-            AssertLayoutRendererOutput("${basedir}", baseDir);
-        }
-
-        [Fact]
-        public void BaseDirCombineTest()
-        {
-            AssertLayoutRendererOutput("${basedir:dir=aaa}", Path.Combine(baseDir, "aaa"));
-        }
-
-        [Fact]
-        public void BaseDirFileCombineTest()
-        {
-            AssertLayoutRendererOutput("${basedir:file=aaa.txt}", Path.Combine(baseDir, "aaa.txt"));
-        }
-
-        [Fact]
-        public void BaseDirDirFileCombineTest()
-        {
-            AssertLayoutRendererOutput("${basedir:dir=aaa:file=bbb.txt}", PathHelpers.Combine(baseDir, "aaa", "bbb.txt"));
+            Item1 = item1;
+            Item2 = item2;
         }
     }
-}
+
+    public class Tuple<T1, T2, T3>
+    {
+        public T1 Item1 { get; private set; }
+        public T2 Item2 { get; private set; }
+        public T3 Item3 { get; private set; }
+        internal Tuple(T1 item1, T2 item2, T3 item3)
+        {
+            Item1 = item1;
+            Item2 = item2;
+            Item3 = item3;
+        }
+    }
+
+    public static class Tuple
+    {
+        public static Tuple<T1, T2> Create<T1, T2>(T1 first, T2 second)
+        {
+            var tuple = new Tuple<T1, T2>(first, second);
+            return tuple;
+        }
+
+        public static Tuple<T1, T2, T3> Create<T1, T2, T3>(T1 first, T2 second, T3 third)
+        {
+            var tuple = new Tuple<T1, T2, T3>(first, second, third);
+            return tuple;
+        }
+    }
 
 #endif
+}

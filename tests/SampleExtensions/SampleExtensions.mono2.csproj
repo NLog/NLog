@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -55,7 +55,7 @@
     <None Include="NLogTests.snk" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NLog\NLog.mono.csproj">
+    <ProjectReference Include="..\..\src\NLog\NLog.mono2.csproj">
       <Project>{e7ab20bf-6920-442a-b876-cc05bc5cec79}</Project>
       <Name>NLog.mono</Name>
     </ProjectReference>

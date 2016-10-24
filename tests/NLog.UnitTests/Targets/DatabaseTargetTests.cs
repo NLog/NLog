@@ -32,7 +32,7 @@
 // 
 
 
-
+using NLog.Internal;
 
 #if !SILVERLIGHT
 
@@ -1395,7 +1395,7 @@ Dispose()
             public static string GetConnectionString()
             {
                 var connectionString = ConfigurationManager.AppSettings["SqlServerTestConnectionString"];
-                if (String.IsNullOrWhiteSpace(connectionString))
+                if (StringHelpers.IsNullOrWhiteSpace(connectionString))
                 {
                     connectionString = IsAppVeyor() ? AppVeyorConnectionStringNLogTest : LocalConnectionStringNLogTest;
                 }

@@ -234,7 +234,7 @@ namespace NLog.UnitTests.LogReceiverService
 #endif
 
 
-#if WCF_SUPPORTED && !SILVERLIGHT
+#if WCF_SUPPORTED && !SILVERLIGHT && !NET3_5 //no countdownevent in .net3.5/mono2
 
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]

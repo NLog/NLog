@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,44 +31,24 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.UnitTests.Internal;
+using System;
+using Path3 = System.IO.Path;
+using System.Linq;
+using System.Text;
 
-#if !SILVERLIGHT
 
-namespace NLog.UnitTests.LayoutRenderers
+namespace NLog.UnitTests.Internal
 {
-    using System;
-    using System.IO;
-    using Xunit;
-
-    public class BaseDirTests : NLogTestBase
+    public static class PathHelpers
     {
-        private string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-
-        [Fact]
-        public void BaseDirTest()
+        public static string Combine(string path1, string path2, string path3)
         {
-            AssertLayoutRendererOutput("${basedir}", baseDir);
+            return Path3.Combine(path1, Path3.Combine(path2, path3));
+        }
+        public static string Combine(string path1, string path2, string path3, string path4)
+        {
+            return Path3.Combine(path1, Combine(path2, path3, path4));
         }
 
-        [Fact]
-        public void BaseDirCombineTest()
-        {
-            AssertLayoutRendererOutput("${basedir:dir=aaa}", Path.Combine(baseDir, "aaa"));
-        }
-
-        [Fact]
-        public void BaseDirFileCombineTest()
-        {
-            AssertLayoutRendererOutput("${basedir:file=aaa.txt}", Path.Combine(baseDir, "aaa.txt"));
-        }
-
-        [Fact]
-        public void BaseDirDirFileCombineTest()
-        {
-            AssertLayoutRendererOutput("${basedir:dir=aaa:file=bbb.txt}", PathHelpers.Combine(baseDir, "aaa", "bbb.txt"));
-        }
     }
 }
-
-#endif

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <BaseOutputDirectory Condition=" '$(BaseOutputDirectory)' == '' ">$(MSBuildProjectDirectory)\..\..\build\</BaseOutputDirectory>
@@ -12,14 +12,14 @@
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <OutputType>Library</OutputType>
-    <RootNamespace>Microsoft.VisualStudio.Tools.UnitTests</RootNamespace>
+    <RootNamespace>NLog.UnitTests</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <SignAssembly>true</SignAssembly>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <BaseAddress>285212672</BaseAddress>
-    <DefineConstants>DEBUG;TRACE;MONO;MONO_2_0;WCF_SUPPORTED;NUNIT</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;MONO;MONO_2_0;WCF_SUPPORTED;MONO;MONO_2_0;WCF_SUPPORTED;NUNIT;NET3_5</DefineConstants>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <Optimize>false</Optimize>
@@ -106,15 +106,18 @@
     <Compile Include="Fluent\LogBuilderTests.cs" />
     <Compile Include="GetLoggerTests.cs" />
     <Compile Include="Internal\AsyncLogEventInfoTests.cs" />
+    <Compile Include="Internal\DirectoryHelpers.cs" />
     <Compile Include="Internal\EnumHelpersTests.cs" />
     <Compile Include="Internal\ExceptionHelperTests.cs" />
     <Compile Include="Internal\FileAppenders\FileAppenderCacheTests.cs" />
     <Compile Include="Internal\FilePathLayoutTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
+    <Compile Include="Internal\PathHelpers.cs" />
     <Compile Include="Internal\PlatformDetectorTests.cs" />
     <Compile Include="Internal\StringBuilderExtTests.cs" />
     <Compile Include="Internal\StringHelpersTests.cs" />
+    <Compile Include="Internal\Tuple.cs" />
     <Compile Include="Internal\UrlHelperTests.cs" />
     <Compile Include="LayoutRenderers\AppDomainLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\AppSettingTests.cs" />
@@ -237,15 +240,15 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NLog\NLog.mono.csproj">
+    <ProjectReference Include="..\..\src\NLog\NLog.mono2.csproj">
       <Project>{E7AB20BF-6920-442A-B876-CC05BC5CEC79}</Project>
       <Name>NLog.mono</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\NLog.Extended\NLog.Extended.mono.csproj">
+    <ProjectReference Include="..\..\src\NLog.Extended\NLog.Extended.mono2.csproj">
       <Project>{F801A1F9-1024-4446-BF9E-A923137340B8}</Project>
       <Name>NLog.Extended.mono</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SampleExtensions\SampleExtensions.mono.csproj">
+    <ProjectReference Include="..\SampleExtensions\SampleExtensions.mono2.csproj">
       <Project>{5CCB56C3-4A6E-4C11-960B-2877099F52CE}</Project>
       <Name>SampleExtensions.mono</Name>
     </ProjectReference>
