@@ -10,13 +10,6 @@ matrix:
 
   fast_finish: true
 
-install:
-  - if [ "$MONO_V" = "MONO2" ]; nuget restore src/NLog.mono2.sln; fi
-  - if [ "$MONO_V" = "MONO4" ]; nuget restore src/NLog.mono4.sln; fi
-  - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
+before_script: chmod ugo+x build-mono.sh
+script: ./build-mono.sh
 
-script:
-  - if [ "$MONO_V" = "MONO2" ];  xbuild /p:Configuration=Release src/NLog.mono2.sln; fi
-  - if [ "$MONO_V" = "MONO2" ];  mono ./testrunner/xunit.runners.1.9.2/tools/xunit.console.exe      "./build/bin/Release/Mono 2.x/NLog.UnitTests.dll"; fi
-  - if [ "$MONO_V" = "MONO4" ];  xbuild /p:Configuration=Release src/NLog.mono4.sln; fi
-  - if [ "$MONO_V" = "MONO4" ];  mono ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe "./build/bin/Release/Mono 4.x/NLog.UnitTests.dll"; fi
