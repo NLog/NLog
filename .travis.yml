@@ -1,4 +1,9 @@
 language: csharp
+
+env:
+ global:
+  - EnableNuGetPackageRestore=true
+
 matrix:
   include:
     - mono: 2.10.8
@@ -10,6 +15,9 @@ matrix:
 
   fast_finish: true
 
-before_script: chmod ugo+x build-mono.sh
+before_script: 
+- chmod ugo+x build-mono.sh
+- chmod ugo+x $TRAVIS_BUILD_DIR/src/.nuget/NuGet.exe
+
 script: ./build-mono.sh
 
