@@ -7,7 +7,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <AssemblyKeyContainerName></AssemblyKeyContainerName>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
     <AssemblyName>NLog.UnitTests</AssemblyName>
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -19,7 +20,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <BaseAddress>285212672</BaseAddress>
-    <DefineConstants>TRACE;DEBUG;MONO;MONO_2_0;WCF_SUPPORTED;MONO;MONO_2_0;WCF_SUPPORTED;NUNIT;NET3_5</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;MONO;MONO_2_0;WCF_SUPPORTED;NUNIT;NET3_5</DefineConstants>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <Optimize>false</Optimize>
@@ -34,7 +35,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <BaseAddress>285212672</BaseAddress>
-    <DefineConstants>TRACE;MONO;MONO_2_0;WCF_SUPPORTED;NUNIT</DefineConstants>
+    <DefineConstants>TRACE;MONO;MONO_2_0;WCF_SUPPORTED;NUNIT;NET3_5</DefineConstants>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <Optimize>true</Optimize>

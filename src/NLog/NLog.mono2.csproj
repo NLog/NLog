@@ -31,7 +31,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <DefineConstants>MONO;WCF_SUPPORTED;MONO_2_0;TRACE</DefineConstants>
+    <DefineConstants>TRACE;MONO;WCF_SUPPORTED;MONO_2_0;NET3_5</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>bin\Release</OutputPath>
