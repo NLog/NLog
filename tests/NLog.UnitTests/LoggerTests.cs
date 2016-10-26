@@ -58,7 +58,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -68,7 +68,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='Trace' writeTo='debug' />
                     </rules>
@@ -210,11 +210,14 @@ namespace NLog.UnitTests
 #pragma warning disable 0618
                 // Obsolete method requires testing until removed.
                 logger.TraceException("message", new Exception("test"));
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
 #pragma warning restore 0618
 
                 logger.Trace(new Exception("test"), "message");
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+
+                logger.Trace(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
 
                 logger.Trace(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -235,7 +238,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -245,7 +248,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='Debug' writeTo='debug' />
                     </rules>
@@ -387,11 +390,14 @@ namespace NLog.UnitTests
 #pragma warning disable 0618
                 // Obsolete method requires testing until removed.
                 logger.DebugException("message", new Exception("test"));
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
 #pragma warning restore 0618
 
                 logger.Debug(new Exception("test"), "message");
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+
+                logger.Debug(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
 
                 logger.Debug(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -412,7 +418,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -422,7 +428,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='Info' writeTo='debug' />
                     </rules>
@@ -564,11 +570,14 @@ namespace NLog.UnitTests
 #pragma warning disable 0618
                 // Obsolete method requires testing until removed.
                 logger.InfoException("message", new Exception("test"));
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
 #pragma warning restore 0618
 
                 logger.Info(new Exception("test"), "message");
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+
+                logger.Info(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
 
                 logger.Info(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -589,7 +598,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -599,7 +608,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='Warn' writeTo='debug' />
                     </rules>
@@ -741,11 +750,14 @@ namespace NLog.UnitTests
 #pragma warning disable 0618
                 // Obsolete method requires testing until removed.
                 logger.WarnException("message", new Exception("test"));
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
 #pragma warning restore 0618
 
                 logger.Warn(new Exception("test"), "message");
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+
+                logger.Warn(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
 
                 logger.Warn(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -766,7 +778,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -776,7 +788,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='Error' writeTo='debug' />
                     </rules>
@@ -918,11 +930,14 @@ namespace NLog.UnitTests
 #pragma warning disable 0618
                 // Obsolete method requires testing until removed.
                 logger.ErrorException("message", new Exception("test"));
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
 #pragma warning restore 0618
 
                 logger.Error(new Exception("test"), "message");
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+
+                logger.Error(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
 
                 logger.Error(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -943,7 +958,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -953,7 +968,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='Fatal' writeTo='debug' />
                     </rules>
@@ -1095,11 +1110,14 @@ namespace NLog.UnitTests
 #pragma warning disable 0618
                 // Obsolete method requires testing until removed.
                 logger.FatalException("message", new Exception("test"));
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
 #pragma warning restore 0618
 
                 logger.Fatal(new Exception("test"), "message");
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+
+                logger.Fatal(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
 
                 logger.Fatal(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -1123,7 +1141,7 @@ namespace NLog.UnitTests
                     {
                         LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -1133,7 +1151,7 @@ namespace NLog.UnitTests
                     {
                         LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='" + level.Name + @"' writeTo='debug' />
                             </rules>
@@ -1242,12 +1260,15 @@ namespace NLog.UnitTests
                     if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
                     logger.Log(level, new Exception("test"), "message");
-                    if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                    if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+
+                    logger.Log(level, new Exception("test"), "message {0}", "from parameter");
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
 
 #pragma warning disable 0618
                     // Obsolete method requires testing until removed.
                     logger.LogException(level, "message", new Exception("test"));
-                    if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                    if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
 #pragma warning restore 0618
 
                     logger.Log(level, delegate { return "message from lambda"; });
@@ -1423,6 +1444,9 @@ namespace NLog.UnitTests
                 logger.ConditionalTrace(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
 
+                logger.ConditionalTrace(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
+
                 logger.ConditionalTrace(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
 
@@ -1591,6 +1615,9 @@ namespace NLog.UnitTests
 
                 logger.ConditionalDebug(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+
+                logger.ConditionalDebug(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
 
                 logger.ConditionalDebug(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
