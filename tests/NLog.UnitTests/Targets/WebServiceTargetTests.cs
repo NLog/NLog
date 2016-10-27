@@ -253,8 +253,6 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_httppost()
         {
-
-
             var configuration = CreateConfigurationFromString(string.Format(@"
                 <nlog throwExceptions='true'>
                     <targets>
@@ -284,12 +282,23 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
 
 
+            LogMeController.ResetState(2);
+
+            var message1 = "message 1 with a post";
+            var message2 = "a b c é k è ï ?";
             StartOwinTest(() =>
             {
 
-                logger.Info("message 1 with a post");
+                logger.Info(message1);
+                Thread.Sleep(100);
+                logger.Info(message2);
             });
 
+
+            Assert.Equal(LogMeController.CountdownEvent.CurrentCount, 0);
+            Assert.Equal(2, LogMeController.RecievedLogsPostParam1.Count);
+            CheckQueueMessage(message1, LogMeController.RecievedLogsPostParam1);
+            CheckQueueMessage(message2, LogMeController.RecievedLogsPostParam1);
 
         }
 
@@ -299,16 +308,47 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_httpget()
         {
-            WebServiceTest_httpget("api/logme");
+            var logger = SetUpHttpGetWebservice("api/logme");
+
+            LogMeController.ResetState(2);
+
+            var message1 = "message 1 with a post";
+            var message2 = "a b c é k è ï ?";
+            StartOwinTest(() =>
+            {
+
+                logger.Info(message1);
+                Thread.Sleep(100);
+                logger.Info(message2);
+            });
+
+
+            Assert.Equal(LogMeController.CountdownEvent.CurrentCount, 0);
+            Assert.Equal(2, LogMeController.RecievedLogsGetParam1.Count);
+            CheckQueueMessage(message1, LogMeController.RecievedLogsGetParam1);
+            CheckQueueMessage(message2, LogMeController.RecievedLogsGetParam1);
         }
 
         [Fact]
         public void WebServiceTest_restapi_httpget_querystring()
         {
-            WebServiceTest_httpget("api/logme?paramFromConfig=valueFromConfig");
+            var logger = SetUpHttpGetWebservice("api/logme?paramFromConfig=valueFromConfig");
+
+            LogMeController.ResetState(1);
+
+            StartOwinTest(() =>
+            {
+
+                logger.Info("another message");
+            });
+
+
+            Assert.Equal(LogMeController.CountdownEvent.CurrentCount, 0);
+            Assert.Equal(1, LogMeController.RecievedLogsGetParam1.Count);
+            CheckQueueMessage("another message", LogMeController.RecievedLogsGetParam1);
         }
-        
-        private void WebServiceTest_httpget(string relativeUrl)
+
+        private static Logger SetUpHttpGetWebservice(string relativeUrl)
         {
             var configuration = CreateConfigurationFromString(string.Format(@"
                 <nlog throwExceptions='true' >
@@ -334,13 +374,15 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
             LogManager.Configuration = configuration;
             var logger = LogManager.GetCurrentClassLogger();
+            return logger;
+        }
 
-            LogMeController.ResetState(1);
-
-            StartOwinTest(() =>
-            {
-                logger.Info("message 1 with a post");
-            });
+        private static void CheckQueueMessage(string message1, ConcurrentQueue<string> recievedLogsGetParam1)
+        {
+            string result;
+            var success = recievedLogsGetParam1.TryDequeue(out result);
+            Assert.True(success, "dequeue not success");
+            Assert.Equal(message1, result);
         }
 
 
@@ -450,8 +492,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             /// <param name="expectedMessages"></param>
             public static void ResetState(int expectedMessages)
             {
-                RecievedLogsPostParam1 = new ConcurrentBag<string>();
-                RecievedLogsGetParam1 = new ConcurrentBag<string>();
+                RecievedLogsPostParam1 = new ConcurrentQueue<string>();
+                RecievedLogsGetParam1 = new ConcurrentQueue<string>();
                 CountdownEvent = new CountdownEvent(expectedMessages);
             }
 
@@ -464,12 +506,12 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             /// <summary>
             /// Recieved param1 values (get)
             /// </summary>
-            public static ConcurrentBag<string> RecievedLogsGetParam1 = new ConcurrentBag<string>();
+            public static ConcurrentQueue<string> RecievedLogsGetParam1 = new ConcurrentQueue<string>();
             /// <summary>
             /// Recieved param1 values(post)
             /// </summary>
-            public static ConcurrentBag<string> RecievedLogsPostParam1 = new ConcurrentBag<string>();
-      
+            public static ConcurrentQueue<string> RecievedLogsPostParam1 = new ConcurrentQueue<string>();
+
 
             /// <summary>
             /// We need a complex type for modelbinding because of content-type: "application/x-www-form-urlencoded" in <see cref="WebServiceTarget"/>
@@ -493,7 +535,12 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             public IEnumerable<string> Get(string param1 = "", string param2 = "")
             {
 
-                RecievedLogsGetParam1.Add(param1);
+                RecievedLogsGetParam1.Enqueue(param1);
+                if (CountdownEvent != null)
+                {
+                    CountdownEvent.Signal();
+                }
+
                 return new string[] { "value1", "value2" };
             }
 
@@ -507,7 +554,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 {
                     throw new ArgumentNullException("complexType");
                 }
-                RecievedLogsPostParam1.Add(complexType.Param1);
+                RecievedLogsPostParam1.Enqueue(complexType.Param1);
 
                 if (CountdownEvent != null)
                 {
@@ -519,7 +566,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             /// <summary>
             /// Put
             /// </summary>
-         
+
             public void Put(int id, [FromBody]string value)
             {
             }
