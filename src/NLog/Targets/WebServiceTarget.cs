@@ -277,7 +277,8 @@ namespace NLog.Targets
                 queryParameters.Append(separator);
                 queryParameters.Append(this.Parameters[i].Name);
                 queryParameters.Append("=");
-                queryParameters.Append(UrlHelper.UrlEncode(Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture), false));
+                var str = Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture);
+                queryParameters.Append(UrlHelper.UrlEncode(str, false));
                 separator = "&";
             }
 
@@ -377,7 +378,9 @@ namespace NLog.Targets
                 sw.Write(separator);
                 sw.Write(parameter.Name);
                 sw.Write("=");
-                sw.Write(UrlHelper.UrlEncode(Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture), true));
+                var str = Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture);
+                var urlEncode = UrlHelper.UrlEncode(str, true);
+                sw.Write(urlEncode);
                 separator = "&";
                 i++;
             }
