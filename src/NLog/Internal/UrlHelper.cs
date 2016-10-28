@@ -43,7 +43,7 @@ namespace NLog.Internal
     internal class UrlHelper
     {
         private static string safeUrlPunctuation = ".()*-_!'";
-       // private static string hexChars = "0123456789abcdef";
+        private static string hexChars = "0123456789abcdef";
 
         /// <summary>
         /// Url encode and URL
@@ -55,39 +55,37 @@ namespace NLog.Internal
         {
             if (str == null) return string.Empty;
 
-            return Uri.EscapeDataString(str);
 
-            //StringBuilder result = new StringBuilder(str.Length + 20);
-            //for (int i = 0; i < str.Length; ++i)
-            //{
-            //    char ch = str[i];
+            StringBuilder result = new StringBuilder(str.Length + 20);
+            for (int i = 0; i < str.Length; ++i)
+            {
+                char ch = str[i];
 
-            //    if (ch == ' ' && spaceAsPlus)
-            //    {
-            //        result.Append('+');
-            //    }
-            //    else if (IsSafeUrlCharacter(ch))
-            //    {
-            //        result.Append(ch);
-            //    }
-            //    else if (ch < 256)
-            //    {
-            //        result.Append('%');
-            //        result.Append(hexChars[(ch >> 4) & 0xF]);
-            //        result.Append(hexChars[(ch >> 0) & 0xF]);
-            //    }
-            //    else
-            //    {
-            //        result.Append('%');
-            //        result.Append('u');
-            //        result.Append(hexChars[(ch >> 12) & 0xF]);
-            //        result.Append(hexChars[(ch >> 8) & 0xF]);
-            //        result.Append(hexChars[(ch >> 4) & 0xF]);
-            //        result.Append(hexChars[(ch >> 0) & 0xF]);
-            //    }
-            //}
+                if (ch == ' ' && spaceAsPlus)
+                {
+                    result.Append('+');
+                }
+                else if (IsSafeUrlCharacter(ch))
+                {
+                    result.Append(ch);
+                }
+                else if (ch < 256)
+                {
+                    result.Append(Uri.EscapeDataString(ch.ToString()));
+                }
+                else
+                {
+                    // Not sure about this section. Should it also use the Uri.EscapeDataString?
+                    result.Append('%');
+                    result.Append('u');
+                    result.Append(hexChars[(ch >> 12) & 0xF]);
+                    result.Append(hexChars[(ch >> 8) & 0xF]);
+                    result.Append(hexChars[(ch >> 4) & 0xF]);
+                    result.Append(hexChars[(ch >> 0) & 0xF]);
+                }
+            }
 
-            //return result.ToString();
+            return result.ToString();
         }
 
         /// <summary>
