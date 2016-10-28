@@ -45,7 +45,7 @@ namespace NLog.UnitTests
     using System.Threading;
     public class LoggerTests : NLogTestBase
     {
-        private CultureInfo NLCulture = new CultureInfo("nl-nl", false);
+        private CultureInfo NLCulture = GetCultureInfo("nl-nl");
 
         [Fact]
         public void TraceTest()

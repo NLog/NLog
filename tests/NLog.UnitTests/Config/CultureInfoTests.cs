@@ -63,7 +63,7 @@ namespace NLog.UnitTests.Config
             try
             {
                 // set the current thread culture to be definitely different from the InvariantCulture
-                Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE", false);
+                Thread.CurrentThread.CurrentCulture = GetCultureInfo("de-DE");
 
                 var configurationTemplate = @"<nlog useInvariantCulture='{0}'>
 <targets>
