@@ -51,14 +51,14 @@ namespace NLog.UnitTests.Internal
         [InlineData("", false, "")]
         [InlineData(null, false, "")]
         [InlineData(null, true, "")]
-     //   [InlineData("ab cd", true,"ab+cd")]
+        [InlineData("ab cd", true,"ab+cd")]
         [InlineData("ab cd", false, "ab%20cd")]
         [InlineData("ab cd", false, "ab%20cd")]
-        //[InlineData(" €;✈ Ĕ  ßß ßß ", true, "+%u20ac%3b%u2708+%u0114++%df%df+%df%df+")] //current implementation, not sure if correct
-        //[InlineData(" €;✈ Ĕ  ßß ßß ", false, "%20%u20ac%3b%u2708%20%u0114%20%20%df%df%20%df%df%20")] //current implementation, not sure if correct
-        //[InlineData(".()*-_!ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", true, ".()*-_!ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")]
-        //[InlineData(".()*-_!ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", false, ".()*-_!ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")]
-        //[InlineData("《∠∠⊙⌒∈∽》`````", true, "%u300a%u2220%u2220%u2299%u2312%u2208%u223d%u300b%60%60%60%60%60")] //current implementation, not sure if correct
+        [InlineData(" €;✈ Ĕ  ßß ßß ", true, "+%u20ac%3B%u2708+%u0114++%C3%9F%C3%9F+%C3%9F%C3%9F+")] //correct according to urldecode.org
+        [InlineData(" €;✈ Ĕ  ßß ßß ", false, "%20%u20ac%3B%u2708%20%u0114%20%20%C3%9F%C3%9F%20%C3%9F%C3%9F%20")] //correct according to urldecode.org
+        [InlineData(".()*-_!ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", true, ".()*-_!ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")]
+        [InlineData(".()*-_!ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", false, ".()*-_!ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")]
+        [InlineData("《∠∠⊙⌒∈∽》`````", true, "%u300a%u2220%u2220%u2299%u2312%u2208%u223d%u300b%60%60%60%60%60")] //current implementation, not sure if correct
         public void UrlEncodeTest(string input, bool spaceAsPlus, string result)
         {
             Assert.Equal(result, UrlHelper.UrlEncode(input, spaceAsPlus));
