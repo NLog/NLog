@@ -45,7 +45,7 @@ namespace NLog.UnitTests
     using System.Threading;
     public class LoggerTests : NLogTestBase
     {
-        private CultureInfo NLCulture = new CultureInfo("nl-nl");
+        private CultureInfo NLCulture = GetCultureInfo("nl-nl");
 
         [Fact]
         public void TraceTest()
@@ -1313,6 +1313,8 @@ namespace NLog.UnitTests
 
                 var logger = LogManager.GetLogger("A");
 
+                //set current UI culture as invariant to receive exception messages in EN
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
                 var argException = new ArgumentException("arg1 is obvious wrong", "arg1");
 
                 LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
@@ -1485,8 +1487,9 @@ namespace NLog.UnitTests
 
                 var logger = LogManager.GetLogger("A");
 
+                //set current UI culture as invariant to receive exception messages in EN
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
                 var argException = new ArgumentException("arg1 is obvious wrong", "arg1");
-
                 LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
 
                 logger.ConditionalDebug("message");
