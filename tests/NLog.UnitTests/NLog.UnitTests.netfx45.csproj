@@ -134,6 +134,7 @@
     <Compile Include="Config\ConfigApiTests.cs" />
     <Compile Include="Config\ConfigurationItemFactoryTests.cs" />
     <Compile Include="Config\CultureInfoTests.cs" />
+    <Compile Include="Config\DuplicateConfigurationAttributeTests.cs" />
     <Compile Include="Config\ExtensionTests.cs" />
     <Compile Include="Config\IncludeTests.cs" />
     <Compile Include="Config\InternalLoggingTests.cs" />

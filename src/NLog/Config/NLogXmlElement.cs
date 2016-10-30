@@ -98,6 +98,11 @@ namespace NLog.Config
         public string Value { get; private set; }
 
         /// <summary>
+        /// Last error occured during configuration read
+        /// </summary>
+        private NLogConfigurationException _lastParsingError;
+
+        /// <summary>
         /// Returns children elements with the specified element name.
         /// </summary>
         /// <param name="elementName">Name of the element.</param>
@@ -212,19 +217,47 @@ namespace NLog.Config
             throw new InvalidOperationException("Assertion failed. Expected element name '" + string.Join("|", allowedNames) + "', actual: '" + this.LocalName + "'.");
         }
 
+        /// <summary>
+        /// Asserts that during parsing of current element and all of his children,
+        /// there is no errors.
+        /// </summary>
+        public void AssertNoParsingErrors()
+        {
+            if (this._lastParsingError != null)
+                throw this._lastParsingError;
+
+            if (this.Children != null)
+            {
+                foreach (var childElement in Children)
+                {
+                    childElement.AssertNoParsingErrors();
+                }
+            }
+        }
+
         private void Parse(XmlReader reader)
         {
             if (reader.MoveToFirstAttribute())
             {
                 do
                 {
-                    this.AttributeValues.Add(reader.LocalName, reader.Value);
+                    if (!this.AttributeValues.ContainsKey(reader.LocalName))
+                    {
+                        this.AttributeValues.Add(reader.LocalName, reader.Value);
+                    }
+                    else
+                    {
+                        string message =
+                            string.Format(
+                                "Duplicate attribute detected. Attribute name: [{0}]. Duplicate value:[{1}], Current value:[{2}]",
+                                reader.LocalName, reader.Value, this.AttributeValues[reader.LocalName]);
+                        this._lastParsingError = new NLogConfigurationException(message);
+                    }
                 }
                 while (reader.MoveToNextAttribute());
-
                 reader.MoveToElement();
             }
-
+            
             this.LocalName = reader.LocalName;
 
             if (!reader.IsEmptyElement)

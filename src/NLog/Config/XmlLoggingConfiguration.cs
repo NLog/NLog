@@ -419,7 +419,6 @@ namespace NLog.Config
                     this.ParseTopLevel(content, null, autoReloadDefault: false);
                 }
                 InitializeSucceeded = true;
-
                 this.CheckUnusedTargets();
 
             }
@@ -508,6 +507,8 @@ namespace NLog.Config
                     this.ParseNLogElement(content, filePath, autoReloadDefault);
                     break;
             }
+
+            content.AssertNoParsingErrors();
         }
 
         /// <summary>
