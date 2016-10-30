@@ -303,7 +303,10 @@ namespace NLog.LayoutRenderers
                 xtw.WriteAttributeSafeString("name", "log4jmachinename");
 
 #if SILVERLIGHT
-            xtw.WriteAttributeSafeString("value", "silverlight");
+                xtw.WriteAttributeSafeString("value", "silverlight");
+#elif NETSTANDARD && !NETSTANDARD1_5
+                // Environment.MachineName is NETSTANDARD1.5+
+                xtw.WriteAttributeSafeString("value", "Net Standard");
 #else
                 xtw.WriteAttributeSafeString("value", Environment.MachineName);
 #endif

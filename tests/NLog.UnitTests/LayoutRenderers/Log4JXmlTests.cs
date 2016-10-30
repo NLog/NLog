@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD
 
 namespace NLog.UnitTests.LayoutRenderers
 {
@@ -42,6 +41,7 @@ namespace NLog.UnitTests.LayoutRenderers
     using System.Reflection;
     using System.IO;
     using Xunit;
+    using Internal;
 
     public class Log4JXmlTests : NLogTestBase
     {
@@ -113,9 +113,12 @@ namespace NLog.UnitTests.LayoutRenderers
                                 break;
 
                             case "locationInfo":
+#if !NETSTANDARD
                                 Assert.Equal(MethodBase.GetCurrentMethod().DeclaringType.FullName, reader.GetAttribute("class"));
                                 Assert.Equal(MethodBase.GetCurrentMethod().ToString(), reader.GetAttribute("method"));
+#endif
                                 break;
+
 
                             case "properties":
                                 break;
@@ -129,13 +132,15 @@ namespace NLog.UnitTests.LayoutRenderers
                                     case "log4japp":
 #if SILVERLIGHT
                                         Assert.Equal("Silverlight Application", value);
+#elif NETSTANDARD
+                                        Assert.Equal(".NET Standard Application", value);
 #else
                                         Assert.Equal(AppDomain.CurrentDomain.FriendlyName + "(" + Process.GetCurrentProcess().Id + ")", value);
 #endif
                                         break;
 
                                     case "log4jmachinename":
-#if !SILVERLIGHT && !NETSTANDARD
+#if !SILVERLIGHT
                                         Assert.Equal(Environment.MachineName, value);
 #else
                                         Assert.Equal("silverlight", value);
@@ -170,7 +175,7 @@ namespace NLog.UnitTests.LayoutRenderers
                                 break;
 
                             case "locationInfo":
-                                Assert.Equal(this.GetType().Assembly.FullName, reader.GetAttribute("assembly"));
+                                Assert.Equal(GetAssembly(this.GetType()).FullName, reader.GetAttribute("assembly"));
                                 break;
 
                             case "properties":
@@ -190,6 +195,15 @@ namespace NLog.UnitTests.LayoutRenderers
                 }
             }
         }
+
+        private static Assembly GetAssembly(Type type)
+        {
+#if !NETSTANDARD
+            return type.Assembly;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.Assembly;
+#endif
+        }
     }
 }
-#endif
