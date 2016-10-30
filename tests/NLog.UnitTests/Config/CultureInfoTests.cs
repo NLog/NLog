@@ -67,7 +67,7 @@ namespace NLog.UnitTests.Config
             try
             {
                 // set the current thread culture to be definitely different from the InvariantCulture
-                Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
+                Thread.CurrentThread.CurrentCulture = GetCultureInfo("de-DE");
 
                 var configurationTemplate = @"<nlog useInvariantCulture='{0}'>
 <targets>
@@ -229,20 +229,20 @@ namespace NLog.UnitTests.Config
             catch (Exception ex)
             {
 #if !NETCOREAPP1_0
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
-                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US", false);
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US", false);
 #else
-                CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
-                CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
+                CultureInfo.DefaultThreadCurrentCulture = GetCultureInfo("en-US");
+                CultureInfo.DefaultThreadCurrentUICulture = GetCultureInfo("en-US");
 #endif
                 logger.Error(ex, "");
 
 #if !NETCOREAPP1_0
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-DE");
-                Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-DE", false);
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE", false);
 #else
-                CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
-                CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
+                CultureInfo.DefaultThreadCurrentCulture = GetCultureInfo("en-US");
+                CultureInfo.DefaultThreadCurrentUICulture = GetCultureInfo("en-US");
 #endif
                 logger.Error(ex, "");
 

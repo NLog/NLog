@@ -42,6 +42,7 @@ namespace NLog.UnitTests
     using System.Text;
     using System.Threading;
 
+    using System.Globalization;
 #if MONO || NET4_5
     using System.Runtime.CompilerServices;
 #endif
@@ -366,6 +367,24 @@ namespace NLog.UnitTests
             action();
 
             return stringWriter.ToString();
+        }
+
+        /// <summary>
+        /// Creates <see cref="CultureInfo"/> instance for test purposes
+        /// </summary>
+        /// <param name="cultureName">Culture name to create</param>
+        /// <remarks>
+        /// Creates <see cref="CultureInfo"/> instance with non-userOverride
+        /// flag to provide expected results when running tests in different
+        /// system cultures(with overriden culture options)
+        /// </remarks>
+        protected static CultureInfo GetCultureInfo(string cultureName)
+        {
+#if SILVERLIGHT || NETSTANDARD
+            return new CultureInfo(cultureName);
+#else
+            return new CultureInfo(cultureName, false);
+#endif
         }
 
         public delegate void SyncAction();

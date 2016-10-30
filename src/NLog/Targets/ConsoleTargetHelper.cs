@@ -41,11 +41,15 @@ namespace NLog.Targets
     {
         public static bool IsConsoleAvailable(out string reason)
         {
+            reason = string.Empty;
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO && !NETSTANDARD
             try
             {
                 if (!Environment.UserInteractive)
                 {
+                    if (Internal.PlatformDetector.IsMono && Console.In is StreamReader)
+                        return true;    // Extra bonus check for Mono, that doesn't support Environment.UserInteractive
+
                     reason = "Environment.UserInteractive = False";
                     return false;
                 }
@@ -62,7 +66,6 @@ namespace NLog.Targets
                 return false;
             }
 #endif
-            reason = string.Empty;
             return true;
         }
     }
