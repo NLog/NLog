@@ -272,12 +272,20 @@ namespace NLog.Targets
             //if the protocol is HttpGet, we need to add the parameters to the query string of the url
             var queryParameters = new StringBuilder();
             string separator = string.Empty;
+            StringBuilder sb = null;
             for (int i = 0; i < this.Parameters.Count; i++)
             {
                 queryParameters.Append(separator);
                 queryParameters.Append(this.Parameters[i].Name);
                 queryParameters.Append("=");
-                queryParameters.Append(UrlHelper.UrlEncode(Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture), false));
+                string parameterValue = Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture);
+                if (sb == null)
+                    sb = new StringBuilder(Math.Max(parameterValue.Length + 20, 256));
+                else
+                    StringBuilderExt.ClearBuilder(sb);
+                sb.Append(parameterValue);
+                UrlHelper.EscapeDataEncode(sb, UrlHelper.EscapeEncodingFlag.UriString | UrlHelper.EscapeEncodingFlag.LowerCaseHex);
+                queryParameters.Append(sb.ToString());
                 separator = "&";
             }
 
@@ -372,12 +380,20 @@ namespace NLog.Targets
             var sw = new StreamWriter(ms, this.Encoding);
             sw.Write(string.Empty);
             int i = 0;
+            StringBuilder sb = null;
             foreach (MethodCallParameter parameter in this.Parameters)
             {
                 sw.Write(separator);
                 sw.Write(parameter.Name);
                 sw.Write("=");
-                sw.Write(UrlHelper.UrlEncode(Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture), true));
+                string parameterValue = Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture);
+                if (sb == null)
+                    sb = new StringBuilder(Math.Max(parameterValue.Length + 20, 256));
+                else
+                    StringBuilderExt.ClearBuilder(sb);
+                sb.Append(parameterValue);
+                UrlHelper.EscapeDataEncode(sb, UrlHelper.EscapeEncodingFlag.UriString | UrlHelper.EscapeEncodingFlag.LowerCaseHex | UrlHelper.EscapeEncodingFlag.SpaceAsPlus);
+                sw.Write(sb.ToString());
                 separator = "&";
                 i++;
             }
