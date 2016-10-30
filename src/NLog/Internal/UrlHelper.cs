@@ -41,17 +41,11 @@ namespace NLog.Internal
     /// </summary>
     internal static class UrlHelper
     {
-        private static readonly char[] hexUpperChars =
-            { '0', '1', '2', '3', '4', '5', '6', '7',
-            '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
-        private static readonly char[] hexLowerChars =
-            { '0', '1', '2', '3', '4', '5', '6', '7',
-            '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
-
         [Flags]
         public enum EscapeEncodingFlag
         {
-            /// <summary>Use UnreservedMarks instead of ReservedMarks, as specified by chosen RFC</summary>
+            None = 0,
+            /// <summary>Allow UnreservedMarks instead of ReservedMarks, as specified by chosen RFC</summary>
             UriString = 1,
             /// <summary>Use RFC2396 standard (instead of RFC3986)</summary>
             LegacyRfc2396 = 2,
@@ -63,39 +57,15 @@ namespace NLog.Internal
             NLogLegacy = 16 | LegacyRfc2396 | LowerCaseHex | UriString,
         };
 
-        private const string RFC2396ReservedMarks = @";/?:@&=+$,";
-        private const string RFC3986ReservedMarks = @":/?#[]@!$&'()*+,;=";
-        private const string RFC2396UnreservedMarks = @"-_.!~*'()";
-        private const string RFC3986UnreservedMarks = @"-._~";
-
-        /// <summary>
-        /// Url encode an URL
-        /// </summary>
-        /// <param name="str">URL to be encoded</param>
-        /// <param name="spaceAsPlus">space as + or %20? <c>false</c> (%20) is the safe option.</param>
-        /// <returns>Encoded url.</returns>
-        public static string UrlEncode(string str, bool spaceAsPlus)
-        {
-            if (string.IsNullOrEmpty(str))
-                return string.Empty;
-
-            StringBuilder result = new StringBuilder(str.Length + 20);
-            result.Append(str);
-            EscapeEncodingFlag escapeFlags = EscapeEncodingFlag.NLogLegacy;
-            if (spaceAsPlus)
-                escapeFlags |= EscapeEncodingFlag.SpaceAsPlus;
-            EscapeDataEncode(result, escapeFlags);
-            return result.ToString();
-        }
-
         /// <summary>
         /// Escape unicode string data for use in http-requests
         /// </summary>
-        /// <param name="target">unicode string-data to be encoded</param>
+        /// <param name="source">unicode string-data to be encoded</param>
+        /// <param name="target">target for the encoded result</param>
         /// <param name="flags"><see cref="EscapeEncodingFlag"/>s for how to perform the encoding</param>
-        public static void EscapeDataEncode(StringBuilder target, EscapeEncodingFlag flags)
+        public static void EscapeDataEncode(string source, StringBuilder target, EscapeEncodingFlag flags)
         {
-            if (target.Length == 0)
+            if (string.IsNullOrEmpty(source))
                 return;
 
             bool isUriString = (flags & EscapeEncodingFlag.UriString) == EscapeEncodingFlag.UriString;
@@ -108,9 +78,10 @@ namespace NLog.Internal
             byte[] byteArray = null;
             char[] hexChars = isLowerCaseHex ? hexLowerChars : hexUpperChars;
 
-            for (int i = 0; i < target.Length; ++i)
+            for (int i = 0; i < source.Length; ++i)
             {
-                char ch = target[i];
+                char ch = source[i];
+                target.Append(ch);
                 if (ch >= 'a' && ch <= 'z')
                     continue;
                 if (ch >= 'A' && ch <= 'Z')
@@ -119,7 +90,7 @@ namespace NLog.Internal
                     continue;
                 if (isSpaceAsPlus && ch == ' ')
                 {
-                    target[i] = '+';
+                    target[target.Length - 1] = '+';
                     continue;
                 }
 
@@ -140,22 +111,20 @@ namespace NLog.Internal
 
                 if (isNLogLegacy)
                 {
-                    if (ch > 255)
+                    if (ch < 256)
                     {
-                        target.Insert(i, "%", 5);
-                        target[i] = '%';
-                        target[++i] = 'u';
-                        target[++i] = hexChars[(ch >> 12) & 0xF];
-                        target[++i] = hexChars[(ch >> 8) & 0xF];
-                        target[++i] = hexChars[(ch >> 4) & 0xF];
-                        target[++i] = hexChars[(ch >> 0) & 0xF];
+                        target[target.Length - 1] = '%';
+                        target.Append(hexChars[(ch >> 4) & 0xF]);
+                        target.Append(hexChars[(ch >> 0) & 0xF]);
                     }
                     else
                     {
-                        target.Insert(i, "%", 2);
-                        target[i] = '%';
-                        target[++i] = hexChars[(ch >> 4) & 0xF];
-                        target[++i] = hexChars[(ch >> 0) & 0xF];
+                        target[target.Length - 1] = '%';
+                        target.Append('u');
+                        target.Append(hexChars[(ch >> 12) & 0xF]);
+                        target.Append(hexChars[(ch >> 8) & 0xF]);
+                        target.Append(hexChars[(ch >> 4) & 0xF]);
+                        target.Append(hexChars[(ch >> 0) & 0xF]);
                     }
                     continue;
                 }
@@ -169,16 +138,41 @@ namespace NLog.Internal
 
                 // Convert the wide-char into utf8-bytes, and then escape
                 int byteCount = Encoding.UTF8.GetBytes(charArray, 0, 1, byteArray, 0);
-                target.Insert(i, "%", byteCount * 3 - 1);
-                --i;
                 for (int j = 0; j < byteCount; ++j)
                 {
                     byte byteCh = byteArray[j];
-                    ++i;
-                    target[++i] = hexChars[(byteCh & 0xf0) >> 4];
-                    target[++i] = hexChars[byteCh & 0xf];
+                    if (j == 0)
+                        target[target.Length - 1] = '%';
+                    else
+                        target.Append('%');
+                    target.Append(hexChars[(byteCh & 0xf0) >> 4]);
+                    target.Append(hexChars[byteCh & 0xf]);
                 }
             }
+        }
+
+        private const string RFC2396ReservedMarks = @";/?:@&=+$,";
+        private const string RFC3986ReservedMarks = @":/?#[]@!$&'()*+,;=";
+        private const string RFC2396UnreservedMarks = @"-_.!~*'()";
+        private const string RFC3986UnreservedMarks = @"-._~";
+
+        private static readonly char[] hexUpperChars =
+            { '0', '1', '2', '3', '4', '5', '6', '7',
+            '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+        private static readonly char[] hexLowerChars =
+            { '0', '1', '2', '3', '4', '5', '6', '7',
+            '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+
+        public static EscapeEncodingFlag GetUriStringEncodingFlags(bool escapeDataNLogLegacy, bool spaceAsPlus, bool escapeDataRfc3986)
+        {
+            EscapeEncodingFlag encodingFlags = EscapeEncodingFlag.UriString;
+            if (escapeDataNLogLegacy)
+                encodingFlags |= EscapeEncodingFlag.LowerCaseHex | EscapeEncodingFlag.NLogLegacy;
+            else if (!escapeDataRfc3986)
+                encodingFlags |= EscapeEncodingFlag.LowerCaseHex | EscapeEncodingFlag.LegacyRfc2396;
+            if (spaceAsPlus)
+                encodingFlags |= EscapeEncodingFlag.SpaceAsPlus;
+            return encodingFlags;
         }
     }
 }

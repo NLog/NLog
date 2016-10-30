@@ -44,7 +44,6 @@ namespace NLog.Targets
     using System.Xml;
     using NLog.Common;
     using NLog.Internal;
-    using NLog.Layouts;
 
     /// <summary>
     /// Calls the specified web service on each log message.
@@ -135,6 +134,20 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
         public Encoding Encoding { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value whether escaping be done according to Rfc3986 (Supports Internationalized Resource Identifiers - IRIs)
+        /// </summary>
+        /// <value>A value of <c>true</c> if Rfc3986; otherwise, <c>false</c> for legacy Rfc2396.</value>
+        /// <docgen category='Web Service Options' order='10' />
+        public bool EscapeDataRfc3986 { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value whether escaping be done according to the old NLog style (Very non-standard)
+        /// </summary>
+        /// <value>A value of <c>true</c> if legacy encoding; otherwise, <c>false</c> for standard UTF8 encoding.</value>
+        /// <docgen category='Web Service Options' order='10' />
+        public bool EscapeDataNLogLegacy { get; set; }
 
         /// <summary>
         /// Calls the target method. Must be implemented in concrete classes.
@@ -268,24 +281,19 @@ namespace NLog.Targets
             {
                 return this.Url;
             }
+
+            UrlHelper.EscapeEncodingFlag encodingFlags = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, false, EscapeDataRfc3986);
             
             //if the protocol is HttpGet, we need to add the parameters to the query string of the url
             var queryParameters = new StringBuilder();
             string separator = string.Empty;
-            StringBuilder sb = null;
             for (int i = 0; i < this.Parameters.Count; i++)
             {
                 queryParameters.Append(separator);
                 queryParameters.Append(this.Parameters[i].Name);
                 queryParameters.Append("=");
                 string parameterValue = Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture);
-                if (sb == null)
-                    sb = new StringBuilder(Math.Max(parameterValue.Length + 20, 256));
-                else
-                    StringBuilderExt.ClearBuilder(sb);
-                sb.Append(parameterValue);
-                UrlHelper.EscapeDataEncode(sb, UrlHelper.EscapeEncodingFlag.UriString | UrlHelper.EscapeEncodingFlag.LowerCaseHex);
-                queryParameters.Append(sb.ToString());
+                UrlHelper.EscapeDataEncode(parameterValue, queryParameters, encodingFlags);
                 separator = "&";
             }
 
@@ -375,27 +383,29 @@ namespace NLog.Targets
         {
             request.ContentType = "application/x-www-form-urlencoded; charset=" + this.Encoding.WebName;
 
+            UrlHelper.EscapeEncodingFlag encodingFlags = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, true, EscapeDataRfc3986);
+
             var ms = new MemoryStream();
             string separator = string.Empty;
             var sw = new StreamWriter(ms, this.Encoding);
             sw.Write(string.Empty);
-            int i = 0;
             StringBuilder sb = null;
-            foreach (MethodCallParameter parameter in this.Parameters)
+            for (int i = 0; i < this.Parameters.Count; i++)
             {
                 sw.Write(separator);
-                sw.Write(parameter.Name);
+                sw.Write(this.Parameters[i].Name);
                 sw.Write("=");
                 string parameterValue = Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture);
-                if (sb == null)
-                    sb = new StringBuilder(Math.Max(parameterValue.Length + 20, 256));
-                else
-                    StringBuilderExt.ClearBuilder(sb);
-                sb.Append(parameterValue);
-                UrlHelper.EscapeDataEncode(sb, UrlHelper.EscapeEncodingFlag.UriString | UrlHelper.EscapeEncodingFlag.LowerCaseHex | UrlHelper.EscapeEncodingFlag.SpaceAsPlus);
-                sw.Write(sb.ToString());
+                if (!string.IsNullOrEmpty(parameterValue))
+                {
+                    if (sb == null)
+                        sb = new StringBuilder(Math.Max(parameterValue.Length + 20, this.Parameters.Count > 1 ? 256 : 0));
+                    else
+                        StringBuilderExt.ClearBuilder(sb);
+                    UrlHelper.EscapeDataEncode(parameterValue, sb, encodingFlags);
+                    sw.Write(sb.ToString());
+                }
                 separator = "&";
-                i++;
             }
             sw.Flush();
             return ms;
