@@ -32,7 +32,8 @@
 // 
 
 
-#if !NETSTANDARD
+using System.Diagnostics;
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -60,13 +61,20 @@ namespace NLog.LayoutRenderers
 
         private static readonly string dummyNLogNamespace = "http://nlog-project.org/dummynamespace/" + Guid.NewGuid();
 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
-        public Log4JXmlEventLayoutRenderer() : this(AppDomainWrapper.CurrentDomain)
+        public Log4JXmlEventLayoutRenderer()
+
+#if NETSTANDARD
+            : this(null)
+#else
+            : this(AppDomainWrapper.CurrentDomain)
+#endif
         {
         }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
@@ -75,19 +83,26 @@ namespace NLog.LayoutRenderers
             this.IncludeNLogData = true;
             this.NdcItemSeparator = " ";
 
+            SetAppInfo(appDomain);
+
+            this.Parameters = new List<NLogViewerParameterInfo>();
+        }
+
+        private void SetAppInfo(IAppDomain appDomain)
+        {
 #if SILVERLIGHT
             this.AppInfo = "Silverlight Application";
 #elif __IOS__
 			this.AppInfo = "MonoTouch Application";
+#elif NETSTANDARD
+            this.AppInfo = ".NET Standard Application";
 #else
             this.AppInfo = string.Format(
                 CultureInfo.InvariantCulture,
-                "{0}({1})", 
-                appDomain.FriendlyName, 
+                "{0}({1})",
+                appDomain.FriendlyName,
                 ThreadIDHelper.Instance.CurrentProcessID);
 #endif
-
-            this.Parameters = new List<NLogViewerParameterInfo>();
         }
 
         /// <summary>
@@ -240,7 +255,7 @@ namespace NLog.LayoutRenderers
                             xtw.WriteStartElement("nlog", "locationInfo", dummyNLogNamespace);
                             if (type != null)
                             {
-                                xtw.WriteAttributeSafeString("assembly", type.Assembly.FullName);
+                                xtw.WriteAttributeSafeString("assembly", type.GetAssembly().FullName);
                             }
 
                             xtw.WriteEndElement();
@@ -255,7 +270,7 @@ namespace NLog.LayoutRenderers
                             }
                             xtw.WriteEndElement();
                         }
-                        
+
                     }
                 }
 
@@ -288,7 +303,10 @@ namespace NLog.LayoutRenderers
                 xtw.WriteAttributeSafeString("name", "log4jmachinename");
 
 #if SILVERLIGHT
-            xtw.WriteAttributeSafeString("value", "silverlight");
+                xtw.WriteAttributeSafeString("value", "silverlight");
+#elif NETSTANDARD && !NETSTANDARD1_5
+                // Environment.MachineName is NETSTANDARD1.5+
+                xtw.WriteAttributeSafeString("value", "Net Standard");
 #else
                 xtw.WriteAttributeSafeString("value", Environment.MachineName);
 #endif
@@ -307,4 +325,4 @@ namespace NLog.LayoutRenderers
         }
     }
 }
-#endif
+

@@ -32,7 +32,7 @@
 // 
 
 
-#if !NETSTANDARD
+
 
 namespace NLog.Internal.Fakeables
 {
@@ -40,8 +40,11 @@ namespace NLog.Internal.Fakeables
     using System.Collections.Generic;
 
     /// <summary>
-    /// Interface for fakeable the current <see cref="AppDomain"/>. Not fully implemented, please methods/properties as necessary.
+    /// Interface for fakeable the current AppDomain. 
     /// </summary>
+    /// <remarks>
+    /// Not fully implemented, please methods/properties as necessary.
+    /// </remarks>
     public interface IAppDomain
     {
 #if !SILVERLIGHT
@@ -84,4 +87,4 @@ namespace NLog.Internal.Fakeables
 #endif
     }
 }
-#endif
+
