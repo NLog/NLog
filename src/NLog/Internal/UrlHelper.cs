@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+
 namespace NLog.Internal
 {
     using System.Text;
@@ -41,7 +43,7 @@ namespace NLog.Internal
     internal class UrlHelper
     {
         private static string safeUrlPunctuation = ".()*-_!'";
-        private static string hexChars = "0123456789abcdef";
+       // private static string hexChars = "0123456789abcdef";
 
         /// <summary>
         /// Url encode and URL
@@ -53,37 +55,39 @@ namespace NLog.Internal
         {
             if (str == null) return string.Empty;
 
-            StringBuilder result = new StringBuilder(str.Length + 20);
-            for (int i = 0; i < str.Length; ++i)
-            {
-                char ch = str[i];
+            return Uri.EscapeDataString(str);
 
-                if (ch == ' ' && spaceAsPlus)
-                {
-                    result.Append('+');
-                }
-                else if (IsSafeUrlCharacter(ch))
-                {
-                    result.Append(ch);
-                }
-                else if (ch < 256)
-                {
-                    result.Append('%');
-                    result.Append(hexChars[(ch >> 4) & 0xF]);
-                    result.Append(hexChars[(ch >> 0) & 0xF]);
-                }
-                else
-                {
-                    result.Append('%');
-                    result.Append('u');
-                    result.Append(hexChars[(ch >> 12) & 0xF]);
-                    result.Append(hexChars[(ch >> 8) & 0xF]);
-                    result.Append(hexChars[(ch >> 4) & 0xF]);
-                    result.Append(hexChars[(ch >> 0) & 0xF]);
-                }
-            }
+            //StringBuilder result = new StringBuilder(str.Length + 20);
+            //for (int i = 0; i < str.Length; ++i)
+            //{
+            //    char ch = str[i];
 
-            return result.ToString();
+            //    if (ch == ' ' && spaceAsPlus)
+            //    {
+            //        result.Append('+');
+            //    }
+            //    else if (IsSafeUrlCharacter(ch))
+            //    {
+            //        result.Append(ch);
+            //    }
+            //    else if (ch < 256)
+            //    {
+            //        result.Append('%');
+            //        result.Append(hexChars[(ch >> 4) & 0xF]);
+            //        result.Append(hexChars[(ch >> 0) & 0xF]);
+            //    }
+            //    else
+            //    {
+            //        result.Append('%');
+            //        result.Append('u');
+            //        result.Append(hexChars[(ch >> 12) & 0xF]);
+            //        result.Append(hexChars[(ch >> 8) & 0xF]);
+            //        result.Append(hexChars[(ch >> 4) & 0xF]);
+            //        result.Append(hexChars[(ch >> 0) & 0xF]);
+            //    }
+            //}
+
+            //return result.ToString();
         }
 
         /// <summary>
