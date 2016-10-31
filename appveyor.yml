@@ -1,5 +1,5 @@
 
-version: 4.4.0-beta{build}
+version: 5.0.0-beta{build}
 clone_folder: c:\projects\nlog
 build_script:
   - ps: .\build.ps1
