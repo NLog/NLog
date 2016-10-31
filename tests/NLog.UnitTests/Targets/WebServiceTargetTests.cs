@@ -290,7 +290,6 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             {
 
                 logger.Info(message1);
-                Thread.Sleep(100);
                 logger.Info(message2);
             });
 
@@ -318,7 +317,6 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             {
 
                 logger.Info(message1);
-                Thread.Sleep(100);
                 logger.Info(message2);
             });
 
@@ -377,12 +375,10 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             return logger;
         }
 
-        private static void CheckQueueMessage(string message1, ConcurrentQueue<string> recievedLogsGetParam1)
+        private static void CheckQueueMessage(string message1, ConcurrentBag<string> recievedLogsGetParam1)
         {
-            string result;
-            var success = recievedLogsGetParam1.TryDequeue(out result);
-            Assert.True(success, "dequeue not success");
-            Assert.Equal(message1, result);
+            var success = recievedLogsGetParam1.Contains(message1);
+            Assert.True(success, string.Format("message '{0}' not found", message1));
         }
 
 
@@ -492,8 +488,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             /// <param name="expectedMessages"></param>
             public static void ResetState(int expectedMessages)
             {
-                RecievedLogsPostParam1 = new ConcurrentQueue<string>();
-                RecievedLogsGetParam1 = new ConcurrentQueue<string>();
+                RecievedLogsPostParam1 = new ConcurrentBag<string>();
+                RecievedLogsGetParam1 = new ConcurrentBag<string>();
                 CountdownEvent = new CountdownEvent(expectedMessages);
             }
 
@@ -506,11 +502,11 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             /// <summary>
             /// Recieved param1 values (get)
             /// </summary>
-            public static ConcurrentQueue<string> RecievedLogsGetParam1 = new ConcurrentQueue<string>();
+            public static ConcurrentBag<string> RecievedLogsGetParam1 = new ConcurrentBag<string>();
             /// <summary>
             /// Recieved param1 values(post)
             /// </summary>
-            public static ConcurrentQueue<string> RecievedLogsPostParam1 = new ConcurrentQueue<string>();
+            public static ConcurrentBag<string> RecievedLogsPostParam1 = new ConcurrentBag<string>();
 
 
             /// <summary>
@@ -535,7 +531,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             public IEnumerable<string> Get(string param1 = "", string param2 = "")
             {
 
-                RecievedLogsGetParam1.Enqueue(param1);
+                RecievedLogsGetParam1.Add(param1);
                 if (CountdownEvent != null)
                 {
                     CountdownEvent.Signal();
@@ -554,7 +550,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 {
                     throw new ArgumentNullException("complexType");
                 }
-                RecievedLogsPostParam1.Enqueue(complexType.Param1);
+                RecievedLogsPostParam1.Add(complexType.Param1);
 
                 if (CountdownEvent != null)
                 {
