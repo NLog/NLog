@@ -76,7 +76,7 @@ Keep in mind that multiple versions of .Net are supported. Some methods are not 
 
 Sync back
 ===
-Is your fork not up-to-date with the NLog code? Most of the time that isn't a problem. But I you like to "sync back" the changes to your repository, execute the following command:
+Is your fork not up-to-date with the NLog code? Most of the time that isn't a problem. But If you like to "sync back" the changes to your repository, execute the following command:
 
 The first time:
 ```
