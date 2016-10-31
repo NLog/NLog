@@ -13,7 +13,7 @@
   },
 
   "dependencies": {
-    "NLog": "4.4.0-beta*"
+    "NLog": "5.0.0-beta*"
   },
 
   "frameworks": {
