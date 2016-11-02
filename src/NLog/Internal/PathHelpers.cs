@@ -57,5 +57,20 @@ namespace NLog.Internal
             }
             return path;
         }
+
+        internal static string Combine(string path1, string path2)
+        {
+            if (path1 == null)
+            {
+                return path2;
+            }
+
+            if (path2 == null)
+            {
+                return path1;
+            }
+
+            return Path.Combine(path1, path2);
+        }
     }
 }

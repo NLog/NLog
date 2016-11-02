@@ -736,7 +736,7 @@ namespace NLog.Targets
                     string fileNamePattern = GetArchiveFileNamePattern(GetFullFileName(nullEvent), nullEvent);
                     if (!string.IsNullOrEmpty(fileNamePattern))
                     {
-                        fileNamePattern = Path.Combine(Path.GetDirectoryName(fileNamePattern),
+                        fileNamePattern = PathHelpers.Combine(Path.GetDirectoryName(fileNamePattern),
                             ReplaceFileNamePattern(fileNamePattern, "*"));
                         //fileNamePattern is absolute
                         this.fileAppenderCache.ArchiveFilePatternToWatch = fileNamePattern;
@@ -1401,7 +1401,7 @@ namespace NLog.Targets
             string paddedSequence = nextSequenceNumber.ToString().PadLeft(minSequenceLength, '0');
             string archiveFileNameWithoutPath = fileNameMask.Replace("*",
                 string.Format("{0}.{1}", archiveDate.ToString(dateFormat), paddedSequence));
-            string archiveFileName = Path.Combine(dirName, archiveFileNameWithoutPath);
+            string archiveFileName = PathHelpers.Combine(dirName, archiveFileNameWithoutPath);
 
             ArchiveFile(fileName, archiveFileName);
             archiveFileNames.Add(archiveFileName);
@@ -1571,7 +1571,7 @@ namespace NLog.Targets
             DateTime archiveDate = GetArchiveDate(fileName, logEvent);
             if (dirName != null)
             {
-                string archiveFileName = Path.Combine(dirName, fileNameMask.Replace("*", archiveDate.ToString(dateFormat)));
+                string archiveFileName = PathHelpers.Combine(dirName, fileNameMask.Replace("*", archiveDate.ToString(dateFormat)));
                 ArchiveFile(fileName, archiveFileName);
             }
 
@@ -2386,7 +2386,7 @@ namespace NLog.Targets
             {
                 int currentArchiveNumber = archiveFileQueue.Count == 0 ? 0 : ExtractArchiveNumberFromFileName(archiveFileQueue.Last());
                 string archiveFileName = string.Format("{0}.{1}{2}", Path.GetFileNameWithoutExtension(fileName), currentArchiveNumber + 1, Path.GetExtension(fileName));
-                return Path.Combine(Path.GetDirectoryName(fileName), archiveFileName);
+                return PathHelpers.Combine(Path.GetDirectoryName(fileName), archiveFileName);
             }
 
             private static int ExtractArchiveNumberFromFileName(string archiveFileName)

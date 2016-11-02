@@ -178,7 +178,7 @@ namespace NLog.Internal
                 return rendered;
             }
 #if !SILVERLIGHT
-            if (_filePathKind == FilePathKind.Relative)
+            if (_filePathKind == FilePathKind.Relative && _baseDir != null)
             {
                 return Path.Combine(_baseDir, rendered);
                 //use basedir, faster than Path.GetFullPath
