@@ -453,7 +453,7 @@ namespace NLog.Config
         /// <param name="rootContentElement">Root NLog configuration xml element</param>
         private void CheckParsingErrors(NLogXmlElement rootContentElement)
         {
-            IEnumerable<string> errors;
+            string[] errors;
             if(rootContentElement.TryGetParsingErrors(out errors))
             {
                 if (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)

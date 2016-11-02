@@ -225,10 +225,10 @@ namespace NLog.Config
         /// Try to get all errors occured during xml parsing.
         /// A return value indicates whether there any error.
         /// </summary>
-        /// <param name="errors">List of errors</param>
-        public bool TryGetParsingErrors(out IEnumerable<string> errors)
+        /// <param name="errors">Array of error messages</param>
+        public bool TryGetParsingErrors(out string[] errors)
         {
-            errors = GetParsingErrors().ToList();
+            errors = GetParsingErrors().ToArray();
             return errors.Any();
         }
 
