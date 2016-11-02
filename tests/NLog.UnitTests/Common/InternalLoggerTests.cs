@@ -38,6 +38,7 @@ using System.Linq;
 using Xunit;
 using NLog.Common;
 using System.Text;
+using NLog.Time;
 #if !SILVERLIGHT 
 using Xunit.Extensions;
 #endif
@@ -332,6 +333,28 @@ namespace NLog.UnitTests.Common
             }
         }
 
+        /// <summary>
+        /// <see cref="TimeSource"/> that returns always the same time,
+        /// passed into object constructor.
+        /// </summary>
+        private class FixedTimeSource : TimeSource
+        {
+            private readonly DateTime _time;
+
+            public FixedTimeSource(DateTime time)
+            {
+                _time = time;
+            }
+
+            public override DateTime Time { get { return _time; } }
+
+            public override DateTime FromSystemTime(DateTime systemTime)
+            {
+                return _time;
+            }
+        }
+
+
         [Fact]
         public void TimestampTests()
         {
@@ -347,6 +370,9 @@ namespace NLog.UnitTests.Common
             // Redirect the console output to a StringWriter.
             Console.SetOut(consoleOutWriter);
 
+            // Set fixed time source to test time output
+            TimeSource.Current = new FixedTimeSource(DateTime.Now);
+
             // Named (based on LogLevel) public methods.
             InternalLogger.Warn("WWW");
             InternalLogger.Error("EEE");
@@ -355,7 +381,7 @@ namespace NLog.UnitTests.Common
             InternalLogger.Debug("DDD");
             InternalLogger.Info("III");
 
-            string expectedDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+            string expectedDateTime = TimeSource.Current.Time.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
 
             var strings = consoleOutWriter.ToString().Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (var str in strings)
