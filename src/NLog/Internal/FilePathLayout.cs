@@ -67,7 +67,7 @@ namespace NLog.Internal
 
         private FilePathKind _filePathKind;
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD
         /// <summary>
         /// not null when <see cref="_filePathKind"/> == <c>false</c>
         /// </summary>
@@ -177,7 +177,7 @@ namespace NLog.Internal
             {
                 return rendered;
             }
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD
             if (_filePathKind == FilePathKind.Relative && _baseDir != null)
             {
                 return Path.Combine(_baseDir, rendered);
