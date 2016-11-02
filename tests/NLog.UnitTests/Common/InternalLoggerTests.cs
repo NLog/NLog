@@ -45,7 +45,7 @@ using Xunit.Extensions;
 
 namespace NLog.UnitTests.Common
 {
-    public class InternalLoggerTests : NLogTestBase
+    public class InternalLoggerTests : NLogTestBase, IDisposable
     {
         /// <summary>
         /// Test the return values of all Is[Level]Enabled() methods.
@@ -542,5 +542,9 @@ namespace NLog.UnitTests.Common
             }
         }
 #endif
+        public void Dispose()
+        {
+            TimeSource.Current = new FastLocalTimeSource();
+        }
     }
 }
