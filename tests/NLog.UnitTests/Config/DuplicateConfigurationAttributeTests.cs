@@ -71,14 +71,15 @@ namespace NLog.UnitTests.Config
                     <rules>
                         <logger name='*' minlevel='info' minLevel='trace' appendto='debug'>
                             <filters>
-                                <whencontains layout='${message}' substring='msg' action='ignore' />
+                                <whencontains layout='${message}' substring='msg' Substring='msg1' action='ignore' />
                             </filters>
                         </logger>
                     </rules>
                 </nlog>");
             }, LogLevel.Error);
 
-            Assert.True(internalLog.Contains("NLog.NLogConfigurationException: Duplicate attribute detected. Attribute name: [minLevel]. Duplicate value:[trace], Current value:[info]"), internalLog);
+            Assert.True(internalLog.Contains("Duplicate attribute detected. Attribute name: [minLevel]. Duplicate value:[trace], Current value:[info]"), internalLog);
+            Assert.True(internalLog.Contains("Duplicate attribute detected. Attribute name: [Substring]. Duplicate value:[msg1], Current value:[msg]"), internalLog);
         }
 
         [Fact]

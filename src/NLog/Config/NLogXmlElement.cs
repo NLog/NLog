@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+using System.Text;
+
 namespace NLog.Config
 {
     using Internal;
@@ -75,6 +78,7 @@ namespace NLog.Config
         {
             this.AttributeValues = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             this.Children = new List<NLogXmlElement>();
+            this._parsingErrors = new List<string>();
         }
 
         /// <summary>
@@ -100,7 +104,7 @@ namespace NLog.Config
         /// <summary>
         /// Last error occured during configuration read
         /// </summary>
-        private NLogConfigurationException _lastParsingError;
+        private readonly List<string> _parsingErrors;
 
         /// <summary>
         /// Returns children elements with the specified element name.
@@ -218,22 +222,34 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Asserts that during parsing of current element and all of his children,
-        /// there is no errors.
+        /// Try to get all errors occured during xml parsing.
+        /// A return value indicates whether there any error.
         /// </summary>
-        public void AssertNoParsingErrors()
+        /// <param name="errors">List of errors</param>
+        public bool TryGetParsingErrors(out IEnumerable<string> errors)
         {
-            if (this._lastParsingError != null)
-                throw this._lastParsingError;
+            errors = GetParsingErrors().ToList();
+            return errors.Any();
+        }
 
-            if (this.Children != null)
+        /// <summary>
+        /// Returns all parsing errors from current and all child elements.
+        /// </summary>
+        private IEnumerable<string> GetParsingErrors()
+        {
+            foreach (var parsingError in _parsingErrors)
             {
-                foreach (var childElement in Children)
+                yield return parsingError;
+            }
+
+            foreach (var childElement in this.Children)
+            {
+                foreach (var parsingError in childElement.GetParsingErrors())
                 {
-                    childElement.AssertNoParsingErrors();
+                    yield return parsingError;
                 }
             }
-        }
+        } 
 
         private void Parse(XmlReader reader)
         {
@@ -251,7 +267,7 @@ namespace NLog.Config
                             string.Format(
                                 "Duplicate attribute detected. Attribute name: [{0}]. Duplicate value:[{1}], Current value:[{2}]",
                                 reader.LocalName, reader.Value, this.AttributeValues[reader.LocalName]);
-                        this._lastParsingError = new NLogConfigurationException(message);
+                        _parsingErrors.Add(message);
                     }
                 }
                 while (reader.MoveToNextAttribute());

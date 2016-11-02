@@ -419,8 +419,8 @@ namespace NLog.Config
                     this.ParseTopLevel(content, null, autoReloadDefault: false);
                 }
                 InitializeSucceeded = true;
+                this.CheckParsingErrors(content);
                 this.CheckUnusedTargets();
-
             }
             catch (Exception exception)
             {
@@ -441,6 +441,33 @@ namespace NLog.Config
                     }
                 }
 
+            }
+        }
+
+        /// <summary>
+        /// Checks whether any error during XML configuration parsing has occured.
+        /// If there are any and <c>ThrowConfigExceptions</c> or <c>ThrowExceptions</c>
+        /// setting is enabled - throws <c>NLogConfigurationException</c>, otherwise
+        /// just write an internal log at Warn level.
+        /// </summary>
+        /// <param name="rootContentElement">Root NLog configuration xml element</param>
+        private void CheckParsingErrors(NLogXmlElement rootContentElement)
+        {
+            IEnumerable<string> errors;
+            if(rootContentElement.TryGetParsingErrors(out errors))
+            {
+                if (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
+                {
+                    string exceptionMessage = string.Join(Environment.NewLine, errors);
+                    throw new NLogConfigurationException(exceptionMessage);
+                }
+                else
+                {
+                    foreach (var error in errors)
+                    {
+                        InternalLogger.Log(LogLevel.Warn, error);
+                    }
+                }
             }
         }
 
@@ -507,8 +534,6 @@ namespace NLog.Config
                     this.ParseNLogElement(content, filePath, autoReloadDefault);
                     break;
             }
-
-            content.AssertNoParsingErrors();
         }
 
         /// <summary>
