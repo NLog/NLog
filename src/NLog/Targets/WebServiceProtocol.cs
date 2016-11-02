@@ -34,7 +34,7 @@
 namespace NLog.Targets
 {
     /// <summary>
-    /// Web service protocol.
+    /// Protocol/type of web service.
     /// </summary>
     public enum WebServiceProtocol
     {
@@ -57,5 +57,15 @@ namespace NLog.Targets
         /// Use HTTP GET Protocol.
         /// </summary>
         HttpGet,
-   }
+
+        /// <summary>
+        /// Do an HTTP POST of a JSON document.
+        /// </summary>
+        Json,
+
+        /// <summary>
+        /// Do an HTTP POST of an XML document.
+        /// </summary>
+        Xml
+    }
 }
