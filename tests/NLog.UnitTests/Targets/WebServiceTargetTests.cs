@@ -39,21 +39,17 @@ using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
 using NLog.Internal;
 using NLog.Targets;
-using System.Web.Http.Dependencies;
-using Newtonsoft.Json.Serialization;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
-using System.Net.Http.Formatting;
-using System.Net.Http;
 using System.Xml;
 
 #if NET4_5
 using System.Web.Http;
 using Owin;
 using Microsoft.Owin.Hosting;
+using System.Web.Http.Dependencies;
 #endif
 using Xunit;
 
