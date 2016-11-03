@@ -1,51 +1,8 @@
-language: generic
-
-addons:
-  apt:
-    packages:
-    - gettext
-    - libcurl4-openssl-dev
-    - libicu-dev
-    - libssl-dev
-    - libunwind8
-    - zlib1g
-
-matrix:
-  include:
-    - os: linux
-      dist: trusty # Ubuntu 14.04
-      sudo: required
-      env: CONFIGURATION=Debug
-    - os: linux
-      dist: trusty
-      sudo: required
-      env: CONFIGURATION=Release
-    - os: osx
-      osx_image: xcode7.2 # macOS 10.11
-      env: CONFIGURATION=Debug
-    - os: osx
-      osx_image: xcode7.2
-      env: CONFIGURATION=Release
-
-before_install:
-  # Install OpenSSL
-  - if test "$TRAVIS_OS_NAME" == "osx"; then
-      brew install openssl;
-      brew link --force openssl;
-      export DOTNET_SDK_URL="https://go.microsoft.com/fwlink/?LinkID=809128";
-    else
-      export DOTNET_SDK_URL="https://go.microsoft.com/fwlink/?LinkID=809129";
-    fi
-
-  - export DOTNET_INSTALL_DIR="$PWD/.dotnetcli"
-
-  # Install .NET CLI
-  - mkdir $DOTNET_INSTALL_DIR
-  - curl -L $DOTNET_SDK_URL -o dotnet_package
-  - tar -xvzf dotnet_package -C $DOTNET_INSTALL_DIR
-
-  # Add dotnet to PATH
-  - export PATH="$DOTNET_INSTALL_DIR:$PATH"
+language: csharp
+mono: none
+dotnet: 1.0.0-preview2-003121
+dist: trusty
+sudo: required
 
 install:
   # Display dotnet version info
@@ -63,4 +20,4 @@ install:
 
 script:
   # Run tests
-  - dotnet test tests/NLog.UnitTests --configuration $CONFIGURATION -f netcoreapp1.0
+  - dotnet test tests/NLog.UnitTests --configuration Release -f netcoreapp1.0
