@@ -34,7 +34,7 @@
 namespace NLog.Targets
 {
     /// <summary>
-    /// Protocol/type of web service.
+    /// Web service protocol.
     /// </summary>
     public enum WebServiceProtocol
     {

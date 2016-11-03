@@ -1,48 +1,51 @@
-//
+// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-//
+// 
 // All rights reserved.
-//
-// Redistribution and use in source and binary forms, with or without
-// modification, are permitted provided that the following conditions
+// 
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
 // are met:
-//
-// * Redistributions of source code must retain the above copyright notice,
-//   this list of conditions and the following disclaimer.
-//
+// 
+// * Redistributions of source code must retain the above copyright notice, 
+//   this list of conditions and the following disclaimer. 
+// 
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution.
-//
-// * Neither the name of Jaroslaw Kowalski nor the names of its
+//   and/or other materials provided with the distribution. 
+// 
+// * Neither the name of Jaroslaw Kowalski nor the names of its 
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission.
-//
+//   software without specific prior written permission. 
+// 
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
-//
+// 
+
+using System.Linq;
 
 namespace NLog.Targets
 {
-    using NLog.Common;
-    using NLog.Internal;
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
     using System.Net;
     using System.Text;
     using System.Xml;
+    using NLog.Common;
+    using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// Calls the specified web service on each log message.
@@ -53,7 +56,7 @@ namespace NLog.Targets
     /// </remarks>
     /// <example>
     /// <p>
-    /// To set up the target in the <a href="config.html">configuration file</a>,
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
     /// <code lang="XML" source="examples/targets/Configuration File/WebService/NLog.config" />
@@ -71,8 +74,9 @@ namespace NLog.Targets
     [Target("WebService")]
     public sealed class WebServiceTarget : MethodCallTargetBase
     {
-        private const string Soap12EnvelopeNamespace = "http://www.w3.org/2003/05/soap-envelope";
         private const string SoapEnvelopeNamespace = "http://schemas.xmlsoap.org/soap/envelope/";
+        private const string Soap12EnvelopeNamespace = "http://www.w3.org/2003/05/soap-envelope";
+
 
         /// <summary>
         /// dictionary that maps a concrete <see cref="HttpPostFormatterBase"/> implementation
@@ -95,7 +99,7 @@ namespace NLog.Targets
         {
             this.Protocol = WebServiceProtocol.Soap11;
 
-            //default NO utf-8 bom
+            //default NO utf-8 bom 
             const bool writeBOM = false;
             this.Encoding = new UTF8Encoding(writeBOM);
             this.IncludeBOM = writeBOM;
@@ -111,17 +115,10 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets or sets the encoding.
+        /// Gets or sets the web service URL.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
-        public Encoding Encoding { get; set; }
-
-        /// <summary>
-        /// Should we include the BOM (Byte-order-mark) for UTF? Influences the <see cref="Encoding"/> property.
-        ///
-        /// This will only work for UTF-8.
-        /// </summary>
-        public bool? IncludeBOM { get; set; }
+        public Uri Url { get; set; }
 
         /// <summary>
         /// Gets or sets the Web service method name. Only used with Soap.
@@ -143,10 +140,17 @@ namespace NLog.Targets
         public WebServiceProtocol Protocol { get; set; }
 
         /// <summary>
-        /// Gets or sets the web service URL.
+        /// Should we include the BOM (Byte-order-mark) for UTF? Influences the <see cref="Encoding"/> property.
+        /// 
+        /// This will only work for UTF-8.
+        /// </summary>
+        public bool? IncludeBOM { get; set; }
+
+        /// <summary>
+        /// Gets or sets the encoding.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
-        public Uri Url { get; set; }
+        public Encoding Encoding { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the root XML element,
@@ -165,8 +169,34 @@ namespace NLog.Targets
         /// <docgen category='Web Service Options' order='10' />
         public string XmlRootNamespace { get; set; }
 
-        internal void DoInvoke(object[] parameters, AsyncContinuation continuation, HttpWebRequest request, Func<AsyncCallback, IAsyncResult> beginFunc,
-                    Func<IAsyncResult, Stream> getStreamFunc)
+
+        /// <summary>
+        /// Calls the target method. Must be implemented in concrete classes.
+        /// </summary>
+        /// <param name="parameters">Method call parameters.</param>
+        protected override void DoInvoke(object[] parameters)
+        {
+            // method is not used, instead asynchronous overload will be used
+            throw new NotImplementedException();
+        }
+
+
+        /// <summary>
+        /// Invokes the web service method.
+        /// </summary>
+        /// <param name="parameters">Parameters to be passed.</param>
+        /// <param name="continuation">The continuation.</param>
+        protected override void DoInvoke(object[] parameters, AsyncContinuation continuation)
+        {
+            var request = (HttpWebRequest)WebRequest.Create(BuildWebServiceUrl(parameters));
+            Func<AsyncCallback, IAsyncResult> begin = (r) => request.BeginGetRequestStream(r, null);
+            Func<IAsyncResult, Stream> getStream = request.EndGetRequestStream;
+
+            DoInvoke(parameters, continuation, request, begin, getStream);
+        }
+
+        internal void DoInvoke(object[] parameters, AsyncContinuation continuation, HttpWebRequest request, Func<AsyncCallback, IAsyncResult> beginFunc, 
+            Func<IAsyncResult, Stream> getStreamFunc)
         {
             Stream postPayload = null;
 
@@ -252,27 +282,47 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Calls the target method. Must be implemented in concrete classes.
+        /// Builds the URL to use when calling the web service for a message, depending on the WebServiceProtocol.
         /// </summary>
-        /// <param name="parameters">Method call parameters.</param>
-        protected override void DoInvoke(object[] parameters)
+        /// <param name="parameterValues"></param>
+        /// <returns></returns>
+        private Uri BuildWebServiceUrl(object[] parameterValues)
         {
-            // method is not used, instead asynchronous overload will be used
-            throw new NotImplementedException();
+            if (this.Protocol != WebServiceProtocol.HttpGet)
+            {
+                return this.Url;
+            }
+            
+            //if the protocol is HttpGet, we need to add the parameters to the query string of the url
+            var queryParameters = new StringBuilder();
+            string separator = string.Empty;
+            for (int i = 0; i < this.Parameters.Count; i++)
+            {
+                queryParameters.Append(separator);
+                queryParameters.Append(this.Parameters[i].Name);
+                queryParameters.Append("=");
+                queryParameters.Append(UrlHelper.UrlEncode(Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture), false));
+                separator = "&";
+            }
+
+            var builder = new UriBuilder(this.Url);
+            //append our query string to the URL following 
+            //the recommendations at https://msdn.microsoft.com/en-us/library/system.uribuilder.query.aspx
+            if (builder.Query != null && builder.Query.Length > 1)
+            {
+                builder.Query = builder.Query.Substring(1) + "&" + queryParameters.ToString();
+            }
+            else
+            {
+                builder.Query = queryParameters.ToString();
+            }
+
+            return builder.Uri;
         }
 
-        /// <summary>
-        /// Invokes the web service method.
-        /// </summary>
-        /// <param name="parameters">Parameters to be passed.</param>
-        /// <param name="continuation">The continuation.</param>
-        protected override void DoInvoke(object[] parameters, AsyncContinuation continuation)
+        private void PrepareGetRequest(HttpWebRequest request)
         {
-            var request = (HttpWebRequest)WebRequest.Create(BuildWebServiceUrl(parameters));
-            Func<AsyncCallback, IAsyncResult> begin = (r) => request.BeginGetRequestStream(r, null);
-            Func<IAsyncResult, Stream> getStream = request.EndGetRequestStream;
-
-            DoInvoke(parameters, continuation, request, begin, getStream);
+            request.Method = "GET";
         }
 
         /// <summary>
@@ -301,50 +351,7 @@ namespace NLog.Targets
             }
             var offset = nothingToDo ? 0 : preambleSize;
             input.CopyWithOffset(output, offset);
-        }
 
-        /// <summary>
-        /// Builds the URL to use when calling the web service for a message, depending on the WebServiceProtocol.
-        /// </summary>
-        /// <param name="parameterValues"></param>
-        /// <returns></returns>
-        private Uri BuildWebServiceUrl(object[] parameterValues)
-        {
-            if (this.Protocol != WebServiceProtocol.HttpGet)
-            {
-                return this.Url;
-            }
-
-            //if the protocol is HttpGet, we need to add the parameters to the query string of the url
-            var queryParameters = new StringBuilder();
-            string separator = string.Empty;
-            for (int i = 0; i < this.Parameters.Count; i++)
-            {
-                queryParameters.Append(separator);
-                queryParameters.Append(this.Parameters[i].Name);
-                queryParameters.Append("=");
-                queryParameters.Append(UrlHelper.UrlEncode(Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture), false));
-                separator = "&";
-            }
-
-            var builder = new UriBuilder(this.Url);
-            //append our query string to the URL following
-            //the recommendations at https://msdn.microsoft.com/en-us/library/system.uribuilder.query.aspx
-            if (builder.Query != null && builder.Query.Length > 1)
-            {
-                builder.Query = builder.Query.Substring(1) + "&" + queryParameters.ToString();
-            }
-            else
-            {
-                builder.Query = queryParameters.ToString();
-            }
-
-            return builder.Uri;
-        }
-
-        private void PrepareGetRequest(HttpWebRequest request)
-        {
-            request.Method = "GET";
         }
 
         /// <summary>
@@ -361,7 +368,7 @@ namespace NLog.Targets
             }
 
             protected abstract string ContentType { get; }
-            protected WebServiceTarget Target { get; }
+            protected WebServiceTarget Target { get; private set; }
 
             public MemoryStream PrepareRequest(HttpWebRequest request, object[] parameterValues)
             {
@@ -598,5 +605,6 @@ namespace NLog.Targets
                 }
             }
         }
+
     }
 }

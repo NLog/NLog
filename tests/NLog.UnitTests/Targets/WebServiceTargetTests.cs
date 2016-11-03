@@ -39,11 +39,11 @@ using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using NLog.Internal;
 using NLog.Targets;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
-using System.Xml;
 
 #if NET4_5
 using System.Web.Http;
@@ -294,7 +294,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
             StartOwinTest(() =>
             {
-                logger.Info("message 1 with a POST");
+
+                logger.Info("message 1 with a post");
             });
 
 
@@ -314,103 +315,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         {
             WebServiceTest_httpget("api/logme?paramFromConfig=valueFromConfig");
         }
-
-        /// <summary>
-        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.Json"/>
-        /// </summary>
-        [Fact]
-        public void WebserviceTest_restapi_json()
-        {
-
-
-            var configuration = CreateConfigurationFromString(string.Format(@"
-                <nlog throwExceptions='true'>
-                    <targets>
-                        <target type='WebService'
-                                name='ws'
-                                url='{0}{1}'
-                                protocol='Json'
-                                encoding='UTF-8'
-                               >
-                            <parameter name='param1' type='System.String' layout='${{message}}'/> 
-                            <parameter name='param2' type='System.String' layout='${{level}}'/>
-     
-                        </target>
-                    </targets>
-                    <rules>
-                      <logger name='*' writeTo='ws'>
-                       
-                      </logger>
-                    </rules>
-                </nlog>", getWsAddress(1), "api/logdoc/json"));
-
-
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
-
-            var txt = "message 1 with a JSON POST";
-            var count = 200;
-            var context = new LogDocController.TestContext(1, count, false, txt, "info");
-
-            StartOwinDocTest(context, () =>
-                {
-                    for(int i = 0; i < count; i++)
-                        logger.Info(txt);
-                });
-
-            Assert.Equal<int>(0, context.CountdownEvent.CurrentCount);
-        }
-
-
-        /// <summary>
-        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.Xml"/> 
-        /// </summary>
-        [Fact]
-        public void WebserviceTest_restapi_xml()
-        {
-
-
-            var configuration = CreateConfigurationFromString(string.Format(@"
-                <nlog throwExceptions='true'>
-                    <targets>
-                        <target type='WebService'
-                                name='ws'
-                                url='{0}{1}'
-                                protocol='Xml'
-                                XmlRoot='ComplexType'
-                                encoding='UTF-8'
-                               >
-                            <parameter name='param1' type='System.String' layout='${{message}}'/> 
-                            <parameter name='param2' type='System.String' layout='${{level}}'/>
-     
-                        </target>
-                    </targets>
-                    <rules>
-                      <logger name='*' writeTo='ws'>
-                       
-                      </logger>
-                    </rules>
-                </nlog>", getWsAddress(1), "api/logdoc/xml"));
-
-
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
-
-            var txt = "message 1 with a XML POST";
-            var count = 250;
-            var context = new LogDocController.TestContext(1, count, true, txt, "info");
-
-            StartOwinDocTest(context, () =>
-            {
-                for (int i = 0; i < count; i++)
-                    logger.Info(txt);
-            });
-
-            Assert.Equal<int>(0, context.CountdownEvent.CurrentCount);
-        }
-
-
-
+        
         private void WebServiceTest_httpget(string relativeUrl)
         {
             var configuration = CreateConfigurationFromString(string.Format(@"
@@ -442,7 +347,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
             StartOwinTest(() =>
             {
-                logger.Info("message 1 with a GET");
+                logger.Info("message 1 with a post");
             });
         }
 
@@ -462,6 +367,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_httppost_checkingLost()
         {
+
+
             var configuration = CreateConfigurationFromString(string.Format(@"
                 <nlog throwExceptions='true'>
                     <targets>
@@ -519,6 +426,102 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
         }
 
+
+        /// <summary>
+        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.Json"/>
+        /// </summary>
+        [Fact]
+        public void WebserviceTest_restapi_json()
+        {
+
+
+            var configuration = CreateConfigurationFromString(string.Format(@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target type='WebService'
+                                name='ws'
+                                url='{0}{1}'
+                                protocol='Json'
+                                encoding='UTF-8'
+                               >
+                            <parameter name='param1' type='System.String' layout='${{message}}'/> 
+                            <parameter name='param2' type='System.String' layout='${{level}}'/>
+     
+                        </target>
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='ws'>
+                       
+                      </logger>
+                    </rules>
+                </nlog>", getWsAddress(1), "api/logdoc/json"));
+
+
+            LogManager.Configuration = configuration;
+            var logger = LogManager.GetCurrentClassLogger();
+
+            var txt = "message 1 with a JSON POST";
+            var count = 200;
+            var context = new LogDocController.TestContext(1, count, false, txt, "info");
+
+            StartOwinDocTest(context, () =>
+            {
+                for (int i = 0; i < count; i++)
+                    logger.Info(txt);
+            });
+
+            Assert.Equal<int>(0, context.CountdownEvent.CurrentCount);
+        }
+
+
+        /// <summary>
+        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.Xml"/> 
+        /// </summary>
+        [Fact]
+        public void WebserviceTest_restapi_xml()
+        {
+
+
+            var configuration = CreateConfigurationFromString(string.Format(@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target type='WebService'
+                                name='ws'
+                                url='{0}{1}'
+                                protocol='Xml'
+                                XmlRoot='ComplexType'
+                                encoding='UTF-8'
+                               >
+                            <parameter name='param1' type='System.String' layout='${{message}}'/> 
+                            <parameter name='param2' type='System.String' layout='${{level}}'/>
+     
+                        </target>
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='ws'>
+                       
+                      </logger>
+                    </rules>
+                </nlog>", getWsAddress(1), "api/logdoc/xml"));
+
+
+            LogManager.Configuration = configuration;
+            var logger = LogManager.GetCurrentClassLogger();
+
+            var txt = "message 1 with a XML POST";
+            var count = 250;
+            var context = new LogDocController.TestContext(1, count, true, txt, "info");
+
+            StartOwinDocTest(context, () =>
+            {
+                for (int i = 0; i < count; i++)
+                    logger.Info(txt);
+            });
+
+            Assert.Equal<int>(0, context.CountdownEvent.CurrentCount);
+        }
+
+
         /// <summary>
         /// Start/config route of WS
         /// </summary>
@@ -539,6 +542,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 appBuilder.UseWebApi(config);
             }
         }
+
+        private const string LogTemplate = "Method: {0}, param1: '{1}', param2: '{2}', body: {3}";
 
         ///<remarks>Must be public </remarks>
         public class LogMeController : ApiController
@@ -568,7 +573,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             /// Recieved param1 values(post)
             /// </summary>
             public static ConcurrentBag<string> RecievedLogsPostParam1 = new ConcurrentBag<string>();
-      
+
 
             /// <summary>
             /// We need a complex type for modelbinding because of content-type: "application/x-www-form-urlencoded" in <see cref="WebServiceTarget"/>
@@ -580,7 +585,6 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 [DataMember(Name = "param1")]
                 [XmlElement("param1")]
                 public string Param1 { get; set; }
-
                 [DataMember(Name = "param2")]
                 [XmlElement("param2")]
                 public string Param2 { get; set; }
@@ -593,7 +597,6 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             {
 
                 return "value";
-                
             }
 
             // GET api/values 
@@ -658,6 +661,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 }
             }
         }
+
 
         internal static void StartOwinDocTest(LogDocController.TestContext testContext, Action testsFunc)
         {
