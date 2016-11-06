@@ -33,8 +33,6 @@
 
 namespace NLog.UnitTests.Targets
 {
-    using System.Collections.Generic;
-    using System.Messaging;
     using NLog.Targets;
     using Xunit;
     using Xunit.Extensions;
