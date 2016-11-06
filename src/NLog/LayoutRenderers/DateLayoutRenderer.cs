@@ -75,8 +75,11 @@ namespace NLog.LayoutRenderers
         [DefaultValue(false)]
         public bool UniversalTime { get; set; }
 
-        private static char[] lowTimeResolutionChars = new char[] { 'Y', 'y', 'M', 'D', 'd', 'H', 'h' };
+        private const string lowTimeResolutionChars = "YyMDdHh";
+
+        /// <summary>Cache-key (Last DateTime.UtcNow) + Cache-Value (DateTime.Format result)</summary>
         private System.Collections.Generic.KeyValuePair<DateTime, string> cachedUtcTime = new System.Collections.Generic.KeyValuePair<DateTime, string>();
+        /// <summary>Cache-key (Last DateTime.Now) + Cache-Value (DateTime.Format result)</summary>
         private System.Collections.Generic.KeyValuePair<DateTime, string> cachedLocalTime = new System.Collections.Generic.KeyValuePair<DateTime, string>();
 
         /// <summary>
@@ -102,11 +105,10 @@ namespace NLog.LayoutRenderers
 
         private static bool IsLowTimeResolutionLayout(string dateTimeFormat)
         {
-            for (int i = 0; i < lowTimeResolutionChars.Length; ++i)
-                dateTimeFormat = dateTimeFormat.Replace(lowTimeResolutionChars[i], ' ');
             for (int i = 0; i < dateTimeFormat.Length; ++i)
             {
-                if (char.IsLetter(dateTimeFormat[i]))
+                char ch = dateTimeFormat[i];
+                if (char.IsLetter(ch) && lowTimeResolutionChars.IndexOf(ch) < 0)
                     return false;
             }
             return true;
@@ -114,7 +116,8 @@ namespace NLog.LayoutRenderers
 
         private void AppendDateLayout(StringBuilder builder, IFormatProvider formatProvider, DateTime timestamp, ref System.Collections.Generic.KeyValuePair<DateTime, string> cachedTime)
         {
-            if (ReferenceEquals(formatProvider, CultureInfo.InvariantCulture))
+            bool invariantCulture = ReferenceEquals(formatProvider, CultureInfo.InvariantCulture);
+            if (invariantCulture)
             {
                 if (cachedTime.Key != DateTime.MinValue)
                 {
@@ -127,15 +130,15 @@ namespace NLog.LayoutRenderers
                 else if (cachedTime.Value == null)
                 {
                     // Check if caching should be used
-                    if (IsLowTimeResolutionLayout(this.Format))
-                        cachedTime = new System.Collections.Generic.KeyValuePair<DateTime, string>(DateTime.MaxValue, string.Empty);
-                    else
-                        cachedTime = new System.Collections.Generic.KeyValuePair<DateTime, string>(DateTime.MinValue, string.Empty);
+                    DateTime cachedDateTime = IsLowTimeResolutionLayout(this.Format)
+                        ? DateTime.MaxValue     // Cache can be used, will update cache-value
+                        : DateTime.MinValue;    // No cache support
+                    cachedTime = new System.Collections.Generic.KeyValuePair<DateTime, string>(cachedDateTime, string.Empty);
                 }
             }
 
             string formatTime = timestamp.ToString(this.Format, formatProvider);
-            if (cachedTime.Key != DateTime.MinValue && ReferenceEquals(formatProvider, CultureInfo.InvariantCulture))
+            if (cachedTime.Key != DateTime.MinValue && invariantCulture)
                 cachedTime = new System.Collections.Generic.KeyValuePair<DateTime, string>(timestamp.Date.AddHours(timestamp.Hour), formatTime);
             builder.Append(formatTime);
         }
