@@ -81,7 +81,7 @@ namespace NLog.Targets
                     l.Add(SerializeValue(val));
                 }
 
-                return string.Format("[{0}]", string.Join(",", l));
+                return string.Format("[{0}]", string.Join(",", l.ToArray()));
             }
             else if (NumericTypes.Contains(value.GetType()))
             {
