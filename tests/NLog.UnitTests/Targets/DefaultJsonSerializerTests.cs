@@ -35,7 +35,9 @@ namespace NLog.UnitTests.Targets
 {
     using NLog.Targets;
     using Xunit;
+#if !SILVERLIGHT
     using Xunit.Extensions;
+#endif
     using System;
     public class DefaultJsonSerializerTests : NLogTestBase
     {
