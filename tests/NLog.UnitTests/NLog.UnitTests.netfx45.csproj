@@ -247,6 +247,7 @@
     <Compile Include="Targets\LogReceiverWebServiceTargetTests.cs" />
     <Compile Include="Targets\MailTargetTests.cs" />
     <Compile Include="Targets\MemoryTargetTests.cs" />
+    <Compile Include="Targets\DefaultJsonSerializerTests.cs" />
     <Compile Include="Targets\MessageQueueTargetTests.cs" />
     <Compile Include="Targets\MethodCallTests.cs" />
     <Compile Include="Targets\Mocks\MockTargetWrapper.cs" />

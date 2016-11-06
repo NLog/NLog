@@ -180,6 +180,29 @@ namespace NLog.Targets
             throw new NotImplementedException();
         }
 
+        private ICompactJsonSerializer _jsonSerializer = new DefaultJsonSerializer();
+
+        /// <summary>
+        /// JSON serializer, that will be used for JSON serialization.
+        /// </summary>
+        private ICompactJsonSerializer JsonSerializer
+        {
+            get
+            {
+                if (_jsonSerializer == null) _jsonSerializer =  new DefaultJsonSerializer();
+                return _jsonSerializer;
+            }
+        }
+
+        /// <summary>
+        /// Sets the JSON serializer, that will be used for JSON serialization.
+        /// </summary>
+        /// <param name="serializer">The serializer to use for HTTP POST of JSON documents.</param>
+        public void SetJsonSerializer(ICompactJsonSerializer serializer)
+        {
+            _jsonSerializer = serializer;
+        }
+
 
         /// <summary>
         /// Invokes the web service method.
@@ -443,11 +466,9 @@ namespace NLog.Targets
                     getJsonValueString(value));
             }
 
-            private static string getJsonValueString(object value)
+            private string getJsonValueString(object value)
             {
-                if (value == null) return "null";
-                else if (value is string) return string.Format("\"{0}\"", value);
-                else return value.ToString();
+                return Target.JsonSerializer.SerializeValue(value);
             }
         }
 
