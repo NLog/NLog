@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers
 {
+    using System;
     using System.ComponentModel;
     using System.Globalization;
     using System.Text;
@@ -74,6 +75,10 @@ namespace NLog.LayoutRenderers
         [DefaultValue(false)]
         public bool UniversalTime { get; set; }
 
+        private static char[] lowTimeResolutionChars = new char[] { 'Y', 'y', 'M', 'D', 'd', 'H', 'h' };
+        private System.Collections.Generic.KeyValuePair<DateTime, string> cachedUtcTime = new System.Collections.Generic.KeyValuePair<DateTime, string>();
+        private System.Collections.Generic.KeyValuePair<DateTime, string> cachedLocalTime = new System.Collections.Generic.KeyValuePair<DateTime, string>();
+
         /// <summary>
         /// Renders the current date and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
@@ -81,14 +86,58 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+            var formatProvider = GetFormatProvider(logEvent, Culture);
+
             var ts = logEvent.TimeStamp;
             if (this.UniversalTime)
             {
                 ts = ts.ToUniversalTime();
+                AppendDateLayout(builder, formatProvider, ts, ref cachedUtcTime);
+            }
+            else
+            {
+                AppendDateLayout(builder, formatProvider, ts, ref cachedLocalTime);
+            }
+        }
+
+        private static bool IsLowTimeResolutionLayout(string dateTimeFormat)
+        {
+            for (int i = 0; i < lowTimeResolutionChars.Length; ++i)
+                dateTimeFormat = dateTimeFormat.Replace(lowTimeResolutionChars[i], ' ');
+            for (int i = 0; i < dateTimeFormat.Length; ++i)
+            {
+                if (char.IsLetter(dateTimeFormat[i]))
+                    return false;
+            }
+            return true;
+        }
+
+        private void AppendDateLayout(StringBuilder builder, IFormatProvider formatProvider, DateTime timestamp, ref System.Collections.Generic.KeyValuePair<DateTime, string> cachedTime)
+        {
+            if (ReferenceEquals(formatProvider, CultureInfo.InvariantCulture))
+            {
+                if (cachedTime.Key != DateTime.MinValue)
+                {
+                    if (cachedTime.Key == timestamp.Date.AddHours(timestamp.Hour))
+                    {
+                        builder.Append(cachedTime.Value);
+                        return; // Cache hit
+                    }
+                }
+                else if (cachedTime.Value == null)
+                {
+                    // Check if caching should be used
+                    if (IsLowTimeResolutionLayout(this.Format))
+                        cachedTime = new System.Collections.Generic.KeyValuePair<DateTime, string>(DateTime.MaxValue, string.Empty);
+                    else
+                        cachedTime = new System.Collections.Generic.KeyValuePair<DateTime, string>(DateTime.MinValue, string.Empty);
+                }
             }
 
-            var formatProvider = GetFormatProvider(logEvent, Culture);
-            builder.Append(ts.ToString(this.Format, formatProvider));
+            string formatTime = timestamp.ToString(this.Format, formatProvider);
+            if (cachedTime.Key != DateTime.MinValue && ReferenceEquals(formatProvider, CultureInfo.InvariantCulture))
+                cachedTime = new System.Collections.Generic.KeyValuePair<DateTime, string>(timestamp.Date.AddHours(timestamp.Hour), formatTime);
+            builder.Append(formatTime);
         }
     }
 }

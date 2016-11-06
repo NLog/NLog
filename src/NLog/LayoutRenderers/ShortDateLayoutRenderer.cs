@@ -94,9 +94,9 @@ namespace NLog.LayoutRenderers
             /// <param name="timestamp">The date to append</param>
             public void AppendDate(StringBuilder builder, DateTime timestamp)
             {
-                if (formattedDate == null || date.Day != timestamp.Day || date.Month != timestamp.Month || date.Year != timestamp.Year)
+                if (formattedDate == null || date != timestamp.Date)
                 {
-                    date = timestamp;
+                    date = timestamp.Date;
                     formattedDate = timestamp.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
                 }
                 builder.Append(formattedDate);
