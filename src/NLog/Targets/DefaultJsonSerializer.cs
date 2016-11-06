@@ -71,7 +71,7 @@ namespace NLog.Targets
                     l.Add(string.Format("\"{0}\":{1}", SerializeValue(de.Key), SerializeValue(de.Value)));
                 }
 
-                return string.Format("{{{0}}}", string.Join(",", l));
+                return string.Format("{{{0}}}", string.Join(",", l.ToArray()));
             }
             else if((enumerable = value as IEnumerable) != null)
             {
