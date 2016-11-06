@@ -6,7 +6,7 @@ using System.Globalization;
 namespace NLog.Targets
 {
     /// <summary>
-    /// Default class for serialization of values to JSON format. 
+    /// Default class for serialization of values to JSON format.
     /// </summary>
     public class DefaultJsonSerializer : ICompactJsonSerializer
     {
@@ -29,7 +29,7 @@ namespace NLog.Targets
         /// int compact JSON format.
         /// </summary>
         /// <param name="value">The object to serialize to compact JSON.</param>
-        /// <returns></returns>
+        /// <returns>Serialized value.</returns>
         public string SerializeValue(object value)
         {
 

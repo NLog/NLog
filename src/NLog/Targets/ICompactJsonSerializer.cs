@@ -13,6 +13,7 @@ namespace NLog.Targets
         /// int compact JSON format.
         /// </summary>
         /// <param name="value">The object to serialize to compact JSON.</param>
+        /// <returns>Serialized value.</returns>
         string SerializeValue(object value);
     }
 }

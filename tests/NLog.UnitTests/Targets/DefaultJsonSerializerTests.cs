@@ -92,7 +92,7 @@ namespace NLog.UnitTests.Targets
         [InlineData((int)177, "177")]
         [InlineData((long)32711520331, "32711520331")]
         [InlineData(3.14159265, "3.14159265")]
-        [InlineData(2776145.7742, "2776145.7742")]
+        [InlineData(2776145.7743, "2776145.7743")]
         public void SerializeNumber_Test(object o, string expected)
         {
             var actual = _serializer.SerializeValue(o);
