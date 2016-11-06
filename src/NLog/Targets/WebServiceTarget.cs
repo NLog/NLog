@@ -180,7 +180,7 @@ namespace NLog.Targets
             throw new NotImplementedException();
         }
 
-        private ICompactJsonSerializer _jsonSerializer = new DefaultJsonSerializer();
+        private ICompactJsonSerializer _jsonSerializer = DefaultJsonSerializer.Instance;
 
         /// <summary>
         /// JSON serializer, that will be used for JSON serialization.
@@ -189,7 +189,7 @@ namespace NLog.Targets
         {
             get
             {
-                if (_jsonSerializer == null) _jsonSerializer =  new DefaultJsonSerializer();
+                if (_jsonSerializer == null) _jsonSerializer =  DefaultJsonSerializer.Instance;
                 return _jsonSerializer;
             }
         }

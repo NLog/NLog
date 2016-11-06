@@ -24,6 +24,25 @@ namespace NLog.Targets
                     typeof(double),
                     typeof(decimal),
             };
+
+        private static readonly DefaultJsonSerializer _instance;
+
+        /// <summary>
+        /// Singleton instance of the serializer.
+        /// </summary>
+        public static DefaultJsonSerializer Instance
+        {
+            get { return _instance; }
+        }
+
+        static DefaultJsonSerializer()
+        {
+            _instance = new DefaultJsonSerializer();
+        }
+
+        private DefaultJsonSerializer()
+        { }
+
         /// <summary>
         /// Returns a serialization of an object
         /// int compact JSON format.
@@ -66,7 +85,11 @@ namespace NLog.Targets
             }
             else if (NumericTypes.Contains(value.GetType()))
             {
+#if SILVERLIGHT
+                var nf = new CultureInfo("en-US").NumberFormat;
+#else
                 var nf = new CultureInfo("en-US", false).NumberFormat;
+#endif
                 nf.NumberGroupSeparator = string.Empty;
                 nf.NumberDecimalSeparator = ".";
                 nf.NumberGroupSizes = new int[] { 0 };

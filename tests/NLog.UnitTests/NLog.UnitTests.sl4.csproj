@@ -223,7 +223,6 @@
     <Compile Include="Targets\MethodCallTests.cs" />
     <Compile Include="Targets\Mocks\MockTargetWrapper.cs" />
     <Compile Include="Targets\NetworkTargetTests.cs" />
-    <Compile Include="Targets\TargetsContructorsTests.cs" />
     <Compile Include="Targets\TargetTests.cs" />
     <Compile Include="Targets\WebServiceTargetTests.cs" />
     <Compile Include="Targets\Wrappers\AsyncRequestQueueTests.cs" />

@@ -43,7 +43,7 @@ namespace NLog.UnitTests.Targets
 
         public DefaultJsonSerializerTests()
         {
-            _serializer = new DefaultJsonSerializer();
+            _serializer = DefaultJsonSerializer.Instance;
         }
 
         [Fact]
