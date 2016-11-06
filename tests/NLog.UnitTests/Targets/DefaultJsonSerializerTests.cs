@@ -88,6 +88,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(expected, actual);
         }
 
+#if !SILVERLIGHT
         [Theory]
         [InlineData((int)177, "177")]
         [InlineData((long)32711520331, "32711520331")]
@@ -98,6 +99,7 @@ namespace NLog.UnitTests.Targets
             var actual = _serializer.SerializeValue(o);
             Assert.Equal(expected, actual);
         }
+#endif
 
         [Fact]
         public void SerializeBool_Test()
