@@ -35,6 +35,8 @@ namespace NLog.Conditions
 {
     using System;
     using System.Globalization;
+    using System.Collections.Generic;
+    using Common;
 
     /// <summary>
     /// Condition relational (<b>==</b>, <b>!=</b>, <b>&lt;</b>, <b>&lt;=</b>,
@@ -50,9 +52,9 @@ namespace NLog.Conditions
         /// <param name="relationalOperator">The relational operator.</param>
         public ConditionRelationalExpression(ConditionExpression leftExpression, ConditionExpression rightExpression, ConditionRelationalOperator relationalOperator)
         {
-            this.LeftExpression = leftExpression;
-            this.RightExpression = rightExpression;
-            this.RelationalOperator = relationalOperator;
+            LeftExpression = leftExpression;
+            RightExpression = rightExpression;
+            RelationalOperator = relationalOperator;
         }
 
         /// <summary>
@@ -81,7 +83,7 @@ namespace NLog.Conditions
         /// </returns>
         public override string ToString()
         {
-            return "(" + this.LeftExpression + " " + this.GetOperatorString() + " " + this.RightExpression + ")";
+            return "(" + LeftExpression + " " + GetOperatorString() + " " + RightExpression + ")";
         }
 
         /// <summary>
@@ -91,10 +93,10 @@ namespace NLog.Conditions
         /// <returns>Expression result.</returns>
         protected override object EvaluateNode(LogEventInfo context)
         {
-            object v1 = this.LeftExpression.Evaluate(context);
-            object v2 = this.RightExpression.Evaluate(context);
+            object v1 = LeftExpression.Evaluate(context);
+            object v2 = RightExpression.Evaluate(context);
 
-            return Compare(v1, v2, this.RelationalOperator);
+            return Compare(v1, v2, RelationalOperator);
         }
 
         /// <summary>
@@ -132,7 +134,12 @@ namespace NLog.Conditions
                     throw new NotSupportedException("Relational operator " + relationalOperator + " is not supported.");
             }
         }
-
+        
+        /// <summary>
+        /// Promote values to the type needed for the comparision, e.g. parse a string to int.
+        /// </summary>
+        /// <param name="val1"></param>
+        /// <param name="val2"></param>
         private static void PromoteTypes(ref object val1, ref object val2)
         {
             if (val1 == null || val2 == null)
@@ -140,73 +147,166 @@ namespace NLog.Conditions
                 return;
             }
 
-            if (val1.GetType() == val2.GetType())
+            var type1 = val1.GetType();
+            var type2 = val2.GetType();
+            if (type1 == type2)
             {
                 return;
             }
 
-            if (val1 is DateTime || val2 is DateTime)
+            //types are not equal
+            var type1Order = GetOrder(type1);
+            var type2Order = GetOrder(type2);
+
+            if (type1Order < type2Order)
             {
-                val1 = Convert.ToDateTime(val1, CultureInfo.InvariantCulture);
-                val2 = Convert.ToDateTime(val2, CultureInfo.InvariantCulture);
-                return;
+                // first try promote val 2 with type 1
+                if (TryPromoteTypes(ref val2, type1, ref val1, type2)) return;
+            }
+            else
+            {
+                // first try promote val 1 with type 2
+                if (TryPromoteTypes(ref val1, type2, ref val2, type1)) return;
             }
 
-            if (val1 is string || val2 is string)
+            throw new ConditionEvaluationException("Cannot find common type for '" + type1.Name + "' and '" + type2.Name + "'.");
+        }
+        
+        /// <summary>
+        /// Promoto <paramref name="val"/> to type
+        /// </summary>
+        /// <param name="val"></param>
+        /// <param name="type1"></param>
+        /// <returns>success?</returns>
+        private static bool TryPromoteType(ref object val, Type type1)
+        {
+            try
             {
-                val1 = Convert.ToString(val1, CultureInfo.InvariantCulture);
-                val2 = Convert.ToString(val2, CultureInfo.InvariantCulture);
-                return;
-            }
+                if (type1 == typeof(DateTime))
+                {
+                    val = Convert.ToDateTime(val, CultureInfo.InvariantCulture);
+                    return true;
+                }
 
-            if (val1 is double || val2 is double)
+                if (type1 == typeof(double))
+                {
+                    val = Convert.ToDouble(val, CultureInfo.InvariantCulture);
+                    return true;
+                }
+                if (type1 == typeof(float))
+                {
+                    val = Convert.ToSingle(val, CultureInfo.InvariantCulture);
+                    return true;
+                }
+
+                if (type1 == typeof(decimal))
+                {
+                    val = Convert.ToDecimal(val, CultureInfo.InvariantCulture);
+                    return true;
+                }
+
+                if (type1 == typeof(long))
+                {
+                    val = Convert.ToInt64(val, CultureInfo.InvariantCulture);
+                    return true;
+                }
+
+                if (type1 == typeof(int))
+                {
+                    val = Convert.ToInt32(val, CultureInfo.InvariantCulture);
+                    return true;
+                }
+
+                if (type1 == typeof(bool))
+                {
+                    val = Convert.ToBoolean(val, CultureInfo.InvariantCulture);
+                    return true;
+                }
+
+                if (type1 == typeof(string))
+                {
+                    val = Convert.ToString(val, CultureInfo.InvariantCulture);
+                    InternalLogger.Debug("Using string comparision");
+                    return true;
+                }
+            }
+            catch (Exception)
             {
-                val1 = Convert.ToDouble(val1, CultureInfo.InvariantCulture);
-                val2 = Convert.ToDouble(val2, CultureInfo.InvariantCulture);
-                return;
+                InternalLogger.Debug("conversion of {0} to {1} failed", val, type1.Name);
             }
-
-            if (val1 is float || val2 is float)
-            {
-                val1 = Convert.ToSingle(val1, CultureInfo.InvariantCulture);
-                val2 = Convert.ToSingle(val2, CultureInfo.InvariantCulture);
-                return;
-            }
-
-            if (val1 is decimal || val2 is decimal)
-            {
-                val1 = Convert.ToDecimal(val1, CultureInfo.InvariantCulture);
-                val2 = Convert.ToDecimal(val2, CultureInfo.InvariantCulture);
-                return;
-            }
-
-            if (val1 is long || val2 is long)
-            {
-                val1 = Convert.ToInt64(val1, CultureInfo.InvariantCulture);
-                val2 = Convert.ToInt64(val2, CultureInfo.InvariantCulture);
-                return;
-            }
-
-            if (val1 is int || val2 is int)
-            {
-                val1 = Convert.ToInt32(val1, CultureInfo.InvariantCulture);
-                val2 = Convert.ToInt32(val2, CultureInfo.InvariantCulture);
-                return;
-            }
-
-            if (val1 is bool || val2 is bool)
-            {
-                val1 = Convert.ToBoolean(val1, CultureInfo.InvariantCulture);
-                val2 = Convert.ToBoolean(val2, CultureInfo.InvariantCulture);
-                return;
-            }
-
-            throw new ConditionEvaluationException("Cannot find common type for '" + val1.GetType().Name + "' and '" + val2.GetType().Name + "'.");
+            return false;
         }
 
+        /// <summary>
+        /// Try to promote both values. First try to promote <paramref name="val1"/> to <paramref name="type1"/>,
+        ///  when failed, try <paramref name="val2"/> to <paramref name="type2"/>.
+        /// </summary>
+        /// <returns></returns>
+        private static bool TryPromoteTypes(ref object val1, Type type1, ref object val2, Type type2)
+        {
+            if (TryPromoteType(ref val1, type1))
+            {
+                return true;
+            }
+            return TryPromoteType(ref val2, type2);
+        }
+
+        /// <summary>
+        /// Get the order for the type for comparision.
+        /// </summary>
+        /// <param name="type1"></param>
+        /// <returns>index, 0 to maxint. Lower is first</returns>
+        private static int GetOrder(Type type1)
+        {
+            int order;
+            var success = TypePromoteOrder.TryGetValue(type1, out order);
+            if (success)
+            {
+                return order;
+            }
+            //not found, try as last
+            return int.MaxValue;
+        }
+
+        /// <summary>
+        /// Dictionary from type to index. Lower index should be tested first.
+        /// </summary>
+        private static Dictionary<Type, int> TypePromoteOrder = BuildTypeOrderDictionary();
+
+        /// <summary>
+        /// Build the dictionary needed for the order of the types.
+        /// </summary>
+        /// <returns></returns>
+        private static Dictionary<Type, int> BuildTypeOrderDictionary()
+        {
+            var list = new List<Type>
+            {
+                typeof(DateTime),
+                typeof(double),
+                typeof(float),
+                typeof(decimal),
+                typeof(long),
+                typeof(int),
+                typeof(bool),
+                typeof(string),
+            };
+
+            var dict = new Dictionary<Type, int>(list.Count);
+            for (int i = 0; i < list.Count; i++)
+            {
+                dict.Add(list[i], i);
+            }
+            return dict;
+
+        }
+
+        /// <summary>
+        /// Get the string representing the current <see cref="ConditionRelationalOperator"/>
+        /// </summary>
+        /// <returns></returns>
         private string GetOperatorString()
         {
-            switch (this.RelationalOperator)
+            switch (RelationalOperator)
             {
                 case ConditionRelationalOperator.Equal:
                     return "==";
@@ -227,7 +327,7 @@ namespace NLog.Conditions
                     return "<=";
 
                 default:
-                    throw new NotSupportedException("Relational operator " + this.RelationalOperator + " is not supported.");
+                    throw new NotSupportedException("Relational operator " + RelationalOperator + " is not supported.");
             }
         }
     }

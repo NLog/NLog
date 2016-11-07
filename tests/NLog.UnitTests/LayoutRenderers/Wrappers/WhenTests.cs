@@ -178,5 +178,28 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
           
         }
 
+
+        [Fact]
+        public void WhenNumericAndPropertyConditionTest()
+        {
+            //else cannot be invoked ambiently. First param is inner
+            SimpleLayout l = @"${when:when=100 < '${event-properties:item=Elapsed}':inner=Slow:else=Fast}";
+
+//            WhenNumericAndPropertyConditionTest_inner(l, "a", false);
+            WhenNumericAndPropertyConditionTest_inner(l, 101, false);
+            WhenNumericAndPropertyConditionTest_inner(l, 11, true);
+            WhenNumericAndPropertyConditionTest_inner(l, 100, true);
+            WhenNumericAndPropertyConditionTest_inner(l, 1, true);
+            WhenNumericAndPropertyConditionTest_inner(l, 2, true);
+            WhenNumericAndPropertyConditionTest_inner(l, 20, true);
+            WhenNumericAndPropertyConditionTest_inner(l, 100000, false);
+        }
+
+        private static void WhenNumericAndPropertyConditionTest_inner(SimpleLayout l, object time, bool fast)
+        {
+            var le = LogEventInfo.Create(LogLevel.Debug, "logger", "message");
+            le.Properties["Elapsed"] = time;
+            Assert.Equal(fast ? "Fast" : "Slow", l.Render(le));
+        }
     }
 }
