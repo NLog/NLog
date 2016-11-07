@@ -453,17 +453,20 @@ namespace NLog.Config
         /// <param name="rootContentElement">Root NLog configuration xml element</param>
         private void CheckParsingErrors(NLogXmlElement rootContentElement)
         {
-            var parsingErrors = rootContentElement.GetParsingErrors();
-            if(!string.IsNullOrEmpty(parsingErrors))
+            var parsingErrors = rootContentElement.GetParsingErrors().ToArray();
+            if(!parsingErrors.Any())
             {
                 if (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
                 {
-                    throw new NLogConfigurationException(parsingErrors);
+                    string exceptionMessage = string.Join(Environment.NewLine, parsingErrors);
+                    throw new NLogConfigurationException(exceptionMessage);
                 }
                 else
                 {
-                    InternalLogger.Log(LogLevel.Warn, parsingErrors);
-
+                    foreach (var parsingError in parsingErrors)
+                    {
+                        InternalLogger.Log(LogLevel.Warn, parsingError);
+                    }
                 }
             }
         }

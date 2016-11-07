@@ -222,20 +222,9 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Returns all errors occured during xml parsing.
-        /// If there is no errors - returns null.
-        /// </summary>
-        public string GetParsingErrors()
-        {
-            var errors = GetParsingErrorsInternal().ToArray();
-            if (errors.Length == 0) return null;
-            return string.Join(Environment.NewLine, errors);
-        }
-
-        /// <summary>
         /// Returns all parsing errors from current and all child elements.
         /// </summary>
-        private IEnumerable<string> GetParsingErrorsInternal()
+        public IEnumerable<string> GetParsingErrors()
         {
             foreach (var parsingError in _parsingErrors)
             {
@@ -244,7 +233,7 @@ namespace NLog.Config
 
             foreach (var childElement in this.Children)
             {
-                foreach (var parsingError in childElement.GetParsingErrorsInternal())
+                foreach (var parsingError in childElement.GetParsingErrors())
                 {
                     yield return parsingError;
                 }
