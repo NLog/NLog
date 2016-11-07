@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <example>
     /// ${uppercase:${level}} //[DefaultParameter]
     /// ${uppercase:Inner=${level}} 
-    /// ${level:uppercase} // [AmbientProperty]
+    /// ${level:uppercase=true} // [AmbientProperty]
     /// </example>
     [LayoutRenderer("uppercase")]
     [AmbientProperty("Uppercase")]
