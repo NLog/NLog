@@ -238,7 +238,7 @@ namespace NLog.Config
                     yield return parsingError;
                 }
             }
-        } 
+        }
 
         private void Parse(XmlReader reader)
         {
@@ -262,7 +262,7 @@ namespace NLog.Config
                 while (reader.MoveToNextAttribute());
                 reader.MoveToElement();
             }
-            
+
             this.LocalName = reader.LocalName;
 
             if (!reader.IsEmptyElement)

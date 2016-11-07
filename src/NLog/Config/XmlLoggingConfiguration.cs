@@ -454,7 +454,7 @@ namespace NLog.Config
         private void CheckParsingErrors(NLogXmlElement rootContentElement)
         {
             var parsingErrors = rootContentElement.GetParsingErrors().ToArray();
-            if(!parsingErrors.Any())
+            if(parsingErrors.Any())
             {
                 if (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
                 {
