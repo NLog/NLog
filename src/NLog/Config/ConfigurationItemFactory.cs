@@ -63,7 +63,7 @@ namespace NLog.Config
         private readonly MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute> conditionMethods;
         private readonly Factory<LayoutRenderer, AmbientPropertyAttribute> ambientProperties;
         private readonly Factory<TimeSource, TimeSourceAttribute> timeSources;
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfigurationItemFactory"/> class.
         /// </summary>
@@ -255,40 +255,52 @@ namespace NLog.Config
                 return factory;
             }
 
-            var extensionDlls = Directory.GetFiles(assemblyLocation, "NLog*.dll")
-                .Select(Path.GetFileName)
-                .Where(x => !x.Equals("NLog.dll", StringComparison.OrdinalIgnoreCase))
-                .Where(x => !x.Equals("NLog.UnitTests.dll", StringComparison.OrdinalIgnoreCase))
-                .Where(x => !x.Equals("NLog.Extended.dll", StringComparison.OrdinalIgnoreCase))
-                .Select(x => Path.Combine(assemblyLocation, x));
-
-            InternalLogger.Debug("Start auto loading, location: {0}", assemblyLocation);
-            foreach (var extensionDll in extensionDlls)
+            try
             {
-                InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
-                var success = false;
-                try
+
+                var extensionDlls = Directory.GetFiles(assemblyLocation, "NLog*.dll")
+                    .Select(Path.GetFileName)
+                    .Where(x => !x.Equals("NLog.dll", StringComparison.OrdinalIgnoreCase))
+                    .Where(x => !x.Equals("NLog.UnitTests.dll", StringComparison.OrdinalIgnoreCase))
+                    .Where(x => !x.Equals("NLog.Extended.dll", StringComparison.OrdinalIgnoreCase))
+                    .Select(x => Path.Combine(assemblyLocation, x));
+
+                InternalLogger.Debug("Start auto loading, location: {0}", assemblyLocation);
+                foreach (var extensionDll in extensionDlls)
                 {
-                    var extensionAssembly = Assembly.LoadFrom(extensionDll);
-                    InternalLogger.LogAssemblyVersion(extensionAssembly);
-                    factory.RegisterItemsFromAssembly(extensionAssembly);
-                    success = true;
-                }
-                catch (Exception ex)
-                {
-                    if (ex.MustBeRethrownImmediately())
+                    InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
+                    var success = false;
+                    try
                     {
-                        throw;
+                        var extensionAssembly = Assembly.LoadFrom(extensionDll);
+                        InternalLogger.LogAssemblyVersion(extensionAssembly);
+                        factory.RegisterItemsFromAssembly(extensionAssembly);
+                        success = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex.MustBeRethrownImmediately())
+                        {
+                            throw;
+                        }
+
+                        InternalLogger.Warn(ex, "Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
+                        //TODO NLog 5, check MustBeRethrown()
+                    }
+                    if (success)
+                    {
+                        InternalLogger.Info("Auto loading assembly file: {0} succeeded!", extensionDll);
                     }
 
-                    InternalLogger.Warn(ex, "Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
-                    //TODO NLog 5, check MustBeRethrown()
                 }
-                if (success)
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                InternalLogger.Warn(ex, "Seems that we do not have permission");
+                if (ex.MustBeRethrown())
                 {
-                    InternalLogger.Info("Auto loading assembly file: {0} succeeded!", extensionDll);
+                    throw;
                 }
-
             }
             InternalLogger.Debug("Auto loading done");
 #endif
