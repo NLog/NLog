@@ -38,11 +38,6 @@ namespace NLog.Common
     /// </summary>
     public struct AsyncLogEventInfo
     {
-#if DEBUG
-        static private int _chainIndex;
-        internal static int GenerateChainIndex() { return System.Threading.Interlocked.Increment(ref _chainIndex); }
-#endif
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AsyncLogEventInfo"/> struct.
         /// </summary>
@@ -56,22 +51,6 @@ namespace NLog.Common
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="logEvent"></param>
-        /// <param name="continuation"></param>
-        /// <param name="chainIndex"></param>
-        public AsyncLogEventInfo(LogEventInfo logEvent, AsyncContinuation continuation, int chainIndex)
-            : this(logEvent, continuation)
-        {
-#if DEBUG
-            this.ChainIndex = chainIndex;
-            this.LogEventSeqNo = logEvent.SequenceID;
-#endif
-        }
-
-
-        /// <summary>
         /// Gets the log event.
         /// </summary>
         public LogEventInfo LogEvent { get; private set; }
@@ -80,11 +59,6 @@ namespace NLog.Common
         /// Gets the continuation.
         /// </summary>
         public AsyncContinuation Continuation { get; internal set; }
-
-#if DEBUG
-        internal int ChainIndex { get; private set; }
-        internal int LogEventSeqNo { get; private set; }
-#endif
 
         /// <summary>
         /// Implements the operator ==.

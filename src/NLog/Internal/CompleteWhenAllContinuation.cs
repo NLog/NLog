@@ -45,9 +45,7 @@ namespace NLog.Internal
     internal class CompleteWhenAllContinuation : PoolFactory.IPoolObject
     {
         public readonly AsyncContinuation Delegate;
-#if DEBUG
-        private readonly List<Tuple<int, int, AsyncContinuation>> _activeChains = new List<Tuple<int, int, AsyncContinuation>>();
-#endif
+
         private PoolFactory.ILogEventObjectFactory _owner;
         object PoolFactory.IPoolObject.Owner { get { return _owner; } set { _owner = (PoolFactory.ILogEventObjectFactory)value; } }
 
@@ -68,76 +66,22 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// 
+        /// Registers 
         /// </summary>
         /// <param name="originalContinuation"></param>
         /// <param name="whenAllDone">The final continuation when all are completed</param>
-        /// <param name="chainIndex"></param>
-        /// <param name="logEventSeqNo"></param>
         /// <returns></returns>
-        public AsyncContinuation StartContinuationChain(AsyncContinuation originalContinuation, AsyncContinuation whenAllDone, int chainIndex, int logEventSeqNo)
+        public AsyncContinuation CreateContinuation(AsyncContinuation originalContinuation, AsyncContinuation whenAllDone)
         {
             if (this.originalContinuation != null && !ReferenceEquals(this.originalContinuation, originalContinuation))
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("Cannot change the initial Continuation");
 
             BeginTargetWrite();
 
             this.originalContinuation = originalContinuation;
             this.completedContinuation = whenAllDone;
 
-#if DEBUG
-            lock (_activeChains)
-            {
-                _activeChains.Add(new Tuple<int, int, AsyncContinuation>(chainIndex, logEventSeqNo, this.Delegate));
-            }
-
-            return (ex) =>
-            {
-                int chainPosition = -1;
-
-                for (int i = 0; i < _activeChains.Count; ++i)
-                {
-                    if (_activeChains[i].Item1 == chainIndex)
-                    {
-                        chainPosition = i;
-                        break;
-                    }
-                }
-
-                if (chainPosition == -1)
-                    throw new InvalidOperationException();
-
-                _activeChains[chainPosition] = new Tuple<int, int, AsyncContinuation>(chainIndex, logEventSeqNo, null);
-                this.Delegate(ex);
-            };
-#else
             return this.Delegate;
-#endif
-        }
-
-        // When sending a LogEvent to a target, then we want to have it like this
-        //  - Async-Cont = Release-Handler-Pool -> Exception-Handler
-        public AsyncContinuation WithContinuationChain(int chainIndex, AsyncContinuation first)
-        {
-#if DEBUG
-            if (chainIndex == 0)
-                throw new InvalidOperationException();
-
-            int chainPosition = -1;
-            for (int i = 0; i < _activeChains.Count; ++i)
-            {
-                if (ReferenceEquals(_activeChains[i].Item3, first) && chainPosition != -1)
-                    throw new InvalidOperationException();
-                if (_activeChains[i].Item1 == chainIndex)
-                    chainPosition = i;
-            }
-            if (chainPosition == -1)
-                throw new InvalidOperationException();
-
-            var oldChain = _activeChains[chainPosition];
-            _activeChains[chainPosition] = new Tuple<int, int, AsyncContinuation>(oldChain.Item1, oldChain.Item2, null);
-#endif
-            return first;
         }
 
         public void BeginTargetWrite()
@@ -149,15 +93,10 @@ namespace NLog.Internal
         {
             int finalResult = this.remainingCounter.Decrement();
             if (finalResult < 0)
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("Remaining count has become negative");
 
             if (finalResult == 0)
             {
-#if DEBUG
-                for (int i = 0; i < _activeChains.Count; ++i)
-                    if (_activeChains[i].Item3 != null)
-                        throw new InvalidOperationException();
-#endif
                 this.completedContinuation(ex);
             }
 
@@ -179,15 +118,6 @@ namespace NLog.Internal
 
         public void Clear()
         {
-#if DEBUG
-            for (int i = 0; i < _activeChains.Count; ++i)
-            {
-                if (_activeChains[i].Item3 != null)
-                    throw new InvalidOperationException();
-            }
-            lock(_activeChains)
-                _activeChains.Clear();
-#endif
             this.remainingCounter = null;
             this.originalContinuation = null;
             this.completedContinuation = null;

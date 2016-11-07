@@ -533,7 +533,7 @@ namespace NLog.UnitTests
                 {
                     Interlocked.Add(ref sum, 1);
                 };
-                ThreadPool.QueueUserWorkItem(o => new AsyncContinuation(new SingleCallContinuation(finalContinuation, 0).Function).Invoke(null));
+                ThreadPool.QueueUserWorkItem(o => new AsyncContinuation(new SingleCallContinuation(finalContinuation).Function).Invoke(null));
             }
 
             finalContinuationInvoked.WaitOne();
