@@ -199,7 +199,14 @@ namespace NLog.LayoutRenderers
 
                     var currentRenderFunction = _renderingfunctions[renderingFormat];
 
-                    currentRenderFunction(sb2, logEvent.Exception);
+                    if (logEvent.Exception != null)
+                    {
+                        currentRenderFunction(sb2, logEvent.Exception);
+                    }
+                    else
+                    {
+                        InternalLogger.Debug("Skipping rendering exception as exception is null");
+                    }
 
                     separator = this.Separator;
                 }
