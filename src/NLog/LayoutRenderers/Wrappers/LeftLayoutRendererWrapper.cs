@@ -33,54 +33,52 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
     using System.ComponentModel;
-    using System.Globalization;
     using NLog.Config;
 
     /// <summary>
-    /// Converts the result of another layout output to upper case.
+    /// Take the left characters
     /// </summary>
     /// <example>
-    /// ${uppercase:${level}} //[DefaultParameter]
-    /// ${uppercase:Inner=${level}} 
-    /// ${level:uppercase=true} // [AmbientProperty]
+    /// ${left:${level}:Length=2} //[DefaultParameter]
+    /// ${left:Inner=${level}:Length=2} 
+    /// ${level:Length=2} //[ambient] 
     /// </example>
-    [LayoutRenderer("uppercase")]
-    [AmbientProperty("Uppercase")]
+    [LayoutRenderer("left")]
+    [AmbientProperty("Left")]
     [ThreadAgnostic]
-    public sealed class UppercaseLayoutRendererWrapper : WrapperLayoutRendererBase
+    public sealed class LeftLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UppercaseLayoutRendererWrapper" /> class.
+        /// Gets or sets the length in characters. 
         /// </summary>
-        public UppercaseLayoutRendererWrapper()
-        {
-            this.Culture = CultureInfo.InvariantCulture;
-            this.Uppercase = true;
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether upper case conversion should be applied.
-        /// </summary>
-        /// <value>A value of <c>true</c> if upper case conversion should be applied otherwise, <c>false</c>.</value>
+        /// <value>Index</value>
         /// <docgen category='Transformation Options' order='10' />
-        [DefaultValue(true)]
-        public bool Uppercase { get; set; }
-
-        /// <summary>
-        /// Gets or sets the culture used for rendering. 
-        /// </summary>
-        /// <docgen category='Transformation Options' order='10' />
-        public CultureInfo Culture { get; set; }
+        [DefaultValue(1)]
+        public int Length { get; set; }
 
         /// <summary>
         /// Post-processes the rendered message. 
         /// </summary>
         /// <param name="text">The text to be post-processed.</param>
-        /// <returns>Padded and trimmed string.</returns>
+        /// <returns>Substringed</returns>
         protected override string Transform(string text)
         {
-            return this.Uppercase ? text.ToUpper(this.Culture) : text;
+            if (text == null)
+            {
+                return null;
+            }
+
+            if (Length <= 0)
+            {
+                return String.Empty;
+            }
+
+            return text.Substring(0, Length);
+
+            ConfigurationItemFactory.Default.L
         }
+
     }
 }

@@ -31,56 +31,74 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
     using System.ComponentModel;
-    using System.Globalization;
     using NLog.Config;
 
     /// <summary>
-    /// Converts the result of another layout output to upper case.
+    /// Substring the result
     /// </summary>
+    /// <remarks>
+    /// Same behavior as <see cref="string.Substring(int)"/> / <see cref="string.Substring(int, int)"/></remarks>
     /// <example>
-    /// ${uppercase:${level}} //[DefaultParameter]
-    /// ${uppercase:Inner=${level}} 
-    /// ${level:uppercase=true} // [AmbientProperty]
+    /// ${substring:${level}:Start=2:Length=2} //[DefaultParameter]
+    /// ${substring:Inner=${level}:Start=2:Length=2} 
     /// </example>
-    [LayoutRenderer("uppercase")]
-    [AmbientProperty("Uppercase")]
+    [LayoutRenderer("substring")]
+    [AmbientProperty("Substring")]
     [ThreadAgnostic]
-    public sealed class UppercaseLayoutRendererWrapper : WrapperLayoutRendererBase
+    public sealed class SubstringLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UppercaseLayoutRendererWrapper" /> class.
         /// </summary>
-        public UppercaseLayoutRendererWrapper()
+        public SubstringLayoutRendererWrapper()
         {
-            this.Culture = CultureInfo.InvariantCulture;
-            this.Uppercase = true;
+            Start = 0;
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether upper case conversion should be applied.
+        /// Gets or sets the start index. 
         /// </summary>
-        /// <value>A value of <c>true</c> if upper case conversion should be applied otherwise, <c>false</c>.</value>
+        /// <value>Index</value>
         /// <docgen category='Transformation Options' order='10' />
-        [DefaultValue(true)]
-        public bool Uppercase { get; set; }
+        [DefaultValue(0)]
+        public int Start { get; set; }
 
         /// <summary>
-        /// Gets or sets the culture used for rendering. 
+        /// Gets or sets the length in characters. If <c>null</c>, then the whole string
         /// </summary>
+        /// <value>Index</value>
         /// <docgen category='Transformation Options' order='10' />
-        public CultureInfo Culture { get; set; }
+        [DefaultValue(null)]
+        public int? Length { get; set; }
 
         /// <summary>
         /// Post-processes the rendered message. 
         /// </summary>
         /// <param name="text">The text to be post-processed.</param>
-        /// <returns>Padded and trimmed string.</returns>
+        /// <returns>Substringed.</returns>
         protected override string Transform(string text)
         {
-            return this.Uppercase ? text.ToUpper(this.Culture) : text;
+            if (text == null)
+            {
+                return null;
+            }
+
+            if (Length <= 0)
+            {
+                return String.Empty;
+            }
+
+            if (Length.HasValue)
+            {
+                return text.Substring(Start, Length.Value);
+            }
+            return text.Substring(Start);
         }
     }
 }
