@@ -268,6 +268,8 @@ namespace NLog.Targets
         protected override void Write(AsyncLogEventInfo logEvent)
         {
             string address = this.Address.Render(logEvent.LogEvent);
+            InternalLogger.Trace("Sending to address:  '{0}'", address);
+
             byte[] bytes = this.GetBytesToWrite(logEvent.LogEvent);
 
             if (this.KeepConnection)
@@ -351,8 +353,8 @@ namespace NLog.Targets
 
                         sender.Close(ex2 => { });
                         logEvent.Continuation(ex);
-                });
-                
+                    });
+
             }
         }
 
@@ -382,13 +384,16 @@ namespace NLog.Targets
         {
             string text;
 
+            var rendered = this.Layout.Render(logEvent);
+            InternalLogger.Trace("Sending: {0}", rendered);
+
             if (this.NewLine)
             {
-                text = this.Layout.Render(logEvent) + this.LineEnding.NewLineCharacters;
+                text = rendered + this.LineEnding.NewLineCharacters;
             }
             else
             {
-                text = this.Layout.Render(logEvent);
+                text = rendered;
             }
 
             return this.Encoding.GetBytes(text);
@@ -448,8 +453,8 @@ namespace NLog.Targets
                 var networkSender = senderNode.Value;
                 lock (this.openNetworkSenders)
                 {
-                    
-                    if(TryRemove(this.openNetworkSenders,senderNode))
+
+                    if (TryRemove(this.openNetworkSenders, senderNode))
                     {
                         // only remove it once
                         networkSender.Close(ex => { });
@@ -477,14 +482,17 @@ namespace NLog.Targets
 
             AsyncContinuation sendNextChunk = null;
 
+           
+
             sendNextChunk = ex =>
                 {
+                  
                     if (ex != null)
                     {
                         continuation(ex);
                         return;
                     }
-
+                    InternalLogger.Trace("Sending chunk, position: {0}, length: {1}", pos, tosend);
                     if (tosend <= 0)
                     {
                         continuation(null);
@@ -496,6 +504,7 @@ namespace NLog.Targets
                     {
                         if (this.OnOverflow == NetworkTargetOverflowAction.Discard)
                         {
+                            InternalLogger.Trace("discard because chunksize > this.MaxMessageSize");
                             continuation(null);
                             return;
                         }
