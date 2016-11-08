@@ -38,9 +38,9 @@ namespace NLog.LayoutRenderers
     using System;
     using System.ComponentModel;
     using System.Diagnostics;
-    using System.Globalization;
     using System.Reflection;
     using System.Text;
+    using NLog.Common;
     using NLog.Config;
 
     /// <summary>
@@ -52,6 +52,8 @@ namespace NLog.LayoutRenderers
         private Process process;
 
         private PropertyInfo propertyInfo;
+
+        private MethodInfo propertyToString;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProcessInfoLayoutRenderer" /> class.
@@ -69,6 +71,12 @@ namespace NLog.LayoutRenderers
         public ProcessInfoProperty Property { get; set; }
 
         /// <summary>
+        /// Gets or sets the format-string to use if the property supports it (Ex. DateTime / TimeSpan / Enum)
+        /// </summary>
+        [DefaultValue(null), DefaultParameter]
+        public string Format { get; set; }
+
+        /// <summary>
         /// Initializes the layout renderer.
         /// </summary>
         protected override void InitializeLayoutRenderer()
@@ -81,6 +89,19 @@ namespace NLog.LayoutRenderers
             }
 
             this.process = Process.GetCurrentProcess();
+
+            if (!string.IsNullOrEmpty(Format))
+            {
+                object value = this.propertyInfo.GetValue(this.process, null);
+                if (value != null)
+                {
+                    propertyToString = value.GetType().GetMethod("ToString", new[] { typeof(string), typeof(IFormatProvider) });
+                    if (propertyToString == null)
+                    {
+                        InternalLogger.Info("Layout {processinfo} property {0} does not support formatting {1}", this.propertyInfo, Format);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -107,7 +128,11 @@ namespace NLog.LayoutRenderers
             if (this.propertyInfo != null)
             {
                 var formatProvider = GetFormatProvider(logEvent);
-                builder.Append(Convert.ToString(this.propertyInfo.GetValue(this.process, null), formatProvider));
+                var value = this.propertyInfo.GetValue(this.process, null);
+                if (value != null && this.propertyToString != null)
+                    builder.Append(this.propertyToString.Invoke(value, new object[] { this.Format, formatProvider }));
+                else
+                    builder.Append(Convert.ToString(value, formatProvider));
             }
         }
     }
