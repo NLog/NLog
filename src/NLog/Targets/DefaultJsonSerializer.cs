@@ -58,19 +58,19 @@ namespace NLog.Targets
                     typeof(decimal),
             };
 
-        private static readonly DefaultJsonSerializer _instance;
+        private static readonly DefaultJsonSerializer instance;
 
         /// <summary>
         /// Singleton instance of the serializer.
         /// </summary>
         public static DefaultJsonSerializer Instance
         {
-            get { return _instance; }
+            get { return instance; }
         }
 
         static DefaultJsonSerializer()
         {
-            _instance = new DefaultJsonSerializer();
+            instance = new DefaultJsonSerializer();
         }
 
         private DefaultJsonSerializer()
@@ -94,7 +94,7 @@ namespace NLog.Targets
             }
             else if ((str = value as string) != null)
             {
-                return string.Format("\"{0}\"", escapeString(str));
+                return string.Format("\"{0}\"", EscapeString(str));
             }
             else if ((dict = value as IDictionary) != null)
             {
@@ -141,7 +141,7 @@ namespace NLog.Targets
              }
         }
 
-        private static string escapeString(string str)
+        private static string EscapeString(string str)
         {
             return str.Replace("\\", "\\\\")
                 .Replace("\"", "\\\"")

@@ -64,7 +64,7 @@ namespace NLog.Config
         private readonly Factory<LayoutRenderer, AmbientPropertyAttribute> ambientProperties;
         private readonly Factory<TimeSource, TimeSourceAttribute> timeSources;
 
-        private ICompactJsonSerializer _jsonSerializer = null;
+        private ICompactJsonSerializer jsonSerializer = DefaultJsonSerializer.Instance;
         
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfigurationItemFactory"/> class.
@@ -115,48 +115,13 @@ namespace NLog.Config
             set { defaultInstance = value; }
         }
 
-        private ConfigurationItemCreator _instanceCreator { get; set; }
-
-
-        private object doCreateInstance(Type type)
-        {
-            var o = _instanceCreator(type);
-            if(o != null)
-            {
-                InterceptCreation(type, o);
-            }
-            return o;
-        }
-
-        /// <summary>
-        /// Called after an object has been successfully instantiated by factory method in <see cref="CreateInstance"/>.
-        /// May be used to inject further objects/dependencies.
-        /// </summary>
-        /// <param name="requestedType">Requested type to instantiate originally.</param>
-        /// <param name="createdInstance">The created instance. Is never <c>null</c>.</param>
-        protected virtual void InterceptCreation(Type requestedType, object createdInstance)
-        {
-            var wst = createdInstance as WebServiceTarget;
-            if(wst != null)
-            {
-                if(_jsonSerializer != null)
-                {
-                    wst.SetJsonSerializer(_jsonSerializer);
-                }
-            }
-        }
-
         /// <summary>
         /// Gets or sets the creator delegate used to instantiate configuration objects.
         /// </summary>
         /// <remarks>
         /// By overriding this property, one can enable dependency injection or interception for created objects.
         /// </remarks>
-        public ConfigurationItemCreator CreateInstance
-        {
-            get { return doCreateInstance; }
-            set { _instanceCreator = value ?? FactoryHelper.CreateInstance; }
-        }
+        public ConfigurationItemCreator CreateInstance { get; set; }
 
         /// <summary>
         /// Gets the <see cref="Target"/> factory.
@@ -201,6 +166,15 @@ namespace NLog.Config
         public INamedItemFactory<LayoutRenderer, Type> AmbientProperties
         {
             get { return this.ambientProperties; }
+        }
+
+        /// <summary>
+        /// Gets or sets the JSON serializer to use with <see cref="WebServiceTarget"/>.
+        /// </summary>
+        public ICompactJsonSerializer JsonSerializer
+        {
+            get { return jsonSerializer; }
+            set { jsonSerializer = value ?? DefaultJsonSerializer.Instance; }
         }
 
         /// <summary>
@@ -267,17 +241,6 @@ namespace NLog.Config
             {
                 f.RegisterType(type, itemNamePrefix);
             }
-        }
-
-
-
-        /// <summary>
-        /// Sets the json serializer to use for <see cref="WebServiceTarget.JsonSerializer"/>
-        /// </summary>
-        /// <param name="serializer">The conmpact JSON serializer.</param>
-        public void SetJsonSerializer(ICompactJsonSerializer serializer)
-        {
-            _jsonSerializer = serializer;
         }
 
         /// <summary>

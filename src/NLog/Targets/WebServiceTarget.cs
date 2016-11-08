@@ -46,7 +46,7 @@ namespace NLog.Targets
     using NLog.Common;
     using NLog.Internal;
     using NLog.Layouts;
-
+    using Config;
     /// <summary>
     /// Calls the specified web service on each log message.
     /// </summary>
@@ -88,8 +88,8 @@ namespace NLog.Targets
                 { WebServiceProtocol.Soap11, t => new HttpPostSoap11Formatter(t)},
                 { WebServiceProtocol.Soap12, t => new HttpPostSoap12Formatter(t)},
                 { WebServiceProtocol.HttpPost, t => new HttpPostFormEncodedFormatter(t)},
-                { WebServiceProtocol.Json, t => new HttpPostJsonFormatter(t)},
-                { WebServiceProtocol.Xml, t => new HttpPostXmlDocumentFormatter(t)},
+                { WebServiceProtocol.JsonPost, t => new HttpPostJsonFormatter(t)},
+                { WebServiceProtocol.XmlPost, t => new HttpPostXmlDocumentFormatter(t)},
             };
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace NLog.Targets
         /// Gets or sets the name of the root XML element,
         /// if POST of XML document chosen.
         /// If so, this property must not be <c>null</c>.
-        /// (see <see cref="Protocol"/> and <see cref="WebServiceProtocol.Xml"/>).
+        /// (see <see cref="Protocol"/> and <see cref="WebServiceProtocol.XmlPost"/>).
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
         public string XmlRoot { get; set; }
@@ -164,7 +164,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the (optional) root namespace of the XML document,
         /// if POST of XML document chosen.
-        /// (see <see cref="Protocol"/> and <see cref="WebServiceProtocol.Xml"/>).
+        /// (see <see cref="Protocol"/> and <see cref="WebServiceProtocol.XmlPost"/>).
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
         public string XmlRootNamespace { get; set; }
@@ -179,30 +179,6 @@ namespace NLog.Targets
             // method is not used, instead asynchronous overload will be used
             throw new NotImplementedException();
         }
-
-        private ICompactJsonSerializer _jsonSerializer = DefaultJsonSerializer.Instance;
-
-        /// <summary>
-        /// JSON serializer, that will be used for JSON serialization.
-        /// </summary>
-        private ICompactJsonSerializer JsonSerializer
-        {
-            get
-            {
-                if (_jsonSerializer == null) _jsonSerializer =  DefaultJsonSerializer.Instance;
-                return _jsonSerializer;
-            }
-        }
-
-        /// <summary>
-        /// Sets the JSON serializer, that will be used for JSON serialization.
-        /// </summary>
-        /// <param name="serializer">The serializer to use for HTTP POST of JSON documents.</param>
-        public void SetJsonSerializer(ICompactJsonSerializer serializer)
-        {
-            _jsonSerializer = serializer;
-        }
-
 
         /// <summary>
         /// Invokes the web service method.
@@ -463,12 +439,12 @@ namespace NLog.Targets
             {
                 return string.Format("\"{0}\":{1}",
                     parameter.Name,
-                    getJsonValueString(value));
+                    GetJsonValueString(value));
             }
 
-            private string getJsonValueString(object value)
+            private string GetJsonValueString(object value)
             {
-                return Target.JsonSerializer.SerializeValue(value);
+                return ConfigurationItemFactory.Default.JsonSerializer.SerializeValue(value);
             }
         }
 

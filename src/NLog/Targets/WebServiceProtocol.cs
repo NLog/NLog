@@ -61,11 +61,11 @@ namespace NLog.Targets
         /// <summary>
         /// Do an HTTP POST of a JSON document.
         /// </summary>
-        Json,
+        JsonPost,
 
         /// <summary>
         /// Do an HTTP POST of an XML document.
         /// </summary>
-        Xml
+        XmlPost
     }
 }

@@ -428,7 +428,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
 
         /// <summary>
-        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.Json"/>
+        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.JsonPost"/>
         /// </summary>
         [Fact]
         public void WebserviceTest_restapi_json()
@@ -475,7 +475,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
 
         /// <summary>
-        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.Xml"/> 
+        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.XmlPost"/> 
         /// </summary>
         [Fact]
         public void WebserviceTest_restapi_xml()
