@@ -53,8 +53,6 @@ namespace NLog.LayoutRenderers
 
         private PropertyInfo propertyInfo;
 
-        private MethodInfo propertyToString;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ProcessInfoLayoutRenderer" /> class.
         /// </summary>
@@ -89,19 +87,6 @@ namespace NLog.LayoutRenderers
             }
 
             this.process = Process.GetCurrentProcess();
-
-            if (!string.IsNullOrEmpty(Format))
-            {
-                object value = this.propertyInfo.GetValue(this.process, null);
-                if (value != null)
-                {
-                    propertyToString = value.GetType().GetMethod("ToString", new[] { typeof(string), typeof(IFormatProvider) });
-                    if (propertyToString == null)
-                    {
-                        InternalLogger.Info("Layout {processinfo} property {0} does not support formatting {1}", this.propertyInfo, Format);
-                    }
-                }
-            }
         }
 
         /// <summary>
@@ -129,8 +114,8 @@ namespace NLog.LayoutRenderers
             {
                 var formatProvider = GetFormatProvider(logEvent);
                 var value = this.propertyInfo.GetValue(this.process, null);
-                if (value != null && this.propertyToString != null)
-                    builder.Append(this.propertyToString.Invoke(value, new object[] { this.Format, formatProvider }));
+                if (value != null && this.Format != null)
+                    builder.Append(Internal.FormatHelper.ToStringWithOptionalFormat(value, this.Format, formatProvider));
                 else
                     builder.Append(Convert.ToString(value, formatProvider));
             }
