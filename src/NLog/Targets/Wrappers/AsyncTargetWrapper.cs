@@ -306,6 +306,29 @@ namespace NLog.Targets.Wrappers
                 StartInstantWriterTimer();
         }
 
+        /// <summary>
+        /// Write to queue without locking <see cref="Target.SyncRoot"/> 
+        /// </summary>
+        /// <param name="logEvent"></param>
+        protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
+        {
+            try
+            {
+                this.Write(logEvent);
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                logEvent.Continuation(exception);
+            }
+        }
+
+        private static readonly AsyncContinuation[] noFlushNullContinuationArray = new AsyncContinuation[] { null };
+
         private void ProcessPendingEvents(object state)
         {
             bool? wroteFullBatchSize = false;
@@ -324,7 +347,7 @@ namespace NLog.Targets.Wrappers
                 {
                     continuations = this.flushAllContinuations.Count > 0
                         ? this.flushAllContinuations.ToArray()
-                        : new AsyncContinuation[] { null };
+                        : noFlushNullContinuationArray;
                     this.flushAllContinuations.Clear();
                 }
 

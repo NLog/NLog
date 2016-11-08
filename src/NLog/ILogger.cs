@@ -139,6 +139,13 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        void Trace(Exception exception, [Localizable(false)] string message);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Trace</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
         /// <param name="args">Arguments to format.</param>
         [StringFormatMethod("message")]
         void Trace(Exception exception, [Localizable(false)] string message, params object[] args);
@@ -288,6 +295,13 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead.")]
         void DebugException([Localizable(false)] string message, Exception exception);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Debug</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        void Debug(Exception exception, [Localizable(false)] string message);
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Debug</c> level.
@@ -449,6 +463,13 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        void Info(Exception exception, [Localizable(false)] string message);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Info</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
         /// <param name="args">Arguments to format.</param>
         [StringFormatMethod("message")]
         void Info(Exception exception, [Localizable(false)] string message, params object[] args);
@@ -598,6 +619,13 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead.")]
         void WarnException([Localizable(false)] string message, Exception exception);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Warn</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        void Warn(Exception exception, [Localizable(false)] string message);
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Warn</c> level.
@@ -759,6 +787,13 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        void Error(Exception exception, [Localizable(false)] string message);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Error</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
         /// <param name="args">Arguments to format.</param>
         [StringFormatMethod("message")]
         void Error(Exception exception, [Localizable(false)] string message, params object[] args);
@@ -909,6 +944,13 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead.")]
         void FatalException([Localizable(false)] string message, Exception exception);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Fatal</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        void Fatal(Exception exception, [Localizable(false)] string message);
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Fatal</c> level.

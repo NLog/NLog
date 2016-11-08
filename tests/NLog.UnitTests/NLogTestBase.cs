@@ -40,7 +40,7 @@ namespace NLog.UnitTests
     using NLog.Common;
     using System.IO;
     using System.Text;
-
+    using System.Globalization;
     using NLog.Layouts;
     using NLog.Config;
     using NLog.Targets;
@@ -352,6 +352,24 @@ namespace NLog.UnitTests
             action();
 
             return stringWriter.ToString();
+        }
+
+        /// <summary>
+        /// Creates <see cref="CultureInfo"/> instance for test purposes
+        /// </summary>
+        /// <param name="cultureName">Culture name to create</param>
+        /// <remarks>
+        /// Creates <see cref="CultureInfo"/> instance with non-userOverride
+        /// flag to provide expected results when running tests in different
+        /// system cultures(with overriden culture options)
+        /// </remarks>
+        protected static CultureInfo GetCultureInfo(string cultureName)
+        {
+#if SILVERLIGHT
+            return new CultureInfo(cultureName);
+#else
+            return new CultureInfo(cultureName, false);
+#endif
         }
 
         public delegate void SyncAction();
