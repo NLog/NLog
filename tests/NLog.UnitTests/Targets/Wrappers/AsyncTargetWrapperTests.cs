@@ -63,7 +63,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 WrappedTarget = myTarget,
             };
 
-            Assert.Equal(AsyncTargetWrapperOverflowAction.Discard, targetWrapper.OverflowAction);
+            Assert.Equal(AsyncTargetWrapperOverflowAction.Block, targetWrapper.OverflowAction);
             Assert.Equal(10000, targetWrapper.QueueLimit);
             Assert.Equal(50, targetWrapper.TimeToSleepBetweenBatches);
             Assert.Equal(100, targetWrapper.BatchSize);
