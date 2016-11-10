@@ -337,5 +337,33 @@ namespace NLog.UnitTests.Layouts
             var json = jsonLayout.Render(logEventInfo);
             Assert.Equal("{ \"time\": \"2016-10-30 13:30:55.0000\", \"level\": \"INFO\", \"nested\": { \"message\": \"this is message\", \"exception\": \"test\" } }", json);
         }
+
+
+        [Fact]
+        public void IncludeAllProperties()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeAllProperties = true
+            };
+
+            jsonLayout.ExcludedProperties.Add("Excluded");
+
+            var logEventInfo = new LogEventInfo
+            {
+                TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56),
+                Level = LogLevel.Info,
+                Message = "hello, world"
+            };
+
+
+            logEventInfo.Properties.Add("PropA", "ValueA");
+            logEventInfo.Properties.Add("PropB", "ValueB");
+            logEventInfo.Properties.Add("PropC", "ValueC");
+            logEventInfo.Properties.Add("Excluded", "ExcludedValue");
+
+            Assert.Equal("{ \"PropA\": \"ValueA\", \"PropB\": \"ValueB\", \"PropC\": \"ValueC\" }", jsonLayout.Render(logEventInfo));
+
+        }
     }
 }
