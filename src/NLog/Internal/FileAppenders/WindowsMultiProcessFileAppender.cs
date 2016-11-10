@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,16 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
 
 namespace NLog.Internal.FileAppenders
 {
     using System;
-    using System.Security;
-    using NLog.Common;
-    using System.Runtime.InteropServices;
     using System.IO;
+    using System.Security;
     using System.Threading;
+    using NLog.Common;
 
     /// <summary>
     /// Provides a multiprocess-safe atomic file append while
@@ -51,7 +50,8 @@ namespace NLog.Internal.FileAppenders
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
-        private Microsoft.Win32.SafeHandles.SafeFileHandle file;
+        private FileStream fileStream;
+        private FileCharacteristicsHelper fileCharacteristicsHelper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WindowsMultiProcessFileAppender" /> class.
@@ -63,16 +63,13 @@ namespace NLog.Internal.FileAppenders
             try
             {
                 CreateAppendOnlyFile(fileName);
+                fileCharacteristicsHelper = FileCharacteristicsHelper.CreateHelper(parameters.ForceManaged);
             }
             catch
             {
-                if (file != null)
-                {
-                    if (!file.IsClosed)
-                        file.Close();
-                    file = null;
-                }
-
+                if (fileStream != null)
+                    fileStream.Dispose();
+                fileStream = null;
                 throw;
             }
         }
@@ -95,38 +92,42 @@ namespace NLog.Internal.FileAppenders
                 Directory.CreateDirectory(dir);
             }
 
-            int fileShare = Win32FileNativeMethods.FILE_SHARE_READ | Win32FileNativeMethods.FILE_SHARE_WRITE;
-
+            var fileShare = FileShare.ReadWrite;
             if (this.CreateFileParameters.EnableFileDelete)
-            {
-                fileShare |= Win32FileNativeMethods.FILE_SHARE_DELETE;
-            }
-            
+                fileShare |= FileShare.Delete;
+
             try
             {
+                bool fileExists = File.Exists(fileName);
+
                 // https://blogs.msdn.microsoft.com/oldnewthing/20151127-00/?p=92211/
                 // https://msdn.microsoft.com/en-us/library/ff548289.aspx
                 // If only the FILE_APPEND_DATA and SYNCHRONIZE flags are set, the caller can write only to the end of the file, 
                 // and any offset information about writes to the file is ignored.
                 // However, the file will automatically be extended as necessary for this type of write operation.
-
-                file = Win32FileNativeMethods.CreateFile(
+                fileStream = new FileStream(
                     fileName,
-                    Win32FileNativeMethods.FileAccess.FileAppendData | Win32FileNativeMethods.FileAccess.Synchronize,
+                    FileMode.Append,
+                    System.Security.AccessControl.FileSystemRights.AppendData | System.Security.AccessControl.FileSystemRights.Synchronize, // <- Atomic append
                     fileShare,
-                    IntPtr.Zero,
-                    Win32FileNativeMethods.CreationDisposition.OpenAlways, // open or create
-                    this.CreateFileParameters.FileAttributes,
-                    IntPtr.Zero);
+                    1,  // No internal buffer, write directly from user-buffer
+                    FileOptions.None);
 
-                if (file.IsInvalid)
+                long filePosition = fileStream.Position;
+                if (fileExists || filePosition > 0)
                 {
-                    int hr = Marshal.GetHRForLastWin32Error();
-                    InternalLogger.Error("Unable to open/create '{0}' HR:{1}", FileName, hr);
-                    Marshal.ThrowExceptionForHR(hr);
+                    this.CreationTime = File.GetCreationTimeUtc(this.FileName);
+                    if (this.CreationTime < DateTime.UtcNow - TimeSpan.FromSeconds(2) && filePosition == 0)
+                    {
+                        // File wasn't created "almost now". 
+                        // This could mean creation time has tunneled through from another file (see comment below).
+                        Thread.Sleep(50);
+                        // Having waited for a short amount of time usually means the file creation process has continued
+                        // code execution just enough to the above point where it has fixed up the creation time.
+                        this.CreationTime = File.GetCreationTimeUtc(this.FileName);
+                    }
                 }
-                int lastError = Marshal.GetLastWin32Error();
-                if (lastError == Win32FileNativeMethods.NOERROR)
+                else
                 {
                     // We actually created the file and eventually concurrent processes 
                     // may have opened the same file in between.
@@ -135,40 +136,15 @@ namespace NLog.Internal.FileAppenders
                     // Unfortunately we can't use the native SetFileTime() to prevent opening the file 2nd time.
                     // This would require another desiredAccess flag which would disable the atomic append feature.
                     // See also UpdateCreationTime()
-
                     this.CreationTime = DateTime.UtcNow;
                     File.SetCreationTimeUtc(this.FileName, this.CreationTime);
-                }
-                else if (lastError == Win32FileNativeMethods.ERROR_ALREADY_EXISTS)
-                {
-                    // Somebody else has already created the file and we just 
-                    // need to record the files creation time.
-                    // There's a small chance for a racing condition here:
-                    // Suppose another process has created the file and before executing the above 
-                    // code "File.SetCreationTimeUtc(...)" context is switched to us reading the
-                    // currently set creation time, which in case of above mentioned tunneling issue
-                    // may be "wrong". Consequences aren't fatal since this.CreationTime isn't used by NLog itself.
-                    // Anyhow, to increase chances of getting the "right" creation time we may wait for some time
-                    // and read creation time again.
-                    this.CreationTime = File.GetCreationTimeUtc(this.FileName);
-                    if (this.CreationTime < DateTime.UtcNow - TimeSpan.FromSeconds(2))
-                    {
-                        // File wasn't created "almost now". 
-                        // This could mean creation time has tunneled through from another file (see comment above).
-                        Thread.Sleep(10);
-                        // Having waited for a short amount of time usually means the file creation process has continued
-                        // code execution just enough to the above point where it has fixed up the creation time.
-                        this.CreationTime = File.GetCreationTimeUtc(this.FileName);
-                    }
                 }
             }
             catch
             {
-                if ((file != null) && (!file.IsClosed))
-                    file.Close();
-
-                file = null;
-
+                if (fileStream != null)
+                    fileStream.Dispose();
+                fileStream = null;
                 throw;
             }
         }
@@ -179,17 +155,15 @@ namespace NLog.Internal.FileAppenders
         /// <param name="bytes">The bytes to be written.</param>
         public override void Write(byte[] bytes)
         {
-            if (file == null)
-                return;
-
-            uint written;
-            bool success = Win32FileNativeMethods.WriteFile(file.DangerousGetHandle(), bytes, (uint)bytes.Length, out written, IntPtr.Zero);
-            if (!success || (uint)bytes.Length != written)
+            if (fileStream != null)
             {
-                InternalLogger.Error("Written only {0} out of {1} bytes to '{2}'", written, bytes.Length, FileName);
-                Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+                fileStream.Write(bytes, 0, bytes.Length);
+
+                if (CaptureLastWriteTime)
+                {
+                    FileTouched();
+                }
             }
-            FileTouched();
         }
 
         /// <summary>
@@ -198,12 +172,9 @@ namespace NLog.Internal.FileAppenders
         public override void Close()
         {
             InternalLogger.Trace("Closing '{0}'", FileName);
-            if (file != null && !file.IsClosed)
-            {
-                file.Close();
-            }
-
-            file = null;
+            if (fileStream != null)
+                fileStream.Dispose();
+            fileStream = null;
             FileTouched();
         }
 
@@ -215,14 +186,31 @@ namespace NLog.Internal.FileAppenders
             // do nothing, the file is written directly
         }
 
-        /// <summary>
-        /// Gets the file info.
-        /// </summary>
-        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2001:AvoidCallingProblematicMethods", MessageId = "System.Runtime.InteropServices.SafeHandle.DangerousGetHandle", Justification = "Optimization")]
-        public override FileCharacteristics GetFileCharacteristics()
+        public override DateTime? GetFileCreationTimeUtc()
         {
-            return FileCharacteristicsHelper.Helper.GetFileCharacteristics(FileName, file.DangerousGetHandle());
+            var fileChars = GetFileCharacteristics();
+            return fileChars != null ? fileChars.CreationTimeUtc : (DateTime?)null;
+        }
+
+        public override DateTime? GetFileLastWriteTimeUtc()
+        {
+            var fileChars = GetFileCharacteristics();
+            return fileChars != null ? fileChars.LastWriteTimeUtc : (DateTime?)null;
+        }
+
+        public override long? GetFileLength()
+        {
+            var fileChars = GetFileCharacteristics();
+            return fileChars != null ? fileChars.FileLength : (long?)null;
+        }
+
+        private FileCharacteristics GetFileCharacteristics()
+        {
+            if (this.fileStream == null || this.fileCharacteristicsHelper == null)
+                return null;
+
+            //todo not efficient to read all the whole FileCharacteristics and then using one property
+            return fileCharacteristicsHelper.GetFileCharacteristics(FileName, this.fileStream);
         }
 
         /// <summary>

@@ -46,10 +46,6 @@ namespace NLog.Internal
         public const int FILE_SHARE_WRITE = 2;
         public const int FILE_SHARE_DELETE = 4;
 
-        // Values returned by Marshal.GetLastWin32Error()
-        public const int NOERROR = 0;
-        public const int ERROR_ALREADY_EXISTS = 183;
-
         [Flags]
         public enum FileAccess : uint
         {
@@ -57,8 +53,6 @@ namespace NLog.Internal
             GenericWrite = 0x40000000,
             GenericExecute = 0x20000000,
             GenericAll = 0x10000000,
-            Synchronize = 0x00100000,
-            FileAppendData = 0x0004
         }
 
         public enum CreationDisposition : uint
@@ -98,11 +92,6 @@ namespace NLog.Internal
             public uint nFileIndexHigh;
             public uint nFileIndexLow;
         }
-
-        [DllImport("kernel32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WriteFile(IntPtr hFile, byte[] lpBuffer,
-            uint nNumberOfBytesToWrite, out uint lpNumberOfBytesWritten, IntPtr lpOverlapped);
     }
 }
 

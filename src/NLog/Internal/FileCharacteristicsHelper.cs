@@ -33,7 +33,7 @@
 
 namespace NLog.Internal
 {
-    using System;
+    using System.IO;
 
     /// <summary>
     /// Optimized routines to get the basic file characteristics of the specified file.
@@ -43,30 +43,28 @@ namespace NLog.Internal
         /// <summary>
         /// Initializes static members of the FileCharacteristicsHelper class.
         /// </summary>
-        static FileCharacteristicsHelper()
+        public static FileCharacteristicsHelper CreateHelper(bool forcedManaged)
         {
 #if SILVERLIGHT
-            Helper = new PortableFileCharacteristicsHelper();
+            return new PortableFileCharacteristicsHelper();
 #else
-            if (PlatformDetector.IsDesktopWin32)
+            if (PlatformDetector.IsDesktopWin32 && !forcedManaged)
             {
-                Helper = new Win32FileCharacteristicsHelper();
+                return new Win32FileCharacteristicsHelper();
             }
             else
             {
-                Helper = new PortableFileCharacteristicsHelper();
+                return new PortableFileCharacteristicsHelper();
             }
 #endif
         }
-
-        internal static FileCharacteristicsHelper Helper { get; private set; }
 
         /// <summary>
         /// Gets the information about a file.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
-        /// <param name="fileHandle">The file handle.</param>
+        /// <param name="fileStream">The file stream.</param>
         /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public abstract FileCharacteristics GetFileCharacteristics(string fileName, IntPtr fileHandle);
+        public abstract FileCharacteristics GetFileCharacteristics(string fileName, FileStream fileStream);
     }
 }

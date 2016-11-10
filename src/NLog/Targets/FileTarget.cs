@@ -156,9 +156,6 @@ namespace NLog.Targets
         private FilePathKind fileNameKind;
         private FilePathKind archiveFileKind;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-        private bool preferMutexLockedFileCreation;
-#endif
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
         /// </summary>
@@ -686,22 +683,8 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicationg whether file creation calls should be synchronized by a system global mutex.
         /// </summary>
-        /// [DefaultValue(false)]
-        public bool PreferMutexLockedFileCreation
-        {
-            get
-            {
-                return preferMutexLockedFileCreation;
-            }
-            internal set
-            {
-                preferMutexLockedFileCreation = value;
-                if (IsInitialized)
-                {
-                    RefreshArchiveFilePatternToWatch();
-                }
-            }
-        }
+        [DefaultValue(false)]
+        public bool ForceMutexConcurrentWrites { get; set; }
 #endif
 
         /// <summary>
@@ -921,16 +904,13 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    if (!this.PreferMutexLockedFileCreation && !this.ForceManaged && PlatformDetector.IsDesktopWin32)
-                        return WindowsMultiProcessFileAppender.TheFactory;
                     return MutexMultiProcessFileAppender.TheFactory;
                 }
-#elif __IOS__ || __ANDROID__
-                return MutexMultiProcessFileAppender.TheFactory;
 #else
-                if (!this.PreferMutexLockedFileCreation && !this.ForceManaged && PlatformDetector.IsDesktopWin32)
+                if (!this.ForceMutexConcurrentWrites && PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
                     return WindowsMultiProcessFileAppender.TheFactory;
-                return MutexMultiProcessFileAppender.TheFactory;
+                else
+                    return MutexMultiProcessFileAppender.TheFactory;
 #endif
             }
             else if (IsArchivingEnabled())
@@ -1396,15 +1376,15 @@ namespace NLog.Targets
                 return;
             }
 
-            FileNameTemplate fileTemplate = new FileNameTemplate(baseNamePattern);
-            string fileNameMask = fileTemplate.ReplacePattern("*");
-            string dateFormat = GetArchiveDateFormatString(this.ArchiveDateFormat);
-
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             if (string.IsNullOrEmpty(dirName))
             {
                 return;
             }
+
+            FileNameTemplate fileTemplate = new FileNameTemplate(baseNamePattern);
+            string fileNameMask = fileTemplate.ReplacePattern("*");
+            string dateFormat = GetArchiveDateFormatString(this.ArchiveDateFormat);
 
             int minSequenceLength = fileTemplate.EndAt - fileTemplate.BeginAt - 2;
             int nextSequenceNumber;
@@ -1600,13 +1580,12 @@ namespace NLog.Targets
         /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
         private void ArchiveByDate(string fileName, string pattern, LogEventInfo logEvent)
         {
-            string fileNameMask = ReplaceFileNamePattern(pattern, "*");
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
-            string dateFormat = GetArchiveDateFormatString(this.ArchiveDateFormat);
-
-            DateTime archiveDate = GetArchiveDate(fileName, logEvent);
             if (dirName != null)
             {
+                DateTime archiveDate = GetArchiveDate(fileName, logEvent);
+                string fileNameMask = ReplaceFileNamePattern(pattern, "*");
+                string dateFormat = GetArchiveDateFormatString(this.ArchiveDateFormat);
                 string archiveFileName = Path.Combine(dirName, fileNameMask.Replace("*", archiveDate.ToString(dateFormat)));
                 ArchiveFile(fileName, archiveFileName);
             }
