@@ -356,14 +356,16 @@ namespace NLog.UnitTests.Layouts
                 Message = "hello, world"
             };
 
-
-            logEventInfo.Properties.Add("PropA", "ValueA");
-            logEventInfo.Properties.Add("PropB", "ValueB");
-            logEventInfo.Properties.Add("PropC", "ValueC");
+            logEventInfo.Properties.Add("StringProp", "ValueA");
+            logEventInfo.Properties.Add("IntProp", 123);
+            logEventInfo.Properties.Add("DoubleProp", 123.123);
+            logEventInfo.Properties.Add("BoolProp", true);
+            logEventInfo.Properties.Add("NullProp", null);
             logEventInfo.Properties.Add("Excluded", "ExcludedValue");
 
-            Assert.Equal("{ \"PropA\": \"ValueA\", \"PropB\": \"ValueB\", \"PropC\": \"ValueC\" }", jsonLayout.Render(logEventInfo));
+            Assert.Equal("{ \"StringProp\": \"ValueA\", \"IntProp\": 123, \"DoubleProp\": 123.123, \"BoolProp\": True, \"NullProp\": null }", jsonLayout.Render(logEventInfo));
 
         }
     }
 }
+

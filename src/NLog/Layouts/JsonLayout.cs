@@ -99,8 +99,6 @@ namespace NLog.Layouts
             bool first = true;
             bool hasContent = false;
 
-
-
             //Creates a copy of the list of specified attributes
             List<JsonAttribute> attributes = new List<JsonAttribute>(this.Attributes);
 
@@ -108,28 +106,55 @@ namespace NLog.Layouts
             //Adds attributes for all the properties
             if (this.IncludeAllProperties)
             {
-                //TODO: Remove need for foreach loop
-                foreach (var prop in logEvent.Properties) 
+
+                foreach (var prop in logEvent.Properties)
                 {
-                    //QUESTION: Is this the best way to determine the propety name? 
-                    //QUESTION:Would it be better to skip propertites that do not have a string key instead?
+                    //Determine property name
                     string propName = prop.Key.ToString();
 
                     //Skips properties in the ExcludedProperties list
                     if (this.ExcludedProperties.Contains(propName)) continue;
 
-                    //Create layout
-                    string layout = string.Concat("${event-properties:item=", propName, "}");
-
-                    //TODO: Handle non string values that should not be encoded or quoted
-                    //bool, number, null values
-
-                    
-
-                    //Adds the attribute
-                    var att = new JsonAttribute(propName, layout, true);
-
-                    attributes.Add(att);
+                    //Create JsonAttribute based on type of prop.Value
+                    if (prop.Value == null)
+                    {
+                        attributes.Add(new JsonAttribute()
+                        {
+                            Name = propName,
+                            Encode = false, //Don't put quotes around null values
+                            Layout = "null"
+                        });
+                    }
+                    else if (
+                        prop.Value is bool
+                        | prop.Value is byte
+                        | prop.Value is short
+                        | prop.Value is ushort
+                        | prop.Value is int
+                        | prop.Value is uint
+                        | prop.Value is long
+                        | prop.Value is ulong
+                        | prop.Value is float
+                        | prop.Value is double
+                        | prop.Value is decimal)
+                    {
+                        
+                        attributes.Add(new JsonAttribute()
+                        {
+                            Name = propName,
+                            Encode = false, //Don't put quotes around numbers or boolean values
+                            Layout = string.Concat("${event-properties:item=", propName, "}")
+                        });
+                    }
+                    else
+                    {
+                        attributes.Add(new JsonAttribute()
+                        {
+                            Name = propName,
+                            Encode = true, 
+                            Layout = string.Concat("${event-properties:item=", propName, "}")
+                        });
+                    }
                 }
             }
 
