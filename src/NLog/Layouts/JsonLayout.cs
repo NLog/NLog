@@ -54,6 +54,8 @@ namespace NLog.Layouts
         {
             this.Attributes = new List<JsonAttribute>();
             this.RenderEmptyObject = true;
+            this.IncludeAllProperties = false;
+            this.ExcludedProperties = new List<string>();
         }
 
         /// <summary>
@@ -72,6 +74,18 @@ namespace NLog.Layouts
         /// Gets or sets the option to render the empty object value {}
         /// </summary>
         public bool RenderEmptyObject { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets the option to include all properties from the log events
+        /// </summary>
+        public bool IncludeAllProperties { get; set; }
+
+        /// <summary>
+        /// List of property names to exclude when IncludeAllProperties is true
+        /// </summary>
+        public IList<string> ExcludedProperties { get; set; }
+
 
         /// <summary>
         /// Formats the log event as a JSON document for writing.
