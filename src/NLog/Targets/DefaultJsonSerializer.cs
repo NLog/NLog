@@ -41,7 +41,7 @@ namespace NLog.Targets
     /// <summary>
     /// Default class for serialization of values to JSON format.
     /// </summary>
-    public class DefaultJsonSerializer : ICompactJsonSerializer
+    public class DefaultJsonSerializer : IJsonSerializer
     {
         private static List<Type> NumericTypes = new List<Type>
             {
@@ -78,9 +78,9 @@ namespace NLog.Targets
 
         /// <summary>
         /// Returns a serialization of an object
-        /// int compact JSON format.
+        /// int JSON format.
         /// </summary>
-        /// <param name="value">The object to serialize to compact JSON.</param>
+        /// <param name="value">The object to serialize to JSON.</param>
         /// <returns>Serialized value.</returns>
         public string SerializeValue(object value)
         {

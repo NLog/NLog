@@ -64,7 +64,7 @@ namespace NLog.Config
         private readonly Factory<LayoutRenderer, AmbientPropertyAttribute> ambientProperties;
         private readonly Factory<TimeSource, TimeSourceAttribute> timeSources;
 
-        private ICompactJsonSerializer jsonSerializer = DefaultJsonSerializer.Instance;
+        private IJsonSerializer jsonSerializer = DefaultJsonSerializer.Instance;
         
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfigurationItemFactory"/> class.
@@ -171,7 +171,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets or sets the JSON serializer to use with <see cref="WebServiceTarget"/>.
         /// </summary>
-        public ICompactJsonSerializer JsonSerializer
+        public IJsonSerializer JsonSerializer
         {
             get { return jsonSerializer; }
             set { jsonSerializer = value ?? DefaultJsonSerializer.Instance; }

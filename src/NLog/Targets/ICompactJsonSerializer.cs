@@ -36,16 +36,16 @@ using System;
 namespace NLog.Targets
 {
     /// <summary>
-    /// Interface for serialization of values, maybe even objects to compact JSON format. 
+    /// Interface for serialization of values, maybe even objects to JSON format. 
     /// Useful for wrappers for existing serializers.
     /// </summary>
-    public interface ICompactJsonSerializer
+    public interface IJsonSerializer
     {
         /// <summary>
         /// Returns a serialization of an object
-        /// int compact JSON format.
+        /// into JSON format.
         /// </summary>
-        /// <param name="value">The object to serialize to compact JSON.</param>
+        /// <param name="value">The object to serialize to JSON.</param>
         /// <returns>Serialized value.</returns>
         string SerializeValue(object value);
     }

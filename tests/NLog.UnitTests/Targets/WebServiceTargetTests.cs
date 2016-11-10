@@ -441,7 +441,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                         <target type='WebService'
                                 name='ws'
                                 url='{0}{1}'
-                                protocol='Json'
+                                protocol='JsonPost'
                                 encoding='UTF-8'
                                >
                             <parameter name='param1' type='System.String' layout='${{message}}'/> 
@@ -488,7 +488,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                         <target type='WebService'
                                 name='ws'
                                 url='{0}{1}'
-                                protocol='Xml'
+                                protocol='XmlPost'
                                 XmlRoot='ComplexType'
                                 encoding='UTF-8'
                                >
