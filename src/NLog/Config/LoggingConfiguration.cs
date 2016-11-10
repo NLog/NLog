@@ -107,7 +107,7 @@ namespace NLog.Config
         /// </summary>
         public virtual IEnumerable<string> FileNamesToWatch
         {
-            get { return new string[0]; }
+            get { return ArrayHelper.Empty<string>(); }
         }
 
         /// <summary>

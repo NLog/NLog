@@ -128,6 +128,9 @@ namespace NLog.Common
             lock (this)
             {
                 int cnt = this.count;
+                if (cnt == 0)
+                    return Internal.ArrayHelper.Empty<AsyncLogEventInfo>();
+
                 var returnValue = new AsyncLogEventInfo[cnt];
 
                 // InternalLogger.Trace("GetEventsAndClear({0},{1},{2})", this.getPointer, this.putPointer, this.count);

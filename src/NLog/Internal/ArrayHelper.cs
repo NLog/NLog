@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -33,29 +33,17 @@
 
 namespace NLog.Internal
 {
-    using System;
-    using System.Reflection;
-
-    /// <summary>
-    /// Object construction helper.
-    /// </summary>
-    internal class FactoryHelper
+    internal static class ArrayHelper
     {
-        private FactoryHelper()
+        private static class EmptyArray<T>
         {
+            public static readonly T[] Instance = new T[0];
         }
 
-        internal static object CreateInstance(Type t)
+        public static T[] Empty<T>()
         {
-            ConstructorInfo constructor = t.GetConstructor(ArrayHelper.Empty<Type>());
-            if (constructor != null)
-            {
-                return constructor.Invoke(ArrayHelper.Empty<object>());
-            }
-            else
-            {
-                throw new NLogConfigurationException("Cannot access the constructor of type: " + t.FullName + ". Is the required permission granted?");
-            }
+            // TODO Use Array.Empty<T> in NET 4.6 when we are ready
+            return EmptyArray<T>.Instance;
         }
     }
 }
