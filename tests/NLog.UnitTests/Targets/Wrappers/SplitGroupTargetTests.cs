@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+
 namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
@@ -42,9 +44,20 @@ namespace NLog.UnitTests.Targets.Wrappers
     using Xunit;
 
     public class SplitGroupTargetTests : NLogTestBase
-	{
+    {
         [Fact]
         public void SplitGroupSyncTest1()
+        {
+            SplitGroupSyncTest1inner(false);
+        }
+
+        [Fact]
+        public void SplitGroupSyncTest1_allEventsAtOnce()
+        {
+            SplitGroupSyncTest1inner(true);
+        }
+
+        private static void SplitGroupSyncTest1inner(bool allEventsAtOnce)
         {
             var myTarget1 = new MyTarget();
             var myTarget2 = new MyTarget();
@@ -72,19 +85,30 @@ namespace NLog.UnitTests.Targets.Wrappers
             var allDone = new ManualResetEvent(false);
 
             // no exceptions
-            for (int i = 0; i < inputEvents.Count; ++i)
+
+            AsyncContinuation asyncContinuation = ex =>
             {
-                wrapper.WriteAsyncLogEvent(inputEvents[i].WithContinuation(ex =>
+                lock (exceptions)
+                {
+                    exceptions.Add(ex);
+                    if (Interlocked.Decrement(ref remaining) == 0)
                     {
-                        lock (exceptions)
-                        {
-                            exceptions.Add(ex);
-                            if (Interlocked.Decrement(ref remaining) == 0)
-                            {
-                                allDone.Set();
-                            }
-                        };
-                    }));
+                        allDone.Set();
+                    }
+                }
+                      ;
+            };
+
+            if (allEventsAtOnce)
+            {
+                wrapper.WriteAsyncLogEvents(inputEvents.Select(ev => ev.WithContinuation(asyncContinuation)).ToArray());
+            }
+            else
+            {
+                for (int i = 0; i < inputEvents.Count; ++i)
+                {
+                    wrapper.WriteAsyncLogEvent(inputEvents[i].WithContinuation(asyncContinuation));
+                }
             }
 
             allDone.WaitOne();
@@ -108,7 +132,11 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             Exception flushException = null;
             var flushHit = new ManualResetEvent(false);
-            wrapper.Flush(ex => { flushException = ex; flushHit.Set(); });
+            wrapper.Flush(ex =>
+            {
+                flushException = ex;
+                flushHit.Set();
+            });
 
             flushHit.WaitOne();
             if (flushException != null)
@@ -119,6 +147,22 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(1, myTarget1.FlushCount);
             Assert.Equal(1, myTarget2.FlushCount);
             Assert.Equal(1, myTarget3.FlushCount);
+        }
+
+
+        [Fact]
+        public void SplitGroupToStringTest()
+        {
+            var myTarget1 = new MyTarget();
+            var myTarget2 = new FileTarget("file1");
+            var myTarget3 = new ConsoleTarget("Console2");
+
+            var wrapper = new SplitGroupTarget()
+            {
+                Targets = { myTarget1, myTarget2, myTarget3 },
+            };
+
+            Assert.Equal("SplitGroup Target[(unnamed)](MyTarget, File Target[file1], Console Target[Console2])", wrapper.ToString());
         }
 
         [Fact]

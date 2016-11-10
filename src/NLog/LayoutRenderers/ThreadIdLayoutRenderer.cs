@@ -33,7 +33,6 @@
 
 namespace NLog.LayoutRenderers
 {
-    using System.Globalization;
     using System.Text;
     using System.Threading;
 
@@ -50,7 +49,8 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(Thread.CurrentThread.ManagedThreadId.ToString(CultureInfo.InvariantCulture));
+            //no culture needed for ints
+            Internal.StringBuilderExt.AppendInvariant(builder, Thread.CurrentThread.ManagedThreadId);
         }
     }
 }

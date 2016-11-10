@@ -463,5 +463,31 @@ namespace NLog.UnitTests.Config
                 }
             }
         }
+                
+        [Fact]
+        public void LoggingRule_LevelOff_NotSetAsActualLogLevel()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='l1' type='Debug' layout='${message}' />
+                    <target name='l2' type='Debug' layout='${message}' />
+                </targets>
+
+                <rules>
+                    <logger name='a' level='Off' appendTo='l1' />
+                    <logger name='a' minlevel='Debug' appendTo='l2' />
+                </rules>
+            </nlog>");
+
+            LogManager.Configuration = c;
+            Logger a = LogManager.GetLogger("a");
+
+            Assert.True(c.LoggingRules.Count == 2, "All rules should have been loaded.");
+            Assert.False(c.LoggingRules[0].IsLoggingEnabledForLevel(LogLevel.Off), "Log level Off should always return false.");
+            // The two functions below should not throw an exception.
+            c.LoggingRules[0].EnableLoggingForLevel(LogLevel.Debug);
+            c.LoggingRules[0].DisableLoggingForLevel(LogLevel.Debug);
+        }
     }
 }

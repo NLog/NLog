@@ -71,7 +71,7 @@ namespace NLog.Targets
     /// <code lang="C#" source="examples/targets/Configuration API/Database/MSSQL/Example.cs" height="630" />
     /// </example>
     [Target("Database")]
-    public sealed class DatabaseTarget : Target, IInstallable
+    public class DatabaseTarget : Target, IInstallable
     {
         private static Assembly systemDataAssembly = typeof(IDbConnection).Assembly;
 
@@ -439,14 +439,16 @@ namespace NLog.Targets
         /// <param name="logEvents">Logging events to be written out.</param>
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
-            var buckets = SortHelpers.BucketSort(logEvents, c => this.BuildConnectionString(c.LogEvent));
+            var buckets = logEvents.BucketSort(c => this.BuildConnectionString(c.LogEvent));
 
             try
             {
                 foreach (var kvp in buckets)
                 {
-                    foreach (AsyncLogEventInfo ev in kvp.Value)
+                    for (int i = 0; i < kvp.Value.Count; i++)
                     {
+                        AsyncLogEventInfo ev = kvp.Value[i];
+
                         try
                         {
                             this.WriteEventToDatabase(ev.LogEvent);
@@ -536,8 +538,16 @@ namespace NLog.Targets
                 transactionScope.Complete();
             }
         }
-
-        private string BuildConnectionString(LogEventInfo logEvent)
+        /// <summary>
+        /// Build the connectionstring from the properties. 
+        /// </summary>
+        /// <remarks>
+        ///  Using <see cref="ConnectionString"/> at first, and falls back to the properties <see cref="DBHost"/>, 
+        ///  <see cref="DBUserName"/>, <see cref="DBPassword"/> and <see cref="DBDatabase"/>
+        /// </remarks>
+        /// <param name="logEvent">Event to render the layout inside the properties.</param>
+        /// <returns></returns>
+        protected string BuildConnectionString(LogEventInfo logEvent)
         {
             if (this.ConnectionString != null)
             {

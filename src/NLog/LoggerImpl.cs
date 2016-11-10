@@ -160,7 +160,8 @@ namespace NLog
                     {
                         var next = allStackFrames[last.StackFrameIndex + 1];
                         var declaringType = next.StackFrame.GetMethod().DeclaringType;
-                        if (declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder))
+                        if (declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder) || 
+                            declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder<>))
                         {
                             //async, search futher
                             candidateStackFrames = candidateStackFrames.Skip(1).ToList();
@@ -266,6 +267,9 @@ namespace NLog
         private static FilterResult GetFilterResult(IList<Filter> filterChain, LogEventInfo logEvent)
         {
             FilterResult result = FilterResult.Neutral;
+
+            if (filterChain == null || filterChain.Count == 0)
+                return result;
 
             try
             {

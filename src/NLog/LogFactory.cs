@@ -81,6 +81,12 @@ namespace NLog
         private readonly LoggerCache loggerCache = new LoggerCache();
 
         /// <summary>
+        /// Overwrite possible file paths (including filename) for possible NLog config files. 
+        /// When this property is <c>null</c>, the default file paths (<see cref="GetCandidateConfigFilePaths"/> are used.
+        /// </summary>
+        private List<string> candidateConfigFilePaths;
+
+        /// <summary>
         /// Occurs when logging <see cref="Configuration" /> changes.
         /// </summary>
         public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
@@ -160,8 +166,8 @@ namespace NLog
                 {
                     if (this.configLoaded)
                         return this.config;
-                    
-#if !SILVERLIGHT  && !__IOS__ && !__ANDROID__
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                     if (this.config == null)
                     {
                         // Try to load default configuration.
@@ -171,7 +177,8 @@ namespace NLog
                     // Retest the condition as we might have loaded a config.
                     if (this.config == null)
                     {
-                        foreach (string configFile in GetCandidateConfigFileNames())
+                        var configFileNames = GetCandidateConfigFilePaths();
+                        foreach (string configFile in configFileNames)
                         {
 #if SILVERLIGHT
                             Uri configFileUri = new Uri(configFile, UriKind.Relative);
@@ -693,12 +700,8 @@ namespace NLog
                     this.reloadTimer = null;
                 }
 
-                if (IsDisposing)
-                {
-                    //timer was disposed already. 
-                    this.watcher.Dispose();
-                    return;
-                }
+                if (this.IsDisposing)
+                    return; //timer was disposed already. 
 
                 this.watcher.StopWatching();
                 try
@@ -845,30 +848,106 @@ namespace NLog
         }
 
         /// <summary>
+        /// Currenty this logfactory is disposing?
+        /// </summary>
+        private bool IsDisposing;
+
+        /// <summary>
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
         /// <param name="disposing"><c>True</c> to release both managed and unmanaged resources;
         /// <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+            if (this.IsDisposing)
+                return;
+
             if (disposing)
             {
-                this.watcher.Dispose();
+                this.IsDisposing = true;
 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 if (this.reloadTimer != null)
                 {
-                    this.reloadTimer.Dispose();
-                    this.reloadTimer = null;
+                    var currentTimer = this.reloadTimer;
+                    this.reloadTimer = null;    // Mark that we have started to dispose the timer
+                    using (ManualResetEvent waitHandle = new ManualResetEvent(false))
+                    {
+                        if (currentTimer.Dispose(waitHandle))
+                        {
+                            // Timer has not been disposed by someone else
+                            waitHandle.WaitOne(500);
+                        }
+                    }
                 }
-            }
+
+                if (this.watcher != null)
+                {
+                    // Dispose file-watcher after having dispose timer to avoid race
+                    this.watcher.OnChange -= this.ConfigFileChanged;
+                    this.watcher.Dispose();
+                }
+
+                if (currentAppDomain != null)
+                {
+                    // No longer belongs to the AppDomain
+                    currentAppDomain.DomainUnload -= this.currentAppDomain_DomainUnload;
+                    CurrentAppDomain = null;
+                }
+
+                this.ConfigurationReloaded = null;   // Release event listeners
 #endif
+                if (currentAppDomain != null)
+                {
+                    CurrentAppDomain = null;    // No longer belongs to the AppDomain
+                }
+
+                this.ConfigurationChanged = null;    // Release event listeners
+            }
         }
 
-        private static IEnumerable<string> GetCandidateConfigFileNames()
+        /// <summary>
+        /// Get file paths (including filename) for the possible NLog config files. 
+        /// </summary>
+        /// <returns>The filepaths to the possible config file</returns>
+        public IEnumerable<string> GetCandidateConfigFilePaths()
+        {
+            if (candidateConfigFilePaths != null)
+            {
+                return candidateConfigFilePaths.AsReadOnly();
+            }
+
+            return GetDefaultCandidateConfigFilePaths();
+        }
+
+        /// <summary>
+        /// Overwrite the paths (including filename) for the possible NLog config files.
+        /// </summary>
+        /// <param name="filePaths">The filepaths to the possible config file</param>
+        public void SetCandidateConfigFilePaths(IEnumerable<string> filePaths)
+        {
+            candidateConfigFilePaths = new List<string>();
+
+            if (filePaths != null)
+            {
+                candidateConfigFilePaths.AddRange(filePaths);
+            }
+        }
+        /// <summary>
+        /// Clear the candidate file paths and return to the defaults.
+        /// </summary>
+        public void ResetCandidateConfigFilePath()
+        {
+            candidateConfigFilePaths = null;
+        }
+
+        /// <summary>
+        /// Get default file paths (including filename) for possible NLog config files. 
+        /// </summary>
+        private static IEnumerable<string> GetDefaultCandidateConfigFilePaths()
         {
 #if SILVERLIGHT || __ANDROID__ || __IOS__
-            //try.nlog.config is ios/android/silverlight
+    //try.nlog.config is ios/android/silverlight
             yield return "NLog.config";
 #elif !SILVERLIGHT
             // NLog.config from application directory
@@ -1021,6 +1100,9 @@ namespace NLog
             // the last change notification comes in.
             lock (this.syncRoot)
             {
+                if (IsDisposing)
+                    return;
+
                 if (this.reloadTimer == null)
                 {
                     this.reloadTimer = new Timer(
@@ -1047,11 +1129,6 @@ namespace NLog
 
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-        /// <summary>
-        /// Currenty this logfactory is disposing?
-        /// </summary>
-        private bool IsDisposing;
-
         private void currentAppDomain_DomainUnload(object sender, EventArgs e)
         {
             //stop timer on domain unload, otherwise: 
@@ -1059,12 +1136,7 @@ namespace NLog
             //Message: Attempted to access an unloaded AppDomain.
             lock (this.syncRoot)
             {
-                IsDisposing = true;
-                if (this.reloadTimer != null)
-                {
-                    this.reloadTimer.Dispose();
-                    this.reloadTimer = null;
-                }
+                Dispose();
             }
         }
 

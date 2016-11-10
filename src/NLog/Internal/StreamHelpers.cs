@@ -35,6 +35,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using NLog.Common;
 
 namespace NLog.Internal
 {
@@ -43,6 +45,47 @@ namespace NLog.Internal
     /// </summary>
     public static class StreamHelpers
     {
+        /// <summary>
+        /// Copy to output stream and skip BOM if encoding is UTF8
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="output"></param>
+        /// <param name="encoding"></param>
+        public static void CopyAndSkipBom(this Stream input, Stream output, Encoding encoding)
+        {
+            var bomSize = EncodingHelpers.Utf8BOM.Length;
+            var bomBuffer = new byte[bomSize];
+            var posBefore = input.Position;
+            input.Read(bomBuffer, 0, bomSize);
+
+            //TODO support other BOMs, like UTF16
+            if (bomBuffer.SequenceEqual(EncodingHelpers.Utf8BOM))
+            {
+                InternalLogger.Debug("input has UTF8 BOM");
+                //already skipped due to read
+            }
+            else
+            {
+                InternalLogger.Debug("input hasn't a UTF8 BOM");
+                //reset position
+                input.Position = posBefore;
+            }
+
+            Copy(input, output);
+        }
+
+
+        /// <summary>
+        /// Copy stream input to output. Skip the first bytes
+        /// </summary>
+        /// <param name="input">stream to read from</param>
+        /// <param name="output">stream to write to</param>
+        /// <remarks>.net35 doesn't have a .copyto</remarks>
+        public static void Copy(this Stream input, Stream output)
+        {
+            CopyWithOffset(input, output, 0);
+        }
+
         /// <summary>
         /// Copy stream input to output. Skip the first bytes
         /// </summary>
@@ -56,8 +99,11 @@ namespace NLog.Internal
                 throw new ArgumentException("negative offset");
             }
 
-            //skip offset
-            input.Seek(offset, SeekOrigin.Current);
+            if (offset > 0)
+            {
+                //skip offset
+                input.Seek(offset, SeekOrigin.Current);
+            }
 
             byte[] buffer = new byte[4096];
             int read;

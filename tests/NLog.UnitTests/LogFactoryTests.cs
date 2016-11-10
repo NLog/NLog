@@ -63,25 +63,17 @@ namespace NLog.UnitTests
         [Fact]
         public void InvalidXMLConfiguration_DoesNotThrowErrorWhen_ThrowExceptionFlagIsNotSet()
         {
-            Boolean ExceptionThrown = false;
-            try
-            {
-                LogManager.ThrowExceptions = false;
 
-                LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.ThrowExceptions = false;
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog internalLogToConsole='IamNotBooleanValue'>
                 <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeto='test'></logger>
                 </rules>
             </nlog>");
-            }
-            catch (Exception)
-            {
-                ExceptionThrown = true;
-            }
 
-            Assert.False(ExceptionThrown);
 
         }
 
@@ -239,7 +231,7 @@ namespace NLog.UnitTests
         public void ValueWithVariableMustNotCauseInfiniteRecursion()
         {
             LogManager.Configuration = null;
-            
+
             File.WriteAllText("NLog.config", @"
             <nlog>
                 <variable name='dir' value='c:\mylogs' />
@@ -259,7 +251,7 @@ namespace NLog.UnitTests
                 File.Delete("NLog.config");
             }
         }
-        
+
         [Fact]
         public void EnableAndDisableLogging()
         {

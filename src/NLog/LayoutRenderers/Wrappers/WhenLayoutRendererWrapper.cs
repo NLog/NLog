@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Layouts;
+
 namespace NLog.LayoutRenderers.Wrappers
 {
     using NLog.Conditions;
@@ -45,11 +47,18 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class WhenLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Gets or sets the condition that must be met for the inner layout to be printed.
+        /// Gets or sets the condition that must be met for the <see cref="WrapperLayoutRendererBase.Inner"/> layout to be printed.
         /// </summary>
         /// <docgen category="Transformation Options" order="10"/>
         [RequiredParameter]
+
         public ConditionExpression When { get; set; }
+
+
+        /// <summary>
+        /// If <see cref="When"/> is not met, print this layout.
+        /// </summary>
+        public Layout Else { get; set; }
 
         /// <summary>
         /// Transforms the output of another layout.
@@ -70,9 +79,12 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </returns>
         protected override string RenderInner(LogEventInfo logEvent)
         {
-            if (true.Equals(this.When.Evaluate(logEvent)))
+            if (this.When == null || true.Equals(this.When.Evaluate(logEvent)))
             {
                 return base.RenderInner(logEvent);
+            }else if (Else != null)
+            {
+                return Else.Render(logEvent);
             }
 
             return string.Empty;

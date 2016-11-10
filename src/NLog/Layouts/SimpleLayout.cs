@@ -118,12 +118,19 @@ namespace NLog.Layouts
 
                 LayoutRenderer[] renderers;
                 string txt;
-
-                renderers = LayoutParser.CompileLayout(
-                    this.configurationItemFactory,
-                    new SimpleStringReader(value),
-                    false,
-                    out txt);
+                if (value == null)
+                {
+                    renderers = new LayoutRenderer[0];
+                    txt = string.Empty;
+                }
+                else
+                {
+                    renderers = LayoutParser.CompileLayout(
+                       this.configurationItemFactory,
+                       new SimpleStringReader(value),
+                       false,
+                       out txt);
+                }
 
                 this.SetRenderers(renderers, txt);
             }
@@ -163,6 +170,8 @@ namespace NLog.Layouts
         /// <returns>A <see cref="SimpleLayout"/> object.</returns>
         public static implicit operator SimpleLayout(string text)
         {
+            if (text == null) return null;
+
             return new SimpleLayout(text);
         }
 

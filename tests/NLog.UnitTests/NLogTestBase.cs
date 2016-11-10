@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace NLog.UnitTests
@@ -39,7 +40,7 @@ namespace NLog.UnitTests
     using NLog.Common;
     using System.IO;
     using System.Text;
-
+    using System.Globalization;
     using NLog.Layouts;
     using NLog.Config;
     using NLog.Targets;
@@ -64,10 +65,19 @@ namespace NLog.UnitTests
             {
                 //flush all events if needed.
                 LogManager.Configuration.Close();
+
             }
+
+            if (LogManager.LogFactory != null)
+            {
+                LogManager.LogFactory.ResetCandidateConfigFilePath();
+            }
+
             LogManager.Configuration = null;
             InternalLogger.Reset();
             LogManager.ThrowExceptions = false;
+            LogManager.ThrowConfigExceptions = null;
+
         }
 
         protected void AssertDebugCounter(string targetName, int val)
@@ -213,11 +223,29 @@ namespace NLog.UnitTests
 
         protected void AssertFileContents(string fileName, string contents, Encoding encoding)
         {
+            AssertFileContents(fileName, contents, encoding, false);
+        }
+
+        protected void AssertFileContents(string fileName, string contents, Encoding encoding, bool addBom)
+        {
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
                 Assert.True(false, "File '" + fileName + "' doesn't exist.");
 
             byte[] encodedBuf = encoding.GetBytes(contents);
+
+            //add bom if needed
+            if (addBom)
+            {
+                var preamble = encoding.GetPreamble();
+                if (preamble.Length > 0)
+                {
+                    //insert before
+
+                    encodedBuf = preamble.Concat(encodedBuf).ToArray();
+
+                }
+            }
             Assert.Equal(encodedBuf.Length, fi.Length);
             byte[] buf = new byte[(int)fi.Length];
             using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
@@ -302,7 +330,7 @@ namespace NLog.UnitTests
 
 #endif
 
-        protected XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
+        protected static XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
         {
 #if SILVERLIGHT
             XElement element = XElement.Parse(configXml);
@@ -324,6 +352,24 @@ namespace NLog.UnitTests
             action();
 
             return stringWriter.ToString();
+        }
+
+        /// <summary>
+        /// Creates <see cref="CultureInfo"/> instance for test purposes
+        /// </summary>
+        /// <param name="cultureName">Culture name to create</param>
+        /// <remarks>
+        /// Creates <see cref="CultureInfo"/> instance with non-userOverride
+        /// flag to provide expected results when running tests in different
+        /// system cultures(with overriden culture options)
+        /// </remarks>
+        protected static CultureInfo GetCultureInfo(string cultureName)
+        {
+#if SILVERLIGHT
+            return new CultureInfo(cultureName);
+#else
+            return new CultureInfo(cultureName, false);
+#endif
         }
 
         public delegate void SyncAction();

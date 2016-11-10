@@ -94,6 +94,51 @@ namespace NLog.Common
         }
 
         /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void <#=level#><TArgument1>([Localizable(false)] string message, TArgument1 arg0)
+        {
+            if (Is<#=level#>Enabled)
+                Log(null, LogLevel.<#=level#>, message, arg0);
+        }
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        /// <param name="arg1">Argument {1} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void <#=level#><TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1)
+        {
+            if (Is<#=level#>Enabled)
+                Log(null, LogLevel.<#=level#>, message, arg0, arg1);
+        }
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="arg0">Argument {0} to the message.</param>
+        /// <param name="arg1">Argument {1} to the message.</param>
+		/// <param name="arg2">Argument {2} to the message.</param>
+        [StringFormatMethod("message")]
+        public static void <#=level#><TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1, TArgument3 arg2)
+        {
+            if (Is<#=level#>Enabled)
+                Log(null, LogLevel.<#=level#>, message, arg0, arg1, arg2);
+        }
+
+        /// <summary>
         /// Logs the specified message with an <see cref="Exception"/> at the <#=level#> level.
         /// </summary>
 		/// <param name="ex">Exception to be logged.</param>

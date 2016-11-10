@@ -161,6 +161,27 @@ namespace NLog.UnitTests.Targets
                 new string[] { "The Cat Sat At The Bar." });
         }
 
+#if !NET3_5 && !MONO
+
+        [Fact]
+        public void ColoredConsoleRaceCondtionIgnoreTest()
+        {
+            var configXml = @"
+            <nlog throwExceptions='true'>
+                <targets>
+                  <target name='console' type='coloredConsole' layout='${message}' />
+                  <target name='console2' type='coloredConsole' layout='${message}' />
+                  <target name='console3' type='coloredConsole' layout='${message}' />
+                </targets>
+                <rules>
+                  <logger name='*' minlevel='Trace' writeTo='console,console2,console3' />
+                </rules>
+            </nlog>";
+
+            ConsoleTargetTests.ConsoleRaceCondtionIgnoreInnerTest(configXml);
+        }
+#endif
+
 
         private static void AssertOutput(Target target, string message, string[] expectedParts)
         {

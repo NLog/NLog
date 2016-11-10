@@ -159,6 +159,8 @@
     <Compile Include="Internal\FileAppenders\WindowsMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileCharacteristics.cs" />
     <Compile Include="Internal\FileCharacteristicsHelper.cs" />
+    <Compile Include="Internal\FileInfoExt.cs" />
+    <Compile Include="Internal\FilePathLayout.cs" />
     <Compile Include="Internal\FormatHelper.cs" />
     <Compile Include="Internal\IConfigurationManager.cs" />
     <Compile Include="Internal\IRenderable.cs" />
@@ -184,6 +186,7 @@
     <Compile Include="Internal\NetworkSenders\UdpNetworkSender.cs" />
     <Compile Include="Internal\ObjectGraphScanner.cs" />
     <Compile Include="Internal\ParameterUtils.cs" />
+    <Compile Include="Internal\PathHelpers.cs" />
     <Compile Include="Internal\PlatformDetector.cs" />
     <Compile Include="Internal\PortableFileCharacteristicsHelper.cs" />
     <Compile Include="Internal\PortableThreadIDHelper.cs" />
@@ -287,6 +290,7 @@
     <Compile Include="LayoutRenderers\Wrappers\WrapLineLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WrapperLayoutRendererBase.cs" />
     <Compile Include="LayoutRenderers\Wrappers\XmlEncodeLayoutRendererWrapper.cs" />
+    <Compile Include="Layouts\CompoundLayout.cs" />
     <Compile Include="Layouts\CsvColumn.cs" />
     <Compile Include="Layouts\CsvColumnDelimiterMode.cs" />
     <Compile Include="Layouts\CsvLayout.cs" />
@@ -352,6 +356,7 @@
     <Compile Include="Targets\ConsoleOutputColor.cs" />
     <Compile Include="Targets\ConsoleRowHighlightingRule.cs" />
     <Compile Include="Targets\ConsoleTarget.cs" />
+    <Compile Include="Targets\ConsoleTargetHelper.cs" />
     <Compile Include="Targets\ConsoleWordHighlightingRule.cs" />
     <Compile Include="Targets\DatabaseCommandInfo.cs" />
     <Compile Include="Targets\DatabaseParameterInfo.cs" />
@@ -362,6 +367,7 @@
     <Compile Include="Targets\EventLogTarget.cs" />
     <Compile Include="Targets\EventLogTargetOverflowAction.cs" />
     <Compile Include="Targets\FileArchivePeriod.cs" />
+    <Compile Include="Targets\FilePathKind.cs" />
     <Compile Include="Targets\FileTarget.cs" />
     <Compile Include="Targets\IFileCompressor.cs" />
     <Compile Include="Targets\LineEndingMode.cs" />

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Globalization;
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -53,7 +55,8 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             TimeSpan ts = logEvent.TimeStamp.ToUniversalTime() - LogEventInfo.ZeroDate;
-            WritetTimestamp(builder, ts);
+            var culture = GetCulture(logEvent);
+            WritetTimestamp(builder, ts, culture);
         }
 
         /// <summary>
@@ -61,29 +64,51 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="builder"></param>
         /// <param name="ts"></param>
-        internal static void WritetTimestamp(StringBuilder builder, TimeSpan ts)
+        /// <param name="culture"></param>
+        internal static void WritetTimestamp(StringBuilder builder, TimeSpan ts, CultureInfo culture)
         {
+          
+            string timeSeparator;
+            string ticksSeparator;
+            if (culture != null)
+            {
+#if !SILVERLIGHT
+                timeSeparator = culture.DateTimeFormat.TimeSeparator;
+#else
+                timeSeparator = ":"; 
+#endif
+                ticksSeparator = culture.NumberFormat.NumberDecimalSeparator;
+            }
+            else
+            {
+                timeSeparator = ":";
+                ticksSeparator = ".";
+            }
+
+
             if (ts.Hours < 10)
             {
                 builder.Append('0');
             }
 
             builder.Append(ts.Hours);
-            builder.Append(':');
+            
+            builder.Append(timeSeparator);
             if (ts.Minutes < 10)
             {
                 builder.Append('0');
             }
 
             builder.Append(ts.Minutes);
-            builder.Append(':');
+            builder.Append(timeSeparator);
             if (ts.Seconds < 10)
             {
                 builder.Append('0');
             }
 
             builder.Append(ts.Seconds);
-            builder.Append('.');
+          
+            builder.Append(ticksSeparator);
 
             if (ts.Milliseconds < 100)
             {

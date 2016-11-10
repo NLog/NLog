@@ -31,12 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !__ANDROID__ && !__IOS__
+// Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) so the BaseFileAppender class now throws an exception in the constructor.
+#define SupportsMutex
+#endif
+
 using System.Security;
 
 namespace NLog.Internal.FileAppenders
 {
     using System;
     using System.IO;
+    using System.Threading;
 
     /// <summary>
     /// Multi-process and multi-host file appender which attempts
@@ -67,7 +73,10 @@ namespace NLog.Internal.FileAppenders
                 fileStream.Write(bytes, 0, bytes.Length);
             }
 
-            FileTouched();
+            if (CaptureLastWriteTime)
+            {
+                FileTouched();
+            }
         }
 
         /// <summary>
@@ -86,24 +95,47 @@ namespace NLog.Internal.FileAppenders
             // nothing to do
         }
 
-        /// <summary>
-        /// Gets the file info.
-        /// </summary>
-        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public override FileCharacteristics GetFileCharacteristics()
+
+        public override DateTime? GetFileCreationTimeUtc()
         {
             FileInfo fileInfo = new FileInfo(FileName);
             if (fileInfo.Exists)
             {
-#if !SILVERLIGHT
-                return new FileCharacteristics(fileInfo.CreationTimeUtc, fileInfo.LastWriteTimeUtc, fileInfo.Length);
-#else
-                return new FileCharacteristics(fileInfo.CreationTime, fileInfo.LastWriteTime, fileInfo.Length);
-#endif
+                return fileInfo.GetCreationTimeUtc();
             }
-            else
-                return null;
+            return null;
         }
+
+        public override DateTime? GetFileLastWriteTimeUtc()
+        {
+            FileInfo fileInfo = new FileInfo(FileName);
+            if (fileInfo.Exists)
+            {
+                return fileInfo.GetLastWriteTimeUtc();
+            }
+            return null;
+        }
+
+        public override long? GetFileLength()
+        {
+            FileInfo fileInfo = new FileInfo(FileName);
+            if (fileInfo.Exists)
+            {
+                return fileInfo.Length;
+            }
+            return null;
+        }
+
+#if SupportsMutex
+        /// <summary>
+        /// Creates a mutually-exclusive lock for archiving files.
+        /// </summary>
+        /// <returns>A <see cref="Mutex"/> object which can be used for controlling the archiving of files.</returns>
+        protected override Mutex CreateArchiveMutex()
+        {
+            return CreateSharableArchiveMutex();
+        }
+#endif
 
         /// <summary>
         /// Factory class.

@@ -38,7 +38,6 @@ namespace NLog
 #if NET4_0 || NET4_5
     using Config;
     using System;
-    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Runtime.Remoting.Messaging;
 
@@ -55,18 +54,26 @@ namespace NLog
     {
         private const string LogicalThreadDictionaryKey = "NLog.AsyncableMappedDiagnosticsContext";
 
-        private static IDictionary<string, object> LogicalThreadDictionary
+        /// <summary>
+        /// Simulate ImmutableDictionary behavior (which is not yet part of all .NET frameworks).
+        /// In future the real ImmutableDictionary could be used here to minimize memory usage and copying time.
+        /// </summary>
+        /// <param name="clone">Must be true for any subsequent dictionary modification operation</param>
+        /// <returns></returns>
+        private static IDictionary<string, object> GetLogicalThreadDictionary(bool clone = false)
         {
-            get
+            var dictionary = CallContext.LogicalGetData(LogicalThreadDictionaryKey) as Dictionary<string, object>;
+            if (dictionary == null)
             {
-                var dictionary = CallContext.LogicalGetData(LogicalThreadDictionaryKey) as ConcurrentDictionary<string, object>;
-                if (dictionary == null)
-                {
-                    dictionary = new ConcurrentDictionary<string, object>();
-                    CallContext.LogicalSetData(LogicalThreadDictionaryKey, dictionary);
-                }
-                return dictionary;
+                dictionary = new Dictionary<string, object>();
+                CallContext.LogicalSetData(LogicalThreadDictionaryKey, dictionary);
             }
+            else if (clone)
+            {
+                dictionary = new Dictionary<string, object>(dictionary);
+                CallContext.LogicalSetData(LogicalThreadDictionaryKey, dictionary);
+            }
+            return dictionary;
         }
 
         /// <summary>
@@ -100,10 +107,7 @@ namespace NLog
         public static object GetObject(string item)
         {
             object value;
-
-            if (!LogicalThreadDictionary.TryGetValue(item, out value))
-                value = null;
-
+            GetLogicalThreadDictionary().TryGetValue(item, out value);
             return value;
         }
 
@@ -114,7 +118,7 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, string value)
         {
-            LogicalThreadDictionary[item] = value;
+            GetLogicalThreadDictionary(true)[item] = value;
         }
 
         /// <summary>
@@ -124,7 +128,16 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, object value)
         {
-            LogicalThreadDictionary[item] = value;
+            GetLogicalThreadDictionary(true)[item] = value;
+        }
+
+        /// <summary>
+        /// Returns all item names
+        /// </summary>
+        /// <returns>A collection of the names of all items in current logical context.</returns>
+        public static ICollection<string> GetNames()
+        {
+            return GetLogicalThreadDictionary().Keys;
         }
 
         /// <summary>
@@ -134,7 +147,7 @@ namespace NLog
         /// <returns>A boolean indicating whether the specified <paramref name="item"/> exists in current logical context.</returns>
         public static bool Contains(string item)
         {
-            return LogicalThreadDictionary.ContainsKey(item);
+            return GetLogicalThreadDictionary().ContainsKey(item);
         }
 
         /// <summary>
@@ -143,7 +156,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         public static void Remove(string item)
         {
-            LogicalThreadDictionary.Remove(item);
+            GetLogicalThreadDictionary(true).Remove(item);
         }
 
         /// <summary>
@@ -166,8 +179,7 @@ namespace NLog
             }
             else
             {
-
-                LogicalThreadDictionary.Clear();
+                GetLogicalThreadDictionary(true).Clear();
             }
         }
     }

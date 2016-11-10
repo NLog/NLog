@@ -36,6 +36,7 @@ namespace NLog.UnitTests.Targets
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Net;
     using System.Net.Sockets;
     using System.Text;
@@ -49,14 +50,32 @@ namespace NLog.UnitTests.Targets
     public class NetworkTargetTests : NLogTestBase
     {
         [Fact]
-        public void NetworkTargetHappyPathTest()
+        public void HappyPathDefaultsTest()
+        {
+            this.HappyPathTest(false, LineEndingMode.CRLF, "msg1", "msg2", "msg3");
+        }
+
+        [Fact]
+        public void HappyPathCRLFTest()
+        {
+            this.HappyPathTest(true, LineEndingMode.CRLF, "msg1", "msg2", "msg3");
+        }
+
+        [Fact]
+        public void HappyPathLFTest()
+        {
+            this.HappyPathTest(true, LineEndingMode.LF, "msg1", "msg2", "msg3");
+        }
+
+        private void HappyPathTest(bool newLine, LineEndingMode lineEnding, params string[] messages)
         {
             var senderFactory = new MySenderFactory();
             var target = new NetworkTarget();
             target.Address = "tcp://someaddress/";
             target.SenderFactory = senderFactory;
             target.Layout = "${message}";
-            target.NewLine = true;
+            target.NewLine = newLine;
+            target.LineEnding = lineEnding;
             target.KeepConnection = true;
             target.Initialize(null);
 
@@ -93,17 +112,37 @@ namespace NLog.UnitTests.Targets
             var sender = senderFactory.Senders[0];
             target.Close();
 
-            Assert.Equal(18L, sender.MemoryStream.Length);
-            Assert.Equal("msg1\r\nmsg2\r\nmsg3\r\n", target.Encoding.GetString(sender.MemoryStream.GetBuffer(), 0, (int)sender.MemoryStream.Length));
+            // Get the length of all the messages and their line endings
+            var eol = newLine ? lineEnding.NewLineCharacters : string.Empty;
+            var eolLength = eol.Length;
+            var length = messages.Sum(m => m.Length) + (eolLength * messages.Length);
+            Assert.Equal(length, sender.MemoryStream.Length);
+            Assert.Equal(string.Join(eol, messages) + eol, target.Encoding.GetString(sender.MemoryStream.GetBuffer(), 0, (int)sender.MemoryStream.Length));
 
-            // we invoke the sender 3 times, each time sending 4 bytes
+            // we invoke the sender for each message, each time sending 4 bytes
             var actual = senderFactory.Log.ToString();
 
             Assert.True(actual.IndexOf("1: connect tcp://someaddress/") != -1);
-            Assert.True(actual.IndexOf("1: send 0 6") != -1);
-            Assert.True(actual.IndexOf("1: send 0 6") != -1);
-            Assert.True(actual.IndexOf("1: send 0 6") != -1);
+            foreach (var message in messages)
+            {
+                Assert.True(actual.IndexOf(string.Format("1: send 0 {0}", message.Length + eolLength)) != -1);
+            }
             Assert.True(actual.IndexOf("1: close") != -1);
+        }
+
+        [Fact]
+        public void NetworkTargetDefaultsTest()
+        {
+            var target = new NetworkTarget();
+
+            Assert.True(target.KeepConnection);
+            Assert.False(target.NewLine);
+            Assert.Equal("\r\n", target.LineEnding.NewLineCharacters);
+            Assert.Equal(65000, target.MaxMessageSize);
+            Assert.Equal(5, target.ConnectionCacheSize);
+            Assert.Equal(0, target.MaxConnections);
+            Assert.Equal(0, target.MaxQueueSize);
+            Assert.Equal(Encoding.UTF8, target.Encoding);
         }
 
         [Fact]

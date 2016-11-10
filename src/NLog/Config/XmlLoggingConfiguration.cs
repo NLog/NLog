@@ -59,6 +59,8 @@ namespace NLog.Config
     /// <summary>
     /// A class for configuring NLog through an XML configuration file 
     /// (App.config style or App.nlog style).
+    /// 
+    /// Parsing of the XML file is also implemented in this class.
     /// </summary>
     ///<remarks>This class is thread-safe.<c>.ToList()</c> is used for that purpose.</remarks>
     public class XmlLoggingConfiguration : LoggingConfiguration
@@ -76,7 +78,7 @@ namespace NLog.Config
         private readonly Dictionary<string, bool> fileMustAutoReloadLookup = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
         private string originalFileName;
-
+        
         private LogFactory logFactory = null;
 
         private ConfigurationItemFactory ConfigurationItemFactory
@@ -223,6 +225,8 @@ namespace NLog.Config
         /// <param name="ignoreErrors">If set to <c>true</c> errors will be ignored during file processing.</param>
         internal XmlLoggingConfiguration(XmlElement element, string fileName, bool ignoreErrors)
         {
+            logFactory = LogManager.LogFactory;
+
             using (var stringReader = new StringReader(element.OuterXml))
             {
                 XmlReader reader = XmlReader.Create(stringReader);
@@ -297,6 +301,32 @@ namespace NLog.Config
         public override LoggingConfiguration Reload()
         {
             return new XmlLoggingConfiguration(this.originalFileName);
+        }
+
+        /// <summary>
+        /// Get file paths (including filename) for the possible NLog config files. 
+        /// </summary>
+        /// <returns>The filepaths to the possible config file</returns>
+        public static IEnumerable<string> GetCandidateConfigFilePaths()
+        {
+            return LogManager.LogFactory.GetCandidateConfigFilePaths();
+        }
+
+        /// <summary>
+        /// Overwrite the paths (including filename) for the possible NLog config files.
+        /// </summary>
+        /// <param name="filePaths">The filepaths to the possible config file</param>
+        public static void SetCandidateConfigFilePaths(IEnumerable<string> filePaths)
+        {
+            LogManager.LogFactory.SetCandidateConfigFilePaths(filePaths);
+        }
+
+        /// <summary>
+        /// Clear the candidate file paths and return to the defaults.
+        /// </summary>
+        public static void ResetCandidateConfigFilePath()
+        {
+            LogManager.LogFactory.ResetCandidateConfigFilePath();
         }
 
         #endregion
@@ -406,7 +436,7 @@ namespace NLog.Config
 
                 if (!ignoreErrors)
                 {
-                    if (exception.MustBeRethrown())
+                    if (configurationException.MustBeRethrown())
                     {
                         throw configurationException;
                     }
@@ -530,7 +560,7 @@ namespace NLog.Config
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);
             InternalLogger.LogToConsoleError = nlogElement.GetOptionalBooleanAttribute("internalLogToConsoleError", InternalLogger.LogToConsoleError);
             InternalLogger.LogFile = nlogElement.GetOptionalAttribute("internalLogFile", InternalLogger.LogFile);
-            
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             InternalLogger.LogToTrace = nlogElement.GetOptionalBooleanAttribute("internalLogToTrace", InternalLogger.LogToTrace);
 #endif
@@ -909,26 +939,9 @@ namespace NLog.Config
                 string type = StripOptionalNamespacePrefix(addElement.GetOptionalAttribute("type", null));
                 if (type != null)
                 {
-                    this.ConfigurationItemFactory.RegisterType(Type.GetType(type, true), prefix);
-                }
-
-                string assemblyFile = addElement.GetOptionalAttribute("assemblyFile", null);
-                if (assemblyFile != null)
-                {
                     try
                     {
-#if SILVERLIGHT && !WINDOWS_PHONE
-                                var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
-                                var assemblyPart = new AssemblyPart();
-                                Assembly asm = assemblyPart.Load(si.Stream);
-#else
-
-                        string fullFileName = Path.Combine(baseDirectory, assemblyFile);
-                        InternalLogger.Info("Loading assembly file: {0}", fullFileName);
-
-                        Assembly asm = Assembly.LoadFrom(fullFileName);
-#endif
-                        this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
+                        this.ConfigurationItemFactory.RegisterType(Type.GetType(type, true), prefix);
                     }
                     catch (Exception exception)
                     {
@@ -938,10 +951,48 @@ namespace NLog.Config
                         }
 
                         InternalLogger.Error(exception, "Error loading extensions.");
+                        NLogConfigurationException configException =
+                            new NLogConfigurationException("Error loading extensions: " + type, exception);
 
-                        if (exception.MustBeRethrown())
+                        if (configException.MustBeRethrown())
                         {
-                            throw new NLogConfigurationException("Error loading extensions: " + assemblyFile, exception);
+                            throw configException;
+                        }
+                    }
+                }
+
+                string assemblyFile = addElement.GetOptionalAttribute("assemblyFile", null);
+                if (assemblyFile != null)
+                {
+                    try
+                    {
+#if SILVERLIGHT && !WINDOWS_PHONE
+                    var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
+                    var assemblyPart = new AssemblyPart();
+                    Assembly asm = assemblyPart.Load(si.Stream);
+#else
+                        string fullFileName = Path.Combine(baseDirectory, assemblyFile);
+                        InternalLogger.Info("Loading assembly file: {0}", fullFileName);
+
+                        Assembly asm = Assembly.LoadFrom(fullFileName);
+#endif
+                        this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
+
+                    }
+                    catch (Exception exception)
+                    {
+                        if (exception.MustBeRethrownImmediately())
+                        {
+                            throw;
+                        }
+
+                        InternalLogger.Error(exception, "Error loading extensions.");
+                        NLogConfigurationException configException =
+                            new NLogConfigurationException("Error loading extensions: " + assemblyFile, exception);
+
+                        if (configException.MustBeRethrown())
+                        {
+                            throw configException;
                         }
                     }
 
@@ -955,9 +1006,9 @@ namespace NLog.Config
                     {
                         InternalLogger.Info("Loading assembly name: {0}", assemblyName);
 #if SILVERLIGHT && !WINDOWS_PHONE
-                        var si = Application.GetResourceStream(new Uri(assemblyName + ".dll", UriKind.Relative));
-                        var assemblyPart = new AssemblyPart();
-                        Assembly asm = assemblyPart.Load(si.Stream);
+                    var si = Application.GetResourceStream(new Uri(assemblyName + ".dll", UriKind.Relative));
+                    var assemblyPart = new AssemblyPart();
+                    Assembly asm = assemblyPart.Load(si.Stream);
 #else
                         Assembly asm = Assembly.Load(assemblyName);
 #endif
@@ -966,17 +1017,18 @@ namespace NLog.Config
                     }
                     catch (Exception exception)
                     {
-
                         if (exception.MustBeRethrownImmediately())
                         {
                             throw;
                         }
 
                         InternalLogger.Error(exception, "Error loading extensions.");
+                        NLogConfigurationException configException =
+                            new NLogConfigurationException("Error loading extensions: " + assemblyName, exception);
 
-                        if (exception.MustBeRethrown())
+                        if (configException.MustBeRethrown())
                         {
-                            throw new NLogConfigurationException("Error loading extensions: " + assemblyName, exception);
+                            throw configException;
                         }
                     }
                 }
@@ -1092,7 +1144,12 @@ namespace NLog.Config
             if (elementType != null)
             {
                 IList propertyValue = (IList)propInfo.GetValue(o, null);
-                object arrayItem = FactoryHelper.CreateInstance(elementType);
+
+                object arrayItem = TryCreateLayoutInstance(element, elementType);
+                // arrayItem is not a layout
+                if (arrayItem == null)
+                    arrayItem = FactoryHelper.CreateInstance(elementType);
+
                 this.ConfigureObjectFromAttributes(arrayItem, element, true);
                 this.ConfigureObjectFromElement(arrayItem, element);
                 propertyValue.Add(arrayItem);
@@ -1127,21 +1184,15 @@ namespace NLog.Config
             // if property exists
             if (PropertyHelper.TryGetPropertyInfo(o, name, out targetPropertyInfo))
             {
-                // and is a Layout
-                if (typeof(Layout).IsAssignableFrom(targetPropertyInfo.PropertyType))
-                {
-                    string layoutTypeName = StripOptionalNamespacePrefix(layoutElement.GetOptionalAttribute("type", null));
+                Layout layout = TryCreateLayoutInstance(layoutElement, targetPropertyInfo.PropertyType);
 
-                    // and 'type' attribute has been specified
-                    if (layoutTypeName != null)
-                    {
-                        // configure it from current element
-                        Layout layout = this.ConfigurationItemFactory.Layouts.CreateInstance(this.ExpandSimpleVariables(layoutTypeName));
-                        this.ConfigureObjectFromAttributes(layout, layoutElement, true);
-                        this.ConfigureObjectFromElement(layout, layoutElement);
-                        targetPropertyInfo.SetValue(o, layout, null);
-                        return true;
-                    }
+                // and is a Layout and 'type' attribute has been specified
+                if (layout != null)
+                {
+                    this.ConfigureObjectFromAttributes(layout, layoutElement, true);
+                    this.ConfigureObjectFromElement(layout, layoutElement);
+                    targetPropertyInfo.SetValue(o, layout, null);
+                    return true;
                 }
             }
 
@@ -1203,6 +1254,21 @@ namespace NLog.Config
 
             InternalLogger.Debug("Wrapping target '{0}' with '{1}' and renaming to '{2}", wrapperTargetInstance.Name, wrapperTargetInstance.GetType().Name, t.Name);
             return wrapperTargetInstance;
+        }
+
+        private Layout TryCreateLayoutInstance(NLogXmlElement element, Type type)
+        {
+            // Check if it is a Layout
+            if (!typeof(Layout).IsAssignableFrom(type))
+                return null;
+
+            string layoutTypeName = StripOptionalNamespacePrefix(element.GetOptionalAttribute("type", null));
+
+            // Check if the 'type' attribute has been specified
+            if (layoutTypeName == null)
+                return null;
+
+            return this.ConfigurationItemFactory.Layouts.CreateInstance(this.ExpandSimpleVariables(layoutTypeName));
         }
 
         /// <summary>

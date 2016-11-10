@@ -40,6 +40,7 @@ namespace NLog.UnitTests.Targets
     using NLog.Targets;
     using System.Collections.Generic;
     using Xunit;
+    using System.Threading.Tasks;
 
     public class ConsoleTargetTests : NLogTestBase
     {
@@ -71,7 +72,7 @@ namespace NLog.UnitTests.Targets
                 Assert.Equal(6, exceptions.Count);
                 target.Close();
             }
-            finally 
+            finally
             {
                 Console.SetOut(oldConsoleOutWriter);
             }
@@ -125,6 +126,68 @@ namespace NLog.UnitTests.Targets
             string expectedResult = string.Format("-- header --{0}Logger1 message1{0}Logger1 message2{0}Logger1 message3{0}Logger2 message4{0}Logger2 message5{0}Logger1 message6{0}-- footer --{0}", Environment.NewLine);
             Assert.Equal(expectedResult, consoleErrorWriter.ToString());
         }
+
+#if !NET3_5 && !MONO
+
+        [Fact]
+        public void ConsoleRaceCondtionIgnoreTest()
+        {
+            var configXml = @"
+            <nlog throwExceptions='true'>
+                <targets>
+                  <target name='console' type='console' layout='${message}' />
+                  <target name='consoleError' type='console' layout='${message}'  error='true' />
+                </targets>
+                <rules>
+                  <logger name='*' minlevel='Trace' writeTo='console,consoleError' />
+                </rules>
+            </nlog>";
+
+            ConsoleRaceCondtionIgnoreInnerTest(configXml);
+        }
+
+        internal static void ConsoleRaceCondtionIgnoreInnerTest(string configXml)
+        {
+            LogManager.Configuration = CreateConfigurationFromString(configXml);
+
+            //   Console.Out.Writeline / Console.Error.Writeline could throw 'IndexOutOfRangeException', which is a bug. 
+            // See http://stackoverflow.com/questions/33915790/console-out-and-console-error-race-condition-error-in-a-windows-service-written
+            // and https://connect.microsoft.com/VisualStudio/feedback/details/2057284/console-out-probable-i-o-race-condition-issue-in-multi-threaded-windows-service
+            //             
+            // Full error: 
+            //   Error during session close: System.IndexOutOfRangeException: Probable I/ O race condition detected while copying memory.
+            //   The I/ O package is not thread safe by default.In multithreaded applications, 
+            //   a stream must be accessed in a thread-safe way, such as a thread - safe wrapper returned by TextReader's or 
+            //   TextWriter's Synchronized methods.This also applies to classes like StreamWriter and StreamReader.
+
+            var oldOut = Console.Out;
+            var oldError = Console.Error;
+
+            try
+            {
+                Console.SetOut(StreamWriter.Null);
+                Console.SetError(StreamWriter.Null);
+
+
+                LogManager.ThrowExceptions = true;
+                var logger = LogManager.GetCurrentClassLogger();
+
+
+                Parallel.For(0, 10, new ParallelOptions() { MaxDegreeOfParallelism = 10 }, (_) =>
+                  {
+                      for (int i = 0; i < 100; i++)
+                      {
+                          logger.Trace("test message to the out and error stream");
+                      }
+                  });
+            }
+            finally
+            {
+                Console.SetOut(oldOut);
+                Console.SetError(oldError);
+            }
+        }
+#endif
     }
 }
 

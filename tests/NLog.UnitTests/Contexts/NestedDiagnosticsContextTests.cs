@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
 using System.Text;
 
 #pragma warning disable 0618
@@ -192,6 +193,90 @@ namespace NLog.UnitTests.Contexts
             }
 
             Assert.True(exceptions.Count == 0, exceptionsMessage.ToString());
+        }
+
+
+        [Fact]
+        public void NDCTest2_object()
+        {
+            List<Exception> exceptions = new List<Exception>();
+            ManualResetEvent mre = new ManualResetEvent(false);
+            int counter = 100;
+            int remaining = counter;
+
+            for (int i = 0; i < counter; ++i)
+            {
+                ThreadPool.QueueUserWorkItem(
+                    s =>
+                    {
+                        try
+                        {
+                            NDC.Clear();
+                            Assert.Equal(null, NDC.TopObject);
+                            Assert.Equal(null, NDC.PopObject());
+                            AssertContents(NDC.GetAllMessages());
+                            using (NDC.Push("foo"))
+                            {
+                                Assert.Equal("foo", NDC.TopObject);
+                                AssertContents(NDC.GetAllObjects(), "foo");
+                                using (NDC.Push("bar"))
+                                {
+                                    AssertContents(NDC.GetAllObjects(), "bar", "foo");
+                                    Assert.Equal("bar", NDC.TopObject);
+                                    NDC.Push("baz");
+                                    AssertContents(NDC.GetAllObjects(), "baz", "bar", "foo");
+                                    Assert.Equal("baz", NDC.TopObject);
+                                    Assert.Equal("baz", NDC.PopObject());
+
+                                    AssertContents(NDC.GetAllObjects(), "bar", "foo");
+                                    Assert.Equal("bar", NDC.TopObject);
+                                }
+
+                                AssertContents(NDC.GetAllObjects(), "foo");
+                                Assert.Equal("foo", NDC.TopObject);
+                            }
+
+                            AssertContents(NDC.GetAllMessages());
+                            Assert.Equal(null, NDC.PopObject());
+                        }
+                        catch (Exception ex)
+                        {
+                            lock (exceptions)
+                            {
+                                exceptions.Add(ex);
+                            }
+                        }
+                        finally
+                        {
+                            if (Interlocked.Decrement(ref remaining) == 0)
+                            {
+                                mre.Set();
+                            }
+                        }
+                    });
+            }
+
+            mre.WaitOne();
+            StringBuilder exceptionsMessage = new StringBuilder();
+            foreach (var ex in exceptions)
+            {
+                if (exceptionsMessage.Length > 0)
+                {
+                    exceptionsMessage.Append("\r\n");
+                }
+
+                exceptionsMessage.Append(ex.ToString());
+            }
+
+            Assert.True(exceptions.Count == 0, exceptionsMessage.ToString());
+        }
+        private static void AssertContents(object[] actual, params string[] expected)
+        {
+            Assert.Equal(expected.Length, actual.Length);
+            for (int i = 0; i < expected.Length; ++i)
+            {
+                Assert.Equal(expected[i], actual[i]);
+            }
         }
 
         private static void AssertContents(string[] actual, params string[] expected)

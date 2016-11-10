@@ -376,6 +376,44 @@ namespace NLog.UnitTests.Targets
             Assert.False(wasWritten);
         }
 
+
+        [Fact]
+        public void WriteEventLogEntryWithDynamicSource()
+        {
+            const int maxMessageLength = 10;
+            string expectedMessage = string.Join("", Enumerable.Repeat("a", maxMessageLength));
+
+            var target = CreateEventLogTarget(null, "NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Split, maxMessageLength);
+            target.Layout = new SimpleLayout("${message}");
+            target.Source = new SimpleLayout("${event-properties:item=DynamicSource}");
+            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
+
+            var logger = LogManager.GetLogger("WriteEventLogEntry");
+
+            var sourceName = "NLog.UnitTests" + Guid.NewGuid().ToString("N");
+            var logEvent = CreateLogEventWithDynamicSource(expectedMessage, LogLevel.Trace, "DynamicSource", sourceName);           
+            
+            logger.Log(logEvent);
+
+            var eventLog = new EventLog(target.Log);
+            var entries = GetEventRecords(eventLog.Log).ToList();
+
+            entries = entries.Where(a => a.ProviderName == sourceName).ToList();
+            Assert.Equal(1, entries.Count);
+            AssertWrittenMessage(entries, expectedMessage);
+
+            sourceName = "NLog.UnitTests" + Guid.NewGuid().ToString("N");
+            expectedMessage = string.Join("", Enumerable.Repeat("b", maxMessageLength));
+
+            logEvent = CreateLogEventWithDynamicSource(expectedMessage, LogLevel.Trace, "DynamicSource", sourceName);
+            logger.Log(logEvent);
+
+            entries = GetEventRecords(eventLog.Log).ToList();
+            entries = entries.Where(a => a.ProviderName == sourceName).ToList();
+            Assert.Equal(1, entries.Count);
+            AssertWrittenMessage(entries, expectedMessage);
+        }
+
         private static IEnumerable<EventRecord> Write(LogLevel logLevel, EventLogEntryType expectedEventLogEntryType, string logMessage, Layout entryType = null, EventLogTargetOverflowAction overflowAction = EventLogTargetOverflowAction.Truncate, int maxMessageLength = 16384)
         {
             var target = CreateEventLogTarget(entryType, "NLog.UnitTests" + Guid.NewGuid().ToString("N"), overflowAction, maxMessageLength);
@@ -431,6 +469,16 @@ namespace NLog.UnitTests.Targets
             target.MaxMessageLength = maxMessageLength;
 
             return target;
+        }
+
+        private LogEventInfo CreateLogEventWithDynamicSource(string message, LogLevel level, string propertyKey, string proertyValue)
+        {
+            var logEvent = new LogEventInfo();
+            logEvent.Message = message;
+            logEvent.Level = level;
+            logEvent.Properties[propertyKey] = proertyValue;
+
+            return logEvent;
         }
 
         private static IEnumerable<EventRecord> GetEventRecords(string logName)

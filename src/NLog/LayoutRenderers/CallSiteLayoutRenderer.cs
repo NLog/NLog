@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+
 namespace NLog.LayoutRenderers
 {
     using System.ComponentModel;
@@ -143,9 +145,9 @@ namespace NLog.LayoutRenderers
                         if (this.CleanNamesOfAnonymousDelegates)
                         {
                             // NLog.UnitTests.LayoutRenderers.CallSiteTests+<>c__DisplayClassa
-                            if (className.Contains("+<>"))
+                            int index = className.IndexOf("+<>", StringComparison.Ordinal);
+                            if (index >= 0)
                             {
-                                int index = className.IndexOf("+<>");
                                 className = className.Substring(0, index);
                             }
                         }

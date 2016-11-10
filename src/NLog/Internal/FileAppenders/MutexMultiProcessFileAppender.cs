@@ -31,19 +31,20 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__ANDROID__ && !__IOS__
+// Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) so the BaseFileAppender class now throws an exception in the constructor.
+#define SupportsMutex
+#endif
+
+#if SupportsMutex
 
 namespace NLog.Internal.FileAppenders
 {
+    using NLog.Common;
     using System;
     using System.IO;
     using System.Security;
-    using System.Security.AccessControl;
-    using System.Security.Cryptography;
-    using System.Security.Principal;
-    using System.Text;
     using System.Threading;
-    using NLog.Common;
 
     /// <summary>
     /// Provides a multiprocess-safe atomic file appends while
@@ -73,7 +74,7 @@ namespace NLog.Internal.FileAppenders
         {
             try
             {
-                this.mutex = CreateSharableMutex(GetMutexName(fileName));
+                this.mutex = CreateSharableMutex("FileLock");
                 this.fileStream = CreateFileStream(true);
             }
             catch
@@ -121,7 +122,10 @@ namespace NLog.Internal.FileAppenders
                 this.fileStream.Seek(0, SeekOrigin.End);
                 this.fileStream.Write(bytes, 0, bytes.Length);
                 this.fileStream.Flush();
-                FileTouched();
+                if (CaptureLastWriteTime)
+                {
+                    FileTouched();
+                }
             }
             finally
             {
@@ -158,61 +162,39 @@ namespace NLog.Internal.FileAppenders
             // do nothing, the stream is always flushed
         }
 
-        /// <summary>
-        /// Gets the file info.
-        /// </summary>
-        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2001:AvoidCallingProblematicMethods", MessageId = "System.Runtime.InteropServices.SafeHandle.DangerousGetHandle", Justification = "Optimization")]
-        public override FileCharacteristics GetFileCharacteristics()
+
+        public override DateTime? GetFileCreationTimeUtc()
         {
+           
+            var fileChars = GetFileCharacteristics();
+            return fileChars.CreationTimeUtc;
+        }
+
+        public override DateTime? GetFileLastWriteTimeUtc()
+        {
+            var fileChars = GetFileCharacteristics();
+            return fileChars.LastWriteTimeUtc;
+        }
+
+        public override long? GetFileLength()
+        {
+            var fileChars = GetFileCharacteristics();
+            return fileChars.FileLength;
+        }
+
+        private FileCharacteristics GetFileCharacteristics()
+        {
+            //todo not efficient to read all the whole FileCharacteristics and then using one property
             return FileCharacteristicsHelper.Helper.GetFileCharacteristics(FileName, this.fileStream.SafeFileHandle.DangerousGetHandle());
         }
 
-        private static Mutex CreateSharableMutex(string name)
+        /// <summary>
+        /// Creates a mutually-exclusive lock for archiving files.
+        /// </summary>
+        /// <returns>A <see cref="Mutex"/> object which can be used for controlling the archiving of files.</returns>
+        protected override Mutex CreateArchiveMutex()
         {
-            // Creates a mutex sharable by more than one process
-            var mutexSecurity = new MutexSecurity();
-            var everyoneSid = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
-            mutexSecurity.AddAccessRule(new MutexAccessRule(everyoneSid, MutexRights.FullControl, AccessControlType.Allow));
-
-            // The constructor will either create new mutex or open
-            // an existing one, in a thread-safe manner
-            bool createdNew;
-            return new Mutex(false, name, out createdNew, mutexSecurity);
-        }
-
-        private static string GetMutexName(string fileName)
-        {
-            // The global kernel object namespace is used so the mutex
-            // can be shared among processes in all sessions
-            const string mutexNamePrefix = @"Global\NLog-FileLock-";
-            const int maxMutexNameLength = 260;
-
-            string canonicalName = Path.GetFullPath(fileName).ToLowerInvariant();
-
-            // Mutex names must not contain a backslash, it's the namespace separator,
-            // but all other are OK
-            canonicalName = canonicalName.Replace('\\', '/');
-
-            // A mutex name must not exceed MAX_PATH (260) characters
-            if (mutexNamePrefix.Length + canonicalName.Length <= maxMutexNameLength)
-            {
-                return mutexNamePrefix + canonicalName;
-            }
-
-            // The unusual case of the path being too long; let's hash the canonical name,
-            // so it can be safely shortened and still remain unique
-            string hash;
-            using (MD5 md5 = MD5.Create())
-            {
-                byte[] bytes = md5.ComputeHash(Encoding.UTF8.GetBytes(canonicalName));
-                hash = Convert.ToBase64String(bytes);
-            }
-
-            // The hash makes the name unique, but also add the end of the path,
-            // so the end of the name tells us which file it is (for debugging)
-            int cutOffIndex = canonicalName.Length - (maxMutexNameLength - mutexNamePrefix.Length - hash.Length);
-            return mutexNamePrefix + hash + canonicalName.Substring(cutOffIndex);
+            return CreateSharableArchiveMutex();
         }
 
         /// <summary>

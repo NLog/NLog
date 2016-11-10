@@ -281,6 +281,80 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void ExtensionShouldThrowNLogConfiguratonExceptionWhenRegisteringInvalidType()
+        {
+            var configXml = @"
+<nlog throwConfigExceptions='true'>
+    <extensions>
+                <add type='some_type_that_doesnt_exist'/>
+</extensions>
+</nlog>";
+            Assert.Throws<NLogConfigurationException>(()=>CreateConfigurationFromString(configXml));
+        }
+
+        [Fact]
+        public void ExtensionShouldThrowNLogConfiguratonExceptionWhenRegisteringInvalidAssembly()
+        {
+            var configXml = @"
+<nlog throwConfigExceptions='true'>
+    <extensions>
+        <add assembly='some_assembly_that_doesnt_exist'/>
+    </extensions>
+</nlog>";
+            Assert.Throws<NLogConfigurationException>(() => CreateConfigurationFromString(configXml));
+        }
+
+        [Fact]
+        public void ExtensionShouldThrowNLogConfiguratonExceptionWhenRegisteringInvalidAssemblyFile()
+        {
+            var configXml = @"
+<nlog throwConfigExceptions='true'>
+    <extensions>
+                <add assemblyfile='some_file_that_doesnt_exist'/>
+</extensions>
+</nlog>";
+            Assert.Throws<NLogConfigurationException>(() => CreateConfigurationFromString(configXml));
+        }
+
+        [Fact]
+        public void ExtensionShouldNotThrowWhenRegisteringInvalidTypeIfThrowConfigExceptionsFalse()
+        {
+            var configXml = @"
+<nlog throwConfigExceptions='false'>
+    <extensions>
+                <add type='some_type_that_doesnt_exist'/>
+                <add assembly='NLog'/>
+</extensions>
+</nlog>";
+            CreateConfigurationFromString(configXml);
+        }
+
+        [Fact]
+        public void ExtensionShouldNotThrowWhenRegisteringInvalidAssemblyIfThrowConfigExceptionsFalse()
+        {
+            var configXml = @"
+<nlog throwConfigExceptions='false'>
+    <extensions>
+        <add assembly='some_assembly_that_doesnt_exist'/>
+    </extensions>
+</nlog>";
+            CreateConfigurationFromString(configXml);
+        }
+
+        [Fact]
+        public void ExtensionShouldNotThrowWhenRegisteringInvalidAssemblyFileIfThrowConfigExceptionsFalse()
+        {
+            var configXml = @"
+<nlog throwConfigExceptions='false'>
+    <extensions>
+                <add assemblyfile='some_file_that_doesnt_exist'/>
+</extensions>
+</nlog>";
+            CreateConfigurationFromString(configXml);
+        }
+
+
+        [Fact]
         public void CustomXmlNamespaceTest()
         {
             var configuration = CreateConfigurationFromString(@"

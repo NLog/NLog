@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+using System.Threading;
+
 namespace NLog.UnitTests.Contexts
 {
     using System;
@@ -127,6 +130,40 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
+        public void given_no_item_exists_when_getting_items_should_return_empty_collection()
+        {
+            Assert.Equal(0,MappedDiagnosticsLogicalContext.GetNames().Count);
+        }
+
+        [Fact]
+        public void given_item_exists_when_getting_items_should_return_that_item()
+        {
+            const string key = "Key";
+            MappedDiagnosticsLogicalContext.Set(key, "Item");
+
+            Assert.Equal(1, MappedDiagnosticsLogicalContext.GetNames().Count);
+            Assert.True(MappedDiagnosticsLogicalContext.GetNames().Contains("Key"));
+
+        }
+
+        [Fact]
+        public void given_item_exists_after_removing_item_when_getting_items_should_not_contain_item()
+        {
+            const string keyThatRemains1 = "Key1";
+            const string keyThatRemains2 = "Key2";
+            const string keyThatIsRemoved = "KeyR";
+
+            MappedDiagnosticsLogicalContext.Set(keyThatRemains1, "7");
+            MappedDiagnosticsLogicalContext.Set(keyThatIsRemoved, 7);
+            MappedDiagnosticsLogicalContext.Set(keyThatRemains2, 8);
+
+            MappedDiagnosticsLogicalContext.Remove(keyThatIsRemoved);
+
+            Assert.Equal(2, MappedDiagnosticsLogicalContext.GetNames().Count);
+            Assert.False(MappedDiagnosticsLogicalContext.GetNames().Contains(keyThatIsRemoved));
+        }
+
+        [Fact]
         public void given_item_does_not_exist_when_checking_if_context_contains_should_return_false()
         {
             Assert.False(MappedDiagnosticsLogicalContext.Contains("keyForItemThatDoesNotExist"));
@@ -210,6 +247,45 @@ namespace NLog.UnitTests.Contexts
             Assert.Equal(task2.Result, valueForLogicalThread2);
             Assert.Equal(task3.Result, valueForLogicalThread3);
         }
+
+        [Fact]
+        public void parent_thread_assigns_different_values_to_childs()
+        {
+            const string parentKey = "ParentKey";
+            const string parentValueForLogicalThread1 = "Parent1";
+            const string parentValueForLogicalThread2 = "Parent2";
+
+            const string childKey = "ChildKey";
+            const string valueForChildThread1 = "Child1";
+            const string valueForChildThread2 = "Child2";
+
+            MappedDiagnosticsLogicalContext.Clear(true);
+            var exitAllTasks = new ManualResetEvent(false);
+
+            MappedDiagnosticsLogicalContext.Set(parentKey, parentValueForLogicalThread1);
+
+            var task1 = Task.Factory.StartNew(() =>
+            {
+                MappedDiagnosticsLogicalContext.Set(childKey, valueForChildThread1);
+                exitAllTasks.WaitOne();
+                return MappedDiagnosticsLogicalContext.Get(parentKey) + "," + MappedDiagnosticsLogicalContext.Get(childKey);
+            });
+
+            MappedDiagnosticsLogicalContext.Set(parentKey, parentValueForLogicalThread2);
+
+            var task2 = Task.Factory.StartNew(() =>
+            {
+                MappedDiagnosticsLogicalContext.Set(childKey, valueForChildThread2);
+                exitAllTasks.WaitOne();
+                return MappedDiagnosticsLogicalContext.Get(parentKey) + "," + MappedDiagnosticsLogicalContext.Get(childKey);
+            });
+
+            exitAllTasks.Set();
+            Task.WaitAll();
+
+            Assert.Equal(task1.Result, parentValueForLogicalThread1 + "," + valueForChildThread1);
+            Assert.Equal(task2.Result, parentValueForLogicalThread2 + "," + valueForChildThread2);
+       }
     }
 #endif
 }

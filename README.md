@@ -9,6 +9,7 @@
 [![codecov.io](https://codecov.io/github/NLog/NLog/coverage.svg?branch=master)](https://codecov.io/github/NLog/NLog?branch=master) 
 [![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-3D9FE0.svg)](http://semver.org/)
 [![Rager Releases](http://rager.io/badge.svg?url=https%3A%2F%2Fgithub.com%2FNLog%2FNLog)](http://rager.io/projects/search?badge=1&query=github.com/nlog/nlog)
+[![StackOverflow](https://img.shields.io/stackexchange/stackoverflow/t/nlog.svg?maxAge=2592000)](https://stackoverflow.com/questions/tagged/nlog)
 
 <!--
 [![NuGet downloads](https://img.shields.io/nuget/dt/NLog.svg)](https://www.nuget.org/packages/NLog)
@@ -40,8 +41,8 @@ NLog consists of multiple packages. Most of the functionality is inside the NLog
 Package  | Build status | NuGet |
 -------- | :------------ | :------------ | :------------------
 NLog (.Net / Silverlight 4+5 / Xamarin iOS / Xamarin Android / Windows Phone 8)                                    | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/master.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/master)                   | [![NuGet package](https://badge.fury.io/nu/NLog.svg)](https://www.nuget.org/packages/NLog)                            |
-NLog (.NET Core)                                                | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/coreclr.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/coreclr)                   | [![NuGet package](https://img.shields.io/badge/nuget-v4.4.0--beta6-blue.svg)](https://www.nuget.org/packages/NLog)       | 
-[NLog (Microsoft Logging)](https://github.com/NLog/NLog.Framework.Logging)  | [![Build status](https://img.shields.io/appveyor/ci/nlog/nlog-framework-logging/master.svg)](https://ci.appveyor.com/project/nlog/nlog-framework-logging/branch/master) | [![NuGet Pre Release](https://badge.fury.io/nu/NLog.Extensions.Logging.svg)](https://www.nuget.org/packages/NLog.Extensions.Logging) |
+NLog (.NET Core)   - coreCLR branch                                             | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/coreclr.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/coreclr)                   | [![NuGet package](https://img.shields.io/badge/nuget-v5.0--beta-blue.svg)](https://www.nuget.org/packages/NLog)       | 
+[NLog (Microsoft Logging Platform)](https://github.com/NLog/NLog.Framework.Logging)  | [![Build status](https://img.shields.io/appveyor/ci/nlog/nlog-framework-logging/master.svg)](https://ci.appveyor.com/project/nlog/nlog-framework-logging/branch/master) | [![NuGet Pre Release](https://badge.fury.io/nu/NLog.Extensions.Logging.svg)](https://www.nuget.org/packages/NLog.Extensions.Logging) |
 NLog (Mono)                                                         | [![Build Status](https://travis-ci.org/NLog/NLog.svg?branch=master)](https://travis-ci.org/NLog/NLog)                                                         |                                                                                                                                  |
 NLog.Config                                                         | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/master.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/master)                   | [![NuGet package](https://badge.fury.io/nu/NLog.Config.svg)](https://www.nuget.org/packages/NLog.Config)                   |
 [NLog.Contrib.ActiveMQ](https://github.com/NLog/NLog.Contrib.ActiveMQ)                                              | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog-contrib-activemq/master.svg)](https://ci.appveyor.com/project/nlog/nlog-contrib-activemq/branch/master)                   | [![NuGet package](https://badge.fury.io/nu/NLog.Contrib.ActiveMQ.svg)](https://www.nuget.org/packages/NLog.Contrib.ActiveMQ)                   |
@@ -52,7 +53,7 @@ NLog.Extended                                                       | [![AppVeyo
 [NLog.ManualFlush](https://github.com/NLog/NLog.ManualFlush)        | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog-ManualFlush/master.svg)](https://ci.appveyor.com/project/nlog/nlog-ManualFlush/branch/master)   | [![NuGet package](https://badge.fury.io/nu/NLog.ManualFlush.svg)](https://www.nuget.org/packages/NLog.ManualFlush)         |
 NLog.Schema                                                         | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/master.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/master)                   | [![NuGet package](https://badge.fury.io/nu/NLog.Schema.svg)](https://www.nuget.org/packages/NLog.Schema)                   |
 [NLog.Web](https://github.com/NLog/NLog.Web)                        | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog-web/master.svg)](https://ci.appveyor.com/project/nlog/nlog-web/branch/master)                   | [![NuGet package](https://badge.fury.io/nu/NLog.Web.svg)](https://www.nuget.org/packages/NLog.Web)                         |
-[NLog.Web for ASP.NET 5](https://github.com/NLog/NLog.Web)                        | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog-web/master.svg)](https://ci.appveyor.com/project/nlog/nlog-web/branch/master)                   | [![NuGet package](https://badge.fury.io/nu/NLog.Web.ASPNET5.svg)](https://www.nuget.org/packages/NLog.Web.ASPNET5)                         |
+[NLog.Web for ASP.NET Core](https://github.com/NLog/NLog.Web)                        | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog-web/master.svg)](https://ci.appveyor.com/project/nlog/nlog-web/branch/master)                   | [![NuGet package](https://badge.fury.io/nu/NLog.Web.AspNetCore.svg)](https://www.nuget.org/packages/NLog.Web.AspNetCore)                         |
 [NLog.Windows.Forms](https://github.com/NLog/NLog.Windows.Forms)    | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog-windows-forms/master.svg)](https://ci.appveyor.com/project/nlog/nlog-windows-forms/branch/master)           | [![NuGet package](https://badge.fury.io/nu/NLog.Windows.Forms.svg)](https://www.nuget.org/packages/NLog.Windows.Forms)     |
 [NLog.Owin.Logging](https://github.com/NLog/NLog.Owin.Logging)      | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog-owin-logging/master.svg)](https://ci.appveyor.com/project/nlog/nlog-owin-logging/branch/master)          | [![NuGet package](https://badge.fury.io/nu/NLog.Owin.Logging.svg)](https://www.nuget.org/packages/NLog.Owin.Logging)    |
 
@@ -63,62 +64,14 @@ NLog.Schema                                                         | [![AppVeyo
 Questions, bug reports or feature requests?
 ---
 Do you have feature requests, questions or would you like to report a bug? Please post them on the [issue list](https://github.com/NLog/NLog/issues) and follow [these guidelines](CONTRIBUTING.md).
+You could also post questions on [StackOverflow](https://stackoverflow.com/) - in general your will get faster response there. 
 Please also post or vote features requests on [UserEcho](https://nlog.userecho.com).
+
 
 
 Frequently Asked Questions (FAQ)
 ---
-* **What is NLog?**
- - NLog is a free and open source library which helps to write log messages. 
-
-* **Why should I use a log libary? I can just do `file.WriteLine()`**
-  - Beside writing to files, you can write to many different targets, like databases, event viewer, trace etc. 
-  - The output is templatable with many predefined template values. 
-  - With a simple configuration file you can decide runtime (after deployment), what to log and where! No need to restart the program or recyle the app pool!
-
-* **Why should I use NLog?**
-  - NLog is fully written in C#, has many years of experience and is easy to extend!
-
-* **Is it free?**
-  - It's licensed under the BSD license, so you can use it in commercial (closed sourse) programs without problems. 
-  
-* **Show me the magic!**
-  - Check the [tutorial](https://github.com/NLog/NLog/wiki/Tutorial) to get started!
-
-* **I can't see anything?!**
-  - NLog not working as expected? Check the [troubleshooting guide](https://github.com/NLog/NLog/wiki/Logging-troubleshooting). If you think it's a bug, please check [contributing.md](https://github.com/NLog/NLog/blob/master/CONTRIBUTING.md#bug-reports]) and [create a GitHub issue](https://github.com/NLog/NLog/issues/new)!
-
-* **I'm missing important stuff!**
-  - You can send a feature request, but do you know you can [extend NLog with a few lines of code](http://nlog-project.org/2015/06/30/extending-nlog-is-easy.html)?
-
-* **How do I upgrade to NLog 4.x?** 
-  - Check the [4.0 release post](http://nlog-project.org/2015/06/09/nlog-4-has-been-released.html), there are some breaking changes.
-  - Update all the NLog packages. The latest stable version is recommend. 
-  - When upgrading from NLog 4.1.0, please the next question.
-
-* **I have trouble updating NLog from 4.1.0**
-  - We take [semver](https://semver.org) very serious! Because NLog is strong named, it's important to keep the assembly version of all major versions the same, otherwise every library build on 4.0.0 should be reompiled for every other 4.x release (4.1, 4.2 etc)  - which is unwanted because of semver. <br>
-   In NLog 4.1.0 there was a mistake in the assembly version, which has been fixed in 4.1.1. Upgrading from NLog 4.1.0 to another version can give issues when using NuGet. This will result in the following error:
-   
-  > Could not load file or assembly 'NLog' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
-
-  If you upgrade, remove or alter the `<assemblybinding>`, as explained at the [4.1.1 news post](http://nlog-project.org/2015/09/12/nlog-4-1-1-has-been-released.html).    
-  
-* **Should I use Common Logging?**
-   - That's up to you. It has it pros and cons. The greatest advantage is that you can easily switch between logging implementations (NLog, Log4Net, EntLib). This can be very important if you’re writing a library yourself, then the user who's using your library can choose which implementation to use.
-
-  - There are some downsides: 
-
-     - You are limited in some features, or some features aren't available at all (like context classes or event properties)
-     - The performance is a bit lower.
-     - The platform support is lower. For example, there is no Xamarin support or a specialized .Net 4.5 build
-     - The progress is limited by NLog and Common logging. 
-  
-* **Which Common Logging version should I use?**
-   - As you may have noticed the latest version of Common Logging doesn't match the latest version of NLog -  the latest Common Logging is build to NLog 4.1. But that is not a problem! Since NLog 4.0 the assembly version is fixed to `4.0.0.0` and because follow [semver](https://semver.org), you can use the latest version of NLog with [Common.Logging.NLog41](https://www.nuget.org/packages/Common.Logging.NLog41/). 
-    
-* **I'm writing a library who's using NLog. Should I update when NLog has an update?**
-   - If you don't use the latest additions, then you should only update every NLog major version. As mentioned at the Common Logging version, we will keep the assembly version fixed. The end-user don't need `<assemblybinding>`-magic! So in short: your library should target NLog 4.0 and in the future NLog 5.0.
+See [FAQ on the Wiki](https://github.com/NLog/NLog/wiki/faq)
 
 
 Contributing

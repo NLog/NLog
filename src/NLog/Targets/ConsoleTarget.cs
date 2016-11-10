@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.IO;
+using NLog.Common;
+
 namespace NLog.Targets
 {
     using System;
@@ -60,6 +63,23 @@ namespace NLog.Targets
     public sealed class ConsoleTarget : TargetWithLayoutHeaderAndFooter
     {
         /// <summary>
+        /// Should logging being paused/stopped because of the race condition bug in Console.Writeline?
+        /// </summary>
+        /// <remarks>
+        ///   Console.Out.Writeline / Console.Error.Writeline could throw 'IndexOutOfRangeException', which is a bug. 
+        /// See http://stackoverflow.com/questions/33915790/console-out-and-console-error-race-condition-error-in-a-windows-service-written
+        /// and https://connect.microsoft.com/VisualStudio/feedback/details/2057284/console-out-probable-i-o-race-condition-issue-in-multi-threaded-windows-service
+        ///             
+        /// Full error: 
+        ///   Error during session close: System.IndexOutOfRangeException: Probable I/ O race condition detected while copying memory.
+        ///   The I/ O package is not thread safe by default.In multithreaded applications, 
+        ///   a stream must be accessed in a thread-safe way, such as a thread - safe wrapper returned by TextReader's or 
+        ///   TextWriter's Synchronized methods.This also applies to classes like StreamWriter and StreamReader.
+        /// 
+        /// </remarks>
+        private bool PauseLogging;
+
+        /// <summary>
         /// Gets or sets a value indicating whether to send the log messages to the standard error instead of the standard output.
         /// </summary>
         /// <docgen category='Console Options' order='10' />
@@ -79,6 +99,14 @@ namespace NLog.Targets
 #endif
 
         /// <summary>
+        /// Gets or sets a value indicating whether to auto-check if the console is available
+        ///  - Disables console writing if Environment.UserInteractive = False (Windows Service)
+        ///  - Disables console writing if Console Standard Input is not available (Non-Console-App)
+        /// </summary>
+        [DefaultValue(true)]
+        public bool DetectConsoleAvailable { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleTarget" /> class.
         /// </summary>
         /// <remarks>
@@ -86,9 +114,12 @@ namespace NLog.Targets
         /// </remarks>
         public ConsoleTarget() : base()
         {
+            PauseLogging = false;
+            DetectConsoleAvailable = true;
         }
 
         /// <summary>
+        /// 
         /// Initializes a new instance of the <see cref="ConsoleTarget" /> class.
         /// </summary>
         /// <remarks>
@@ -105,10 +136,20 @@ namespace NLog.Targets
         /// </summary>
         protected override void InitializeTarget()
         {
+            PauseLogging = false;
+            if (DetectConsoleAvailable)
+            {
+                string reason;
+                PauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
+                if (PauseLogging)
+                {
+                    InternalLogger.Info("Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {0}", reason);
+                }
+            }
             base.InitializeTarget();
             if (Header != null)
             {
-                this.Output(Header.Render(LogEventInfo.CreateNullEvent()));
+                this.WriteToOutput(Header.Render(LogEventInfo.CreateNullEvent()));
             }
         }
 
@@ -119,7 +160,7 @@ namespace NLog.Targets
         {
             if (Footer != null)
             {
-                this.Output(Footer.Render(LogEventInfo.CreateNullEvent()));
+                this.WriteToOutput(Footer.Render(LogEventInfo.CreateNullEvent()));
             }
 
             base.CloseTarget();
@@ -135,23 +176,44 @@ namespace NLog.Targets
         /// </remarks>
         protected override void Write(LogEventInfo logEvent)
         {
-            this.Output(this.Layout.Render(logEvent));
+            if (PauseLogging)
+            {
+                //check early for performance
+                return;
+            }
+
+            this.WriteToOutput(this.Layout.Render(logEvent));
         }
 
         /// <summary>
         /// Write to output
         /// </summary>
         /// <param name="textLine">text to be written.</param>
-        private void Output(string textLine)
+        private void WriteToOutput(string textLine)
         {
-            if (this.Error)
+            if (PauseLogging)
             {
-                Console.Error.WriteLine(textLine);
+                return;
             }
-            else
+
+            var output = GetOutput();
+
+            try
             {
-                Console.Out.WriteLine(textLine);
+                output.WriteLine(textLine);
             }
+            catch (IndexOutOfRangeException ex)
+            {
+                //this is a bug and therefor stopping logging. For docs, see PauseLogging property
+                PauseLogging = true;
+                InternalLogger.Warn(ex, "An IndexOutOfRangeException has been thrown and this is probably due to a race condition." +
+                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
+            }
+        }
+
+        private TextWriter GetOutput()
+        {
+            return this.Error ? Console.Error : Console.Out;
         }
     }
 }

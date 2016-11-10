@@ -45,6 +45,8 @@ namespace NLog.UnitTests
     using System.Threading;
     public class LoggerTests : NLogTestBase
     {
+        private CultureInfo NLCulture = GetCultureInfo("nl-nl");
+
         [Fact]
         public void TraceTest()
         {
@@ -56,7 +58,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -66,7 +68,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='Trace' writeTo='debug' />
                     </rules>
@@ -74,9 +76,40 @@ namespace NLog.UnitTests
                 }
 
                 ILogger logger = LogManager.GetLogger("A");
+                LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
 
                 logger.Trace("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Trace((object)"message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Trace(CultureInfo.InvariantCulture, "message{0}", (object)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+                
+                logger.Trace("message{0}{1}", 1,2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message12");
+
+                logger.Trace("message{0}{1}{2}", 1, 2, 3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message123");
+
+                logger.Trace(NLCulture, "message{0}{1}{2}", 1.4, 2.5, 3.6);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,42,53,6");
+
+                logger.Trace("message{0}", (float)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Trace("message{0}", (double)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Trace("message{0}", (decimal)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Trace("message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Trace(NLCulture,  "message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2,3");
 
                 logger.Trace("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
@@ -177,11 +210,14 @@ namespace NLog.UnitTests
 #pragma warning disable 0618
                 // Obsolete method requires testing until removed.
                 logger.TraceException("message", new Exception("test"));
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
 #pragma warning restore 0618
 
                 logger.Trace(new Exception("test"), "message");
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+
+                logger.Trace(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
 
                 logger.Trace(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -202,7 +238,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -212,7 +248,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='Debug' writeTo='debug' />
                     </rules>
@@ -220,9 +256,40 @@ namespace NLog.UnitTests
                 }
 
                 ILogger logger = LogManager.GetLogger("A");
+                LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
 
                 logger.Debug("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Debug((object)"message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", (object)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.Debug("message{0}{1}", 1, 2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message12");
+
+                logger.Debug("message{0}{1}{2}", 1, 2, 3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message123");
+
+                logger.Debug(NLCulture, "message{0}{1}{2}", 1.4, 2.5, 3.6);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,42,53,6");
+
+                logger.Debug("message{0}", (float)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Debug("message{0}", (double)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Debug("message{0}", (decimal)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Debug("message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Debug(NLCulture, "message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2,3");
 
                 logger.Debug("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
@@ -321,10 +388,16 @@ namespace NLog.UnitTests
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
 #pragma warning disable 0618
-                // Obsolete method requires testing until completely removed.
+                // Obsolete method requires testing until removed.
                 logger.DebugException("message", new Exception("test"));
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
 #pragma warning restore 0618
+
+                logger.Debug(new Exception("test"), "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+
+                logger.Debug(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
 
                 logger.Debug(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -345,7 +418,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -355,7 +428,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='Info' writeTo='debug' />
                     </rules>
@@ -363,9 +436,40 @@ namespace NLog.UnitTests
                 }
 
                 ILogger logger = LogManager.GetLogger("A");
+                LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
 
                 logger.Info("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Info((object)"message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", (object)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.Info("message{0}{1}", 1, 2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message12");
+
+                logger.Info("message{0}{1}{2}", 1, 2, 3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message123");
+
+                logger.Info(NLCulture, "message{0}{1}{2}", 1.4, 2.5, 3.6);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,42,53,6");
+
+                logger.Info("message{0}", (float)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Info("message{0}", (double)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Info("message{0}", (decimal)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Info("message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Info(NLCulture, "message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2,3");
 
                 logger.Info("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
@@ -466,11 +570,14 @@ namespace NLog.UnitTests
 #pragma warning disable 0618
                 // Obsolete method requires testing until removed.
                 logger.InfoException("message", new Exception("test"));
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
 #pragma warning restore 0618
 
                 logger.Info(new Exception("test"), "message");
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+
+                logger.Info(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
 
                 logger.Info(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -491,7 +598,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -501,7 +608,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='Warn' writeTo='debug' />
                     </rules>
@@ -509,9 +616,40 @@ namespace NLog.UnitTests
                 }
 
                 ILogger logger = LogManager.GetLogger("A");
+                LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
 
                 logger.Warn("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Warn((object)"message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", (object)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.Warn("message{0}{1}", 1, 2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message12");
+
+                logger.Warn("message{0}{1}{2}", 1, 2, 3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message123");
+
+                logger.Warn(NLCulture, "message{0}{1}{2}", 1.4, 2.5, 3.6);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,42,53,6");
+
+                logger.Warn("message{0}", (float)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Warn("message{0}", (double)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Warn("message{0}", (decimal)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Warn("message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Warn(NLCulture, "message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2,3");
 
                 logger.Warn("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
@@ -612,11 +750,14 @@ namespace NLog.UnitTests
 #pragma warning disable 0618
                 // Obsolete method requires testing until removed.
                 logger.WarnException("message", new Exception("test"));
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
 #pragma warning restore 0618
 
                 logger.Warn(new Exception("test"), "message");
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+
+                logger.Warn(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
 
                 logger.Warn(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -637,7 +778,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -647,7 +788,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='Error' writeTo='debug' />
                     </rules>
@@ -655,9 +796,40 @@ namespace NLog.UnitTests
                 }
 
                 ILogger logger = LogManager.GetLogger("A");
+                LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
 
                 logger.Error("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Error((object)"message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", (object)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.Error("message{0}{1}", 1, 2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message12");
+
+                logger.Error("message{0}{1}{2}", 1, 2, 3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message123");
+
+                logger.Error(NLCulture, "message{0}{1}{2}", 1.4, 2.5, 3.6);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,42,53,6");
+
+                logger.Error("message{0}", (float)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Error("message{0}", (double)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Error("message{0}", (decimal)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Error("message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Error(NLCulture, "message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2,3");
 
                 logger.Error("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
@@ -756,13 +928,16 @@ namespace NLog.UnitTests
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
 #pragma warning disable 0618
-                // Obsolete method requires testing until completely removed.
+                // Obsolete method requires testing until removed.
                 logger.ErrorException("message", new Exception("test"));
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
 #pragma warning restore 0618
 
                 logger.Error(new Exception("test"), "message");
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+
+                logger.Error(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
 
                 logger.Error(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -783,7 +958,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -793,7 +968,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='Fatal' writeTo='debug' />
                     </rules>
@@ -801,9 +976,40 @@ namespace NLog.UnitTests
                 }
 
                 ILogger logger = LogManager.GetLogger("A");
+                LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
 
                 logger.Fatal("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Fatal((object)"message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (object)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.Fatal("message{0}{1}", 1, 2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message12");
+
+                logger.Fatal("message{0}{1}{2}", 1, 2, 3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message123");
+
+                logger.Fatal(NLCulture, "message{0}{1}{2}", 1.4, 2.5, 3.6);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,42,53,6");
+
+                logger.Fatal("message{0}", (float)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Fatal("message{0}", (double)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Fatal("message{0}", (decimal)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Fatal("message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                logger.Fatal(NLCulture, "message{0}", (object)2.3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2,3");
 
                 logger.Fatal("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
@@ -904,11 +1110,14 @@ namespace NLog.UnitTests
 #pragma warning disable 0618
                 // Obsolete method requires testing until removed.
                 logger.FatalException("message", new Exception("test"));
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
 #pragma warning restore 0618
 
                 logger.Fatal(new Exception("test"), "message");
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+
+                logger.Fatal(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
 
                 logger.Fatal(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -932,7 +1141,7 @@ namespace NLog.UnitTests
                     {
                         LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -942,7 +1151,7 @@ namespace NLog.UnitTests
                     {
                         LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='" + level.Name + @"' writeTo='debug' />
                             </rules>
@@ -1051,12 +1260,15 @@ namespace NLog.UnitTests
                     if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
                     logger.Log(level, new Exception("test"), "message");
-                    if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                    if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+
+                    logger.Log(level, new Exception("test"), "message {0}", "from parameter");
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
 
 #pragma warning disable 0618
                     // Obsolete method requires testing until removed.
                     logger.LogException(level, "message", new Exception("test"));
-                    if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                    if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
 #pragma warning restore 0618
 
                     logger.Log(level, delegate { return "message from lambda"; });
@@ -1082,7 +1294,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -1092,7 +1304,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='Trace' writeTo='debug' />
                     </rules>
@@ -1101,8 +1313,39 @@ namespace NLog.UnitTests
 
                 var logger = LogManager.GetLogger("A");
 
+                //set current UI culture as invariant to receive exception messages in EN
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+                var argException = new ArgumentException("arg1 is obvious wrong", "arg1");
+
+                LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
+
                 logger.ConditionalTrace("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.ConditionalTrace(404);
+                if (enabled == 1) AssertDebugLastMessage("debug", "404");
+
+                logger.ConditionalTrace(NLCulture, 404.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "404,5");
+
+                logger.ConditionalTrace(NLCulture, "hello error {0} !", 404.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "hello error 404,5 !");
+
+                logger.ConditionalTrace(NLCulture, "hello error {0} and {1} !", 404.5, 401);
+                if (enabled == 1) AssertDebugLastMessage("debug", "hello error 404,5 and 401 !");
+
+                logger.ConditionalTrace(NLCulture, "hello error {0}, {1} & {2} !", 404.5, 401, 500);
+                if (enabled == 1) AssertDebugLastMessage("debug", "hello error 404,5, 401 & 500 !");
+
+                logger.ConditionalTrace(NLCulture, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503);
+                if (enabled == 1) AssertDebugLastMessage("debug", "we've got error 500, 501, 502, 503 ...");
+
+
+                logger.ConditionalTrace(argException, NLCulture, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "we\'ve got error 500, 501, 502, 503,5 ...arg1 is obvious wrong\r\nParameter name: arg1");
+
+                logger.ConditionalTrace(argException, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "we\'ve got error 500, 501, 502, 503.5 ...arg1 is obvious wrong\r\nParameter name: arg1");
 
                 logger.ConditionalTrace("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
@@ -1201,7 +1444,10 @@ namespace NLog.UnitTests
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
                 logger.ConditionalTrace(new Exception("test"), "message");
-                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+
+                logger.ConditionalTrace(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
 
                 logger.ConditionalTrace(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -1222,7 +1468,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -1232,7 +1478,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' levels='Debug' writeTo='debug' />
                     </rules>
@@ -1241,8 +1487,38 @@ namespace NLog.UnitTests
 
                 var logger = LogManager.GetLogger("A");
 
+                //set current UI culture as invariant to receive exception messages in EN
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+                var argException = new ArgumentException("arg1 is obvious wrong", "arg1");
+                LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
+
                 logger.ConditionalDebug("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.ConditionalDebug(404);
+                if (enabled == 1) AssertDebugLastMessage("debug", "404");
+
+                logger.ConditionalDebug(NLCulture, 404.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "404,5");
+
+                logger.ConditionalDebug(NLCulture, "hello error {0} !", 404.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "hello error 404,5 !");
+
+                logger.ConditionalDebug(NLCulture, "hello error {0} and {1} !", 404.5, 401);
+                if (enabled == 1) AssertDebugLastMessage("debug", "hello error 404,5 and 401 !");
+
+                logger.ConditionalDebug(NLCulture, "hello error {0}, {1} & {2} !", 404.5, 401, 500);
+                if (enabled == 1) AssertDebugLastMessage("debug", "hello error 404,5, 401 & 500 !");
+
+                logger.ConditionalDebug(NLCulture, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503);
+                if (enabled == 1) AssertDebugLastMessage("debug", "we've got error 500, 501, 502, 503 ...");
+
+
+                logger.ConditionalDebug(argException, NLCulture, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "we\'ve got error 500, 501, 502, 503,5 ...arg1 is obvious wrong\r\nParameter name: arg1");
+                
+                logger.ConditionalDebug(argException, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "we\'ve got error 500, 501, 502, 503.5 ...arg1 is obvious wrong\r\nParameter name: arg1");
 
                 logger.ConditionalDebug("message{0}", (ulong)1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
@@ -1339,6 +1615,12 @@ namespace NLog.UnitTests
 
                 logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+
+                logger.ConditionalDebug(new Exception("test"), "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+
+                logger.ConditionalDebug(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
 
                 logger.ConditionalDebug(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");

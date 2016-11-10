@@ -225,6 +225,11 @@ namespace NLog.Config
         /// <param name="level">Level to be enabled.</param>
         public void EnableLoggingForLevel(LogLevel level)
         {
+            if (level == LogLevel.Off)
+            {
+                return;
+            }
+
             this.logLevels[level.Ordinal] = true;
         }
 
@@ -247,6 +252,11 @@ namespace NLog.Config
         /// <param name="level">Level to be disabled.</param>
         public void DisableLoggingForLevel(LogLevel level)
         {
+            if (level == LogLevel.Off)
+            {
+                return;
+            }
+
             this.logLevels[level.Ordinal] = false;
         }
 

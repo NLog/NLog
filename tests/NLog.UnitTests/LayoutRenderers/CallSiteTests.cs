@@ -735,6 +735,28 @@ namespace NLog.UnitTests.LayoutRenderers
 
         }
 
+        [Fact]
+        public void CallSiteShouldWorkForAsyncMethodsWithReturnValue()
+        {
+            var callSite = GetAsyncCallSite().GetAwaiter().GetResult();
+            Assert.Equal("NLog.UnitTests.LayoutRenderers.CallSiteTests.GetAsyncCallSite", callSite);
+        }
+
+        public async Task<string> GetAsyncCallSite()
+        {
+            Type loggerType = typeof(Logger);
+            var stacktrace = StackTraceUsageUtils.GetWriteStackTrace(loggerType);
+            var index = LoggerImpl.FindCallingMethodOnStackTrace(stacktrace, loggerType);
+            var logEvent = new LogEventInfo(LogLevel.Error, "logger1", "message1");
+            logEvent.SetStackTrace(stacktrace, index);
+
+            await Task.Delay(0);
+
+            Layout l = "${callsite}";
+            var callSite = l.Render(logEvent);
+            return callSite;
+        }
+
 #endif
 
         [Fact]

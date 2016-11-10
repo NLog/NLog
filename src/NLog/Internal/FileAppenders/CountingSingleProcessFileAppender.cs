@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
 using System.Security;
 
 namespace NLog.Internal.FileAppenders
@@ -61,11 +62,10 @@ namespace NLog.Internal.FileAppenders
             var fileInfo = new FileInfo(fileName);
             if (fileInfo.Exists)
             {
-#if !SILVERLIGHT
-                FileTouched(fileInfo.LastWriteTimeUtc);
-#else
-                FileTouched(fileInfo.LastWriteTime);
-#endif
+                if (CaptureLastWriteTime)
+                {
+                    FileTouched(fileInfo.GetLastWriteTimeUtc());
+                }
                 this.currentFileLength = fileInfo.Length;
             }
             else
@@ -103,13 +103,19 @@ namespace NLog.Internal.FileAppenders
             FileTouched();
         }
 
-        /// <summary>
-        /// Gets the file info.
-        /// </summary>
-        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public override FileCharacteristics GetFileCharacteristics()
+        public override DateTime? GetFileCreationTimeUtc()
         {
-            return new FileCharacteristics(this.CreationTime, this.LastWriteTime, this.currentFileLength);
+            return this.CreationTime;
+        }
+
+        public override DateTime? GetFileLastWriteTimeUtc()
+        {
+            return this.LastWriteTime;
+        }
+
+        public override long? GetFileLength()
+        {
+            return this.currentFileLength;
         }
 
         /// <summary>
@@ -125,7 +131,10 @@ namespace NLog.Internal.FileAppenders
 
             this.currentFileLength += bytes.Length;
             this.file.Write(bytes, 0, bytes.Length);
-            FileTouched();
+            if (CaptureLastWriteTime)
+            {
+                FileTouched();
+            }
         }
 
         /// <summary>
