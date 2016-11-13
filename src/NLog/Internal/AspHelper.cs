@@ -238,7 +238,7 @@ namespace NLog.Internal
         {
             if (o == null)
                 return null;
-            return o.GetType().InvokeMember(string.Empty, BindingFlags.GetProperty, null, o, new object[] { }, CultureInfo.InvariantCulture);
+            return o.GetType().InvokeMember(string.Empty, BindingFlags.GetProperty, null, o, ArrayHelper.Empty<object>(), CultureInfo.InvariantCulture);
         }
     }
 }

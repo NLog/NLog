@@ -137,6 +137,9 @@ namespace NLog.Targets.Wrappers
                 if (count == -1 || this.logEventInfoQueue.Count < count)
                     count = this.logEventInfoQueue.Count;
 
+                if (count == 0)
+                    return Internal.ArrayHelper.Empty<AsyncLogEventInfo>();
+
                 resultEvents = new AsyncLogEventInfo[count];
                 for (int i = 0; i < count; ++i)
                 {
