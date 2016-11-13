@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+using System.Text;
+
 namespace NLog.Config
 {
     using Internal;
@@ -75,6 +78,7 @@ namespace NLog.Config
         {
             this.AttributeValues = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             this.Children = new List<NLogXmlElement>();
+            this._parsingErrors = new List<string>();
         }
 
         /// <summary>
@@ -96,6 +100,11 @@ namespace NLog.Config
         /// Gets the value of the element.
         /// </summary>
         public string Value { get; private set; }
+
+        /// <summary>
+        /// Last error occured during configuration read
+        /// </summary>
+        private readonly List<string> _parsingErrors;
 
         /// <summary>
         /// Returns children elements with the specified element name.
@@ -212,16 +221,45 @@ namespace NLog.Config
             throw new InvalidOperationException("Assertion failed. Expected element name '" + string.Join("|", allowedNames) + "', actual: '" + this.LocalName + "'.");
         }
 
+        /// <summary>
+        /// Returns all parsing errors from current and all child elements.
+        /// </summary>
+        public IEnumerable<string> GetParsingErrors()
+        {
+            foreach (var parsingError in _parsingErrors)
+            {
+                yield return parsingError;
+            }
+
+            foreach (var childElement in this.Children)
+            {
+                foreach (var parsingError in childElement.GetParsingErrors())
+                {
+                    yield return parsingError;
+                }
+            }
+        }
+
         private void Parse(XmlReader reader)
         {
             if (reader.MoveToFirstAttribute())
             {
                 do
                 {
-                    this.AttributeValues.Add(reader.LocalName, reader.Value);
+                    if (!this.AttributeValues.ContainsKey(reader.LocalName))
+                    {
+                        this.AttributeValues.Add(reader.LocalName, reader.Value);
+                    }
+                    else
+                    {
+                        string message =
+                            string.Format(
+                                "Duplicate attribute detected. Attribute name: [{0}]. Duplicate value:[{1}], Current value:[{2}]",
+                                reader.LocalName, reader.Value, this.AttributeValues[reader.LocalName]);
+                        _parsingErrors.Add(message);
+                    }
                 }
                 while (reader.MoveToNextAttribute());
-
                 reader.MoveToElement();
             }
 
