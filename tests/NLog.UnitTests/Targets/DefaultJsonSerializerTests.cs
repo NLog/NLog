@@ -54,7 +54,7 @@ namespace NLog.UnitTests.Targets
             var text = "This is, sort of, surprising the 1. time you see that test-result.";
             var expected = "\"This is, sort of, surprising the 1. time you see that test-result.\"";
 
-            var actual = _serializer.SerializeValue(text);
+            var actual = _serializer.SerializeObject(text);
             Assert.Equal(expected, actual);
         }
 
@@ -64,7 +64,7 @@ namespace NLog.UnitTests.Targets
             var text = "First line followed by Windows line break\r\nNow this is second with UNIX\nand third at last";
             var expected = "\"First line followed by Windows line break\\r\\nNow this is second with UNIX\\nand third at last\"";
 
-            var actual = _serializer.SerializeValue(text);
+            var actual = _serializer.SerializeObject(text);
             Assert.Equal(expected, actual);
         }
 
@@ -75,7 +75,7 @@ namespace NLog.UnitTests.Targets
             var text = "A tab\tis followed by a feed\fand finally cancel last character\b";
             var expected = "\"A tab\\tis followed by a feed\\fand finally cancel last character\\b\"";
 
-            var actual = _serializer.SerializeValue(text);
+            var actual = _serializer.SerializeObject(text);
             Assert.Equal(expected, actual);
         }
 
@@ -86,7 +86,7 @@ namespace NLog.UnitTests.Targets
             var text = "This sentence/text is \"normal\", we think.";
             var expected = "\"This sentence\\/text is \\\"normal\\\", we think.\"";
 
-            var actual = _serializer.SerializeValue(text);
+            var actual = _serializer.SerializeObject(text);
             Assert.Equal(expected, actual);
         }
 
@@ -98,7 +98,7 @@ namespace NLog.UnitTests.Targets
         [InlineData(2776145.7743, "2776145.7743")]
         public void SerializeNumber_Test(object o, string expected)
         {
-            var actual = _serializer.SerializeValue(o);
+            var actual = _serializer.SerializeObject(o);
             Assert.Equal(expected, actual);
         }
 #endif
@@ -106,9 +106,9 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void SerializeBool_Test()
         {
-            var actual = _serializer.SerializeValue(true);
+            var actual = _serializer.SerializeObject(true);
             Assert.Equal("true", actual, StringComparer.OrdinalIgnoreCase);
-            actual = _serializer.SerializeValue(false);
+            actual = _serializer.SerializeObject(false);
             Assert.Equal("false", actual, StringComparer.OrdinalIgnoreCase);
         }
     }

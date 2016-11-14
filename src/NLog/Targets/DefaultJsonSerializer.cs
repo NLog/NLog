@@ -82,7 +82,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="value">The object to serialize to JSON.</param>
         /// <returns>Serialized value.</returns>
-        public string SerializeValue(object value)
+        public string SerializeObject(object value)
         {
 
             IEnumerable enumerable = null;
@@ -101,7 +101,7 @@ namespace NLog.Targets
                 var l = new List<string>();
                 foreach(DictionaryEntry de in dict)
                 {
-                    l.Add(string.Format("\"{0}\":{1}", SerializeValue(de.Key), SerializeValue(de.Value)));
+                    l.Add(string.Format("\"{0}\":{1}", SerializeObject(de.Key), SerializeObject(de.Value)));
                 }
 
                 return string.Format("{{{0}}}", string.Join(",", l.ToArray()));
@@ -111,7 +111,7 @@ namespace NLog.Targets
                 var l = new List<string>();
                 foreach (var val in enumerable)
                 {
-                    l.Add(SerializeValue(val));
+                    l.Add(SerializeObject(val));
                 }
 
                 return string.Format("[{0}]", string.Join(",", l.ToArray()));

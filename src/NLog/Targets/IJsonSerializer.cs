@@ -47,6 +47,6 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="value">The object to serialize to JSON.</param>
         /// <returns>Serialized value.</returns>
-        string SerializeValue(object value);
+        string SerializeObject(object value);
     }
 }

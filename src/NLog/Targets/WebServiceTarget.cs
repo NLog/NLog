@@ -444,7 +444,7 @@ namespace NLog.Targets
 
             private string GetJsonValueString(object value)
             {
-                return ConfigurationItemFactory.Default.JsonSerializer.SerializeValue(value);
+                return ConfigurationItemFactory.Default.JsonSerializer.SerializeObject(value);
             }
         }
 
