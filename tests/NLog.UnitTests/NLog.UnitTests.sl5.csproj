@@ -237,6 +237,7 @@
     <Compile Include="Targets\Wrappers\FallbackGroupTargetTests.cs" />
     <Compile Include="Targets\Wrappers\FilteringTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\ImpersonatingTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\LimitingTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\PostFilteringTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\RandomizeGroupTargetTests.cs" />
     <Compile Include="Targets\Wrappers\RepeatingTargetWrapperTests.cs" />
