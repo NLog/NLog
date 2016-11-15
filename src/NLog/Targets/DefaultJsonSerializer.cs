@@ -35,6 +35,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
 
 namespace NLog.Targets
 {
@@ -57,6 +58,18 @@ namespace NLog.Targets
                     typeof(double),
                     typeof(decimal),
             };
+
+        private static Dictionary<char, string> CharacterMap = new Dictionary<char, string>()
+        {
+            { '"', "\\\"" },
+            { '\\', "\\\\" },
+            { '/', "\\/" },
+            { '\b', "\\b" },
+            { '\f', "\\f" },
+            { '\n', "\\n" },
+            { '\r', "\\r" },
+            { '\t', "\\t" },
+        };
 
         private static readonly DefaultJsonSerializer instance;
 
@@ -143,14 +156,30 @@ namespace NLog.Targets
 
         private static string EscapeString(string str)
         {
-            return str.Replace("\\", "\\\\")
-                .Replace("\"", "\\\"")
-                .Replace("/", "\\/")
-                .Replace("\b", "\\b")
-                .Replace("\f", "\\f")
-                .Replace("\n", "\\n")
-                .Replace("\r", "\\r")
-                .Replace("\t", "\\t");
+            var sb = new StringBuilder();
+            foreach(var c in str)
+            {
+                sb.Append(EscapeChar(c));
+            }
+
+            return sb.ToString();
+        }
+
+        private static string EscapeChar(char c)
+        {
+            string mapped = null;
+            if(CharacterMap.TryGetValue(c, out mapped))
+            {
+                return mapped;
+            }
+            else if(c <= 0x1f)
+            {
+                return string.Format("\\u{0:x4}", (int)c);
+            }
+            else
+            {
+                return c.ToString();
+            }
         }
     }
 }

@@ -90,6 +90,16 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void StringWithMixedControlCharacters_Test()
+        {
+            var text = "First\\Second\tand" +(char)3+ "for" + (char)0x1f + "with" + (char)0x10 + "but" + (char)0x0d + "and no" + (char)0x20;
+            var expected = "\"First\\\\Second\\tand\\u0003for\\u001fwith\\u0010but\\rand no \"";
+
+            var actual = _serializer.SerializeObject(text);
+            Assert.Equal(expected, actual);
+        }
+
 #if !SILVERLIGHT
         [Theory]
         [InlineData((int)177, "177")]
