@@ -728,6 +728,7 @@ namespace NLog
 
                     if (newConfig != null)
                     {
+                        newConfig.MergeVariables(this.Configuration.Variables);
                         this.Configuration = newConfig;
                         if (this.ConfigurationReloaded != null)
                         {

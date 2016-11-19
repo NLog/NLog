@@ -580,5 +580,22 @@ namespace NLog.Config
             }
             return items.ToList();
         }
+
+        /// <summary>
+        /// Copies missing variables and variables with an empty value, from provided dictionary, 
+        /// into current configuration variables dictionary.
+        /// </summary>
+        /// <param name="newVariables">New variables dictionary</param>
+        internal void MergeVariables(IDictionary<string, SimpleLayout> newVariables)
+        {
+            foreach (var variableKey in newVariables.Keys)
+            {
+                if (!this.Variables.ContainsKey(variableKey) 
+                    || string.IsNullOrEmpty(this.Variables[variableKey].OriginalText))
+                {
+                    Variables[variableKey] = newVariables[variableKey];
+                }
+            }
+        }
     }
 }

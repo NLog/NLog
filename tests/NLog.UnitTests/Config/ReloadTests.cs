@@ -479,6 +479,40 @@ namespace NLog.UnitTests.Config
             }
         }
 
+        /// <summary>
+        /// Empty and missing variables shoud be taken from current configuration on config reload.
+        /// </summary>
+        [Fact]
+        public void TestKeepVariablesOnReload()
+        {
+            string config = @"<nlog autoReload='true'>
+                                <variable name='var1' value='' />
+                                <variable name='var2' value='keep_value' />
+                            </nlog>";
+
+            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempPath);
+
+            string configFilePath = Path.Combine(tempPath, "reload_var.nlog");
+            WriteConfigFile(configFilePath, config);
+
+            try
+            {
+                LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
+                LogManager.Configuration.Variables["var1"] = "new_value";
+                LogManager.Configuration.Variables["var3"] = "new_value3";
+                ChangeAndReloadConfigFile(configFilePath, config);
+                Assert.Equal("new_value", LogManager.Configuration.Variables["var1"].OriginalText);
+                Assert.Equal("keep_value", LogManager.Configuration.Variables["var2"].OriginalText);
+                Assert.Equal("new_value3", LogManager.Configuration.Variables["var3"].OriginalText);
+            }
+            finally
+            {
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
 
         private static void WriteConfigFile(string configFilePath, string config)
         {
