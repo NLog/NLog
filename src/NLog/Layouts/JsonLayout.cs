@@ -54,6 +54,8 @@ namespace NLog.Layouts
         {
             this.Attributes = new List<JsonAttribute>();
             this.RenderEmptyObject = true;
+            this.IncludeAllProperties = false;
+            this.ExcludedProperties = new List<string>();
         }
 
         /// <summary>
@@ -73,6 +75,18 @@ namespace NLog.Layouts
         /// </summary>
         public bool RenderEmptyObject { get; set; }
 
+
+        /// <summary>
+        /// Gets or sets the option to include all properties from the log events
+        /// </summary>
+        public bool IncludeAllProperties { get; set; }
+
+        /// <summary>
+        /// List of property names to exclude when IncludeAllProperties is true
+        /// </summary>
+        public IList<string> ExcludedProperties { get; set; }
+
+
         /// <summary>
         /// Formats the log event as a JSON document for writing.
         /// </summary>
@@ -85,11 +99,71 @@ namespace NLog.Layouts
             bool first = true;
             bool hasContent = false;
 
+            //Creates a copy of the list of specified attributes
+            List<JsonAttribute> attributes = new List<JsonAttribute>(this.Attributes);
+
+
+            //Adds attributes for all the properties
+            if (this.IncludeAllProperties)
+            {
+
+                foreach (var prop in logEvent.Properties)
+                {
+                    //Determine property name
+                    string propName = prop.Key.ToString();
+
+                    //Skips properties in the ExcludedProperties list
+                    if (this.ExcludedProperties.Contains(propName)) continue;
+
+                    //Create JsonAttribute based on type of prop.Value
+                    if (prop.Value == null)
+                    {
+                        attributes.Add(new JsonAttribute()
+                        {
+                            Name = propName,
+                            Encode = false, //Don't put quotes around null values
+                            Layout = "null"
+                        });
+                    }
+                    else if (
+                        prop.Value is bool
+                        | prop.Value is byte
+                        | prop.Value is short
+                        | prop.Value is ushort
+                        | prop.Value is int
+                        | prop.Value is uint
+                        | prop.Value is long
+                        | prop.Value is ulong
+                        | prop.Value is float
+                        | prop.Value is double
+                        | prop.Value is decimal)
+                    {
+                        
+                        attributes.Add(new JsonAttribute()
+                        {
+                            Name = propName,
+                            Encode = false, //Don't put quotes around numbers or boolean values
+                            Layout = string.Concat("${event-properties:item=", propName, "}")
+                        });
+                    }
+                    else
+                    {
+                        attributes.Add(new JsonAttribute()
+                        {
+                            Name = propName,
+                            Encode = true, 
+                            Layout = string.Concat("${event-properties:item=", propName, "}")
+                        });
+                    }
+                }
+            }
+
+
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
-            for (int i = 0; i < this.Attributes.Count; i++)
+            for (int i = 0; i < attributes.Count; i++)
             {
-                var col = this.Attributes[i];
+                var col = attributes[i];
                 jsonWrapper.Inner = col.Layout;
                 jsonWrapper.JsonEncode = col.Encode;
                 string text = jsonWrapper.Render(logEvent);
@@ -106,7 +180,7 @@ namespace NLog.Layouts
 
                     string format;
 
-                    if(col.Encode)
+                    if (col.Encode)
                     {
                         format = "\"{0}\":{1}\"{2}\"";
                     }
@@ -126,7 +200,7 @@ namespace NLog.Layouts
 
             if (!hasContent && !RenderEmptyObject)
             {
-               return string.Empty;
+                return string.Empty;
             }
 
             if (SuppressSpaces)
