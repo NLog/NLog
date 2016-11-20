@@ -77,11 +77,13 @@ namespace NLog.Layouts
         /// Gets or sets the layout that will be rendered as the attribute's value.
         /// </summary>
         [RequiredParameter]
-        public Layout Layout { get; set; }
+        public Layout Layout { get { return LayoutWrapper.Inner; } set { LayoutWrapper.Inner = value; } }
 
         /// <summary>
         /// Determines wether or not this attribute will be Json encoded.
         /// </summary>
-        public bool Encode { get; set; }
+        public bool Encode { get { return LayoutWrapper.JsonEncode; } set { LayoutWrapper.JsonEncode = value; } }
+
+        internal readonly LayoutRenderers.Wrappers.JsonEncodeLayoutRendererWrapper LayoutWrapper = new LayoutRenderers.Wrappers.JsonEncodeLayoutRendererWrapper();
     }
 }

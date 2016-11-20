@@ -36,9 +36,6 @@ using NLog.Targets;
 namespace NLog.UnitTests.Layouts
 {
     using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.IO;
     using NLog.Layouts;
     using Xunit;
 
@@ -338,9 +335,8 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal("{ \"time\": \"2016-10-30 13:30:55.0000\", \"level\": \"INFO\", \"nested\": { \"message\": \"this is message\", \"exception\": \"test\" } }", json);
         }
 
-
         [Fact]
-        public void IncludeAllProperties()
+        public void IncludeAllJsonProperties()
         {
             var jsonLayout = new JsonLayout()
             {
@@ -359,13 +355,13 @@ namespace NLog.UnitTests.Layouts
             logEventInfo.Properties.Add("StringProp", "ValueA");
             logEventInfo.Properties.Add("IntProp", 123);
             logEventInfo.Properties.Add("DoubleProp", 123.123);
+            logEventInfo.Properties.Add("DecimalProp", 123.123m);
             logEventInfo.Properties.Add("BoolProp", true);
             logEventInfo.Properties.Add("NullProp", null);
             logEventInfo.Properties.Add("Excluded", "ExcludedValue");
 
-            Assert.Equal("{ \"StringProp\": \"ValueA\", \"IntProp\": 123, \"DoubleProp\": 123.123, \"BoolProp\": True, \"NullProp\": null }", jsonLayout.Render(logEventInfo));
+            Assert.Equal("{ \"StringProp\": \"ValueA\", \"IntProp\": 123, \"DoubleProp\": 123.123, \"DecimalProp\": 123.123, \"BoolProp\": True, \"NullProp\": null }", jsonLayout.Render(logEventInfo));
 
         }
     }
 }
-
