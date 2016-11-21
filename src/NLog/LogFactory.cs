@@ -170,8 +170,20 @@ namespace NLog
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                     if (this.config == null)
                     {
-                        // Try to load default configuration.
-                        this.config = XmlLoggingConfiguration.AppConfig;
+                        try
+                        {
+                            // Try to load default configuration.
+                            this.config = XmlLoggingConfiguration.AppConfig;
+                        }
+                        catch (Exception ex)
+                        {
+                            //loading could fail due to an invalid XML file (app.config) etc.
+                            if (ex.MustBeRethrown())
+                            {
+                                throw;
+                            }
+                           
+                        }
                     }
 #endif
                     // Retest the condition as we might have loaded a config.
