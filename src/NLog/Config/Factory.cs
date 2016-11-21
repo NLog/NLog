@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.LayoutRenderers;
+
 namespace NLog.Config
 {
     using System;
@@ -44,7 +46,7 @@ namespace NLog.Config
     /// <typeparam name="TBaseType">The base type of each item.</typeparam>
     /// <typeparam name="TAttributeType">The type of the attribute used to annotate items.</typeparam>
     internal class Factory<TBaseType, TAttributeType> : INamedItemFactory<TBaseType, Type>, IFactory
-        where TBaseType : class 
+        where TBaseType : class
         where TAttributeType : NameBaseAttribute
     {
         private readonly Dictionary<string, GetTypeDelegate> items = new Dictionary<string, GetTypeDelegate>(StringComparer.OrdinalIgnoreCase);
@@ -73,12 +75,12 @@ namespace NLog.Config
                 catch (Exception exception)
                 {
                     InternalLogger.Error(exception, "Failed to add type '{0}'.", t.FullName);
-                    
+
                     if (exception.MustBeRethrown())
                     {
                         throw;
                     }
-                    
+
                 }
             }
         }
@@ -168,7 +170,7 @@ namespace NLog.Config
         /// <param name="itemName">Name of the item.</param>
         /// <param name="result">The result.</param>
         /// <returns>True if instance was created successfully, false otherwise.</returns>
-        public bool TryCreateInstance(string itemName, out TBaseType result)
+        public virtual bool TryCreateInstance(string itemName, out TBaseType result)
         {
             Type type;
 
@@ -187,7 +189,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="name">The name of the item.</param>
         /// <returns>Created item.</returns>
-        public TBaseType CreateInstance(string name)
+        public virtual TBaseType CreateInstance(string name)
         {
             TBaseType result;
 
@@ -198,5 +200,65 @@ namespace NLog.Config
 
             throw new ArgumentException(typeof(TBaseType).Name + " cannot be found: '" + name + "'");
         }
+    }
+
+    /// <summary>
+    /// Factory specialized for <see cref="LayoutRenderer"/>s. 
+    /// </summary>
+    class LayoutRendererFactory : Factory<LayoutRenderer, LayoutRendererAttribute>
+    {
+        public LayoutRendererFactory(ConfigurationItemFactory parentFactory) : base(parentFactory)
+        {
+        }
+
+        private Dictionary<string, FuncLayoutRenderer> funcRenderers;
+
+        /// <summary>
+        /// Clear all func layouts
+        /// </summary>
+        public void ClearFuncLayouts()
+        {
+            funcRenderers = null;
+        }
+
+        /// <summary>
+        /// Register a layout renderer with a callback function.
+        /// </summary>
+        /// <param name="name">Name of the layoutrenderer, without ${}.</param>
+        /// <param name="renderer">the renderer that renders the value.</param>
+        public void RegisterFuncLayout(string name, FuncLayoutRenderer renderer)
+        {
+            funcRenderers = funcRenderers ?? new Dictionary<string, FuncLayoutRenderer>(StringComparer.OrdinalIgnoreCase);
+
+            //overwrite current if there is one
+            funcRenderers[name] = renderer;
+        }
+
+
+        /// <summary>
+        /// Tries to create an item instance.
+        /// </summary>
+        /// <param name="itemName">Name of the item.</param>
+        /// <param name="result">The result.</param>
+        /// <returns>True if instance was created successfully, false otherwise.</returns>
+        public override bool TryCreateInstance(string itemName, out LayoutRenderer result)
+        {
+            //first try func renderers, as they should have the possiblity to overwrite a current one.
+            if (funcRenderers != null)
+            {
+                FuncLayoutRenderer funcResult;
+                var succesAsFunc = funcRenderers.TryGetValue(itemName, out funcResult);
+                if (succesAsFunc)
+                {
+                    result = funcResult;
+                    return true;
+                }
+            }
+
+            var success = base.TryCreateInstance(itemName, out result);
+
+            return success;
+        }
+
     }
 }
