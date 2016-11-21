@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using Xunit.Extensions;
+
 #if !SILVERLIGHT && !MONO
 namespace NLog.UnitTests.Config
 {
@@ -479,9 +481,6 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        /// <summary>
-        /// Empty and missing variables shoud be taken from current configuration on config reload.
-        /// </summary>
         [Fact]
         public void TestKeepVariablesOnReload()
         {
@@ -513,13 +512,15 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        [Fact]
-        public void TestResetVariablesOnReload()
+        [Theory]
+        [InlineData("")]
+        [InlineData("keepVariablesOnReload='false'")]
+        public void TestResetVariablesOnReload(string keepVariablesAttr)
         {
-            string config = @"<nlog autoReload='true'>
+            string config = string.Format(@"<nlog autoReload='true' {0}>
                                 <variable name='var1' value='' />
                                 <variable name='var2' value='keep_value' />
-                            </nlog>";
+                            </nlog>", keepVariablesAttr);
 
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempPath);
