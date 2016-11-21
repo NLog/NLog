@@ -90,7 +90,7 @@ namespace NLog.Targets
             this.RowHighlightingRules = new List<ConsoleRowHighlightingRule>();
             this.UseDefaultRowHighlightingRules = true;
             this.PauseLogging = false;
-            this.DetectConsoleAvailable = true;
+            this.DetectConsoleAvailable = false;
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace NLog.Targets
         ///  - Disables console writing if Environment.UserInteractive = False (Windows Service)
         ///  - Disables console writing if Console Standard Input is not available (Non-Console-App)
         /// </summary>
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool DetectConsoleAvailable { get; set; }
 
         /// <summary>

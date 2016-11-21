@@ -103,7 +103,7 @@ namespace NLog.Targets
         ///  - Disables console writing if Environment.UserInteractive = False (Windows Service)
         ///  - Disables console writing if Console Standard Input is not available (Non-Console-App)
         /// </summary>
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool DetectConsoleAvailable { get; set; }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace NLog.Targets
         public ConsoleTarget() : base()
         {
             PauseLogging = false;
-            DetectConsoleAvailable = true;
+            DetectConsoleAvailable = false;
         }
 
         /// <summary>
