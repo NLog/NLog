@@ -313,7 +313,8 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose stack trace should be appended.</param>        
         protected virtual void AppendStackTrace(StringBuilder sb, Exception ex)
         {
-            sb.Append(ex.StackTrace);
+            if (!string.IsNullOrEmpty(ex.StackTrace))
+                sb.Append(ex.StackTrace);
         }
 
         /// <summary>
@@ -353,13 +354,16 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose Data property elements should be appended.</param>
         protected virtual void AppendData(StringBuilder sb, Exception ex)
         {
-            string separator = string.Empty;
-            foreach (var key in ex.Data.Keys)
+            if (ex.Data != null && ex.Data.Count > 0)
             {
-                sb.Append(separator);
-                sb.AppendFormat("{0}: {1}", key, ex.Data[key]);
+                string separator = string.Empty;
+                foreach (var key in ex.Data.Keys)
+                {
+                    sb.Append(separator);
+                    sb.AppendFormat("{0}: {1}", key, ex.Data[key]);
 
-                separator = ExceptionDataSeparator;
+                    separator = ExceptionDataSeparator;
+                }
             }
         }
 
@@ -395,6 +399,9 @@ namespace NLog.LayoutRenderers
         /// <returns></returns>
         protected static string ParseMethodNameFromStackTrace(string stackTrace)
         {
+            if (string.IsNullOrEmpty(stackTrace))
+                return string.Empty;
+
             // get the first line of the stack trace
             string stackFrameLine;
 
