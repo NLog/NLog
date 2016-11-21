@@ -37,6 +37,7 @@ namespace NLog.UnitTests.Layouts
     using NLog.LayoutRenderers.Wrappers;
     using NLog.Layouts;
     using NLog.Targets;
+    using System;
     using Xunit;
 
     public class SimpleLayoutParserTests : NLogTestBase
@@ -201,6 +202,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void MissingLayoutRendererTest()
         {
+            LogManager.ThrowConfigExceptions = true;
             Assert.Throws<NLogConfigurationException>(() =>
             {
                 SimpleLayout l = "${rot13:${foobar}}";
@@ -500,5 +502,24 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal("1/Log_{#}.log", l.Render(le));
         }
 
+        [Fact]
+        public void InvalidLayoutWillParsePartly()
+        {
+            SimpleLayout l = @"aaa ${iDontExist} bbb";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("aaa  bbb", l.Render(le));
+        }
+
+        [Fact]
+        public void InvalidLayoutWillThrowIfExceptionThrowingIsOn()
+        {
+            LogManager.ThrowConfigExceptions = true;
+            Assert.Throws<ArgumentException>(() =>
+            {
+                SimpleLayout l = @"aaa ${iDontExist} bbb";
+            });
+
+        }
     }
 }
