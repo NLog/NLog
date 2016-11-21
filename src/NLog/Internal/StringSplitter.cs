@@ -43,7 +43,7 @@ using System.Text;
 namespace NLog.Internal
 {
     /// <summary>
-    /// Split a string 
+    /// Split a string
     /// </summary>
     internal static class StringSplitter
     {
@@ -113,7 +113,6 @@ namespace NLog.Internal
                             var part = sb.ToString();
                             //reset
                             sb.Length = 0;
-                            prevWasEscape = false;
                             yield return part;
                             if (text.Length - 1 == i)
                             {
@@ -121,7 +120,6 @@ namespace NLog.Internal
                                 yield return string.Empty;
                                 break;
                             }
-
                         }
                         else
                         {
@@ -136,10 +134,9 @@ namespace NLog.Internal
                     yield return lastPart;
                 }
             }
-
         }
 
-        private static IEnumerable<string> SplitWithSelfEscape2(string text, char splitChar)
+        private static IEnumerable<string> SplitWithSelfEscape2(string text, char splitAndEscapeChar)
         {
             if (!string.IsNullOrEmpty(text))
             {
@@ -150,37 +147,43 @@ namespace NLog.Internal
                 for (i = 0; i < text.Length; i++)
                 {
                     var c = text[i];
-                    var isSplitChar = c == splitChar;
+                    var isSplitAndEscape = c == splitAndEscapeChar;
+                    var isLastChar = i == text.Length - 1;
                     if (prevWasEscape)
                     {
-                        if (isSplitChar)
+                        if (isSplitAndEscape)
                         {
                             prevWasEscape = false;
                         }
                         else
                         {
-                            if (sb.Length > 0) sb.Length--;
+                            //if prevWasEscape, always appended so length >0
+                            //if (sb.Length > 0) 
+                            sb.Length--;
                             var part = sb.ToString();
                             //reset
                             sb.Length = 0;
                             prevWasEscape = false;
                             sb.Append(c);
                             yield return part;
-
-                            if (text.Length - 1 == i)
-                            {
-                                //done
-                                yield return string.Empty;
-                                break;
-                            }
                         }
                     }
                     else
                     {
-                        sb.Append(c);
-                        if (isSplitChar)
+                        if (isLastChar && isSplitAndEscape)
                         {
-                            prevWasEscape = true;
+                            var part = sb.ToString();
+                            sb.Length = 0;
+                            yield return part;
+                            yield return string.Empty;
+                        }
+                        else
+                        {
+                            sb.Append(c);
+                            if (isSplitAndEscape)
+                            {
+                                prevWasEscape = true;
+                            }
                         }
                     }
                 }
@@ -197,15 +200,17 @@ namespace NLog.Internal
         /// Split a string, optional quoted value
         /// </summary>
         /// <param name="text">Text to split</param>
-        /// <param name="splitChar">Character to split the <paramref name="text"/></param>
+        /// <param name="splitChar">Character to split the <paramref name="text" /></param>
         /// <param name="quoteChar">Quote character</param>
-        /// <param name="escapeChar">Escape for the <paramref name="quoteChar"/>, not escape for the <paramref name="splitChar"/>, use quotes for that.</param>
+        /// <param name="escapeChar">
+        /// Escape for the <paramref name="quoteChar" />, not escape for the <paramref name="splitChar" />
+        /// , use quotes for that.
+        /// </param>
         /// <returns></returns>
         public static IEnumerable<string> SplitQuoted(this string text, char splitChar, char quoteChar, char escapeChar)
         {
             if (!string.IsNullOrEmpty(text))
             {
-
                 if (splitChar == quoteChar)
                 {
                     throw new NotSupportedException("Quote character should different from split character");
@@ -224,12 +229,8 @@ namespace NLog.Internal
 
 
                 return SplitQuoted2(text, splitChar, quoteChar, escapeChar);
-
-
-
             }
             return new List<string>();
-
         }
 
         private static IEnumerable<string> SplitSelfQuoted2(string text, char splitChar, char quoteAndEscapeChar)
@@ -250,13 +251,6 @@ namespace NLog.Internal
 
                 if (isNewPart)
                 {
-                    if (isLastChar)
-                    {
-                        //done
-                        sb.Append(c);
-                        break;
-                    }
-
                     //now only quote for quotemode accepted
                     isNewPart = false;
                     isQuoteAndEscapeChar = c == quoteAndEscapeChar;
@@ -264,63 +258,27 @@ namespace NLog.Internal
                     if (isQuoteAndEscapeChar)
                     {
                         //escape of the quote, if the quote is after this.
-
-                        i++;
-                        if (text.Length == i)
+                        if (isLastChar)
                         {
-                            //last char
-                            sb.Append(quoteAndEscapeChar);
+                            //done
+                            sb.Append(c);
                             break;
+                        }
+                        i++;
+                        c = text[i];
+
+                        if (c == quoteAndEscapeChar)
+                        {
+                            sb.Append(quoteAndEscapeChar);
                         }
                         else
                         {
-                            c = text[i];
-                            if (c == quoteAndEscapeChar)
-                            {
-                                sb.Append(quoteAndEscapeChar);
-                            }
-                            else
-                            {
-                                sb.Append(c);
-                                inQuotedMode = true;
-                            }
+                            sb.Append(c);
+                            inQuotedMode = true;
                         }
                     }
-
-
-                    else
+                    else if (isSplitChar)
                     {
-                        sb.Append(c);
-                    }
-                }
-
-                else if (inQuotedMode)
-                {
-                    if (isQuoteAndEscapeChar)
-                    {
-                        //skip quoteChar
-                        i++;
-                        //    isInPart = false;
-                        inQuotedMode = false;
-                        var part = sb.ToString();
-                        //reset
-                        sb.Length = 0;
-                        yield return part;
-                    }
-                    else
-                    {
-                        sb.Append(c);
-                    }
-
-
-                }
-                else
-                {
-
-                    if (isSplitChar)
-                    {
-
-
                         //end of part
 
                         var part = sb.ToString();
@@ -337,8 +295,51 @@ namespace NLog.Internal
                         }
 
                         isNewPart = true;
+                    }
+                    else
+                    {
+                        sb.Append(c);
+                    }
+                }
 
+                else if (inQuotedMode)
+                {
+                    if (isQuoteAndEscapeChar)
+                    {
+                        //skip escapechar
+                        i++;
+                        //    isInPart = false;
+                        inQuotedMode = false;
+                        var part = sb.ToString();
+                        //reset
+                        sb.Length = 0;
+                        yield return part;
+                    }
+                    else
+                    {
+                        sb.Append(c);
+                    }
+                }
+                else
+                {
+                    if (isSplitChar)
+                    {
+                        //end of part
 
+                        var part = sb.ToString();
+                        //reset
+                        sb.Length = 0;
+                        //  isInPart = false;
+                        yield return part;
+
+                        if (isLastChar)
+                        {
+                            //done
+                            yield return string.Empty;
+                            break;
+                        }
+
+                        isNewPart = true;
                     }
                     else
                     {
@@ -381,13 +382,6 @@ namespace NLog.Internal
 
                 if (isNewPart)
                 {
-                    if (isLastChar)
-                    {
-                        //done
-                        sb.Append(c);
-                        break;
-                    }
-
                     isNewPart = false;
                     isQuoteChar = c == quoteChar;
                     isEscapeChar = c == escapeChar;
@@ -396,13 +390,14 @@ namespace NLog.Internal
                     {
                         //escape of the quote, if the quote is after this.
 
-                        i++;
-                        if (text.Length == i)
+                        if (isLastChar)
                         {
-                            //last char
-                            sb.Append(escapeChar);
+                            //done
+                            sb.Append(c);
                             break;
                         }
+
+                        i++;
 
                         c = text[i];
                         if (c == quoteChar)
@@ -412,8 +407,26 @@ namespace NLog.Internal
                         else
                         {
                             sb.Append(escapeChar);
-                            sb.Append(quoteChar);
+                            sb.Append(c);
                         }
+                    }
+                    else if (isSplitChar)
+                    {
+                        //end of part
+
+                        var part = sb.ToString();
+                        //reset
+                        sb.Length = 0;
+                        yield return part;
+
+                        if (isLastChar)
+                        {
+                            //done
+                            yield return string.Empty;
+                            break;
+                        }
+
+                        isNewPart = true;
                     }
 
                     else if (isQuoteChar)
@@ -436,7 +449,14 @@ namespace NLog.Internal
                     if (isQuoteChar)
                     {
                         if (prevIsEscape)
+
                         {
+                            //skip escapechar
+
+                            if (sb.Length > 0)
+                                sb.Length--;
+
+                            //todo skip escape 
                             sb.Append(c);
                             break;
                         }
@@ -461,8 +481,6 @@ namespace NLog.Internal
                 }
                 else
                 {
-
-
                     if (isSplitChar)
                     {
                         //end of part
@@ -480,7 +498,6 @@ namespace NLog.Internal
                         }
 
                         isNewPart = true;
-
                     }
                     else
                     {
