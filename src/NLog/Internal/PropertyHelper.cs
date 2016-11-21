@@ -294,10 +294,10 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Try parse of string to (Generic) list, comma separated
+        /// Try parse of string to (Generic) list, comma separated.
         /// </summary>
         /// <remarks>
-        /// comma escape is backtick (cannot use backslash due to layout parse)
+        /// If there is a comma in the value, then (single) quote the value. For single quotes, use the backslash as escape
         /// </remarks>
         /// <param name="type"></param>
         /// <param name="valueRaw"></param>
@@ -308,14 +308,17 @@ namespace NLog.Internal
             if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
             {
                 //note: type.GenericTypeArguments is .NET 4.5+ 
-                var propertyType =  type.GetGenericArguments()[0];
-                var values = valueRaw.SplitWithEscape(',', '`');
-                //todo support for Array?
+                var propertyType = type.GetGenericArguments()[0];
+              
+                //no support for array
                 var list = Activator.CreateInstance(type) as IList;
                 if (list == null)
                 {
                     throw new NLogConfigurationException("Cannot create instance of {0} for value {1}", type.ToString(), valueRaw);
                 }
+
+                var values = valueRaw.SplitQuoted(',', '\'', '\\');
+
                 foreach (var value in values)
                 {
                     //todo parse once type?
