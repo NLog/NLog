@@ -45,7 +45,6 @@ namespace NLog.Targets
     using System.Xml;
     using NLog.Common;
     using NLog.Internal;
-    using NLog.Layouts;
     using Config;
     /// <summary>
     /// Calls the specified web service on each log message.
@@ -151,6 +150,20 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
         public Encoding Encoding { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value whether escaping be done according to Rfc3986 (Supports Internationalized Resource Identifiers - IRIs)
+        /// </summary>
+        /// <value>A value of <c>true</c> if Rfc3986; otherwise, <c>false</c> for legacy Rfc2396.</value>
+        /// <docgen category='Web Service Options' order='10' />
+        public bool EscapeDataRfc3986 { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value whether escaping be done according to the old NLog style (Very non-standard)
+        /// </summary>
+        /// <value>A value of <c>true</c> if legacy encoding; otherwise, <c>false</c> for standard UTF8 encoding.</value>
+        /// <docgen category='Web Service Options' order='10' />
+        public bool EscapeDataNLogLegacy { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the root XML element,
@@ -291,6 +304,8 @@ namespace NLog.Targets
             {
                 return this.Url;
             }
+
+            UrlHelper.EscapeEncodingFlag encodingFlags = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, false, EscapeDataRfc3986);
             
             //if the protocol is HttpGet, we need to add the parameters to the query string of the url
             var queryParameters = new StringBuilder();
@@ -300,7 +315,8 @@ namespace NLog.Targets
                 queryParameters.Append(separator);
                 queryParameters.Append(this.Parameters[i].Name);
                 queryParameters.Append("=");
-                queryParameters.Append(UrlHelper.UrlEncode(Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture), false));
+                string parameterValue = Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture);
+                UrlHelper.EscapeDataEncode(parameterValue, queryParameters, encodingFlags);
                 separator = "&";
             }
 
@@ -389,8 +405,12 @@ namespace NLog.Targets
 
         private class HttpPostFormEncodedFormatter : HttpPostTextFormatterBase
         {
+            UrlHelper.EscapeEncodingFlag encodingFlags;
+
             public HttpPostFormEncodedFormatter(WebServiceTarget target) : base(target)
-            { }
+            {
+                encodingFlags = UrlHelper.GetUriStringEncodingFlags(target.EscapeDataNLogLegacy, true, target.EscapeDataRfc3986);
+            }
 
             protected override string ContentType
             {
@@ -409,9 +429,18 @@ namespace NLog.Targets
 
             protected override string GetFormattedParameter(MethodCallParameter parameter, object value)
             {
+                string parameterValue = Convert.ToString(value, CultureInfo.InvariantCulture);
+                string valueString = string.Empty;
+                if (!string.IsNullOrEmpty(parameterValue))
+                {
+                    var sb = new StringBuilder(Math.Max(parameterValue.Length + 20, Target.Parameters.Count > 1 ? 256 : 0));
+                    UrlHelper.EscapeDataEncode(parameterValue, sb, encodingFlags);
+                    valueString = sb.ToString();
+                }
+
                 return string.Format("{0}={1}",
-                    parameter.Name,
-                    UrlHelper.UrlEncode(Convert.ToString(value, CultureInfo.InvariantCulture), true));
+                        parameter.Name,
+                        valueString);
             }
         }
 

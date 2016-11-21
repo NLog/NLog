@@ -138,6 +138,7 @@
     <Compile Include="ILoggerBase.cs" />
     <Compile Include="ILoggerBase-V1.cs" />
     <Compile Include="ILogger-V1.cs" />
+    <Compile Include="Internal\ArrayHelper.cs" />
     <Compile Include="Internal\AspHelper.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
@@ -408,6 +409,7 @@
     <Compile Include="Targets\Wrappers\FilteringRule.cs" />
     <Compile Include="Targets\Wrappers\FilteringTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\ImpersonatingTargetWrapper.cs" />
+    <Compile Include="Targets\Wrappers\LimitingTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\LogOnProviderType.cs" />
     <Compile Include="Targets\Wrappers\PostFilteringTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\RandomizeGroupTarget.cs" />

@@ -56,7 +56,7 @@ namespace NLog.Internal.Fakeables
 
             string privateBinPath = appDomain.SetupInformation.PrivateBinPath;
             PrivateBinPath = string.IsNullOrEmpty(privateBinPath)
-                                 ? new string[] {}
+                                 ? ArrayHelper.Empty<string>()
                                  : appDomain.SetupInformation.PrivateBinPath.Split(new[] {';'},
                                                                                    StringSplitOptions.RemoveEmptyEntries);
             FriendlyName = appDomain.FriendlyName;

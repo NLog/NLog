@@ -10,8 +10,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <ApplicationIcon></ApplicationIcon>
-    <AssemblyKeyContainerName></AssemblyKeyContainerName>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
     <AssemblyName>NLog.UnitTests</AssemblyName>
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -92,6 +94,7 @@
     <Compile Include="Config\ConfigApiTests.cs" />
     <Compile Include="Config\ConfigurationItemFactoryTests.cs" />
     <Compile Include="Config\CultureInfoTests.cs" />
+    <Compile Include="Config\DuplicateConfigurationAttributeTests.cs" />
     <Compile Include="Config\ExtensionTests.cs" />
     <Compile Include="Config\IncludeTests.cs" />
     <Compile Include="Config\InternalLoggingTests.cs" />
@@ -220,6 +223,7 @@
     <Compile Include="Targets\Wrappers\FallbackGroupTargetTests.cs" />
     <Compile Include="Targets\Wrappers\FilteringTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\ImpersonatingTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\LimitingTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\PostFilteringTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\RandomizeGroupTargetTests.cs" />
     <Compile Include="Targets\Wrappers\RepeatingTargetWrapperTests.cs" />

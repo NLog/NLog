@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -261,8 +261,6 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_httppost()
         {
-
-
             var configuration = CreateConfigurationFromString(string.Format(@"
                 <nlog throwExceptions='true'>
                     <targets>
@@ -292,12 +290,22 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
 
 
+            LogMeController.ResetState(2);
+
+            var message1 = "message 1 with a post";
+            var message2 = "a b c é k è ï ?";
             StartOwinTest(() =>
             {
 
-                logger.Info("message 1 with a post");
+                logger.Info(message1);
+                logger.Info(message2);
             });
 
+
+            Assert.Equal(LogMeController.CountdownEvent.CurrentCount, 0);
+            Assert.Equal(2, LogMeController.RecievedLogsPostParam1.Count);
+            CheckQueueMessage(message1, LogMeController.RecievedLogsPostParam1);
+            CheckQueueMessage(message2, LogMeController.RecievedLogsPostParam1);
 
         }
 
@@ -307,16 +315,46 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_httpget()
         {
-            WebServiceTest_httpget("api/logme");
+            var logger = SetUpHttpGetWebservice("api/logme");
+
+            LogMeController.ResetState(2);
+
+            var message1 = "message 1 with a post";
+            var message2 = "a b c é k è ï ?";
+            StartOwinTest(() =>
+            {
+
+                logger.Info(message1);
+                logger.Info(message2);
+            });
+
+
+            Assert.Equal(LogMeController.CountdownEvent.CurrentCount, 0);
+            Assert.Equal(2, LogMeController.RecievedLogsGetParam1.Count);
+            CheckQueueMessage(message1, LogMeController.RecievedLogsGetParam1);
+            CheckQueueMessage(message2, LogMeController.RecievedLogsGetParam1);
         }
 
         [Fact]
         public void WebServiceTest_restapi_httpget_querystring()
         {
-            WebServiceTest_httpget("api/logme?paramFromConfig=valueFromConfig");
+            var logger = SetUpHttpGetWebservice("api/logme?paramFromConfig=valueFromConfig");
+
+            LogMeController.ResetState(1);
+
+            StartOwinTest(() =>
+            {
+
+                logger.Info("another message");
+            });
+
+
+            Assert.Equal(LogMeController.CountdownEvent.CurrentCount, 0);
+            Assert.Equal(1, LogMeController.RecievedLogsGetParam1.Count);
+            CheckQueueMessage("another message", LogMeController.RecievedLogsGetParam1);
         }
-        
-        private void WebServiceTest_httpget(string relativeUrl)
+
+        private static Logger SetUpHttpGetWebservice(string relativeUrl)
         {
             var configuration = CreateConfigurationFromString(string.Format(@"
                 <nlog throwExceptions='true' >
@@ -342,13 +380,13 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
             LogManager.Configuration = configuration;
             var logger = LogManager.GetCurrentClassLogger();
+            return logger;
+        }
 
-            LogMeController.ResetState(1);
-
-            StartOwinTest(() =>
-            {
-                logger.Info("message 1 with a post");
-            });
+        private static void CheckQueueMessage(string message1, ConcurrentBag<string> recievedLogsGetParam1)
+        {
+            var success = recievedLogsGetParam1.Contains(message1);
+            Assert.True(success, string.Format("message '{0}' not found", message1));
         }
 
 
@@ -604,6 +642,11 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             {
 
                 RecievedLogsGetParam1.Add(param1);
+                if (CountdownEvent != null)
+                {
+                    CountdownEvent.Signal();
+                }
+
                 return new string[] { "value1", "value2" };
             }
 
@@ -629,7 +672,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             /// <summary>
             /// Put
             /// </summary>
-         
+
             public void Put(int id, [FromBody]string value)
             {
             }
