@@ -1727,7 +1727,9 @@ namespace NLog.Targets
             var fileInfo = new FileInfo(fileName);
             if (!fileInfo.Exists)
             {
-                this.fileAppenderCache.CloseAppenders(); // Weird, better close our own stale file handles
+                // Close possible stale file handles
+                this.fileAppenderCache.InvalidateAppender(fileName);
+                this.initializedFiles.Remove(fileName);
                 return;
             }
 
@@ -1834,13 +1836,20 @@ namespace NLog.Targets
                 try
                 {
                     // Check again if archive is needed. We could have been raced by another process
-                    this.fileAppenderCache.CloseAppenders(); // Close stale file handles, before doing check
-                    archiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
-                    if (string.IsNullOrEmpty(archiveFile))
+                    //  - Close possible stale file handles, before doing extra check
+                    if (archiveFile != fileName)
+                        this.fileAppenderCache.InvalidateAppender(fileName);
+                    this.fileAppenderCache.InvalidateAppender(archiveFile);
+                    var validatedArchiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
+                    if (string.IsNullOrEmpty(validatedArchiveFile))
                     {
+                        if (archiveFile != fileName)
+                            this.initializedFiles.Remove(fileName);
+                        this.initializedFiles.Remove(archiveFile);
                         return;
                     }
 
+                    archiveFile = validatedArchiveFile;
                     this.DoAutoArchive(archiveFile, ev);
                 }
                 catch (Exception exception)
