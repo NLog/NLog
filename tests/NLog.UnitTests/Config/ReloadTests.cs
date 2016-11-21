@@ -514,7 +514,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void TestReplacedVariablesOnReload()
+        public void TestResetVariablesOnReload()
         {
             string config = @"<nlog autoReload='true'>
                                 <variable name='var1' value='' />
