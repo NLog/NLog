@@ -39,6 +39,10 @@ namespace NLog.UnitTests.Targets
     using Xunit.Extensions;
 #endif
     using System;
+    using System.Linq;
+    using System.Collections.Generic;
+    using System.Collections;
+    using System.Text.RegularExpressions;
     public class DefaultJsonSerializerTests : NLogTestBase
     {
         private DefaultJsonSerializer _serializer;
@@ -91,6 +95,53 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void ReferenceLoopInDictionary_Test()
+        {
+            var d = new Dictionary<string, object>();
+            d.Add("First", 17);
+            d.Add("Loop", d);
+            var target = new Dictionary<string, object>
+            {
+                {"Name", "TestObject" },
+                {"Assets" , d }
+            };
+
+            var expected = "{\"Name\":\"TestObject\",\"Assets\":{\"First\":17}}";
+            var actual = _serializer.SerializeObject(target);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ReferenceLoopInList_Test()
+        {
+            var d = new List<object>();
+            d.Add(17);
+            d.Add(d);
+            d.Add(3.14);
+            var target = new List<object>
+            {
+                {"TestObject" },
+                {d }
+            };
+
+            var expected = "[\"TestObject\",[17,3.14]]";
+            var actual = _serializer.SerializeObject(target);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void InfiniteLoop_Test()
+        {
+            var d = new TestList();
+            var actual = _serializer.SerializeObject(d);
+
+            var cnt = Regex.Matches(actual, "\\[\"alpha\",\"bravo\"\\]").Count;
+            Assert.Equal(9, cnt);       // maximum level is 10 => 10 recursion is skipped => count is 10 - 1    
+        }
+
+        [Fact]
         public void StringWithMixedControlCharacters_Test()
         {
             var text = "First\\Second\tand" +(char)3+ "for" + (char)0x1f + "with" + (char)0x10 + "but" + (char)0x0d + "and no" + (char)0x20;
@@ -120,6 +171,24 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("true", actual, StringComparer.OrdinalIgnoreCase);
             actual = _serializer.SerializeObject(false);
             Assert.Equal("false", actual, StringComparer.OrdinalIgnoreCase);
+        }
+
+        private class TestList : IEnumerable<IEnumerable>
+        {
+            static List<int> _list1 = new List<int> { 17, 3 };
+            static List<string> _list2 = new List<string> { "alpha", "bravo" };
+
+            public IEnumerator<IEnumerable> GetEnumerator()
+            {
+                yield return _list1;
+                yield return _list2;
+                yield return new TestList();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
         }
     }
 }

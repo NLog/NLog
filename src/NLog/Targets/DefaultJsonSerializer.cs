@@ -44,7 +44,9 @@ namespace NLog.Targets
     /// </summary>
     public class DefaultJsonSerializer : IJsonSerializer
     {
-        private static List<Type> NumericTypes = new List<Type>
+        private const int MaxRecursionDepth = 10;
+
+        private static HashSet<Type> NumericTypes = new HashSet<Type>
             {
                     typeof(int),
                     typeof(uint),
@@ -97,6 +99,26 @@ namespace NLog.Targets
         /// <returns>Serialized value.</returns>
         public string SerializeObject(object value)
         {
+            return SerializeObject(value, new HashSet<object>(), 0);
+        }
+
+
+        /// <summary>
+        /// Returns a serialization of an object
+        /// int JSON format.
+        /// </summary>
+        /// <param name="value">The object to serialize to JSON.</param>
+        /// <param name="objectsInPath">The objects in path.</param>
+        /// <param name="depth">The current depth (level) of recursion.</param>
+        /// <returns>
+        /// Serialized value.
+        /// </returns>
+        private string SerializeObject(object value, HashSet<object> objectsInPath, int depth)
+        {
+            if(objectsInPath.Contains(value))
+            {
+                return null;        // detected reference loop, skip serialization
+            }
 
             IEnumerable enumerable = null;
             IDictionary dict = null;
@@ -111,20 +133,38 @@ namespace NLog.Targets
             }
             else if ((dict = value as IDictionary) != null)
             {
+                if (depth == MaxRecursionDepth) return null;        // reached maximum recursion level, no further serialization
+
                 var l = new List<string>();
-                foreach(DictionaryEntry de in dict)
+                var h = new HashSet<object>(objectsInPath);
+                h.Add(value);
+                foreach (DictionaryEntry de in dict)
                 {
-                    l.Add(string.Format("\"{0}\":{1}", SerializeObject(de.Key), SerializeObject(de.Value)));
+                    var keyJson = SerializeObject(de.Key, h, depth + 1);
+                    var valueJson = SerializeObject(de.Value, h, depth + 1);
+                    if (!string.IsNullOrEmpty(keyJson) && valueJson != null)
+                    {
+                        //only serialize, if key and value are serialized without error (e.g. due to reference loop)
+                        l.Add(string.Format("{0}:{1}", keyJson, valueJson));
+                    }
                 }
 
                 return string.Format("{{{0}}}", string.Join(",", l.ToArray()));
             }
             else if((enumerable = value as IEnumerable) != null)
             {
+                if (depth == MaxRecursionDepth) return null;        // reached maximum recursion level, no further serialization
+
                 var l = new List<string>();
+                var h = new HashSet<object>(objectsInPath);
+                h.Add(value);
                 foreach (var val in enumerable)
                 {
-                    l.Add(SerializeObject(val));
+                    var valueJson = SerializeObject(val, h, depth + 1);
+                    if (valueJson != null)
+                    {
+                        l.Add(valueJson);
+                    }
                 }
 
                 return string.Format("[{0}]", string.Join(",", l.ToArray()));
