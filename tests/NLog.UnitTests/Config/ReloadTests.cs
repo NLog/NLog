@@ -511,12 +511,12 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void TestResetVariablesOnReload(string keepVariablesAttr)
+        public void TestResetVariablesOnReload()
         {
-            string config = string.Format(@"<nlog autoReload='true' keepVariablesOnReload='false'>
+            string config = @"<nlog autoReload='true' keepVariablesOnReload='false'>
                                 <variable name='var1' value='' />
                                 <variable name='var2' value='keep_value' />
-                            </nlog>", keepVariablesAttr);
+                            </nlog>";
 
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempPath);
