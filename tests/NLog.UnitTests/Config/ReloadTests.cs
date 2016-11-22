@@ -39,7 +39,6 @@ namespace NLog.UnitTests.Config
     using System.IO;
     using System.Threading;
     using Xunit;
-    using Xunit.Extensions;
 
     public class ReloadTests : NLogTestBase
     {
@@ -511,12 +510,10 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        [Theory]
-        [InlineData("")]
-        [InlineData("keepVariablesOnReload='false'")]
+        [Fact]
         public void TestResetVariablesOnReload(string keepVariablesAttr)
         {
-            string config = string.Format(@"<nlog autoReload='true' {0}>
+            string config = string.Format(@"<nlog autoReload='true' keepVariablesOnReload='false'>
                                 <variable name='var1' value='' />
                                 <variable name='var2' value='keep_value' />
                             </nlog>", keepVariablesAttr);
