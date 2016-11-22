@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
 #if !SILVERLIGHT && !MONO
 namespace NLog.UnitTests.Config
 {
@@ -41,7 +40,6 @@ namespace NLog.UnitTests.Config
     using System.Threading;
     using Xunit;
     using Xunit.Extensions;
-
 
     public class ReloadTests : NLogTestBase
     {
