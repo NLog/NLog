@@ -110,12 +110,29 @@ namespace NLog.Conditions
                 InternalLogger.Error(message);
                 throw new ConditionParseException(message);
             }
+
+            this.lateBoundMethod = Internal.ReflectionHelpers.CreateLateBoundMethod(MethodInfo);
+            if (formalParameters.Length > MethodParameters.Count)
+            {
+                this.lateBoundMethodDefaultParameters = new object[formalParameters.Length - MethodParameters.Count];
+                for (int i = MethodParameters.Count; i < formalParameters.Length; ++i)
+                {
+                    ParameterInfo param = formalParameters[i];
+                    this.lateBoundMethodDefaultParameters[i - MethodParameters.Count] = param.DefaultValue;
+                }
+            }
+            else
+            {
+                this.lateBoundMethodDefaultParameters = null;
+            }
         }
 
         /// <summary>
         /// Gets the method info.
         /// </summary>
         public MethodInfo MethodInfo { get; private set; }
+        private readonly Internal.ReflectionHelpers.LateBoundMethod lateBoundMethod;
+        private readonly object[] lateBoundMethodDefaultParameters;
 
         /// <summary>
         /// Gets the method parameters.
@@ -159,8 +176,9 @@ namespace NLog.Conditions
         protected override object EvaluateNode(LogEventInfo context)
         {
             int parameterOffset = this.acceptsLogEvent ? 1 : 0;
+            int parameterDefaults = this.lateBoundMethodDefaultParameters != null ? this.lateBoundMethodDefaultParameters.Length : 0;
 
-            var callParameters = new object[this.MethodParameters.Count + parameterOffset];
+            var callParameters = new object[this.MethodParameters.Count + parameterOffset + parameterDefaults];
 
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
@@ -175,16 +193,15 @@ namespace NLog.Conditions
                 callParameters[0] = context;
             }
 
-            return this.MethodInfo.DeclaringType.InvokeMember( 
-                MethodInfo.Name, 
-                BindingFlags.InvokeMethod | BindingFlags.Static | BindingFlags.Public | BindingFlags.OptionalParamBinding, 
-                null, 
-                null, 
-                callParameters
-#if !SILVERLIGHT
-                , CultureInfo.InvariantCulture
-#endif
-                );
+            if (this.lateBoundMethodDefaultParameters != null)
+            {
+                for (int i = this.lateBoundMethodDefaultParameters.Length - 1; i >= 0; --i)
+                {
+                    callParameters[callParameters.Length - i - 1] = this.lateBoundMethodDefaultParameters[i];
+                }
+            }
+
+            return this.lateBoundMethod(null, callParameters);  // Static-method so object-instance = null
         }
     }
 }

@@ -35,8 +35,8 @@ namespace NLog.Internal
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq.Expressions;
     using System.Reflection;
-    using System.Text;
     using NLog.Common;
 
     /// <summary>
@@ -91,6 +91,72 @@ namespace NLog.Internal
         public static bool IsStaticClass(this Type type)
         {
             return type.IsClass && type.IsAbstract && type.IsSealed;
+        }
+
+        /// <summary>
+        /// Optimized delegate for calling MethodInfo
+        /// </summary>
+        /// <param name="target">Object instance, use null for static methods.</param>
+        /// <param name="arguments">Complete list of parameters that matches the method, including optional/default parameters.</param>
+        /// <returns></returns>
+        public delegate object LateBoundMethod(object target, object[] arguments);
+
+        /// <summary>
+        /// Creates an optimized delegate for calling the MethodInfo using Expression-Trees
+        /// </summary>
+        /// <param name="methodInfo">Method to optimize</param>
+        /// <returns>Optimized delegate for invoking the MethodInfo</returns>
+        public static LateBoundMethod CreateLateBoundMethod(MethodInfo methodInfo)
+        {
+            // parameters to execute
+            var instanceParameter = Expression.Parameter(typeof(object), "instance");
+            var parametersParameter = Expression.Parameter(typeof(object[]), "parameters");
+
+            // build parameter list
+            var parameterExpressions = new List<Expression>();
+            var paramInfos = methodInfo.GetParameters();
+            for (int i = 0; i < paramInfos.Length; i++)
+            {
+                // (Ti)parameters[i]
+                var valueObj = Expression.ArrayIndex(parametersParameter, Expression.Constant(i));
+
+                Type parameterType = paramInfos[i].ParameterType;
+                if (parameterType.IsByRef)
+                    parameterType = parameterType.GetElementType();
+
+                var valueCast = Expression.Convert(valueObj, parameterType);
+
+                parameterExpressions.Add(valueCast);
+            }
+
+            // non-instance for static method, or ((TInstance)instance)
+            var instanceCast = methodInfo.IsStatic ? null :
+                Expression.Convert(instanceParameter, methodInfo.ReflectedType);
+
+            // static invoke or ((TInstance)instance).Method
+            var methodCall = Expression.Call(instanceCast, methodInfo, parameterExpressions);
+
+            // ((TInstance)instance).Method((T0)parameters[0], (T1)parameters[1], ...)
+            if (methodCall.Type == typeof(void))
+            {
+                var lambda = Expression.Lambda<Action<object, object[]>>(
+                        methodCall, instanceParameter, parametersParameter);
+
+                Action<object, object[]> execute = lambda.Compile();
+                return (instance, parameters) =>
+                {
+                    execute(instance, parameters);
+                    return null;    // There is no return-type, so we return null-object
+                };
+            }
+            else
+            {
+                var castMethodCall = Expression.Convert(methodCall, typeof(object));
+                var lambda = Expression.Lambda<LateBoundMethod>(
+                    castMethodCall, instanceParameter, parametersParameter);
+
+                return lambda.Compile();
+            }
         }
     }
 
