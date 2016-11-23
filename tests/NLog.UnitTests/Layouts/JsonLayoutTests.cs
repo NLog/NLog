@@ -41,6 +41,8 @@ namespace NLog.UnitTests.Layouts
 
     public class JsonLayoutTests : NLogTestBase
     {
+        private const string ExpectedIncludeAllPropertiesWithExcludes = "{ \"StringProp\": \"ValueA\", \"IntProp\": 123, \"DoubleProp\": 123.123, \"DecimalProp\": 123.123, \"BoolProp\": True, \"NullProp\": null }";
+
         [Fact]
         public void JsonLayoutRendering()
         {
@@ -343,8 +345,49 @@ namespace NLog.UnitTests.Layouts
                 IncludeAllProperties = true
             };
 
-            jsonLayout.ExcludedProperties.Add("Excluded");
+            jsonLayout.ExcludedProperties.Add("Excluded1");
+            jsonLayout.ExcludedProperties.Add("Excluded2");
 
+            var logEventInfo = CreateLogEventWithExcluded();
+
+
+            Assert.Equal(ExpectedIncludeAllPropertiesWithExcludes, jsonLayout.Render(logEventInfo));
+
+        }
+
+        /// <summary>
+        /// Test from XML, needed for the list (ExcludedProperties)
+        /// </summary>
+        [Fact]
+        public void IncludeAllJsonPropertiesXml()
+        {
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog throwExceptions='true'>
+                <targets>
+            <target name='debug' type='Debug'  >
+                 <layout type=""JsonLayout"" IncludeAllProperties='true' ExcludedProperties='Excluded1,Excluded2'>
+            
+                 </layout>
+            </target>
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            var logEventInfo = CreateLogEventWithExcluded();
+
+            logger.Debug(logEventInfo);
+
+            AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
+        }
+
+        private static LogEventInfo CreateLogEventWithExcluded()
+        {
             var logEventInfo = new LogEventInfo
             {
                 TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56),
@@ -358,10 +401,9 @@ namespace NLog.UnitTests.Layouts
             logEventInfo.Properties.Add("DecimalProp", 123.123m);
             logEventInfo.Properties.Add("BoolProp", true);
             logEventInfo.Properties.Add("NullProp", null);
-            logEventInfo.Properties.Add("Excluded", "ExcludedValue");
-
-            Assert.Equal("{ \"StringProp\": \"ValueA\", \"IntProp\": 123, \"DoubleProp\": 123.123, \"DecimalProp\": 123.123, \"BoolProp\": True, \"NullProp\": null }", jsonLayout.Render(logEventInfo));
-
+            logEventInfo.Properties.Add("Excluded1", "ExcludedValue");
+            logEventInfo.Properties.Add("Excluded2", "Also excluded");
+            return logEventInfo;
         }
     }
 }

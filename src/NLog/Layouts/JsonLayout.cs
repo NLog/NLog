@@ -53,7 +53,7 @@ namespace NLog.Layouts
             this.Attributes = new List<JsonAttribute>();
             this.RenderEmptyObject = true;
             this.IncludeAllProperties = false;
-            this.ExcludedProperties = new List<string>();
+            this.ExcludedProperties = new HashSet<string>();
         }
 
         /// <summary>
@@ -81,7 +81,11 @@ namespace NLog.Layouts
         /// <summary>
         /// List of property names to exclude when IncludeAllProperties is true
         /// </summary>
-        public IList<string> ExcludedProperties { get; set; }
+#if NET3_5
+        public HashSet<string> ExcludedProperties { get; set; }
+#else
+        public ISet<string> ExcludedProperties { get; set; }
+#endif
 
         /// <summary>
         /// Formats the log event as a JSON document for writing.
