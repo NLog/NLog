@@ -593,7 +593,7 @@ namespace NLog.Targets
             for (int i = 0; i < logEvent.Parameters.Length; ++i)
             {
                 var logEventParameter = logEvent.Parameters[i] as LogEventInfo;
-                if (logEventParameter != null)
+                if (logEventParameter != null && logEventParameter.HasProperties)
                 {
                     foreach (var key in logEventParameter.Properties.Keys)
                     {

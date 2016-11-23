@@ -62,7 +62,7 @@ namespace NLog.LayoutRenderers
         {
             object value;
 
-            if (logEvent.Properties.TryGetValue(this.Item, out value))
+            if (logEvent.HasProperties && logEvent.Properties.TryGetValue(this.Item, out value))
             {
                 var formatProvider = GetFormatProvider(logEvent);
                 builder.Append(Convert.ToString(value, formatProvider));

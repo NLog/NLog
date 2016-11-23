@@ -244,12 +244,15 @@ namespace NLog.LayoutRenderers
                             xtw.WriteEndElement();
 
                             xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
-                            foreach (var contextProperty in logEvent.Properties)
+                            if (logEvent.HasProperties)
                             {
-                                xtw.WriteStartElement("nlog", "data", dummyNLogNamespace);
-                                xtw.WriteAttributeSafeString("name", Convert.ToString(contextProperty.Key, CultureInfo.InvariantCulture));
-                                xtw.WriteAttributeSafeString("value", Convert.ToString(contextProperty.Value, CultureInfo.InvariantCulture));
-                                xtw.WriteEndElement();
+                                foreach (var contextProperty in logEvent.Properties)
+                                {
+                                    xtw.WriteStartElement("nlog", "data", dummyNLogNamespace);
+                                    xtw.WriteAttributeSafeString("name", Convert.ToString(contextProperty.Key, CultureInfo.InvariantCulture));
+                                    xtw.WriteAttributeSafeString("value", Convert.ToString(contextProperty.Value, CultureInfo.InvariantCulture));
+                                    xtw.WriteEndElement();
+                                }
                             }
                             xtw.WriteEndElement();
                         }
