@@ -107,8 +107,8 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         public AsyncTargetWrapper(Target wrappedTarget)
-            : this(wrappedTarget, 10000, AsyncTargetWrapperOverflowAction.Discard)
-        {
+            : this(wrappedTarget, 100000, AsyncTargetWrapperOverflowAction.Discard)
+        {                         
         }
 
         /// <summary>
@@ -119,9 +119,9 @@ namespace NLog.Targets.Wrappers
         /// <param name="overflowAction">The action to be taken when the queue overflows.</param>
         public AsyncTargetWrapper(Target wrappedTarget, int queueLimit, AsyncTargetWrapperOverflowAction overflowAction)
         {
-            this.RequestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
+            this.RequestQueue = new AsyncRequestQueue(100000, AsyncTargetWrapperOverflowAction.Discard);
             this.TimeToSleepBetweenBatches = 50;
-            this.BatchSize = 100;
+            this.BatchSize = 500;
             this.WrappedTarget = wrappedTarget;
             this.QueueLimit = queueLimit;
             this.OverflowAction = overflowAction;
@@ -132,7 +132,7 @@ namespace NLog.Targets.Wrappers
         /// by the lazy writer thread.
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(100)]
+        [DefaultValue(500)]
         public int BatchSize { get; set; }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the limit on the number of requests in the lazy writer thread request queue.
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(10000)]
+        [DefaultValue(100000)]
         public int QueueLimit
         {
             get { return this.RequestQueue.RequestLimit; }
