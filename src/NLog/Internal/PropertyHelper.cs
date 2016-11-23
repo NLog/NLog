@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections;
+using System.Linq;
+
 namespace NLog.Internal
 {
     using System;
@@ -83,11 +86,12 @@ namespace NLog.Internal
 
                 propertyType = Nullable.GetUnderlyingType(propertyType) ?? propertyType;
 
-                if (!TryNLogSpecificConversion(propertyType, value, out newValue, configurationItemFactory))
-                if (!TryGetEnumValue(propertyType, value, out newValue))
-                if (!TryImplicitConversion(propertyType, value, out newValue))
-                if (!TrySpecialConversion(propertyType, value, out newValue))
-                if (!TryTypeConverterConversion(propertyType, value, out newValue))
+                if (!(TryNLogSpecificConversion(propertyType, value, out newValue, configurationItemFactory)
+                    || TryGetEnumValue(propertyType, value, out newValue, true)
+                    || TryImplicitConversion(propertyType, value, out newValue)
+                    || TrySpecialConversion(propertyType, value, out newValue)
+                    || TryFlatListConversion(propertyType, value, out newValue)
+                    || TryTypeConverterConversion(propertyType, value, out newValue)))
                     newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
 
                 propInfo.SetValue(obj, newValue, null);
@@ -221,7 +225,7 @@ namespace NLog.Internal
             return false;
         }
 
-        private static bool TryGetEnumValue(Type resultType, string value, out object result)
+        private static bool TryGetEnumValue(Type resultType, string value, out object result, bool flagsEnumAllowed)
         {
             if (!resultType.IsEnum)
             {
@@ -229,7 +233,7 @@ namespace NLog.Internal
                 return false;
             }
 
-            if (resultType.IsDefined(typeof(FlagsAttribute), false))
+            if (flagsEnumAllowed && resultType.IsDefined(typeof(FlagsAttribute), false))
             {
                 ulong union = 0;
 
@@ -266,19 +270,69 @@ namespace NLog.Internal
         {
             if (type == typeof(Encoding))
             {
+                value = value.Trim();
                 newValue = Encoding.GetEncoding(value);
                 return true;
             }
 
             if (type == typeof(CultureInfo))
             {
+                value = value.Trim();
                 newValue = new CultureInfo(value);
                 return true;
             }
 
             if (type == typeof(Type))
             {
+                value = value.Trim();
                 newValue = Type.GetType(value, true);
+                return true;
+            }
+
+            newValue = null;
+            return false;
+        }
+
+        /// <summary>
+        /// Try parse of string to (Generic) list, comma separated.
+        /// </summary>
+        /// <remarks>
+        /// If there is a comma in the value, then (single) quote the value. For single quotes, use the backslash as escape
+        /// </remarks>
+        /// <param name="type"></param>
+        /// <param name="valueRaw"></param>
+        /// <param name="newValue"></param>
+        /// <returns></returns>
+        private static bool TryFlatListConversion(Type type, string valueRaw, out object newValue)
+        {
+            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
+            {
+                //note: type.GenericTypeArguments is .NET 4.5+ 
+                var propertyType = type.GetGenericArguments()[0];
+              
+                //no support for array
+                var list = Activator.CreateInstance(type) as IList;
+                if (list == null)
+                {
+                    throw new NLogConfigurationException("Cannot create instance of {0} for value {1}", type.ToString(), valueRaw);
+                }
+
+                var values = valueRaw.SplitQuoted(',', '\'', '\\');
+
+                foreach (var value in values)
+                {
+                    //todo parse once type?
+                    if (!(TryGetEnumValue(propertyType, value, out newValue, false)
+                    || TryImplicitConversion(propertyType, value, out newValue)
+                    || TrySpecialConversion(propertyType, value, out newValue)
+                    || TryTypeConverterConversion(propertyType, value, out newValue)))
+                    {
+                        newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
+                    }
+                    list.Add(newValue);
+                }
+
+                newValue = list;
                 return true;
             }
 
