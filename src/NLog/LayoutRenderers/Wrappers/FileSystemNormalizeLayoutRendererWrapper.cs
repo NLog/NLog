@@ -62,10 +62,9 @@ namespace NLog.LayoutRenderers.Wrappers
         public bool FSNormalize { get; set; }
 
         /// <summary>
-        /// Post-processes the rendered message. 
+        /// Replaces all non-safe characters with underscore to make valid filepath
         /// </summary>
         /// <param name="builder">Output to be transformed.</param>
-        /// <returns>Padded and trimmed string.</returns>
         protected override void TransformFormattedMesssage(StringBuilder builder)
         {
             if (this.FSNormalize)

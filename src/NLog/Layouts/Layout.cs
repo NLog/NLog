@@ -126,7 +126,22 @@ namespace NLog.Layouts
         {
             if (!this.threadAgnostic)
             {
-                this.Render(logEvent);
+                if (logEvent.PoolReleaseContinuation != null)
+                {
+                    int initialLength = this.maxRenderedLength;
+                    if (initialLength > MaxInitialRenderBufferLength)
+                    {
+                        initialLength = MaxInitialRenderBufferLength;
+                    }
+                    using (var localTarget = new Internal.PoolFactory.AppendBuilderCreator(null, logEvent, initialLength))
+                    {
+                        this.RenderAppendBuilder(logEvent, localTarget.Builder);
+                    }
+                }
+                else
+                {
+                    this.Render(logEvent);
+                }
             }
         }
 
@@ -159,22 +174,34 @@ namespace NLog.Layouts
                 this.InitializeLayout();
             }
 
+            if (!this.IsThreadAgnostic)
+            {
+                string cachedValue;
+                if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
+                {
+                    target.Append(cachedValue);
+                    return;
+                }
+            }
+
             int initialLength = this.maxRenderedLength;
             if (initialLength > MaxInitialRenderBufferLength)
             {
                 initialLength = MaxInitialRenderBufferLength;
             }
 
-            using (var newBuilder = (target.Length > 0) ? logEvent.ObjectFactory.CreateStringBuilder(initialLength) : null)
+            using (var localTarget = new Internal.PoolFactory.AppendBuilderCreator(target, logEvent, initialLength))
             {
-                StringBuilder localTarget = newBuilder != null ? newBuilder.Result : target;
-                RenderFormattedMessage(logEvent, localTarget);
-                if (localTarget.Length > this.maxRenderedLength)
+                RenderFormattedMessage(logEvent, localTarget.Builder);
+                if (localTarget.Builder.Length > this.maxRenderedLength)
                 {
-                    this.maxRenderedLength = localTarget.Length;
+                    this.maxRenderedLength = localTarget.Builder.Length;
                 }
-                if (newBuilder != null)
-                    newBuilder.CopyTo(target);
+                if (!this.IsThreadAgnostic)
+                {
+                    // when needed as it generates garbage
+                    logEvent.AddCachedLayoutValue(this, localTarget.Builder.ToString());
+                }
             }
         }
 

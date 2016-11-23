@@ -241,21 +241,7 @@ namespace NLog.Layouts
         /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            if (!this.IsThreadAgnostic)
-            {
-                string cachedValue;
-                if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
-                {
-                    target.Append(cachedValue);
-                    return;
-                }
-            }
-
             RenderAllColumns(logEvent, target);
-            if (!this.IsThreadAgnostic)
-            {
-                logEvent.AddCachedLayoutValue(this, target.ToString());
-            }
         }
 
         /// <summary>
@@ -364,15 +350,7 @@ namespace NLog.Layouts
             /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
             protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
             {
-                string cachedValue;
-                if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
-                {
-                    target.Append(cachedValue);
-                    return;
-                }
-
                 this.parent.RenderHeader(target);
-                logEvent.AddCachedLayoutValue(this, target.ToString());
             }
         }
     }

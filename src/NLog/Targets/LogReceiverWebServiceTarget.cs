@@ -148,7 +148,7 @@ namespace NLog.Targets
         /// <param name="logEvent">Logging event to be written out.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            this.Write(new[] { logEvent });
+            this.Write(new ArraySegment<AsyncLogEventInfo>(new[] { logEvent }));
         }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
         protected override void Write(ArraySegment<AsyncLogEventInfo> logEvents)
-        {            
+        {
             // if web service call is being processed, buffer new events and return
             // lock is being held here
             if (this.inCall)
@@ -172,7 +172,13 @@ namespace NLog.Targets
             }
 
             var networkLogEvents = this.TranslateLogEvents(logEvents);
-            this.Send(networkLogEvents, logEvents);
+            IList<AsyncLogEventInfo> logEventList =
+#if NET3_5 || SILVERLIGHT || MONO || NET4_0
+                new SortHelpers.ReadOnlyArrayList<AsyncLogEventInfo>(logEvents);
+#else
+                logEvents;
+#endif
+            this.Send(networkLogEvents, logEventList);
         }
 
         /// <summary>
@@ -286,19 +292,19 @@ namespace NLog.Targets
             var client = CreateLogReceiver();
 
             client.ProcessLogMessagesCompleted += (sender, e) =>
+            {
+                // report error to the callers
+                foreach (var ev in asyncContinuations)
                 {
-                    // report error to the callers
-                    foreach (var ev in asyncContinuations)
-                    {
-                        ev.Continuation(e.Error);
-                    }
+                    ev.Continuation(e.Error);
+                }
 
-                    // send any buffered events
-                    this.SendBufferedEvents();
-                };
+                // send any buffered events
+                this.SendBufferedEvents();
+            };
 
             this.inCall = true;
-#if SILVERLIGHT 
+#if SILVERLIGHT
             if (!Deployment.Current.Dispatcher.CheckAccess())
             {
                 Deployment.Current.Dispatcher.BeginInvoke(() => client.ProcessLogMessagesAsync(events));

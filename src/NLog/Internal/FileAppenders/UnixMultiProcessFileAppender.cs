@@ -103,11 +103,12 @@ namespace NLog.Internal.FileAppenders
             }
         }
 
-        public override void Write(byte[] bytes)
-        {
-            this.Write(bytes, 0, bytes.Length);
-        }
-
+        /// <summary>
+        /// Writes the specified bytes.
+        /// </summary>
+        /// <param name="bytes">The bytes array.</param>
+        /// <param name="offset">The bytes array offset.</param>
+        /// <param name="count">The number of bytes.</param>
         public override void Write(byte[] bytes, int offset, int count)
         {
             if (this.file == null)

@@ -49,7 +49,7 @@ namespace NLog.UnitTests.Internal.PoolFactory
             for (int i = 0; i < objectCount; ++i)
             {
                 T item = createObject(pool);
-                for (int j = 0; j < i; ++j)
+                for (int j = 0; j < i; j++)
                     Assert.False(ReferenceEquals(createdItems[j], item));
                 createdItems.Add(item);
             }
@@ -75,36 +75,6 @@ namespace NLog.UnitTests.Internal.PoolFactory
             Assert.Equal(1, poolLargeStats.Count);
             Assert.Equal(234, poolLargeStats[0].Count);
             Assert.True(poolStats[0].MaxCapacity < poolLargeStats[0].MaxCapacity);
-        }
-
-        //[Fact]
-        //public void TestSingleCallPool()
-        //{
-        //    LogEventPoolFactory pool = new LogEventPoolFactory("Test", NLog.Common.PoolSetup.Active, false, 0);
-        //    TestPool(pool, (p) => p.CreateSingleCallContinuation(null), (p, i) => p.ReleaseSingleCallContinuation(i), 234);
-        //    var poolStats = pool.GetPoolsStats();
-        //    Assert.Equal(1, poolStats.Count);
-        //    Assert.Equal(234, poolStats[0].Count);
-
-        //    LogEventPoolFactory poolLarge = new LogEventPoolFactory("Test", NLog.Common.PoolSetup.Large, false, 0);
-        //    TestPool(poolLarge, (p) => p.CreateSingleCallContinuation(null), (p, i) => p.ReleaseSingleCallContinuation(i), 234);
-        //    var poolLargeStats = poolLarge.GetPoolsStats();
-        //    Assert.Equal(1, poolLargeStats.Count);
-        //    Assert.Equal(234, poolLargeStats[0].Count);
-        //    Assert.True(poolStats[0].MaxCapacity < poolLargeStats[0].MaxCapacity);
-        //}
-
-        [Fact]
-        public void TestExceptionHandlerPool()
-        {
-            LogEventPoolFactory pool = new LogEventPoolFactory("Test", NLog.Common.PoolSetup.Active, false, 0);
-            var exceptionHandler1 = pool.CreateExceptionHandlerContinuation(0, false);
-            Assert.Equal(exceptionHandler1, pool.CreateExceptionHandlerContinuation(0, false));
-
-            var exceptionHandler2 = pool.CreateExceptionHandlerContinuation(0, true);
-            Assert.Equal(exceptionHandler2, pool.CreateExceptionHandlerContinuation(0, true));
-
-            Assert.NotEqual(exceptionHandler1, exceptionHandler2);
         }
 
         [Fact]

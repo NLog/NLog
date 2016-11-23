@@ -194,7 +194,8 @@ namespace NLog.Targets.Wrappers
         {
             if (PoolSetup != PoolSetup.None)
             {
-                LoggingConfiguration.ConfigurePool(ref _objectFactory, Name, PoolSetup, false, QueueLimit);
+                if (LogManager.LogFactory != null)
+                    LogManager.LogFactory.ConfigurePool(ref _objectFactory, this.Name, this.PoolSetup, false, this.QueueLimit);
             }
 
             base.InitializeTarget();

@@ -121,12 +121,9 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Writes the specified bytes to a file.
         /// </summary>
-        /// <param name="bytes">The bytes to be written.</param>
-        public override void Write(byte[] bytes)
-        {
-            Write(bytes, 0, bytes.Length);
-        }
-
+        /// <param name="bytes">The bytes array.</param>
+        /// <param name="offset">The bytes array offset.</param>
+        /// <param name="count">The number of bytes.</param>
         public override void Write(byte[] bytes, int offset, int count)
         {
             if (this.file == null)

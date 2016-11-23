@@ -83,9 +83,9 @@ namespace NLog
         public LogFactory Factory { get; private set; }
 
         /// <summary>
-        /// 
+        /// Configures whether to use object pooling
         /// </summary>
-        public PoolSetup PoolSetup { get { return poolSetup.HasValue ? poolSetup.Value : (Factory != null && Factory.Configuration != null) ? Factory.Configuration.DefaultPoolSetup : PoolSetup.None; } set { poolSetup = value; } }
+        public PoolSetup PoolSetup { get { return poolSetup.HasValue ? poolSetup.Value : Factory != null ? Factory.DefaultPoolSetup : PoolSetup.None; } internal set { poolSetup = value; } }
         private PoolSetup? poolSetup;
 
         /// <summary>
@@ -551,10 +551,11 @@ namespace NLog
 
         internal void Initialize(string name, LoggerConfiguration loggerConfiguration, LogFactory factory)
         {
+            InternalLogger.Trace("Initializing Logger: {0}", name);
             this.Name = name;
             this.Factory = factory;
-            if (this.Factory != null && this.Factory.Configuration != null)
-                this.Factory.Configuration.ConfigurePool(ref _objectFactory, Name, PoolSetup, true, 0);
+            if (this.Factory != null)
+                this.Factory.ConfigurePool(ref _objectFactory, Name, this.poolSetup, true, 0);
             this.SetConfiguration(loggerConfiguration);
         }
 

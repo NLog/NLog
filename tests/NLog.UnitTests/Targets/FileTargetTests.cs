@@ -66,13 +66,14 @@ namespace NLog.UnitTests.Targets
                     from concurrentWrites in booleanValues
                     from keepFileOpen in booleanValues
                     from networkWrites in booleanValues
-                    select new object[] { concurrentWrites, keepFileOpen, networkWrites };
+                    from poolSetupActive in booleanValues
+                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, poolSetupActive };
             }
         }
 
         [Theory]
         [PropertyData("SimpleFileTest_TestParameters")]
-        public void SimpleFileTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites)
+        public void SimpleFileTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool poolSetupActive)
         {
             var logFile = Path.GetTempFileName();
             try
@@ -85,7 +86,8 @@ namespace NLog.UnitTests.Targets
                     OpenFileCacheTimeout = 0,
                     ConcurrentWrites = concurrentWrites,
                     KeepFileOpen = keepFileOpen,
-                    NetworkWrites = networkWrites
+                    NetworkWrites = networkWrites,
+                    PoolSetup = poolSetupActive ? NLog.Common.PoolSetup.Active : NLog.Common.PoolSetup.None,
                 });
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
@@ -151,7 +153,7 @@ namespace NLog.UnitTests.Targets
         /// </summary>
         [Theory(Timeout = FIVE_SECONDS)]
         [PropertyData("SimpleFileTest_TestParameters")]
-        public void NonExistingDriveShouldNotDelayMuch(bool concurrentWrites, bool keepFileOpen, bool networkWrites)
+        public void NonExistingDriveShouldNotDelayMuch(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool poolSetupActive)
         {
             var nonExistingDrive = GetFirstNonExistingDriveWindows();
 
@@ -165,7 +167,8 @@ namespace NLog.UnitTests.Targets
                     Layout = "${level} ${message}",
                     ConcurrentWrites = concurrentWrites,
                     KeepFileOpen = keepFileOpen,
-                    NetworkWrites = networkWrites
+                    NetworkWrites = networkWrites,
+                    PoolSetup = poolSetupActive ? NLog.Common.PoolSetup.Active : NLog.Common.PoolSetup.None,
                 });
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
@@ -1059,10 +1062,11 @@ namespace NLog.UnitTests.Targets
                     from concurrentWrites in booleanValues
                     from keepFileOpen in booleanValues
                     from networkWrites in booleanValues
+                    from poolSetupActive in booleanValues
                     where AllowsExternalFileModification(concurrentWrites, keepFileOpen, networkWrites)
                     from includeDateInLogFilePath in booleanValues
                     from includeSequenceInArchive in booleanValues
-                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, includeDateInLogFilePath, includeSequenceInArchive };
+                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, poolSetupActive, includeDateInLogFilePath, includeSequenceInArchive };
             }
         }
 
@@ -1073,7 +1077,7 @@ namespace NLog.UnitTests.Targets
 
         [Theory]
         [PropertyData("DateArchive_ArchiveOnceOnly_TestParameters")]
-        public void DateArchive_ArchiveOnceOnly(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool dateInLogFilePath, bool includeSequenceInArchive)
+        public void DateArchive_ArchiveOnceOnly(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool poolSetupActive, bool dateInLogFilePath, bool includeSequenceInArchive)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempPath, dateInLogFilePath ? "file_${shortdate}.txt" : "file.txt");
@@ -1091,7 +1095,8 @@ namespace NLog.UnitTests.Targets
                     Layout = "${message}",
                     ConcurrentWrites = concurrentWrites,
                     KeepFileOpen = keepFileOpen,
-                    NetworkWrites = networkWrites
+                    NetworkWrites = networkWrites,
+                    PoolSetup = poolSetupActive ? NLog.Common.PoolSetup.Active : NLog.Common.PoolSetup.None,
                 });
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
@@ -1206,17 +1211,18 @@ namespace NLog.UnitTests.Targets
                     from concurrentWrites in booleanValues
                     from keepFileOpen in booleanValues
                     from networkWrites in booleanValues
+                    from poolSetupActive in booleanValues
                     where AllowsExternalFileModification(concurrentWrites, keepFileOpen, networkWrites)
                     from includeDateInLogFilePath in booleanValues
                     from includeSequenceInArchive in booleanValues
                     from enableArchiveCompression in booleanValues
-                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, includeDateInLogFilePath, includeSequenceInArchive, enableArchiveCompression };
+                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, poolSetupActive, includeDateInLogFilePath, includeSequenceInArchive, enableArchiveCompression };
             }
         }
 
         [Theory]
         [PropertyData("DateArchive_AllLoggersTransferToCurrentLogFile_TestParameters")]
-        public void DateArchive_AllLoggersTransferToCurrentLogFile(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeDateInLogFilePath, bool includeSequenceInArchive, bool enableArchiveCompression)
+        public void DateArchive_AllLoggersTransferToCurrentLogFile(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool poolSetupActive, bool includeDateInLogFilePath, bool includeSequenceInArchive, bool enableArchiveCompression)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var logfile = Path.Combine(tempPath, includeDateInLogFilePath ? "file_${shortdate}.txt" : "file.txt");
@@ -1239,7 +1245,8 @@ namespace NLog.UnitTests.Targets
                     Layout = "${message}",
                     ConcurrentWrites = concurrentWrites,
                     KeepFileOpen = keepFileOpen,
-                    NetworkWrites = networkWrites
+                    NetworkWrites = networkWrites,
+                    PoolSetup = poolSetupActive ? NLog.Common.PoolSetup.Active : NLog.Common.PoolSetup.None,
                 });
                 var logger1Rule = new LoggingRule("logger1", LogLevel.Debug, fileTarget1);
                 config.LoggingRules.Add(logger1Rule);
@@ -1258,7 +1265,8 @@ namespace NLog.UnitTests.Targets
                     Layout = "${message}",
                     ConcurrentWrites = concurrentWrites,
                     KeepFileOpen = keepFileOpen,
-                    NetworkWrites = networkWrites
+                    NetworkWrites = networkWrites,
+                    PoolSetup = poolSetupActive ? NLog.Common.PoolSetup.Active : NLog.Common.PoolSetup.None,
                 });
                 var logger2Rule = new LoggingRule("logger2", LogLevel.Debug, fileTarget2);
                 config.LoggingRules.Add(logger2Rule);
@@ -1877,6 +1885,7 @@ namespace NLog.UnitTests.Targets
                     Name = "AsyncMultiFileWrite_wrapper1",
                     PoolSetup = NLog.Common.PoolSetup.Active,
                     TimeToSleepBetweenBatches = 1,
+                    BatchSize = 8,
                     OverflowAction = AsyncTargetWrapperOverflowAction.Block,
                 };
 
@@ -1893,6 +1902,7 @@ namespace NLog.UnitTests.Targets
                     Name = "AsyncMultiFileWrite_wrapper2",
                     PoolSetup = NLog.Common.PoolSetup.Active,
                     TimeToSleepBetweenBatches = 1,
+                    BatchSize = 8,
                     OverflowAction = AsyncTargetWrapperOverflowAction.Block,
                 };
 
@@ -1924,7 +1934,7 @@ namespace NLog.UnitTests.Targets
 
                 // Verify that pool has been activated, and been used
                 StringBuilder sb = new StringBuilder();
-                LogManager.Configuration.GetPoolStatistics(sb);
+                LogManager.LogFactory.GetPoolStatistics(sb);
                 Assert.NotEqual(0, sb.Length);
                 Assert.Contains("AsyncMultiFileWrite_wrapper", sb.ToString());
 

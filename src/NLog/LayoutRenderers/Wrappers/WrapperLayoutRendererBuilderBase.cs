@@ -58,17 +58,14 @@ namespace NLog.LayoutRenderers.Wrappers
                 initialLength = MaxInitialRenderBufferLength;
             }
 
-            using (var newBuilder = (builder.Length > 0) ? logEvent.ObjectFactory.CreateStringBuilder(initialLength) : null)
+            using (var localTarget = new Internal.PoolFactory.AppendBuilderCreator(builder, logEvent, initialLength))
             {
-                StringBuilder localTarget = newBuilder != null ? newBuilder.Result : builder;
-                RenderFormattedMessage(logEvent, localTarget);
-                if (localTarget.Length > this.maxRenderedLength)
+                RenderFormattedMessage(logEvent, localTarget.Builder);
+                if (localTarget.Builder.Length > this.maxRenderedLength)
                 {
-                    this.maxRenderedLength = localTarget.Length;
+                    this.maxRenderedLength = localTarget.Builder.Length;
                 }
-                TransformFormattedMesssage(localTarget);
-                if (newBuilder != null)
-                    newBuilder.CopyTo(builder);
+                TransformFormattedMesssage(localTarget.Builder);
             }
         }
 

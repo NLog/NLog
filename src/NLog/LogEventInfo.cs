@@ -95,7 +95,10 @@ namespace NLog
             this.Parameters = parameters;
             this.FormatProvider = formatProvider;
             this.Exception = exception;
-            CalcFormattedMessageIfNeeded();
+            if (NeedToPreformatMessage(this.Parameters))
+            {
+                this.CalcFormattedMessage();
+            }
         }
 
         /// <summary>
@@ -403,7 +406,7 @@ namespace NLog
         /// </summary>
         /// <param name="asyncContinuation"></param>
         /// <returns></returns>
-        public AsyncLogEventInfo StartContinuation(AsyncContinuation asyncContinuation)
+        internal AsyncLogEventInfo StartContinuation(AsyncContinuation asyncContinuation)
         {
             if (_poolHandler != null)
             {
@@ -523,14 +526,6 @@ namespace NLog
             return value.GetType().IsPrimitive || (value is string);
         }
 
-        internal void CalcFormattedMessageIfNeeded()
-        {
-            if (NeedToPreformatMessage(this.Parameters))
-            {
-                this.CalcFormattedMessage();
-            }
-        }
-
         private void CalcFormattedMessage()
         {
             if (this.Parameters == null || this.Parameters.Length == 0)
@@ -572,6 +567,7 @@ namespace NLog
             internal Internal.PoolFactory.ILogEventObjectFactory Owner;
             internal readonly CompleteWhenAllContinuation PoolReleaseContinuation;
             internal readonly CompleteWhenAllContinuation.Counter PoolReleaseCounter;
+            internal readonly ExceptionHandlerContinuation PoolExceptionHandlerContinuation;
             internal readonly AsyncContinuation PoolReleaseDelegate;
 
             public PoolHandler(LogEventInfo logEvent, Internal.PoolFactory.LogEventPoolFactory owner)
@@ -580,6 +576,7 @@ namespace NLog
                 this.PoolReleaseDelegate = (ex) => this.Owner.ReleaseLogEvent(logEvent);
                 this.PoolReleaseCounter = new CompleteWhenAllContinuation.Counter();
                 this.PoolReleaseContinuation = new CompleteWhenAllContinuation(this.PoolReleaseCounter);
+                this.PoolExceptionHandlerContinuation = new ExceptionHandlerContinuation(0, false);
             }
 
             public void Init()
@@ -594,9 +591,10 @@ namespace NLog
             }
         }
 
-        object Internal.PoolFactory.IPoolObject.Owner { get { return _poolHandler.Owner; } set { _poolHandler.Owner = (Internal.PoolFactory.ILogEventObjectFactory)value; } }
+        object Internal.PoolFactory.IPoolObject.OwnerPool { get { return _poolHandler.Owner; } set { _poolHandler.Owner = (Internal.PoolFactory.ILogEventObjectFactory)value; } }
         internal Internal.PoolFactory.ILogEventObjectFactory ObjectFactory { get { return _poolHandler != null ? _poolHandler.Owner : Internal.PoolFactory.LogEventObjectFactory.Instance; } }
         internal CompleteWhenAllContinuation PoolReleaseContinuation { get { return _poolHandler != null ? _poolHandler.PoolReleaseContinuation : null; } }
+        internal ExceptionHandlerContinuation PoolExceptionHandlerContinuation { get { return _poolHandler != null ? _poolHandler.PoolExceptionHandlerContinuation : null; } }
 
         /// <summary>
         /// Clears the log event info for reuse purposes
@@ -642,12 +640,9 @@ namespace NLog
         {
             if (!AppDomain.CurrentDomain.IsFinalizingForUnload())
             {
-                if (InternalLogger.IsTraceEnabled)
+                if (this._poolHandler != null)
                 {
-                    if (this._poolHandler != null)
-                    {
-                        InternalLogger.Trace(string.Format("Pooled LogEventInfo with SequenceID:{0} was collected by garbage collector even if not shutting down", this.SequenceID));
-                    }
+                    InternalLogger.Trace("Pooled LogEventInfo with SequenceID:{0} was collected by garbage collector even if not shutting down", this.SequenceID);
                 }
             }
         }

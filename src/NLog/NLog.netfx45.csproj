@@ -194,6 +194,7 @@
     <Compile Include="Internal\ParameterUtils.cs" />
     <Compile Include="Internal\PathHelpers.cs" />
     <Compile Include="Internal\PlatformDetector.cs" />
+    <Compile Include="Internal\PoolFactory\AppendBuilderCreator.cs" />
     <Compile Include="Internal\PoolFactory\ILogEventObjectFactory.cs" />
     <Compile Include="Internal\PoolFactory\IPoolObject.cs" />
     <Compile Include="Internal\PoolFactory\LogEventObjectFactory.cs" />

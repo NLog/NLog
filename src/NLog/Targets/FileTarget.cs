@@ -984,10 +984,13 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
+            bool objectPoolEnabled = !ReferenceEquals(_objectFactory, Internal.PoolFactory.LogEventObjectFactory.Instance);
+
             var logFileName = this.GetFullFileName(logEvent);
-            using (var builderTarget = _objectFactory.CreateStringBuilder())
+            using (var localTarget = new Internal.PoolFactory.AppendBuilderCreator(null, logEvent, 0))
+            using (var targetStream = objectPoolEnabled ? _objectFactory.CreateMemoryStream(1024) : null)
             {
-                ArraySegment<byte> bytesToWrite = this.GetBytesToWrite(logEvent, builderTarget.Result, null, null);
+                ArraySegment<byte> bytesToWrite = this.GetBytesToWrite(logEvent, localTarget.Builder, localTarget.GetWorkBuffer(), targetStream != null ? targetStream.Result : null);
                 ProcessLogEvent(logEvent, logFileName, bytesToWrite);
             }
         }
@@ -1020,9 +1023,11 @@ namespace NLog.Targets
         {
             var buckets = logEvents.BucketSort(c => this.GetFullFileName(c.LogEvent));
 
+            bool objectPoolEnabled = !ReferenceEquals(_objectFactory, Internal.PoolFactory.LogEventObjectFactory.Instance);
+
             using (var ms = _objectFactory.CreateMemoryStream(256 * logEvents.Count))
-            using (var targetStream = _objectFactory.CreateMemoryStream(1024))
-            using (var targetBuilder = _objectFactory.CreateStringBuilder(1024))
+            using (var targetStream = objectPoolEnabled ? _objectFactory.CreateMemoryStream(1024) : null)
+            using (var targetBuilder = objectPoolEnabled ? _objectFactory.CreateStringBuilder(1024) : null)
             {
                 foreach (var bucket in buckets)
                 {
@@ -1042,11 +1047,20 @@ namespace NLog.Targets
                             firstLogEvent = ev.LogEvent;
                         }
 
-                        targetBuilder.Clear();
-                        targetStream.Result.SetLength(0);
-                        targetStream.Result.Position = 0;
-                        ArraySegment<byte> bytes = GetBytesToWrite(ev.LogEvent, targetBuilder.Result, targetBuilder.GetWorkBuffer(), targetStream.Result);
-                        ms.Result.Write(bytes.Array, bytes.Offset, bytes.Count);
+                        if (objectPoolEnabled)
+                        {
+                            targetBuilder.Clear();
+                            targetStream.Result.SetLength(0);
+                            targetStream.Result.Position = 0;
+
+                            ArraySegment<byte> bytes = GetBytesToWrite(ev.LogEvent, targetBuilder.Result, targetBuilder.GetWorkBuffer(), targetStream.Result);
+                            ms.Result.Write(bytes.Array, bytes.Offset, bytes.Count);
+                        }
+                        else
+                        {
+                            byte[] bytes = GetBytesToWrite(ev.LogEvent);
+                            ms.Result.Write(bytes, 0, bytes.Length);
+                        }
                     }
 
                     Exception lastException;
@@ -1098,10 +1112,31 @@ namespace NLog.Targets
         /// Formats the log event for write.
         /// </summary>
         /// <param name="logEvent">The log event to be formatted.</param>
-        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result.</param>
-        protected virtual void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
+        /// <returns>A string representation of the log event.</returns>
+        protected virtual string GetFormattedMessage(LogEventInfo logEvent)
         {
-            this.Layout.RenderAppendBuilder(logEvent, target);
+            return this.Layout.Render(logEvent);
+        }
+
+        /// <summary>
+        /// Gets the bytes to be written to the file.
+        /// </summary>
+        /// <param name="logEvent">Log event.</param>
+        /// <returns>Array of bytes that are ready to be written.</returns>
+        protected virtual byte[] GetBytesToWrite(LogEventInfo logEvent)
+        {
+            string renderedText = this.GetFormattedMessage(logEvent) + this.NewLineChars;
+            return this.TransformBytes(this.Encoding.GetBytes(renderedText));
+        }
+
+        /// <summary>
+        /// Modifies the specified byte array before it gets sent to a file.
+        /// </summary>
+        /// <param name="value">The byte array.</param>
+        /// <returns>The modified byte array. The function can do the modification in-place.</returns>
+        protected virtual byte[] TransformBytes(byte[] value)
+        {
+            return value;
         }
 
         /// <summary>
@@ -1116,6 +1151,16 @@ namespace NLog.Targets
             RenderFormattedMessage(logEvent, formatBuilder);
             formatBuilder.Append(NewLineChars);
             return TransformBuilder(formatBuilder, transformBuffer, streamTarget);
+        }
+
+        /// <summary>
+        /// Formats the log event for write.
+        /// </summary>
+        /// <param name="logEvent">The log event to be formatted.</param>
+        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result.</param>
+        protected virtual void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
+        {
+            this.Layout.RenderAppendBuilder(logEvent, target);
         }
 
         private ArraySegment<byte> TransformBuilder(StringBuilder builder, char[] transformBuffer, MemoryStream workStream)
@@ -2297,11 +2342,11 @@ namespace NLog.Targets
                 return default(ArraySegment<byte>);
             }
 
-            using (var builderTarget = _objectFactory.CreateStringBuilder())
+            using (var localTarget = new Internal.PoolFactory.AppendBuilderCreator(null, _objectFactory, 0))
             {
-                layout.RenderAppendBuilder(LogEventInfo.CreateNullEvent(), builderTarget.Result);
-                builderTarget.Result.Append(NewLineChars);
-                return TransformBuilder(builderTarget.Result, null, null);
+                layout.RenderAppendBuilder(LogEventInfo.CreateNullEvent(), localTarget.Builder);
+                localTarget.Builder.Append(NewLineChars);
+                return TransformBuilder(localTarget.Builder, null, null);
             }
         }
 

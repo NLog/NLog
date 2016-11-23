@@ -63,8 +63,6 @@ namespace NLog.Config
         /// </summary>
         private readonly Dictionary<string, SimpleLayout> variables = new Dictionary<string, SimpleLayout>(StringComparer.OrdinalIgnoreCase);
 
-        private readonly Internal.PoolFactory.PoolConfiguration poolConfiguration = new Internal.PoolFactory.PoolConfiguration();
-
         /// <summary>
         /// Initializes a new instance of the <see cref="LoggingConfiguration" /> class.
         /// </summary>
@@ -78,11 +76,6 @@ namespace NLog.Config
         /// </summary>
         [Obsolete("This option will be removed in NLog 5")]
         public bool ExceptionLoggingOldStyle { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public PoolSetup DefaultPoolSetup { get; set; }
 
         /// <summary>
         /// Gets the variables defined in the configuration.
@@ -342,20 +335,6 @@ namespace NLog.Config
         public void RemoveTarget(string name)
         {
             this.targets.Remove(name);
-        }
-
-        internal void ConfigurePool(ref Internal.PoolFactory.ILogEventObjectFactory pool, string ownerName, PoolSetup poolSetup, bool ownerLogger, int ownerQueueLength)
-        {
-            poolConfiguration.ConfigurePool(ref pool, ownerName, poolSetup, ownerLogger, ownerQueueLength);
-        }
-
-        /// <summary>
-        /// Extracts statistics from the object pools currently in used by active <see cref="Logger"/>s and <see cref="Target"/>s
-        /// </summary>
-        /// <param name="builder"></param>
-        public void GetPoolStatistics(System.Text.StringBuilder builder)
-        {
-            poolConfiguration.GetPoolStatistics(builder);
         }
 
         /// <summary>

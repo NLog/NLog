@@ -55,7 +55,7 @@ namespace NLog.UnitTests.Internal.PoolFactory
             for (int i = 0; i < objectCount; ++i)
             {
                 T item = createObject(pool);
-                if (!ReferenceEquals(createdItems[i], item))
+                if (!createdItems.Contains(item))
                     createdItems.Add(item);
             }
             return createdItems;
@@ -130,6 +130,114 @@ namespace NLog.UnitTests.Internal.PoolFactory
             StringBuilder sb = new StringBuilder();
             poolConfig.GetPoolStatistics(sb);
             Assert.Equal(0, sb.Length); // Empty Report
+        }
+
+        [Fact]
+        public void TestActivePoolSetupConfig()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true' defaultPoolSetup='Active'>
+    <targets>
+        <target name='dtarget' type='Debug' layout='${message}' poolSetup='Active' />
+    </targets>
+
+    <rules>
+      <logger name='*' writeTo='dtarget' minLevel=""Trace"">
+      </logger>
+    </rules>
+</nlog>");
+
+            LogManager.Configuration = configuration;
+            var logger = LogManager.GetLogger("dLoggersync");
+            Assert.Equal(NLog.Common.PoolSetup.Active, logger.PoolSetup);
+
+            var target = (NLog.Targets.DebugTarget)configuration.FindTargetByName("dtarget");
+            Assert.Equal(NLog.Common.PoolSetup.Active, target.PoolSetup);
+
+            for (int i = 0; i < 1000; ++i)
+                logger.Debug("Test");    // Sync-call
+
+            StringBuilder sb = new StringBuilder();
+            LogManager.LogFactory.GetPoolStatistics(sb);
+            string report = sb.ToString();
+            Assert.NotEqual(string.Empty, sb.ToString());
+            Assert.True(report.Contains("dtarget"), "dtarget missing pool -> " + report);
+            Assert.False(report.Contains("dLoggersync"), "dLoggersync not using default pool -> " + report);
+            Assert.Equal(1000, target.Counter);
+        }
+
+        [Fact]
+        public void TestActivePoolSetupAsyncConfig()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true' defaultPoolSetup='Active'>
+    <targets>
+        <target name='dtarget' type='AsyncWrapper' overflowAction='Block' queueLimit='500' batchSize='100' timeToSleepBetweenBatches='0' poolSetup='Active' >
+            <target name='dtargetwrapped' type='Debug' layout='${longdate} ${uppercase:${level}} ${message} ${exception}' />
+        </target>
+    </targets>
+
+    <rules>
+      <logger name='*' writeTo='dtarget' minLevel=""Trace"" >
+      </logger>
+    </rules>
+</nlog>");
+
+            LogManager.Configuration = configuration;
+            var logger = LogManager.GetLogger("dLoggerasync");
+            Assert.Equal(NLog.Common.PoolSetup.Active, logger.PoolSetup);
+
+            var target = configuration.FindTargetByName("dtarget");
+            Assert.Equal(NLog.Common.PoolSetup.Active, target.PoolSetup);
+
+            var wrappedTarget = (NLog.Targets.DebugTarget)configuration.FindTargetByName("dtargetwrapped");
+
+            for (int i = 0; i < 1000; ++i)
+                logger.Debug("Test");    // Sync-call
+
+            StringBuilder sb = new StringBuilder();
+            LogManager.LogFactory.GetPoolStatistics(sb);
+            string report = sb.ToString();
+            Assert.NotEqual(string.Empty, sb.ToString());
+            Assert.True(report.Contains("dtarget"), "dtarget missing pool -> " + report);
+            Assert.False(report.Contains("dLoggerasync"), "dLoggerasync not using default pool -> " + report);
+
+            LogManager.Configuration = null;    // Flush
+            Assert.Equal(1000, wrappedTarget.Counter);
+        }
+
+        [Fact]
+        public void TestActiveLoggerPoolSetupConfig()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true' defaultPoolSetup='Active'>
+    <targets>
+        <target name='dtarget' type='Debug' layout='${message}' poolSetup='Active' />
+    </targets>
+
+    <rules>
+      <logger name='*' writeTo='dtarget' minLevel=""Trace"">
+      </logger>
+    </rules>
+</nlog>");
+
+            LogManager.Configuration = configuration;
+            var logger = LogManager.GetLogger("dLoggeractive", NLog.Common.PoolSetup.Large);
+            Assert.Equal(NLog.Common.PoolSetup.Large, logger.PoolSetup);
+
+            var target = (NLog.Targets.DebugTarget)configuration.FindTargetByName("dtarget");
+            Assert.Equal(NLog.Common.PoolSetup.Active, target.PoolSetup);
+
+            for (int i = 0; i < 1000; ++i)
+                logger.Debug("Test");    // Sync-call
+
+            StringBuilder sb = new StringBuilder();
+            LogManager.LogFactory.GetPoolStatistics(sb);
+            string report = sb.ToString();
+            Assert.NotEqual(string.Empty, sb.ToString());
+            Assert.True(report.Contains("dtarget"), "dtarget missing pool -> " + report);
+            Assert.True(report.Contains("dLoggeractive"), "dLoggeractive missing pool -> " + report);
+            Assert.Equal(1000, target.Counter);
         }
     }
 }

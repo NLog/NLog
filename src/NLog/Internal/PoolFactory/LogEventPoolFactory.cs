@@ -49,17 +49,22 @@ namespace NLog.Internal.PoolFactory
         readonly List<IPoolObjectFactory> _objectPools = new List<IPoolObjectFactory>();
 
         readonly PoolObjectFactoryT<LogEventInfo> _logEventPool;
-        
-        Dictionary<ExceptionHandlerKey, KeyValuePair<DateTime, ExceptionHandlerContinuation>> _exceptionHandlerPool = new Dictionary<ExceptionHandlerKey, KeyValuePair<DateTime,ExceptionHandlerContinuation>>();
         readonly PoolObjectFactoryT<CompleteWhenAllContinuation> _continueWhenAllPool;
 
+        /// <summary>Small memory-footprint, used for the standard Layout renders</summary>
         readonly PoolObjectFactoryT<ReusableStringBuilder> _smallBuilderPool;
+        /// <summary>Mostly used by the Target when batching multiple LogEvents into a single write operation</summary>
         readonly PoolObjectFactoryT<ReusableStringBuilder> _bigBuilderPool;
+        /// <summary>Small memory-footprint, used for the standard Target Write operations</summary>
         readonly PoolObjectFactoryT<ReusableMemoryStream> _smallStreamPool;
+        /// <summary>Mostly used by the Target when batching multiple LogEvents into a single write operation</summary>
         readonly PoolObjectFactoryT<ReusableMemoryStream> _bigStreamPool;
 
+        /// <summary>Small memory-footprint, used for the standard Target Write</summary>
         readonly PoolObjectFactoryT<ReusableAsyncLogEventInfoArray> _smallLogEventArray;
+        /// <summary>Max size just before entering the large-object-heap</summary>
         readonly PoolObjectFactoryT<ReusableAsyncLogEventInfoArray> _bigLogEventArray;
+        /// <summary>Mostly used when flushing large queue from wrapper-target</summary>
         readonly PoolObjectFactoryT<ReusableAsyncLogEventInfoArray> _hugeLogEventArray;
 
         /// <summary>
@@ -101,7 +106,7 @@ namespace NLog.Internal.PoolFactory
             bool ownerAsyncTarget = ownerQueueLength > 1;
 
             RegisterPool(ref _logEventPool, "LogEvent", ownerLogger ? logEventInitialSize : 0, logEventMaxSize, ownerAsyncTarget, poolSetup);
-            RegisterPool(ref _continueWhenAllPool, "WhenAllCont", (ownerLogger || ownerAsyncTarget) ? logEventInitialSize : 0, logEventMaxSize, ownerAsyncTarget, poolSetup);
+            RegisterPool(ref _continueWhenAllPool, "WhenAllCont", ownerAsyncTarget ? logEventInitialSize : 0, logEventMaxSize, ownerAsyncTarget, poolSetup);
 
             int streamInitialSize = 10;
             int streamMaxSize = 100;
@@ -160,18 +165,17 @@ namespace NLog.Internal.PoolFactory
             if (logEvent == null)
                 logEvent = new LogEventInfo(this);
 
-            ((IPoolObject)logEvent).Owner = this;
+            ((IPoolObject)logEvent).OwnerPool = this;
             logEvent.Init(level, loggerName, formatProvider, message, parameters, exception);
             return logEvent;
         }
 
         public void ReleaseLogEvent(LogEventInfo item)
         {
-            if (((IPoolObject)item).Owner != this)
+            if (((IPoolObject)item).OwnerPool != this)
                 throw new InvalidOperationException();
-            int seqno = item.SequenceID;
+
             _logEventPool.TryClearPush(item);
-            //System.Diagnostics.Debug.WriteLine(string.Format("Release {0}", seqno));
         }
 
         const int SmallBuilderMaxSize = 1024;
@@ -183,7 +187,7 @@ namespace NLog.Internal.PoolFactory
                 ReusableStringBuilder builder = _smallBuilderPool.TryPop();
                 if (builder != null)
                 {
-                    ((IPoolObject)builder).Owner = this;
+                    ((IPoolObject)builder).OwnerPool = this;
                     return builder;
                 }
             }
@@ -191,18 +195,18 @@ namespace NLog.Internal.PoolFactory
             ReusableStringBuilder bigBuilder = _bigBuilderPool.TryPop();
             if (bigBuilder != null)
             {
-                ((IPoolObject)bigBuilder).Owner = this;
+                ((IPoolObject)bigBuilder).OwnerPool = this;
                 return bigBuilder;
             }
 
             ReusableStringBuilder newBuilder = _newFactory.CreateStringBuilder(capacity < 256 ? 256 : capacity);
-            ((IPoolObject)newBuilder).Owner = this;
+            ((IPoolObject)newBuilder).OwnerPool = this;
             return newBuilder;
         }
 
         public void ReleaseStringBuilder(ReusableStringBuilder item)
         {
-            if (((IPoolObject)item).Owner != this)
+            if (((IPoolObject)item).OwnerPool != this)
                 throw new InvalidOperationException();
 
             if (item.Result.Capacity < SmallBuilderMaxSize)
@@ -220,7 +224,7 @@ namespace NLog.Internal.PoolFactory
                 ReusableMemoryStream builder = _smallStreamPool.TryPop();
                 if (builder != null)
                 {
-                    ((IPoolObject)builder).Owner = this;
+                    ((IPoolObject)builder).OwnerPool = this;
                     return builder;
                 }
             }
@@ -228,18 +232,18 @@ namespace NLog.Internal.PoolFactory
             ReusableMemoryStream bigStream = _bigStreamPool.TryPop();
             if (bigStream != null)
             {
-                ((IPoolObject)bigStream).Owner = this;
+                ((IPoolObject)bigStream).OwnerPool = this;
                 return bigStream;
             }
 
             ReusableMemoryStream newStream = _newFactory.CreateMemoryStream(capacity < 1024 ? 1024 : capacity);
-            ((IPoolObject)newStream).Owner = this;
+            ((IPoolObject)newStream).OwnerPool = this;
             return newStream;
         }
 
         public void ReleaseMemoryStream(ReusableMemoryStream item)
         {
-            if (((IPoolObject)item).Owner != this)
+            if (((IPoolObject)item).OwnerPool != this)
                 throw new InvalidOperationException();
 
             if (item.Result.Capacity < SmallStreamMaxSize)
@@ -252,39 +256,34 @@ namespace NLog.Internal.PoolFactory
         const int BigArrayMaxSize = 10000;
         const int HugeArrayMaxSize = 100000;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="capacity"></param>
-        /// <returns></returns>
         public ReusableAsyncLogEventInfoArray CreateAsyncLogEventArray(int capacity = 0)
         {
             ReusableAsyncLogEventInfoArray item = null;
             if (capacity <= SmallArrayMaxSize)
             {
-                capacity = 1000;
+                capacity = SmallArrayMaxSize;
                 item = _smallLogEventArray.TryPop();
             }
             else if (capacity <= BigArrayMaxSize)
             {
-                capacity = 10000;
+                capacity = BigArrayMaxSize;
                 item = _bigLogEventArray.TryPop();
             }
             else if (capacity <= HugeArrayMaxSize)
             {
-                capacity = 100000;
+                capacity = HugeArrayMaxSize;
                 item = _hugeLogEventArray.TryPop();
             }
 
             if (item == null)
                 item = _newFactory.CreateAsyncLogEventArray(capacity);
-            ((IPoolObject)item).Owner = this;
+            ((IPoolObject)item).OwnerPool = this;
             return item;
         }
 
         public void ReleaseAsyncLogEventArray(ReusableAsyncLogEventInfoArray item)
         {
-            if (((IPoolObject)item).Owner != this)
+            if (((IPoolObject)item).OwnerPool != this)
                 throw new InvalidOperationException();
 
             if (item.Buffer.Length <= SmallArrayMaxSize)
@@ -295,61 +294,19 @@ namespace NLog.Internal.PoolFactory
                 _hugeLogEventArray.TryClearPush(item);
         }
 
-        public ExceptionHandlerContinuation CreateExceptionHandlerContinuation(int originalThreadId, bool throwExceptions)
-        {
-            KeyValuePair<DateTime,ExceptionHandlerContinuation> poolItem;
-            if (!_exceptionHandlerPool.TryGetValue(new ExceptionHandlerKey(originalThreadId, throwExceptions), out poolItem))
-            {
-                var exceptionHandler = new ExceptionHandlerContinuation(originalThreadId, throwExceptions);
-                poolItem = new KeyValuePair<DateTime, ExceptionHandlerContinuation>(DateTime.UtcNow, exceptionHandler);
-
-                var newDictionary = new Dictionary<ExceptionHandlerKey, KeyValuePair<DateTime,ExceptionHandlerContinuation>>(_exceptionHandlerPool.Count + 1);
-                int oldDictionarySize;
-                do
-                {
-                    var localDictionary = _exceptionHandlerPool;
-                    oldDictionarySize = localDictionary.Count;
-                    foreach (var item in localDictionary)
-                    {
-                        if (localDictionary.Count > 1000 && poolItem.Key == DateTime.MinValue)
-                            continue;   // Skip stale objects to avoid an ever growing pool
-
-                        if (item.Value.Key.AddHours(1) < poolItem.Key)
-                            newDictionary[item.Key] = new KeyValuePair<DateTime, ExceptionHandlerContinuation>(DateTime.MinValue, item.Value.Value);
-                        else
-                            newDictionary[item.Key] = item.Value;
-                    }
-                    newDictionary[new ExceptionHandlerKey(originalThreadId, throwExceptions)] = poolItem;
-                } while (oldDictionarySize != _exceptionHandlerPool.Count);
-
-                Interlocked.Exchange(ref _exceptionHandlerPool, newDictionary);
-            }
-            else if (poolItem.Key == DateTime.MinValue)
-            {
-                // Mark object as not stale
-                _exceptionHandlerPool[new ExceptionHandlerKey(originalThreadId, throwExceptions)] = new KeyValuePair<DateTime, ExceptionHandlerContinuation>(DateTime.UtcNow, poolItem.Value);
-            }
-            return poolItem.Value;
-        }
-
-        public void ReleaseExceptionHandlerContinuation(ExceptionHandlerContinuation item)
-        {
-            // Do nothing
-        }
-
         public CompleteWhenAllContinuation CreateCompleteWhenAllContinuation(CompleteWhenAllContinuation.Counter externalCounter = null)
         {
             CompleteWhenAllContinuation item = _continueWhenAllPool.TryPop();
             if (item == null)
                 item = _newFactory.CreateCompleteWhenAllContinuation();
             item.Init(externalCounter);
-            ((IPoolObject)item).Owner = this;
+            ((IPoolObject)item).OwnerPool = this;
             return item;
         }
 
         public void ReleaseCompleteWhenAllContinuation(CompleteWhenAllContinuation item)
         {
-            if (((IPoolObject)item).Owner != this)
+            if (((IPoolObject)item).OwnerPool != this)
                 throw new InvalidOperationException();
 
             _continueWhenAllPool.TryClearPush(item);
@@ -437,8 +394,8 @@ namespace NLog.Internal.PoolFactory
 
             public bool TryClearPush(T item)
             {
-                item.Owner = null;
                 item.Clear();   // Clear without holding locks
+                item.OwnerPool = null;
                 return TryPush(item);
             }
 
@@ -455,7 +412,7 @@ namespace NLog.Internal.PoolFactory
 
             public bool HasBeenUsed { get { return _cacheHits != 0 || _cacheMisses != 0 || _cacheOverflows != 0; } }
 
-            public PoolStats GetPoolStats(bool clearStats)
+            public virtual PoolStats GetPoolStats(bool clearStats)
             {
                 PoolStats poolStats = new PoolStats(_poolDescription, _container.Count, _maxCapacity, (uint)_cacheHits, (uint)_cacheMisses, (uint)_cacheOverflows);
                 if (clearStats)
@@ -586,11 +543,24 @@ namespace NLog.Internal.PoolFactory
             {
             }
 
-            public new bool HasBeenUsed { get { return _normalContainer ? base.HasBeenUsed : false; } }
-
-            public new PoolStats GetPoolStats(bool clearStats)
+            public override PoolStats GetPoolStats(bool clearStats)
             {
-                return _normalContainer ? base.GetPoolStats(clearStats) : new PoolStats(_poolDescription, 0, 1, 0, 0, 0);
+                if (_normalContainer)
+                    return base.GetPoolStats(clearStats);
+
+                PoolStats stats = base.GetPoolStats(false);   // Don't clear _cacheMisses
+                if (_cacheMisses == 0)
+                {
+                    stats = new PoolStats(stats.PoolName, 0, stats.MaxCapacity, 0, 0, 0);
+                }
+                else
+                {
+                    int count = _primaryContainer != null ? 1 : 0;
+                    stats = new PoolStats(stats.PoolName, count, stats.MaxCapacity, 1, (uint)_cacheMisses, 0);
+                    if (clearStats)
+                        _cacheMisses = 1;   // Want to keep it marked as been in use
+                }
+                return stats;
             }
 
             public override T TryPop()
@@ -600,9 +570,6 @@ namespace NLog.Internal.PoolFactory
                     T item = Interlocked.Exchange(ref _primaryContainer, null);
                     if (item != null)
                         return item;
-                    if (Interlocked.Increment(ref _cacheMisses) == 1)
-                        return null;    // First cache miss is allowed
-                    _normalContainer = true;
                 }
                 return base.TryPop();
             }
@@ -614,40 +581,16 @@ namespace NLog.Internal.PoolFactory
                     if (Interlocked.CompareExchange(ref _primaryContainer, item, null) == null)
                         return true;
                     _normalContainer = true;
+                    if (base.TryPush(item))
+                    {
+                        item = Interlocked.Exchange(ref _primaryContainer, null);
+                        if (item != null)
+                            base.TryPush(item);
+                        return true;
+                    }
+                    return false;
                 }
                 return base.TryPush(item);
-            }
-        }
-
-        struct ExceptionHandlerKey : IEquatable<ExceptionHandlerKey>
-        {
-            readonly int ThreadId;
-            readonly bool AllowExceptions;
-
-            public ExceptionHandlerKey(int threadId, bool allowExceptions)
-            {
-                this.ThreadId = threadId;
-                this.AllowExceptions = allowExceptions;
-            }
-            public bool Equals(ExceptionHandlerKey other)
-            {
-                return this.ThreadId == other.ThreadId && this.AllowExceptions == other.AllowExceptions;
-            }
-            public override bool Equals(object other)
-            {
-                return other is ExceptionHandlerKey && Equals((ExceptionHandlerKey)other);
-            }
-            public override int GetHashCode()
-            {
-                return ThreadId.GetHashCode() ^ AllowExceptions.GetHashCode();
-            }
-            public static bool operator ==(ExceptionHandlerKey x, ExceptionHandlerKey y)
-            {
-                return x.Equals(y);
-            }
-            public static bool operator !=(ExceptionHandlerKey x, ExceptionHandlerKey y)
-            {
-                return !(x == y);
             }
         }
     }

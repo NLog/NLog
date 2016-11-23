@@ -100,7 +100,18 @@ namespace NLog.Targets
         protected override void Write(LogEventInfo logEvent)
         {
             this.Counter++;
-            this.LastMessage = this.Layout.Render(logEvent);
+            if (PoolSetup != Common.PoolSetup.None)
+            {
+                using (var localTarget = new Internal.PoolFactory.AppendBuilderCreator(null, _objectFactory, 0))
+                {
+                    this.Layout.RenderAppendBuilder(logEvent, localTarget.Builder);
+                    this.LastMessage = localTarget.Builder.ToString();
+                }
+            }
+            else
+            {
+                this.LastMessage = this.Layout.Render(logEvent);
+            }
         }
     }
 }

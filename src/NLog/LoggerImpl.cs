@@ -44,7 +44,6 @@ namespace NLog
     using NLog.Config;
     using NLog.Filters;
     using NLog.Internal;
-    using NLog.Targets;
 
     /// <summary>
     /// Implementation of logging engine.
@@ -81,12 +80,15 @@ namespace NLog
             }
 
             // We can reuse the same exception-handler for all target writes
-            ExceptionHandlerContinuation exceptionHandler =
-                logEvent.ObjectFactory.CreateExceptionHandlerContinuation(
-                    Thread.CurrentThread.ManagedThreadId, factory.ThrowExceptions);
+            ExceptionHandlerContinuation exceptionHandler;
             if (logEvent.PoolReleaseContinuation != null)
             {
+                exceptionHandler = logEvent.PoolExceptionHandlerContinuation.Init(Thread.CurrentThread.ManagedThreadId, factory.ThrowExceptions);
                 logEvent.PoolReleaseContinuation.BeginTargetWrite();
+            }
+            else
+            {
+                exceptionHandler = new ExceptionHandlerContinuation(Thread.CurrentThread.ManagedThreadId, factory.ThrowExceptions);
             }
 
             for (var t = targets; t != null; t = t.NextInChain)
@@ -115,16 +117,14 @@ namespace NLog
             if (stackFrames == null)
                 return 0;
 
-            var stackFrameFilter = new StackFrameFilterHelper(loggerType);
-
             //create StackFrameWithIndex so the index is know after filtering
-            var allStackFrames = stackFrames.Select(stackFrameFilter.Convert).ToList();
+            var allStackFrames = stackFrames.Select((f, i) => new StackFrameWithIndex(i, f)).ToList();
             //filter on assemblies
-            var filteredStackframes = allStackFrames.Where(stackFrameFilter.SkipAssembly).ToList();
+            var filteredStackframes = allStackFrames.Where(p => !SkipAssembly(p.StackFrame)).ToList();
             //find until logger type
-            var intermediate = filteredStackframes.SkipWhile(stackFrameFilter.CheckStackFrameNotEqual);
+            var intermediate = filteredStackframes.SkipWhile(p => !IsLoggerType(p.StackFrame, loggerType));
             //skip the logger type
-            var stackframesAfterLogger = intermediate.SkipWhile(stackFrameFilter.CheckStackFrameEqual).ToList();
+            var stackframesAfterLogger = intermediate.SkipWhile(p => IsLoggerType(p.StackFrame, loggerType)).ToList();
 
             //get first call after logger (or skip if is moveNext)
             var candidateStackFrames = stackframesAfterLogger;
@@ -178,82 +178,57 @@ namespace NLog
             return 0;
         }
 
-        private struct StackFrameFilterHelper
+        /// <summary>
+        /// Assembly to skip?
+        /// </summary>
+        /// <param name="frame">Find assembly via this frame. </param>
+        /// <returns><c>true</c>, we should skip.</returns>
+        private static bool SkipAssembly(StackFrame frame)
         {
-            private readonly Type loggerType;
+            var method = frame.GetMethod();
+            var assembly = method.DeclaringType != null ? method.DeclaringType.Assembly : method.Module.Assembly;
+            // skip stack frame if the method declaring type assembly is from hidden assemblies list
+            var skipAssembly = SkipAssembly(assembly);
+            return skipAssembly;
+        }
 
-            public StackFrameFilterHelper(Type loggerType)
+        /// <summary>
+        /// Is this the type of the logger?
+        /// </summary>
+        /// <param name="frame">get type of this logger in this frame.</param>
+        /// <param name="loggerType">Type of the logger.</param>
+        /// <returns></returns>
+        private static bool IsLoggerType(StackFrame frame, Type loggerType)
+        {
+            var method = frame.GetMethod();
+            Type declaringType = method.DeclaringType;
+            var isLoggerType = declaringType != null && loggerType == declaringType;
+            return isLoggerType;
+        }
+
+        private static bool SkipAssembly(Assembly assembly)
+        {
+            if (assembly == nlogAssembly)
             {
-                this.loggerType = loggerType;
+                return true;
             }
 
-            public StackFrameWithIndex Convert(StackFrame frame, int index)
+            if (assembly == mscorlibAssembly)
             {
-                return new StackFrameWithIndex(index, frame);
+                return true;
             }
 
-            public bool CheckStackFrameEqual(StackFrameWithIndex frame)
+            if (assembly == systemAssembly)
             {
-                return IsLoggerType(frame.StackFrame, loggerType);
+                return true;
             }
 
-            public bool CheckStackFrameNotEqual(StackFrameWithIndex frame)
+            if (LogManager.IsHiddenAssembly(assembly))
             {
-                return !IsLoggerType(frame.StackFrame, loggerType);
+                return true;
             }
 
-            /// <summary>
-            /// Is this the type of the logger?
-            /// </summary>
-            /// <param name="frame">get type of this logger in this frame.</param>
-            /// <param name="loggerType">Type of the logger.</param>
-            /// <returns></returns>
-            private static bool IsLoggerType(StackFrame frame, Type loggerType)
-            {
-                var method = frame.GetMethod();
-                Type declaringType = method.DeclaringType;
-                var isLoggerType = declaringType != null && loggerType == declaringType;
-                return isLoggerType;
-            }
-
-            /// <summary>
-            /// Assembly to skip?
-            /// </summary>
-            /// <param name="frameWithIndex">Find assembly via this frame. </param>
-            /// <returns><c>true</c>, we should skip.</returns>
-            public bool SkipAssembly(StackFrameWithIndex frameWithIndex)
-            {
-                var method = frameWithIndex.StackFrame.GetMethod();
-                var assembly = method.DeclaringType != null ? method.DeclaringType.Assembly : method.Module.Assembly;
-                // skip stack frame if the method declaring type assembly is from hidden assemblies list
-                var skipAssembly = SkipAssembly(assembly);
-                return !skipAssembly;
-            }
-
-            private static bool SkipAssembly(Assembly assembly)
-            {
-                if (assembly == nlogAssembly)
-                {
-                    return true;
-                }
-
-                if (assembly == mscorlibAssembly)
-                {
-                    return true;
-                }
-
-                if (assembly == systemAssembly)
-                {
-                    return true;
-                }
-
-                if (LogManager.IsHiddenAssembly(assembly))
-                {
-                    return true;
-                }
-
-                return false;
-            }
+            return false;
         }
 
         private static bool WriteToTargetWithFilterChain(TargetWithFilterChain targetListHead, LogEventInfo logEvent, AsyncContinuation onException)
@@ -274,8 +249,6 @@ namespace NLog
                 return true;
             }
 
-            //if (logEvent.PoolReleaseContinuation != null)
-            //    logEvent.PoolReleaseContinuation.BeginTargetWrite();
             targetListHead.Target.WriteAsyncLogEvent(logEvent.StartContinuation(onException));
             if (result == FilterResult.LogFinal)
             {

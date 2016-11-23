@@ -45,7 +45,7 @@ namespace NLog.Internal.PoolFactory
         readonly AsyncLogEventInfo[] _array;
 
         ILogEventObjectFactory _owner;
-        object IPoolObject.Owner { get { return _owner; } set { _owner = (ILogEventObjectFactory)value; } }
+        object IPoolObject.OwnerPool { get { return _owner; } set { _owner = (ILogEventObjectFactory)value; } }
 
         public AsyncLogEventInfo[] Buffer { get { return _array; } }
 

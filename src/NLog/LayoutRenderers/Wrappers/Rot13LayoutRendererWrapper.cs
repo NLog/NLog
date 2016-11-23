@@ -63,6 +63,19 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Encodes/Decodes ROT-13-encoded string.
         /// </summary>
         /// <param name="encodedValue">The string to be encoded/decoded.</param>
+        /// <returns>Encoded/Decoded text.</returns>
+        public static string DecodeRot13(string encodedValue)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder(encodedValue.Length);
+            sb.Append(encodedValue);
+            DecodeRot13(sb);
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Encodes/Decodes ROT-13-encoded string.
+        /// </summary>
+        /// <param name="encodedValue">The string to be encoded/decoded.</param>
         public static void DecodeRot13(System.Text.StringBuilder encodedValue)
         {
             if (encodedValue == null)
@@ -74,19 +87,6 @@ namespace NLog.LayoutRenderers.Wrappers
             {
                 encodedValue[i] = DecodeRot13Char(encodedValue[i]);
             }
-        }
-
-        /// <summary>
-        /// Encodes/Decodes ROT-13-encoded string.
-        /// </summary>
-        /// <param name="encodedValue">The string to be encoded/decoded.</param>
-        /// <returns>Encoded/Decoded text.</returns>
-        public static string DecodeRot13(string encodedValue)
-        {
-            System.Text.StringBuilder sb = new System.Text.StringBuilder(encodedValue.Length);
-            sb.Append(encodedValue);
-            DecodeRot13(sb);
-            return sb.ToString();
         }
 
         /// <summary>

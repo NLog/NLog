@@ -99,6 +99,18 @@ namespace NLog
 #endif
 
         /// <summary>
+        /// Configures whether a single object pool should be created for all <see cref="Logger"/>s to share
+        /// </summary>
+        internal PoolSetup DefaultPoolSetup { get; set; }
+
+        /// <summary>
+        /// Keep track of active pools independent of LoggingConfiguration changes
+        /// </summary>
+        private readonly Internal.PoolFactory.PoolConfiguration poolConfiguration = new Internal.PoolFactory.PoolConfiguration();
+
+        private Internal.PoolFactory.ILogEventObjectFactory defaultObjectFactory = Internal.PoolFactory.LogEventObjectFactory.Instance;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
         /// </summary>
         public LogFactory()
@@ -310,7 +322,7 @@ namespace NLog
                     {
                         try
                         {
-                            config.Dump();
+                            this.config.Dump();
 
                             this.config.InitializeAll();
                             this.ReconfigExistingLoggers();
@@ -1168,6 +1180,28 @@ namespace NLog
             this.config = new XmlLoggingConfiguration(configFile, this);
         }
 
+        internal void ConfigurePool(ref Internal.PoolFactory.ILogEventObjectFactory pool, string ownerName, PoolSetup? poolSetup, bool ownerLogger, int ownerQueueLength)
+        {
+            if (poolSetup.HasValue)
+            {
+                this.poolConfiguration.ConfigurePool(ref pool, ownerName, poolSetup.Value, ownerLogger, ownerQueueLength);
+            }
+            else
+            {
+                if (DefaultPoolSetup != PoolSetup.None && ReferenceEquals(defaultObjectFactory, Internal.PoolFactory.LogEventObjectFactory.Instance))
+                    this.poolConfiguration.ConfigurePool(ref defaultObjectFactory, "LogFactory", DefaultPoolSetup, true, 10000);
+                pool = defaultObjectFactory;
+            }
+        }
+
+        /// <summary>
+        /// Extracts statistics from the object pools currently in used by active <see cref="Logger"/>s and <see cref="Target"/>s
+        /// </summary>
+        /// <param name="builder"></param>
+        public void GetPoolStatistics(StringBuilder builder)
+        {
+            this.poolConfiguration.GetPoolStatistics(builder);
+        }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         private void currentAppDomain_DomainUnload(object sender, EventArgs e)

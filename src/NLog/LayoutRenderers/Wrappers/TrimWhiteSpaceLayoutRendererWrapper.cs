@@ -34,7 +34,6 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System.ComponentModel;
-    using System.Globalization;
     using NLog.Config;
 
     /// <summary>
@@ -62,7 +61,7 @@ namespace NLog.LayoutRenderers.Wrappers
         public bool TrimWhiteSpace { get; set; }
 
         /// <summary>
-        /// Post-processes the rendered message. 
+        /// Removes white-spaces from both sides of the provided target
         /// </summary>
         /// <param name="target">Output to be transform.</param>
         protected override void TransformFormattedMesssage(System.Text.StringBuilder target)

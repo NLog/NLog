@@ -55,6 +55,8 @@ namespace NLog.Internal.PoolFactory
         {
             if (pool != null && pool.PoolSetup != poolSetup)
             {
+                InternalLogger.Info("Owner:{0} changes PoolSetup={1}", ownerName, poolSetup);
+
                 for (int i = poolInstances.Count - 1; i >= 0; --i)
                 {
                     ILogEventObjectFactory poolItem;
@@ -78,6 +80,8 @@ namespace NLog.Internal.PoolFactory
             {
                 if (poolSetup != PoolSetup.None)
                 {
+                    InternalLogger.Info("Owner:{0} enables PoolSetup={1}", ownerName, poolSetup);
+
                     pool = new LogEventPoolFactory(ownerName, poolSetup, ownerLogger, ownerQueueLength);
 #if NET4_5
                     poolInstances.Add(new WeakReference<ILogEventObjectFactory>(pool));

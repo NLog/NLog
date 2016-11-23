@@ -165,7 +165,34 @@ namespace NLog.Internal
                 return null;
             }
 
-            return _layout.Render(logEvent);
+            if (logEvent.PoolReleaseContinuation != null)
+            {
+                using (var localTarget = new PoolFactory.AppendBuilderCreator(null, logEvent, 0))
+                {
+                    _layout.RenderAppendBuilder(logEvent, localTarget.Builder);
+                    if (_cachedPrevRawFileName != null && _cachedPrevRawFileName.Length == localTarget.Builder.Length)
+                    {
+                        for (int i = 0; i < _cachedPrevRawFileName.Length; ++i)
+                        {
+                            if (_cachedPrevRawFileName[i] != localTarget.Builder[i])
+                            {
+                                _cachedPrevRawFileName = null;
+                                break;
+                            }
+                        }
+                        if (_cachedPrevRawFileName != null)
+                            return _cachedPrevRawFileName;
+                    }
+
+                    _cachedPrevRawFileName = localTarget.Builder.ToString();
+                    _cachedPrevCleanFileName = null;
+                    return _cachedPrevRawFileName;
+                }
+            }
+            else
+            {
+                return _layout.Render(logEvent);
+            }
         }
 
         /// <summary>

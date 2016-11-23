@@ -42,56 +42,43 @@ namespace NLog.Internal
     /// calling the <see cref="Logger"/> if <see cref="LogFactory.ThrowExceptions"/> is enabled,
     /// and target is synchronous.
     /// </summary>
-    internal class ExceptionHandlerContinuation : PoolFactory.IPoolObject
+    internal class ExceptionHandlerContinuation
     {
-        public int OriginalThreadId { get; private set; }
+        private int _originalThreadId;
+        private bool _throwExceptions;
 
-        public bool ThrowExceptions { get; private set; }
-
+        /// <summary>
+        /// Prevents capture of this-reference when calling <see cref="Handler"/> 
+        /// </summary>
         public readonly AsyncContinuation Delegate;
-
-        private PoolFactory.ILogEventObjectFactory _owner;
-        object PoolFactory.IPoolObject.Owner { get { return _owner; } set { _owner = (PoolFactory.ILogEventObjectFactory)value; } }
-
-        internal ExceptionHandlerContinuation(int originalThreadId, bool throwExceptions)
-        {
-            this.Delegate = this.Handler;
-            Init(originalThreadId, throwExceptions);
-        }
 
         /// <summary>
         /// Captures the exception-handle-state for the thread that called the <see cref="Logger"/>
         /// </summary>
         /// <param name="originalThreadId">ThreadId for the thread calling Logger</param>
         /// <param name="throwExceptions"><see cref="LogFactory.ThrowExceptions"/> policy</param>
-        internal void Init(int originalThreadId, bool throwExceptions)
+        public ExceptionHandlerContinuation(int originalThreadId, bool throwExceptions)
         {
-            this.OriginalThreadId = originalThreadId;
-            this.ThrowExceptions = throwExceptions;
+            this.Delegate = this.Handler;
+            Init(originalThreadId, throwExceptions);
+        }
+
+        internal ExceptionHandlerContinuation Init(int originalThreadId, bool throwExceptions)
+        {
+            this._originalThreadId = originalThreadId;
+            this._throwExceptions = throwExceptions;
+            return this;
         }
 
         private void Handler(Exception ex)
         {
-            try
+            if (ex != null)
             {
-                if (ex != null)
+                if (this._throwExceptions && Thread.CurrentThread.ManagedThreadId == this._originalThreadId)
                 {
-                    if (this.ThrowExceptions && Thread.CurrentThread.ManagedThreadId == this.OriginalThreadId)
-                    {
-                        throw new NLogRuntimeException("Exception occurred in NLog", ex);
-                    }
+                    throw new NLogRuntimeException("Exception occurred in NLog", ex);
                 }
             }
-            finally
-            {
-                if (_owner != null)
-                    _owner.ReleaseExceptionHandlerContinuation(this);
-            }
-        }
-
-        void PoolFactory.IPoolObject.Clear()
-        {
-            // No references to clear
         }
     }
 }

@@ -440,8 +440,8 @@ namespace NLog.Targets
         /// </summary>
         protected virtual void InitializeTarget()
         {
-            if (LoggingConfiguration != null)
-                LoggingConfiguration.ConfigurePool(ref _objectFactory, Name, PoolSetup, false, 0);
+            if (LogManager.LogFactory != null)
+                LogManager.LogFactory.ConfigurePool(ref _objectFactory, this.Name, this.PoolSetup, false, 0);
             //rescan as amount layouts can be changed.
             FindAllLayouts();
         }
@@ -553,6 +553,7 @@ namespace NLog.Targets
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
+        [Obsolete("Instead use Write(ArraySegment<AsyncLogEventInfo> logEvents)")]
         protected virtual void Write(AsyncLogEventInfo[] logEvents)
         {
             Write(new ArraySegment<AsyncLogEventInfo>(logEvents));

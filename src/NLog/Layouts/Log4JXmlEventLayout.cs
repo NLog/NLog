@@ -81,21 +81,7 @@ namespace NLog.Layouts
         /// <param name="target">Initially empty <see cref="System.Text.StringBuilder"/> for the result</param>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, System.Text.StringBuilder target)
         {
-            if (!this.IsThreadAgnostic)
-            {
-                string cachedValue;
-                if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
-                {
-                    target.Append(cachedValue);
-                    return;
-                }
-            }
-
             this.Renderer.RenderAppendBuilder(logEvent, target);
-            if (!this.IsThreadAgnostic)
-            {
-                logEvent.AddCachedLayoutValue(this, target.ToString());
-            }
         }
     }
 }

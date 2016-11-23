@@ -87,16 +87,6 @@ namespace NLog.Internal.PoolFactory
                 item.Result.Dispose();
         }
 
-        public ExceptionHandlerContinuation CreateExceptionHandlerContinuation(int originalThreadId, bool throwExceptions)
-        {
-            return new ExceptionHandlerContinuation(originalThreadId, throwExceptions);
-        }
-
-        void ILogEventObjectFactory.ReleaseExceptionHandlerContinuation(ExceptionHandlerContinuation item)
-        {
-            // No pooling
-        }
-
         public CompleteWhenAllContinuation CreateCompleteWhenAllContinuation(CompleteWhenAllContinuation.Counter externalCounter = null)
         {
             return new CompleteWhenAllContinuation(externalCounter);
