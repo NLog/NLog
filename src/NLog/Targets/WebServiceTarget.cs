@@ -431,16 +431,18 @@ namespace NLog.Targets
             {
                 string parameterValue = Convert.ToString(value, CultureInfo.InvariantCulture);
                 string valueString = string.Empty;
-                if (!string.IsNullOrEmpty(parameterValue))
+                if (string.IsNullOrEmpty(parameterValue))
                 {
-                    var sb = new StringBuilder(Math.Max(parameterValue.Length + 20, Target.Parameters.Count > 1 ? 256 : 0));
-                    UrlHelper.EscapeDataEncode(parameterValue, sb, encodingFlags);
-                    valueString = sb.ToString();
+                    return string.Concat(parameter.Name, "=");
                 }
-
-                return string.Format("{0}={1}",
-                        parameter.Name,
-                        valueString);
+                else
+                {
+                    var sb = new StringBuilder(parameterValue.Length + 20);
+                    sb.Append(parameter.Name)
+                        .Append("=");
+                    UrlHelper.EscapeDataEncode(parameterValue, sb, encodingFlags);
+                    return sb.ToString();
+                }
             }
         }
 
@@ -461,7 +463,7 @@ namespace NLog.Targets
 
             protected override string GetFormattedContent(string parametersContent)
             {
-                return string.Format("{{{0}}}", parametersContent);
+                return string.Concat("{", parametersContent, "}");
             }
 
             protected override string GetFormattedParameter(MethodCallParameter parameter, object value)
@@ -500,11 +502,11 @@ namespace NLog.Targets
                 string soapAction;
                 if (Target.Namespace.EndsWith("/", StringComparison.Ordinal))
                 {
-                    soapAction = Target.Namespace + Target.MethodName;
+                    soapAction = string.Concat(Target.Namespace, Target.MethodName);
                 }
                 else
                 {
-                    soapAction = Target.Namespace + "/" + Target.MethodName;
+                    soapAction = string.Concat(Target.Namespace, "/", Target.MethodName);
                 }
 
                 request.Headers["SOAPAction"] = soapAction;
