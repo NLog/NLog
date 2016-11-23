@@ -135,6 +135,16 @@ namespace NLog
             set { factory.ThrowConfigExceptions = value; }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether Variables should be kept on configuration reload.
+        /// Default value - false.
+        /// </summary>
+        public static bool KeepVariablesOnReload
+        {
+            get { return factory.KeepVariablesOnReload; }
+            set { factory.KeepVariablesOnReload = value; }
+        }
+
         internal static IAppDomain CurrentAppDomain
         {
             get { return currentAppDomain ?? (currentAppDomain = AppDomainWrapper.CurrentDomain); }

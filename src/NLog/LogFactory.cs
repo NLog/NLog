@@ -149,6 +149,12 @@ namespace NLog
         /// </remarks>
         public bool? ThrowConfigExceptions { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether Variables should be kept on configuration reload.
+        /// Default value - false.
+        /// </summary>
+        public bool KeepVariablesOnReload { get; set; }
+
 
         /// <summary>
         /// Gets or sets the current logging configuration. After setting this property all
@@ -740,6 +746,10 @@ namespace NLog
 
                     if (newConfig != null)
                     {
+                        if (this.KeepVariablesOnReload)
+                        {
+                            newConfig.CopyVariables(this.Configuration.Variables);
+                        }
                         this.Configuration = newConfig;
                         if (this.ConfigurationReloaded != null)
                         {

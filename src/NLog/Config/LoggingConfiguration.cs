@@ -580,5 +580,17 @@ namespace NLog.Config
             }
             return items.ToList();
         }
+
+        /// <summary>
+        /// Copies all variables from provided dictionary into current configuration variables. 
+        /// </summary>
+        /// <param name="masterVariables">Master variables dictionary</param>
+        internal void CopyVariables(IDictionary<string, SimpleLayout> masterVariables)
+        {
+            foreach (var variable in masterVariables)
+            {
+                this.Variables[variable.Key] = variable.Value;
+            }
+        }
     }
 }
