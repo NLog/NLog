@@ -31,13 +31,27 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using NLog.Config;
+using NLog.Filters;
+#if !SILVERLIGHT 
+using Xunit.Extensions;
+#endif
+
 namespace NLog.UnitTests.Layouts
 {
     using NLog.LayoutRenderers;
     using NLog.LayoutRenderers.Wrappers;
     using NLog.Layouts;
     using NLog.Targets;
+    using System;
     using Xunit;
+    using static Config.TargetConfigurationTests;
 
     public class SimpleLayoutParserTests : NLogTestBase
     {
@@ -201,6 +215,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void MissingLayoutRendererTest()
         {
+            LogManager.ThrowConfigExceptions = true;
             Assert.Throws<NLogConfigurationException>(() =>
             {
                 SimpleLayout l = "${rot13:${foobar}}";
@@ -500,5 +515,130 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal("1/Log_{#}.log", l.Render(le));
         }
 
+        [Fact]
+        public void InvalidLayoutWillParsePartly()
+        {
+            SimpleLayout l = @"aaa ${iDontExist} bbb";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("aaa  bbb", l.Render(le));
+        }
+
+        [Fact]
+        public void InvalidLayoutWillThrowIfExceptionThrowingIsOn()
+        {
+            LogManager.ThrowConfigExceptions = true;
+            Assert.Throws<ArgumentException>(() =>
+            {
+                SimpleLayout l = @"aaa ${iDontExist} bbb";
+            });
+
+        }
+
+#if !SILVERLIGHT
+
+        /// <summary>
+        /// 
+        /// Test layout with Genernic List type. - is the seperator
+        /// 
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// comma escape is backtick (cannot use backslash due to layout parse)
+        /// </remarks>
+        /// <param name="input"></param>
+        /// <param name="propname"></param>
+        /// <param name="expected"></param>
+        [Theory]
+        [InlineData("2,3,4", "numbers", "2-3-4")]
+        [InlineData("a,b,c", "Strings", "a-b-c")]
+        [InlineData("a,b,c", "Objects", "a-b-c")]
+        [InlineData("a,,b,c", "Strings", "a--b-c")]
+        [InlineData("a`b,c", "Strings", "a`b-c")]
+        [InlineData("a\'b,c", "Strings", "a'b-c")]
+        [InlineData("'a,b',c", "Strings", "a,b-c")]
+        [InlineData("2.0,3.0,4.0", "doubles", "2-3-4")]
+        [InlineData("2.1,3.2,4.3", "doubles", "2.1-3.2-4.3")]
+        [InlineData("Ignore,Neutral,Ignore", "enums", "Ignore-Neutral-Ignore")]
+        [InlineData("ASCII,ISO-8859-1, UTF-8", "encodings", "System.Text.ASCIIEncoding-System.Text.Latin1Encoding-System.Text.UTF8Encoding")]
+        [InlineData("ASCII,ISO-8859-1,UTF-8", "encodings", "System.Text.ASCIIEncoding-System.Text.Latin1Encoding-System.Text.UTF8Encoding")]
+        [InlineData("Value1,Value3,Value2", "FlagEnums", "Value1-Value3-Value2")]
+        public void LayoutWithListParamTest(string input, string propname, string expected)
+        {
+            ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("layoutrenderer-with-list", typeof(LayoutRendererWithListParam));
+            SimpleLayout l = string.Format(@"${{layoutrenderer-with-list:{0}={1}}}", propname, input);
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            var actual = l.Render(le);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("2,3,4", "numbers")]
+        [InlineData("a,bc", "numbers")]
+        [InlineData("value1,value10", "FlagEnums")]
+        public void LayoutWithListParamTest_incorrect(string input, string propname)
+        {
+            //note flags enum already supported
+
+            //can;t convert empty to int
+            ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("layoutrenderer-with-list", typeof(LayoutRendererWithListParam));
+            Assert.Throws<NLogConfigurationException>(() =>
+            {
+                SimpleLayout l = @"${layoutrenderer-with-list:numbers=2,,3,4}";
+            });
+
+
+        }
+
+
+        private class LayoutRendererWithListParam : LayoutRenderer
+        {
+            public List<double> Doubles { get; set; }
+
+            public List<FilterResult> Enums { get; set; }
+
+            public List<MyFlagsEnum> FlagEnums { get; set; }
+
+            public List<int> Numbers { get; set; }
+
+            public List<string> Strings { get; set; }
+
+            public List<object> Objects { get; set; }
+
+            public List<Encoding> Encodings { get; set; }
+
+            /// <summary>
+            /// Renders the specified environmental information and appends it to the specified <see cref="StringBuilder" />.
+            /// </summary>
+            /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+            /// <param name="logEvent">Logging event.</param>
+            protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+            {
+                Append(builder, Strings);
+                AppendFormattable(builder, Numbers);
+                AppendFormattable(builder, Enums);
+                AppendFormattable(builder, FlagEnums);
+                AppendFormattable(builder, Doubles);
+                Append(builder, Encodings);
+                Append(builder, Objects);
+            }
+
+            private void Append<T>(StringBuilder builder, IEnumerable<T> items)
+            {
+                if (items != null) builder.Append(string.Join("-", items.ToArray()));
+            }
+
+            private void AppendFormattable<T>(StringBuilder builder, IEnumerable<T> items)
+                where T : IFormattable
+            {
+                if (items != null) builder.Append(string.Join("-", items.Select(it => it.ToString(null, CultureInfo.InvariantCulture)).ToArray()));
+            }
+
+        }
+
+#endif
     }
+
+
 }

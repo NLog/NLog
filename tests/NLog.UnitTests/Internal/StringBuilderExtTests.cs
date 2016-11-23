@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,31 +31,53 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal
+#if !SILVERLIGHT
+//no silverlight for xunit InlineData
+
+using System.Text;
+using NLog.Internal;
+using Xunit;
+using Xunit.Extensions;
+
+namespace NLog.UnitTests.Internal
 {
-    using System;
-    using System.Reflection;
-
-    /// <summary>
-    /// Object construction helper.
-    /// </summary>
-    internal class FactoryHelper
+    public class StringBuilderExtTests : NLogTestBase
     {
-        private FactoryHelper()
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        [InlineData(9)]
+        [InlineData(10)]
+        [InlineData(12)]
+        [InlineData(123)]
+        [InlineData(1234)]
+        [InlineData(12345)]
+        [InlineData(123456)]
+        [InlineData(1234567)]
+        [InlineData(12345678)]
+        [InlineData(123456789)]
+        [InlineData(1234567890)]
+        [InlineData(int.MaxValue)]
+        [InlineData(int.MinValue)]
+        void TestAppendInvariant(int input)
         {
-        }
+            StringBuilder sb = new StringBuilder();
+            StringBuilderExt.AppendInvariant(sb, input);
+            Assert.Equal(input.ToString(System.Globalization.CultureInfo.InvariantCulture), sb.ToString());
 
-        internal static object CreateInstance(Type t)
-        {
-            ConstructorInfo constructor = t.GetConstructor(ArrayHelper.Empty<Type>());
-            if (constructor != null)
-            {
-                return constructor.Invoke(ArrayHelper.Empty<object>());
-            }
-            else
-            {
-                throw new NLogConfigurationException("Cannot access the constructor of type: " + t.FullName + ". Is the required permission granted?");
-            }
+            input = 0 - input;
+            sb.Clear();
+            StringBuilderExt.AppendInvariant(sb, input);
+            Assert.Equal(input.ToString(System.Globalization.CultureInfo.InvariantCulture), sb.ToString());
         }
     }
 }
+
+#endif

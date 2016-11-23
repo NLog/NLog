@@ -31,51 +31,54 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__
+using System;
+using System.Text;
+using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
-    using System;
-    using System.Globalization;
-    using System.Runtime.InteropServices;
-    using System.Text;
-    using NLog.Config;
-    using NLog.Internal;
-
     /// <summary>
-    /// ASP Application variable.
+    /// A layout renderer which could have different behavior per instance by using a <see cref="Func{TResult}"/>.
     /// </summary>
-    [LayoutRenderer("asp-application")]
-    public class AspApplicationValueLayoutRenderer : LayoutRenderer
+    public class FuncLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Gets or sets the ASP Application variable name.
+        /// Create a new.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [RequiredParameter]
-        [DefaultParameter]
-        public string Variable { get; set; }
+        /// <param name="layoutRendererName">Name without ${}.</param>
+        /// <param name="renderMethod">Method that renders the layout.</param>
+        public FuncLayoutRenderer( string layoutRendererName, Func<LogEventInfo, LoggingConfiguration, object> renderMethod)
+        {
+            RenderMethod = renderMethod;
+            LayoutRendererName = layoutRendererName;
+        }
 
         /// <summary>
-        /// Renders the specified ASP Application variable and appends it to the specified <see cref="StringBuilder" />.
+        /// Name used in config without ${}. E.g. "test" could be used as "${test}".
+        /// </summary>
+        public string LayoutRendererName { get; set; }
+
+        /// <summary>
+        /// Method that renders the layout. 
+        /// </summary>
+        public Func<LogEventInfo, LoggingConfiguration, object> RenderMethod { get; private set; }
+
+        #region Overrides of LayoutRenderer
+
+        /// <summary>
+        /// Renders the specified environmental information and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            AspHelper.IApplicationObject app = AspHelper.GetApplicationObject();
-            if (app != null)
+            if (RenderMethod != null)
             {
-                if (this.Variable != null)
-                {
-                    object variableValue = app.GetValue(this.Variable);
-
-                    builder.Append(Convert.ToString(variableValue, CultureInfo.InvariantCulture));
-                }
-
-                Marshal.ReleaseComObject(app);
+                builder.Append(RenderMethod(logEvent, LoggingConfiguration));
             }
+
         }
+
+        #endregion
     }
 }
-#endif

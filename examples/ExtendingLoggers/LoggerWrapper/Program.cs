@@ -59,9 +59,9 @@ namespace LoggerWrapper
 
             //
             // set event-specific context parameter
-            // this context parameter can be retrieved using ${event-context:EventID}
+            // this context parameter can be retrieved using ${event-properties:EventID}
             //
-            logEvent.Context["EventID"] = eventID;
+            logEvent.Properties["EventID"] = eventID;
 
             // 
             // Call the Log() method. It is important to pass typeof(MyLogger) as the

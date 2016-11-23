@@ -135,14 +135,27 @@ namespace NLog
             set { factory.ThrowConfigExceptions = value; }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether Variables should be kept on configuration reload.
+        /// Default value - false.
+        /// </summary>
+        public static bool KeepVariablesOnReload
+        {
+            get { return factory.KeepVariablesOnReload; }
+            set { factory.KeepVariablesOnReload = value; }
+        }
+
         internal static IAppDomain CurrentAppDomain
         {
             get { return currentAppDomain ?? (currentAppDomain = AppDomainWrapper.CurrentDomain); }
             set
             {
 #if !SILVERLIGHT && !MONO
-                currentAppDomain.DomainUnload -= TurnOffLogging;
-                currentAppDomain.ProcessExit -= TurnOffLogging;
+                if (currentAppDomain != null)
+                {
+                    currentAppDomain.DomainUnload -= TurnOffLogging;
+                    currentAppDomain.ProcessExit -= TurnOffLogging;
+                }
 #endif
                 currentAppDomain = value;
             }
@@ -447,7 +460,12 @@ namespace NLog
             // Reset logging configuration to null; this causes old configuration (if any) to be 
             // closed.
             InternalLogger.Info("Shutting down logging...");
-            Configuration = null;
+            if (Configuration != null)
+            {
+                Configuration = null;
+                factory.Dispose();      // Release event listeners
+            }
+            CurrentAppDomain = null;    // No longer part of AppDomains
             InternalLogger.Info("Logger has been shut down.");
         }
     }

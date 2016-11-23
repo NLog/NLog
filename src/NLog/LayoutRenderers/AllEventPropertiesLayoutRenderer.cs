@@ -75,9 +75,8 @@ namespace NLog.LayoutRenderers
         /// 
         /// See https://msdn.microsoft.com/en-us/library/hh534540.aspx
         /// </summary>
-       [DefaultValue(false)] 
-       public bool IncludeCallerInformation { get; set; }
-
+        [DefaultValue(false)]
+        public bool IncludeCallerInformation { get; set; }
 
 #endif
 
@@ -107,30 +106,31 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            bool first = true;
-
-            foreach (var property in GetProperties(logEvent))
+            if (logEvent.HasProperties)
             {
-                if (!first)
+                bool first = true;
+                foreach (var property in GetProperties(logEvent))
                 {
-                    builder.Append(Separator);
+                    if (!first)
+                    {
+                        builder.Append(Separator);
+                    }
+
+                    first = false;
+
+                    var formatProvider = GetFormatProvider(logEvent);
+
+                    var key = Convert.ToString(property.Key, formatProvider);
+                    var value = Convert.ToString(property.Value, formatProvider);
+                    var pair = Format.Replace("[key]", key)
+                                     .Replace("[value]", value);
+
+                    builder.Append(pair);
                 }
-
-                first = false;
-
-                var formatProvider = GetFormatProvider(logEvent);
-
-                var key = Convert.ToString(property.Key, formatProvider);
-                var value = Convert.ToString(property.Value, formatProvider);
-                var pair = Format.Replace("[key]", key)
-                                 .Replace("[value]", value);
-
-                builder.Append(pair);
             }
         }
 
-
-        #if NET4_5
+#if NET4_5
 
         /// <summary>
         /// The names of caller information attributes.
@@ -147,9 +147,8 @@ namespace NLog.LayoutRenderers
         /// Also render the call attributes? (<see cref="CallerMemberNameAttribute"/>,
         /// <see cref="CallerFilePathAttribute"/>, <see cref="CallerLineNumberAttribute"/>). 
         /// </summary>
-        /// 
+        ///
 #endif
-
 
         private IDictionary<object, object> GetProperties(LogEventInfo logEvent)
         {
@@ -157,13 +156,13 @@ namespace NLog.LayoutRenderers
 
             if (this.IncludeCallerInformation)
             {
-                return logEvent.Properties; 
+                return logEvent.Properties;
             }
+            
             //filter CallerInformationAttributeNames
             return logEvent.Properties.Where(p => !CallerInformationAttributeNames.Contains(p.Key)).ToDictionary(p => p.Key, p => p.Value);
 
 #else
-
             return logEvent.Properties;
 #endif
         }

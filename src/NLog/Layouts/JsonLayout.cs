@@ -33,9 +33,7 @@
 
 namespace NLog.Layouts
 {
-    using System;
     using Config;
-    using LayoutRenderers.Wrappers;
     using System.Collections.Generic;
     using System.Text;
 
@@ -54,6 +52,8 @@ namespace NLog.Layouts
         {
             this.Attributes = new List<JsonAttribute>();
             this.RenderEmptyObject = true;
+            this.IncludeAllProperties = false;
+            this.ExcludedProperties = new List<string>();
         }
 
         /// <summary>
@@ -74,74 +74,149 @@ namespace NLog.Layouts
         public bool RenderEmptyObject { get; set; }
 
         /// <summary>
+        /// Gets or sets the option to include all properties from the log events
+        /// </summary>
+        public bool IncludeAllProperties { get; set; }
+
+        /// <summary>
+        /// List of property names to exclude when IncludeAllProperties is true
+        /// </summary>
+        public IList<string> ExcludedProperties { get; set; }
+
+        /// <summary>
         /// Formats the log event as a JSON document for writing.
         /// </summary>
         /// <param name="logEvent">The log event to be formatted.</param>
         /// <returns>A JSON string representation of the log event.</returns>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            var jsonWrapper = new JsonEncodeLayoutRendererWrapper();
-            var sb = new StringBuilder();
-            bool first = true;
-            bool hasContent = false;
+            StringBuilder sb = null;
 
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
             for (int i = 0; i < this.Attributes.Count; i++)
             {
-                var col = this.Attributes[i];
-                jsonWrapper.Inner = col.Layout;
-                jsonWrapper.JsonEncode = col.Encode;
-                string text = jsonWrapper.Render(logEvent);
-
+                var attrib = this.Attributes[i];
+                string text = attrib.LayoutWrapper.Render(logEvent);
                 if (!string.IsNullOrEmpty(text))
                 {
-                    if (!first)
+                    bool first = sb == null;
+                    if (first)
                     {
-                        sb.Append(",");
-                        AppendIf(!this.SuppressSpaces, sb, " ");
+                        sb = new StringBuilder(attrib.Name.Length + text.Length + 10);
+                        sb.Append(SuppressSpaces ? "{" : "{ ");
                     }
-
-                    first = false;
-
-                    string format;
-
-                    if(col.Encode)
-                    {
-                        format = "\"{0}\":{1}\"{2}\"";
-                    }
-                    else
-                    {
-                        //If encoding is disabled for current attribute, do not escape the value of the attribute.
-                        //This enables user to write arbitrary string value (including JSON).
-                        format = "\"{0}\":{1}{2}";
-                    }
-
-                    sb.AppendFormat(format, col.Name, !this.SuppressSpaces ? " " : "", text);
-                    hasContent = true;
+                    AppendJsonAttributeValue(attrib, text, sb, first);
                 }
             }
 
-            var result = sb.ToString();
-
-            if (!hasContent && !RenderEmptyObject)
+            if (this.IncludeAllProperties && logEvent.HasProperties)
             {
-               return string.Empty;
+                JsonAttribute dynAttrib = null;
+                foreach (var prop in logEvent.Properties)
+                {
+                    //Determine property name
+                    string propName = prop.Key.ToString();
+
+                    //Skips properties in the ExcludedProperties list
+                    if (this.ExcludedProperties.Contains(propName)) continue;
+
+                    if (dynAttrib == null)
+                        dynAttrib = new JsonAttribute();
+
+                    if (prop.Value == null)
+                    {
+                        dynAttrib.Name = propName;
+                        dynAttrib.Encode = false;    // Don't put quotes around null values;
+                        dynAttrib.Layout = "null";
+                    }
+                    else
+                    {
+                        System.Type objType = prop.Value.GetType();
+                        System.TypeCode objTypeCode = System.Type.GetTypeCode(objType);
+                        if (objTypeCode == System.TypeCode.Boolean || IsNumeric(objType, objTypeCode))
+                        {
+                            dynAttrib.Name = propName;
+                            dynAttrib.Encode = false;    //Don't put quotes around numbers or boolean values
+                            dynAttrib.Layout = string.Concat("${event-properties:item=", propName, "}");
+                        }
+                        else
+                        {
+                            dynAttrib.Name = propName;
+                            dynAttrib.Encode = true;
+                            dynAttrib.Layout = string.Concat("${event-properties:item=", propName, "}");
+                        }
+                    }
+
+                    string text = dynAttrib.LayoutWrapper.Render(logEvent);
+                    if (!string.IsNullOrEmpty(text))
+                    {
+                        bool first = sb == null;
+                        if (first)
+                        {
+                            sb = new StringBuilder(dynAttrib.Name.Length + text.Length + 10);
+                            sb.Append(SuppressSpaces ? "{" : "{ ");
+                        }
+                        AppendJsonAttributeValue(dynAttrib, text, sb, first);
+                    }
+                }
             }
 
-            if (SuppressSpaces)
+            if (sb == null)
             {
-                return "{" + result + "}";
+                if (!RenderEmptyObject)
+                    return string.Empty;
+                else
+                    return SuppressSpaces ? "{}" : "{  }";
             }
-            return "{ " + result + " }";
+            sb.Append(SuppressSpaces ? "}" : " }");
+            return sb.ToString();
         }
 
-        private static void AppendIf<T>(bool condition, StringBuilder stringBuilder, T objectToAppend)
+        private void AppendJsonAttributeValue(JsonAttribute attrib, string text, StringBuilder sb, bool first)
         {
-            if (condition)
+            if (!first)
             {
-                stringBuilder.Append(objectToAppend);
+                sb.EnsureCapacity(sb.Length + attrib.Name.Length + text.Length + 12);
+                sb.Append(',');
+                if (!this.SuppressSpaces)
+                    sb.Append(' ');
             }
+
+            sb.Append('"');
+            sb.Append(attrib.Name);
+            sb.Append('"');
+            sb.Append(':');
+            if (!this.SuppressSpaces)
+                sb.Append(' ');
+
+            if (attrib.Encode)
+            {
+                // "\"{0}\":{1}\"{2}\""
+                sb.Append('"');
+                sb.Append(text);
+                sb.Append('"');
+            }
+            else
+            {
+                //If encoding is disabled for current attribute, do not escape the value of the attribute.
+                //This enables user to write arbitrary string value (including JSON).
+                // "\"{0}\":{1}{2}";
+                sb.Append(text);
+            }
+        }
+
+        private bool IsNumeric(System.Type objType, System.TypeCode typeCode)
+        {
+            if (objType.IsPrimitive && typeCode != System.TypeCode.Object)
+            {
+                return typeCode != System.TypeCode.Char && typeCode != System.TypeCode.Boolean;
+            }
+            else if (typeCode == System.TypeCode.Decimal)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

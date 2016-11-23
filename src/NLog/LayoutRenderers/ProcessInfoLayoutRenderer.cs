@@ -38,10 +38,10 @@ namespace NLog.LayoutRenderers
     using System;
     using System.ComponentModel;
     using System.Diagnostics;
-    using System.Globalization;
     using System.Reflection;
     using System.Text;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The information about the running process.
@@ -67,6 +67,12 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue("Id"), DefaultParameter]
         public ProcessInfoProperty Property { get; set; }
+
+        /// <summary>
+        /// Gets or sets the format-string to use if the property supports it (Ex. DateTime / TimeSpan / Enum)
+        /// </summary>
+        [DefaultValue(null), DefaultParameter]
+        public string Format { get; set; }
 
         /// <summary>
         /// Initializes the layout renderer.
@@ -107,7 +113,8 @@ namespace NLog.LayoutRenderers
             if (this.propertyInfo != null)
             {
                 var formatProvider = GetFormatProvider(logEvent);
-                builder.Append(Convert.ToString(this.propertyInfo.GetValue(this.process, null), formatProvider));
+                var value = this.propertyInfo.GetValue(this.process, null);
+                builder.Append(value.ToStringWithOptionalFormat(this.Format, formatProvider));
             }
         }
     }

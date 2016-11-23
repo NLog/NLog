@@ -476,7 +476,7 @@ namespace NLog.UnitTests.Fluent
         public void LogBuilder_message_cultureTest()
         {
 
-            LogManager.Configuration.DefaultCultureInfo = new CultureInfo("en-us");
+            LogManager.Configuration.DefaultCultureInfo = GetCultureInfo("en-US");
 
             _logger.Debug()
              .Message("Message with {0} {1} {2} {3}", 4.1, 4.001, new DateTime(2016, 12, 31), true)
@@ -484,7 +484,7 @@ namespace NLog.UnitTests.Fluent
             AssertDebugLastMessage("t2", "Message with 4.1 4.001 12/31/2016 12:00:00 AM True");
 
             _logger.Debug()
-           .Message(new CultureInfo("nl-nl"), "Message with {0} {1} {2} {3}", 4.1, 4.001, new DateTime(2016, 12, 31), true)
+           .Message(GetCultureInfo("nl-nl"), "Message with {0} {1} {2} {3}", 4.1, 4.001, new DateTime(2016, 12, 31), true)
            .Write();
             AssertDebugLastMessage("t2", "Message with 4,1 4,001 31-12-2016 00:00:00 True");
         }

@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,31 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal
+using NLog.Internal;
+using Xunit;
+
+namespace NLog.UnitTests.Internal
 {
-    using System;
-    using System.Reflection;
-
-    /// <summary>
-    /// Object construction helper.
-    /// </summary>
-    internal class FactoryHelper
+    public class PlatformDetectorTests : NLogTestBase
     {
-        private FactoryHelper()
+        [Fact]
+        public void IsMonoTest()
         {
-        }
-
-        internal static object CreateInstance(Type t)
-        {
-            ConstructorInfo constructor = t.GetConstructor(ArrayHelper.Empty<Type>());
-            if (constructor != null)
-            {
-                return constructor.Invoke(ArrayHelper.Empty<object>());
-            }
-            else
-            {
-                throw new NLogConfigurationException("Cannot access the constructor of type: " + t.FullName + ". Is the required permission granted?");
-            }
+#if MONO
+            Assert.True(PlatformDetector.IsMono);
+#elif NET3_5 || NET4_0 || NET4_5
+            Assert.False(PlatformDetector.IsMono);
+#endif
         }
     }
 }

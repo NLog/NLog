@@ -33,7 +33,6 @@
 
 namespace NLog.LayoutRenderers
 {
-    using System.Globalization;
     using System.Text;
     using System.Threading;
 
@@ -51,7 +50,7 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             //no culture needed for ints
-            builder.Append(Thread.CurrentThread.ManagedThreadId.ToString(CultureInfo.InvariantCulture));
+            Internal.StringBuilderExt.AppendInvariant(builder, Thread.CurrentThread.ManagedThreadId);
         }
     }
 }

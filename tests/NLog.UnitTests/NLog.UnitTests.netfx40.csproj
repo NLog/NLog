@@ -92,6 +92,7 @@
     <Compile Include="Config\ConfigApiTests.cs" />
     <Compile Include="Config\ConfigurationItemFactoryTests.cs" />
     <Compile Include="Config\CultureInfoTests.cs" />
+    <Compile Include="Config\DuplicateConfigurationAttributeTests.cs" />
     <Compile Include="Config\ExtensionTests.cs" />
     <Compile Include="Config\IncludeTests.cs" />
     <Compile Include="Config\InternalLoggingTests.cs" />
@@ -121,13 +122,16 @@
     <Compile Include="Internal\FilePathLayoutTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
+    <Compile Include="Internal\PlatformDetectorTests.cs" />
     <Compile Include="Internal\PoolFactory\AsyncLogEventArrayTests.cs" />
     <Compile Include="Internal\PoolFactory\LogEventPoolFactoryTests.cs" />
     <Compile Include="Internal\PoolFactory\MemoryStreamTargetTests.cs" />
     <Compile Include="Internal\PoolFactory\PoolConfigurationTests.cs" />
     <Compile Include="Internal\PoolFactory\StringBuilderTargetTests.cs" />
     <Compile Include="Internal\SortHelpersTests.cs" />
+    <Compile Include="Internal\StringBuilderExtTests.cs" />
     <Compile Include="Internal\StringHelpersTests.cs" />
+    <Compile Include="Internal\StringSplitterTests.cs" />
     <Compile Include="Internal\UrlHelperTests.cs" />
     <Compile Include="LayoutRenderers\AppDomainLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\AppSettingTests.cs" />
@@ -223,6 +227,7 @@
     <Compile Include="Targets\Wrappers\FallbackGroupTargetTests.cs" />
     <Compile Include="Targets\Wrappers\FilteringTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\ImpersonatingTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\LimitingTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\PostFilteringTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\RandomizeGroupTargetTests.cs" />
     <Compile Include="Targets\Wrappers\RepeatingTargetWrapperTests.cs" />

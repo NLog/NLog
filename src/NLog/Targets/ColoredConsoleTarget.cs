@@ -90,6 +90,7 @@ namespace NLog.Targets
             this.RowHighlightingRules = new List<ConsoleRowHighlightingRule>();
             this.UseDefaultRowHighlightingRules = true;
             this.PauseLogging = false;
+            this.DetectConsoleAvailable = false;
         }
 
         /// <summary>
@@ -169,6 +170,14 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to auto-check if the console is available.
+        ///  - Disables console writing if Environment.UserInteractive = False (Windows Service)
+        ///  - Disables console writing if Console Standard Input is not available (Non-Console-App)
+        /// </summary>
+        [DefaultValue(false)]
+        public bool DetectConsoleAvailable { get; set; }
+
+        /// <summary>
         /// Gets the row highlighting rules.
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
@@ -188,6 +197,15 @@ namespace NLog.Targets
         protected override void InitializeTarget()
         {
             this.PauseLogging = false;
+            if (DetectConsoleAvailable)
+            {
+                string reason;
+                PauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
+                if (PauseLogging)
+                {
+                    InternalLogger.Info("Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {0}", reason);
+                }
+            }
             base.InitializeTarget();
             if (Header != null)
             {

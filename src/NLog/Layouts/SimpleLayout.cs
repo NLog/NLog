@@ -120,7 +120,7 @@ namespace NLog.Layouts
                 string txt;
                 if (value == null)
                 {
-                    renderers = new LayoutRenderer[0];
+                    renderers = ArrayHelper.Empty<LayoutRenderer>();
                     txt = string.Empty;
                 }
                 else

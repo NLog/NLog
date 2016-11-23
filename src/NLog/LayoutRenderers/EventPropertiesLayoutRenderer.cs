@@ -82,7 +82,7 @@ namespace NLog.LayoutRenderers
         {
             object value;
 
-            if (logEvent.Properties.TryGetValue(this.Item, out value))
+            if (logEvent.HasProperties && logEvent.Properties.TryGetValue(this.Item, out value))
             {
                 var formatProvider = GetFormatProvider(logEvent, Culture);
                 builder.Append(value.ToStringWithOptionalFormat(Format, formatProvider));

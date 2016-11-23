@@ -478,6 +478,42 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.DoesNotThrow(action);
         }
 
+#if !NET3_5 && !SILVERLIGHT4
+        [Fact]
+        public void AggregateExceptionTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=5}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            var task1 = System.Threading.Tasks.Task.Factory.StartNew(() => { throw new Exception("Test exception 1", new Exception("Test Inner 1")); },
+                System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);
+            var task2 = System.Threading.Tasks.Task.Factory.StartNew(() => { throw new Exception("Test exception 2", new Exception("Test Inner 2")); },
+                System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);
+
+            try
+            {
+                System.Threading.Tasks.Task.WaitAll(new[] { task1, task2 });
+            }
+            catch(Exception ex)
+            {
+                logger.Error(ex, "msg");
+            }
+
+            AssertDebugLastMessage("debug1", "AggregateException One or more errors occurred." + EnvironmentHelper.NewLine +
+                "Exception Test exception 1" + EnvironmentHelper.NewLine +
+                "Exception Test Inner 1" + EnvironmentHelper.NewLine +
+                "Exception Test exception 2" + EnvironmentHelper.NewLine +
+                "Exception Test Inner 2");
+        }
+#endif
+
         private class ExceptionWithBrokenMessagePropertyException : NLogConfigurationException
         {
             public override string Message

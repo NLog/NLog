@@ -31,10 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
-#if !SILVERLIGHT
-//no silverlight for xunit InlineData
-
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -64,6 +60,11 @@ namespace NLog.UnitTests.Internal
             Assert.Equal(0, dict.Values.Count);
             foreach (var val in dict.Values)
                 Assert.False(true);
+
+            IList<string> bucket;
+            Assert.False(dict.TryGetValue("Bucket1", out bucket) || bucket != null);
+            Assert.False(dict.TryGetValue(string.Empty, out bucket) || bucket != null);
+            Assert.False(dict.TryGetValue(null, out bucket) || bucket != null);
 
             Assert.Throws<NotSupportedException>(() => dict[string.Empty] = new string[0]);
         }
@@ -109,6 +110,10 @@ namespace NLog.UnitTests.Internal
             }
 
             Assert.Equal(0, dict["Bucket1"].Count);
+
+            Assert.True(dict.TryGetValue("Bucket1", out bucket) && bucket.Count == 0);
+            Assert.False(dict.TryGetValue(string.Empty, out bucket) || bucket != null);
+            Assert.False(dict.TryGetValue(null, out bucket) || bucket != null);
             Assert.Throws<NotSupportedException>(() => dict[string.Empty] = new string[0]);
         }
 
@@ -156,6 +161,9 @@ namespace NLog.UnitTests.Internal
             }
 
             Assert.Equal(1, dict["Bucket1"].Count);
+            Assert.True(dict.TryGetValue("Bucket1", out bucket) && bucket.Count == 1);
+            Assert.False(dict.TryGetValue(string.Empty, out bucket) || bucket != null);
+            Assert.False(dict.TryGetValue(null, out bucket) || bucket != null);
             Assert.Throws<System.NotSupportedException>(() => dict[string.Empty] = new string[0]);
         }
 
@@ -206,6 +214,9 @@ namespace NLog.UnitTests.Internal
             }
 
             Assert.Equal(2, dict["Bucket1"].Count);
+            Assert.True(dict.TryGetValue("Bucket1", out bucket) && bucket.Count == 2);
+            Assert.False(dict.TryGetValue(string.Empty, out bucket) || bucket != null);
+            Assert.False(dict.TryGetValue(null, out bucket) || bucket != null);
             Assert.Throws<System.NotSupportedException>(() => dict[string.Empty] = new string[0]);
         }
 
@@ -264,6 +275,8 @@ namespace NLog.UnitTests.Internal
 
             Assert.Equal(0, dict["Bucket1"].Count);
             Assert.Equal(0, dict["Bucket2"].Count);
+            Assert.True(dict.TryGetValue("Bucket1", out bucket1) && bucket1.Count == 0);
+            Assert.True(dict.TryGetValue("Bucket2", out bucket2) && bucket2.Count == 0);
             Assert.Throws<System.NotSupportedException>(() => dict[string.Empty] = new string[0]);
         }
 
@@ -324,9 +337,12 @@ namespace NLog.UnitTests.Internal
 
             Assert.Equal(1, dict["Bucket1"].Count);
             Assert.Equal(1, dict["Bucket2"].Count);
+            Assert.True(dict.TryGetValue("Bucket1", out bucket1) && bucket1.Count == 1);
+            Assert.True(dict.TryGetValue("Bucket2", out bucket2) && bucket2.Count == 1);
             Assert.Throws<System.NotSupportedException>(() => dict[string.Empty] = new string[0]);
         }
 
+#if NET3_5 || SILVERLIGHT || MONO || NET4_0
         [Fact]
         public void ReadOnlyArrayList_EmptyTest()
         {
@@ -387,6 +403,6 @@ namespace NLog.UnitTests.Internal
 
             Assert.Throws<NotSupportedException>(() => list[0] = string.Empty);
         }
+#endif
     }
 }
-#endif

@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,51 +31,42 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__
+using System;
+using System.IO;
+using NLog.Common;
 
-namespace NLog.LayoutRenderers
+namespace NLog.Targets
 {
-    using System;
-    using System.Globalization;
-    using System.Runtime.InteropServices;
-    using System.Text;
-    using NLog.Config;
-    using NLog.Internal;
-
-    /// <summary>
-    /// ASP Session variable.
-    /// </summary>
-    [LayoutRenderer("asp-session")]
-    public class AspSessionValueLayoutRenderer : LayoutRenderer
+    internal static class ConsoleTargetHelper
     {
-        /// <summary>
-        /// Gets or sets the session variable name.
-        /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [RequiredParameter]
-        [DefaultParameter]
-        public string Variable { get; set; }
-
-        /// <summary>
-        /// Renders the specified ASP Session variable and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        public static bool IsConsoleAvailable(out string reason)
         {
-            var session = AspHelper.GetSessionObject();
-            if (session != null)
+            reason = string.Empty;
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
+            try
             {
-                if (this.Variable != null)
+                if (!Environment.UserInteractive)
                 {
-                    object variableValue = session.GetValue(this.Variable);
-                    builder.Append(Convert.ToString(variableValue, CultureInfo.InvariantCulture));
-                }
+                    if (Internal.PlatformDetector.IsMono && Console.In is StreamReader)
+                        return true;    // Extra bonus check for Mono, that doesn't support Environment.UserInteractive
 
-                Marshal.ReleaseComObject(session);
+                    reason = "Environment.UserInteractive = False";
+                    return false;
+                }
+                else if (Console.OpenStandardInput(1) == Stream.Null)
+                {
+                    reason = "Console.OpenStandardInput = Null";
+                    return false;
+                }
             }
+            catch (Exception ex)
+            {
+                reason = string.Format("Unexpected exception: {0}:{1}", ex.GetType().Name, ex.Message);
+                InternalLogger.Warn(ex, "Failed to detect whether console is available.");
+                return false;
+            }
+#endif
+            return true;
         }
     }
 }
-
-#endif

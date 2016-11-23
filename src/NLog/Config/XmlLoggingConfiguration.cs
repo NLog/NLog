@@ -419,9 +419,8 @@ namespace NLog.Config
                     this.ParseTopLevel(content, null, autoReloadDefault: false);
                 }
                 InitializeSucceeded = true;
-
+                this.CheckParsingErrors(content);
                 this.CheckUnusedTargets();
-
             }
             catch (Exception exception)
             {
@@ -442,6 +441,33 @@ namespace NLog.Config
                     }
                 }
 
+            }
+        }
+
+        /// <summary>
+        /// Checks whether any error during XML configuration parsing has occured.
+        /// If there are any and <c>ThrowConfigExceptions</c> or <c>ThrowExceptions</c>
+        /// setting is enabled - throws <c>NLogConfigurationException</c>, otherwise
+        /// just write an internal log at Warn level.
+        /// </summary>
+        /// <param name="rootContentElement">Root NLog configuration xml element</param>
+        private void CheckParsingErrors(NLogXmlElement rootContentElement)
+        {
+            var parsingErrors = rootContentElement.GetParsingErrors().ToArray();
+            if(parsingErrors.Any())
+            {
+                if (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
+                {
+                    string exceptionMessage = string.Join(Environment.NewLine, parsingErrors);
+                    throw new NLogConfigurationException(exceptionMessage);
+                }
+                else
+                {
+                    foreach (var parsingError in parsingErrors)
+                    {
+                        InternalLogger.Log(LogLevel.Warn, parsingError);
+                    }
+                }
             }
         }
 
@@ -561,6 +587,7 @@ namespace NLog.Config
 
             logFactory.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", logFactory.ThrowExceptions);
             logFactory.ThrowConfigExceptions = nlogElement.GetOptionalBooleanAttribute("throwConfigExceptions", logFactory.ThrowConfigExceptions);
+            logFactory.KeepVariablesOnReload = nlogElement.GetOptionalBooleanAttribute("keepVariablesOnReload", logFactory.KeepVariablesOnReload);
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);
             InternalLogger.LogToConsoleError = nlogElement.GetOptionalBooleanAttribute("internalLogToConsoleError", InternalLogger.LogToConsoleError);
             InternalLogger.LogFile = nlogElement.GetOptionalAttribute("internalLogFile", InternalLogger.LogFile);

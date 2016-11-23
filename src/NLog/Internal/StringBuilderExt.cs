@@ -59,5 +59,82 @@ namespace NLog.Internal
             builder.Append(Convert.ToString(o, formatProvider));
         }
 
+        /// <summary>
+        /// Appends int without using culture, and most importantly without garbage
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="value">value to append</param>
+        public static void AppendInvariant(this StringBuilder builder, int value)
+        {
+            // Deal with negative numbers
+            if (value < 0)
+            {
+                builder.Append('-');
+                uint uint_value = uint.MaxValue - ((uint)value) + 1; //< This is to deal with Int32.MinValue
+                AppendInvariant(builder, uint_value);
+            }
+            else
+            {
+                AppendInvariant(builder, (uint)value);
+            }
+        }
+
+        /// <summary>
+        /// Appends uint without using culture, and most importantly without garbage
+        /// 
+        /// Credits Gavin Pugh  - http://www.gavpugh.com/2010/04/01/xnac-avoiding-garbage-when-working-with-stringbuilder/
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="value">value to append</param>
+        public static void AppendInvariant(this StringBuilder builder, uint value)
+        {
+            if (value == 0)
+            {
+                builder.Append('0');
+                return;
+            }
+            
+            // Calculate length of integer when written out
+            int length = 0;
+            uint length_calc = value;
+
+            do
+            {
+                length_calc /= 10;
+                length++;
+            }
+            while (length_calc > 0);
+
+            // Pad out space for writing.
+            builder.Append('0', length);
+
+            int strpos = builder.Length;
+
+            // We're writing backwards, one character at a time.
+            while (length > 0)
+            {
+                strpos--;
+
+                // Lookup from static char array, to cover hex values too
+                builder[strpos] = charToInt[value % 10];
+
+                value /= 10;
+                length--;
+            }
+        }
+        private static readonly char[] charToInt = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+
+        /// <summary>
+        /// Clears the provider StringBuilder
+        /// </summary>
+        /// <param name="builder"></param>
+        public static void ClearBuilder(this StringBuilder builder)
+        {
+#if !SILVERLIGHT && !NET3_5
+            builder.Clear();
+#else
+            builder.Length = 0;
+#endif
+        }
     }
 }

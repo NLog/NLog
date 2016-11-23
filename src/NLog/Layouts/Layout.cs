@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+
 namespace NLog.Layouts
 {
     using System.ComponentModel;
@@ -264,5 +266,30 @@ namespace NLog.Layouts
         /// <param name="logEvent">The logging event.</param>
         /// <returns>The rendered layout.</returns>
         protected abstract string GetFormattedMessage(LogEventInfo logEvent);
+
+        /// <summary>
+        /// Register a custom Layout.
+        /// </summary>
+        /// <remarks>Short-cut for registing to default <see cref="ConfigurationItemFactory"/></remarks>
+        /// <typeparam name="T"> Type of the Layout.</typeparam>
+        /// <param name="name"> Name of the Layout.</param>
+        public static void Register<T>(string name)
+            where T : Layout
+        {
+            var layoutRendererType = typeof(T);
+            Register(name, layoutRendererType);
+        }
+
+        /// <summary>
+        /// Register a custom Layout.
+        /// </summary>
+        /// <remarks>Short-cut for registing to default <see cref="ConfigurationItemFactory"/></remarks>
+        /// <param name="layoutType"> Type of the Layout.</param>
+        /// <param name="name"> Name of the Layout.</param>
+        public static void Register(string name, Type layoutType)
+        {
+            ConfigurationItemFactory.Default.Layouts
+                .RegisterDefinition(name, layoutType);
+        }
     }
 }

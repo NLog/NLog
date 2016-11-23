@@ -128,5 +128,78 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             }
         }
 
+        [Fact]
+        public void WhenLogLevelConditionTestLayoutRenderer()
+        {
+            //else cannot be invoked ambiently. First param is inner
+            SimpleLayout l = @"${when:when=level<=LogLevel.Info:inner=Good:else=Bad}";
+
+            {
+                var le = LogEventInfo.Create(LogLevel.Debug, "logger", "message");
+                Assert.Equal("Good", l.Render(le));
+            }
+            {
+                var le = LogEventInfo.Create(LogLevel.Error, "logger1", "message");
+                Assert.Equal("Bad", l.Render(le));
+            }
+
+        }
+
+        [Fact]
+        public void WhenLogLevelConditionTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog throwExceptions='true'>
+                <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Trace' writeTo='debug'>
+                    <filters>
+                        <when condition=""level>=LogLevel.Info"" action=""Log""></when>
+                        <when condition='true' action='Ignore' />
+                    </filters>
+                    </logger>
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Trace("Test");
+           
+            AssertDebugCounter("debug", 0);
+            logger.Debug("Test");
+            AssertDebugCounter("debug", 0);
+            logger.Info("Test");
+            AssertDebugCounter("debug", 1);
+            logger.Warn("Test");
+            AssertDebugCounter("debug", 2);
+            logger.Error("Test");
+            AssertDebugCounter("debug", 3);
+            logger.Fatal("Test");
+            AssertDebugCounter("debug", 4);
+          
+        }
+
+
+        [Fact]
+        public void WhenNumericAndPropertyConditionTest()
+        {
+            //else cannot be invoked ambiently. First param is inner
+            SimpleLayout l = @"${when:when=100 < '${event-properties:item=Elapsed}':inner=Slow:else=Fast}";
+
+//            WhenNumericAndPropertyConditionTest_inner(l, "a", false);
+            WhenNumericAndPropertyConditionTest_inner(l, 101, false);
+            WhenNumericAndPropertyConditionTest_inner(l, 11, true);
+            WhenNumericAndPropertyConditionTest_inner(l, 100, true);
+            WhenNumericAndPropertyConditionTest_inner(l, 1, true);
+            WhenNumericAndPropertyConditionTest_inner(l, 2, true);
+            WhenNumericAndPropertyConditionTest_inner(l, 20, true);
+            WhenNumericAndPropertyConditionTest_inner(l, 100000, false);
+        }
+
+        private static void WhenNumericAndPropertyConditionTest_inner(SimpleLayout l, object time, bool fast)
+        {
+            var le = LogEventInfo.Create(LogLevel.Debug, "logger", "message");
+            le.Properties["Elapsed"] = time;
+            Assert.Equal(fast ? "Fast" : "Slow", l.Render(le));
+        }
     }
 }

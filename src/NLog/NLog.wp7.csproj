@@ -139,9 +139,7 @@
     <Compile Include="ILoggerBase.cs" />
     <Compile Include="ILoggerBase-V1.cs" />
     <Compile Include="ILogger-V1.cs" />
-    <Compile Include="Internal\AspHelper.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
+    <Compile Include="Internal\ArrayHelper.cs" />
     <Compile Include="Internal\CompleteWhenAllContinuation.cs" />
     <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
@@ -214,6 +212,7 @@
     <Compile Include="Internal\StreamHelpers.cs" />
     <Compile Include="Internal\StringBuilderExt.cs" />
     <Compile Include="Internal\StringHelpers.cs" />
+    <Compile Include="Internal\StringSplitter.cs" />
     <Compile Include="Internal\TargetWithFilterChain.cs" />
     <Compile Include="Internal\ThreadIDHelper.cs" />
     <Compile Include="Internal\ThreadLocalStorageHelper.cs" />
@@ -229,9 +228,6 @@
     <Compile Include="LayoutRenderers\AllEventPropertiesLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AmbientPropertyAttribute.cs" />
     <Compile Include="LayoutRenderers\AppDomainLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspApplicationValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspRequestValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspSessionValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AssemblyVersionLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\BaseDirLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\CallSiteLayoutRenderer.cs" />
@@ -244,6 +240,7 @@
     <Compile Include="LayoutRenderers\EventPropertiesLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\ExceptionLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\FileContentsLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\FuncLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\GarbageCollectorInfoLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\GarbageCollectorProperty.cs" />
     <Compile Include="LayoutRenderers\GdcLayoutRenderer.cs" />
@@ -365,12 +362,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Targets\ArchiveNumberingMode.cs" />
-    <Compile Include="Targets\AspResponseTarget.cs" />
     <Compile Include="Targets\ChainsawTarget.cs" />
     <Compile Include="Targets\ColoredConsoleTarget.cs" />
     <Compile Include="Targets\ConsoleOutputColor.cs" />
     <Compile Include="Targets\ConsoleRowHighlightingRule.cs" />
     <Compile Include="Targets\ConsoleTarget.cs" />
+    <Compile Include="Targets\ConsoleTargetHelper.cs" />
     <Compile Include="Targets\ConsoleWordHighlightingRule.cs" />
     <Compile Include="Targets\DatabaseCommandInfo.cs" />
     <Compile Include="Targets\DatabaseParameterInfo.cs" />
@@ -418,6 +415,7 @@
     <Compile Include="Targets\Wrappers\FilteringRule.cs" />
     <Compile Include="Targets\Wrappers\FilteringTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\ImpersonatingTargetWrapper.cs" />
+    <Compile Include="Targets\Wrappers\LimitingTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\LogOnProviderType.cs" />
     <Compile Include="Targets\Wrappers\PostFilteringTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\RandomizeGroupTarget.cs" />

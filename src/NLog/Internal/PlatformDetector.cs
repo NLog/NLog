@@ -75,6 +75,14 @@ namespace NLog.Internal
         {
             get { return currentOS == RuntimeOS.Unix; }
         }
+
+        /// <summary>
+        /// Gets a value indicating whether current runtime is Mono-based
+        /// </summary>
+        public static bool IsMono
+        {
+            get { return Type.GetType("Mono.Runtime") != null; }
+        }
         
         private static RuntimeOS GetCurrentRuntimeOS()
         {

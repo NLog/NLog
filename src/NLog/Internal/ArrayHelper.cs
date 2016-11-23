@@ -1,5 +1,5 @@
-// 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+﻿// 
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,40 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Net;
-
-using NUnit.Framework;
-
-namespace NLog.UnitTests.Web
+namespace NLog.Internal
 {
-	public class NLogWebTestBase
-	{
-        public string WebTestDir;
-        public string NLogTestBaseUrl = "http://localhost/nlogtest/";
-
-        protected void ClearASPNetTrace()
+    internal static class ArrayHelper
+    {
+        private static class EmptyArray<T>
         {
-            DownloadUrl("Trace.axd?clear=1");
+            public static readonly T[] Instance = new T[0];
         }
 
-        protected string GetFirstASPNetTrace()
+        public static T[] Empty<T>()
         {
-            return DownloadUrl("Trace.axd?id=0");
-        }
-
-        protected string DownloadUrl(string url)
-        {
-            WebClient wc = new WebClient();
-            byte[] data = wc.DownloadData(NLogTestBaseUrl + url);
-            return System.Text.Encoding.ASCII.GetString(data);
-        }
-
-        protected void AssertContains(string trace, string substr)
-        {
-            Assert.IsTrue(trace.IndexOf(substr) >= 0, "Trace doesn't contain a '" + substr + "' text.");
-            Console.WriteLine("Trace contains '{0}' text.", substr);
-
+            // TODO Use Array.Empty<T> in NET 4.6 when we are ready
+            return EmptyArray<T>.Instance;
         }
     }
 }

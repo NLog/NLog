@@ -62,14 +62,14 @@ namespace NLog.Internal
         /// <returns>
         /// Dictionary where keys are unique input keys, and values are lists of <see cref="AsyncLogEventInfo"/>.
         /// </returns>
-        public static IDictionary<TKey, IList<TValue>> BucketSort<TValue, TKey>(this IEnumerable<TValue> inputs, KeySelector<TValue, TKey> keySelector)
+        public static Dictionary<TKey, List<TValue>> BucketSort<TValue, TKey>(this IEnumerable<TValue> inputs, KeySelector<TValue, TKey> keySelector)
         {
-            var buckets = new Dictionary<TKey, IList<TValue>>();
+            var buckets = new Dictionary<TKey, List<TValue>>();
 
             foreach (var input in inputs)
             {
                 var keyValue = keySelector(input);
-                IList<TValue> eventsInBucket;
+                List<TValue> eventsInBucket;
                 if (!buckets.TryGetValue(keyValue, out eventsInBucket))
                 {
                     eventsInBucket = new List<TValue>();
@@ -92,15 +92,15 @@ namespace NLog.Internal
         /// <returns>
         /// Dictionary where keys are unique input keys, and values are lists of <see cref="AsyncLogEventInfo"/>.
         /// </returns>
-        public static ReadOnlySingleBucketDictionary<TKey, IList<TValue>> BucketSort<TValue, TKey>(this ArraySegment<TValue> inputs, KeySelector<TValue, TKey> keySelector)
+        public static ReadOnlySingleBucketDictionary<TKey, IList<TValue>> BucketSort<TValue, TKey>(this IList<TValue> inputs, KeySelector<TValue, TKey> keySelector)
         {
             Dictionary<TKey, IList<TValue>> buckets = null;
             bool singleBucketFirstKey = false;
             TKey singleBucketKey = default(TKey);
             EqualityComparer<TKey> c = EqualityComparer<TKey>.Default;
-            for (int i = inputs.Offset; i < (inputs.Offset + inputs.Count); ++i)
+            for (int i = 0; i < inputs.Count; i++)
             {
-                TKey keyValue = keySelector(inputs.Array[i]);
+                TKey keyValue = keySelector(inputs[i]);
                 if (!singleBucketFirstKey)
                 {
                     singleBucketFirstKey = true;
@@ -113,13 +113,13 @@ namespace NLog.Internal
                         // Multiple buckets needed, allocate full dictionary
                         buckets = new Dictionary<TKey, IList<TValue>>();
                         var bucket = new List<TValue>(i);
-                        for (int j = inputs.Offset; j < i; ++j)
+                        for (int j = 0; j < i; j++)
                         {
-                            bucket.Add(inputs.Array[j]);
+                            bucket.Add(inputs[j]);
                         }
                         buckets[singleBucketKey] = bucket;
                         bucket = new List<TValue>();
-                        bucket.Add(inputs.Array[i]);
+                        bucket.Add(inputs[i]);
                         buckets[keyValue] = bucket;
                     }
                 }
@@ -131,13 +131,18 @@ namespace NLog.Internal
                         eventsInBucket = new List<TValue>();
                         buckets.Add(keyValue, eventsInBucket);
                     }
-                    eventsInBucket.Add(inputs.Array[i]);
+                    eventsInBucket.Add(inputs[i]);
                 }
             }
-            if (buckets != null || inputs.Count == 0)
-                return new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(buckets != null ? buckets : new Dictionary<TKey, IList<TValue>>());
+
+            if (buckets != null)
+            {
+                return new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(buckets);
+            }
             else
-                return new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(new KeyValuePair<TKey, IList<TValue>>(singleBucketKey, new ReadOnlyArrayList<TValue>(inputs)));
+            {
+                return new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(new KeyValuePair<TKey, IList<TValue>>(singleBucketKey, inputs));
+            }
         }
 
         /// <summary>
@@ -191,7 +196,7 @@ namespace NLog.Internal
                     else if (_singleBucket.HasValue)
                         return new[] { _singleBucket.Value.Key };
                     else
-                        return new TKey[0];
+                        return ArrayHelper.Empty<TKey>();
                 }
             }
 
@@ -205,7 +210,7 @@ namespace NLog.Internal
                     else if (_singleBucket.HasValue)
                         return new TValue[] { _singleBucket.Value.Value };
                     else
-                        return new TValue[] { };
+                        return ArrayHelper.Empty<TValue>();
                 }
             }
 
@@ -292,6 +297,8 @@ namespace NLog.Internal
                 {
                     if (_multiBuckets != null)
                         _multiBuckets.Reset();
+                    else
+                        _singleBucketFirstRead = false;
                 }
             }
 
@@ -399,7 +406,27 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Exposes an ArraySegment to have IList-interface (Only needed for NET3_5 / Silverlight)
+        /// Performs bucket sort (group by) on an array of items and returns a dictionary for easy traversal of the result set.
+        /// </summary>
+        /// <typeparam name="TValue">The type of the value.</typeparam>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
+        /// <param name="inputs">The inputs.</param>
+        /// <param name="keySelector">The key selector function.</param>
+        /// <returns>
+        /// Dictionary where keys are unique input keys, and values are lists of <see cref="AsyncLogEventInfo"/>.
+        /// </returns>
+        public static ReadOnlySingleBucketDictionary<TKey, IList<TValue>> BucketSort<TValue, TKey>(this ArraySegment<TValue> inputs, KeySelector<TValue, TKey> keySelector)
+        {
+#if NET3_5 || SILVERLIGHT || MONO || NET4_0
+            return BucketSort(new ReadOnlyArrayList<TValue>(inputs), keySelector);
+#else
+            return BucketSort((IList<TValue>)inputs, keySelector);
+#endif
+        }
+
+#if NET3_5 || SILVERLIGHT || MONO || NET4_0
+        /// <summary>
+        /// Exposes an ArraySegment to have IList-interface
         /// </summary>
         /// <typeparam name="TValue"></typeparam>
         internal struct ReadOnlyArrayList<TValue> : IList<TValue>
@@ -511,5 +538,6 @@ namespace NLog.Internal
                 throw new NotSupportedException("Readonly");
             }
         }
+#endif
     }
 }

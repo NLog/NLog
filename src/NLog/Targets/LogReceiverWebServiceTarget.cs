@@ -172,7 +172,7 @@ namespace NLog.Targets
             }
 
             var networkLogEvents = this.TranslateLogEvents(logEvents);
-            this.Send(networkLogEvents, new SortHelpers.ReadOnlyArrayList<AsyncLogEventInfo>(logEvents));
+            this.Send(networkLogEvents, logEvents);
         }
 
         /// <summary>
@@ -246,15 +246,18 @@ namespace NLog.Targets
                 {
                     var ev = logEvents.Array[i].LogEvent;
 
-                    // add all event-level property names in 'LayoutNames' collection.
-                    foreach (var prop in ev.Properties)
+                    if (ev.HasProperties)
                     {
-                        string propName = prop.Key as string;
-                        if (propName != null)
+                        // add all event-level property names in 'LayoutNames' collection.
+                        foreach (var prop in ev.Properties)
                         {
-                            if (!networkLogEvents.LayoutNames.Contains(propName))
+                            string propName = prop.Key as string;
+                            if (propName != null)
                             {
-                                networkLogEvents.LayoutNames.Add(propName);
+                                if (!networkLogEvents.LayoutNames.Contains(propName))
+                                {
+                                    networkLogEvents.LayoutNames.Add(propName);
+                                }
                             }
                         }
                     }

@@ -270,6 +270,11 @@ namespace NLog
         }
 
         /// <summary>
+        /// Checks if any per-event context properties (Without allocation)
+        /// </summary>
+        public bool HasProperties { get { return this.properties != null && this.properties.Count > 0; } }
+
+        /// <summary>
         /// Gets the dictionary of per-event context properties.
         /// </summary>
         public IDictionary<object, object> Properties
@@ -459,7 +464,7 @@ namespace NLog
         {
             lock (this.layoutCacheLock)
             {
-                if (this.layoutCache == null)
+                if (this.layoutCache == null || this.layoutCache.Count == 0)
                 {
                     value = null;
                     return false;
