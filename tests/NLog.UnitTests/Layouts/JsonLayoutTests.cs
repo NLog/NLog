@@ -345,8 +345,8 @@ namespace NLog.UnitTests.Layouts
                 IncludeAllProperties = true
             };
 
-            jsonLayout.ExcludedProperties.Add("Excluded1");
-            jsonLayout.ExcludedProperties.Add("Excluded2");
+            jsonLayout.ExcludeProperties.Add("Excluded1");
+            jsonLayout.ExcludeProperties.Add("Excluded2");
 
             var logEventInfo = CreateLogEventWithExcluded();
 
@@ -356,7 +356,7 @@ namespace NLog.UnitTests.Layouts
         }
 
         /// <summary>
-        /// Test from XML, needed for the list (ExcludedProperties)
+        /// Test from XML, needed for the list (ExcludeProperties)
         /// </summary>
         [Fact]
         public void IncludeAllJsonPropertiesXml()
@@ -366,7 +366,7 @@ namespace NLog.UnitTests.Layouts
             <nlog throwExceptions='true'>
                 <targets>
             <target name='debug' type='Debug'  >
-                 <layout type=""JsonLayout"" IncludeAllProperties='true' ExcludedProperties='Excluded1,Excluded2'>
+                 <layout type=""JsonLayout"" IncludeAllProperties='true' ExcludeProperties='Excluded1,Excluded2'>
             
                  </layout>
             </target>
