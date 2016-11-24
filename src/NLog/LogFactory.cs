@@ -174,6 +174,8 @@ namespace NLog
                         return this.config;
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                    //load
+
                     if (this.config == null)
                     {
                         try
@@ -260,6 +262,7 @@ namespace NLog
                             }
 #endif
                             this.config.InitializeAll();
+                            
                             LogConfigurationInitialized();
                         }
                         finally

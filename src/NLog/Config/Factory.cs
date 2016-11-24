@@ -197,8 +197,20 @@ namespace NLog.Config
             {
                 return result;
             }
+            var message = typeof(TBaseType).Name + " cannot be found: '" + name + "'";
+            if (name != null)
+            {
+                //layouts but also targets
+                if (name.StartsWith("aspnet", StringComparison.OrdinalIgnoreCase) ||
+                    name.StartsWith("iis", StringComparison.OrdinalIgnoreCase))
+                {
+                    //common mistake and probably missing NLog.Web
+                    message += ". Is NLog.Web not included?";
+                }
+            }
 
-            throw new ArgumentException(typeof(TBaseType).Name + " cannot be found: '" + name + "'");
+            
+            throw new ArgumentException(message);
         }
     }
 
