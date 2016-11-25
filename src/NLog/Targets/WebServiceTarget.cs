@@ -430,19 +430,15 @@ namespace NLog.Targets
             protected override string GetFormattedParameter(MethodCallParameter parameter, object value)
             {
                 string parameterValue = Convert.ToString(value, CultureInfo.InvariantCulture);
-                string valueString = string.Empty;
                 if (string.IsNullOrEmpty(parameterValue))
                 {
                     return string.Concat(parameter.Name, "=");
                 }
-                else
-                {
-                    var sb = new StringBuilder(parameterValue.Length + 20);
-                    sb.Append(parameter.Name)
-                        .Append("=");
-                    UrlHelper.EscapeDataEncode(parameterValue, sb, encodingFlags);
-                    return sb.ToString();
-                }
+
+                var sb = new StringBuilder(parameter.Name.Length + parameterValue.Length + 20);
+                sb.Append(parameter.Name).Append("=");
+                UrlHelper.EscapeDataEncode(parameterValue, sb, encodingFlags);
+                return sb.ToString();
             }
         }
 
