@@ -80,7 +80,7 @@ namespace NLog.Internal.FileAppenders
         int BufferSize { get; }
 
         /// <summary>
-        /// Gets or set a value indicating whether a managed file stream is forced, instead of used the native implementation.
+        /// Gets or set a value indicating whether a managed file stream is forced, instead of using the native implementation.
         /// </summary>
         bool ForceManaged { get; }
 
