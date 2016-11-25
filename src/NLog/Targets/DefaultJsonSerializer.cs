@@ -135,51 +135,50 @@ namespace NLog.Targets
             {
                 if (depth == MaxRecursionDepth) return null;        // reached maximum recursion level, no further serialization
 
-                var l = new List<string>();
-                var h = new HashSet<object>(objectsInPath);
-                h.Add(value);
+                var list = new List<string>();
+                var set = new HashSet<object>(objectsInPath) {value};
                 foreach (DictionaryEntry de in dict)
                 {
-                    var keyJson = SerializeObject(de.Key, h, depth + 1);
-                    var valueJson = SerializeObject(de.Value, h, depth + 1);
+                    var keyJson = SerializeObject(de.Key, set, depth + 1);
+                    var valueJson = SerializeObject(de.Value, set, depth + 1);
                     if (!string.IsNullOrEmpty(keyJson) && valueJson != null)
                     {
                         //only serialize, if key and value are serialized without error (e.g. due to reference loop)
-                        l.Add(string.Format("{0}:{1}", keyJson, valueJson));
+                        list.Add(string.Format("{0}:{1}", keyJson, valueJson));
                     }
                 }
 
-                return string.Format("{{{0}}}", string.Join(",", l.ToArray()));
+                return string.Format("{{{0}}}", string.Join(",", list.ToArray()));
             }
             else if((enumerable = value as IEnumerable) != null)
             {
                 if (depth == MaxRecursionDepth) return null;        // reached maximum recursion level, no further serialization
 
-                var l = new List<string>();
-                var h = new HashSet<object>(objectsInPath);
-                h.Add(value);
+                var list = new List<string>();
+                var set = new HashSet<object>(objectsInPath);
+                set.Add(value);
                 foreach (var val in enumerable)
                 {
-                    var valueJson = SerializeObject(val, h, depth + 1);
+                    var valueJson = SerializeObject(val, set, depth + 1);
                     if (valueJson != null)
                     {
-                        l.Add(valueJson);
+                        list.Add(valueJson);
                     }
                 }
 
-                return string.Format("[{0}]", string.Join(",", l.ToArray()));
+                return string.Format("[{0}]", string.Join(",", list.ToArray()));
             }
             else if (NumericTypes.Contains(value.GetType()))
             {
 #if SILVERLIGHT
-                var nf = new CultureInfo("en-US").NumberFormat;
+                var culture = new CultureInfo("en-US").NumberFormat;
 #else
-                var nf = new CultureInfo("en-US", false).NumberFormat;
+                var culture = new CultureInfo("en-US", false).NumberFormat;
 #endif
-                nf.NumberGroupSeparator = string.Empty;
-                nf.NumberDecimalSeparator = ".";
-                nf.NumberGroupSizes = new int[] { 0 };
-                return string.Format(nf, "{0}", value);
+                culture.NumberGroupSeparator = string.Empty;
+                culture.NumberDecimalSeparator = ".";
+                culture.NumberGroupSizes = new int[] { 0 };
+                return string.Format(culture, "{0}", value);
             }
             else
             {
@@ -196,7 +195,7 @@ namespace NLog.Targets
 
         private static string EscapeString(string str)
         {
-            var sb = new StringBuilder();
+            var sb = new StringBuilder(str.Length);
             foreach(var c in str)
             {
                 sb.Append(EscapeChar(c));
@@ -207,7 +206,7 @@ namespace NLog.Targets
 
         private static string EscapeChar(char c)
         {
-            string mapped = null;
+            string mapped;
             if(CharacterMap.TryGetValue(c, out mapped))
             {
                 return mapped;
