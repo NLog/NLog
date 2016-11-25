@@ -64,6 +64,8 @@ namespace NLog.Config
         private readonly Factory<LayoutRenderer, AmbientPropertyAttribute> ambientProperties;
         private readonly Factory<TimeSource, TimeSourceAttribute> timeSources;
 
+        private IJsonSerializer jsonSerializer = DefaultJsonSerializer.Instance;
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfigurationItemFactory"/> class.
         /// </summary>
@@ -174,6 +176,15 @@ namespace NLog.Config
         public INamedItemFactory<LayoutRenderer, Type> AmbientProperties
         {
             get { return this.ambientProperties; }
+        }
+
+        /// <summary>
+        /// Gets or sets the JSON serializer to use with <see cref="WebServiceTarget"/>.
+        /// </summary>
+        public IJsonSerializer JsonSerializer
+        {
+            get { return jsonSerializer; }
+            set { jsonSerializer = value ?? DefaultJsonSerializer.Instance; }
         }
 
         /// <summary>
