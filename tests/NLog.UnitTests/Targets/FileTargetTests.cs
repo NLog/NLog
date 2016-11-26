@@ -46,7 +46,6 @@ namespace NLog.UnitTests.Targets
 
     using Mocks;
     using NLog.Config;
-    using NLog.Internal;
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
@@ -66,14 +65,28 @@ namespace NLog.UnitTests.Targets
                     from concurrentWrites in booleanValues
                     from keepFileOpen in booleanValues
                     from networkWrites in booleanValues
+                    from forceMutexConcurrentWrites in booleanValues
+                    where UniqueBaseAppender(concurrentWrites, keepFileOpen, networkWrites, forceMutexConcurrentWrites)
+                    from forceManaged in booleanValues
                     from poolSetupActive in booleanValues
-                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, poolSetupActive };
+                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, forceManaged, forceMutexConcurrentWrites, poolSetupActive };
             }
+        }
+
+        private static bool UniqueBaseAppender(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceMutexConcurrentWrites)
+        {
+            if (!concurrentWrites && !networkWrites && !forceMutexConcurrentWrites)
+                return true;    // Allow keepFileOpen = true / false, Allow forceManaged = true / false
+            if (concurrentWrites && !networkWrites)
+                return true;    // Allow keepFileOpen = true / false, forceManaged = true / false, forceMutexConcurrentWrites = true / false
+            if (networkWrites && keepFileOpen && !concurrentWrites && !forceMutexConcurrentWrites)
+                return true;    // Allow forceManaged = true / false
+            return false;
         }
 
         [Theory]
         [PropertyData("SimpleFileTest_TestParameters")]
-        public void SimpleFileTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool poolSetupActive)
+        public void SimpleFileTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool poolSetupActive)
         {
             var logFile = Path.GetTempFileName();
             try
@@ -87,6 +100,8 @@ namespace NLog.UnitTests.Targets
                     ConcurrentWrites = concurrentWrites,
                     KeepFileOpen = keepFileOpen,
                     NetworkWrites = networkWrites,
+                    ForceManaged = forceManaged,
+                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
                     PoolSetup = poolSetupActive ? NLog.Common.PoolSetup.Active : NLog.Common.PoolSetup.None,
                 });
 
@@ -153,7 +168,7 @@ namespace NLog.UnitTests.Targets
         /// </summary>
         [Theory(Timeout = FIVE_SECONDS)]
         [PropertyData("SimpleFileTest_TestParameters")]
-        public void NonExistingDriveShouldNotDelayMuch(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool poolSetupActive)
+        public void NonExistingDriveShouldNotDelayMuch(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool poolSetupActive)
         {
             var nonExistingDrive = GetFirstNonExistingDriveWindows();
 
@@ -168,6 +183,8 @@ namespace NLog.UnitTests.Targets
                     ConcurrentWrites = concurrentWrites,
                     KeepFileOpen = keepFileOpen,
                     NetworkWrites = networkWrites,
+                    ForceManaged = forceManaged,
+                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
                     PoolSetup = poolSetupActive ? NLog.Common.PoolSetup.Active : NLog.Common.PoolSetup.None,
                 });
 
@@ -939,14 +956,17 @@ namespace NLog.UnitTests.Targets
                     from concurrentWrites in booleanValues
                     from keepFileOpen in booleanValues
                     from networkWrites in booleanValues
+                    from forceMutexConcurrentWrites in booleanValues
+                    where UniqueBaseAppender(concurrentWrites, keepFileOpen, networkWrites, forceMutexConcurrentWrites)
                     from includeSequenceInArchive in booleanValues
-                    select new object[] { timeKind, includeDateInLogFilePath, concurrentWrites, keepFileOpen, networkWrites, includeSequenceInArchive };
+                    from forceManaged in booleanValues
+                    select new object[] { timeKind, includeDateInLogFilePath, concurrentWrites, keepFileOpen, networkWrites, includeSequenceInArchive, forceManaged, forceMutexConcurrentWrites };
             }
         }
 
         [Theory]
         [PropertyData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
-        public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool includeDateInLogFilePath, bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive)
+        public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool includeDateInLogFilePath, bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive, bool forceManaged, bool forceMutexConcurrentWrites)
         {
             const string archiveDateFormat = "yyyyMMdd";
             const int maxArchiveFiles = 3;
@@ -975,6 +995,8 @@ namespace NLog.UnitTests.Targets
                     ConcurrentWrites = concurrentWrites,
                     KeepFileOpen = keepFileOpen,
                     NetworkWrites = networkWrites,
+                    ForceManaged = forceManaged,
+                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites
                 });
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
@@ -1062,11 +1084,14 @@ namespace NLog.UnitTests.Targets
                     from concurrentWrites in booleanValues
                     from keepFileOpen in booleanValues
                     from networkWrites in booleanValues
-                    from poolSetupActive in booleanValues
                     where AllowsExternalFileModification(concurrentWrites, keepFileOpen, networkWrites)
+                    from forceMutexConcurrentWrites in booleanValues
+                    where UniqueBaseAppender(concurrentWrites, keepFileOpen, networkWrites, forceMutexConcurrentWrites)
                     from includeDateInLogFilePath in booleanValues
                     from includeSequenceInArchive in booleanValues
-                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, poolSetupActive, includeDateInLogFilePath, includeSequenceInArchive };
+                    from forceManaged in booleanValues
+                    from poolSetupActive in booleanValues
+                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, includeDateInLogFilePath, includeSequenceInArchive, forceManaged, forceMutexConcurrentWrites, poolSetupActive };
             }
         }
 
@@ -1077,7 +1102,7 @@ namespace NLog.UnitTests.Targets
 
         [Theory]
         [PropertyData("DateArchive_ArchiveOnceOnly_TestParameters")]
-        public void DateArchive_ArchiveOnceOnly(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool poolSetupActive, bool dateInLogFilePath, bool includeSequenceInArchive)
+        public void DateArchive_ArchiveOnceOnly(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool dateInLogFilePath, bool includeSequenceInArchive, bool forceManaged, bool forceMutexConcurrentWrites, bool poolSetupActive)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempPath, dateInLogFilePath ? "file_${shortdate}.txt" : "file.txt");
@@ -1096,6 +1121,8 @@ namespace NLog.UnitTests.Targets
                     ConcurrentWrites = concurrentWrites,
                     KeepFileOpen = keepFileOpen,
                     NetworkWrites = networkWrites,
+                    ForceManaged = forceManaged,
+                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
                     PoolSetup = poolSetupActive ? NLog.Common.PoolSetup.Active : NLog.Common.PoolSetup.None,
                 });
 
@@ -1211,18 +1238,21 @@ namespace NLog.UnitTests.Targets
                     from concurrentWrites in booleanValues
                     from keepFileOpen in booleanValues
                     from networkWrites in booleanValues
-                    from poolSetupActive in booleanValues
                     where AllowsExternalFileModification(concurrentWrites, keepFileOpen, networkWrites)
+                    from forceMutexConcurrentWrites in booleanValues
+                    where UniqueBaseAppender(concurrentWrites, keepFileOpen, networkWrites, forceMutexConcurrentWrites)
                     from includeDateInLogFilePath in booleanValues
                     from includeSequenceInArchive in booleanValues
                     from enableArchiveCompression in booleanValues
-                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, poolSetupActive, includeDateInLogFilePath, includeSequenceInArchive, enableArchiveCompression };
+                    from forceManaged in booleanValues
+                    from poolSetupActive in booleanValues
+                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, includeDateInLogFilePath, includeSequenceInArchive, enableArchiveCompression, forceManaged, forceMutexConcurrentWrites, poolSetupActive };
             }
         }
 
         [Theory]
         [PropertyData("DateArchive_AllLoggersTransferToCurrentLogFile_TestParameters")]
-        public void DateArchive_AllLoggersTransferToCurrentLogFile(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool poolSetupActive, bool includeDateInLogFilePath, bool includeSequenceInArchive, bool enableArchiveCompression)
+        public void DateArchive_AllLoggersTransferToCurrentLogFile(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeDateInLogFilePath, bool includeSequenceInArchive, bool enableArchiveCompression, bool forceManaged, bool forceMutexConcurrentWrites, bool poolSetupActive)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var logfile = Path.Combine(tempPath, includeDateInLogFilePath ? "file_${shortdate}.txt" : "file.txt");
@@ -1246,6 +1276,8 @@ namespace NLog.UnitTests.Targets
                     ConcurrentWrites = concurrentWrites,
                     KeepFileOpen = keepFileOpen,
                     NetworkWrites = networkWrites,
+                    ForceManaged = forceManaged,
+                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
                     PoolSetup = poolSetupActive ? NLog.Common.PoolSetup.Active : NLog.Common.PoolSetup.None,
                 });
                 var logger1Rule = new LoggingRule("logger1", LogLevel.Debug, fileTarget1);
@@ -1266,6 +1298,8 @@ namespace NLog.UnitTests.Targets
                     ConcurrentWrites = concurrentWrites,
                     KeepFileOpen = keepFileOpen,
                     NetworkWrites = networkWrites,
+                    ForceManaged = forceManaged,
+                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
                     PoolSetup = poolSetupActive ? NLog.Common.PoolSetup.Active : NLog.Common.PoolSetup.None,
                 });
                 var logger2Rule = new LoggingRule("logger2", LogLevel.Debug, fileTarget2);
@@ -2511,8 +2545,6 @@ namespace NLog.UnitTests.Targets
             /// </summary>
             public string Ext { get; set; }
 
-
-
             /// <summary>
             /// Initializes a new instance of the <see cref="T:System.Object"/> class.
             /// </summary>
@@ -2945,7 +2977,7 @@ namespace NLog.UnitTests.Targets
             var fileTarget = new FileTarget();
             fileTarget.FileName = invalidFileName;
 
-            var filePathLayout = new FilePathLayout(invalidFileName, true, FilePathKind.Absolute);
+            var filePathLayout = new NLog.Internal.FilePathLayout(invalidFileName, true, FilePathKind.Absolute);
 
 
             var path = filePathLayout.Render(LogEventInfo.CreateNullEvent());
@@ -3092,7 +3124,7 @@ namespace NLog.UnitTests.Targets
             {
                 // set log file access times the same way as when this issue comes up.
                 Directory.CreateDirectory(tempDir);
-                
+
                 File.WriteAllText(logFile, "some content" + Environment.NewLine);
                 var oldTime = DateTime.Now.AddDays(-2);
                 File.SetCreationTime(logFile, oldTime);
@@ -3120,7 +3152,7 @@ namespace NLog.UnitTests.Targets
                     MaxArchiveFiles = 7
                 };
 
-                
+
                 var config = new LoggingConfiguration();
                 config.AddRuleForAllLevels(fileTarget);
                 LogManager.Configuration = config;

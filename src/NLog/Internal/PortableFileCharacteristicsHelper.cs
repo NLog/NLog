@@ -33,7 +33,6 @@
 
 namespace NLog.Internal
 {
-    using System;
     using System.IO;
 
     /// <summary>
@@ -45,17 +44,19 @@ namespace NLog.Internal
         /// Gets the information about a file.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
-        /// <param name="fileHandle">The file handle.</param>
+        /// <param name="fileStream">The file stream.</param>
         /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public override FileCharacteristics GetFileCharacteristics(string fileName, IntPtr fileHandle)
+        public override FileCharacteristics GetFileCharacteristics(string fileName, FileStream fileStream)
         {
-            var fileInfo = new FileInfo(fileName);
-            if (fileInfo.Exists)
+            if (!string.IsNullOrEmpty(fileName))
             {
-                return new FileCharacteristics(fileInfo.GetCreationTimeUtc(), fileInfo.GetLastWriteTimeUtc(), fileInfo.Length);
+                var fileInfo = new FileInfo(fileName);
+                if (fileInfo.Exists)
+                {
+                    return new FileCharacteristics(fileInfo.GetCreationTimeUtc(), fileInfo.GetLastWriteTimeUtc(), fileInfo.Length);
+                }
             }
-            else
-                return null;
+            return null;
         }
     }
 }

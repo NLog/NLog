@@ -93,7 +93,7 @@ namespace NLog.Internal.FileAppenders
         /// Gets the file creation time.
         /// </summary>
         /// <value>The file creation time. DateTime value must be of UTC kind.</value>
-        public DateTime CreationTime { get; private set; }
+        public DateTime CreationTime { get; internal set; }
 
         /// <summary>
         /// Gets the open time of the file.
