@@ -2632,7 +2632,16 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Theory]
+        /// unit test for issue #1681.
+        ///- When clearing out archive files exceeding maxArchiveFiles, NLog should
+        ///  not delete all files in the directory.Only files matching the target's
+        ///  archiveFileName pattern.
+        ///- Create test for 2 applications sharing the same archive directory.
+        ///- Create test for 2 applications sharing same archive directory and 1
+        ///  application containing multiple targets to the same archive directory.
+        ///  *\* Expected outcome of this should be verified**
+
+        [Theory(Skip = "Should be fixed in NLog 4.5")]
         [InlineData(true)]
         [InlineData(false)]
         public void HandleArchiveFilesMultipleContextMultipleTargetTest(bool changeCreationAndWriteTime)
@@ -2642,8 +2651,7 @@ namespace NLog.UnitTests.Targets
             HandleArchiveFilesMultipleContextMultipleTargetsTest(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm", changeCreationAndWriteTime);
         }
 
-
-        [Theory]
+        [Theory(Skip = "Should be fixed in NLog 4.5")]
         [InlineData(true)]
         [InlineData(false)]
         public void HandleArchiveFilesMultipleContextSingleTargetTest_ascii(bool changeCreationAndWriteTime)
@@ -2749,7 +2757,7 @@ namespace NLog.UnitTests.Targets
                                       <logger name='*' minLevel='Debug' writeTo='debugFile' />
                                     </rules>
                                   </nlog>");
-                
+
                 var app2Config = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
                                     <targets>
                                       <target name='logfile' type='File' 
@@ -2767,22 +2775,22 @@ namespace NLog.UnitTests.Targets
                                   </nlog>");
 
                 LogManager.Configuration = app1Config;
-                
+
                 var logger = LogManager.GetCurrentClassLogger();
                 // Trigger archive to happen on startup
                 logger.Debug("Test 1 - Write to the log file that already exists; trigger archive to happen because archiveOldFileOnStartup='true'");
-                
+
                 // TODO: perhaps extra App1 Debug and Trace files should both be deleted?  (then app1TraceTargetFileCnt would be expected to = expectedArchiveFiles too)
-                    // I think it depends on how NLog works with logging to both of those files in the call to logger.Debug() above
+                // I think it depends on how NLog works with logging to both of those files in the call to logger.Debug() above
 
                 // verify file counts. EXPECTED OUTCOME:
-                    // app1 debug target: removed all extra
-                    // app1 trace target: has all extra files
-                    // app2: has all extra files
+                // app1 debug target: removed all extra
+                // app1 trace target: has all extra files
+                // app2: has all extra files
                 var app1TraceTargetFileCnt = archiveDir.GetFiles("*" + app1TraceNm + "*").Length;
                 var app1DebugTargetFileCnt = archiveDir.GetFiles("*" + app1DebugNm + "*").Length;
                 var app2FileTargetCnt = archiveDir.GetFiles("*" + app2Nm + "*").Length;
-                
+
                 Assert.Equal(numberFilesCreatedPerTargetArchive, app1TraceTargetFileCnt);
                 Assert.Equal(numberFilesCreatedPerTargetArchive, app2FileTargetCnt);
                 Assert.Equal(expectedArchiveFiles, app1DebugTargetFileCnt);
@@ -2793,7 +2801,7 @@ namespace NLog.UnitTests.Targets
                 archiveDir.Delete(true);
             }
         }
-        
+
         /// <summary>
         /// Test the case when multiple applications are archiving to the same directory.
         /// Only the archives for this application instance should be deleted per the target archive rules.
@@ -2890,11 +2898,11 @@ namespace NLog.UnitTests.Targets
                 logger.Debug("Test 1 - Write to the log file that already exists; trigger archive to happen because archiveOldFileOnStartup='true'");
 
                 // verify file counts. EXPECTED OUTCOME:
-                    // app1: Removed extra archives
-                    // app2: Has all extra archives
+                // app1: Removed extra archives
+                // app2: Has all extra archives
                 var app1TargetFileCnt = archiveDir.GetFiles("*" + app1Nm + "*").Length;
                 var app2FileTargetCnt = archiveDir.GetFiles("*" + app2Nm + "*").Length;
-                
+
                 Assert.Equal(numberFilesCreatedPerTargetArchive, app2FileTargetCnt);
                 Assert.Equal(expectedArchiveFiles, app1TargetFileCnt);
             }
@@ -3220,7 +3228,7 @@ namespace NLog.UnitTests.Targets
             {
                 // set log file access times the same way as when this issue comes up.
                 Directory.CreateDirectory(tempDir);
-                
+
                 File.WriteAllText(logFile, "some content" + Environment.NewLine);
                 var oldTime = DateTime.Now.AddDays(-2);
                 File.SetCreationTime(logFile, oldTime);
@@ -3248,7 +3256,7 @@ namespace NLog.UnitTests.Targets
                     MaxArchiveFiles = 7
                 };
 
-                
+
                 var config = new LoggingConfiguration();
                 config.AddRuleForAllLevels(fileTarget);
                 LogManager.Configuration = config;
