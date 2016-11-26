@@ -52,6 +52,7 @@ namespace NLog.LayoutRenderers
         private Process process;
 
         private PropertyInfo propertyInfo;
+        private ReflectionHelpers.LateBoundMethod lateBoundPropertyGet;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProcessInfoLayoutRenderer" /> class.
@@ -71,7 +72,8 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the format-string to use if the property supports it (Ex. DateTime / TimeSpan / Enum)
         /// </summary>
-        [DefaultValue(null), DefaultParameter]
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(null)]
         public string Format { get; set; }
 
         /// <summary>
@@ -85,6 +87,8 @@ namespace NLog.LayoutRenderers
             {
                 throw new ArgumentException("Property '" + this.propertyInfo + "' not found in System.Diagnostics.Process");
             }
+
+            lateBoundPropertyGet = ReflectionHelpers.CreateLateBoundMethod(this.propertyInfo.GetGetMethod());
 
             this.process = Process.GetCurrentProcess();
         }
@@ -110,10 +114,10 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (this.propertyInfo != null)
+            if (this.lateBoundPropertyGet != null)
             {
                 var formatProvider = GetFormatProvider(logEvent);
-                var value = this.propertyInfo.GetValue(this.process, null);
+                var value = this.lateBoundPropertyGet(this.process, null);
                 builder.Append(value.ToStringWithOptionalFormat(this.Format, formatProvider));
             }
         }

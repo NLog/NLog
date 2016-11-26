@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,41 +31,22 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+
 namespace NLog.Targets
 {
     /// <summary>
-    /// Web service protocol.
+    /// Interface for serialization of values, maybe even objects to JSON format. 
+    /// Useful for wrappers for existing serializers.
     /// </summary>
-    public enum WebServiceProtocol
+    public interface IJsonSerializer
     {
         /// <summary>
-        /// Use SOAP 1.1 Protocol.
+        /// Returns a serialization of an object
+        /// into JSON format.
         /// </summary>
-        Soap11,
-
-        /// <summary>
-        /// Use SOAP 1.2 Protocol.
-        /// </summary>
-        Soap12,
-
-        /// <summary>
-        /// Use HTTP POST Protocol.
-        /// </summary>
-        HttpPost,
-
-        /// <summary>
-        /// Use HTTP GET Protocol.
-        /// </summary>
-        HttpGet,
-
-        /// <summary>
-        /// Do an HTTP POST of a JSON document.
-        /// </summary>
-        JsonPost,
-
-        /// <summary>
-        /// Do an HTTP POST of an XML document.
-        /// </summary>
-        XmlPost
+        /// <param name="value">The object to serialize to JSON.</param>
+        /// <returns>Serialized value.</returns>
+        string SerializeObject(object value);
     }
 }

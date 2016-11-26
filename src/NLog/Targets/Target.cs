@@ -199,9 +199,9 @@ namespace NLog.Targets
 
                 if (this.allLayouts != null)
                 {
-                    foreach (Layout l in this.allLayouts)
+                    foreach (Layout layout in this.allLayouts)
                     {
-                        l.Precalculate(logEvent);
+                        layout.Precalculate(logEvent);
                     }
                 }
             }
@@ -451,9 +451,9 @@ namespace NLog.Targets
             this.allLayouts = new List<Layout>(ObjectGraphScanner.FindReachableObjects<Layout>(this));
             InternalLogger.Trace("{0} has {1} layouts", this, this.allLayouts.Count);
             bool foundNotThreadAgnostic = false;
-            foreach (Layout l in this.allLayouts)
+            foreach (Layout layout in this.allLayouts)
             {
-                if (!l.IsThreadAgnostic)
+                if (!layout.IsThreadAgnostic)
                 {
                     foundNotThreadAgnostic = true;
                     break;

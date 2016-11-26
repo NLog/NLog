@@ -248,6 +248,7 @@
     <Compile Include="Targets\ConcurrentFileTargetTests.cs" />
     <Compile Include="Targets\ConsoleTargetTests.cs" />
     <Compile Include="Targets\DatabaseTargetTests.cs" />
+    <Compile Include="Targets\DefaultJsonSerializerTests.cs" />
     <Compile Include="Targets\EventLogTargetTests.cs" />
     <Compile Include="Targets\FileTargetTests.cs" />
     <Compile Include="Targets\LineEndingModeTests.cs" />

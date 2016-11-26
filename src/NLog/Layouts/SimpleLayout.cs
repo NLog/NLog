@@ -201,8 +201,8 @@ namespace NLog.Layouts
         /// values provided by the appropriate layout renderers.</returns>
         public static string Evaluate(string text, LogEventInfo logEvent)
         {
-            var l = new SimpleLayout(text);
-            return l.Render(logEvent);
+            var layout = new SimpleLayout(text);
+            return layout.Render(logEvent);
         }
 
         /// <summary>

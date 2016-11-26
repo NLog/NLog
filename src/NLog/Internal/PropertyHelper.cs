@@ -305,35 +305,57 @@ namespace NLog.Internal
         /// <returns></returns>
         private static bool TryFlatListConversion(Type type, string valueRaw, out object newValue)
         {
-            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
+            if (type.IsGenericType)
             {
-                //note: type.GenericTypeArguments is .NET 4.5+ 
-                var propertyType = type.GetGenericArguments()[0];
-              
-                //no support for array
-                var list = Activator.CreateInstance(type) as IList;
-                if (list == null)
+                var typeDefinition = type.GetGenericTypeDefinition();
+#if NET3_5
+                var isSet = typeDefinition == typeof(HashSet<>);
+#else
+                var isSet = typeDefinition == typeof(ISet<>) || typeDefinition == typeof(HashSet<>);
+#endif
+                //not checking "implements" interface as we are creating HashSet<T> or List<T> and also those checks are expensive
+                if (isSet || typeDefinition == typeof(List<>) || typeDefinition == typeof(IList<>) || typeDefinition == typeof(IEnumerable<>)) //set or list/array etc
                 {
-                    throw new NLogConfigurationException("Cannot create instance of {0} for value {1}", type.ToString(), valueRaw);
-                }
+                    //note: type.GenericTypeArguments is .NET 4.5+ 
+                    var propertyType = type.GetGenericArguments()[0];
 
-                var values = valueRaw.SplitQuoted(',', '\'', '\\');
-
-                foreach (var value in values)
-                {
-                    //todo parse once type?
-                    if (!(TryGetEnumValue(propertyType, value, out newValue, false)
-                    || TryImplicitConversion(propertyType, value, out newValue)
-                    || TrySpecialConversion(propertyType, value, out newValue)
-                    || TryTypeConverterConversion(propertyType, value, out newValue)))
+                    var listType = isSet ? typeof(HashSet<>) : typeof(List<>);
+                    var genericArgs = propertyType;
+                    var concreteType = listType.MakeGenericType(genericArgs);
+                    var newList = Activator.CreateInstance(concreteType);
+                    //no support for array
+                    if (newList == null)
                     {
-                        newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
+                        throw new NLogConfigurationException("Cannot create instance of {0} for value {1}", type.ToString(), valueRaw);
                     }
-                    list.Add(newValue);
-                }
 
-                newValue = list;
-                return true;
+                    var values = valueRaw.SplitQuoted(',', '\'', '\\');
+
+                    var collectionAddMethod = concreteType.GetMethod("Add", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+
+                    if (collectionAddMethod == null)
+                    {
+                        throw new NLogConfigurationException("Add method on type {0} for value {1} not found", type.ToString(), valueRaw);
+                    }
+
+                    foreach (var value in values)
+                    {
+                        if (!(TryGetEnumValue(propertyType, value, out newValue, false)
+                               || TryImplicitConversion(propertyType, value, out newValue)
+                               || TrySpecialConversion(propertyType, value, out newValue)
+                               || TryTypeConverterConversion(propertyType, value, out newValue)))
+                        {
+                            newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
+                        }
+
+                        collectionAddMethod.Invoke(newList, new object[] { newValue });
+
+                    }
+
+
+                    newValue = newList;
+                    return true;
+                }
             }
 
             newValue = null;
