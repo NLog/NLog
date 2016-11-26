@@ -65,7 +65,8 @@ namespace NLog.Targets
         /// Get or sets the object-factory-pool configuration <see cref="PoolSetup"/> for the Target
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
-        public PoolSetup PoolSetup { get; set; }
+        public PoolSetup PoolSetup { get { return poolSetup.HasValue ? poolSetup.Value : (LogManager.LogFactory != null ? LogManager.LogFactory.DefaultPoolSetup : PoolSetup.None); } set { poolSetup = value; } }
+        internal PoolSetup? poolSetup;
 
         /// <summary>
         /// Gets the object which can be used to synchronize asynchronous operations that must rely on the .

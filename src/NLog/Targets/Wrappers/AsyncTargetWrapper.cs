@@ -200,8 +200,9 @@ namespace NLog.Targets.Wrappers
 
             base.InitializeTarget();
 
-            if (PoolSetup != PoolSetup.None && WrappedTarget.PoolSetup == PoolSetup.None)
+            if (PoolSetup != PoolSetup.None && (!WrappedTarget.poolSetup.HasValue || WrappedTarget.poolSetup.Value == PoolSetup.None))
             {
+                WrappedTarget.PoolSetup = PoolSetup;
                 WrappedTarget._objectFactory = _objectFactory;
             }
             this.RequestQueue.Clear();
