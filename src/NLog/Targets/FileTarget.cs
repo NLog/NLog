@@ -1025,7 +1025,7 @@ namespace NLog.Targets
 
             bool objectPoolEnabled = !ReferenceEquals(_objectFactory, Internal.PoolFactory.LogEventObjectFactory.Instance);
 
-            using (var ms = _objectFactory.CreateMemoryStream(256 * logEvents.Count))
+            using (var ms = _objectFactory.CreateMemoryStream(objectPoolEnabled ? 256 * logEvents.Count : 0))
             using (var targetStream = objectPoolEnabled ? _objectFactory.CreateMemoryStream(1024) : null)
             using (var targetBuilder = objectPoolEnabled ? _objectFactory.CreateStringBuilder(1024) : null)
             {
