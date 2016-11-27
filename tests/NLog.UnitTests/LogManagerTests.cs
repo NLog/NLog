@@ -261,7 +261,6 @@ namespace NLog.UnitTests
             LogManager.Configuration = null;
         }
 
-#if !SILVERLIGHT
         private int _reloadCounter = 0;
 
         private void WaitForConfigReload(int counter)
@@ -379,7 +378,6 @@ namespace NLog.UnitTests
                 }
             }
         }
-#endif
 
         [Fact]
         public void GivenCurrentClass_WhenGetCurrentClassLogger_ThenLoggerShouldBeCurrentClass()

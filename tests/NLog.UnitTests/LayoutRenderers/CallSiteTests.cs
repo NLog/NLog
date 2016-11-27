@@ -48,7 +48,6 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class CallSiteTests : NLogTestBase
     {
-#if !SILVERLIGHT
         [Fact]
         public void HiddenAssemblyTest()
         {
@@ -115,9 +114,7 @@ namespace NLog.UnitTests.LayoutRenderers
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
         }
-#endif
 
-#if !SILVERLIGHT
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
@@ -147,7 +144,6 @@ namespace NLog.UnitTests.LayoutRenderers
 #line default
 #endif
         }
-#endif
 
         [Fact]
         public void MethodNameTest()
