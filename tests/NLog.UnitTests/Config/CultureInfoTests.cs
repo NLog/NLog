@@ -169,6 +169,7 @@ namespace NLog.UnitTests.Config
             Assert.True(output.Length >= 1);
             Assert.True("012345678".IndexOf(output[0]) > 0);
         }
+#endif
 
         [Fact]
         public void AllEventPropRendererCultureTest()
@@ -244,6 +245,5 @@ namespace NLog.UnitTests.Config
                 Assert.Equal(target.Logs[0], target.Logs[1]);
             }
         }
-#endif
     }
 }
