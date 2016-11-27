@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
@@ -68,5 +66,3 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
-
-#endif

@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
-
 #define DEBUG
 
 namespace NLog.UnitTests
@@ -311,4 +309,3 @@ namespace NLog.UnitTests
     }
 }
 
-#endif

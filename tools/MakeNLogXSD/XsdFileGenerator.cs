@@ -301,6 +301,12 @@ namespace MakeNLogXSD
 
         private static string GetXsdType(string apiTypeName, bool attribute)
         {
+
+            if (string.IsNullOrWhiteSpace(apiTypeName))
+            {
+                throw new NotSupportedException("Unknown API type '" + apiTypeName + "'.");
+            }
+
             switch (apiTypeName)
             {
                 case "Layout":
@@ -342,7 +348,22 @@ namespace MakeNLogXSD
                 case "System.Uri":
                     return "xs:anyURI";
 
+                case "System.TimeSpan":
+                    return "xs:string";
+
                 default:
+                    if (
+                        apiTypeName.StartsWith("System.Collections.Generic.ISet")|| 
+                        apiTypeName.StartsWith("System.Collections.Generic.HashSet") ||
+                        apiTypeName.StartsWith("System.Collections.Generic.IList") ||
+                        apiTypeName.StartsWith("System.Collections.Generic.List") ||
+                        apiTypeName.StartsWith("System.Collections.Generic.IEnumerable")
+                        )
+                    {
+                        //comma separated string
+                        return "xs:string";
+                    }
+
                     throw new NotSupportedException("Unknown API type '" + apiTypeName + "'.");
             }
         }

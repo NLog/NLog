@@ -39,7 +39,6 @@ using System.Xml;
 using NLog.Config;
 using NLog.UnitTests.LayoutRenderers;
 
-#if !SILVERLIGHT
 
 namespace NLog.UnitTests
 {
@@ -378,4 +377,3 @@ class C1
     }
 }
 
-#endif

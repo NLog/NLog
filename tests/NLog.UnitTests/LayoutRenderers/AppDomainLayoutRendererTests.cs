@@ -35,8 +35,6 @@ using System;
 using System.Linq;
 using Xunit;
 
-#if !SILVERLIGHT
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
@@ -77,5 +75,3 @@ namespace NLog.UnitTests.LayoutRenderers
 
     }
 }
-
-#endif
