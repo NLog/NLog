@@ -1875,7 +1875,7 @@ namespace NLog.UnitTests.Targets
         private void FileTarget_ArchiveNumbering_DateAndSequenceTests(bool enableCompression, string fileTxt, string archiveFileName)
         {
             const string archiveDateFormat = "yyyy-MM-dd";
-            const int archiveAboveSize = 1000;
+            const int archiveAboveSize = 100;
 
             var tempPath = ArchiveFileNameHelper.GenerateTempPath();
             Layout logFile = Path.Combine(tempPath, fileTxt);
@@ -1902,11 +1902,11 @@ namespace NLog.UnitTests.Targets
 
                 // we emit 5 * 250 *(3 x aaa + \n) bytes
                 // so that we should get a full file + 3 archives
-                Generate1000BytesLog('a');
-                Generate1000BytesLog('b');
-                Generate1000BytesLog('c');
-                Generate1000BytesLog('d');
-                Generate1000BytesLog('e');
+                Generate100BytesLog('a');
+                Generate100BytesLog('b');
+                Generate100BytesLog('c');
+                Generate100BytesLog('d');
+                Generate100BytesLog('e');
 
                 string renderedArchiveFileName = archiveFileName.Replace("{#}", DateTime.Now.ToString(archiveDateFormat));
 
@@ -1923,13 +1923,14 @@ namespace NLog.UnitTests.Targets
                 ArchiveFileNameHelper helper = new ArchiveFileNameHelper(tempPath, fileNameWithoutExt, extension);
 
 
+                var times = 25;
                 AssertFileContents(logFileName,
-                    StringRepeat(250, "eee\n"),
+                    StringRepeat(times, "eee\n"),
                     Encoding.UTF8);
 
-                assertFileContents(helper.GetFullPath(1), StringRepeat(250, "bbb\n"), Encoding.UTF8);
-                assertFileContents(helper.GetFullPath(2), StringRepeat(250, "ccc\n"), Encoding.UTF8);
-                assertFileContents(helper.GetFullPath(3), StringRepeat(250, "ddd\n"), Encoding.UTF8);
+                assertFileContents(helper.GetFullPath(1), StringRepeat(times, "bbb\n"), Encoding.UTF8);
+                assertFileContents(helper.GetFullPath(2), StringRepeat(times, "ccc\n"), Encoding.UTF8);
+                assertFileContents(helper.GetFullPath(3), StringRepeat(times, "ddd\n"), Encoding.UTF8);
 
                 Assert.False(helper.Exists(0), "First archive should have been deleted due to max archive count.");
                 Assert.False(helper.Exists(4), "Fifth archive must not have been created yet.");
