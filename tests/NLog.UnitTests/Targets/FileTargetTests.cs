@@ -964,7 +964,7 @@ namespace NLog.UnitTests.Targets
                 logger.Debug("123456789");
                 DateTime previousWriteTime = timeSource.Time;
 
-                const int daysToTestLogging = 5;
+                const int daysToTestLogging = 3;
                 const int intervalsPerDay = 24;
                 var loggingInterval = TimeSpan.FromHours(1);
                 for (var i = 0; i < daysToTestLogging * intervalsPerDay; ++i)
@@ -1003,9 +1003,9 @@ namespace NLog.UnitTests.Targets
                 //Setting the Configuration to [null] will result in a 'Dump' of the current log entries
                 LogManager.Configuration = null;
 
-                var files = Directory.GetFiles(archiveFolder).OrderBy(s => s).ToList();
+                var files = Directory.GetFiles(archiveFolder);
                 //the amount of archived files may not exceed the set 'MaxArchiveFiles'
-                Assert.Equal(maxArchiveFiles, files.Count);
+                Assert.Equal(maxArchiveFiles, files.Length);
 
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
