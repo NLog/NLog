@@ -117,8 +117,6 @@ namespace NLog.UnitTests.Targets.Wrappers
                     flushHit.Set();
                 });
 
-            Thread.Sleep(1000);
-
             flushHit.WaitOne();
             Assert.Null(flushException);
 
