@@ -1789,13 +1789,14 @@ namespace NLog.UnitTests.Targets
 
                 var threadID = Thread.CurrentThread.ManagedThreadId.ToString();
 
-                SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(fileTarget, 1000, AsyncTargetWrapperOverflowAction.Grow)
+                SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(fileTarget, 100, AsyncTargetWrapperOverflowAction.Grow)
                 {
                     Name = "AsyncMultiFileWrite_wrapper"
                 }, LogLevel.Debug);
                 LogManager.ThrowExceptions = true;
 
-                for (var i = 0; i < 250; ++i)
+                var times = 25;
+                for (var i = 0; i < times; ++i)
                 {
                     logger.Trace("@@@");
                     logger.Debug("aaa");
@@ -1810,19 +1811,19 @@ namespace NLog.UnitTests.Targets
                 Assert.False(File.Exists(Path.Combine(tempPath, "Trace.txt")));
 
                 AssertFileContents(Path.Combine(tempPath, "Debug.txt"),
-                    StringRepeat(250, "aaa " + threadID + "\n"), Encoding.UTF8);
+                    StringRepeat(times, "aaa " + threadID + "\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Info.txt"),
-                    StringRepeat(250, "bbb " + threadID + "\n"), Encoding.UTF8);
+                    StringRepeat(times, "bbb " + threadID + "\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Warn.txt"),
-                    StringRepeat(250, "ccc " + threadID + "\n"), Encoding.UTF8);
+                    StringRepeat(times, "ccc " + threadID + "\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Error.txt"),
-                    StringRepeat(250, "ddd " + threadID + "\n"), Encoding.UTF8);
+                    StringRepeat(times, "ddd " + threadID + "\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Fatal.txt"),
-                    StringRepeat(250, "eee " + threadID + "\n"), Encoding.UTF8);
+                    StringRepeat(times, "eee " + threadID + "\n"), Encoding.UTF8);
             }
             finally
             {
