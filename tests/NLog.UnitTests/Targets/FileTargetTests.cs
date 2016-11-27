@@ -1017,8 +1017,8 @@ namespace NLog.UnitTests.Targets
                 logger.Debug("1234567890");
                 LogManager.Configuration = null;
 
-                var files2 = Directory.GetFiles(archiveFolder).OrderBy(s => s).ToList();
-                Assert.Equal(maxArchiveFiles, files2.Count);
+                var files2 = Directory.GetFiles(archiveFolder);
+                Assert.Equal(maxArchiveFiles, files2.Length);
 
                 //the oldest file should be deleted
                 Assert.DoesNotContain(files[0], files2);
