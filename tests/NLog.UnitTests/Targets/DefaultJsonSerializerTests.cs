@@ -35,9 +35,7 @@ namespace NLog.UnitTests.Targets
 {
     using NLog.Targets;
     using Xunit;
-#if !SILVERLIGHT
     using Xunit.Extensions;
-#endif
     using System;
     using System.Linq;
     using System.Collections.Generic;
@@ -151,7 +149,6 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(expected, actual);
         }
 
-#if !SILVERLIGHT
         [Theory]
         [InlineData((int)177, "177")]
         [InlineData((long)32711520331, "32711520331")]
@@ -162,7 +159,6 @@ namespace NLog.UnitTests.Targets
             var actual = _serializer.SerializeObject(o);
             Assert.Equal(expected, actual);
         }
-#endif
 
         [Fact]
         public void SerializeBool_Test()

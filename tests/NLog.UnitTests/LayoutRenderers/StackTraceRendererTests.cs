@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System.Runtime.CompilerServices;
@@ -130,5 +128,3 @@ namespace NLog.UnitTests.LayoutRenderers
     }
 
 }
-
-#endif

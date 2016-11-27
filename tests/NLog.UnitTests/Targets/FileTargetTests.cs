@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
-
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -140,7 +138,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-#if !SILVERLIGHT && !MONO
+#if  !MONO
         const int FIVE_SECONDS = 5000;
 
         /// <summary>
@@ -3010,5 +3008,3 @@ namespace NLog.UnitTests.Targets
         }
     }
 }
-
-#endif

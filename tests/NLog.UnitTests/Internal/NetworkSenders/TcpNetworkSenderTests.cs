@@ -172,19 +172,11 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                     });
             }
 
-#if SILVERLIGHT
-            Assert.True(allSent.WaitOne(3000));
-#else
             Assert.True(allSent.WaitOne(3000, false));
-#endif
 
             var mre = new ManualResetEvent(false);
             sender.FlushAsync(ex => mre.Set());
-#if SILVERLIGHT
-            mre.WaitOne(3000);
-#else
             mre.WaitOne(3000, false);
-#endif
 
             var actual = sender.Log.ToString();
 

@@ -33,9 +33,7 @@
 
 using NLog.LayoutRenderers;
 using NLog.Targets;
-#if !SILVERLIGHT
 using Xunit.Extensions;
-#endif
 
 namespace NLog.UnitTests.Config
 {
@@ -110,7 +108,6 @@ namespace NLog.UnitTests.Config
                 Assert.Equal(expected, GetDebugLastMessage("debug", configuration));
             }
         }
-#if !SILVERLIGHT
 
         [Fact]
         public void EventPropRendererCultureTest()
@@ -172,7 +169,6 @@ namespace NLog.UnitTests.Config
             Assert.True(output.Length >= 1);
             Assert.True("012345678".IndexOf(output[0]) > 0);
         }
-#endif
 
         [Fact]
         public void AllEventPropRendererCultureTest()

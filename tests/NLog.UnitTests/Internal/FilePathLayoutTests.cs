@@ -33,8 +33,6 @@
 
 using NLog.Layouts;
 
-#if !SILVERLIGHT //xunit2
-
 namespace NLog.UnitTests.Internal
 {
     using NLog.Targets;
@@ -100,4 +98,3 @@ ${level}/test ", FilePathKind.Relative)]
 
     }
 }
-#endif

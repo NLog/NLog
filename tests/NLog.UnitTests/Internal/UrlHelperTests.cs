@@ -31,10 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
-#if !SILVERLIGHT
-//no silverlight for xunit InlineData
-
 using NLog.Internal;
 using NLog.Layouts;
 using Xunit;
@@ -118,4 +114,3 @@ namespace NLog.UnitTests.Internal
         }
     }
 }
-#endif

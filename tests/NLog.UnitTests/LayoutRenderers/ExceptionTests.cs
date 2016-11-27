@@ -478,7 +478,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.DoesNotThrow(action);
         }
 
-#if !NET3_5 && !SILVERLIGHT4
+#if !NET3_5
         [Fact]
         public void AggregateExceptionTest()
         {
