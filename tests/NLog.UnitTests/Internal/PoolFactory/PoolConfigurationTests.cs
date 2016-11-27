@@ -239,5 +239,42 @@ namespace NLog.UnitTests.Internal.PoolFactory
             Assert.True(report.Contains("dLoggeractive"), "dLoggeractive missing pool -> " + report);
             Assert.Equal(1000, target.Counter);
         }
+
+        [Fact]
+        public void TestDisabledLoggerPoolSetupConfig()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true' defaultPoolSetup='Active'>
+    <targets async='true'>
+        <target name='dtargetnopool' type='Debug' layout='${message}' poolSetup='None' />
+    </targets>
+
+    <rules>
+      <logger name='*' writeTo='dtargetnopool' minLevel=""Trace"">
+      </logger>
+    </rules>
+</nlog>");
+
+            LogManager.Configuration = configuration;
+            var logger = LogManager.GetLogger("dLoggernopool", NLog.Common.PoolSetup.None);
+            Assert.Equal(NLog.Common.PoolSetup.None, logger.PoolSetup);
+
+            var asynctarget = (NLog.Targets.Wrappers.AsyncTargetWrapper)configuration.FindTargetByName("dtargetnopool");
+            Assert.Equal(NLog.Common.PoolSetup.None, asynctarget.PoolSetup);
+            var target = (NLog.Targets.DebugTarget)asynctarget.WrappedTarget;
+            Assert.Equal(NLog.Common.PoolSetup.None, target.PoolSetup);
+
+            for (int i = 0; i < 1000; ++i)
+                logger.Debug("Test");
+
+            StringBuilder sb = new StringBuilder();
+            LogManager.LogFactory.GetPoolStatistics(sb);
+            string report = sb.ToString();
+            Assert.False(report.Contains("dtargetnopool"), "dtargetnopool not using default pool -> " + report);
+            Assert.False(report.Contains("dLoggernopool"), "dLoggernopool not using default pool -> " + report);
+
+            LogManager.Configuration = null;    // Flush
+            Assert.Equal(1000, target.Counter);
+        }
     }
 }

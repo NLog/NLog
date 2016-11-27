@@ -192,15 +192,16 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected override void InitializeTarget()
         {
-            if (PoolSetup != PoolSetup.None)
+            if (!poolSetup.HasValue && WrappedTarget != null && WrappedTarget.poolSetup.HasValue)
             {
-                if (LogManager.LogFactory != null)
-                    LogManager.LogFactory.ConfigurePool(ref _objectFactory, this.Name, this.PoolSetup, false, this.QueueLimit);
+                PoolSetup = WrappedTarget.poolSetup.Value;  // support override with async=true
             }
+            if (LogManager.LogFactory != null)
+                LogManager.LogFactory.ConfigurePool(ref _objectFactory, this.Name, this.PoolSetup, false, this.QueueLimit);
 
             base.InitializeTarget();
 
-            if (PoolSetup != PoolSetup.None && (!WrappedTarget.poolSetup.HasValue || WrappedTarget.poolSetup.Value == PoolSetup.None))
+            if (PoolSetup != PoolSetup.None && !WrappedTarget.poolSetup.HasValue)
             {
                 WrappedTarget.PoolSetup = PoolSetup;
                 WrappedTarget._objectFactory = _objectFactory;
