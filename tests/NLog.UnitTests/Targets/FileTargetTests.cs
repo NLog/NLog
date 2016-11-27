@@ -1610,7 +1610,7 @@ namespace NLog.UnitTests.Targets
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(tempPath, "archive" + slash + "{####}.txt"),
-                    ArchiveAboveSize = 1000,
+                    ArchiveAboveSize = 100,
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = ArchiveNumberingMode.Rolling,
                     Layout = "${message}",
@@ -1621,36 +1621,37 @@ namespace NLog.UnitTests.Targets
 
                 // we emit 5 * 250 * (3 x aaa + \n) bytes
                 // so that we should get a full file + 4 archives
-                Generate1000BytesLog('a');
-                Generate1000BytesLog('b');
-                Generate1000BytesLog('c');
-                Generate1000BytesLog('d');
-                Generate1000BytesLog('e');
+                Generate100BytesLog('a');
+                Generate100BytesLog('b');
+                Generate100BytesLog('c');
+                Generate100BytesLog('d');
+                Generate100BytesLog('e');
 
                 LogManager.Configuration = null;
 
+                var times = 25;
                 AssertFileContents(logFile,
-                    StringRepeat(250, "eee\n"),
+                    StringRepeat(times, "eee\n"),
                     Encoding.UTF8);
 
                 AssertFileContents(
                     Path.Combine(tempPath, "archive" + slash + "0000.txt"),
-                    StringRepeat(250, "ddd\n"),
+                    StringRepeat(times, "ddd\n"),
                     Encoding.UTF8);
 
                 AssertFileContents(
                     Path.Combine(tempPath, "archive" + slash + "0001.txt"),
-                    StringRepeat(250, "ccc\n"),
+                    StringRepeat(times, "ccc\n"),
                     Encoding.UTF8);
 
                 AssertFileContents(
                     Path.Combine(tempPath, "archive" + slash + "0002.txt"),
-                    StringRepeat(250, "bbb\n"),
+                    StringRepeat(times, "bbb\n"),
                     Encoding.UTF8);
 
                 AssertFileContents(
                     Path.Combine(tempPath, "archive" + slash + "0003.txt"),
-                    StringRepeat(250, "aaa\n"),
+                    StringRepeat(times, "aaa\n"),
                     Encoding.UTF8);
             }
             finally
