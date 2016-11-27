@@ -41,7 +41,6 @@
     <IgnoreBuildFailures Condition=" '$(BuildAllFrameworks)'=='true' ">true</IgnoreBuildFailures>
     <IgnoreBuildFailures Condition=" '$(IsNightlyBuild)'=='true' ">false</IgnoreBuildFailures>
     <ToolsDir>$(BaseOutputDirectory)\bin\Tools</ToolsDir>
-    <SLTestRunner>$(BaseOutputDirectory)\..\src\packages\StatLight.1.6.4375\tools\StatLight.exe</SLTestRunner>
     <DumpApiXml>$(ToolsDir)\DumpApiXml.exe</DumpApiXml>
     <MergeApiXml>$(ToolsDir)\MergeApiXml.exe</MergeApiXml>
     <MakeNLogXSD>$(ToolsDir)\MakeNLogXSD.exe</MakeNLogXSD>
@@ -240,8 +239,7 @@
     <CallTarget Targets="NetFx35Test" Condition="'$(BuildNetFX35)'=='true'"/>
     <CallTarget Targets="NetFx40Test" Condition="'$(BuildNetFX40)'=='true'"/>
     <CallTarget Targets="NetFx45Test" Condition="'$(BuildNetFX45)'=='true'"/>
-    <CallTarget Targets="SL4Test" Condition="'$(BuildSL4)'=='true'"/>
-    <CallTarget Targets="SL5Test" Condition="'$(BuildSL5)'=='true'"/>
+
   </Target>
 
   <Target Name="RunNightlyTests">
@@ -262,15 +260,6 @@
     <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.5\NLog.UnitTests.dll" ContinueOnError="true" ShadowCopy="false" />
   </Target>
 
-  <Target Name="SL4Test">
-    <Exec Command='"$(SLTestRunner)" -x=NLog.UnitTests.xap --teamcity'
-          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 4.0" IgnoreExitCode="true" />
-  </Target>
-
-  <Target Name="SL5Test">
-    <Exec Command='"$(SLTestRunner)" -x=NLog.UnitTests.xap --teamcity'
-          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 5.0" IgnoreExitCode="true" />
-  </Target>
 
   <Target Name="CheckinSuite">
     <CallTarget Targets="SyncProjectItems" />

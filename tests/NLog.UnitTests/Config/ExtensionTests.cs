@@ -43,11 +43,7 @@ namespace NLog.UnitTests.Config
     public class ExtensionTests : NLogTestBase
     {
         private string extensionAssemblyName1 = "SampleExtensions";
-#if SILVERLIGHT
-        private string extensionAssemblyFullPath1 = "SampleExtensions.dll";
-#else
         private string extensionAssemblyFullPath1 = Path.GetFullPath("SampleExtensions.dll");
-#endif
         
         [Fact]
         public void ExtensionTest1()
@@ -368,7 +364,6 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(d1Target);
         }
 
-#if !SILVERLIGHT
         [Fact]
         public void Extension_should_be_auto_loaded_when_following_NLog_dll_format()
         {
@@ -387,6 +382,5 @@ namespace NLog.UnitTests.Config
             var autoLoadedTarget = configuration.FindTargetByName("t");
             Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().FullName);
         }
-#endif
     }
 }

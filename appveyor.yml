@@ -1,25 +1,28 @@
-version: 4.0.{build}
+version: $(nuget_version).{build}
+environment:
+  nuget_version: 4.4
+  nuget_patch_version: 1-test
+
 clone_folder: c:\projects\nlog
-build_script:
-  - Msbuild.exe src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildSL5=true /p:BuildSL4=true /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true 
-  - Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildWP8=true            /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.9.9 /p:BuildVersion=4.9.9
-  - if not defined build_with_xamarin appveyor AddCompilationMessage "Warning, Android and iOS compilation were not performed because AppVeyor account must be set" -Category Warning
-  - if defined build_with_xamarin Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildXamarinAndroid=true /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.9.9 /p:BuildVersion=4.9.9
-  - if defined build_with_xamarin Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildXamarinIOS=true     /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.9.9 /p:BuildVersion=4.9.9
+
+build_script:                                                                                                                
+  - msbuild  src/NLog.proj /verbosity:minimal /t:rebuild /t:xsd /t:NuGetPackage /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.4.0 /p:BuildVersion=4.4-rc1 /p:configuration=release /p:BuildLabelOverride=NONE 
+  - msbuild  src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true 
+ 
 test_script:
   - tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
   - xunit.console.clr4 "build\bin\Debug\.NET Framework 3.5\NLog.UnitTests.dll" /appveyor /noshadow
   - xunit.console.clr4 "build\bin\Debug\.NET Framework 4.0\NLog.UnitTests.dll" /appveyor /noshadow
-  - xunit.console.clr4 "build\bin\Debug\.NET Framework 4.5\NLog.UnitTests.dll" /appveyor /noshadow
   - nuget.exe install OpenCover -ExcludeVersion
-  - dir
   - OpenCover\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"\"C:\projects\nlog\build\bin\Debug\.NET Framework 4.5\NLog.UnitTests.dll\" -appveyor -noshadow"  -returntargetcode -filter:"+[NLog]* +[NLog.Extended]* -[NLog]JetBrains.Annotations.*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:coverage.xml
   - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
   - pip install codecov
   - codecov -f "coverage.xml"
 deploy: off
-# preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
 cache:
-  - packages -> **\packages.config
+  - src\packages -> **\packages.config
 services:
   - mssql2012sp1
+
+artifacts:
+  - path: 'build\bin\release\NuGetPackages\*.nupkg'

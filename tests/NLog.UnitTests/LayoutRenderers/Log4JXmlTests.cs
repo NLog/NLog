@@ -125,19 +125,11 @@ namespace NLog.UnitTests.LayoutRenderers
                                 switch (name)
                                 {
                                     case "log4japp":
-#if SILVERLIGHT
-                                        Assert.Equal("Silverlight Application", value);
-#else
                                         Assert.Equal(AppDomain.CurrentDomain.FriendlyName + "(" + Process.GetCurrentProcess().Id + ")", value);
-#endif
                                         break;
 
                                     case "log4jmachinename":
-#if !SILVERLIGHT
                                         Assert.Equal(Environment.MachineName, value);
-#else
-                                        Assert.Equal("silverlight", value);
-#endif
                                         break;
 
                                     case "foo1":

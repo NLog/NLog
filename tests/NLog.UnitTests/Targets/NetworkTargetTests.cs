@@ -588,7 +588,6 @@ namespace NLog.UnitTests.Targets
             Assert.True(result.IndexOf("4: close") != -1);
         }
 
-#if !SILVERLIGHT
         [Fact]
         public void NetworkTargetTcpTest()
         {
@@ -819,7 +818,6 @@ namespace NLog.UnitTests.Targets
                 Assert.NotNull(ex);
             }
         }
-#endif
 
         [Fact]
         public void NetworkTargetSendFailureWithoutKeepAliveTests()

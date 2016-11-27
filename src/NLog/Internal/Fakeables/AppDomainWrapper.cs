@@ -41,7 +41,9 @@ namespace NLog.Internal.Fakeables
     /// </summary>
     public class AppDomainWrapper : IAppDomain
     {
+#if !SILVERLIGHT
         private readonly AppDomain currentAppDomain;
+#endif
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppDomainWrapper"/> class.

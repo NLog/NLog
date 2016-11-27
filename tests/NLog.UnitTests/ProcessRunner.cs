@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
-
 namespace NLog.UnitTests
 {
 
@@ -137,5 +135,3 @@ class C1
         }
     }
 }
-
-#endif

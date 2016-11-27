@@ -499,7 +499,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             var logger = LogManager.GetCurrentClassLogger();
 
             var txt = "message 1 with a JSON POST";
-            var count = 200;
+            var count = 101;
             var context = new LogDocController.TestContext(1, count, false, txt, "info");
 
             StartOwinDocTest(context, () =>
@@ -547,7 +547,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             var logger = LogManager.GetCurrentClassLogger();
 
             var txt = "message 1 with a XML POST";
-            var count = 250;
+            var count = 101;
             var context = new LogDocController.TestContext(1, count, true, txt, "info");
 
             StartOwinDocTest(context, () =>
