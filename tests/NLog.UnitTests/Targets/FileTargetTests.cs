@@ -2309,7 +2309,7 @@ namespace NLog.UnitTests.Targets
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(tempPath, "archive", "{#}." + archiveExtension),
                     ArchiveDateFormat = "yyyy-MM-dd",
-                    ArchiveAboveSize = 1000,
+                    ArchiveAboveSize = 100,
                     LineEnding = LineEndingMode.LF,
                     Layout = "${message}",
                     MaxArchiveFiles = maxArchiveFiles,
@@ -2320,17 +2320,17 @@ namespace NLog.UnitTests.Targets
 
                 ArchiveFileNameHelper helper = new ArchiveFileNameHelper(Path.Combine(tempPath, "archive"), DateTime.Now.ToString(fileTarget.ArchiveDateFormat), archiveExtension);
 
-                Generate1000BytesLog('a');
+                Generate100BytesLog('a');
 
                 for (int i = 0; i < maxArchiveFiles; i++)
                 {
-                    Generate1000BytesLog('a');
+                    Generate100BytesLog('a');
                     Assert.True(helper.Exists(i), string.Format("file {0} is missing", i));
                 }
 
-                for (int i = maxArchiveFiles; i < 100; i++)
+                for (int i = maxArchiveFiles; i < 21; i++)
                 {
-                    Generate1000BytesLog('b');
+                    Generate100BytesLog('b');
                     var numberToBeRemoved = i - maxArchiveFiles; // number 11, we need to remove 1 etc
                     Assert.True(!helper.Exists(numberToBeRemoved), string.Format("archive file {0} has not been removed! We are created file {1}", numberToBeRemoved, i));
                 }
@@ -2348,6 +2348,15 @@ namespace NLog.UnitTests.Targets
         private void Generate1000BytesLog(char c)
         {
             for (var i = 0; i < 250; ++i)
+            {
+                //3 chars with newlines = 4 bytes
+                logger.Debug(new string(c, 3));
+            }
+        }
+
+        private void Generate100BytesLog(char c)
+        {
+            for (var i = 0; i < 25; ++i)
             {
                 //3 chars with newlines = 4 bytes
                 logger.Debug(new string(c, 3));
