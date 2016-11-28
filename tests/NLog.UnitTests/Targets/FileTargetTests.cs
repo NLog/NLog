@@ -168,6 +168,9 @@ namespace NLog.UnitTests.Targets
         [PropertyData("SimpleFileTest_TestParameters")]
         public void NonExistingDriveShouldNotDelayMuch(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool poolSetupActive)
         {
+            if (poolSetupActive)
+                return; // No need to test with pooling
+
             var nonExistingDrive = GetFirstNonExistingDriveWindows();
 
             var logFile = nonExistingDrive + "://dont-extist/no-timeout.log";
@@ -183,7 +186,6 @@ namespace NLog.UnitTests.Targets
                     NetworkWrites = networkWrites,
                     ForceManaged = forceManaged,
                     ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
-                    PoolSetup = poolSetupActive ? NLog.Common.PoolSetup.Active : NLog.Common.PoolSetup.None,
                 });
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
@@ -1090,8 +1092,7 @@ namespace NLog.UnitTests.Targets
                     from includeDateInLogFilePath in booleanValues
                     from includeSequenceInArchive in booleanValues
                     from forceManaged in booleanValues
-                    from poolSetupActive in booleanValues
-                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, includeDateInLogFilePath, includeSequenceInArchive, forceManaged, forceMutexConcurrentWrites, poolSetupActive };
+                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, includeDateInLogFilePath, includeSequenceInArchive, forceManaged, forceMutexConcurrentWrites };
             }
         }
 
@@ -1102,7 +1103,7 @@ namespace NLog.UnitTests.Targets
 
         [Theory]
         [PropertyData("DateArchive_ArchiveOnceOnly_TestParameters")]
-        public void DateArchive_ArchiveOnceOnly(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool dateInLogFilePath, bool includeSequenceInArchive, bool forceManaged, bool forceMutexConcurrentWrites, bool poolSetupActive)
+        public void DateArchive_ArchiveOnceOnly(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool dateInLogFilePath, bool includeSequenceInArchive, bool forceManaged, bool forceMutexConcurrentWrites)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempPath, dateInLogFilePath ? "file_${shortdate}.txt" : "file.txt");
@@ -1123,7 +1124,6 @@ namespace NLog.UnitTests.Targets
                     NetworkWrites = networkWrites,
                     ForceManaged = forceManaged,
                     ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
-                    PoolSetup = poolSetupActive ? NLog.Common.PoolSetup.Active : NLog.Common.PoolSetup.None,
                 });
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
@@ -1245,15 +1245,19 @@ namespace NLog.UnitTests.Targets
                     from includeSequenceInArchive in booleanValues
                     from enableArchiveCompression in booleanValues
                     from forceManaged in booleanValues
-                    from poolSetupActive in booleanValues
-                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, includeDateInLogFilePath, includeSequenceInArchive, enableArchiveCompression, forceManaged, forceMutexConcurrentWrites, poolSetupActive };
+                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, includeDateInLogFilePath, includeSequenceInArchive, enableArchiveCompression, forceManaged, forceMutexConcurrentWrites };
             }
         }
 
         [Theory]
         [PropertyData("DateArchive_AllLoggersTransferToCurrentLogFile_TestParameters")]
-        public void DateArchive_AllLoggersTransferToCurrentLogFile(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeDateInLogFilePath, bool includeSequenceInArchive, bool enableArchiveCompression, bool forceManaged, bool forceMutexConcurrentWrites, bool poolSetupActive)
+        public void DateArchive_AllLoggersTransferToCurrentLogFile(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeDateInLogFilePath, bool includeSequenceInArchive, bool enableArchiveCompression, bool forceManaged, bool forceMutexConcurrentWrites)
         {
+#if !NET4_5
+            if (enableArchiveCompression)
+                return; // No need to test with compression
+#endif
+
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var logfile = Path.Combine(tempPath, includeDateInLogFilePath ? "file_${shortdate}.txt" : "file.txt");
             try
@@ -1278,7 +1282,6 @@ namespace NLog.UnitTests.Targets
                     NetworkWrites = networkWrites,
                     ForceManaged = forceManaged,
                     ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
-                    PoolSetup = poolSetupActive ? NLog.Common.PoolSetup.Active : NLog.Common.PoolSetup.None,
                 });
                 var logger1Rule = new LoggingRule("logger1", LogLevel.Debug, fileTarget1);
                 config.LoggingRules.Add(logger1Rule);
@@ -1300,7 +1303,6 @@ namespace NLog.UnitTests.Targets
                     NetworkWrites = networkWrites,
                     ForceManaged = forceManaged,
                     ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
-                    PoolSetup = poolSetupActive ? NLog.Common.PoolSetup.Active : NLog.Common.PoolSetup.None,
                 });
                 var logger2Rule = new LoggingRule("logger2", LogLevel.Debug, fileTarget2);
                 config.LoggingRules.Add(logger2Rule);
@@ -1959,7 +1961,8 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.ThrowExceptions = true;
 
-                for (var i = 0; i < 250; ++i)
+                int times = 25;
+                for (var i = 0; i < times; ++i)
                 {
                     poolLogger.Trace("@@@");
                     poolLogger.Debug("aaa");
@@ -1982,19 +1985,19 @@ namespace NLog.UnitTests.Targets
                 Assert.False(File.Exists(Path.Combine(tempPath, "Trace.txt")));
 
                 AssertFileContents(Path.Combine(tempPath, "Debug.txt"),
-                    StringRepeat(500, "aaa " + threadID + "\n"), Encoding.UTF8);
+                    StringRepeat(times * 2, "aaa " + threadID + "\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Info.txt"),
-                    StringRepeat(500, "bbb " + threadID + "\n"), Encoding.UTF8);
+                    StringRepeat(times * 2, "bbb " + threadID + "\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Warn.txt"),
-                    StringRepeat(500, "ccc " + threadID + "\n"), Encoding.UTF8);
+                    StringRepeat(times * 2, "ccc " + threadID + "\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Error.txt"),
-                    StringRepeat(500, "ddd " + threadID + "\n"), Encoding.UTF8);
+                    StringRepeat(times * 2, "ddd " + threadID + "\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Fatal.txt"),
-                    StringRepeat(500, "eee " + threadID + "\n"), Encoding.UTF8);
+                    StringRepeat(times * 2, "eee " + threadID + "\n"), Encoding.UTF8);
             }
             finally
             {
@@ -2871,7 +2874,7 @@ namespace NLog.UnitTests.Targets
                 var app1DebugNm = "App1_Debug";
                 var app2Nm = "App2";
 
-                #region Create Mock Archive Files
+#region Create Mock Archive Files
                 var now = DateTime.Now;
                 var i = 0;
                 // create mock app1_trace archives (matches app1 config for trace target)
@@ -2912,7 +2915,7 @@ namespace NLog.UnitTests.Targets
                     }
                     i--;
                 }
-                #endregion
+#endregion
 
                 // Create same app1 Debug file as config defines. Will force archiving to happen on startup
                 File.WriteAllLines(logdir + "\\" + app1DebugNm + fileExt, new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
@@ -3010,7 +3013,7 @@ namespace NLog.UnitTests.Targets
                 var app1Nm = "App1";
                 var app2Nm = "App2";
 
-                #region Create Mock Archive Files
+#region Create Mock Archive Files
                 var now = DateTime.Now;
                 var i = 0;
                 // create mock app1 archives (matches app1 config for target)
@@ -3038,7 +3041,7 @@ namespace NLog.UnitTests.Targets
                     }
                     i--;
                 }
-                #endregion
+#endregion
 
                 // Create same app1 file as config defines. Will force archiving to happen on startup
                 File.WriteAllLines(logdir + "\\" + app1Nm + fileExt, new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
