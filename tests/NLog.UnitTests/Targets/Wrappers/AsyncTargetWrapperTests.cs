@@ -93,7 +93,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 int flushCounter = 0;
                 AsyncContinuation flushHandler = (ex) => { ++flushCounter; };
 
-                List<KeyValuePair<LogEventInfo, AsyncContinuation>> itemPrepareList = new List<KeyValuePair<LogEventInfo, AsyncContinuation>>(2500);
+                List<KeyValuePair<LogEventInfo, AsyncContinuation>> itemPrepareList = new List<KeyValuePair<LogEventInfo, AsyncContinuation>>(500);
                 List<int> itemWrittenList = new List<int>(itemPrepareList.Capacity);
                 for (int i = 0; i< itemPrepareList.Capacity; ++i)
                 {
@@ -125,7 +125,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 }
 
 #if MONO || NET3_5
-                Assert.True(elapsedMilliseconds < 2500);    // Skip timing test when running within OpenCover.Console.exe
+                Assert.True(elapsedMilliseconds < 500);    // Skip timing test when running within OpenCover.Console.exe
 #endif
 
                 targetWrapper.Flush(flushHandler);
@@ -414,7 +414,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         {
             var asyncTarget = new AsyncTargetWrapper
             {
-                TimeToSleepBetweenBatches = 2000,
+                TimeToSleepBetweenBatches = 1000,
                 WrappedTarget = new DebugTarget(),
                 Name = "FlushingMultipleTimesSimultaneous_Wrapper"
             };

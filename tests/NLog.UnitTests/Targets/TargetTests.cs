@@ -468,7 +468,7 @@ namespace NLog.UnitTests.Targets
             {
                 try
                 {
-                    target.BlockingOperation(1000);
+                    target.BlockingOperation(500);
                 }
                 catch (Exception ex)
                 {

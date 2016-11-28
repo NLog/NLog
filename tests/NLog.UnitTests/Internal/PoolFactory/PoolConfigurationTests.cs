@@ -154,7 +154,7 @@ namespace NLog.UnitTests.Internal.PoolFactory
             var target = (NLog.Targets.DebugTarget)configuration.FindTargetByName("dtarget");
             Assert.Equal(NLog.Common.PoolSetup.Active, target.PoolSetup);
 
-            for (int i = 0; i < 1000; ++i)
+            for (int i = 0; i < 100; ++i)
                 logger.Debug("Test");    // Sync-call
 
             StringBuilder sb = new StringBuilder();
@@ -163,7 +163,7 @@ namespace NLog.UnitTests.Internal.PoolFactory
             Assert.NotEqual(string.Empty, sb.ToString());
             Assert.True(report.Contains("dtarget"), "dtarget missing pool -> " + report);
             Assert.False(report.Contains("dLoggersync"), "dLoggersync not using default pool -> " + report);
-            Assert.Equal(1000, target.Counter);
+            Assert.Equal(100, target.Counter);
         }
 
         [Fact]
@@ -192,7 +192,7 @@ namespace NLog.UnitTests.Internal.PoolFactory
 
             var wrappedTarget = (NLog.Targets.DebugTarget)configuration.FindTargetByName("dtargetwrapped");
 
-            for (int i = 0; i < 1000; ++i)
+            for (int i = 0; i < 100; ++i)
                 logger.Debug("Test");    // Sync-call
 
             StringBuilder sb = new StringBuilder();
@@ -203,7 +203,7 @@ namespace NLog.UnitTests.Internal.PoolFactory
             Assert.False(report.Contains("dLoggerasync"), "dLoggerasync not using default pool -> " + report);
 
             LogManager.Configuration = null;    // Flush
-            Assert.Equal(1000, wrappedTarget.Counter);
+            Assert.Equal(100, wrappedTarget.Counter);
         }
 
         [Fact]
@@ -228,7 +228,7 @@ namespace NLog.UnitTests.Internal.PoolFactory
             var target = (NLog.Targets.DebugTarget)configuration.FindTargetByName("dtarget");
             Assert.Equal(NLog.Common.PoolSetup.Active, target.PoolSetup);
 
-            for (int i = 0; i < 1000; ++i)
+            for (int i = 0; i < 100; ++i)
                 logger.Debug("Test");    // Sync-call
 
             StringBuilder sb = new StringBuilder();
@@ -237,7 +237,7 @@ namespace NLog.UnitTests.Internal.PoolFactory
             Assert.NotEqual(string.Empty, sb.ToString());
             Assert.True(report.Contains("dtarget"), "dtarget missing pool -> " + report);
             Assert.True(report.Contains("dLoggeractive"), "dLoggeractive missing pool -> " + report);
-            Assert.Equal(1000, target.Counter);
+            Assert.Equal(100, target.Counter);
         }
 
         [Fact]
@@ -264,7 +264,7 @@ namespace NLog.UnitTests.Internal.PoolFactory
             var target = (NLog.Targets.DebugTarget)asynctarget.WrappedTarget;
             Assert.Equal(NLog.Common.PoolSetup.None, target.PoolSetup);
 
-            for (int i = 0; i < 1000; ++i)
+            for (int i = 0; i < 100; ++i)
                 logger.Debug("Test");
 
             StringBuilder sb = new StringBuilder();
@@ -274,7 +274,7 @@ namespace NLog.UnitTests.Internal.PoolFactory
             Assert.False(report.Contains("dLoggernopool"), "dLoggernopool not using default pool -> " + report);
 
             LogManager.Configuration = null;    // Flush
-            Assert.Equal(1000, target.Counter);
+            Assert.Equal(100, target.Counter);
         }
     }
 }
