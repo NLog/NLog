@@ -36,6 +36,7 @@ using System;
 namespace NLog.Layouts
 {
     using System.ComponentModel;
+    using System.Text;
     using NLog.Config;
     using NLog.Internal;
 
@@ -69,6 +70,9 @@ namespace NLog.Layouts
 		{
             get { return this.threadAgnostic; }
         }
+
+        private const int MaxInitialRenderBufferLength = 16384;
+        private int maxRenderedLength;
 
         /// <summary>
         /// Gets the logging configuration this target is part of.
@@ -140,6 +144,60 @@ namespace NLog.Layouts
             }
 
             return this.GetFormattedMessage(logEvent);
+        }
+
+        /// <summary>
+        /// Renders the event info in layout to the provided target
+        /// </summary>
+        /// <param name="logEvent">The event info.</param>
+        /// <param name="target">Appends the string representing log event to target</param>
+        internal void RenderAppendBuilder(LogEventInfo logEvent, StringBuilder target)
+        {
+            if (!this.isInitialized)
+            {
+                this.isInitialized = true;
+                this.InitializeLayout();
+            }
+
+            if (!this.IsThreadAgnostic)
+            {
+                string cachedValue;
+                if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
+                {
+                    target.Append(cachedValue);
+                    return;
+                }
+            }
+
+            int initialLength = this.maxRenderedLength;
+            if (initialLength > MaxInitialRenderBufferLength)
+            {
+                initialLength = MaxInitialRenderBufferLength;
+            }
+
+            using (var localTarget = new AppendBuilderCreator(target, initialLength))
+            {
+                RenderFormattedMessage(logEvent, localTarget.Builder);
+                if (localTarget.Builder.Length > this.maxRenderedLength)
+                {
+                    this.maxRenderedLength = localTarget.Builder.Length;
+                }
+                if (!this.IsThreadAgnostic)
+                {
+                    // when needed as it generates garbage
+                    logEvent.AddCachedLayoutValue(this, localTarget.Builder.ToString());
+                }
+            }
+        }
+
+        /// <summary>
+        /// Renders the layout for the specified logging event by invoking layout renderers.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
+        protected virtual void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
+        {
+            target.Append(GetFormattedMessage(logEvent));
         }
 
         /// <summary>

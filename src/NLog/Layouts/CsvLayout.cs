@@ -170,7 +170,12 @@ namespace NLog.Layouts
             }
 
             var sb = new StringBuilder();
+            RenderAllColumns(logEvent, sb);
+            return logEvent.AddCachedLayoutValue(this, sb.ToString());
+        }
 
+        private void RenderAllColumns(LogEventInfo logEvent, StringBuilder sb)
+        {
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
             for (int i = 0; i < this.Columns.Count; i++)
@@ -227,18 +232,24 @@ namespace NLog.Layouts
                     sb.Append(this.QuoteChar);
                 }
             }
+        }
 
-            return logEvent.AddCachedLayoutValue(this, sb.ToString());
+        /// <summary>
+        /// Formats the log event for write.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
+        protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
+        {
+            RenderAllColumns(logEvent, target);
         }
 
         /// <summary>
         /// Get the headers with the column names.
         /// </summary>
         /// <returns></returns>
-        private string GetHeader()
+        private void RenderHeader(StringBuilder sb)
         {
-            var sb = new StringBuilder();
-
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
             for (int i = 0; i < this.Columns.Count; i++)
@@ -295,8 +306,6 @@ namespace NLog.Layouts
                     sb.Append(this.QuoteChar);
                 }
             }
-
-            return sb.ToString();
         }
 
         /// <summary>
@@ -324,13 +333,24 @@ namespace NLog.Layouts
             protected override string GetFormattedMessage(LogEventInfo logEvent)
             {
                 string cached;
-
                 if (logEvent.TryGetCachedLayoutValue(this, out cached))
                 {
                     return cached;
                 }
 
-                return logEvent.AddCachedLayoutValue(this, this.parent.GetHeader());
+                var sb = new StringBuilder();
+                this.parent.RenderHeader(sb);
+                return logEvent.AddCachedLayoutValue(this, sb.ToString());
+            }
+
+            /// <summary>
+            /// Renders the layout for the specified logging event by invoking layout renderers.
+            /// </summary>
+            /// <param name="logEvent">The logging event.</param>
+            /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
+            protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
+            {
+                this.parent.RenderHeader(target);
             }
         }
     }

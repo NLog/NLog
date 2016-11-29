@@ -63,6 +63,7 @@ namespace NLog.Internal.FileAppenders
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
         private FileStream fileStream;
+        private FileCharacteristicsHelper fileCharacteristicsHelper;
         private Mutex mutex;
 
         /// <summary>
@@ -76,6 +77,7 @@ namespace NLog.Internal.FileAppenders
             {
                 this.mutex = CreateSharableMutex("FileLock");
                 this.fileStream = CreateFileStream(true);
+                this.fileCharacteristicsHelper = FileCharacteristicsHelper.CreateHelper(parameters.ForceManaged);
             }
             catch
             {
@@ -98,8 +100,10 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Writes the specified bytes.
         /// </summary>
-        /// <param name="bytes">The bytes to be written.</param>
-        public override void Write(byte[] bytes)
+        /// <param name="bytes">The bytes array.</param>
+        /// <param name="offset">The bytes array offset.</param>
+        /// <param name="count">The number of bytes.</param>
+        public override void Write(byte[] bytes, int offset, int count)
         {
             if (this.mutex == null)
             {
@@ -120,7 +124,7 @@ namespace NLog.Internal.FileAppenders
             try
             {
                 this.fileStream.Seek(0, SeekOrigin.End);
-                this.fileStream.Write(bytes, 0, bytes.Length);
+                this.fileStream.Write(bytes, offset, count);
                 this.fileStream.Flush();
                 if (CaptureLastWriteTime)
                 {
@@ -162,10 +166,8 @@ namespace NLog.Internal.FileAppenders
             // do nothing, the stream is always flushed
         }
 
-
         public override DateTime? GetFileCreationTimeUtc()
         {
-           
             var fileChars = GetFileCharacteristics();
             return fileChars.CreationTimeUtc;
         }
@@ -185,7 +187,7 @@ namespace NLog.Internal.FileAppenders
         private FileCharacteristics GetFileCharacteristics()
         {
             //todo not efficient to read all the whole FileCharacteristics and then using one property
-            return FileCharacteristicsHelper.Helper.GetFileCharacteristics(FileName, this.fileStream.SafeFileHandle.DangerousGetHandle());
+            return fileCharacteristicsHelper.GetFileCharacteristics(FileName, this.fileStream);
         }
 
         /// <summary>

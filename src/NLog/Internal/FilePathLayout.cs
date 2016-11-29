@@ -152,8 +152,9 @@ namespace NLog.Internal
         /// Render the raw filename from Layout
         /// </summary>
         /// <param name="logEvent">The log event.</param>
+        /// <param name="reusableBuilder">StringBuilder to minimize allocations [optional].</param>
         /// <returns>String representation of a layout.</returns>
-        private string GetRenderedFileName(LogEventInfo logEvent)
+        private string GetRenderedFileName(LogEventInfo logEvent, System.Text.StringBuilder reusableBuilder = null)
         {
             if (cleanedFixedResult != null)
             {
@@ -165,7 +166,31 @@ namespace NLog.Internal
                 return null;
             }
 
-            return _layout.Render(logEvent);
+            if (reusableBuilder != null)
+            {
+                _layout.RenderAppendBuilder(logEvent, reusableBuilder);
+                if (_cachedPrevRawFileName != null && _cachedPrevRawFileName.Length == reusableBuilder.Length)
+                {
+                    for (int i = 0; i < _cachedPrevRawFileName.Length; ++i)
+                    {
+                        if (_cachedPrevRawFileName[i] != reusableBuilder[i])
+                        {
+                            _cachedPrevRawFileName = null;
+                            break;
+                        }
+                    }
+                    if (_cachedPrevRawFileName != null)
+                        return _cachedPrevRawFileName;
+                }
+
+                _cachedPrevRawFileName = reusableBuilder.ToString();
+                _cachedPrevCleanFileName = null;
+                return _cachedPrevRawFileName;
+            }
+            else
+            {
+                return _layout.Render(logEvent);
+            }
         }
 
         /// <summary>
@@ -201,7 +226,12 @@ namespace NLog.Internal
 
         public string Render(LogEventInfo logEvent)
         {
-            var rawFileName = GetRenderedFileName(logEvent);
+            return RenderWithBuilder(logEvent);
+        }
+
+        internal string RenderWithBuilder(LogEventInfo logEvent, System.Text.StringBuilder reusableBuilder = null)
+        { 
+            var rawFileName = GetRenderedFileName(logEvent, reusableBuilder);
             if (string.IsNullOrEmpty(rawFileName))
             {
                 return rawFileName;

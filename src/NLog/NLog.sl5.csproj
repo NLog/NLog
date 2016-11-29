@@ -139,6 +139,7 @@
     <Compile Include="ILoggerBase.cs" />
     <Compile Include="ILoggerBase-V1.cs" />
     <Compile Include="ILogger-V1.cs" />
+    <Compile Include="Internal\AppendBuilderCreator.cs" />
     <Compile Include="Internal\ArrayHelper.cs" />
     <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
@@ -155,9 +156,11 @@
     <Compile Include="Internal\FileAppenders\ICreateFileParameters.cs" />
     <Compile Include="Internal\FileAppenders\IFileAppenderFactory.cs" />
     <Compile Include="Internal\FileAppenders\MutexMultiProcessFileAppender.cs" />
+    <Compile Include="Internal\FileAppenders\NullAppender.cs" />
     <Compile Include="Internal\FileAppenders\RetryingMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\SingleProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
+    <Compile Include="Internal\FileAppenders\WindowsMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileCharacteristics.cs" />
     <Compile Include="Internal\FileCharacteristicsHelper.cs" />
     <Compile Include="Internal\FileInfoExt.cs" />
@@ -193,6 +196,10 @@
     <Compile Include="Internal\PortableThreadIDHelper.cs" />
     <Compile Include="Internal\PropertyHelper.cs" />
     <Compile Include="Internal\ReflectionHelpers.cs" />
+    <Compile Include="Internal\ResuableBufferCreator.cs" />
+    <Compile Include="Internal\ResuableBuilderCreator.cs" />
+    <Compile Include="Internal\ReusableAsyncLogEventArray.cs" />
+    <Compile Include="Internal\ReusableStreamCreator.cs" />
     <Compile Include="Internal\RuntimeOS.cs" />
     <Compile Include="Internal\SimpleStringReader.cs" />
     <Compile Include="Internal\SingleCallContinuation.cs" />
@@ -289,6 +296,7 @@
     <Compile Include="LayoutRenderers\Wrappers\WhenLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WrapLineLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WrapperLayoutRendererBase.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\WrapperLayoutRendererBuilderBase.cs" />
     <Compile Include="LayoutRenderers\Wrappers\XmlEncodeLayoutRendererWrapper.cs" />
     <Compile Include="Layouts\CompoundLayout.cs" />
     <Compile Include="Layouts\CsvColumn.cs" />

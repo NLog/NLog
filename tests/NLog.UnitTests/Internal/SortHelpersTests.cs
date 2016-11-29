@@ -341,5 +341,68 @@ namespace NLog.UnitTests.Internal
             Assert.True(dict.TryGetValue("Bucket2", out bucket2) && bucket2.Count == 1);
             Assert.Throws<System.NotSupportedException>(() => dict[string.Empty] = new string[0]);
         }
+
+#if NET3_5 || SILVERLIGHT || MONO || NET4_0
+        [Fact]
+        public void ReadOnlyArrayList_EmptyTest()
+        {
+            SortHelpers.ReadOnlyArrayList<string> list = new SortHelpers.ReadOnlyArrayList<string>(default(ArraySegment<string>));
+            Assert.Equal(0, list.Count);
+            Assert.Equal(0, list.Count());
+            Assert.Equal(0, list.Count(val => val == string.Empty));
+
+            foreach (var item in list)
+                Assert.False(true);
+
+            Assert.Throws<NotSupportedException>(() => list[0] = string.Empty);
+        }
+
+        [Fact]
+        public void ReadOnlyArrayList_OneItemTest()
+        {
+            SortHelpers.ReadOnlyArrayList<string> list = new SortHelpers.ReadOnlyArrayList<string>(new ArraySegment<string>(new string[] { "Item1" }));
+            Assert.Equal(1, list.Count);
+            Assert.Equal(1, list.Count());
+            Assert.Equal(1, list.Count(val => val == "Item1"));
+            Assert.Equal(0, list.Count(val => val == string.Empty));
+
+            foreach (var item in list)
+                Assert.Equal("Item1", item);
+
+            Assert.Throws<NotSupportedException>(() => list[0] = string.Empty);
+        }
+
+        [Fact]
+        public void ReadOnlyArrayList_TwoItemTest()
+        {
+            SortHelpers.ReadOnlyArrayList<string> list = new SortHelpers.ReadOnlyArrayList<string>(new ArraySegment<string>(new string[] { "Item1", "Item2" }));
+            Assert.Equal(2, list.Count);
+            Assert.Equal(2, list.Count());
+            Assert.Equal(1, list.Count(val => val == "Item1"));
+            Assert.Equal(1, list.Count(val => val == "Item2"));
+            Assert.Equal(0, list.Count(val => val == string.Empty));
+
+            foreach (var item in list)
+                Assert.True("Item1" == item || "Item2" == item);
+
+            Assert.Throws<NotSupportedException>(() => list[0] = string.Empty);
+        }
+
+        [Fact]
+        public void ReadOnlyArrayList_OffsetCountTest()
+        {
+            SortHelpers.ReadOnlyArrayList<string> list = new SortHelpers.ReadOnlyArrayList<string>(new ArraySegment<string>(new string[] { "Item1", "Item2", "Item3" }, 1, 2));
+            Assert.Equal(2, list.Count);
+            Assert.Equal(2, list.Count());
+            Assert.Equal(0, list.Count(val => val == "Item1"));
+            Assert.Equal(1, list.Count(val => val == "Item2"));
+            Assert.Equal(1, list.Count(val => val == "Item3"));
+
+            foreach (var item in list)
+                Assert.True("Item2" == item || "Item3" == item);
+
+            Assert.Throws<NotSupportedException>(() => list[0] = string.Empty);
+        }
+#endif
     }
 }

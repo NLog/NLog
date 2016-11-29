@@ -122,18 +122,18 @@ namespace NLog.Targets.Wrappers
         /// is applied to the array of log events.
         /// </summary>
         /// <param name="logEvents">Array of log events to be post-filtered.</param>
-        protected override void Write(AsyncLogEventInfo[] logEvents)
+        protected override void Write(ArraySegment<AsyncLogEventInfo> logEvents)
         {
             ConditionExpression resultFilter = null;
 
-            InternalLogger.Trace("Running {0} on {1} events", this, logEvents.Length);
+            InternalLogger.Trace("Running {0} on {1} events", this, logEvents.Count);
 
             // evaluate all the rules to get the filtering condition
-            for (int i = 0; i < logEvents.Length; ++i)
+            for (int i = logEvents.Offset; i < (logEvents.Offset + logEvents.Count); ++i)
             {
                 foreach (FilteringRule rule in this.Rules)
                 {
-                    object v = rule.Exists.Evaluate(logEvents[i].LogEvent);
+                    object v = rule.Exists.Evaluate(logEvents.Array[i].LogEvent);
 
                     if (boxedTrue.Equals(v))
                     {
@@ -166,17 +166,17 @@ namespace NLog.Targets.Wrappers
                 // apply the condition to the buffer
                 var resultBuffer = new List<AsyncLogEventInfo>();
 
-                for (int i = 0; i < logEvents.Length; ++i)
+                for (int i = logEvents.Offset; i < (logEvents.Offset + logEvents.Count); ++i)
                 {
-                    object v = resultFilter.Evaluate(logEvents[i].LogEvent);
+                    object v = resultFilter.Evaluate(logEvents.Array[i].LogEvent);
                     if (boxedTrue.Equals(v))
                     {
-                        resultBuffer.Add(logEvents[i]);
+                        resultBuffer.Add(logEvents.Array[i]);
                     }
                     else
                     {
                         // anything not passed down will be notified about successful completion
-                        logEvents[i].Continuation(null);
+                        logEvents.Array[i].Continuation(null);
                     }
                 }
 

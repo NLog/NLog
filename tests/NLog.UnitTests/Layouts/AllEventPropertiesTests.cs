@@ -49,7 +49,7 @@ namespace NLog.UnitTests.Layouts
             var renderer = new AllEventPropertiesLayoutRenderer();
             var ev = BuildLogEventWithProperties();
             
-            renderer.Render(sb, ev);
+            renderer.RenderAppendBuilder(ev, sb);
 
             Assert.Equal("a=1, hello=world, 17=100", sb.ToString());
         }
@@ -62,7 +62,7 @@ namespace NLog.UnitTests.Layouts
             renderer.Separator = " | ";
             var ev = BuildLogEventWithProperties();
 
-            renderer.Render(sb, ev);
+            renderer.RenderAppendBuilder(ev, sb);
 
             Assert.Equal("a=1 | hello=world | 17=100", sb.ToString());
         }
@@ -75,7 +75,7 @@ namespace NLog.UnitTests.Layouts
             renderer.Format = "[key] is [value]";
             var ev = BuildLogEventWithProperties();
 
-            renderer.Render(sb, ev);
+            renderer.RenderAppendBuilder(ev, sb);
 
             Assert.Equal("a is 1, hello is world, 17 is 100", sb.ToString());
         }
@@ -87,7 +87,7 @@ namespace NLog.UnitTests.Layouts
             var renderer = new AllEventPropertiesLayoutRenderer();
             var ev = new LogEventInfo();
 
-            renderer.Render(sb, ev);
+            renderer.RenderAppendBuilder(ev, sb);
 
             Assert.Equal("", sb.ToString());
         }

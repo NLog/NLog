@@ -93,7 +93,7 @@ namespace NLog.Internal.FileAppenders
         /// Gets the file creation time.
         /// </summary>
         /// <value>The file creation time. DateTime value must be of UTC kind.</value>
-        public DateTime CreationTime { get; private set; }
+        public DateTime CreationTime { get; internal set; }
 
         /// <summary>
         /// Gets the open time of the file.
@@ -125,7 +125,12 @@ namespace NLog.Internal.FileAppenders
         /// Writes the specified bytes.
         /// </summary>
         /// <param name="bytes">The bytes.</param>
-        public abstract void Write(byte[] bytes);
+        public void Write(byte[] bytes)
+        {
+            Write(bytes, 0, bytes.Length);
+        }
+
+        public abstract void Write(byte[] bytes, int offset, int count);
 
         /// <summary>
         /// Flushes this instance.

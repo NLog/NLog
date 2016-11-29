@@ -156,6 +156,28 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
+        /// Dequeues into a preallocated array, instead of allocating a new one
+        /// </summary>
+        /// <param name="result">Preallocated array</param>
+        /// <returns>ArraySegment that specifies how many items that was dequeued.</returns>
+        public ArraySegment<AsyncLogEventInfo> DequeueBatch(AsyncLogEventInfo[] result)
+        {
+            lock (this)
+            {
+                int count = result.Length;
+                if (this.logEventInfoQueue.Count < count)
+                    count = this.logEventInfoQueue.Count;
+                for (int i = 0; i < count; ++i)
+                    result[i] = this.logEventInfoQueue.Dequeue();
+                if (this.OnOverflow == AsyncTargetWrapperOverflowAction.Block)
+                {
+                    System.Threading.Monitor.PulseAll(this);
+                }
+                return new ArraySegment<AsyncLogEventInfo>(result, 0, count);
+            }
+        }
+
+        /// <summary>
         /// Clears the queue.
         /// </summary>
         public void Clear()

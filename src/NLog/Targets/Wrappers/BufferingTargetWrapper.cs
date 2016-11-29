@@ -33,10 +33,11 @@
 
 namespace NLog.Targets.Wrappers
 {
+    using System;
     using System.ComponentModel;
     using System.Threading;
     using NLog.Common;
-    
+
     /// <summary>
     /// A target that buffers log events and sends them in batches to the wrapped target.
     /// </summary>
@@ -141,7 +142,7 @@ namespace NLog.Targets.Wrappers
             else
             {
                 InternalLogger.Trace("BufferingWrapper '{0}': Flush {1} events async", Name, events.Length);
-                this.WrappedTarget.WriteAsyncLogEvents(events, ex => this.WrappedTarget.Flush(asyncContinuation));
+                this.WrappedTarget.WriteAsyncLogEvents(new ArraySegment<AsyncLogEventInfo>(events), ex => this.WrappedTarget.Flush(asyncContinuation));
             }
         }
 
