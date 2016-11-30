@@ -6,7 +6,7 @@ environment:
 clone_folder: c:\projects\nlog
 
 build_script:                                                                                                                
-  - msbuild  src/NLog.proj /verbosity:minimal /t:rebuild /t:xsd /t:NuGetPackage /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.4.0 /p:BuildVersion=4.4-rc1 /p:configuration=release /p:BuildLabelOverride=NONE 
+  - msbuild  src/NLog.proj /verbosity:minimal /t:rebuild /t:xsd /t:NuGetPackage /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.4.%APPVEYOR_BUILD_NUMBER% /p:BuildVersion=4.4-rc1 /p:configuration=release /p:BuildLabelOverride=NONE 
   - msbuild  src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true 
  
 test_script:
