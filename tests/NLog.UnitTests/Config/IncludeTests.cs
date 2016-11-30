@@ -48,32 +48,22 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void IncludeTest()
         {
-#if SILVERLIGHT
-            // file is pre-packaged in the XAP
-            string fileToLoad = "ConfigFiles/main.nlog";
-#else
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempPath);
 
-            using (StreamWriter fs = File.CreateText(Path.Combine(tempPath, "included.nlog")))
-            {
-                fs.Write(@"<nlog>
+            CreateConfigFile(tempPath, "included.nlog", @"<nlog>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
             </nlog>");
-            }
 
-            using (StreamWriter fs = File.CreateText(Path.Combine(tempPath, "main.nlog")))
-            {
-                fs.Write(@"<nlog>
+            CreateConfigFile(tempPath, "main.nlog", @"<nlog>
                 <include file='included.nlog' />
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-            }
+
 
             string fileToLoad = Path.Combine(tempPath, "main.nlog");
-#endif
             try
             {
                 // load main.nlog from the XAP
@@ -84,19 +74,14 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-#if !SILVERLIGHT
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
-#endif
             }
         }
 
         [Fact]
         public void IncludeNotExistingTest()
         {
-#if SILVERLIGHT
-            string fileToLoad = "ConfigFiles/referencemissingfile.nlog";
-#else
             LogManager.ThrowConfigExceptions = true;
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempPath);
@@ -110,42 +95,34 @@ namespace NLog.UnitTests.Config
 
             string fileToLoad = Path.Combine(tempPath, "main.nlog");
 
-#endif
             try
             {
                 Assert.Throws<NLogConfigurationException>(() => new XmlLoggingConfiguration(fileToLoad));
             }
             finally
             {
-#if !SILVERLIGHT
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
-#endif
             }
         }
 
         [Fact]
         public void IncludeNotExistingIgnoredTest()
         {
-#if SILVERLIGHT
-            string fileToLoad = "ConfigFiles/referencemissingfileignored.nlog";
-#else
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempPath);
 
-            using (StreamWriter fs = File.CreateText(Path.Combine(tempPath, "main.nlog")))
-            {
-                fs.Write(@"<nlog>
+            var config = @"<nlog>
                 <include file='included-notpresent.nlog' ignoreErrors='true' />
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
-            }
+            </nlog>";
+
+            CreateConfigFile(tempPath, "main.nlog", config);
 
             string fileToLoad = Path.Combine(tempPath, "main.nlog");
-#endif
             try
             {
                 LogManager.Configuration = new XmlLoggingConfiguration(fileToLoad);
@@ -154,11 +131,23 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-#if !SILVERLIGHT
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
-#endif
             }
+        }
+
+        /// <summary>
+        /// Create config file in dir
+        /// </summary>
+        /// <param name="tempPath"></param>
+        /// <param name="filename"></param>
+        /// <param name="config"></param>
+        private static void CreateConfigFile(string tempPath, string filename, string config)
+        {
+            using (var fs = File.CreateText(Path.Combine(tempPath, filename)))
+            {
+                fs.Write(config);
+    }
         }
     }
 }

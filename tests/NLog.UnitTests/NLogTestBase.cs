@@ -45,15 +45,12 @@ namespace NLog.UnitTests
     using NLog.Config;
     using NLog.Targets;
     using Xunit;
-#if SILVERLIGHT
     using System.Xml.Linq;
-#else
     using System.Xml;
     using System.IO.Compression;
     using System.Security.Permissions;
 #if NET3_5 || NET4_0 || NET4_5
     using Ionic.Zip;
-#endif
 #endif
 
     public abstract class NLogTestBase
@@ -332,15 +329,10 @@ namespace NLog.UnitTests
 
         protected static XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
         {
-#if SILVERLIGHT
-            XElement element = XElement.Parse(configXml);
-            return new XmlLoggingConfiguration(element.CreateReader(), null);
-#else
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(configXml);
 
             return new XmlLoggingConfiguration(doc.DocumentElement, Environment.CurrentDirectory);
-#endif
         }
 
         protected string RunAndCaptureInternalLog(SyncAction action, LogLevel internalLogLevel)
@@ -365,11 +357,7 @@ namespace NLog.UnitTests
         /// </remarks>
         protected static CultureInfo GetCultureInfo(string cultureName)
         {
-#if SILVERLIGHT
-            return new CultureInfo(cultureName);
-#else
             return new CultureInfo(cultureName, false);
-#endif
         }
 
         public delegate void SyncAction();

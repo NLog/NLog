@@ -39,9 +39,7 @@ using System.Linq.Expressions;
 using System.Text;
 using NLog.Config;
 using NLog.Filters;
-#if !SILVERLIGHT 
 using Xunit.Extensions;
-#endif
 
 namespace NLog.UnitTests.Layouts
 {
@@ -535,8 +533,6 @@ namespace NLog.UnitTests.Layouts
 
         }
 
-#if !SILVERLIGHT
-
         /// <summary>
         /// 
         /// Test layout with Genernic List type. - is the seperator
@@ -689,7 +685,6 @@ namespace NLog.UnitTests.Layouts
 
         }
 
-#endif
     }
 
 

@@ -33,9 +33,7 @@
 
 using NLog.LayoutRenderers;
 using NLog.Targets;
-#if !SILVERLIGHT
 using Xunit.Extensions;
-#endif
 
 namespace NLog.UnitTests.Config
 {
@@ -110,7 +108,6 @@ namespace NLog.UnitTests.Config
                 Assert.Equal(expected, GetDebugLastMessage("debug", configuration));
             }
         }
-#if !SILVERLIGHT
 
         [Fact]
         public void EventPropRendererCultureTest()
@@ -248,6 +245,5 @@ namespace NLog.UnitTests.Config
                 Assert.Equal(target.Logs[0], target.Logs[1]);
             }
         }
-#endif
     }
 }

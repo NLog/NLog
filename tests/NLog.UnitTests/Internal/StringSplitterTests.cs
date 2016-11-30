@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -192,4 +190,3 @@ namespace NLog.UnitTests.Internal
         }
     }
 }
-#endif
