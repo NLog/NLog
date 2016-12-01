@@ -241,6 +241,7 @@
     <Compile Include="Targets\Wrappers\BufferingTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\FallbackGroupTargetTests.cs" />
     <Compile Include="Targets\Wrappers\FilteringTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\FlushTriggerWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\ImpersonatingTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\LimitingTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\PostFilteringTargetWrapperTests.cs" />

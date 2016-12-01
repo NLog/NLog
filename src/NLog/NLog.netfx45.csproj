@@ -15,7 +15,8 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -405,6 +406,7 @@
     <Compile Include="Targets\Wrappers\FallbackGroupTarget.cs" />
     <Compile Include="Targets\Wrappers\FilteringRule.cs" />
     <Compile Include="Targets\Wrappers\FilteringTargetWrapper.cs" />
+    <Compile Include="Targets\Wrappers\FlushTriggerWrapper.cs" />
     <Compile Include="Targets\Wrappers\ImpersonatingTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\LimitingTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\LogOnProviderType.cs" />

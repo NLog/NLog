@@ -9,8 +9,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ApplicationIcon></ApplicationIcon>
-    <AssemblyKeyContainerName></AssemblyKeyContainerName>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
     <AssemblyName>NLog.UnitTests</AssemblyName>
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -261,6 +263,7 @@
     <Compile Include="Targets\Wrappers\BufferingTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\FallbackGroupTargetTests.cs" />
     <Compile Include="Targets\Wrappers\FilteringTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\FlushTriggerWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\ImpersonatingTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\LimitingTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\PostFilteringTargetWrapperTests.cs" />
