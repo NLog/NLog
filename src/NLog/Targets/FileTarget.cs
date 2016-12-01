@@ -1009,14 +1009,13 @@ namespace NLog.Targets
             {
                 using (var targetStream = this.reusableFileWriteStream.Allocate())
                 {
-                    ArraySegment<byte> bytesToWrite;
                     using (var targetBuilder = this.ReusableLayoutBuilder.Allocate())
                     using (var targetBuffer = this.reusableEncodingBuffer.Allocate())
                     {
-                        bytesToWrite = this.GetBytesToWrite(logEvent, targetBuilder.Result, targetBuffer.Result, targetStream.Result);
+                        this.AppendFormattedMessageToStream(logEvent, targetBuilder.Result, targetBuffer.Result, targetStream.Result);
                     }
 
-                    ProcessLogEvent(logEvent, logFileName, bytesToWrite);
+                    ProcessLogEvent(logEvent, logFileName, new ArraySegment<byte>(targetStream.Result.GetBuffer(), 0, (int)targetStream.Result.Length));
                 }
             }
             else
@@ -1084,7 +1083,6 @@ namespace NLog.Targets
 
                     int bucketCount = bucket.Value.Count;
 
-                    using (var targetStream = OptimizeBufferUsage ? reusableFileWriteStream.Allocate() : reusableFileWriteStream.None)
                     using (var targetBuilder = OptimizeBufferUsage ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
                     using (var targetBuffer = OptimizeBufferUsage ? reusableEncodingBuffer.Allocate() : reusableEncodingBuffer.None)
                     {
@@ -1096,14 +1094,10 @@ namespace NLog.Targets
                                 firstLogEvent = ev.LogEvent;
                             }
 
-                            if (targetBuilder.Result != null && targetStream.Result != null)
+                            if (targetBuilder.Result != null)
                             {
                                 targetBuilder.Result.ClearBuilder();
-                                targetStream.Result.SetLength(0);
-                                targetStream.Result.Position = 0;
-
-                                ArraySegment<byte> bytes = GetBytesToWrite(ev.LogEvent, targetBuilder.Result, targetBuffer.Result, targetStream.Result);
-                                ms.Write(bytes.Array, bytes.Offset, bytes.Count);
+                                AppendFormattedMessageToStream(ev.LogEvent, targetBuilder.Result, targetBuffer.Result, ms);
                             }
                             else
                             {
@@ -1195,12 +1189,12 @@ namespace NLog.Targets
         /// <param name="logEvent">The log event to be formatted.</param>
         /// <param name="formatBuilder"><see cref="StringBuilder"/> to help format log event.</param>
         /// <param name="transformBuffer">Optional temporary char-array to help format log event.</param>
-        /// <param name="streamTarget">Optional <see cref="MemoryStream"/> to encode to bytes.</param>
-        protected virtual ArraySegment<byte> GetBytesToWrite(LogEventInfo logEvent, StringBuilder formatBuilder, char[] transformBuffer, MemoryStream streamTarget)
+        /// <param name="streamTarget">Destination <see cref="MemoryStream"/> for the encoded result.</param>
+        protected virtual void AppendFormattedMessageToStream(LogEventInfo logEvent, StringBuilder formatBuilder, char[] transformBuffer, MemoryStream streamTarget)
         {
             RenderFormattedMessage(logEvent, formatBuilder);
             formatBuilder.Append(NewLineChars);
-            return TransformBuilder(formatBuilder, transformBuffer, streamTarget);
+            TransformBuilderToStream(formatBuilder, transformBuffer, streamTarget);
         }
 
         /// <summary>
@@ -1213,11 +1207,12 @@ namespace NLog.Targets
             this.Layout.RenderAppendBuilder(logEvent, target);
         }
 
-        private ArraySegment<byte> TransformBuilder(StringBuilder builder, char[] transformBuffer, MemoryStream workStream)
+        private void TransformBuilderToStream(StringBuilder builder, char[] transformBuffer, MemoryStream workStream)
         {
 #if !SILVERLIGHT
-            if (workStream != null && transformBuffer != null)
+            if (transformBuffer != null)
             {
+                long offset = workStream.Position;
                 for (int i = 0; i < builder.Length; i += transformBuffer.Length)
                 {
                     int charCount = Math.Min(builder.Length - i, transformBuffer.Length);
@@ -1227,26 +1222,35 @@ namespace NLog.Targets
                     this.Encoding.GetBytes(transformBuffer, 0, charCount, workStream.GetBuffer(), (int)workStream.Position);
                     workStream.Position = workStream.Length;
                 }
-                return TransformBytes(new ArraySegment<byte>(workStream.GetBuffer(), 0, (int)workStream.Length));
+                TransformStream(workStream, offset);
             }
             else
 #endif
             {
-                // Faster than MemoryStream, but generates garbage. Array must be allocated, so it will survieve leaving this scope
+                // Faster than MemoryStream, but generates garbage
                 var str = builder.ToString();
                 byte[] bytes = this.Encoding.GetBytes(str);
-                return TransformBytes(new ArraySegment<byte>(bytes));
+                if (OptimizeBufferUsage)
+                {
+                    long offset = workStream.Position;
+                    workStream.Write(bytes, 0, bytes.Length);
+                    TransformStream(workStream, offset);
+                }
+                else
+                {
+                    bytes = TransformBytes(bytes);
+                    workStream.Write(bytes, 0, bytes.Length);
+                }
             }
         }
 
         /// <summary>
         /// Modifies the specified byte array before it gets sent to a file.
         /// </summary>
-        /// <param name="value">The byte array.</param>
-        /// <returns>The modified byte array. The function can do the modification in-place.</returns>
-        protected virtual ArraySegment<byte> TransformBytes(ArraySegment<byte> value)
+        /// <param name="stream">The byte array.</param>
+        /// <param name="offset">Where the new entries has been written.</param>
+        protected virtual void TransformStream(MemoryStream stream, long offset)
         {
-            return value;
         }
 
         /// <summary>
@@ -2394,10 +2398,15 @@ namespace NLog.Targets
             if (OptimizeBufferUsage)
             {
                 using (var targetBuilder = this.ReusableLayoutBuilder.Allocate())
+                using (var targetBuffer = this.reusableEncodingBuffer.Allocate())
                 {
                     layout.RenderAppendBuilder(LogEventInfo.CreateNullEvent(), targetBuilder.Result);
                     targetBuilder.Result.Append(NewLineChars);
-                    return TransformBuilder(targetBuilder.Result, null, null);
+                    using (MemoryStream ms = new MemoryStream(targetBuilder.Result.Length))
+                    {
+                        TransformBuilderToStream(targetBuilder.Result, targetBuffer.Result, ms);
+                        return new ArraySegment<byte>(ms.ToArray());
+                    }
                 }
             }
             else
