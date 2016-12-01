@@ -1012,7 +1012,7 @@ namespace NLog.Targets
                     using (var targetBuilder = this.ReusableLayoutBuilder.Allocate())
                     using (var targetBuffer = this.reusableEncodingBuffer.Allocate())
                     {
-                        this.AppendFormattedMessageToStream(logEvent, targetBuilder.Result, targetBuffer.Result, targetStream.Result);
+                        this.RenderFormattedMessageToStream(logEvent, targetBuilder.Result, targetBuffer.Result, targetStream.Result);
                     }
 
                     ProcessLogEvent(logEvent, logFileName, new ArraySegment<byte>(targetStream.Result.GetBuffer(), 0, (int)targetStream.Result.Length));
@@ -1068,7 +1068,7 @@ namespace NLog.Targets
 
             var buckets = logEvents.BucketSort(getFullFileNameDelegate);
 
-            using (var asyncTargetStream = (OptimizeBufferUsage && logEvents.Count < 1000) ? reusableAsyncFileWriteStream.Allocate() : reusableAsyncFileWriteStream.None)
+            using (var asyncTargetStream = (OptimizeBufferUsage && logEvents.Count <= 1000) ? reusableAsyncFileWriteStream.Allocate() : reusableAsyncFileWriteStream.None)
             {
                 var ms = asyncTargetStream.Result != null ? asyncTargetStream.Result : new MemoryStream();
 
@@ -1085,6 +1085,7 @@ namespace NLog.Targets
 
                     using (var targetBuilder = OptimizeBufferUsage ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
                     using (var targetBuffer = OptimizeBufferUsage ? reusableEncodingBuffer.Allocate() : reusableEncodingBuffer.None)
+                    using (var targetStream = OptimizeBufferUsage ? reusableFileWriteStream.Allocate() : reusableFileWriteStream.None)
                     {
                         for (int i = 0; i < bucketCount; i++)
                         {
@@ -1094,10 +1095,14 @@ namespace NLog.Targets
                                 firstLogEvent = ev.LogEvent;
                             }
 
-                            if (targetBuilder.Result != null)
+                            if (targetBuilder.Result != null && targetStream.Result != null)
                             {
+                                // For some CPU's then it is faster to write to a small MemoryStream, and then copy to the larger one
+                                targetStream.Result.Position = 0;
+                                targetStream.Result.SetLength(0);
                                 targetBuilder.Result.ClearBuilder();
-                                AppendFormattedMessageToStream(ev.LogEvent, targetBuilder.Result, targetBuffer.Result, ms);
+                                RenderFormattedMessageToStream(ev.LogEvent, targetBuilder.Result, targetBuffer.Result, targetStream.Result);
+                                ms.Write(targetStream.Result.GetBuffer(), 0, (int)targetStream.Result.Length);
                             }
                             else
                             {
@@ -1190,11 +1195,11 @@ namespace NLog.Targets
         /// <param name="formatBuilder"><see cref="StringBuilder"/> to help format log event.</param>
         /// <param name="transformBuffer">Optional temporary char-array to help format log event.</param>
         /// <param name="streamTarget">Destination <see cref="MemoryStream"/> for the encoded result.</param>
-        protected virtual void AppendFormattedMessageToStream(LogEventInfo logEvent, StringBuilder formatBuilder, char[] transformBuffer, MemoryStream streamTarget)
+        protected virtual void RenderFormattedMessageToStream(LogEventInfo logEvent, StringBuilder formatBuilder, char[] transformBuffer, MemoryStream streamTarget)
         {
             RenderFormattedMessage(logEvent, formatBuilder);
             formatBuilder.Append(NewLineChars);
-            TransformBuilderToStream(formatBuilder, transformBuffer, streamTarget);
+            TransformBuilderToStream(logEvent, formatBuilder, transformBuffer, streamTarget);
         }
 
         /// <summary>
@@ -1207,12 +1212,11 @@ namespace NLog.Targets
             this.Layout.RenderAppendBuilder(logEvent, target);
         }
 
-        private void TransformBuilderToStream(StringBuilder builder, char[] transformBuffer, MemoryStream workStream)
+        private void TransformBuilderToStream(LogEventInfo logEvent, StringBuilder builder, char[] transformBuffer, MemoryStream workStream)
         {
 #if !SILVERLIGHT
             if (transformBuffer != null)
             {
-                long offset = workStream.Position;
                 for (int i = 0; i < builder.Length; i += transformBuffer.Length)
                 {
                     int charCount = Math.Min(builder.Length - i, transformBuffer.Length);
@@ -1222,7 +1226,7 @@ namespace NLog.Targets
                     this.Encoding.GetBytes(transformBuffer, 0, charCount, workStream.GetBuffer(), (int)workStream.Position);
                     workStream.Position = workStream.Length;
                 }
-                TransformStream(workStream, offset);
+                TransformStream(logEvent, workStream);
             }
             else
 #endif
@@ -1232,9 +1236,8 @@ namespace NLog.Targets
                 byte[] bytes = this.Encoding.GetBytes(str);
                 if (OptimizeBufferUsage)
                 {
-                    long offset = workStream.Position;
                     workStream.Write(bytes, 0, bytes.Length);
-                    TransformStream(workStream, offset);
+                    TransformStream(logEvent, workStream);
                 }
                 else
                 {
@@ -1247,9 +1250,9 @@ namespace NLog.Targets
         /// <summary>
         /// Modifies the specified byte array before it gets sent to a file.
         /// </summary>
+        /// <param name="logEvent">The LogEvent being written</param>
         /// <param name="stream">The byte array.</param>
-        /// <param name="offset">Where the new entries has been written.</param>
-        protected virtual void TransformStream(MemoryStream stream, long offset)
+        protected virtual void TransformStream(LogEventInfo logEvent, MemoryStream stream)
         {
         }
 
@@ -2400,11 +2403,12 @@ namespace NLog.Targets
                 using (var targetBuilder = this.ReusableLayoutBuilder.Allocate())
                 using (var targetBuffer = this.reusableEncodingBuffer.Allocate())
                 {
-                    layout.RenderAppendBuilder(LogEventInfo.CreateNullEvent(), targetBuilder.Result);
+                    var nullEvent = LogEventInfo.CreateNullEvent();
+                    layout.RenderAppendBuilder(nullEvent, targetBuilder.Result);
                     targetBuilder.Result.Append(NewLineChars);
                     using (MemoryStream ms = new MemoryStream(targetBuilder.Result.Length))
                     {
-                        TransformBuilderToStream(targetBuilder.Result, targetBuffer.Result, ms);
+                        TransformBuilderToStream(nullEvent, targetBuilder.Result, targetBuffer.Result, ms);
                         return new ArraySegment<byte>(ms.ToArray());
                     }
                 }
