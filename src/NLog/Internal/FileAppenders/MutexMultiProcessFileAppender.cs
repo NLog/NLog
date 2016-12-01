@@ -63,6 +63,7 @@ namespace NLog.Internal.FileAppenders
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
         private FileStream fileStream;
+        private FileCharacteristicsHelper fileCharacteristicsHelper;
         private Mutex mutex;
 
         /// <summary>
@@ -76,6 +77,7 @@ namespace NLog.Internal.FileAppenders
             {
                 this.mutex = CreateSharableMutex("FileLock");
                 this.fileStream = CreateFileStream(true);
+                this.fileCharacteristicsHelper = FileCharacteristicsHelper.CreateHelper(parameters.ForceManaged);
             }
             catch
             {
@@ -162,10 +164,8 @@ namespace NLog.Internal.FileAppenders
             // do nothing, the stream is always flushed
         }
 
-
         public override DateTime? GetFileCreationTimeUtc()
         {
-           
             var fileChars = GetFileCharacteristics();
             return fileChars.CreationTimeUtc;
         }
@@ -185,7 +185,7 @@ namespace NLog.Internal.FileAppenders
         private FileCharacteristics GetFileCharacteristics()
         {
             //todo not efficient to read all the whole FileCharacteristics and then using one property
-            return FileCharacteristicsHelper.Helper.GetFileCharacteristics(FileName, this.fileStream.SafeFileHandle.DangerousGetHandle());
+            return fileCharacteristicsHelper.GetFileCharacteristics(FileName, this.fileStream);
         }
 
         /// <summary>
