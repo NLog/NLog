@@ -1819,6 +1819,11 @@ namespace NLog.Targets
             var archiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
             if (!string.IsNullOrEmpty(archiveFile))
             {
+                // Close possible stale file handles, before doing extra check
+                if (archiveFile != fileName)
+                    this.fileAppenderCache.InvalidateAppender(fileName);
+                this.fileAppenderCache.InvalidateAppender(archiveFile);
+
 #if SupportsMutex
                 Mutex archiveMutex = this.fileAppenderCache.GetArchiveMutex(fileName);
                 try
@@ -1836,10 +1841,6 @@ namespace NLog.Targets
                 try
                 {
                     // Check again if archive is needed. We could have been raced by another process
-                    //  - Close possible stale file handles, before doing extra check
-                    if (archiveFile != fileName)
-                        this.fileAppenderCache.InvalidateAppender(fileName);
-                    this.fileAppenderCache.InvalidateAppender(archiveFile);
                     var validatedArchiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
                     if (string.IsNullOrEmpty(validatedArchiveFile))
                     {
