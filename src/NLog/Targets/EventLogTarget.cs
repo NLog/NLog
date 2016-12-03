@@ -158,6 +158,11 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Gets or sets the maximum Event log size in kilobytes.
+        /// </summary>
+        public Layout MaxKilobytes { get; set; }
+
+        /// <summary>
         /// Gets or sets the action to take if the message is larger than the <see cref="MaxMessageLength"/> option.
         /// </summary>
         /// <docgen category='Event Log Overflow Action' order='10' />
@@ -260,7 +265,16 @@ namespace NLog.Targets
                 category = Convert.ToInt16(this.Category.Render(logEvent), CultureInfo.InvariantCulture);
             }
 
+            long maxKilobytes = 0;
+
+            if(this.MaxKilobytes != null)
+            {
+                maxKilobytes = Convert.ToInt64(this.MaxKilobytes.Render(logEvent), CultureInfo.InvariantCulture);
+            }
+
             EventLog eventLog = GetEventLog(logEvent);
+
+            eventLog.MaximumKilobytes = maxKilobytes;
 
             // limitation of EventLog API
             if (message.Length > this.MaxMessageLength)
