@@ -622,11 +622,11 @@ namespace NLog
         /// Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater than 
         /// or equal to <see cref="SuspendLogging"/> calls.
         /// 
-        /// This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.
+        /// This method was marked as obsolete on NLog 4.0 and it may be removed in a future release.
         /// </remarks>
         /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging. 
         /// To be used with C# <c>using ()</c> statement.</returns>
-        [Obsolete("Use SuspendLogging() instead. Marked obsolete before v4.3.11")]
+        [Obsolete("Use SuspendLogging() instead. Marked obsolete on NLog 4.0")]
         public IDisposable DisableLogging()
         {
             return SuspendLogging();
@@ -639,9 +639,9 @@ namespace NLog
         /// Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater than 
         /// or equal to <see cref="SuspendLogging"/> calls.
         /// 
-        /// This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.
+        /// This method was marked as obsolete on NLog 4.0 and it may be removed in a future release.
         /// </remarks>
-        [Obsolete("Use ResumeLogging() instead. Marked obsolete before v4.3.11")]
+        [Obsolete("Use ResumeLogging() instead. Marked obsolete on NLog 4.0")]
         public void EnableLogging()
         {
             ResumeLogging();

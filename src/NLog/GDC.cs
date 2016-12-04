@@ -39,8 +39,8 @@ namespace NLog
     /// <summary>
     /// Global Diagnostics Context - used for log4net compatibility.
     /// </summary>
-    /// <remarks>This class was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-    [Obsolete("Use GlobalDiagnosticsContext class instead. Marked obsolete before v4.3.11")]
+    /// <remarks>This class was marked as obsolete on NLog 2.0 and it may be removed in a future release.</remarks>
+    [Obsolete("Use GlobalDiagnosticsContext class instead. Marked obsolete on NLog 2.0")]
     public static class GDC
     {
         /// <summary>

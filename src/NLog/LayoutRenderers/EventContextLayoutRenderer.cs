@@ -41,9 +41,9 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// Log event context data.
     /// </summary>
-    /// <remarks>This class was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+    /// <remarks>This class was marked as obsolete on NLog 2.0 and it may be removed in a future release.</remarks>
     [LayoutRenderer("event-context")]
-    [Obsolete("Use EventPropertiesLayoutRenderer class instead. Marked obsolete before v4.3.11")]
+    [Obsolete("Use EventPropertiesLayoutRenderer class instead. Marked obsolete on NLog 2.0")]
     public class EventContextLayoutRenderer : LayoutRenderer
     {
         /// <summary>

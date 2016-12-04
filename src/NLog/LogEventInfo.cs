@@ -183,8 +183,8 @@ namespace NLog
         /// <summary>
         /// Gets the logger short name.
         /// </summary>
-        /// <remarks>This property was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("This property should not be used. Marked obsolete before v4.3.11")]
+        /// <remarks>This property was marked as obsolete on NLog 2.0 and it may be removed in a future release.</remarks>
+        [Obsolete("This property should not be used. Marked obsolete on NLog 2.0")]
         public string LoggerShortName
         {
             // NOTE: This property is not referenced by NLog code anymore. 
@@ -284,8 +284,8 @@ namespace NLog
         /// <summary>
         /// Gets the dictionary of per-event context properties.
         /// </summary>
-        /// <remarks>This property was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use LogEventInfo.Properties instead.  Marked obsolete before v4.3.11", true)]
+        /// <remarks>This property was marked as obsolete on NLog 2.0 and it may be removed in a future release.</remarks>
+        [Obsolete("Use LogEventInfo.Properties instead.  Marked obsolete on NLog 2.0", true)]
         public IDictionary Context
         {
             // NOTE: This propepery is not referenced in NLog code anymore. 
