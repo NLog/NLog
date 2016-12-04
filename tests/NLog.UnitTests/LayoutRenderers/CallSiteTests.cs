@@ -666,6 +666,25 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void Show_correct_filename_with_async()
+        {
+
+            //namespace en name of current method
+            const string currentFileName = "CallSiteTests.cs";
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+           <nlog>
+               <targets><target name='debug' type='Debug' layout='${callsite:className=False:fileName=True:includeSourcePath=False:methodName=False}|${message}' /></targets>
+               <rules>
+                   <logger name='*' levels='Warn' writeTo='debug' />
+               </rules>
+           </nlog>");
+
+            AsyncMethod().Wait();
+            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentFileName));
+        }
+
+        [Fact]
         public void Show_correct_method_with_async2()
         {
 
