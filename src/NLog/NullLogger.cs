@@ -56,7 +56,7 @@ namespace NLog
         {
             if (factory == null)
             {
-                throw new ArgumentNullException(nameof(factory));
+                throw new ArgumentNullException("factory");
             }
 
             TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
