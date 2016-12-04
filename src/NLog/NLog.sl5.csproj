@@ -348,6 +348,7 @@
     <Compile Include="NLogConfigurationException.cs" />
     <Compile Include="NLogRuntimeException.cs" />
     <Compile Include="NLogTraceListener.cs" />
+    <Compile Include="NullLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Targets\ArchiveNumberingMode.cs" />

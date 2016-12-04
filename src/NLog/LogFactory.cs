@@ -403,10 +403,7 @@ namespace NLog
         /// <returns>Null logger instance.</returns>
         public Logger CreateNullLogger()
         {
-            TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
-            Logger newLogger = new Logger();
-            newLogger.Initialize(string.Empty, new LoggerConfiguration(targetsByLevel, false), this);
-            return newLogger;
+            return new NullLogger(this);
         }
 
         /// <summary>
