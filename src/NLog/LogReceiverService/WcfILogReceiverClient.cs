@@ -47,10 +47,13 @@ namespace NLog.LogReceiverService
     /// Log Receiver Client using WCF.
     /// </summary>
     /// <remarks>
-    /// This will be removed when ILogReceiverClient is removed.
-    /// This provides an implementation of the legacy interface.</remarks>
+    /// This class marked as obsolete before NLog 4.3.11 and it will be removed in a future release.  
+    /// 
+    /// It provides an implementation of the legacy interface and it will be completely obsolete when the 
+    /// ILogReceiverClient is removed.
+    /// </remarks>
 #pragma warning disable 612, 618
-    [Obsolete("This may be removed in a future release.  Use WcfLogReceiverOneWayClient.")]
+    [Obsolete("Use WcfLogReceiverOneWayClient class instead. Marked obsolete before v4.3.11 and it may be removed in a future release.")]
     public sealed class WcfILogReceiverClient : WcfLogReceiverClientBase<ILogReceiverClient>, ILogReceiverClient
 #pragma warning restore 612, 618
     {

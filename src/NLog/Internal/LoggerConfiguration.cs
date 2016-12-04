@@ -59,7 +59,8 @@ namespace NLog.Internal
         /// <summary>
         /// Use the old exception log handling of NLog 3.0? 
         /// </summary>
-        [Obsolete("This option will be removed in NLog 5")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it  will be removed in NLog 5.</remarks>
+        [Obsolete("This property marked obsolete before v4.3.11 and it will be removed in NLog 5.")]
         public bool ExceptionLoggingOldStyle { get; private set; }
 
         /// <summary>
