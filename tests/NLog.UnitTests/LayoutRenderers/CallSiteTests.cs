@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
 using NLog.Config;
 using NLog.Internal;
 using NLog.Layouts;
@@ -728,6 +729,34 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             var logger = LogManager.GetCurrentClassLogger();
             logger.Warn("direct");
+
+        }
+
+        public async Task<IEnumerable<string>> AsyncMethod4()
+        {
+            NLog.Logger logger = NLog.LogManager.GetLogger("AnnonTest");
+            logger.Info("Direct, async method");
+
+            return await Task.FromResult(new string[] { "value1", "value2" });
+        }
+
+        [Fact]
+        public void Show_correct_method_with_async4()
+        {
+
+            //namespace en name of current method
+            const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod4";
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+           <nlog>
+               <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
+               <rules>
+                   <logger name='*' levels='Info' writeTo='debug' />
+               </rules>
+           </nlog>");
+
+            AsyncMethod4().Wait();
+            AssertDebugLastMessage("debug", string.Format("{0}|Direct, async method", currentMethodFullName));
 
         }
 
