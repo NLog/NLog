@@ -32,8 +32,11 @@
 // 
 
 
+using System;
 using NLog.Common;
+using NLog.Targets.Wrappers;
 using Xunit;
+using Xunit.Extensions;
 
 namespace NLog.UnitTests.Config
 {
@@ -68,6 +71,39 @@ namespace NLog.UnitTests.Config
             Assert.Equal(true, InternalLogger.LogToConsole);
             Assert.Equal(true, InternalLogger.LogToConsoleError);
             Assert.Equal(null, InternalLogger.LogWriter);
+
+        }
+
+
+
+        [Theory]
+        [InlineData("0:0:0:1", 1)]
+        [InlineData("0:0:1", 1)]
+        [InlineData("0:1", 60)] //1 minute
+        [InlineData("0:1:0", 60)]
+        [InlineData("00:00:00:1", 1)]
+        [InlineData("000:0000:000:001", 1)]
+        [InlineData("0:0:1:1", 61)]
+        [InlineData("1:0:0", 3600)] // 1 hour
+        [InlineData("2:3:4", 7384)] 
+        [InlineData("1:0:0:0", 86400)] //1 day
+        public void SetTimeSpanFromXmlTest(string interval, int seconds)
+        {
+            var config = CreateConfigurationFromString(string.Format(@"
+            <nlog>
+                <targets>
+                    <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='5'  interval='{0}'>
+                        <target name='debug' type='Debug' layout='${{message}}' />
+                    </wrapper-target>
+                </targets>
+                <rules>
+                    <logger name='*' level='Debug' writeTo='limiting' />
+                </rules>
+            </nlog>", interval));
+
+            var target = config.FindTargetByName<LimitingTargetWrapper>("limiting");
+            Assert.NotNull(target);
+            Assert.Equal(TimeSpan.FromSeconds(seconds), target.Interval);
 
         }
 
