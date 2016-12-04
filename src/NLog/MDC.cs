@@ -39,7 +39,8 @@ namespace NLog
     /// <summary>
     /// Mapped Diagnostics Context - used for log4net compatibility.
     /// </summary>
-    [Obsolete("Use MappedDiagnosticsContext instead")]
+    /// <remarks>This class marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+    [Obsolete("Use MappedDiagnosticsContext class instead. Marked obsolete before v4.3.11")]
     public static class MDC
     {
         /// <summary>

@@ -62,7 +62,8 @@ namespace NLog
         /// <summary>
         /// Delegate used to set/get the culture in use.
         /// </summary>
-        [Obsolete]
+        /// <remarks>This delegate marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Marked obsolete before v4.3.11")]
         public delegate CultureInfo GetCultureInfo();
 
 #if !SILVERLIGHT && !MONO
@@ -183,7 +184,8 @@ namespace NLog
         /// <summary>
         /// Gets or sets the default culture to use.
         /// </summary>
-        [Obsolete("Use Configuration.DefaultCultureInfo property instead")]
+        /// <remarks>This property was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Configuration.DefaultCultureInfo property instead. Marked obsolete before v4.3.11")]
         public static GetCultureInfo DefaultCultureInfo
         {
             get { return () => factory.DefaultCultureInfo ?? CultureInfo.CurrentCulture; }
