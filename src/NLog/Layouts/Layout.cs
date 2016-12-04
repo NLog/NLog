@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.Collections.Generic;
 
 namespace NLog.Layouts
 {
@@ -138,6 +139,7 @@ namespace NLog.Layouts
                 this.isInitialized = true;
                 this.InitializeLayout();
             }
+
 
             return this.GetFormattedMessage(logEvent);
         }
