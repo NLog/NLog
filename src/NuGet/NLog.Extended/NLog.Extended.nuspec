@@ -3,7 +3,7 @@
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>NLog.Extended</id>
     <title>NLog.Extended</title>
-    <version>$BuildVersion$</version>
+    <version>4.0.0.1</version>
     <authors>Kim Christenen, Julian Verdurmen </authors>
     <owners>Kim Christenen, Julian Verdurmen </owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
