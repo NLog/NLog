@@ -434,6 +434,13 @@ namespace NLog
 
         internal bool TryGetCachedLayoutValue(Layout layout, out string value)
         {
+            if (this.layoutCache == null)
+            {
+                // We don't need lock to see if dictionary has been created
+                value = null;
+                return false;
+            }
+
             lock (this.layoutCacheLock)
             {
                 if (this.layoutCache == null || this.layoutCache.Count == 0)

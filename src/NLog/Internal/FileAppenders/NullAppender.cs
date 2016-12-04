@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,48 +31,67 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers.Wrappers
+using System;
+
+namespace NLog.Internal.FileAppenders
 {
-    using System.Text;
-    using NLog.Config;
-    using NLog.Layouts;
-
     /// <summary>
-    /// Outputs alternative layout when the inner layout produces empty result.
+    /// Appender used to discard data for the FileTarget.
+    /// Used mostly for testing entire stack except the actual writing to disk.
+    /// Throws away all data.
     /// </summary>
-    [LayoutRenderer("whenEmpty")]
-    [AmbientProperty("WhenEmpty")]
-    [ThreadAgnostic]
-    public sealed class WhenEmptyLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
+    internal class NullAppender : BaseFileAppender
     {
-        /// <summary>
-        /// Gets or sets the layout to be rendered when original layout produced empty result.
-        /// </summary>
-        /// <docgen category="Transformation Options" order="10"/>
-        [RequiredParameter]
-        public Layout WhenEmpty { get; set; }
+        public static readonly IFileAppenderFactory TheFactory = new Factory();
 
-        /// <summary>
-        /// Transforms the output of another layout.
-        /// </summary>
-        /// <param name="target">Output to be transform.</param>
-        protected override void TransformFormattedMesssage(StringBuilder target)
+        public NullAppender(string fileName, ICreateFileParameters createParameters) : base(fileName, createParameters)
         {
         }
 
-        /// <summary>
-        /// Renders the inner layout contents.
-        /// </summary>
-        /// <param name="logEvent">The log event.</param>
-        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
-        protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
+        public override void Close()
         {
-            base.RenderFormattedMessage(logEvent, target);
-            if (target.Length > 0)
-                return;
+        }
 
-            // render WhenEmpty when the inner layout was empty
-            this.WhenEmpty.RenderAppendBuilder(logEvent, target);
+        public override void Flush()
+        {
+        }
+
+        public override DateTime? GetFileCreationTimeUtc()
+        {
+            return DateTime.UtcNow;
+        }
+
+        public override DateTime? GetFileLastWriteTimeUtc()
+        {
+            return DateTime.UtcNow;
+        }
+
+        public override long? GetFileLength()
+        {
+            return 0;
+        }
+
+        public override void Write(byte[] bytes, int offset, int count)
+        {
+        }
+ 
+        /// <summary>
+        /// Factory class.
+        /// </summary>
+        private class Factory : IFileAppenderFactory
+        {
+            /// <summary>
+            /// Opens the appender for given file name and parameters.
+            /// </summary>
+            /// <param name="fileName">Name of the file.</param>
+            /// <param name="parameters">Creation parameters.</param>
+            /// <returns>
+            /// Instance of <see cref="BaseFileAppender"/> which can be used to write to the file.
+            /// </returns>
+            BaseFileAppender IFileAppenderFactory.Open(string fileName, ICreateFileParameters parameters)
+            {
+                return new NullAppender(fileName, parameters);
+            }
         }
     }
 }

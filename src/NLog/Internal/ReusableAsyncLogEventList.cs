@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,48 +31,54 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers.Wrappers
+using System;
+using System.Collections.Generic;
+using NLog.Common;
+
+namespace NLog.Internal
 {
-    using System.Text;
-    using NLog.Config;
-    using NLog.Layouts;
-
     /// <summary>
-    /// Outputs alternative layout when the inner layout produces empty result.
+    /// Controls a single allocated AsyncLogEventInfo-List for reuse (only one active user)
     /// </summary>
-    [LayoutRenderer("whenEmpty")]
-    [AmbientProperty("WhenEmpty")]
-    [ThreadAgnostic]
-    public sealed class WhenEmptyLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
+    internal class ReusableAsyncLogEventList
     {
-        /// <summary>
-        /// Gets or sets the layout to be rendered when original layout produced empty result.
-        /// </summary>
-        /// <docgen category="Transformation Options" order="10"/>
-        [RequiredParameter]
-        public Layout WhenEmpty { get; set; }
+        private IList<AsyncLogEventInfo> _list;
 
-        /// <summary>
-        /// Transforms the output of another layout.
-        /// </summary>
-        /// <param name="target">Output to be transform.</param>
-        protected override void TransformFormattedMesssage(StringBuilder target)
+        public ReusableAsyncLogEventList(int capacity)
         {
+            _list = new List<AsyncLogEventInfo>(capacity);
         }
 
-        /// <summary>
-        /// Renders the inner layout contents.
-        /// </summary>
-        /// <param name="logEvent">The log event.</param>
-        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
-        protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
+        public LockList Allocate()
         {
-            base.RenderFormattedMessage(logEvent, target);
-            if (target.Length > 0)
-                return;
+            return new LockList(this);
+        }
 
-            // render WhenEmpty when the inner layout was empty
-            this.WhenEmpty.RenderAppendBuilder(logEvent, target);
+        public readonly LockList None;
+
+        public struct LockList : IDisposable
+        {
+            /// <summary>
+            /// Access the AsyncLogEventInfo[]-buffer acquired
+            /// </summary>
+            public readonly IList<AsyncLogEventInfo> Result;
+            private readonly ReusableAsyncLogEventList _owner;
+
+            public LockList(ReusableAsyncLogEventList owner)
+            {
+                Result = owner._list;
+                owner._list = null;
+                _owner = owner;
+            }
+
+            public void Dispose()
+            {
+                if (Result != null)
+                {
+                    Result.Clear();
+                    _owner._list = Result;
+                }
+            }
         }
     }
 }

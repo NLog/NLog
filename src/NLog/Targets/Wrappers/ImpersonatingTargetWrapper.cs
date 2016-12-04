@@ -36,6 +36,7 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Runtime.InteropServices;
     using System.Security;
@@ -187,7 +188,7 @@ namespace NLog.Targets.Wrappers
         /// and switches the context back to original.
         /// </summary>
         /// <param name="logEvents">Log events.</param>
-        protected override void Write(AsyncLogEventInfo[] logEvents)
+        protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
             using (this.DoImpersonate())
             {

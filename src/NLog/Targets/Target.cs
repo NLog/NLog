@@ -36,7 +36,6 @@ namespace NLog.Targets
     using System;
     using System.Collections.Generic;
     using System.Threading;
-
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -48,7 +47,7 @@ namespace NLog.Targets
     [NLogConfigurationItem]
     public abstract class Target : ISupportsInitialize, IDisposable
     {
-        private object lockObject = new object();
+        private readonly object lockObject = new object();
         private List<Layout> allLayouts;
         private bool allLayoutsAreThreadAgnostic;
         private bool scannedForLayouts;
@@ -59,6 +58,13 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='General Options' order='10' />
         public string Name { get; set; }
+
+        /// <summary>
+        /// Activates reuse of temporary buffers when writing LogEventInfo's to Target
+        /// This will lower memory allocations, but can increase CPU usage as unsafe code is avoided
+        /// </summary>
+        /// <docgen category='Performance Tuning Options' order='10' />
+        public bool OptimizeBufferUsage { get; set; }
 
         /// <summary>
         /// Gets the object which can be used to synchronize asynchronous operations that must rely on the .
@@ -91,6 +97,11 @@ namespace NLog.Targets
             }
         }
         private volatile bool isInitialized;
+
+        /// <summary>
+        /// Can be used if <see cref="OptimizeBufferUsage"/> has been enabled.
+        /// </summary>
+        internal readonly ReusableBuilderCreator ReusableLayoutBuilder = new ReusableBuilderCreator();
 
         /// <summary>
         /// Get all used layouts in this target.
@@ -192,9 +203,23 @@ namespace NLog.Targets
 
                 if (this.allLayouts != null)
                 {
-                    foreach (Layout layout in this.allLayouts)
+                    if (this.OptimizeBufferUsage)
                     {
-                        layout.Precalculate(logEvent);
+                        using (var targetBuilder = this.ReusableLayoutBuilder.Allocate())
+                        {
+                            foreach (Layout layout in this.allLayouts)
+                            {
+                                targetBuilder.Result.ClearBuilder();
+                                layout.PrecalculateBuilder(logEvent, targetBuilder.Result);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (Layout layout in this.allLayouts)
+                        {
+                            layout.Precalculate(logEvent);
+                        }
                     }
                 }
             }
@@ -257,13 +282,27 @@ namespace NLog.Targets
                 return;
             }
 
+            WriteAsyncLogEvents((IList<AsyncLogEventInfo>)logEvents);
+        }
+
+        /// <summary>
+        /// Writes the array of log events.
+        /// </summary>
+        /// <param name="logEvents">The log events.</param>
+        public void WriteAsyncLogEvents(IList<AsyncLogEventInfo> logEvents)
+        {
+            if (logEvents == null || logEvents.Count == 0)
+            {
+                return;
+            }
+
             if (!this.IsInitialized)
             {
                 lock (this.SyncRoot)
                 {
-                    foreach (var ev in logEvents)
+                    for (int i = 0; i < logEvents.Count; ++i)
                     {
-                        ev.Continuation(null);
+                        logEvents[i].Continuation(null);
                     }
                 }
                 return;
@@ -273,18 +312,32 @@ namespace NLog.Targets
             {
                 lock (this.SyncRoot)
                 {
-                    foreach (var ev in logEvents)
+                    for (int i = 0; i < logEvents.Count; ++i)
                     {
-                        ev.Continuation(this.CreateInitException());
+                        logEvents[i].Continuation(this.CreateInitException());
                     }
                 }
                 return;
             }
 
-            var wrappedEvents = new AsyncLogEventInfo[logEvents.Length];
-            for (int i = 0; i < logEvents.Length; ++i)
+            IList<AsyncLogEventInfo> wrappedEvents;
+            if (this.OptimizeBufferUsage)
             {
-                wrappedEvents[i] = logEvents[i].LogEvent.WithContinuation(AsyncHelpers.PreventMultipleCalls(logEvents[i].Continuation));
+                for (int i = 0; i < logEvents.Count; ++i)
+                {
+                    logEvents[i] = logEvents[i].LogEvent.WithContinuation(AsyncHelpers.PreventMultipleCalls(logEvents[i].Continuation));
+                }
+                wrappedEvents = logEvents;
+            }
+            else
+            {
+                var cloneLogEvents = new AsyncLogEventInfo[logEvents.Count];
+                for (int i = 0; i < logEvents.Count; ++i)
+                {
+                    AsyncLogEventInfo ev = logEvents[i];
+                    cloneLogEvents[i] = ev.LogEvent.WithContinuation(AsyncHelpers.PreventMultipleCalls(ev.Continuation));
+                }
+                wrappedEvents = cloneLogEvents;
             }
 
             this.WriteAsyncThreadSafe(wrappedEvents);
@@ -367,31 +420,43 @@ namespace NLog.Targets
             }
         }
 
-        internal void WriteAsyncLogEvents(AsyncLogEventInfo[] logEventInfos, AsyncContinuation continuation)
+        internal void WriteAsyncLogEvents(IList<AsyncLogEventInfo> logEventInfos, AsyncContinuation continuation)
         {
-            if (logEventInfos.Length == 0)
+            if (logEventInfos.Count == 0)
             {
                 continuation(null);
             }
             else
             {
-                var wrappedLogEventInfos = new AsyncLogEventInfo[logEventInfos.Length];
-                int remaining = logEventInfos.Length;
-                for (int i = 0; i < logEventInfos.Length; ++i)
+                IList<AsyncLogEventInfo> wrappedLogEventInfos;
+                if (this.OptimizeBufferUsage)
                 {
-                    AsyncContinuation originalContinuation = logEventInfos[i].Continuation;
-                    AsyncContinuation wrappedContinuation = ex =>
-                                                                {
-                                                                    originalContinuation(ex);
-                                                                    if (0 == Interlocked.Decrement(ref remaining))
-                                                                    {
-                                                                        continuation(null);
-                                                                    }
-                                                                };
-
-                    wrappedLogEventInfos[i] = logEventInfos[i].LogEvent.WithContinuation(wrappedContinuation);
+                    wrappedLogEventInfos = logEventInfos;
+                }
+                else
+                {
+                    var cloneLogEventInfos = new AsyncLogEventInfo[logEventInfos.Count];
+                    for (int i = 0; i < logEventInfos.Count; ++i)
+                        cloneLogEventInfos[i] = logEventInfos[i];
+                    wrappedLogEventInfos = cloneLogEventInfos;
                 }
 
+                int remaining = wrappedLogEventInfos.Count;
+                for (int i = 0; i < wrappedLogEventInfos.Count; ++i)
+                {
+                    AsyncContinuation originalContinuation = wrappedLogEventInfos[i].Continuation;
+                    AsyncContinuation wrappedContinuation = ex =>
+                    {
+                        originalContinuation(ex);
+                        if (0 == Interlocked.Decrement(ref remaining))
+                        {
+                            continuation(null);
+                        }
+                    };
+
+                    wrappedLogEventInfos[i] = wrappedLogEventInfos[i].LogEvent.WithContinuation(wrappedContinuation);
+                }
+ 
                 this.WriteAsyncLogEvents(wrappedLogEventInfos);
             }
         }
@@ -525,9 +590,21 @@ namespace NLog.Targets
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
+        [Obsolete("Instead use Write(IList<AsyncLogEventInfo> logEvents)")]
         protected virtual void Write(AsyncLogEventInfo[] logEvents)
         {
-            for (int i = 0; i < logEvents.Length; ++i)
+            Write((IList<AsyncLogEventInfo>)logEvents);
+        }
+
+        /// <summary>
+        /// Writes an array of logging events to the log target. By default it iterates on all
+        /// events and passes them to "Write" method. Inheriting classes can use this method to
+        /// optimize batch writes.
+        /// </summary>
+        /// <param name="logEvents">Logging events to be written out.</param>
+        protected virtual void Write(IList<AsyncLogEventInfo> logEvents)
+        {
+            for (int i = 0; i < logEvents.Count; ++i)
             {
                 this.Write(logEvents[i]);
             }
@@ -537,23 +614,34 @@ namespace NLog.Targets
         /// Writes an array of logging events to the log target, in a thread safe manner.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
-        protected virtual void WriteAsyncThreadSafe(AsyncLogEventInfo[] logEvents)
+        protected virtual void WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents)
         {
             lock (this.SyncRoot)
             {
                 if (!this.IsInitialized)
                 {
                     // In case target was Closed
-                    foreach (var ev in logEvents)
+                    for (int i = 0; i < logEvents.Count; ++i)
                     {
-                        ev.Continuation(null);
+                        logEvents[i].Continuation(null);
                     }
                     return;
                 }
 
                 try
                 {
-                    this.Write(logEvents);
+                    AsyncLogEventInfo[] logEventsArray = !this.OptimizeBufferUsage ? logEvents as AsyncLogEventInfo[] : null;
+                    if (!this.OptimizeBufferUsage && logEventsArray != null)
+                    {
+                        // Backwards compatibility
+#pragma warning disable 612, 618
+                        this.Write(logEventsArray);
+#pragma warning restore 612, 618
+                    }
+                    else
+                    {
+                        this.Write(logEvents);
+                    }
                 }
                 catch (Exception exception)
                 {
@@ -563,9 +651,9 @@ namespace NLog.Targets
                     }
 
                     // in case of synchronous failure, assume that nothing is running asynchronously
-                    foreach (var ev in logEvents)
+                    for (int i = 0; i < logEvents.Count; ++i)
                     {
-                        ev.Continuation(exception);
+                        logEvents[i].Continuation(exception);
                     }
                 }
             }

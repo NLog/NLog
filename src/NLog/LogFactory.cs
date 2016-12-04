@@ -715,10 +715,11 @@ namespace NLog
             InternalLogger.Info("Reloading configuration...");
             lock (this.syncRoot)
             {
-                if (this.reloadTimer != null)
+                var currentTimer = this.reloadTimer;
+                if (currentTimer != null)
                 {
-                    this.reloadTimer.Dispose();
                     this.reloadTimer = null;
+                    currentTimer.Dispose();
                 }
 
                 if (this.IsDisposing)
@@ -892,9 +893,9 @@ namespace NLog
                 this.IsDisposing = true;
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-                if (this.reloadTimer != null)
+                var currentTimer = this.reloadTimer;
+                if (currentTimer != null)
                 {
-                    var currentTimer = this.reloadTimer;
                     this.reloadTimer = null;    // Mark that we have started to dispose the timer
                     using (ManualResetEvent waitHandle = new ManualResetEvent(false))
                     {

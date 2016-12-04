@@ -65,12 +65,14 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Writes the specified bytes.
         /// </summary>
-        /// <param name="bytes">The bytes.</param>
-        public override void Write(byte[] bytes)
+        /// <param name="bytes">The bytes array.</param>
+        /// <param name="offset">The bytes array offset.</param>
+        /// <param name="count">The number of bytes.</param>
+        public override void Write(byte[] bytes, int offset, int count)
         {
             using (FileStream fileStream = CreateFileStream(false))
             {
-                fileStream.Write(bytes, 0, bytes.Length);
+                fileStream.Write(bytes, offset, count);
             }
 
             if (CaptureLastWriteTime)
