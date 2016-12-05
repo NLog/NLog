@@ -88,6 +88,12 @@ namespace NLog.LayoutRenderers
 #endif
 
             this.Parameters = new List<NLogViewerParameterInfo>();
+
+#if SILVERLIGHT
+            this.machineName = "silverlight";
+#else
+            this.machineName = Environment.MachineName;
+#endif
         }
 
         /// <summary>
@@ -139,6 +145,8 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Payload Options' order='10' />
         [DefaultValue(" ")]
         public string NdcItemSeparator { get; set; }
+
+        private string machineName;
 
         /// <summary>
         /// Gets the level of stack trace information required by the implementing class.
@@ -297,7 +305,7 @@ namespace NLog.LayoutRenderers
 #if SILVERLIGHT
                 xtw.WriteAttributeSafeString("value", "silverlight");
 #else
-                xtw.WriteAttributeSafeString("value", Environment.MachineName);
+                xtw.WriteAttributeSafeString("value", this.machineName);
 #endif
                 xtw.WriteEndElement();
                 xtw.WriteEndElement();
