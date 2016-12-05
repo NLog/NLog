@@ -65,29 +65,38 @@ namespace NLog.Internal
 #if NET3_5
             return InvalidXmlChars.Replace(text, "");
 #else
-            StringBuilder sb = null;
+            for (int i = 0; i < text.Length; ++i)
+            {
+                char ch = text[i];
+                if (!XmlConvert.IsXmlChar(ch))
+                {
+                    return FilterValidXmlChars(text);   // rare expensive case
+                }
+            }
+            return text;
+#endif
+        }
+
+#if !NET3_5
+        /// <summary>
+        /// Cleans string of any invalid XML chars found
+        /// </summary>
+        /// <param name="text">unclean string</param>
+        /// <returns>string with only valid XML chars</returns>
+        private static string FilterValidXmlChars(string text)
+        {
+            var sb = new StringBuilder(text.Length);
             for (int i = 0; i < text.Length; ++i)
             {
                 char ch = text[i];
                 if (XmlConvert.IsXmlChar(ch))
                 {
-                    if (sb != null)
-                        sb.Append(ch);
-                    continue;
-                }
-
-                if (sb == null)
-                {
-                    // Only allocated string-builder, when string is bad
-                    sb = new StringBuilder(text.Length);
-                    for (int j = 0; j < i; ++j)
-                        sb.Append(text[j]);
+                    sb.Append(ch);
                 }
             }
-            return sb != null ? sb.ToString() : text;
-#endif
+            return sb.ToString();
         }
-
+#endif
 
         /// <summary>
         /// Safe version of WriteAttributeString
