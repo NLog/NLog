@@ -55,8 +55,10 @@ namespace NLog.LayoutRenderers
         private static readonly DateTime log4jDateBase = new DateTime(1970, 1, 1);
 
         private static readonly string dummyNamespace = "http://nlog-project.org/dummynamespace/" + Guid.NewGuid();
+        private static readonly string dummyNamespaceRemover = " xmlns:log4j=\"" + dummyNamespace + "\"";
 
         private static readonly string dummyNLogNamespace = "http://nlog-project.org/dummynamespace/" + Guid.NewGuid();
+        private static readonly string dummyNLogNamespaceRemover = " xmlns:nlog=\"" + dummyNLogNamespace + "\"";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
@@ -180,8 +182,9 @@ namespace NLog.LayoutRenderers
                 IndentChars = "  ",
             };
 
-            var sb = new StringBuilder();
-            using (XmlWriter xtw = XmlWriter.Create(sb, settings))
+            int startPosition = builder.Length;
+            
+            using (XmlWriter xtw = XmlWriter.Create(builder, settings))
             {
                 xtw.WriteStartElement("log4j", "event", dummyNamespace);
                 xtw.WriteAttributeSafeString("xmlns", "nlog", null, dummyNLogNamespace);
@@ -256,7 +259,7 @@ namespace NLog.LayoutRenderers
                             }
                             xtw.WriteEndElement();
                         }
-                        
+
                     }
                 }
 
@@ -272,12 +275,15 @@ namespace NLog.LayoutRenderers
                     }
                 }
 
-                foreach (NLogViewerParameterInfo parameter in this.Parameters)
+                if (this.Parameters.Count > 0)
                 {
-                    xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                    xtw.WriteAttributeSafeString("name", parameter.Name);
-                    xtw.WriteAttributeSafeString("value", parameter.Layout.Render(logEvent));
-                    xtw.WriteEndElement();
+                    foreach (NLogViewerParameterInfo parameter in this.Parameters)
+                    {
+                        xtw.WriteStartElement("log4j", "data", dummyNamespace);
+                        xtw.WriteAttributeSafeString("name", parameter.Name);
+                        xtw.WriteAttributeSafeString("value", parameter.Layout.Render(logEvent));
+                        xtw.WriteEndElement();
+                    }
                 }
 
                 xtw.WriteStartElement("log4j", "data", dummyNamespace);
@@ -289,7 +295,7 @@ namespace NLog.LayoutRenderers
                 xtw.WriteAttributeSafeString("name", "log4jmachinename");
 
 #if SILVERLIGHT
-            xtw.WriteAttributeSafeString("value", "silverlight");
+                xtw.WriteAttributeSafeString("value", "silverlight");
 #else
                 xtw.WriteAttributeSafeString("value", Environment.MachineName);
 #endif
@@ -300,10 +306,8 @@ namespace NLog.LayoutRenderers
                 xtw.Flush();
 
                 // get rid of 'nlog' and 'log4j' namespace declarations
-                sb.Replace(" xmlns:log4j=\"" + dummyNamespace + "\"", string.Empty);
-                sb.Replace(" xmlns:nlog=\"" + dummyNLogNamespace + "\"", string.Empty);
-
-                builder.Append(sb.ToString());
+                builder.Replace(dummyNamespaceRemover, string.Empty, startPosition, builder.Length - startPosition);
+                builder.Replace(dummyNLogNamespaceRemover, string.Empty, startPosition, builder.Length - startPosition);
             }
         }
     }

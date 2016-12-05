@@ -34,6 +34,7 @@
 namespace NLog.Internal
 {
     using System;
+    using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
 
@@ -58,7 +59,33 @@ namespace NLog.Internal
         /// </summary>
         private static string RemoveInvalidXmlChars(string text)
         {
-            return String.IsNullOrEmpty(text) ? "" : InvalidXmlChars.Replace(text, "");
+            if (string.IsNullOrEmpty(text))
+                return string.Empty;
+
+#if NET3_5
+            return InvalidXmlChars.Replace(text, "");
+#else
+            StringBuilder sb = null;
+            for (int i = 0; i < text.Length; ++i)
+            {
+                char ch = text[i];
+                if (XmlConvert.IsXmlChar(ch))
+                {
+                    if (sb != null)
+                        sb.Append(ch);
+                    continue;
+                }
+
+                if (sb == null)
+                {
+                    // Only allocated string-builder, when string is bad
+                    sb = new StringBuilder(text.Length);
+                    for (int j = 0; j < i; ++j)
+                        sb.Append(text[j]);
+                }
+            }
+            return sb != null ? sb.ToString() : text;
+#endif
         }
 
 
