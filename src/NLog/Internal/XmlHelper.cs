@@ -70,7 +70,7 @@ namespace NLog.Internal
                 char ch = text[i];
                 if (!XmlConvert.IsXmlChar(ch))
                 {
-                    return FilterValidXmlChars(text);   // rare expensive case
+                    return CreateValidXmlString(text);   // rare expensive case
                 }
             }
             return text;
@@ -83,7 +83,7 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="text">unclean string</param>
         /// <returns>string with only valid XML chars</returns>
-        private static string FilterValidXmlChars(string text)
+        private static string CreateValidXmlString(string text)
         {
             var sb = new StringBuilder(text.Length);
             for (int i = 0; i < text.Length; ++i)
