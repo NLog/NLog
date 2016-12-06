@@ -66,9 +66,9 @@ namespace NLog.Targets
         ///   TextWriter's Synchronized methods.This also applies to classes like StreamWriter and StreamReader.
         /// 
         /// </remarks>
-        private bool PauseLogging;
+        private bool pauseLogging;
 
-        private static readonly IList<ConsoleRowHighlightingRule> defaultConsoleRowHighlightingRules = new List<ConsoleRowHighlightingRule>()
+        private static readonly IList<ConsoleRowHighlightingRule> DefaultConsoleRowHighlightingRules = new List<ConsoleRowHighlightingRule>()
         {
             new ConsoleRowHighlightingRule("level == LogLevel.Fatal", ConsoleOutputColor.Red, ConsoleOutputColor.NoChange),
             new ConsoleRowHighlightingRule("level == LogLevel.Error", ConsoleOutputColor.Yellow, ConsoleOutputColor.NoChange),
@@ -89,8 +89,8 @@ namespace NLog.Targets
             this.WordHighlightingRules = new List<ConsoleWordHighlightingRule>();
             this.RowHighlightingRules = new List<ConsoleRowHighlightingRule>();
             this.UseDefaultRowHighlightingRules = true;
-            this.PauseLogging = false;
-            this.DetectConsoleAvailable = true;
+            this.pauseLogging = false;
+            this.DetectConsoleAvailable = false;
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace NLog.Targets
         ///  - Disables console writing if Environment.UserInteractive = False (Windows Service)
         ///  - Disables console writing if Console Standard Input is not available (Non-Console-App)
         /// </summary>
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool DetectConsoleAvailable { get; set; }
 
         /// <summary>
@@ -196,12 +196,12 @@ namespace NLog.Targets
         /// </summary>
         protected override void InitializeTarget()
         {
-            this.PauseLogging = false;
+            this.pauseLogging = false;
             if (DetectConsoleAvailable)
             {
                 string reason;
-                PauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
-                if (PauseLogging)
+                pauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
+                if (pauseLogging)
                 {
                     InternalLogger.Info("Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {0}", reason);
                 }
@@ -235,7 +235,7 @@ namespace NLog.Targets
         /// <param name="logEvent">Log event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            if (PauseLogging)
+            if (pauseLogging)
             {
                 //check early for performance
                 return;
@@ -286,7 +286,7 @@ namespace NLog.Targets
                 catch (IndexOutOfRangeException ex)
                 {
                     //this is a bug and therefor stopping logging. For docs, see PauseLogging property
-                    PauseLogging = true;
+                    pauseLogging = true;
                     InternalLogger.Warn(ex, "An IndexOutOfRangeException has been thrown and this is probably due to a race condition." +
                                             "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
                 }
@@ -310,7 +310,7 @@ namespace NLog.Targets
 
             if (this.UseDefaultRowHighlightingRules)
             {
-                foreach (ConsoleRowHighlightingRule rule in defaultConsoleRowHighlightingRules)
+                foreach (ConsoleRowHighlightingRule rule in DefaultConsoleRowHighlightingRules)
                 {
                     if (rule.CheckCondition(logEvent))
                         return rule;

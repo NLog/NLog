@@ -41,7 +41,6 @@ namespace NLog.UnitTests.Internal.FileAppenders
 
     using NLog.Targets;
     using NLog.Internal.FileAppenders;
-    using NLog.Internal;
 
     public class FileAppenderCacheTests : NLogTestBase
     {
@@ -169,18 +168,45 @@ namespace NLog.UnitTests.Internal.FileAppenders
         }
 
         [Fact]
-        public void FileAppenderCache_GetFileCharacteristics()
+        public void FileAppenderCache_GetFileCharacteristics_Single()
+        {
+            IFileAppenderFactory appenderFactory = SingleProcessFileAppender.TheFactory;
+            ICreateFileParameters fileTarget = new FileTarget() { ArchiveNumbering = ArchiveNumberingMode.Date };
+            FileAppenderCache_GetFileCharacteristics(appenderFactory, fileTarget);
+        }
+
+#if   !__IOS__ && !__ANDROID__ && !MONO_2_0
+        [Fact]
+        public void FileAppenderCache_GetFileCharacteristics_Multi()
+        {
+            IFileAppenderFactory appenderFactory = MutexMultiProcessFileAppender.TheFactory;
+            ICreateFileParameters fileTarget = new FileTarget() { ArchiveNumbering = ArchiveNumberingMode.Date, ForceManaged = true };
+            FileAppenderCache_GetFileCharacteristics(appenderFactory, fileTarget);
+        }
+#endif
+
+#if  !__IOS__ && !__ANDROID__ && !MONO
+        [Fact]
+        public void FileAppenderCache_GetFileCharacteristics_Windows()
+        {
+            if (NLog.Internal.PlatformDetector.IsDesktopWin32)
+            {
+                IFileAppenderFactory appenderFactory = WindowsMultiProcessFileAppender.TheFactory;
+                ICreateFileParameters fileTarget = new FileTarget() { ArchiveNumbering = ArchiveNumberingMode.Date };
+                FileAppenderCache_GetFileCharacteristics(appenderFactory, fileTarget);
+            }
+        }
+#endif
+
+        private void FileAppenderCache_GetFileCharacteristics(IFileAppenderFactory appenderFactory, ICreateFileParameters fileParameters)
         {
             // Invoke GetFileCharacteristics() on an Empty FileAppenderCache.
             FileAppenderCache emptyCache = FileAppenderCache.Empty;
             Assert.Null(emptyCache.GetFileCreationTimeUtc("file.txt", false));
             Assert.Null(emptyCache.GetFileLastWriteTimeUtc("file.txt", false));
             Assert.Null(emptyCache.GetFileLength("file.txt", false));
-
-            IFileAppenderFactory appenderFactory = SingleProcessFileAppender.TheFactory;
-            ICreateFileParameters fileTarget = new FileTarget() {ArchiveNumbering = ArchiveNumberingMode.Date};
-           
-            FileAppenderCache cache = new FileAppenderCache(3, appenderFactory, fileTarget);
+          
+            FileAppenderCache cache = new FileAppenderCache(3, appenderFactory, fileParameters);
             // Invoke GetFileCharacteristics() on non-empty FileAppenderCache - Before allocating any appenders. 
             Assert.Null(emptyCache.GetFileCreationTimeUtc("file.txt", false));
             Assert.Null(emptyCache.GetFileLastWriteTimeUtc("file.txt", false));

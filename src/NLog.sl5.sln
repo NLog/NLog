@@ -1,8 +1,8 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.sl5", "NLog\NLog.sl5.csproj", "{E7AB20BF-6920-442A-B876-CC06BC5CEC79}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.sl5", "..\tests\NLog.UnitTests\NLog.UnitTests.sl5.csproj", "{C48047FF-7E14-443D-906D-7E021AB5707A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleExtensions.sl5", "..\tests\SampleExtensions\SampleExtensions.sl5.csproj", "{C480452F-7E14-443D-906D-7E021AB5707A}"
 EndProject
@@ -18,10 +18,6 @@ Global
 		{E7AB20BF-6920-442A-B876-CC06BC5CEC79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7AB20BF-6920-442A-B876-CC06BC5CEC79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7AB20BF-6920-442A-B876-CC06BC5CEC79}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C48047FF-7E14-443D-906D-7E021AB5707A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C48047FF-7E14-443D-906D-7E021AB5707A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C48047FF-7E14-443D-906D-7E021AB5707A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C48047FF-7E14-443D-906D-7E021AB5707A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C480452F-7E14-443D-906D-7E021AB5707A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C480452F-7E14-443D-906D-7E021AB5707A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C480452F-7E14-443D-906D-7E021AB5707A}.Release|Any CPU.ActiveCfg = Release|Any CPU

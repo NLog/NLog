@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
-
 namespace NLog.UnitTests
 {
 
@@ -58,6 +56,9 @@ class C1
     {
         try
         {
+            if (args.Length < 3)
+                throw new Exception(""Usage: Runner.exe \""AssemblyName\"" \""ClassName\"" \""MethodName\"" \""Parameter1...N\"""");
+
             string assemblyName = args[0];
             string className = args[1];
             string methodName = args[2];
@@ -90,6 +91,9 @@ class C1
             options.OutputAssembly = "Runner.exe";
             options.GenerateExecutable = true;
             options.IncludeDebugInformation = true;
+            // To allow debugging the generated Runner.exe we need to keep files.
+            // See http://stackoverflow.com/questions/875723/how-to-debug-break-in-codedom-compiled-code
+            options.TempFiles = new TempFileCollection(Environment.GetEnvironmentVariable("TEMP"), true);
             var results = provider.CompileAssemblyFromSource(options, sourceCode);
             Assert.False(results.Errors.HasWarnings);
             Assert.False(results.Errors.HasErrors);
@@ -121,14 +125,13 @@ class C1
 #endif
             proc.StartInfo.UseShellExecute = false;
             proc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-            proc.StartInfo.RedirectStandardInput = false;
-            proc.StartInfo.RedirectStandardOutput = true;
             proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             proc.StartInfo.CreateNoWindow = true;
+            // Hint:
+            // In case we wanna redirect stdout we should drain the redirected pipe continously.
+            // Otherwise Runner.exe's console buffer is full rather fast, leading to a lock within Console.Write(Line).
             proc.Start();
             return proc;
         }
     }
 }
-
-#endif

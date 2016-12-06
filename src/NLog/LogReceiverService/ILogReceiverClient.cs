@@ -40,10 +40,11 @@ namespace NLog.LogReceiverService
     /// <summary>
     /// Service contract for Log Receiver client.
     /// </summary>
+    /// <remarks>This class marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
 #if WCF_SUPPORTED
     [ServiceContract(Namespace = LogReceiverServiceConfig.WebServiceNamespace, ConfigurationName = "NLog.LogReceiverService.ILogReceiverClient")]
 #endif
-    [Obsolete("This may be removed in a future release.  Use ILogReceiverOneWayClient or ILogReceiverTwoWayClient.")]
+    [Obsolete("Use ILogReceiverOneWayClient or ILogReceiverTwoWayClient instead. Marked obsolete before v4.3.11 and it may be removed in a future release.")]
     public interface ILogReceiverClient
     {
         /// <summary>

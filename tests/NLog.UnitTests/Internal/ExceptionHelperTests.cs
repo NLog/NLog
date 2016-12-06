@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
-//no silverlight for xunit InlineData
 
 using System;
 using System.Collections.Generic;
@@ -158,4 +156,3 @@ namespace NLog.UnitTests.Internal
         }
     }
 }
-#endif

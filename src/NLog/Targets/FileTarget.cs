@@ -675,10 +675,18 @@ namespace NLog.Targets
         }
         
         /// <summary>
-        /// Gets or set a value indicating whether a managed file stream is forced, instead of used the native implementation.
+        /// Gets or set a value indicating whether a managed file stream is forced, instead of using the native implementation.
         /// </summary>
         [DefaultValue(false)]
         public bool ForceManaged { get; set; }
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+        /// <summary>
+        /// Gets or sets a value indicationg whether file creation calls should be synchronized by a system global mutex.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool ForceMutexConcurrentWrites { get; set; }
+#endif
 
         /// <summary>
         /// Gets or sets a value indicating whether the footer should be written only when the file is archived.
@@ -900,7 +908,10 @@ namespace NLog.Targets
                     return MutexMultiProcessFileAppender.TheFactory;
                 }
 #else
-                return MutexMultiProcessFileAppender.TheFactory;
+                if (!this.ForceMutexConcurrentWrites && PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
+                    return WindowsMultiProcessFileAppender.TheFactory;
+                else
+                    return MutexMultiProcessFileAppender.TheFactory;
 #endif
             }
             else if (IsArchivingEnabled())
@@ -1017,8 +1028,9 @@ namespace NLog.Targets
 
                     LogEventInfo firstLogEvent = null;
 
-                    foreach (AsyncLogEventInfo ev in bucket.Value)
+                    for (int i = 0; i < bucket.Value.Count; i++)
                     {
+                        AsyncLogEventInfo ev = bucket.Value[i];
                         if (firstLogEvent == null)
                         {
                             firstLogEvent = ev.LogEvent;
@@ -1365,15 +1377,15 @@ namespace NLog.Targets
                 return;
             }
 
-            FileNameTemplate fileTemplate = new FileNameTemplate(baseNamePattern);
-            string fileNameMask = fileTemplate.ReplacePattern("*");
-            string dateFormat = GetArchiveDateFormatString(this.ArchiveDateFormat);
-
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             if (string.IsNullOrEmpty(dirName))
             {
                 return;
             }
+
+            FileNameTemplate fileTemplate = new FileNameTemplate(baseNamePattern);
+            string fileNameMask = fileTemplate.ReplacePattern("*");
+            string dateFormat = GetArchiveDateFormatString(this.ArchiveDateFormat);
 
             int minSequenceLength = fileTemplate.EndAt - fileTemplate.BeginAt - 2;
             int nextSequenceNumber;
@@ -1569,13 +1581,12 @@ namespace NLog.Targets
         /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
         private void ArchiveByDate(string fileName, string pattern, LogEventInfo logEvent)
         {
-            string fileNameMask = ReplaceFileNamePattern(pattern, "*");
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
-            string dateFormat = GetArchiveDateFormatString(this.ArchiveDateFormat);
-
-            DateTime archiveDate = GetArchiveDate(fileName, logEvent);
             if (dirName != null)
             {
+                DateTime archiveDate = GetArchiveDate(fileName, logEvent);
+                string fileNameMask = ReplaceFileNamePattern(pattern, "*");
+                string dateFormat = GetArchiveDateFormatString(this.ArchiveDateFormat);
                 string archiveFileName = Path.Combine(dirName, fileNameMask.Replace("*", archiveDate.ToString(dateFormat)));
                 ArchiveFile(fileName, archiveFileName);
             }
@@ -1727,6 +1738,9 @@ namespace NLog.Targets
             var fileInfo = new FileInfo(fileName);
             if (!fileInfo.Exists)
             {
+                // Close possible stale file handles
+                this.fileAppenderCache.InvalidateAppender(fileName);
+                this.initializedFiles.Remove(fileName);
                 return;
             }
 
@@ -1816,6 +1830,11 @@ namespace NLog.Targets
             var archiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
             if (!string.IsNullOrEmpty(archiveFile))
             {
+                // Close possible stale file handles, before doing extra check
+                if (archiveFile != fileName)
+                    this.fileAppenderCache.InvalidateAppender(fileName);
+                this.fileAppenderCache.InvalidateAppender(archiveFile);
+
 #if SupportsMutex
                 Mutex archiveMutex = this.fileAppenderCache.GetArchiveMutex(fileName);
                 try
@@ -1832,6 +1851,17 @@ namespace NLog.Targets
 #endif
                 try
                 {
+                    // Check again if archive is needed. We could have been raced by another process
+                    var validatedArchiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
+                    if (string.IsNullOrEmpty(validatedArchiveFile))
+                    {
+                        if (archiveFile != fileName)
+                            this.initializedFiles.Remove(fileName);
+                        this.initializedFiles.Remove(archiveFile);
+                        return;
+                    }
+
+                    archiveFile = validatedArchiveFile;
                     this.DoAutoArchive(archiveFile, ev);
                 }
                 catch (Exception exception)

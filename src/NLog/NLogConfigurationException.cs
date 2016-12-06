@@ -73,6 +73,18 @@ namespace NLog
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="NLogRuntimeException" /> class.
+        /// </summary>
+        /// <param name="innerException">The inner exception.</param>
+        /// <param name="message">The message.</param>
+        /// <param name="messageParameters">Parameters for the message</param>
+        [StringFormatMethod("message")]
+        public NLogConfigurationException(Exception innerException, string message, params object[] messageParameters)
+            : base(string.Format(message, messageParameters), innerException)
+        {
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="NLogConfigurationException" /> class.
         /// </summary>
         /// <param name="message">The message.</param>

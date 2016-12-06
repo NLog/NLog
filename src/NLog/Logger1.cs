@@ -151,7 +151,8 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void TraceException([Localizable(false)] string message, Exception exception)
         {
             this.Trace(message, exception); 
@@ -203,12 +204,26 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
         [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead.")]
         public void Trace([Localizable(false)] string message, Exception exception)
         {
             if (this.IsTraceEnabled)
             {
                 this.WriteToTargets(LogLevel.Trace, message, exception);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Trace</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        public void Trace(Exception exception, [Localizable(false)] string message)
+        {
+            if (this.IsTraceEnabled)
+            {
+                this.WriteToTargets(LogLevel.Trace, exception, message, null);
             }
         }
 
@@ -422,7 +437,8 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void DebugException([Localizable(false)] string message, Exception exception)
         {
             this.Debug(message, exception); 
@@ -474,12 +490,26 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void Debug([Localizable(false)] string message, Exception exception)
         {
             if (this.IsDebugEnabled)
             {
                 this.WriteToTargets(LogLevel.Debug, message, exception);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Debug</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        public void Debug(Exception exception, [Localizable(false)] string message)
+        {
+            if (this.IsDebugEnabled)
+            {
+                this.WriteToTargets(LogLevel.Debug, exception, message, null);
             }
         }
 
@@ -693,7 +723,8 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void InfoException([Localizable(false)] string message, Exception exception)
         {
             this.Info(message, exception); 
@@ -745,12 +776,26 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void Info([Localizable(false)] string message, Exception exception)
         {
             if (this.IsInfoEnabled)
             {
                 this.WriteToTargets(LogLevel.Info, message, exception);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Info</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        public void Info(Exception exception, [Localizable(false)] string message)
+        {
+            if (this.IsInfoEnabled)
+            {
+                this.WriteToTargets(LogLevel.Info, exception, message, null);
             }
         }
 
@@ -964,7 +1009,8 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void WarnException([Localizable(false)] string message, Exception exception)
         {
             this.Warn(message, exception); 
@@ -1016,12 +1062,26 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void Warn([Localizable(false)] string message, Exception exception)
         {
             if (this.IsWarnEnabled)
             {
                 this.WriteToTargets(LogLevel.Warn, message, exception);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Warn</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        public void Warn(Exception exception, [Localizable(false)] string message)
+        {
+            if (this.IsWarnEnabled)
+            {
+                this.WriteToTargets(LogLevel.Warn, exception, message, null);
             }
         }
 
@@ -1235,7 +1295,8 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void ErrorException([Localizable(false)] string message, Exception exception)
         {
             this.Error(message, exception); 
@@ -1287,12 +1348,26 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void Error([Localizable(false)] string message, Exception exception)
         {
             if (this.IsErrorEnabled)
             {
                 this.WriteToTargets(LogLevel.Error, message, exception);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Error</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        public void Error(Exception exception, [Localizable(false)] string message)
+        {
+            if (this.IsErrorEnabled)
+            {
+                this.WriteToTargets(LogLevel.Error, exception, message, null);
             }
         }
 
@@ -1506,7 +1581,8 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void FatalException([Localizable(false)] string message, Exception exception)
         {
             this.Fatal(message, exception); 
@@ -1558,12 +1634,26 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void Fatal([Localizable(false)] string message, Exception exception)
         {
             if (this.IsFatalEnabled)
             {
                 this.WriteToTargets(LogLevel.Fatal, message, exception);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Fatal</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        public void Fatal(Exception exception, [Localizable(false)] string message)
+        {
+            if (this.IsFatalEnabled)
+            {
+                this.WriteToTargets(LogLevel.Fatal, exception, message, null);
             }
         }
 

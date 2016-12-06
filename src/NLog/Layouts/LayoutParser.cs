@@ -342,7 +342,21 @@ namespace NLog.Layouts
             Debug.Assert(ch == '{', "'{' expected in layout specification");
 
             string name = ParseLayoutRendererName(sr);
-            LayoutRenderer lr = configurationItemFactory.LayoutRenderers.CreateInstance(name);
+            LayoutRenderer lr;
+            try
+            {
+                lr = configurationItemFactory.LayoutRenderers.CreateInstance(name);
+            }
+            catch (Exception ex)
+            {
+                if (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
+                {
+                    throw;
+                }
+                InternalLogger.Error(ex, "Error parsing layout {0} will be ignored.", name);
+                //replace with emptys
+                lr = new LiteralLayoutRenderer(string.Empty);
+            }
 
             var wrappers = new Dictionary<Type, LayoutRenderer>();
             var orderedWrappers = new List<LayoutRenderer>();
@@ -480,7 +494,7 @@ namespace NLog.Layouts
 
         private static void MergeLiterals(List<LayoutRenderer> list)
         {
-            for (int i = 0; i + 1 < list.Count; )
+            for (int i = 0; i + 1 < list.Count;)
             {
                 var lr1 = list[i] as LiteralLayoutRenderer;
                 var lr2 = list[i + 1] as LiteralLayoutRenderer;

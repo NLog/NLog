@@ -58,11 +58,13 @@ namespace NLog.Config
         private readonly IList<object> allFactories;
         private readonly Factory<Target, TargetAttribute> targets;
         private readonly Factory<Filter, FilterAttribute> filters;
-        private readonly Factory<LayoutRenderer, LayoutRendererAttribute> layoutRenderers;
+        private readonly LayoutRendererFactory layoutRenderers;
         private readonly Factory<Layout, LayoutAttribute> layouts;
         private readonly MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute> conditionMethods;
         private readonly Factory<LayoutRenderer, AmbientPropertyAttribute> ambientProperties;
         private readonly Factory<TimeSource, TimeSourceAttribute> timeSources;
+
+        private IJsonSerializer jsonSerializer = DefaultJsonSerializer.Instance;
         
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfigurationItemFactory"/> class.
@@ -73,7 +75,7 @@ namespace NLog.Config
             this.CreateInstance = FactoryHelper.CreateInstance;
             this.targets = new Factory<Target, TargetAttribute>(this);
             this.filters = new Factory<Filter, FilterAttribute>(this);
-            this.layoutRenderers = new Factory<LayoutRenderer, LayoutRendererAttribute>(this);
+            this.layoutRenderers = new LayoutRendererFactory(this);
             this.layouts = new Factory<Layout, LayoutAttribute>(this);
             this.conditionMethods = new MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute>();
             this.ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>(this);
@@ -140,6 +142,16 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// gets the <see cref="LayoutRenderer"/> factory
+        /// </summary>
+        /// <remarks>not using <see cref="layoutRenderers"/> due to backwardscomp.</remarks>
+        /// <returns></returns>
+        internal LayoutRendererFactory GetLayoutRenderers()
+        {
+            return this.layoutRenderers;
+        }
+
+        /// <summary>
         /// Gets the <see cref="LayoutRenderer"/> factory.
         /// </summary>
         /// <value>The layout renderer factory.</value>
@@ -164,6 +176,15 @@ namespace NLog.Config
         public INamedItemFactory<LayoutRenderer, Type> AmbientProperties
         {
             get { return this.ambientProperties; }
+        }
+
+        /// <summary>
+        /// Gets or sets the JSON serializer to use with <see cref="WebServiceTarget"/>.
+        /// </summary>
+        public IJsonSerializer JsonSerializer
+        {
+            get { return jsonSerializer; }
+            set { jsonSerializer = value ?? DefaultJsonSerializer.Instance; }
         }
 
         /// <summary>
@@ -255,40 +276,52 @@ namespace NLog.Config
                 return factory;
             }
 
-            var extensionDlls = Directory.GetFiles(assemblyLocation, "NLog*.dll")
-                .Select(Path.GetFileName)
-                .Where(x => !x.Equals("NLog.dll", StringComparison.OrdinalIgnoreCase))
-                .Where(x => !x.Equals("NLog.UnitTests.dll", StringComparison.OrdinalIgnoreCase))
-                .Where(x => !x.Equals("NLog.Extended.dll", StringComparison.OrdinalIgnoreCase))
-                .Select(x => Path.Combine(assemblyLocation, x));
-
-            InternalLogger.Debug("Start auto loading, location: {0}", assemblyLocation);
-            foreach (var extensionDll in extensionDlls)
+            try
             {
-                InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
-                var success = false;
-                try
+
+                var extensionDlls = Directory.GetFiles(assemblyLocation, "NLog*.dll")
+                    .Select(Path.GetFileName)
+                    .Where(x => !x.Equals("NLog.dll", StringComparison.OrdinalIgnoreCase))
+                    .Where(x => !x.Equals("NLog.UnitTests.dll", StringComparison.OrdinalIgnoreCase))
+                    .Where(x => !x.Equals("NLog.Extended.dll", StringComparison.OrdinalIgnoreCase))
+                    .Select(x => Path.Combine(assemblyLocation, x));
+
+                InternalLogger.Debug("Start auto loading, location: {0}", assemblyLocation);
+                foreach (var extensionDll in extensionDlls)
                 {
-                    var extensionAssembly = Assembly.LoadFrom(extensionDll);
-                    InternalLogger.LogAssemblyVersion(extensionAssembly);
-                    factory.RegisterItemsFromAssembly(extensionAssembly);
-                    success = true;
-                }
-                catch (Exception ex)
-                {
-                    if (ex.MustBeRethrownImmediately())
+                    InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
+                    var success = false;
+                    try
                     {
-                        throw;
+                        var extensionAssembly = Assembly.LoadFrom(extensionDll);
+                        InternalLogger.LogAssemblyVersion(extensionAssembly);
+                        factory.RegisterItemsFromAssembly(extensionAssembly);
+                        success = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex.MustBeRethrownImmediately())
+                        {
+                            throw;
+                        }
+
+                        InternalLogger.Warn(ex, "Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
+                        //TODO NLog 5, check MustBeRethrown()
+                    }
+                    if (success)
+                    {
+                        InternalLogger.Info("Auto loading assembly file: {0} succeeded!", extensionDll);
                     }
 
-                    InternalLogger.Warn(ex, "Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
-                    //TODO NLog 5, check MustBeRethrown()
                 }
-                if (success)
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                InternalLogger.Warn(ex, "Seems that we do not have permission");
+                if (ex.MustBeRethrown())
                 {
-                    InternalLogger.Info("Auto loading assembly file: {0} succeeded!", extensionDll);
+                    throw;
                 }
-
             }
             InternalLogger.Debug("Auto loading done");
 #endif

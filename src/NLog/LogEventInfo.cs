@@ -183,9 +183,11 @@ namespace NLog
         /// <summary>
         /// Gets the logger short name.
         /// </summary>
-        [Obsolete("This property should not be used.")]
+        /// <remarks>This property was marked as obsolete on NLog 2.0 and it may be removed in a future release.</remarks>
+        [Obsolete("This property should not be used. Marked obsolete on NLog 2.0")]
         public string LoggerShortName
         {
+            // NOTE: This property is not referenced by NLog code anymore. 
             get
             {
                 int lastDot = this.LoggerName.LastIndexOf('.');
@@ -259,6 +261,11 @@ namespace NLog
         }
 
         /// <summary>
+        /// Checks if any per-event context properties (Without allocation)
+        /// </summary>
+        public bool HasProperties { get { return this.properties != null && this.properties.Count > 0; } }
+
+        /// <summary>
         /// Gets the dictionary of per-event context properties.
         /// </summary>
         public IDictionary<object, object> Properties
@@ -277,9 +284,11 @@ namespace NLog
         /// <summary>
         /// Gets the dictionary of per-event context properties.
         /// </summary>
-        [Obsolete("Use LogEventInfo.Properties instead.", true)]
+        /// <remarks>This property was marked as obsolete on NLog 2.0 and it may be removed in a future release.</remarks>
+        [Obsolete("Use LogEventInfo.Properties instead.  Marked obsolete on NLog 2.0", true)]
         public IDictionary Context
         {
+            // NOTE: This propepery is not referenced in NLog code anymore. 
             get
             {
                 if (this.eventContextAdapter == null)
@@ -347,7 +356,8 @@ namespace NLog
         /// <param name="message">The message.</param>
         /// <param name="exception">The exception.</param>
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
-        [Obsolete("use Create(LogLevel logLevel, string loggerName, Exception exception, IFormatProvider formatProvider, string message)")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("use Create(LogLevel logLevel, string loggerName, Exception exception, IFormatProvider formatProvider, string message) instead. Marked obsolete before v4.3.11")]
         public static LogEventInfo Create(LogLevel logLevel, string loggerName, [Localizable(false)] string message, Exception exception)
         {
             return new LogEventInfo(logLevel, loggerName, null, message, null, exception);
@@ -431,7 +441,7 @@ namespace NLog
         {
             lock (this.layoutCacheLock)
             {
-                if (this.layoutCache == null)
+                if (this.layoutCache == null || this.layoutCache.Count == 0)
                 {
                     value = null;
                     return false;

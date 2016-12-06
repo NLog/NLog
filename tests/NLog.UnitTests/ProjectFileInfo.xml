@@ -25,24 +25,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
    </Customize>
 
-   <Project File="NLog.UnitTests.sl4.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-     <ItemGroup Name="Content">
-        <FileSet Include="AllContentFiles" />
-     </ItemGroup>
-   </Project>
-   
-   <Project File="NLog.UnitTests.sl5.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-     <ItemGroup Name="Content">
-        <FileSet Include="AllContentFiles" />
-     </ItemGroup>
-   </Project>
-
    <Project File="NLog.UnitTests.netfx35.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />

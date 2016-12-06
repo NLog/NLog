@@ -149,6 +149,12 @@ namespace NLog
         /// </remarks>
         public bool? ThrowConfigExceptions { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether Variables should be kept on configuration reload.
+        /// Default value - false.
+        /// </summary>
+        public bool KeepVariablesOnReload { get; set; }
+
 
         /// <summary>
         /// Gets or sets the current logging configuration. After setting this property all
@@ -168,10 +174,24 @@ namespace NLog
                         return this.config;
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                    //load
+
                     if (this.config == null)
                     {
-                        // Try to load default configuration.
-                        this.config = XmlLoggingConfiguration.AppConfig;
+                        try
+                        {
+                            // Try to load default configuration.
+                            this.config = XmlLoggingConfiguration.AppConfig;
+                        }
+                        catch (Exception ex)
+                        {
+                            //loading could fail due to an invalid XML file (app.config) etc.
+                            if (ex.MustBeRethrown())
+                            {
+                                throw;
+                            }
+                           
+                        }
                     }
 #endif
                     // Retest the condition as we might have loaded a config.
@@ -242,6 +262,7 @@ namespace NLog
                             }
 #endif
                             this.config.InitializeAll();
+                            
                             LogConfigurationInitialized();
                         }
                         finally
@@ -382,10 +403,7 @@ namespace NLog
         /// <returns>Null logger instance.</returns>
         public Logger CreateNullLogger()
         {
-            TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
-            Logger newLogger = new Logger();
-            newLogger.Initialize(string.Empty, new LoggerConfiguration(targetsByLevel, false), this);
-            return newLogger;
+            return new NullLogger(this);
         }
 
         /// <summary>
@@ -600,10 +618,12 @@ namespace NLog
         /// <remarks>
         /// Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater than 
         /// or equal to <see cref="SuspendLogging"/> calls.
+        /// 
+        /// This method was marked as obsolete on NLog 4.0 and it may be removed in a future release.
         /// </remarks>
         /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging. 
         /// To be used with C# <c>using ()</c> statement.</returns>
-        [Obsolete("Use SuspendLogging() instead.")]
+        [Obsolete("Use SuspendLogging() instead. Marked obsolete on NLog 4.0")]
         public IDisposable DisableLogging()
         {
             return SuspendLogging();
@@ -614,8 +634,11 @@ namespace NLog
         /// </summary>
         /// <remarks>
         /// Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater than 
-        /// or equal to <see cref="SuspendLogging"/> calls.</remarks>
-        [Obsolete("Use ResumeLogging() instead.")]
+        /// or equal to <see cref="SuspendLogging"/> calls.
+        /// 
+        /// This method was marked as obsolete on NLog 4.0 and it may be removed in a future release.
+        /// </remarks>
+        [Obsolete("Use ResumeLogging() instead. Marked obsolete on NLog 4.0")]
         public void EnableLogging()
         {
             ResumeLogging();
@@ -728,6 +751,10 @@ namespace NLog
 
                     if (newConfig != null)
                     {
+                        if (this.KeepVariablesOnReload)
+                        {
+                            newConfig.CopyVariables(this.Configuration.Variables);
+                        }
                         this.Configuration = newConfig;
                         if (this.ConfigurationReloaded != null)
                         {

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE HelpFileList SYSTEM "MS-Help://Hx/Resources/HelpFileList.dtd">
-<HelpFileList DTDVersion="1.0">
-	<File Url="icons\*.gif" />
-	<File Url="scripts\*.js" />
-	<File Url="styles\*.css" />
-	<File Url="html\*.htm" />
-</HelpFileList>

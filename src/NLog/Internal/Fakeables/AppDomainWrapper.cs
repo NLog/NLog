@@ -41,7 +41,9 @@ namespace NLog.Internal.Fakeables
     /// </summary>
     public class AppDomainWrapper : IAppDomain
     {
+#if !SILVERLIGHT
         private readonly AppDomain currentAppDomain;
+#endif
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppDomainWrapper"/> class.
@@ -56,7 +58,7 @@ namespace NLog.Internal.Fakeables
 
             string privateBinPath = appDomain.SetupInformation.PrivateBinPath;
             PrivateBinPath = string.IsNullOrEmpty(privateBinPath)
-                                 ? new string[] {}
+                                 ? ArrayHelper.Empty<string>()
                                  : appDomain.SetupInformation.PrivateBinPath.Split(new[] {';'},
                                                                                    StringSplitOptions.RemoveEmptyEntries);
             FriendlyName = appDomain.FriendlyName;

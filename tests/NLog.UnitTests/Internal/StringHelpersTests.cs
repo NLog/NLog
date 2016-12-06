@@ -32,9 +32,6 @@
 // 
 
 
-#if !SILVERLIGHT
-//no silverlight for xunit InlineData
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,4 +56,3 @@ namespace NLog.UnitTests.Internal
         }
     }
 }
-#endif

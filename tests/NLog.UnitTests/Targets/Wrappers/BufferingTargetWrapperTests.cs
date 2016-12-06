@@ -117,8 +117,6 @@ namespace NLog.UnitTests.Targets.Wrappers
                     flushHit.Set();
                 });
 
-            Thread.Sleep(1000);
-
             flushHit.WaitOne();
             Assert.Null(flushException);
 
@@ -494,7 +492,6 @@ namespace NLog.UnitTests.Targets.Wrappers
                                              };
 
             InitializeTargets(myTarget, bufferingTargetWrapper);
-
             bufferingTargetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => { }));
 
             var flushHit = new ManualResetEvent(false);

@@ -33,9 +33,6 @@
 
 
 using NLog.Internal;
-
-#if !SILVERLIGHT
-
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -1515,5 +1512,3 @@ Dispose()
     }
 
 }
-
-#endif

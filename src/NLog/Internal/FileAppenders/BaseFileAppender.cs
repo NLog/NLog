@@ -94,7 +94,7 @@ namespace NLog.Internal.FileAppenders
         /// Gets the file creation time.
         /// </summary>
         /// <value>The file creation time. DateTime value must be of UTC kind.</value>
-        public DateTime CreationTime { get; private set; }
+        public DateTime CreationTime { get; internal set; }
 
         /// <summary>
         /// Gets the open time of the file.
@@ -264,7 +264,7 @@ namespace NLog.Internal.FileAppenders
         {
             int currentDelay = this.CreateFileParameters.ConcurrentWriteAttemptDelay;
 
-            InternalLogger.Trace("Opening {0} with allowFileSharedWriting={1}", this.FileName, allowFileSharedWriting.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            InternalLogger.Trace("Opening {0} with allowFileSharedWriting={1}", this.FileName, allowFileSharedWriting);
             for (int i = 0; i < this.CreateFileParameters.ConcurrentWriteAttempts; ++i)
             {
                 try

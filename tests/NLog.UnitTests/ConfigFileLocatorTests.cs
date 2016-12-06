@@ -34,10 +34,11 @@
 using System.Collections;
 using System.Linq;
 using System.Threading;
+using NLog.LayoutRenderers;
 using System.Xml;
 using NLog.Config;
+using NLog.UnitTests.LayoutRenderers;
 
-#if !SILVERLIGHT
 
 namespace NLog.UnitTests
 {
@@ -48,6 +49,7 @@ namespace NLog.UnitTests
     using System.Text;
     using Microsoft.CSharp;
     using Xunit;
+    using NLog.Layouts;
     using System.Collections.Generic;
 
     public class ConfigFileLocatorTests : NLogTestBase
@@ -214,6 +216,46 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        void FuncLayoutRendererRegisterTest1()
+        {
+            LayoutRenderer.Register("the-answer", (info) => "42");
+            Layout l = "${the-answer}";
+            var result = l.Render(LogEventInfo.CreateNullEvent());
+            Assert.Equal("42", result);
+
+        }
+        [Fact]
+        void FuncLayoutRendererRegisterTest1WithXML()
+        {
+            LayoutRenderer.Register("the-answer", (info) => "42");
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true'>
+            
+                <targets>
+                    <target name='debug' type='Debug' layout= '${the-answer}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+            
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Debug("test1");
+            AssertDebugLastMessage("debug", "42");
+
+        }
+
+        [Fact]
+        void FuncLayoutRendererRegisterTest2()
+        {
+            LayoutRenderer.Register("message-length", (info) => info.Message.Length);
+            Layout l = "${message-length}";
+            var result = l.Render(LogEventInfo.Create(LogLevel.Error, "logger-adhoc", "1234567890"));
+            Assert.Equal("10", result);
+
+        }
+
+        [Fact]
         public void GetCandidateConfigTest()
         {
             Assert.NotNull(XmlLoggingConfiguration.GetCandidateConfigFilePaths());
@@ -251,7 +293,7 @@ namespace NLog.UnitTests
         [Fact]
         public void ResetCandidateConfigTest()
         {
-            
+
             var countBefore = XmlLoggingConfiguration.GetCandidateConfigFilePaths().Count();
             var list = new List<string> { "c:\\global\\temp.config" };
             XmlLoggingConfiguration.SetCandidateConfigFilePaths(list);
@@ -263,6 +305,10 @@ namespace NLog.UnitTests
 
         private string RunTest()
         {
+
+
+
+
             string sourceCode = @"
 using System;
 using System.Reflection;
@@ -331,4 +377,3 @@ class C1
     }
 }
 
-#endif

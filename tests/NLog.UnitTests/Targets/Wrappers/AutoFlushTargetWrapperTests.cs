@@ -41,7 +41,7 @@ namespace NLog.UnitTests.Targets.Wrappers
     using Xunit;
 
     public class AutoFlushTargetWrapperTests : NLogTestBase
-	{
+    {
         [Fact]
         public void AutoFlushTargetWrapperSyncTest1()
         {
@@ -150,6 +150,71 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.IsType(typeof(InvalidOperationException), lastException);
             Assert.Equal(0, myTarget.FlushCount);
             Assert.Equal(2, myTarget.WriteCount);
+        }
+
+        [Fact]
+        public void AutoFlushConditionConfigurationTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(
+                @"<nlog>
+                    <targets>
+                        <target type='AutoFlushWrapper' condition='level >= LogLevel.Debug' name='FlushOnError'>
+                    <target name='d2' type='Debug' />
+                        </target>
+                    </targets>
+                    <rules>
+                        <logger name='*' level='Warn' writeTo='FlushOnError'>
+                        </logger>
+                    </rules>
+                  </nlog>");
+            var target = LogManager.Configuration.FindTargetByName("FlushOnError") as AutoFlushTargetWrapper;
+            Assert.NotNull(target);
+            Assert.NotNull(target.Condition);
+            Assert.Equal("(level >= Debug)", target.Condition.ToString());
+            Assert.Equal("d2", target.WrappedTarget.Name);
+        }
+
+        [Fact]
+        public void AutoFlushOnConditionTest()
+        {
+            var testTarget = new MyTarget();
+            var autoFlushWrapper = new AutoFlushTargetWrapper(testTarget);
+            autoFlushWrapper.Condition = "level > LogLevel.Info";
+            testTarget.Initialize(null);
+            autoFlushWrapper.Initialize(null);
+            AsyncContinuation continuation = ex => { };
+            autoFlushWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Info, "*", "test").WithContinuation(continuation));
+            autoFlushWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Trace, "*", "test").WithContinuation(continuation));
+            Assert.Equal(2, testTarget.WriteCount);
+            Assert.Equal(0, testTarget.FlushCount);
+            autoFlushWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Warn, "*", "test").WithContinuation(continuation));
+            autoFlushWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Error, "*", "test").WithContinuation(continuation));
+            Assert.Equal(4, testTarget.WriteCount);
+            Assert.Equal(2, testTarget.FlushCount);
+        }
+
+        [Fact]
+        public void MultipleConditionalAutoFlushWrappersTest()
+        {
+            var testTarget = new MyTarget();
+            var autoFlushOnLevelWrapper = new AutoFlushTargetWrapper(testTarget);
+            autoFlushOnLevelWrapper.Condition = "level > LogLevel.Info";
+            var autoFlushOnMessageWrapper = new AutoFlushTargetWrapper(autoFlushOnLevelWrapper);
+            autoFlushOnMessageWrapper.Condition = "contains('${message}','FlushThis')";
+            testTarget.Initialize(null);
+            autoFlushOnLevelWrapper.Initialize(null);
+            autoFlushOnMessageWrapper.Initialize(null);
+
+            AsyncContinuation continuation = ex => { };
+            autoFlushOnMessageWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Trace, "*", "test").WithContinuation(continuation));
+            Assert.Equal(1, testTarget.WriteCount);
+            Assert.Equal(0, testTarget.FlushCount);
+            autoFlushOnMessageWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Fatal, "*", "test").WithContinuation(continuation));
+            Assert.Equal(2, testTarget.WriteCount);
+            Assert.Equal(1, testTarget.FlushCount);
+            autoFlushOnMessageWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Trace, "*", "Please FlushThis").WithContinuation(continuation));
+            Assert.Equal(3, testTarget.WriteCount);
+            Assert.Equal(2, testTarget.FlushCount);
         }
 
         class MyAsyncTarget : Target

@@ -57,5 +57,15 @@ namespace NLog.Targets
         /// Use HTTP GET Protocol.
         /// </summary>
         HttpGet,
-   }
+
+        /// <summary>
+        /// Do an HTTP POST of a JSON document.
+        /// </summary>
+        JsonPost,
+
+        /// <summary>
+        /// Do an HTTP POST of an XML document.
+        /// </summary>
+        XmlPost
+    }
 }

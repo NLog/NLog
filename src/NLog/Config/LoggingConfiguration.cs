@@ -74,7 +74,8 @@ namespace NLog.Config
         /// <summary>
         /// Use the old exception log handling of NLog 3.0? 
         /// </summary>
-        [Obsolete("This option will be removed in NLog 5")]
+        /// <remarks>This method was marked as obsolete on NLog 4.1 and it may be removed in a future release.</remarks>
+        [Obsolete("This option will be removed in NLog 5. Marked obsolete on NLog 4.1")]
         public bool ExceptionLoggingOldStyle { get; set; }
 
         /// <summary>
@@ -107,7 +108,7 @@ namespace NLog.Config
         /// </summary>
         public virtual IEnumerable<string> FileNamesToWatch
         {
-            get { return new string[0]; }
+            get { return ArrayHelper.Empty<string>(); }
         }
 
         /// <summary>
@@ -579,6 +580,18 @@ namespace NLog.Config
                 items = items.Reverse();
             }
             return items.ToList();
+        }
+
+        /// <summary>
+        /// Copies all variables from provided dictionary into current configuration variables. 
+        /// </summary>
+        /// <param name="masterVariables">Master variables dictionary</param>
+        internal void CopyVariables(IDictionary<string, SimpleLayout> masterVariables)
+        {
+            foreach (var variable in masterVariables)
+            {
+                this.Variables[variable.Key] = variable.Value;
+            }
         }
     }
 }

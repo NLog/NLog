@@ -40,20 +40,17 @@ namespace NLog.UnitTests
     using NLog.Common;
     using System.IO;
     using System.Text;
-
+    using System.Globalization;
     using NLog.Layouts;
     using NLog.Config;
     using NLog.Targets;
     using Xunit;
-#if SILVERLIGHT
     using System.Xml.Linq;
-#else
     using System.Xml;
     using System.IO.Compression;
     using System.Security.Permissions;
 #if (NET3_5 || NET4_0 || NET4_5) && !MONO_2_0
     using Ionic.Zip;
-#endif
 #endif
 
     public abstract class NLogTestBase
@@ -332,15 +329,10 @@ namespace NLog.UnitTests
 
         protected static XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
         {
-#if SILVERLIGHT
-            XElement element = XElement.Parse(configXml);
-            return new XmlLoggingConfiguration(element.CreateReader(), null);
-#else
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(configXml);
 
             return new XmlLoggingConfiguration(doc.DocumentElement, Environment.CurrentDirectory);
-#endif
         }
 
         protected string RunAndCaptureInternalLog(SyncAction action, LogLevel internalLogLevel)
@@ -352,6 +344,20 @@ namespace NLog.UnitTests
             action();
 
             return stringWriter.ToString();
+        }
+
+        /// <summary>
+        /// Creates <see cref="CultureInfo"/> instance for test purposes
+        /// </summary>
+        /// <param name="cultureName">Culture name to create</param>
+        /// <remarks>
+        /// Creates <see cref="CultureInfo"/> instance with non-userOverride
+        /// flag to provide expected results when running tests in different
+        /// system cultures(with overriden culture options)
+        /// </remarks>
+        protected static CultureInfo GetCultureInfo(string cultureName)
+        {
+            return new CultureInfo(cultureName, false);
         }
 
         public delegate void SyncAction();
