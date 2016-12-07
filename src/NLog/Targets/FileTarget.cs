@@ -1077,9 +1077,10 @@ namespace NLog.Targets
 
             var buckets = logEvents.BucketSort(getFullFileNameDelegate);
 
-            using (var asyncTargetStream = (OptimizeBufferUsage && logEvents.Count <= 1000) ? reusableAsyncFileWriteStream.Allocate() : reusableAsyncFileWriteStream.None)
+            using (var reusableStream = (OptimizeBufferUsage && logEvents.Count <= 1000) ? reusableAsyncFileWriteStream.Allocate() : reusableAsyncFileWriteStream.None)
+            using (var allocatedStream = reusableStream.Result != null ? null : new MemoryStream())
             {
-                var ms = asyncTargetStream.Result != null ? asyncTargetStream.Result : new MemoryStream();
+                var ms = allocatedStream != null ? allocatedStream : reusableStream.Result;
 
                 foreach (var bucket in buckets)
                 {
@@ -1243,16 +1244,8 @@ namespace NLog.Targets
                 // Faster than MemoryStream, but generates garbage
                 var str = builder.ToString();
                 byte[] bytes = this.Encoding.GetBytes(str);
-                if (OptimizeBufferUsage)
-                {
-                    workStream.Write(bytes, 0, bytes.Length);
-                    TransformStream(logEvent, workStream);
-                }
-                else
-                {
-                    bytes = TransformBytes(bytes);
-                    workStream.Write(bytes, 0, bytes.Length);
-                }
+                workStream.Write(bytes, 0, bytes.Length);
+                TransformStream(logEvent, workStream);
             }
         }
 

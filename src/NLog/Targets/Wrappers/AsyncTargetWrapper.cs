@@ -81,7 +81,7 @@ namespace NLog.Targets.Wrappers
         private readonly object lockObject = new object();
         private Timer lazyWriterTimer;
         private readonly Queue<AsyncContinuation> flushAllContinuations = new Queue<AsyncContinuation>();
-        private readonly ReusableAsyncLogEventList reusableAsyncLogEventList = new ReusableAsyncLogEventList(100);
+        private readonly ReusableAsyncLogEventList reusableAsyncLogEventList = new ReusableAsyncLogEventList(200);
         private readonly object continuationQueueLock = new object();
 
         /// <summary>
@@ -122,8 +122,8 @@ namespace NLog.Targets.Wrappers
         {
             this.RequestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
             this.TimeToSleepBetweenBatches = 50;
-            this.BatchSize = 100;
-            this.FullBatchSizeWriteLimit = 10;
+            this.BatchSize = 200;
+            this.FullBatchSizeWriteLimit = 5;
             this.WrappedTarget = wrappedTarget;
             this.QueueLimit = queueLimit;
             this.OverflowAction = overflowAction;
@@ -134,7 +134,7 @@ namespace NLog.Targets.Wrappers
         /// by the lazy writer thread.
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(100)]
+        [DefaultValue(200)]
         public int BatchSize { get; set; }
 
         /// <summary>
@@ -172,7 +172,7 @@ namespace NLog.Targets.Wrappers
         /// Performance is better when writing many small batches, than writing a single large batch
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(10)]
+        [DefaultValue(5)]
         public int FullBatchSizeWriteLimit { get; set; }
 
         /// <summary>
@@ -370,37 +370,17 @@ namespace NLog.Targets.Wrappers
                     return;
                 }
 
+                int count = 0;
                 for (int x = 0; x < continuations.Length; x++)
                 {
                     var continuation = continuations[x];
-                    bool flushAllLogEvents = continuation != null;
-
-                    int count = this.BatchSize;
-                    for (int y = 0; y < this.FullBatchSizeWriteLimit; ++y)
-                    {
-                        if (flushAllLogEvents || !this.OptimizeBufferUsage)
-                        {
-                            var logEvents = this.RequestQueue.DequeueBatch(flushAllLogEvents ? -1 : this.BatchSize); // Flush, dequeue all
-                            count = this.WriteLogEventBatch(logEvents, continuation);
-                        }
-                        else
-                        {
-                            using (var targetList = this.reusableAsyncLogEventList.Allocate())
-                            {
-                                var logEvents = targetList.Result;
-                                this.RequestQueue.DequeueBatch(this.BatchSize, logEvents);
-                                count = this.WriteLogEventBatch(logEvents, continuation);
-                            }
-                        }
-                        if (flushAllLogEvents || count < this.BatchSize)
-                            break;
-                    }
-
-                    if (count == 0)
-                        wroteFullBatchSize = null;    // Nothing written, queue empty
-                    else if (count >= this.BatchSize)
-                        wroteFullBatchSize = true;
+                    count = WritePendingLogEvents(continuation);
                 }
+
+                if (count == 0)
+                    wroteFullBatchSize = null;    // Nothing written, queue empty
+                else if (count >= this.BatchSize)
+                    wroteFullBatchSize = true;
             }
             catch (Exception exception)
             {
@@ -447,12 +427,44 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
+        /// Dequeues and writes LogEvents to <see cref="WrapperTargetBase.WrappedTarget" />
+        /// </summary>
+        /// <param name="continuation">Callback after flush all LogEvents</param>
+        /// <returns>Number of LogEvents written to Target</returns>
+        private int WritePendingLogEvents(AsyncContinuation continuation)
+        {
+            int count = 0;
+            bool flushAllLogEvents = continuation != null;
+            for (int i = 0; i < this.FullBatchSizeWriteLimit; ++i)
+            {
+                if (flushAllLogEvents || !this.OptimizeBufferUsage)
+                {
+                    var logEvents = this.RequestQueue.DequeueBatch(flushAllLogEvents ? -1 : this.BatchSize);
+                    this.WriteLogEventBatch(logEvents, continuation);
+                    count = logEvents.Length;
+                }
+                else
+                {
+                    using (var targetList = this.reusableAsyncLogEventList.Allocate())
+                    {
+                        var logEvents = targetList.Result;
+                        this.RequestQueue.DequeueBatch(this.BatchSize, logEvents);
+                        this.WriteLogEventBatch(logEvents, continuation);
+                        count = logEvents.Count;
+                    }
+                }
+                if (flushAllLogEvents || count < this.BatchSize)
+                    break;
+            }
+            return count;
+        }
+
+        /// <summary>
         /// Writes LogEvents to <see cref="WrapperTargetBase.WrappedTarget" />
         /// </summary>
         /// <param name="logEvents">Array of LogEvents</param>
         /// <param name="continuation">Callback after flush all LogEvents</param>
-        /// <returns>Number of LogEvents written to Target</returns>
-        private int WriteLogEventBatch(IList<AsyncLogEventInfo> logEvents, AsyncContinuation continuation)
+        private void WriteLogEventBatch(IList<AsyncLogEventInfo> logEvents, AsyncContinuation continuation)
         {
             if (InternalLogger.IsTraceEnabled || continuation != null)
             {
@@ -469,7 +481,6 @@ namespace NLog.Targets.Wrappers
                 // just write all events
                 this.WrappedTarget.WriteAsyncLogEvents(logEvents);
             }
-            return logEvents.Count;
         }
     }
 }

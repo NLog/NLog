@@ -289,7 +289,7 @@ namespace NLog.Targets
         /// Writes the array of log events.
         /// </summary>
         /// <param name="logEvents">The log events.</param>
-        public void WriteAsyncLogEvents(IList<AsyncLogEventInfo> logEvents)
+        internal void WriteAsyncLogEvents(IList<AsyncLogEventInfo> logEvents)
         {
             if (logEvents == null || logEvents.Count == 0)
             {
@@ -435,10 +435,9 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    var cloneLogEventInfos = new AsyncLogEventInfo[logEventInfos.Count];
-                    for (int i = 0; i < logEventInfos.Count; ++i)
-                        cloneLogEventInfos[i] = logEventInfos[i];
-                    wrappedLogEventInfos = cloneLogEventInfos;
+                    AsyncLogEventInfo[] logEventsArray = new AsyncLogEventInfo[logEventInfos.Count];
+                    logEventInfos.CopyTo(logEventsArray, 0);
+                    wrappedLogEventInfos = logEventsArray;
                 }
 
                 int remaining = wrappedLogEventInfos.Count;

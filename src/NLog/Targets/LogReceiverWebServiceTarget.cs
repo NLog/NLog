@@ -171,10 +171,11 @@ namespace NLog.Targets
                 return;
             }
 
-            var networkLogEvents = this.TranslateLogEvents(logEvents);
             // OptimizeBufferUsage will reuse the input-array on method-exit (so we make clone here)
             AsyncLogEventInfo[] logEventsArray = new AsyncLogEventInfo[logEvents.Count];
             logEvents.CopyTo(logEventsArray, 0);
+
+            var networkLogEvents = this.TranslateLogEvents(logEventsArray);
             this.Send(networkLogEvents, logEventsArray);
         }
 
