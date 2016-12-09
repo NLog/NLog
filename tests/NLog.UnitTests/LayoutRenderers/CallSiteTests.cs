@@ -196,8 +196,23 @@ namespace NLog.UnitTests.LayoutRenderers
 
             ILogger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
-            MethodBase currentMethod = MethodBase.GetCurrentMethod();
-            AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + " msg");
+            AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests msg");
+        }
+
+        [Fact]
+        public void ClassNameTestWithoutNamespace()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:includeNamespace=false} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug", "CallSiteTests msg");
         }
 
         [Fact]
