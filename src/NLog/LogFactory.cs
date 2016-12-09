@@ -519,7 +519,7 @@ namespace NLog
 
 #if !SILVERLIGHT
         /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
+        /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
         /// </summary>
         public void Flush()
         {
