@@ -39,6 +39,7 @@ namespace NLog.Internal.FileAppenders
     using System.IO;
     using System.Security;
     using System.Threading;
+
     using NLog.Common;
 
     /// <summary>
@@ -198,6 +199,10 @@ namespace NLog.Internal.FileAppenders
             return fileChars != null ? fileChars.LastWriteTimeUtc : (DateTime?)null;
         }
 
+        /// <summary>
+        /// Gets the length in bytes of the file associated with the appeander.
+        /// </summary>
+        /// <returns>A long value representing the length of the file in bytes.</returns>
         public override long? GetFileLength()
         {
             var fileChars = GetFileCharacteristics();

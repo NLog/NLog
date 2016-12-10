@@ -36,24 +36,23 @@
 #define SupportsMutex
 #endif
 
-using System.Security;
-
-
-
 namespace NLog.Internal.FileAppenders
 {
     using System;
     using System.IO;
     using System.Runtime.InteropServices;
+    using System.Security;
+    using System.Threading;
+    using System.Text;
+
     using NLog.Common;
     using NLog.Internal;
-    using System.Threading;
+
 #if SupportsMutex
     using System.Security.AccessControl;
     using System.Security.Principal;
     using System.Security.Cryptography;
 #endif
-    using System.Text;
 
     /// <summary>
     /// Base class for optimized file appenders.
@@ -90,21 +89,24 @@ namespace NLog.Internal.FileAppenders
         public string FileName { get; private set; }
 
         /// <summary>
-        /// Gets the file creation time.
+        /// Gets or sets the creation time for a file associated with the appender. The time returned is in Coordinated  
+        /// Universal Time [UTC] standard.
         /// </summary>
-        /// <value>The file creation time. DateTime value must be of UTC kind.</value>
+        /// <returns>The creation time of the file.</returns>
         public DateTime CreationTime { get; internal set; }
 
         /// <summary>
-        /// Gets the open time of the file.
+        /// Gets the last time the file associated with the appeander is opened. The time returned is in Coordinated 
+        /// Universal Time [UTC] standard.
         /// </summary>
-        /// <value>The open time. DateTime value must be of UTC kind.</value>
+        /// <returns>The time the file was last opened.</returns>
         public DateTime OpenTime { get; private set; }
 
         /// <summary>
-        /// Gets the last write time.
+        /// Gets the last time the file associated with the appeander is written. The time returned is in  
+        /// Coordinated Universal Time [UTC] standard.
         /// </summary>
-        /// <value>The time the file was last written to. DateTime value must be of UTC kind.</value>
+        /// <returns>The time the file was last written to.</returns>
         public DateTime LastWriteTime { get; private set; }
 
         /// <summary>
@@ -137,8 +139,24 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public abstract void Close();
 
+        /// <summary>
+        /// Gets the creation time for a file associated with the appender. The time returned is in Coordinated Universal 
+        /// Time [UTC] standard.
+        /// </summary>
+        /// <returns>The file creation time.</returns>
         public abstract DateTime? GetFileCreationTimeUtc();
+
+        /// <summary>
+        /// Gets the last time the file associated with the appeander is written. The time returned is in Coordinated 
+        /// Universal Time [UTC] standard.
+        /// </summary>
+        /// <returns>The time the file was last written to.</returns>
         public abstract DateTime? GetFileLastWriteTimeUtc();
+
+        /// <summary>
+        /// Gets the length in bytes of the file associated with the appeander.
+        /// </summary>
+        /// <returns>A long value representing the length of the file in bytes.</returns>
         public abstract long? GetFileLength();
 
         /// <summary>
