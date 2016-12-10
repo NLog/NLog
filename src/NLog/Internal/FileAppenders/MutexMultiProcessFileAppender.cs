@@ -164,18 +164,32 @@ namespace NLog.Internal.FileAppenders
             // do nothing, the stream is always flushed
         }
 
+        /// <summary>
+        /// Gets the creation time for a file associated with the appender. The time returned is in Coordinated Universal 
+        /// Time [UTC] standard.
+        /// </summary>
+        /// <returns>The file creation time.</returns>
         public override DateTime? GetFileCreationTimeUtc()
         {
             var fileChars = GetFileCharacteristics();
             return fileChars.CreationTimeUtc;
         }
 
+        /// <summary>
+        /// Gets the last time the file associated with the appeander is written. The time returned is in Coordinated 
+        /// Universal Time [UTC] standard.
+        /// </summary>
+        /// <returns>The time the file was last written to.</returns>
         public override DateTime? GetFileLastWriteTimeUtc()
         {
             var fileChars = GetFileCharacteristics();
             return fileChars.LastWriteTimeUtc;
         }
 
+        /// <summary>
+        /// Gets the length in bytes of the file associated with the appeander.
+        /// </summary>
+        /// <returns>A long value representing the length of the file in bytes.</returns>
         public override long? GetFileLength()
         {
             var fileChars = GetFileCharacteristics();
@@ -184,7 +198,7 @@ namespace NLog.Internal.FileAppenders
 
         private FileCharacteristics GetFileCharacteristics()
         {
-            //todo not efficient to read all the whole FileCharacteristics and then using one property
+            // TODO: It is not efficient to read all the whole FileCharacteristics and then using one property.
             return fileCharacteristicsHelper.GetFileCharacteristics(FileName, this.fileStream);
         }
 
