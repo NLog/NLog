@@ -31,19 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Globalization;
-using System.Linq;
-using NLog.Layouts;
-
 namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Globalization;
+    using System.Linq;
+
     using JetBrains.Annotations;
 
     using NLog.Common;
     using NLog.Internal;
+    using NLog.Layouts;
     using NLog.Targets;
 
     /// <summary>
@@ -136,17 +136,18 @@ namespace NLog.Config
                 return configTargets.Concat(targets.Values).Distinct(TargetNameComparer).ToList().AsReadOnly();
             }
         }
-        /// <summary>
-        /// Compare on name
-        /// </summary>
-        private static IEqualityComparer<Target> TargetNameComparer = new TargetNameEq();
 
         /// <summary>
-        /// Compare on name
+        /// Compare <see cref="Target"/> objects based on their name.
         /// </summary>
-        private class TargetNameEq : IEqualityComparer<Target>
-        {
-          
+        /// <remarks>This property is use to cache the comparer object.</remarks>
+        private readonly static IEqualityComparer<Target> TargetNameComparer = new TargetNameEqualityComparer();
+
+        /// <summary>
+        /// Defines methods to support the comparison of <see cref="Target"/> objects for equality based on their name.
+        /// </summary>
+        private class TargetNameEqualityComparer : IEqualityComparer<Target>
+        {          
             public bool Equals(Target x, Target y)
             {
                 return string.Equals(x.Name, y.Name);
@@ -167,7 +168,7 @@ namespace NLog.Config
         /// <exception cref="ArgumentNullException">when <paramref name="target"/> is <see langword="null"/></exception>
         public void AddTarget([NotNull] Target target)
         {
-            if (target == null) throw new ArgumentNullException("target");
+            if (target == null) { throw new ArgumentNullException("target"); }
             AddTarget(target.Name, target);
         }
 
@@ -180,12 +181,17 @@ namespace NLog.Config
         /// <param name="target">
         /// The target object.
         /// </param>
+        /// <exception cref="ArgumentException">when <paramref name="name"/> is <see langword="null"/></exception>
+        /// <exception cref="ArgumentNullException">when <paramref name="target"/> is <see langword="null"/></exception>
         public void AddTarget(string name, Target target)
         {
             if (name == null)
             {
+                // TODO: NLog 5 - The ArgumentException should be changed to ArgumentNullException for name parameter.
                 throw new ArgumentException("Target name cannot be null", "name");
             }
+
+            if (target == null) { throw new ArgumentNullException("target"); }
 
             InternalLogger.Debug("Registering target {0}: {1}", name, target.GetType().FullName);
             this.targets[name] = target;
@@ -376,7 +382,6 @@ namespace NLog.Config
             }
         }
 
-
         /// <summary>
         /// Uninstalls target-specific objects from current system.
         /// </summary>
@@ -560,7 +565,6 @@ namespace NLog.Config
                 }
             }
         }
-
 
         internal void EnsureInitialized()
         {
