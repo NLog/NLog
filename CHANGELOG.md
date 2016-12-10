@@ -42,6 +42,7 @@ This file is new since 4.3.4. If requested, we will try to add the older release
 - [#1776](https://github.com/nlog/nlog/pull/1776) Don't crash on an invalid (xml) app.config by default (@304NotModified)
 - [#1763](https://github.com/nlog/nlog/pull/1763) JsonLayout - Performance improvements (@snakefoot)
 - [#1755](https://github.com/nlog/nlog/pull/1755) General performance improvement (@snakefoot)
+- [#1756](https://github.com/nlog/nlog/pull/1755) WindowsMultiProcessFileAppender (@snakefoot, @AndreGleichner)
 
 ### v4.3.11 (2016/11/07)
 
