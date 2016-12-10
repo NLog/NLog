@@ -48,9 +48,13 @@ namespace NLog.Internal.FileAppenders
     using System.Security.AccessControl;
     using System.Security.Principal;
     using System.Security.Cryptography;
+#endif
 
     /// <summary>
-    /// Base class for optimized file appenders which require the usage of a mutex.
+    /// Base class for optimized file appenders which require the usage of a mutex. 
+    /// 
+    /// It is possible to use this class as replacement of BaseFileAppender and the mutex functionality 
+    /// is not enforced to the implementing subclasses.
     /// </summary>
     [SecuritySafeCritical]
     internal abstract class BaseMutexFileAppender : BaseFileAppender
@@ -63,7 +67,9 @@ namespace NLog.Internal.FileAppenders
         public BaseMutexFileAppender(string fileName, ICreateFileParameters createParameters) 
             : base(fileName, createParameters)
         {
+#if SupportsMutex
             ArchiveMutex = CreateArchiveMutex();
+#endif
         }
 
 #if !SILVERLIGHT
@@ -74,6 +80,7 @@ namespace NLog.Internal.FileAppenders
         public Mutex ArchiveMutex { get; private set; }
 #endif
 
+#if SupportsMutex
         /// <summary>
         /// Creates a mutually-exclusive lock for archiving files.
         /// </summary>
@@ -143,6 +150,6 @@ namespace NLog.Internal.FileAppenders
             int cutOffIndex = canonicalName.Length - (maxMutexNameLength - mutexName.Length);
             return mutexName + canonicalName.Substring(cutOffIndex);
         }
-    }
 #endif
+    }
 }
