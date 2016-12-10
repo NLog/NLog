@@ -1,4 +1,4 @@
-Support & contributing guidelines (Oktober 13, 2015)
+Support & contributing guidelines (December 10, 2016)
 ===
 Do you have feature requests, questions or would you like to report a bug? Please follow these guidelines when posting on the [issue list](https://github.com/NLog/NLog/issues). The issues are labeled with the [following guideline](issue-labeling.md). 
 
@@ -57,9 +57,9 @@ MSbuild is located in:
 ```
 
 
-Multiple .Net versions
+Multiple .NET versions
 ===
-Keep in mind that multiple versions of .Net are supported. Some methods are not available in all .Net versions. The following conditional compilation symbols can be used:
+Keep in mind that multiple versions of .NET are supported. Some methods are not available in all .NET versions. The following conditional compilation symbols can be used:
 
 ```
 #if NET3_5
@@ -67,11 +67,13 @@ Keep in mind that multiple versions of .Net are supported. Some methods are not 
 #if NET4_5
 #if SILVERLIGHT
 #if SILVERLIGHT5
-#if #MONO
-#if #MONO_2_0
-#if #WINDOWS_PHONE
-#if #WINDOWS_PHONE_7
-#if #WINDOWS_PHONE_7_1
+#if MONO
+#if MONO_2_0
+#if WINDOWS_PHONE
+#if WINDOWS_PHONE_7
+#if WINDOWS_PHONE_7_1
+#if __IOS__
+#if __ANDROID__
 ```
 
 Sync back
@@ -93,6 +95,6 @@ git rebase upstream/master
 git push -f 
 ```
 
-if `rebase` wont work well, alternative use `git merge master`
+if `rebase` won't work well, use `git merge master` as alternative.
 
 It's also possible to send a PR in the opposite direction, but that's not preferred as it will pollute the commit log.
