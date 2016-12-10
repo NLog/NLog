@@ -3,6 +3,16 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
 This file is new since 4.3.4. If requested, we will try to add the older releases in this file.
 
 
+### V4.4-rc2  (2016/12/10)
+
+#### Features
+
+- [#1836](https://github.com/nlog/nlog/pull/1836) Callsite: add includeNamespace option (@304NotModified)
+
+#### Improvements
+- [#1814](https://github.com/nlog/nlog/pull/1814) Improve [Obsolete] warnings - include the Nlog version when it became obsolete (#1814) (@ie-zero)
+- [#1809](https://github.com/nlog/nlog/pull/1809) FileTarget - Close stale file handles outside archive mutex lock (@snakefoot)
+
 ### v4.4-rc1 (2016/11/30)
 
 #### Features
