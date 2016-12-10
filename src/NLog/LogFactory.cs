@@ -50,7 +50,6 @@ namespace NLog
     using NLog.Internal;
     using NLog.Targets;
     using NLog.Internal.Fakeables;
-    using System.Reflection;
 
 #if SILVERLIGHT && !__IOS__ && !__ANDROID__
     using System.Windows;
@@ -67,8 +66,7 @@ namespace NLog
         private readonly MultiFileWatcher watcher;
 #endif
 
-        private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
-
+        private readonly static TimeSpan DefaultFlushTimeout = TimeSpan.FromSeconds(15);
 
         private static IAppDomain currentAppDomain;
         private readonly object syncRoot = new object();
@@ -106,7 +104,7 @@ namespace NLog
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             this.watcher = new MultiFileWatcher();
             this.watcher.OnChange += this.ConfigFileChanged;
-            CurrentAppDomain.DomainUnload += currentAppDomain_DomainUnload;
+            CurrentAppDomain.DomainUnload += DomainUnload;
 #endif
         }
 
@@ -145,7 +143,6 @@ namespace NLog
         /// <remarks>
         /// This option is for backwards-compatiblity.
         /// By default exceptions are not thrown under any circumstances.
-        /// 
         /// </remarks>
         public bool? ThrowConfigExceptions { get; set; }
 
@@ -158,7 +155,7 @@ namespace NLog
 
         /// <summary>
         /// Gets or sets the current logging configuration. After setting this property all
-        /// existing loggers will be re-configured, so that there is no need to call <see cref="ReconfigExistingLoggers" />
+        /// existing loggers will be re-configured, so there is no need to call <see cref="ReconfigExistingLoggers" />
         /// manually.
         /// </summary>
         public LoggingConfiguration Configuration
@@ -346,7 +343,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets or sets the global log threshold. Log events below this threshold are not logged.
+        /// Gets or sets the global log level threshold. Log events below this threshold are not logged.
         /// </summary>
         public LogLevel GlobalThreshold
         {
@@ -523,7 +520,7 @@ namespace NLog
         /// </summary>
         public void Flush()
         {
-            this.Flush(defaultFlushTimeout);
+            this.Flush(DefaultFlushTimeout);
         }
 
         /// <summary>
@@ -724,7 +721,9 @@ namespace NLog
                 }
 
                 if (this.IsDisposing)
+                {
                     return; //timer was disposed already. 
+                }
 
                 this.watcher.StopWatching();
                 try
@@ -887,7 +886,9 @@ namespace NLog
         protected virtual void Dispose(bool disposing)
         {
             if (this.IsDisposing)
+            {
                 return;
+            }
 
             if (disposing)
             {
@@ -918,7 +919,7 @@ namespace NLog
                 if (currentAppDomain != null)
                 {
                     // No longer belongs to the AppDomain
-                    currentAppDomain.DomainUnload -= this.currentAppDomain_DomainUnload;
+                    currentAppDomain.DomainUnload -= this.DomainUnload;
                     CurrentAppDomain = null;
                 }
 
@@ -1115,6 +1116,13 @@ namespace NLog
             return newLogger;
         }
 
+        private void LoadLoggingConfiguration(string configFile)
+        {
+            InternalLogger.Debug("Loading config from {0}", configFile);
+            this.config = new XmlLoggingConfiguration(configFile, this);
+        }
+
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         private void ConfigFileChanged(object sender, EventArgs args)
         {
@@ -1128,7 +1136,9 @@ namespace NLog
             lock (this.syncRoot)
             {
                 if (IsDisposing)
+                {
                     return;
+                }
 
                 if (this.reloadTimer == null)
                 {
@@ -1146,17 +1156,8 @@ namespace NLog
                 }
             }
         }
-#endif
 
-        private void LoadLoggingConfiguration(string configFile)
-        {
-            InternalLogger.Debug("Loading config from {0}", configFile);
-            this.config = new XmlLoggingConfiguration(configFile, this);
-        }
-
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-        private void currentAppDomain_DomainUnload(object sender, EventArgs e)
+        private void DomainUnload(object sender, EventArgs e)
         {
             //stop timer on domain unload, otherwise: 
             //Exception: System.AppDomainUnloadedException
@@ -1166,8 +1167,6 @@ namespace NLog
                 Dispose();
             }
         }
-
-
 #endif
         /// <summary>
         /// Logger cache key.
