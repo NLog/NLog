@@ -348,6 +348,7 @@ namespace NLog.Targets
             var renderedSource = this.Source != null ? this.Source.Render(logEvent) : null;
             var isCacheUpToDate = eventLogInstance != null && renderedSource == eventLogInstance.Source &&
                                    eventLogInstance.Log == this.Log && eventLogInstance.MachineName == this.MachineName;
+            eventLogInstance.MaximumKilobytes = Convert.ToInt64(this.MaxKilobytes.Render(logEvent));
 
             if (!isCacheUpToDate)
             {
