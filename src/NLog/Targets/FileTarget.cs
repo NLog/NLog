@@ -907,7 +907,9 @@ namespace NLog.Targets
                     return MutexMultiProcessFileAppender.TheFactory;
                 }
 #else
-                if (!this.ForceMutexConcurrentWrites && PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
+                if (!PlatformDetector.SupportsSharableMutex)
+                    return RetryingMultiProcessFileAppender.TheFactory;
+                else if (!this.ForceMutexConcurrentWrites && PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
                     return WindowsMultiProcessFileAppender.TheFactory;
                 else
                     return MutexMultiProcessFileAppender.TheFactory;
