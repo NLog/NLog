@@ -31,28 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__ANDROID__ && !__IOS__
-// Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) 
-#define SupportsMutex
-#endif
-
 namespace NLog.Internal.FileAppenders
 {
     using System;
     using System.IO;
     using System.Runtime.InteropServices;
     using System.Security;
-    using System.Threading;
-    using System.Text;
 
     using NLog.Common;
     using NLog.Internal;
-
-#if SupportsMutex
-    using System.Security.AccessControl;
-    using System.Security.Principal;
-    using System.Security.Cryptography;
-#endif
 
     /// <summary>
     /// Base class for optimized file appenders.
@@ -74,10 +61,6 @@ namespace NLog.Internal.FileAppenders
             this.OpenTime = DateTime.UtcNow; // to be consistent with timeToKill in FileTarget.AutoClosingTimerCallback
             this.LastWriteTime = DateTime.MinValue;
             this.CaptureLastWriteTime = createParameters.CaptureLastWriteTime;
-#if SupportsMutex
-           
-            this.ArchiveMutex = CreateArchiveMutex();
-#endif
         }
 
         protected bool CaptureLastWriteTime { get; private set; }
@@ -114,14 +97,6 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         /// <value>The file creation parameters.</value>
         public ICreateFileParameters CreateFileParameters { get; private set; }
-
-#if !SILVERLIGHT
-        /// <summary>
-        /// Gets the mutually-exclusive lock for archiving files.
-        /// </summary>
-        /// <value>The mutex for archiving.</value>
-        public Mutex ArchiveMutex { get; private set; }
-#endif
 
         /// <summary>
         /// Writes the specified bytes.
@@ -199,78 +174,6 @@ namespace NLog.Internal.FileAppenders
         {
             this.LastWriteTime = dateTime;
         }
-
-#if SupportsMutex
-        /// <summary>
-        /// Creates a mutually-exclusive lock for archiving files.
-        /// </summary>
-        /// <returns>A <see cref="Mutex"/> object which can be used for controlling the archiving of files.</returns>
-        protected virtual Mutex CreateArchiveMutex()
-        {
-            return new Mutex();
-        }
-
-        /// <summary>
-        /// Creates a mutex for archiving that is sharable by more than one process.
-        /// </summary>
-        /// <returns>A <see cref="Mutex"/> object which can be used for controlling the archiving of files.</returns>
-        protected Mutex CreateSharableArchiveMutex()
-        {
-            return CreateSharableMutex("FileArchiveLock");
-        }
-
-        /// <summary>
-        /// Creates a mutex that is sharable by more than one process.
-        /// </summary>
-        /// <param name="mutexNamePrefix">The prefix to use for the name of the mutex.</param>
-        /// <returns>A <see cref="Mutex"/> object which is sharable by multiple processes.</returns>
-        protected Mutex CreateSharableMutex(string mutexNamePrefix)
-        {
-            // Creates a mutex sharable by more than one process
-            var mutexSecurity = new MutexSecurity();
-            var everyoneSid = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
-            mutexSecurity.AddAccessRule(new MutexAccessRule(everyoneSid, MutexRights.FullControl, AccessControlType.Allow));
-
-            // The constructor will either create new mutex or open
-            // an existing one, in a thread-safe manner
-            bool createdNew;
-            return new Mutex(false, GetMutexName(mutexNamePrefix), out createdNew, mutexSecurity);
-        }
-
-        private string GetMutexName(string mutexNamePrefix)
-        {
-            const string mutexNameFormatString = @"Global\NLog-File{0}-{1}";
-            const int maxMutexNameLength = 260;
-
-            string canonicalName = Path.GetFullPath(FileName).ToLowerInvariant();
-
-            // Mutex names must not contain a backslash, it's the namespace separator,
-            // but all other are OK
-            canonicalName = canonicalName.Replace('\\', '/');
-            string mutexName = string.Format(mutexNameFormatString, mutexNamePrefix, canonicalName);
-
-            // A mutex name must not exceed MAX_PATH (260) characters
-            if (mutexName.Length <= maxMutexNameLength)
-            {
-                return mutexName;
-            }
-
-            // The unusual case of the path being too long; let's hash the canonical name,
-            // so it can be safely shortened and still remain unique
-            string hash;
-            using (MD5 md5 = MD5.Create())
-            {
-                byte[] bytes = md5.ComputeHash(Encoding.UTF8.GetBytes(canonicalName));
-                hash = Convert.ToBase64String(bytes);
-            }
-
-            // The hash makes the name unique, but also add the end of the path,
-            // so the end of the name tells us which file it is (for debugging)
-            mutexName = string.Format(mutexNameFormatString, mutexNamePrefix, hash);
-            int cutOffIndex = canonicalName.Length - (maxMutexNameLength - mutexName.Length);
-            return mutexName + canonicalName.Substring(cutOffIndex);
-        }
-#endif
 
         /// <summary>
         /// Creates the file stream.

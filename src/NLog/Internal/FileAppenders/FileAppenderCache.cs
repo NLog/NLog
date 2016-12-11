@@ -309,7 +309,7 @@ namespace NLog.Internal.FileAppenders
 #if SupportsMutex
         public Mutex GetArchiveMutex(string fileName)
         {
-            var appender = GetAppender(fileName);
+            var appender = GetAppender(fileName) as BaseMutexFileAppender;
             return appender == null ? null : appender.ArchiveMutex;
         }
 #endif
