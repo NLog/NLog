@@ -171,7 +171,7 @@ namespace NLog.Targets
                 return;
             }
 
-            // OptimizeBufferUsage will reuse the input-array on method-exit (so we make clone here)
+            // RestrictedBufferReuse = false, will reuse the input-array on method-exit (so we make clone here)
             AsyncLogEventInfo[] logEventsArray = new AsyncLogEventInfo[logEvents.Count];
             logEvents.CopyTo(logEventsArray, 0);
 

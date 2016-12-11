@@ -66,8 +66,8 @@ namespace NLog.UnitTests.Targets
                     from forceMutexConcurrentWrites in booleanValues
                     where UniqueBaseAppender(concurrentWrites, keepFileOpen, networkWrites, forceMutexConcurrentWrites)
                     from forceManaged in booleanValues
-                    from optimizeBufferUsage in booleanValues
-                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, forceManaged, forceMutexConcurrentWrites, optimizeBufferUsage };
+                    from restrictedBufferReuse in booleanValues
+                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, forceManaged, forceMutexConcurrentWrites, restrictedBufferReuse };
             }
         }
 
@@ -84,7 +84,7 @@ namespace NLog.UnitTests.Targets
 
         [Theory]
         [PropertyData("SimpleFileTest_TestParameters")]
-        public void SimpleFileTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferUsage)
+        public void SimpleFileTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool restrictedBufferReuse)
         {
             var logFile = Path.GetTempFileName();
             try
@@ -100,7 +100,7 @@ namespace NLog.UnitTests.Targets
                     NetworkWrites = networkWrites,
                     ForceManaged = forceManaged,
                     ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
-                    OptimizeBufferUsage = optimizeBufferUsage,
+                    RestrictedBufferReuse = restrictedBufferReuse,
                 });
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
@@ -166,10 +166,10 @@ namespace NLog.UnitTests.Targets
         /// </summary>
         [Theory(Timeout = FIVE_SECONDS)]
         [PropertyData("SimpleFileTest_TestParameters")]
-        public void NonExistingDriveShouldNotDelayMuch(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferUsage)
+        public void NonExistingDriveShouldNotDelayMuch(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool restrictedBufferReuse)
         {
-            if (optimizeBufferUsage)
-                return; // No need to test with buffer optimization
+            if (!restrictedBufferReuse)
+                return; // No need to test with buffer optimization enabled
 
             var nonExistingDrive = GetFirstNonExistingDriveWindows();
 
@@ -1916,7 +1916,7 @@ namespace NLog.UnitTests.Targets
                 var fileTarget1 = WrapFileTarget(new FileTarget
                 {
                     Name = "FileWriter1",
-                    OptimizeBufferUsage = true,
+                    RestrictedBufferReuse = false,
                     FileName = Path.Combine(tempPath, "${level}.txt"),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${message} ${threadid}",
@@ -1925,7 +1925,7 @@ namespace NLog.UnitTests.Targets
                 fileTarget1 = new AsyncTargetWrapper(fileTarget1, 10, AsyncTargetWrapperOverflowAction.Block)
                 {
                     Name = "AsyncMultiFileWrite_wrapper1",
-                    OptimizeBufferUsage = true,
+                    RestrictedBufferReuse = false,
                     TimeToSleepBetweenBatches = 1,
                     BatchSize = 8,
                     OverflowAction = AsyncTargetWrapperOverflowAction.Block,
@@ -1934,7 +1934,7 @@ namespace NLog.UnitTests.Targets
                 var fileTarget2 = WrapFileTarget(new FileTarget
                 {
                     Name = "FileWriter2",
-                    OptimizeBufferUsage = true,
+                    RestrictedBufferReuse = false,
                     FileName = Path.Combine(tempPath, "${level}.txt"),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${message} ${threadid}",
@@ -1943,7 +1943,7 @@ namespace NLog.UnitTests.Targets
                 fileTarget2 = new AsyncTargetWrapper(fileTarget2, 10, AsyncTargetWrapperOverflowAction.Block)
                 {
                     Name = "AsyncMultiFileWrite_wrapper2",
-                    OptimizeBufferUsage = true,
+                    RestrictedBufferReuse = false,
                     TimeToSleepBetweenBatches = 1,
                     BatchSize = 8,
                     OverflowAction = AsyncTargetWrapperOverflowAction.Block,

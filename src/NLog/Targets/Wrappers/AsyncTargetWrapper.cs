@@ -203,8 +203,8 @@ namespace NLog.Targets.Wrappers
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
-            if (WrappedTarget != null && WrappedTarget.OptimizeBufferUsage)
-                OptimizeBufferUsage = WrappedTarget.OptimizeBufferUsage;    // Support async=true
+            if (WrappedTarget != null && !WrappedTarget.RestrictedBufferReuse)
+                RestrictedBufferReuse = false;    // Support async=true
 
             this.RequestQueue.Clear();
             InternalLogger.Trace("AsyncWrapper '{0}': start timer", this.Name);
@@ -437,7 +437,7 @@ namespace NLog.Targets.Wrappers
             bool flushAllLogEvents = continuation != null;
             for (int i = 0; i < this.FullBatchSizeWriteLimit; ++i)
             {
-                if (flushAllLogEvents || !this.OptimizeBufferUsage)
+                if (flushAllLogEvents || this.RestrictedBufferReuse)
                 {
                     var logEvents = this.RequestQueue.DequeueBatch(flushAllLogEvents ? -1 : this.BatchSize);
                     this.WriteLogEventBatch(logEvents, continuation);

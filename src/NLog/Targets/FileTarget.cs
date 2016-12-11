@@ -994,15 +994,15 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Can be used if <see cref="Target.OptimizeBufferUsage"/> has been enabled.
+        /// Can be used if <see cref="Target.RestrictedBufferReuse"/> has been disabled.
         /// </summary>
         private readonly ReusableStreamCreator reusableFileWriteStream = new ReusableStreamCreator();
         /// <summary>
-        /// Can be used if <see cref="Target.OptimizeBufferUsage"/> has been enabled.
+        /// Can be used if <see cref="Target.RestrictedBufferReuse"/> has been disabled.
         /// </summary>
         private readonly ReusableStreamCreator reusableAsyncFileWriteStream = new ReusableStreamCreator();
         /// <summary>
-        /// Can be used if <see cref="Target.OptimizeBufferUsage"/> has been enabled.
+        /// Can be used if <see cref="Target.RestrictedBufferReuse"/> has been disabled.
         /// </summary>
         private readonly ReusableBufferCreator reusableEncodingBuffer = new ReusableBufferCreator(4096);
 
@@ -1014,7 +1014,12 @@ namespace NLog.Targets
         protected override void Write(LogEventInfo logEvent)
         {
             var logFileName = this.GetFullFileName(logEvent);
-            if (OptimizeBufferUsage)
+            if (RestrictedBufferReuse)
+            {
+                byte[] bytes = this.GetBytesToWrite(logEvent);
+                ProcessLogEvent(logEvent, logFileName, new ArraySegment<byte>(bytes));
+            }
+            else
             {
                 using (var targetStream = this.reusableFileWriteStream.Allocate())
                 {
@@ -1027,11 +1032,7 @@ namespace NLog.Targets
                     ProcessLogEvent(logEvent, logFileName, new ArraySegment<byte>(targetStream.Result.GetBuffer(), 0, (int)targetStream.Result.Length));
                 }
             }
-            else
-            {
-                byte[] bytes = this.GetBytesToWrite(logEvent);
-                ProcessLogEvent(logEvent, logFileName, new ArraySegment<byte>(bytes));
-            }
+
         }
 
         /// <summary>
@@ -1045,16 +1046,17 @@ namespace NLog.Targets
             {
                 return null;
             }
-            if (OptimizeBufferUsage)
+
+            if (RestrictedBufferReuse)
+            {
+                return this.fullFileName.Render(logEvent);
+            }
+            else
             {
                 using (var targetBuilder = this.ReusableLayoutBuilder.Allocate())
                 {
                     return this.fullFileName.RenderWithBuilder(logEvent, targetBuilder.Result);
                 }
-            }
-            else
-            {
-                return this.fullFileName.Render(logEvent);
             }
         }
 
@@ -1077,7 +1079,7 @@ namespace NLog.Targets
 
             var buckets = logEvents.BucketSort(getFullFileNameDelegate);
 
-            using (var reusableStream = (OptimizeBufferUsage && logEvents.Count <= 1000) ? reusableAsyncFileWriteStream.Allocate() : reusableAsyncFileWriteStream.None)
+            using (var reusableStream = (!RestrictedBufferReuse && logEvents.Count <= 1000) ? reusableAsyncFileWriteStream.Allocate() : reusableAsyncFileWriteStream.None)
             using (var allocatedStream = reusableStream.Result != null ? null : new MemoryStream())
             {
                 var ms = allocatedStream != null ? allocatedStream : reusableStream.Result;
@@ -1093,9 +1095,9 @@ namespace NLog.Targets
 
                     int bucketCount = bucket.Value.Count;
 
-                    using (var targetBuilder = OptimizeBufferUsage ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
-                    using (var targetBuffer = OptimizeBufferUsage ? reusableEncodingBuffer.Allocate() : reusableEncodingBuffer.None)
-                    using (var targetStream = OptimizeBufferUsage ? reusableFileWriteStream.Allocate() : reusableFileWriteStream.None)
+                    using (var targetBuilder = !RestrictedBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
+                    using (var targetBuffer = !RestrictedBufferReuse ? reusableEncodingBuffer.Allocate() : reusableEncodingBuffer.None)
+                    using (var targetStream = !RestrictedBufferReuse ? reusableFileWriteStream.Allocate() : reusableFileWriteStream.None)
                     {
                         for (int i = 0; i < bucketCount; i++)
                         {
@@ -2401,7 +2403,12 @@ namespace NLog.Targets
                 return default(ArraySegment<byte>);
             }
 
-            if (OptimizeBufferUsage)
+            if (RestrictedBufferReuse)
+            {
+                string renderedText = layout.Render(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
+                return new ArraySegment<byte>(this.TransformBytes(this.Encoding.GetBytes(renderedText)));
+            }
+            else
             {
                 using (var targetBuilder = this.ReusableLayoutBuilder.Allocate())
                 using (var targetBuffer = this.reusableEncodingBuffer.Allocate())
@@ -2415,11 +2422,6 @@ namespace NLog.Targets
                         return new ArraySegment<byte>(ms.ToArray());
                     }
                 }
-            }
-            else
-            {
-                string renderedText = layout.Render(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
-                return new ArraySegment<byte>(this.TransformBytes(this.Encoding.GetBytes(renderedText)));
             }
         }
 

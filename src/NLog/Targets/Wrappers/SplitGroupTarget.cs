@@ -120,7 +120,7 @@ namespace NLog.Targets.Wrappers
                 var targetLogEvents = logEvents;
                 if (i < this.Targets.Count - 1)
                 {
-                    // OptimizeBufferUsage will change the input-array (so we make clones here)
+                    // RestrictedBufferReuse = false, will change the input-array (so we make clones here)
                     AsyncLogEventInfo[] cloneLogEvents = new AsyncLogEventInfo[logEvents.Count];
                     logEvents.CopyTo(cloneLogEvents, 0);
                     targetLogEvents = cloneLogEvents;

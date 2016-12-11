@@ -60,11 +60,12 @@ namespace NLog.Targets
         public string Name { get; set; }
 
         /// <summary>
-        /// Activates reuse of temporary buffers when writing LogEventInfo's to Target
-        /// This will lower memory allocations, but can increase CPU usage as unsafe code is avoided
+        /// Enable this to always allocate new buffers instead of reusing the existing buffers.
+        /// Required for legacy NLog-targets, that expects buffers to remain stable after Write-method exit
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
-        public bool OptimizeBufferUsage { get; set; }
+        public bool RestrictedBufferReuse { get { return _restrictedBufferReuse; } set { _restrictedBufferReuse = value; } }
+        private bool _restrictedBufferReuse = true;
 
         /// <summary>
         /// Gets the object which can be used to synchronize asynchronous operations that must rely on the .
@@ -99,7 +100,7 @@ namespace NLog.Targets
         private volatile bool isInitialized;
 
         /// <summary>
-        /// Can be used if <see cref="OptimizeBufferUsage"/> has been enabled.
+        /// Can be used if <see cref="RestrictedBufferReuse"/> has been disabled.
         /// </summary>
         internal readonly ReusableBuilderCreator ReusableLayoutBuilder = new ReusableBuilderCreator();
 
@@ -203,7 +204,14 @@ namespace NLog.Targets
 
                 if (this.allLayouts != null)
                 {
-                    if (this.OptimizeBufferUsage)
+                    if (this.RestrictedBufferReuse)
+                    {
+                        foreach (Layout layout in this.allLayouts)
+                        {
+                            layout.Precalculate(logEvent);
+                        }
+                    }
+                    else
                     {
                         using (var targetBuilder = this.ReusableLayoutBuilder.Allocate())
                         {
@@ -212,13 +220,6 @@ namespace NLog.Targets
                                 targetBuilder.Result.ClearBuilder();
                                 layout.PrecalculateBuilder(logEvent, targetBuilder.Result);
                             }
-                        }
-                    }
-                    else
-                    {
-                        foreach (Layout layout in this.allLayouts)
-                        {
-                            layout.Precalculate(logEvent);
                         }
                     }
                 }
@@ -321,15 +322,7 @@ namespace NLog.Targets
             }
 
             IList<AsyncLogEventInfo> wrappedEvents;
-            if (this.OptimizeBufferUsage)
-            {
-                for (int i = 0; i < logEvents.Count; ++i)
-                {
-                    logEvents[i] = logEvents[i].LogEvent.WithContinuation(AsyncHelpers.PreventMultipleCalls(logEvents[i].Continuation));
-                }
-                wrappedEvents = logEvents;
-            }
-            else
+            if (this.RestrictedBufferReuse)
             {
                 var cloneLogEvents = new AsyncLogEventInfo[logEvents.Count];
                 for (int i = 0; i < logEvents.Count; ++i)
@@ -338,6 +331,14 @@ namespace NLog.Targets
                     cloneLogEvents[i] = ev.LogEvent.WithContinuation(AsyncHelpers.PreventMultipleCalls(ev.Continuation));
                 }
                 wrappedEvents = cloneLogEvents;
+            }
+            else
+            {
+                for (int i = 0; i < logEvents.Count; ++i)
+                {
+                    logEvents[i] = logEvents[i].LogEvent.WithContinuation(AsyncHelpers.PreventMultipleCalls(logEvents[i].Continuation));
+                }
+                wrappedEvents = logEvents;
             }
 
             this.WriteAsyncThreadSafe(wrappedEvents);
@@ -429,15 +430,15 @@ namespace NLog.Targets
             else
             {
                 IList<AsyncLogEventInfo> wrappedLogEventInfos;
-                if (this.OptimizeBufferUsage)
-                {
-                    wrappedLogEventInfos = logEventInfos;
-                }
-                else
+                if (this.RestrictedBufferReuse)
                 {
                     AsyncLogEventInfo[] logEventsArray = new AsyncLogEventInfo[logEventInfos.Count];
                     logEventInfos.CopyTo(logEventsArray, 0);
                     wrappedLogEventInfos = logEventsArray;
+                }
+                else
+                {
+                    wrappedLogEventInfos = logEventInfos;
                 }
 
                 int remaining = wrappedLogEventInfos.Count;
@@ -629,8 +630,8 @@ namespace NLog.Targets
 
                 try
                 {
-                    AsyncLogEventInfo[] logEventsArray = !this.OptimizeBufferUsage ? logEvents as AsyncLogEventInfo[] : null;
-                    if (!this.OptimizeBufferUsage && logEventsArray != null)
+                    AsyncLogEventInfo[] logEventsArray = this.RestrictedBufferReuse ? logEvents as AsyncLogEventInfo[] : null;
+                    if (this.RestrictedBufferReuse && logEventsArray != null)
                     {
                         // Backwards compatibility
 #pragma warning disable 612, 618
