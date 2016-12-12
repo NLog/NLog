@@ -35,7 +35,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text;
 using NLog.Config;
 using NLog.Filters;
@@ -49,7 +48,7 @@ namespace NLog.UnitTests.Layouts
     using NLog.Targets;
     using System;
     using Xunit;
-    using static Config.TargetConfigurationTests;
+    using Config;
 
     public class SimpleLayoutParserTests : NLogTestBase
     {
@@ -613,7 +612,7 @@ namespace NLog.UnitTests.Layouts
 
             public List<FilterResult> Enums { get; set; }
 
-            public List<MyFlagsEnum> FlagEnums { get; set; }
+            public List<TargetConfigurationTests.MyFlagsEnum> FlagEnums { get; set; }
 
             public List<int> Numbers { get; set; }
 
