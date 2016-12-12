@@ -58,8 +58,10 @@ namespace NLog.LayoutRenderers
         private static readonly DateTime log4jDateBase = new DateTime(1970, 1, 1);
 
         private static readonly string dummyNamespace = "http://nlog-project.org/dummynamespace/" + Guid.NewGuid();
+        private static readonly string dummyNamespaceRemover = " xmlns:log4j=\"" + dummyNamespace + "\"";
 
         private static readonly string dummyNLogNamespace = "http://nlog-project.org/dummynamespace/" + Guid.NewGuid();
+        private static readonly string dummyNLogNamespaceRemover = " xmlns:nlog=\"" + dummyNLogNamespace + "\"";
 
 
         /// <summary>
@@ -103,6 +105,30 @@ namespace NLog.LayoutRenderers
                 appDomain.FriendlyName,
                 ThreadIDHelper.Instance.CurrentProcessID);
 #endif
+
+            try
+            {
+#if SILVERLIGHT
+                this.machineName = "silverlight";
+#elif NETSTANDARD && !NETSTANDARD1_5
+                // Environment.MachineName is NETSTANDARD1.5+
+                this.machineName = "Net Standard";
+#else
+
+                this.machineName = Environment.MachineName;
+#endif
+        }
+            catch (System.Security.SecurityException)
+            {
+                this.machineName = string.Empty;
+            }
+
+            this.xmlWriterSettings = new XmlWriterSettings
+            {
+                Indent = this.IndentXml,
+                ConformanceLevel = ConformanceLevel.Fragment,
+                IndentChars = "  ",
+            };
         }
 
         /// <summary>
@@ -155,6 +181,10 @@ namespace NLog.LayoutRenderers
         [DefaultValue(" ")]
         public string NdcItemSeparator { get; set; }
 
+        private readonly string machineName;
+
+        private readonly XmlWriterSettings xmlWriterSettings;
+
         /// <summary>
         /// Gets the level of stack trace information required by the implementing class.
         /// </summary>
@@ -190,15 +220,8 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var settings = new XmlWriterSettings
-            {
-                Indent = this.IndentXml,
-                ConformanceLevel = ConformanceLevel.Fragment,
-                IndentChars = "  ",
-            };
-
-            var sb = new StringBuilder();
-            using (XmlWriter xtw = XmlWriter.Create(sb, settings))
+            StringBuilder sb = new StringBuilder();
+            using (XmlWriter xtw = XmlWriter.Create(sb, this.xmlWriterSettings))
             {
                 xtw.WriteStartElement("log4j", "event", dummyNamespace);
                 xtw.WriteAttributeSafeString("xmlns", "nlog", null, dummyNLogNamespace);
@@ -261,12 +284,15 @@ namespace NLog.LayoutRenderers
                             xtw.WriteEndElement();
 
                             xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
+                            if (logEvent.HasProperties)
+                            {
                             foreach (var contextProperty in logEvent.Properties)
                             {
                                 xtw.WriteStartElement("nlog", "data", dummyNLogNamespace);
                                 xtw.WriteAttributeSafeString("name", Convert.ToString(contextProperty.Key, CultureInfo.InvariantCulture));
                                 xtw.WriteAttributeSafeString("value", Convert.ToString(contextProperty.Value, CultureInfo.InvariantCulture));
                                 xtw.WriteEndElement();
+                            }
                             }
                             xtw.WriteEndElement();
                         }
@@ -286,12 +312,15 @@ namespace NLog.LayoutRenderers
                     }
                 }
 
+                if (this.Parameters.Count > 0)
+                {
                 foreach (NLogViewerParameterInfo parameter in this.Parameters)
                 {
                     xtw.WriteStartElement("log4j", "data", dummyNamespace);
                     xtw.WriteAttributeSafeString("name", parameter.Name);
                     xtw.WriteAttributeSafeString("value", parameter.Layout.Render(logEvent));
                     xtw.WriteEndElement();
+                }
                 }
 
                 xtw.WriteStartElement("log4j", "data", dummyNamespace);
@@ -302,14 +331,8 @@ namespace NLog.LayoutRenderers
                 xtw.WriteStartElement("log4j", "data", dummyNamespace);
                 xtw.WriteAttributeSafeString("name", "log4jmachinename");
 
-#if SILVERLIGHT
-                xtw.WriteAttributeSafeString("value", "silverlight");
-#elif NETSTANDARD && !NETSTANDARD1_5
-                // Environment.MachineName is NETSTANDARD1.5+
-                xtw.WriteAttributeSafeString("value", "Net Standard");
-#else
-                xtw.WriteAttributeSafeString("value", Environment.MachineName);
-#endif
+                xtw.WriteAttributeSafeString("value", this.machineName);
+
                 xtw.WriteEndElement();
                 xtw.WriteEndElement();
 
@@ -317,10 +340,9 @@ namespace NLog.LayoutRenderers
                 xtw.Flush();
 
                 // get rid of 'nlog' and 'log4j' namespace declarations
-                sb.Replace(" xmlns:log4j=\"" + dummyNamespace + "\"", string.Empty);
-                sb.Replace(" xmlns:nlog=\"" + dummyNLogNamespace + "\"", string.Empty);
-
-                builder.Append(sb.ToString());
+                sb.Replace(dummyNamespaceRemover, string.Empty);
+                sb.Replace(dummyNLogNamespaceRemover, string.Empty);
+                builder.Append(sb.ToString());  // StringBuilder.Replace is not good when reusing the StringBuilder
             }
         }
     }

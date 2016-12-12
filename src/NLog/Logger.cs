@@ -177,7 +177,8 @@ namespace NLog
         /// <param name="level">The log level.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Log(LogLevel, String, Exception) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Log(LogLevel, String, Exception) method instead. Marked obsolete before v4.3.11")]
         public void LogException(LogLevel level, [Localizable(false)] string message, Exception exception)
         {
             this.Log(level, message, exception);
@@ -232,7 +233,8 @@ namespace NLog
         /// <param name="level">The log level.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Log(LogLevel level, Exception exception, [Localizable(false)] string message, params object[] args)")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Log(LogLevel level, Exception exception, [Localizable(false)] string message, params object[] args) instead. Marked obsolete before v4.3.11")]
         public void Log(LogLevel level, [Localizable(false)] string message, Exception exception)
         {
             if (this.IsEnabled(level))
@@ -572,7 +574,7 @@ namespace NLog
             LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), logEvent, this.Factory);
         }
 
-        [Obsolete("Use WriteToTargets(Exception ex, LogLevel level, IFormatProvider formatProvider, string message, object[] args) method instead.")]
+        [Obsolete("Use WriteToTargets(Exception ex, LogLevel level, IFormatProvider formatProvider, string message, object[] args) method instead. Marked obsolete before v4.3.11")]
         internal void WriteToTargets(LogLevel level, [Localizable(false)] string message, Exception ex)
         {
             LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, message, ex)), this.Factory);

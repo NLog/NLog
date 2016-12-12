@@ -261,7 +261,7 @@ namespace NLog.UnitTests
             LogManager.Configuration = null;
         }
 
-#if !SILVERLIGHT && !NETSTANDARD
+#if !NETSTANDARD
         private int _reloadCounter = 0;
 
         private void WaitForConfigReload(int counter)

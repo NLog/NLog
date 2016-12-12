@@ -131,7 +131,8 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         void TraceException([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -188,7 +189,8 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         void Trace([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -293,7 +295,8 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         void DebugException([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -350,7 +353,8 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         void Debug([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -455,7 +459,8 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         void InfoException([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -512,7 +517,8 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         void Info([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -617,7 +623,8 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         void WarnException([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -674,7 +681,8 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         void Warn([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -779,7 +787,8 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         void ErrorException([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -837,7 +846,8 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         void Error([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -942,7 +952,8 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         void FatalException([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -999,7 +1010,8 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         void Fatal([Localizable(false)] string message, Exception exception);
 
         /// <summary>

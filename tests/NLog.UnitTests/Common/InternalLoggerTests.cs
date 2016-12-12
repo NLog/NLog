@@ -39,9 +39,7 @@ using Xunit;
 using NLog.Common;
 using System.Text;
 using NLog.Time;
-#if !SILVERLIGHT 
 using Xunit.Extensions;
-#endif
 
 namespace NLog.UnitTests.Common
 {
@@ -191,7 +189,7 @@ namespace NLog.UnitTests.Common
             Assert.Equal(expected, writerOutput);
         }
 
-#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3
         [Fact]
         public void WriteToConsoleOutTests()
         {
@@ -547,7 +545,7 @@ namespace NLog.UnitTests.Common
                 }
             }
         }
-#endif
+
         public void Dispose()
         {
             TimeSource.Current = new FastLocalTimeSource();

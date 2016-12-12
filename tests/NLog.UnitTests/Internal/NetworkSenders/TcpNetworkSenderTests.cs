@@ -173,7 +173,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                     });
             }
 
-#if SILVERLIGHT || NETSTANDARD1_3
+#if NETSTANDARD1_3
             Assert.True(allSent.WaitOne(3000));
 #else
             Assert.True(allSent.WaitOne(3000, false));
@@ -181,7 +181,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
 
             var mre = new ManualResetEvent(false);
             sender.FlushAsync(ex => mre.Set());
-#if SILVERLIGHT || NETSTANDARD1_3
+#if  NETSTANDARD1_3
             mre.WaitOne(3000);
 #else
             mre.WaitOne(3000, false);

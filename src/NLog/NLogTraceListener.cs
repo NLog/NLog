@@ -211,7 +211,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Flushes the output buffer.
+        /// Flushes the output (if <see cref="DisableFlush"/> is not <c>true</c>) buffer with the default timeout of 15 seconds.
         /// </summary>
         public override void Flush()
         {

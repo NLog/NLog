@@ -36,14 +36,13 @@ using NLog.Targets;
 namespace NLog.UnitTests.Layouts
 {
     using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.IO;
     using NLog.Layouts;
     using Xunit;
 
     public class JsonLayoutTests : NLogTestBase
     {
+        private const string ExpectedIncludeAllPropertiesWithExcludes = "{ \"StringProp\": \"ValueA\", \"IntProp\": 123, \"DoubleProp\": 123.123, \"DecimalProp\": 123.123, \"BoolProp\": True, \"NullProp\": null }";
+
         [Fact]
         public void JsonLayoutRendering()
         {
@@ -336,6 +335,75 @@ namespace NLog.UnitTests.Layouts
 
             var json = jsonLayout.Render(logEventInfo);
             Assert.Equal("{ \"time\": \"2016-10-30 13:30:55.0000\", \"level\": \"INFO\", \"nested\": { \"message\": \"this is message\", \"exception\": \"test\" } }", json);
+        }
+
+        [Fact]
+        public void IncludeAllJsonProperties()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeAllProperties = true
+            };
+
+            jsonLayout.ExcludeProperties.Add("Excluded1");
+            jsonLayout.ExcludeProperties.Add("Excluded2");
+
+            var logEventInfo = CreateLogEventWithExcluded();
+
+
+            Assert.Equal(ExpectedIncludeAllPropertiesWithExcludes, jsonLayout.Render(logEventInfo));
+
+        }
+
+        /// <summary>
+        /// Test from XML, needed for the list (ExcludeProperties)
+        /// </summary>
+        [Fact]
+        public void IncludeAllJsonPropertiesXml()
+        {
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog throwExceptions='true'>
+                <targets>
+            <target name='debug' type='Debug'  >
+                 <layout type=""JsonLayout"" IncludeAllProperties='true' ExcludeProperties='Excluded1,Excluded2'>
+            
+                 </layout>
+            </target>
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            var logEventInfo = CreateLogEventWithExcluded();
+
+            logger.Debug(logEventInfo);
+
+            AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
+        }
+
+        private static LogEventInfo CreateLogEventWithExcluded()
+        {
+            var logEventInfo = new LogEventInfo
+            {
+                TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56),
+                Level = LogLevel.Info,
+                Message = "hello, world"
+            };
+
+            logEventInfo.Properties.Add("StringProp", "ValueA");
+            logEventInfo.Properties.Add("IntProp", 123);
+            logEventInfo.Properties.Add("DoubleProp", 123.123);
+            logEventInfo.Properties.Add("DecimalProp", 123.123m);
+            logEventInfo.Properties.Add("BoolProp", true);
+            logEventInfo.Properties.Add("NullProp", null);
+            logEventInfo.Properties.Add("Excluded1", "ExcludedValue");
+            logEventInfo.Properties.Add("Excluded2", "Also excluded");
+            return logEventInfo;
         }
     }
 }

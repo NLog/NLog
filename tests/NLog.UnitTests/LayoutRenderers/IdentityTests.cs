@@ -39,7 +39,7 @@ using NLog.Targets.Wrappers;
 using NLog.UnitTests.Common;
 using NLog.UnitTests.Targets.Wrappers;
 
-#if !SILVERLIGHT && !NETSTANDARD
+#if !NETSTANDARD
 
 namespace NLog.UnitTests.LayoutRenderers
 {

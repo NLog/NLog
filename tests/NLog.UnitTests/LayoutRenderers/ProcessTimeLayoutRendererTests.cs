@@ -31,9 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-//no silverlight because of xUnit needed
-#if !SILVERLIGHT
-
 using System;
 using System.Text;
 using NLog.LayoutRenderers;
@@ -82,4 +79,3 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
     }
 }
-#endif

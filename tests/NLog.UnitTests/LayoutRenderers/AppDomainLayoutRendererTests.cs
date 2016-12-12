@@ -35,7 +35,7 @@ using System;
 using System.Linq;
 using Xunit;
 
-#if !SILVERLIGHT && !NETSTANDARD
+#if !NETSTANDARD
 
 namespace NLog.UnitTests.LayoutRenderers
 {

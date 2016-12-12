@@ -33,7 +33,7 @@
 
 #define DEBUG
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !__IOS__ && !__ANDROID__
 
 namespace NLog.UnitTests.Common
 {

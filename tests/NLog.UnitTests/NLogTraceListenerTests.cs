@@ -311,4 +311,3 @@ namespace NLog.UnitTests
     }
 }
 
-#endif

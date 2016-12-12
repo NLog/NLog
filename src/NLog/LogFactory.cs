@@ -73,7 +73,7 @@ namespace NLog
 #if !NETSTANDARD
         private static IAppDomain currentAppDomain;
 #endif
-        private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
+        private readonly static TimeSpan DefaultFlushTimeout = TimeSpan.FromSeconds(15);
         private readonly object syncRoot = new object();
 
         private LoggingConfiguration config;
@@ -110,7 +110,7 @@ namespace NLog
             this.watcher = new MultiFileWatcher();
             this.watcher.OnChange += this.ConfigFileChanged;
 #if ! NETSTANDARD1_3
-            CurrentAppDomain.DomainUnload += currentAppDomain_DomainUnload;
+            CurrentAppDomain.DomainUnload += DomainUnload;
 #endif            
 #endif
         }
@@ -152,14 +152,20 @@ namespace NLog
         /// <remarks>
         /// This option is for backwards-compatiblity.
         /// By default exceptions are not thrown under any circumstances.
-        /// 
         /// </remarks>
         public bool? ThrowConfigExceptions { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether Variables should be kept on configuration reload.
+        /// Default value - false.
+        /// </summary>
+        public bool KeepVariablesOnReload { get; set; }
 
 
         /// <summary>
         /// Gets or sets the current logging configuration. After setting this property all
-        /// existing loggers will be re-configured, so that there is no need to call <see cref="ReconfigExistingLoggers" />	manually.
+        /// existing loggers will be re-configured, so there is no need to call <see cref="ReconfigExistingLoggers" />
+        /// manually.
         /// </summary>
         public LoggingConfiguration Configuration
         {
@@ -174,10 +180,24 @@ namespace NLog
                         return this.config;
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
+                    //load
+
                     if (this.config == null)
                     {
+                        try
+                        {
                         // Try to load default configuration.
                         this.config = XmlLoggingConfiguration.AppConfig;
+                    }
+                        catch (Exception ex)
+                        {
+                            //loading could fail due to an invalid XML file (app.config) etc.
+                            if (ex.MustBeRethrown())
+                            {
+                                throw;
+                            }
+                           
+                        }
                     }
 #endif
                     // Retest the condition as we might have loaded a config.
@@ -249,6 +269,7 @@ namespace NLog
                             }
 #endif
                             this.config.InitializeAll();
+                            
                             LogConfigurationInitialized();
                         }
                         finally
@@ -332,7 +353,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets or sets the global log threshold. Log events below this threshold are not logged.
+        /// Gets or sets the global log level threshold. Log events below this threshold are not logged.
         /// </summary>
         public LogLevel GlobalThreshold
         {
@@ -388,10 +409,7 @@ namespace NLog
         /// <returns>Null logger instance.</returns>
         public Logger CreateNullLogger()
         {
-            TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
-            Logger newLogger = new Logger();
-            newLogger.Initialize(string.Empty, new LoggerConfiguration(targetsByLevel, false), this);
-            return newLogger;
+            return new NullLogger(this);
         }
 
         /// <summary>
@@ -521,11 +539,11 @@ namespace NLog
 
 #if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
         /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
+        /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
         /// </summary>
         public void Flush()
         {
-            this.Flush(defaultFlushTimeout);
+            this.Flush(DefaultFlushTimeout);
         }
 
         /// <summary>
@@ -620,10 +638,12 @@ namespace NLog
         /// <remarks>
         /// Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater than 
         /// or equal to <see cref="SuspendLogging"/> calls.
+        /// 
+        /// This method was marked as obsolete on NLog 4.0 and it may be removed in a future release.
         /// </remarks>
         /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging. 
         /// To be used with C# <c>using ()</c> statement.</returns>
-        [Obsolete("Use SuspendLogging() instead.")]
+        [Obsolete("Use SuspendLogging() instead. Marked obsolete on NLog 4.0")]
         public IDisposable DisableLogging()
         {
             return SuspendLogging();
@@ -634,8 +654,11 @@ namespace NLog
         /// </summary>
         /// <remarks>
         /// Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater than 
-        /// or equal to <see cref="SuspendLogging"/> calls.</remarks>
-        [Obsolete("Use ResumeLogging() instead.")]
+        /// or equal to <see cref="SuspendLogging"/> calls.
+        /// 
+        /// This method was marked as obsolete on NLog 4.0 and it may be removed in a future release.
+        /// </remarks>
+        [Obsolete("Use ResumeLogging() instead. Marked obsolete on NLog 4.0")]
         public void EnableLogging()
         {
             ResumeLogging();
@@ -720,7 +743,9 @@ namespace NLog
                     this.reloadTimer = null;
                 }
                 if (this.IsDisposing)
+                {
                     return; //timer was disposed already. 
+                }
 
                 this.watcher.StopWatching();
                 try
@@ -747,6 +772,10 @@ namespace NLog
 
                     if (newConfig != null)
                     {
+                        if (this.KeepVariablesOnReload)
+                        {
+                            newConfig.CopyVariables(this.Configuration.Variables);
+                        }
                         this.Configuration = newConfig;
                         if (this.ConfigurationReloaded != null)
                         {
@@ -881,7 +910,9 @@ namespace NLog
         {
 
             if (this.IsDisposing)
+            {
                 return;
+            }
 
 
 
@@ -923,7 +954,7 @@ namespace NLog
                 if (currentAppDomain != null)
                 {
                     // No longer belongs to the AppDomain
-                    currentAppDomain.DomainUnload -= this.currentAppDomain_DomainUnload;
+                    currentAppDomain.DomainUnload -= this.DomainUnload;
                     CurrentAppDomain = null;
                 }
 #endif
@@ -1119,6 +1150,13 @@ namespace NLog
             return newLogger;
         }
 
+        private void LoadLoggingConfiguration(string configFile)
+        {
+            InternalLogger.Debug("Loading config from {0}", configFile);
+            this.config = new XmlLoggingConfiguration(configFile, this);
+        }
+
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
         private void ConfigFileChanged(object sender, EventArgs args)
         {
@@ -1132,7 +1170,9 @@ namespace NLog
             lock (this.syncRoot)
             {
                 if (IsDisposing)
+                {
                     return;
+                }
 
                 if (this.reloadTimer == null)
                 {
@@ -1150,9 +1190,8 @@ namespace NLog
                 }
             }
         }
-#endif
 
-        private void LoadLoggingConfiguration(string configFile)
+        private void DomainUnload(object sender, EventArgs e)
         {
             InternalLogger.Debug("Loading config from {0}", configFile);
             this.config = new XmlLoggingConfiguration(configFile, this);
@@ -1171,8 +1210,6 @@ namespace NLog
                 Dispose();
             }
         }
-
-
 #endif
         /// <summary>
         /// Logger cache key.

@@ -36,8 +36,7 @@ namespace NLog.Targets.Wrappers
     using System.ComponentModel;
     using System.Threading;
     using NLog.Common;
-    using NLog.Internal;
-
+    
     /// <summary>
     /// A target that buffers log events and sends them in batches to the wrapped target.
     /// </summary>
@@ -177,7 +176,8 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">The log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            this.WrappedTarget.PrecalculateVolatileLayouts(logEvent.LogEvent);
+            this.MergeEventProperties(logEvent.LogEvent);
+            this.PrecalculateVolatileLayouts(logEvent.LogEvent);
 
             int count = this.buffer.Append(logEvent);
             if (count >= this.BufferSize)

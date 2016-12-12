@@ -33,9 +33,7 @@
 
 using NLog.LayoutRenderers;
 using NLog.Targets;
-#if !SILVERLIGHT
 using Xunit.Extensions;
-#endif
 #if !NETCOREAPP1_0
 using System.Globalization;
 #endif
@@ -112,9 +110,6 @@ namespace NLog.UnitTests.Config
                 Assert.Equal(expected, GetDebugLastMessage("debug", configuration));
             }
         }
-#endif
-
-#if !SILVERLIGHT
 
         [Fact]
         public void EventPropRendererCultureTest()
@@ -151,20 +146,29 @@ namespace NLog.UnitTests.Config
         }
 
 #if !MONO && !NETSTANDARD
-        [Fact(Skip = "TimeSpan tostring isn't culture aware in .NET?")]
+        [Fact]
         public void ProcessInfoLayoutRendererCultureTest()
         {
             string cultureName = "de-DE";
-            string expected = ",";   // decimal comma as separator for ticks
+            string expected = ".";   // dot as date separator (01.10.2008)
 
             var logEventInfo = CreateLogEventInfo(cultureName);
 
             var renderer = new ProcessInfoLayoutRenderer();
-            renderer.Property = ProcessInfoProperty.TotalProcessorTime;
+            renderer.Property = ProcessInfoProperty.StartTime;
+            renderer.Format = "d";
             string output = renderer.Render(logEventInfo);
 
             Assert.Contains(expected, output);
-            Assert.DoesNotContain(".", output);
+            Assert.DoesNotContain("/", output);
+            Assert.DoesNotContain("-", output);
+
+            var renderer2 = new ProcessInfoLayoutRenderer();
+            renderer2.Property = ProcessInfoProperty.BasePriority;
+            renderer2.Format = "d";
+            output = renderer2.Render(logEventInfo);
+            Assert.True(output.Length >= 1);
+            Assert.True("012345678".IndexOf(output[0]) > 0);
         }
 #endif
 
@@ -252,6 +256,5 @@ namespace NLog.UnitTests.Config
                 Assert.Equal(target.Logs[0], target.Logs[1]);
             }
         }
-#endif
     }
 }

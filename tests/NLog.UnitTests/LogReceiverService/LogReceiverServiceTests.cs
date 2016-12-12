@@ -47,7 +47,7 @@ namespace NLog.UnitTests.LogReceiverService
     using System;
     using System.IO;
     using Xunit;
-#if WCF_SUPPORTED && !SILVERLIGHT
+#if WCF_SUPPORTED
         using System.Data;
     using System.Runtime.Serialization;
 
@@ -174,7 +174,7 @@ namespace NLog.UnitTests.LogReceiverService
             Assert.Equal(LogLevel.Warn, converted[1].Level);
         }
 
-#if !SILVERLIGHT && !NETSTANDARD
+#if !NETSTANDARD
         /// <summary>
         /// Ensures that serialization formats of DataContractSerializer and XmlSerializer are the same
         /// on the same <see cref="NLogEvents"/> object.
@@ -235,7 +235,7 @@ namespace NLog.UnitTests.LogReceiverService
 #endif
 
 
-#if WCF_SUPPORTED && !SILVERLIGHT
+#if WCF_SUPPORTED
 
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]

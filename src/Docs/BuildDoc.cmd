@@ -1,7 +1,8 @@
+rem install SHFB first, rebuild Nlog and update BuildVersion in this script
 rem @echo off
 set FRAMEWORK1=.NET Framework 4.5
 set FRAMEWORK="%FRAMEWORK1%"
-set BuildVersion=4.3.0
+set BuildVersion=4.4.0
 
 
 set Configuration=Release

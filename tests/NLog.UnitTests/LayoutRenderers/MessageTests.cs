@@ -211,7 +211,6 @@ namespace NLog.UnitTests.LayoutRenderers
 
             var ex = new InvalidOperationException("Exception message.");
             
-
             string newline = Environment.NewLine;
 
 #pragma warning disable 0618

@@ -69,7 +69,8 @@ namespace NLog
         /// <summary>
         /// Delegate used to set/get the culture in use.
         /// </summary>
-        [Obsolete]
+        /// <remarks>This delegate marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Marked obsolete before v4.3.11")]
         public delegate CultureInfo GetCultureInfo();
 
 #if !SILVERLIGHT && !MONO && !NETSTANDARD
@@ -142,6 +143,16 @@ namespace NLog
             set { factory.ThrowConfigExceptions = value; }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether Variables should be kept on configuration reload.
+        /// Default value - false.
+        /// </summary>
+        public static bool KeepVariablesOnReload
+        {
+            get { return factory.KeepVariablesOnReload; }
+            set { factory.KeepVariablesOnReload = value; }
+        }
+
 #if !NETSTANDARD
 
         internal static IAppDomain CurrentAppDomain
@@ -183,7 +194,8 @@ namespace NLog
         /// <summary>
         /// Gets or sets the default culture to use.
         /// </summary>
-        [Obsolete("Use Configuration.DefaultCultureInfo property instead")]
+        /// <remarks>This property was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Configuration.DefaultCultureInfo property instead. Marked obsolete before v4.3.11")]
         public static GetCultureInfo DefaultCultureInfo
         {
             get { return () => factory.DefaultCultureInfo ?? CultureInfo.CurrentCulture; }
@@ -322,7 +334,7 @@ namespace NLog
 
 #if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
         /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
+        /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
         /// </summary>
         public static void Flush()
         {

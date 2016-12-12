@@ -35,9 +35,7 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
     using System.ComponentModel;
-    using System.Globalization;
     using System.Text;
-    using System.Xml;
     using NLog.Config;
 
     /// <summary>
@@ -75,10 +73,32 @@ namespace NLog.LayoutRenderers.Wrappers
 
         private static string DoJsonEscape(string text)
         {
-            var sb = new StringBuilder(text.Length);
-
+            StringBuilder sb = null;
             for (int i = 0; i < text.Length; ++i)
             {
+                char ch = text[i];
+                if (sb == null)
+                {
+                    // Check if we need to upgrade to StringBuilder
+                    if (!NeedsEscaping(ch))
+                    {
+                        switch (ch)
+                        {
+                            case '"':
+                            case '\\':
+                            case '/':
+                                break;
+
+                            default:
+                                continue;   // StringBuilder not needed, yet
+                        }
+                    }
+
+                    // StringBuilder needed
+                    sb = new StringBuilder(text.Length + 4);
+                    sb.Append(text, 0, i);
+                }
+
                 switch (text[i])
                 {
                     case '"':
@@ -128,7 +148,10 @@ namespace NLog.LayoutRenderers.Wrappers
                 }
             }
 
-            return sb.ToString();
+            if (sb != null)
+                return sb.ToString();
+            else
+                return text;
         }
 
         private static bool NeedsEscaping(char ch)

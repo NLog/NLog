@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !NETSTANDARD
+#if !NETSTANDARD
 
 using System.Reflection;
 
@@ -45,11 +45,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void EntryAssemblyVersionTest()
         {
-#if SILVERLIGHT
-			var assembly = Application.Current.GetType().Assembly;
-#else
             var assembly = Assembly.GetEntryAssembly();
-#endif
             var assemblyVersion = assembly == null ? "Could not find entry assembly" : assembly.GetName().Version.ToString();
             AssertLayoutRendererOutput("${assembly-version}", assemblyVersion);
         }

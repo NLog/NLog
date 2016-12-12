@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
 
 
 using System;
@@ -169,4 +168,3 @@ namespace NLog.UnitTests.Internal
         }
     }
 }
-#endif

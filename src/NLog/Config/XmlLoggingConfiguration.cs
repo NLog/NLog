@@ -418,7 +418,7 @@ namespace NLog.Config
                     this.ParseTopLevel(content, null, autoReloadDefault: false);
                 }
                 InitializeSucceeded = true;
-
+                this.CheckParsingErrors(content);
                 this.CheckUnusedTargets();
 
             }
@@ -430,8 +430,8 @@ namespace NLog.Config
                     throw;
                 }
 
-                var configurationException = new NLogConfigurationException("Exception occurred when loading configuration from " + fileName, exception);
-                InternalLogger.Error(configurationException, "Error in Parsing Configuration File.");
+                var configurationException = new NLogConfigurationException(exception, "Exception when parsing {0}. ", fileName);
+                InternalLogger.Error(configurationException, "Parsing configuration from {0} failed.", fileName);
 
                 if (!ignoreErrors)
                 {
@@ -443,6 +443,33 @@ namespace NLog.Config
               
                 }
                 }
+
+        /// <summary>
+        /// Checks whether any error during XML configuration parsing has occured.
+        /// If there are any and <c>ThrowConfigExceptions</c> or <c>ThrowExceptions</c>
+        /// setting is enabled - throws <c>NLogConfigurationException</c>, otherwise
+        /// just write an internal log at Warn level.
+        /// </summary>
+        /// <param name="rootContentElement">Root NLog configuration xml element</param>
+        private void CheckParsingErrors(NLogXmlElement rootContentElement)
+        {
+            var parsingErrors = rootContentElement.GetParsingErrors().ToArray();
+            if(parsingErrors.Any())
+            {
+                if (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
+                {
+                    string exceptionMessage = string.Join(Environment.NewLine, parsingErrors);
+                    throw new NLogConfigurationException(exceptionMessage);
+                }
+                else
+                {
+                    foreach (var parsingError in parsingErrors)
+                    {
+                        InternalLogger.Log(LogLevel.Warn, parsingError);
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// Checks whether unused targets exist. If found any, just write an internal log at Warn level.
@@ -556,6 +583,7 @@ namespace NLog.Config
             
             logFactory.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", logFactory.ThrowExceptions);
             logFactory.ThrowConfigExceptions = nlogElement.GetOptionalBooleanAttribute("throwConfigExceptions", logFactory.ThrowConfigExceptions);
+            logFactory.KeepVariablesOnReload = nlogElement.GetOptionalBooleanAttribute("keepVariablesOnReload", logFactory.KeepVariablesOnReload);
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);
             InternalLogger.LogToConsoleError = nlogElement.GetOptionalBooleanAttribute("internalLogToConsoleError", InternalLogger.LogToConsoleError);
             InternalLogger.LogFile = nlogElement.GetOptionalAttribute("internalLogFile", InternalLogger.LogFile);
@@ -1117,8 +1145,17 @@ namespace NLog.Config
             {
                 return;
             }
-
-            PropertyHelper.SetPropertyFromString(o, element.LocalName, this.ExpandSimpleVariables(element.Value), this.ConfigurationItemFactory);
+            var value = this.ExpandSimpleVariables(element.Value);
+            try
+            {
+               
+                PropertyHelper.SetPropertyFromString(o, element.LocalName, value, this.ConfigurationItemFactory);
+            }
+            catch (NLogConfigurationException)
+            {
+                InternalLogger.Warn("Error when setting '{0}' from '<{1}>'", element.LocalName, value);
+                throw;
+            }
         }
 
         private bool AddArrayItemFromElement(object o, NLogXmlElement element)
@@ -1162,8 +1199,16 @@ namespace NLog.Config
                 {
                     continue;
                 }
+                try
+                {
+                    PropertyHelper.SetPropertyFromString(targetObject, childName, this.ExpandSimpleVariables(childValue), this.ConfigurationItemFactory);
+                }
+                catch (NLogConfigurationException)
+                {
+                    InternalLogger.Warn("Error when setting '{0}' on attibute '{1}'", childValue, childName);
+                    throw;
+                }
 
-                PropertyHelper.SetPropertyFromString(targetObject, childName, this.ExpandSimpleVariables(childValue), this.ConfigurationItemFactory);
             }
         }
 

@@ -38,7 +38,7 @@ namespace NLog.UnitTests.Conditions
     using System;
     using System.Globalization;
     using System.IO;
-#if !SILVERLIGHT && !NETSTANDARD
+#if  !NETSTANDARD
     using System.Runtime.Serialization.Formatters.Binary;
 #endif
     using NLog.Conditions;
@@ -230,14 +230,9 @@ namespace NLog.UnitTests.Conditions
             Assert.Equal(false, ConditionParser.ParseExpression("ToInt16(3) == ToInt32(4)", factories).Evaluate(CreateWellKnownContext()));
             Assert.Equal(false, ConditionParser.ParseExpression("false == ToInt16(4)", factories).Evaluate(CreateWellKnownContext()));
             Assert.Equal(false, ConditionParser.ParseExpression("ToInt16(1) == false", factories).Evaluate(CreateWellKnownContext()));
-        }
 
-        [Fact]
-        public void TypePromotionNegativeTest1()
-        {
-            var factories = SetupConditionMethods();
-
-            Assert.Throws<ConditionEvaluationException>(() => ConditionParser.ParseExpression("ToDateTime('2010/01/01') == '20xx/01/01'", factories).Evaluate(CreateWellKnownContext()));
+            //this is doing string comparision as thats the common type which works in this case.
+            Assert.Equal(false, ConditionParser.ParseExpression("ToDateTime('2010/01/01') == '20xx/01/01'", factories).Evaluate(CreateWellKnownContext()));
         }
 
         [Fact]
@@ -271,7 +266,7 @@ namespace NLog.UnitTests.Conditions
             Assert.Same(inner, ex1.InnerException);
         }
 
-#if !SILVERLIGHT && !NETSTANDARD
+#if !NETSTANDARD
         [Fact]
         public void ExceptionTest4()
         {
@@ -311,7 +306,7 @@ namespace NLog.UnitTests.Conditions
             Assert.Same(inner, ex1.InnerException);
         }
 
-#if !SILVERLIGHT && !NETSTANDARD
+#if !NETSTANDARD
         [Fact]
         public void ExceptionTest14()
         {

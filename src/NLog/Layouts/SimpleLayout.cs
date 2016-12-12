@@ -120,7 +120,7 @@ namespace NLog.Layouts
                 string txt;
                 if (value == null)
                 {
-                    renderers = new LayoutRenderer[0];
+                    renderers = ArrayHelper.Empty<LayoutRenderer>();
                     txt = string.Empty;
                 }
                 else
@@ -201,8 +201,8 @@ namespace NLog.Layouts
         /// values provided by the appropriate layout renderers.</returns>
         public static string Evaluate(string text, LogEventInfo logEvent)
         {
-            var l = new SimpleLayout(text);
-            return l.Render(logEvent);
+            var layout = new SimpleLayout(text);
+            return layout.Render(logEvent);
         }
 
         /// <summary>

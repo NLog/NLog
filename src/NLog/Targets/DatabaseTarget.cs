@@ -199,7 +199,7 @@ namespace NLog.Targets
         /// This option was removed in NLog 4.0 because the logging code always runs outside of transaction. 
         /// This ensures that the log gets written to the database if you rollback the main transaction because of an error and want to log the error.
         /// </remarks>
-        [Obsolete("Obsolete - value will be ignored - logging code always runs outside of transaction. Will be removed in NLog 6.")]
+        [Obsolete("Value will be ignored as logging code always executes outside of a transaction. Marked obsolete on NLog 4.0 and it will be removed in NLog 6.")]
         public bool? UseTransactions { get; set; }
 
         /// <summary>
@@ -348,7 +348,7 @@ namespace NLog.Targets
             if (UseTransactions.HasValue)
 #pragma warning restore 618
             {
-                InternalLogger.Warn("UseTransactions is obsolete and will not be used - will be removed in NLog 6");
+                InternalLogger.Warn("UseTransactions property is obsolete and will not be used - will be removed in NLog 6");
             }
 
             bool foundProvider = false;
@@ -472,14 +472,16 @@ namespace NLog.Targets
         /// <param name="logEvents">Logging events to be written out.</param>
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
-            var buckets = SortHelpers.BucketSort(logEvents, c => this.BuildConnectionString(c.LogEvent));
+            var buckets = logEvents.BucketSort(c => this.BuildConnectionString(c.LogEvent));
 
             try
             {
                 foreach (var kvp in buckets)
                 {
-                    foreach (AsyncLogEventInfo ev in kvp.Value)
+                    for (int i = 0; i < kvp.Value.Count; i++)
                     {
+                        AsyncLogEventInfo ev = kvp.Value[i];
+
                         try
                         {
                             this.WriteEventToDatabase(ev.LogEvent);
