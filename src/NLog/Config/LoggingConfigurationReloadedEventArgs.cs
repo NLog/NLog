@@ -46,8 +46,17 @@ namespace NLog.Config
         /// Initializes a new instance of the <see cref="LoggingConfigurationReloadedEventArgs" /> class.
         /// </summary>
         /// <param name="succeeded">Whether configuration reload has succeeded.</param>
+        public LoggingConfigurationReloadedEventArgs(bool succeeded)
+        {
+            this.Succeeded = succeeded;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoggingConfigurationReloadedEventArgs" /> class.
+        /// </summary>
+        /// <param name="succeeded">Whether configuration reload has succeeded.</param>
         /// <param name="exception">The exception during configuration reload.</param>
-        internal LoggingConfigurationReloadedEventArgs(bool succeeded, Exception exception)
+        public LoggingConfigurationReloadedEventArgs(bool succeeded, Exception exception)
         {
             this.Succeeded = succeeded;
             this.Exception = exception;
