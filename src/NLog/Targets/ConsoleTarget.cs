@@ -77,7 +77,7 @@ namespace NLog.Targets
         ///   TextWriter's Synchronized methods.This also applies to classes like StreamWriter and StreamReader.
         /// 
         /// </remarks>
-        private bool PauseLogging;
+        private bool _pauseLogging;
 
         /// <summary>
         /// Gets or sets a value indicating whether to send the log messages to the standard error instead of the standard output.
@@ -86,17 +86,23 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool Error { get; set; }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// The encoding for writing messages to the <see cref="Console"/>.
         ///  </summary>
         /// <remarks>Has side effect</remarks>
         public Encoding Encoding
         {
-            get { return Console.OutputEncoding; }
-            set { Console.OutputEncoding = value; }
+            get
+            {
+                return ConsoleTargetHelper.GetConsoleOutputEncoding(_encoding, IsInitialized, _pauseLogging);
+            }
+            set
+            {
+                if (ConsoleTargetHelper.SetConsoleOutputEncoding(_encoding, IsInitialized, _pauseLogging))
+                    _encoding = value;
+            }
         }
-#endif
+        private Encoding _encoding;
 
         /// <summary>
         /// Gets or sets a value indicating whether to auto-check if the console is available
@@ -114,7 +120,7 @@ namespace NLog.Targets
         /// </remarks>
         public ConsoleTarget() : base()
         {
-            PauseLogging = false;
+            _pauseLogging = false;
             DetectConsoleAvailable = false;
         }
 
@@ -136,16 +142,20 @@ namespace NLog.Targets
         /// </summary>
         protected override void InitializeTarget()
         {
-            PauseLogging = false;
+            _pauseLogging = false;
             if (DetectConsoleAvailable)
             {
                 string reason;
-                PauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
-                if (PauseLogging)
+                _pauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
+                if (_pauseLogging)
                 {
                     InternalLogger.Info("Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {0}", reason);
                 }
             }
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+            if (_encoding != null && !_pauseLogging)
+                Console.OutputEncoding = _encoding;
+#endif
             base.InitializeTarget();
             if (Header != null)
             {
@@ -176,7 +186,7 @@ namespace NLog.Targets
         /// </remarks>
         protected override void Write(LogEventInfo logEvent)
         {
-            if (PauseLogging)
+            if (_pauseLogging)
             {
                 //check early for performance
                 return;
@@ -191,7 +201,7 @@ namespace NLog.Targets
         /// <param name="textLine">text to be written.</param>
         private void WriteToOutput(string textLine)
         {
-            if (PauseLogging)
+            if (_pauseLogging)
             {
                 return;
             }
@@ -205,7 +215,7 @@ namespace NLog.Targets
             catch (IndexOutOfRangeException ex)
             {
                 //this is a bug and therefor stopping logging. For docs, see PauseLogging property
-                PauseLogging = true;
+                _pauseLogging = true;
                 InternalLogger.Warn(ex, "An IndexOutOfRangeException has been thrown and this is probably due to a race condition." +
                                         "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
             }

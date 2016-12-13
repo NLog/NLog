@@ -165,9 +165,17 @@ namespace NLog.Targets
         /// <remarks>Has side effect</remarks>
         public Encoding Encoding
         {
-            get { return Console.OutputEncoding; }
-            set { Console.OutputEncoding = value; }
+            get
+            {
+                return ConsoleTargetHelper.GetConsoleOutputEncoding(this.encoding, this.IsInitialized, this.pauseLogging);
+            }
+            set
+            {
+                if (ConsoleTargetHelper.SetConsoleOutputEncoding(this.encoding, this.IsInitialized, this.pauseLogging))
+                    encoding = value;
+            }
         }
+        private Encoding encoding;
 
         /// <summary>
         /// Gets or sets a value indicating whether to auto-check if the console is available.
@@ -206,6 +214,8 @@ namespace NLog.Targets
                     InternalLogger.Info("Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {0}", reason);
                 }
             }
+            if (this.encoding != null && !this.pauseLogging)
+                Console.OutputEncoding = this.encoding;
             base.InitializeTarget();
             if (Header != null)
             {
