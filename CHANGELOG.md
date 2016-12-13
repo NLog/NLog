@@ -3,7 +3,7 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
 This file is new since 4.3.4. If requested, we will try to add the older releases in this file.
 
 
-### V4.4  (2016/12/13)
+### V4.4  (2016/12/14)
 
 #### Features
 
