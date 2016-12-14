@@ -33,9 +33,11 @@
 
 namespace NLog.Targets.Wrappers
 {
+    using System;
     using System.ComponentModel;
     using System.Threading;
     using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// A target that buffers log events and sends them in batches to the wrapped target.
@@ -128,7 +130,7 @@ namespace NLog.Targets.Wrappers
         public bool SlidingTimeout { get; set; }
 
         /// <summary>
-        /// Flushes pending events in the buffer (if any).
+        /// Flushes pending events in the buffer (if any), followed by flushing the WrappedTarget.
         /// </summary>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
@@ -197,12 +199,24 @@ namespace NLog.Targets.Wrappers
 
         private void FlushCallback(object state)
         {
-            lock (this.lockObject)
+            try
             {
-                if (this.flushTimer == null)
-                    return;
+                lock (this.lockObject)
+                {
+                    if (this.flushTimer == null)
+                        return;
 
-                WriteEventsInBuffer(null);
+                    WriteEventsInBuffer(null);
+                }
+            }
+            catch (Exception exception)
+            {
+                InternalLogger.Error(exception, "BufferingWrapper '{0}': Error in flush procedure.", this.Name);
+
+                if (exception.MustBeRethrownImmediately())
+                {
+                    throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
+                }
             }
         }
 

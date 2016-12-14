@@ -38,7 +38,6 @@ namespace NLog.Targets.Wrappers
     using System.Threading;
     using Common;
     using Internal;
-    using System.Collections.Generic;
 
     /// <summary>
     /// Provides asynchronous, buffered execution of target writes.
@@ -170,14 +169,16 @@ namespace NLog.Targets.Wrappers
         internal AsyncRequestQueue RequestQueue { get; private set; }
 
         /// <summary>
-        /// Flushes pending events in the queue (if any).
+        /// Schedules a flush of pending events in the queue (if any), followed by flushing the WrappedTarget.
         /// </summary>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            WriteEventsInQueue(-1, "Flush Async");
-            base.FlushAsync(asyncContinuation);
+            if (flushEventsInQueueDelegate == null)
+                flushEventsInQueueDelegate = FlushEventsInQueue;
+            ThreadPool.QueueUserWorkItem(flushEventsInQueueDelegate, asyncContinuation);
         }
+        private WaitCallback flushEventsInQueueDelegate;
 
         /// <summary>
         /// Initializes the target by starting the lazy writer timer.
@@ -196,8 +197,11 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected override void CloseTarget()
         {
-            this.StopLazyWriterThread();
-            WriteEventsInQueue(-1, "Closing Target");
+            lock (this.lockObject)
+            {
+                this.StopLazyWriterThread();
+                WriteEventsInQueue(-1, "Closing Target");
+            }
             base.CloseTarget();
         }
 
@@ -333,7 +337,7 @@ namespace NLog.Targets.Wrappers
                     lockTaken = true;
                 }
 
-                int count = WriteEventsInQueue(this.BatchSize, null);
+                int count = WriteEventsInQueue(this.BatchSize, "Timer");
                 if (count == 0)
                     wroteFullBatchSize = null;    // Nothing to write
                 else if (count == BatchSize)
@@ -345,9 +349,9 @@ namespace NLog.Targets.Wrappers
 
                 InternalLogger.Error(exception, "AsyncWrapper '{0}': Error in lazy writer timer procedure.", this.Name);
 
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrownImmediately())
                 {
-                    throw;
+                    throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                 }
             }
             finally
@@ -362,7 +366,7 @@ namespace NLog.Targets.Wrappers
                 {
                     // If queue was not empty, then more might have arrived while writing the first batch
                     // Uses throttled timer here, so we can process in batches (faster)
-                    if (wroteFullBatchSize.HasValue && !wroteFullBatchSize.Value)
+                    if (wroteFullBatchSize == false)
                         this.StartLazyWriterTimer();    // Queue was not empty, more might have come (Skip expensive RequestQueue-check)
                     else if (!wroteFullBatchSize.HasValue)
                     {
@@ -373,6 +377,29 @@ namespace NLog.Targets.Wrappers
                 else
                 {
                     this.StartLazyWriterTimer();
+                }
+            }
+        }
+
+        private void FlushEventsInQueue(object state)
+        {
+            try
+            {
+                var asyncContinuation = state as AsyncContinuation;
+                lock (this.lockObject)
+                {
+                    WriteEventsInQueue(-1, "Flush Async");
+                    if (asyncContinuation != null)
+                        base.FlushAsync(asyncContinuation);
+                }
+            }
+            catch (Exception exception)
+            {
+                InternalLogger.Error(exception, "AsyncWrapper '{0}': Error in flush procedure.", this.Name);
+
+                if (exception.MustBeRethrownImmediately())
+                {
+                    throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                 }
             }
         }

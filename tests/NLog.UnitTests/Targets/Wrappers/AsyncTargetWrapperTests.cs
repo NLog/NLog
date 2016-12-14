@@ -497,7 +497,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     s =>
                     {
                         while (0 != this.PendingWriteCount)
-                            Thread.Sleep(1);
+                            Thread.Sleep(10);
                         asyncContinuation(null);
                     });
             }
