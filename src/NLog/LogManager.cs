@@ -154,8 +154,8 @@ namespace NLog
 #if !SILVERLIGHT && !MONO
                 if (currentAppDomain != null)
                 {
-                    currentAppDomain.DomainUnload -= TurnOffLogging;
-                    currentAppDomain.ProcessExit -= TurnOffLogging;
+                    currentAppDomain.DomainUnload -= LogManager_OnStopLogging;
+                    currentAppDomain.ProcessExit -= LogManager_OnStopLogging;
                 }
 #endif
                 currentAppDomain = value;
@@ -398,8 +398,8 @@ namespace NLog
         {
             try
             {
-                CurrentAppDomain.ProcessExit += TurnOffLogging;
-                CurrentAppDomain.DomainUnload += TurnOffLogging;
+                CurrentAppDomain.ProcessExit += LogManager_OnStopLogging;
+                CurrentAppDomain.DomainUnload += LogManager_OnStopLogging;
             }
             catch (Exception exception)
             {
@@ -445,7 +445,7 @@ namespace NLog
             return className;
         }
 
-        private static void TurnOffLogging(object sender, EventArgs args)
+        private static void LogManager_OnStopLogging(object sender, EventArgs args)
         {
             // Reset logging configuration to null; this causes old configuration (if any) to be 
             // closed.

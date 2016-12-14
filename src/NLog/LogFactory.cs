@@ -103,7 +103,7 @@ namespace NLog
         {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             this.watcher = new MultiFileWatcher();
-            this.watcher.OnChange += this.ConfigFileChanged;
+            this.watcher.FileChanged += this.ConfigFileChanged;
             CurrentAppDomain.DomainUnload += DomainUnload;
 #endif
         }
@@ -694,12 +694,12 @@ namespace NLog
         }
 
         /// <summary>
-        /// Invoke the Changed event; called whenever list changes
+        /// Raises the event when the configuration is reloaded. 
         /// </summary>
         /// <param name="e">Event arguments.</param>
         protected virtual void OnConfigurationChanged(LoggingConfigurationChangedEventArgs e)
         {
-            var changed = this.ConfigurationChanged;
+            var changed = ConfigurationChanged;
             if (changed != null)
             {
                 changed(this, e);
@@ -707,10 +707,27 @@ namespace NLog
         }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+        /// <summary>
+        /// Raises the event when the configuration is reloaded. 
+        /// </summary>
+        /// <param name="e">Event arguments</param>
+        protected virtual void OnConfigurationReloaded(LoggingConfigurationReloadedEventArgs e)
+        {
+            var reloaded = ConfigurationReloaded;
+            if (reloaded != null)
+            {
+                reloaded(this, e);
+            }
+        }
+#endif
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         internal void ReloadConfigOnTimer(object state)
         {
             if (this.reloadTimer == null && this.IsDisposing)
-                return;
+            {
+                return; //timer was disposed already. 
+            }
 
             LoggingConfiguration configurationToReload = (LoggingConfiguration)state;
 
@@ -759,10 +776,7 @@ namespace NLog
                             newConfig.CopyVariables(this.Configuration.Variables);
                         }
                         this.Configuration = newConfig;
-                        if (this.ConfigurationReloaded != null)
-                        {
-                            this.ConfigurationReloaded(this, new LoggingConfigurationReloadedEventArgs(true, null));
-                        }
+                        OnConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(true));
                     }
                     else
                     {
@@ -782,12 +796,7 @@ namespace NLog
                     }
 
                     this.watcher.Watch(configurationToReload.FileNamesToWatch);
-
-                    var configurationReloadedDelegate = this.ConfigurationReloaded;
-                    if (configurationReloadedDelegate != null)
-                    {
-                        configurationReloadedDelegate(this, new LoggingConfigurationReloadedEventArgs(false, exception));
-                    }
+                    OnConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(false, exception));
                 }
             }
         }
@@ -902,7 +911,7 @@ namespace NLog
                 if (this.watcher != null)
                 {
                     // Disable startup of new reload-timers
-                    this.watcher.OnChange -= this.ConfigFileChanged;
+                    this.watcher.FileChanged -= this.ConfigFileChanged;
                 }
 
                 if (Monitor.TryEnter(this.syncRoot, 500))

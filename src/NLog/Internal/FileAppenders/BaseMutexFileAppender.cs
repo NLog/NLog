@@ -106,6 +106,9 @@ namespace NLog.Internal.FileAppenders
         /// <returns>A <see cref="Mutex"/> object which is sharable by multiple processes.</returns>
         protected Mutex CreateSharableMutex(string mutexNamePrefix)
         {
+            if (!PlatformDetector.SupportsSharableMutex)
+                return new Mutex();
+
             // Creates a mutex sharable by more than one process
             var mutexSecurity = new MutexSecurity();
             var everyoneSid = new SecurityIdentifier(WellKnownSidType.WorldSid, null);

@@ -84,12 +84,12 @@ namespace NLog.Internal.FileAppenders
             appenders = new BaseFileAppender[Size];
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-            externalFileArchivingWatcher.OnChange += ExternalFileArchivingWatcher_OnChange;
+            externalFileArchivingWatcher.FileChanged += ExternalFileArchivingWatcher_OnFileChanged;
 #endif
         }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-        private void ExternalFileArchivingWatcher_OnChange(object sender, FileSystemEventArgs e)
+        private void ExternalFileArchivingWatcher_OnFileChanged(object sender, FileSystemEventArgs e)
         {
             if ((e.ChangeType & WatcherChangeTypes.Created) == WatcherChangeTypes.Created)
                 logFileWasArchived = true;
