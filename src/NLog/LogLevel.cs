@@ -85,22 +85,39 @@ namespace NLog
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
         public static readonly LogLevel Off = new LogLevel("Off", 6);
 
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
-        private static readonly IList<LogLevel> allLevels = new List<LogLevel> { Trace, Debug, Info, Warn, Error, Fatal, Off };
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
-        private static readonly IList<LogLevel> allLoggingLevels = new List<LogLevel> {Trace, Debug, Info, Warn, Error, Fatal};
+        /// <summary>
+        /// Gets all the availaible (Trace, Debug, Info, Warn, Error, Fatal, Off) log levels.
+        /// </summary>
+        public static IEnumerable<LogLevel> AllLevels
+        {
+            get
+            {
+                yield return Trace;
+                yield return Debug;
+                yield return Info;
+                yield return Warn;
+                yield return Error;
+                yield return Fatal;
+                yield return Off;
+            }
+        }
 
         /// <summary>
-        /// All log levels. (Trace, Debug, Info, Warn, Error, Fatal, Off)
+        ///  Gets all the log levels that can be used to log events (Trace, Debug, Info, Warn, Error, Fatal) 
+        ///  i.e <c>LogLevel.Off</c> is excluded.
         /// </summary>
-        public static IEnumerable<LogLevel> AllLevels { get { return allLevels; } }
-
-        /// <summary>
-        /// All log levels that can be used to log events (excludes Off). (Trace, Debug, Info, Warn, Error, Fatal)
-        /// </summary>
-        public static IEnumerable<LogLevel> AllLoggingLevels { get { return allLoggingLevels; } }
+        public static IEnumerable<LogLevel> AllLoggingLevels
+        {
+            get
+            {
+                yield return Trace;
+                yield return Debug;
+                yield return Info;
+                yield return Warn;
+                yield return Error;
+                yield return Fatal;
+            }
+        }
 
 
         private readonly int ordinal;
