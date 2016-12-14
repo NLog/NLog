@@ -454,6 +454,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         {
             public int FlushCount;
             public int WriteCount;
+            public int PendingWriteCount;
 
             protected override void Write(LogEventInfo logEvent)
             {
@@ -463,19 +464,28 @@ namespace NLog.UnitTests.Targets.Wrappers
             protected override void Write(AsyncLogEventInfo logEvent)
             {
                 Assert.True(this.FlushCount <= this.WriteCount);
-                Interlocked.Increment(ref this.WriteCount);
+
+                Interlocked.Increment(ref this.PendingWriteCount);
                 ThreadPool.QueueUserWorkItem(
                     s =>
                         {
-                            if (this.ThrowExceptions)
+                            try
                             {
-                                logEvent.Continuation(new InvalidOperationException("Some problem!"));
-                                logEvent.Continuation(new InvalidOperationException("Some problem!"));
+                                Interlocked.Increment(ref this.WriteCount);
+                                if (this.ThrowExceptions)
+                                {
+                                    logEvent.Continuation(new InvalidOperationException("Some problem!"));
+                                    logEvent.Continuation(new InvalidOperationException("Some problem!"));
+                                }
+                                else
+                                {
+                                    logEvent.Continuation(null);
+                                    logEvent.Continuation(null);
+                                }
                             }
-                            else
+                            finally
                             {
-                                logEvent.Continuation(null);
-                                logEvent.Continuation(null);
+                                Interlocked.Decrement(ref this.PendingWriteCount);
                             }
                         });
             }
@@ -484,7 +494,12 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 Interlocked.Increment(ref this.FlushCount);
                 ThreadPool.QueueUserWorkItem(
-                    s => asyncContinuation(null));
+                    s =>
+                    {
+                        while (0 != this.PendingWriteCount)
+                            Thread.Sleep(1);
+                        asyncContinuation(null);
+                    });
             }
 
             public bool ThrowExceptions { get; set; }
