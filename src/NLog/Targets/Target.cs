@@ -367,35 +367,6 @@ namespace NLog.Targets
             }
         }
 
-        internal void WriteAsyncLogEvents(AsyncLogEventInfo[] logEventInfos, AsyncContinuation continuation)
-        {
-            if (logEventInfos.Length == 0)
-            {
-                continuation(null);
-            }
-            else
-            {
-                var wrappedLogEventInfos = new AsyncLogEventInfo[logEventInfos.Length];
-                int remaining = logEventInfos.Length;
-                for (int i = 0; i < logEventInfos.Length; ++i)
-                {
-                    AsyncContinuation originalContinuation = logEventInfos[i].Continuation;
-                    AsyncContinuation wrappedContinuation = ex =>
-                                                                {
-                                                                    originalContinuation(ex);
-                                                                    if (0 == Interlocked.Decrement(ref remaining))
-                                                                    {
-                                                                        continuation(null);
-                                                                    }
-                                                                };
-
-                    wrappedLogEventInfos[i] = logEventInfos[i].LogEvent.WithContinuation(wrappedContinuation);
-                }
-
-                this.WriteAsyncLogEvents(wrappedLogEventInfos);
-            }
-        }
-
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
