@@ -130,6 +130,8 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void ConsoleEncodingTest()
         {
+            var consoleOutputEncoding = Console.OutputEncoding;
+
             var target = new ConsoleTarget()
             {
                 Header = "-- header --",
@@ -154,10 +156,13 @@ namespace NLog.UnitTests.Targets
                 target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "Logger1", "message1").WithContinuation(exceptions.Add));
                 target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "Logger1", "message2").WithContinuation(exceptions.Add));
                 Assert.Equal(2, exceptions.Count);
+                target.Encoding = consoleOutputEncoding;
+                Assert.Equal(consoleOutputEncoding, Console.OutputEncoding);
                 target.Close();
             }
             finally
             {
+                Console.OutputEncoding = consoleOutputEncoding;
                 Console.SetOut(oldConsoleOutWriter);
             }
 

@@ -171,7 +171,7 @@ namespace NLog.Targets
             }
             set
             {
-                if (ConsoleTargetHelper.SetConsoleOutputEncoding(this.encoding, this.IsInitialized, this.pauseLogging))
+                if (ConsoleTargetHelper.SetConsoleOutputEncoding(value, this.IsInitialized, this.pauseLogging))
                     encoding = value;
             }
         }

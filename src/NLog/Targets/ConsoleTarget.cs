@@ -98,7 +98,7 @@ namespace NLog.Targets
             }
             set
             {
-                if (ConsoleTargetHelper.SetConsoleOutputEncoding(_encoding, IsInitialized, _pauseLogging))
+                if (ConsoleTargetHelper.SetConsoleOutputEncoding(value, IsInitialized, _pauseLogging))
                     _encoding = value;
             }
         }
