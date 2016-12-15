@@ -490,6 +490,8 @@ namespace NLog.Config
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         internal void FlushAllTargets(AsyncContinuation asyncContinuation)
         {
+            InternalLogger.Trace("Flushing all targets...");
+
             var uniqueTargets = new List<Target>();
             var loggingRules = this.LoggingRules.ToList();
             foreach (var rule in loggingRules)

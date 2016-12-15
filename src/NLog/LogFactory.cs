@@ -590,7 +590,6 @@ namespace NLog
                 var loggingConfiguration = this.Configuration;
                 if (loggingConfiguration != null)
                 {
-                    InternalLogger.Trace("Flushing all targets...");
                     loggingConfiguration.FlushAllTargets(AsyncHelpers.WithTimeout(asyncContinuation, timeout));
                 }
                 else
@@ -734,21 +733,22 @@ namespace NLog
             InternalLogger.Info("Reloading configuration...");
             lock (this.syncRoot)
             {
-                var currentTimer = this.reloadTimer;
-                if (currentTimer != null)
-                {
-                    this.reloadTimer = null;
-                    currentTimer.Dispose();
-                }
-
-                if (this.IsDisposing)
-                {
-                    return; //timer was disposed already. 
-                }
-
-                this.watcher.StopWatching();
                 try
                 {
+                    var currentTimer = this.reloadTimer;
+                    if (currentTimer != null)
+                    {
+                        this.reloadTimer = null;
+                        currentTimer.Dispose();
+                    }
+
+                    if (this.IsDisposing)
+                    {
+                        return; //timer was disposed already. 
+                    }
+
+                    this.watcher.StopWatching();
+
                     if (this.Configuration != configurationToReload)
                     {
                         throw new NLogConfigurationException("Config changed in between. Not reloading.");
@@ -785,14 +785,11 @@ namespace NLog
                 }
                 catch (Exception exception)
                 {
-                    //special case, don't rethrow NLogConfigurationException
-                    if (exception is NLogConfigurationException)
+                    InternalLogger.Warn(exception, "NLog configuration while reloading");
+
+                    if (exception.MustBeRethrownImmediately())
                     {
-                        InternalLogger.Warn(exception, "NLog configuration while reloading");
-                    }
-                    else if (exception.MustBeRethrown())
-                    {
-                        throw;
+                        throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                     }
 
                     this.watcher.Watch(configurationToReload.FileNamesToWatch);
@@ -887,9 +884,90 @@ namespace NLog
         }
 
         /// <summary>
-        /// Currenty this logfactory is disposing?
+        /// Currently this logfactory is disposing?
         /// </summary>
         private bool IsDisposing;
+
+        internal void Close(TimeSpan flushTimeout)
+        {
+            if (this.IsDisposing)
+            {
+                return;
+            }
+
+            this.IsDisposing = true;
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+            this.ConfigurationReloaded = null;   // Release event listeners
+
+            if (this.watcher != null)
+            {
+                // Disable startup of new reload-timers
+                this.watcher.FileChanged -= this.ConfigFileChanged;
+            }
+#endif
+
+            if (Monitor.TryEnter(this.syncRoot, 500))
+            {
+                try
+                {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                    var currentTimer = this.reloadTimer;
+                    if (currentTimer != null)
+                    {
+                        this.reloadTimer = null;
+                        currentTimer.Dispose();
+                    }
+
+                    if (this.watcher != null)
+                    {
+                        // Dispose file-watcher after having dispose timer to avoid race
+                        this.watcher.Dispose();
+                    }
+#endif
+
+                    if (flushTimeout != TimeSpan.Zero)
+                    {
+                        var oldConfig = this.config;
+                        if (this.configLoaded && oldConfig != null)
+                        {
+                            try
+                            {
+                                ManualResetEvent flushCompleted = new ManualResetEvent(false);
+                                oldConfig.FlushAllTargets((ex) => flushCompleted.Set());
+                                if (flushCompleted.WaitOne(flushTimeout))
+                                {
+                                    // Flush completed within timeout, lets try and close down
+                                    oldConfig.Close();
+                                    this.config = null;
+                                    this.OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(null, oldConfig));
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                InternalLogger.Error(ex, "Error with close.");
+                            }
+                        }
+                    }
+                }
+                finally
+                {
+                    Monitor.Exit(this.syncRoot);
+                }
+            }
+
+            this.ConfigurationChanged = null;    // Release event listeners
+
+            var activeAppDomain = currentAppDomain;
+            if (activeAppDomain != null)
+            {
+                // No longer belongs to the AppDomain
+                CurrentAppDomain = null;
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                activeAppDomain.DomainUnload -= this.DomainUnload;
+#endif
+            }          
+        }
 
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources.
@@ -898,61 +976,9 @@ namespace NLog
         /// <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (this.IsDisposing)
-            {
-                return;
-            }
-
             if (disposing)
             {
-                this.IsDisposing = true;
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-                if (this.watcher != null)
-                {
-                    // Disable startup of new reload-timers
-                    this.watcher.FileChanged -= this.ConfigFileChanged;
-                }
-
-                if (Monitor.TryEnter(this.syncRoot, 500))
-                {
-                    try
-                    {
-                        var currentTimer = this.reloadTimer;
-                        if (currentTimer != null)
-                        {
-                            this.reloadTimer = null;
-                            currentTimer.Dispose();
-                        }
-
-                        if (this.watcher != null)
-                        {
-                            // Dispose file-watcher after having dispose timer to avoid race
-                            this.watcher.Dispose();
-                        }
-                    }
-                    finally
-                    {
-                        Monitor.Exit(this.syncRoot);
-                    }
-                }
-
-                var activeAppDomain = currentAppDomain;
-                if (activeAppDomain != null)
-                {
-                    // No longer belongs to the AppDomain
-                    CurrentAppDomain = null;
-                    activeAppDomain.DomainUnload -= this.DomainUnload;
-                }
-
-                this.ConfigurationReloaded = null;   // Release event listeners
-#endif
-                if (currentAppDomain != null)
-                {
-                    CurrentAppDomain = null;    // No longer belongs to the AppDomain
-                }
-
-                this.ConfigurationChanged = null;    // Release event listeners
+                Close(TimeSpan.Zero);
             }
         }
 
@@ -1184,7 +1210,16 @@ namespace NLog
             //stop timer on domain unload, otherwise: 
             //Exception: System.AppDomainUnloadedException
             //Message: Attempted to access an unloaded AppDomain.
-            Dispose();
+            try
+            {
+                Dispose();
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+                InternalLogger.Error(ex, "LogFactory failed to shut down properly.");
+            }
         }
 #endif
         /// <summary>
