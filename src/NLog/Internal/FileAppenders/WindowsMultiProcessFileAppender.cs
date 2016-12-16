@@ -158,7 +158,14 @@ namespace NLog.Internal.FileAppenders
         {
             if (fileStream != null)
             {
-                fileStream.Write(bytes, 0, bytes.Length);
+                try
+                {
+                    fileStream.Write(bytes, 0, bytes.Length);
+                }
+                catch (Exception ex)
+                {
+                    throw new System.IO.IOException("FileStream Write Failed: " + FileName, ex);
+                }
 
                 if (CaptureLastWriteTime)
                 {
@@ -173,9 +180,19 @@ namespace NLog.Internal.FileAppenders
         public override void Close()
         {
             InternalLogger.Trace("Closing '{0}'", FileName);
-            if (fileStream != null)
-                fileStream.Dispose();
-            fileStream = null;
+            try
+            {
+                if (fileStream != null)
+                    fileStream.Dispose();
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "Failed to close file '{0}'", FileName);
+            }
+            finally
+            {
+                fileStream = null;
+            }
             FileTouched();
         }
 

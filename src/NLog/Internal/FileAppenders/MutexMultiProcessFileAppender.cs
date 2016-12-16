@@ -129,6 +129,10 @@ namespace NLog.Internal.FileAppenders
                     FileTouched();
                 }
             }
+            catch (Exception ex)
+            {
+                throw new System.IO.IOException("FileStream Write Failed: " + FileName, ex);
+            }
             finally
             {
                 this.mutex.ReleaseMutex();
@@ -143,16 +147,36 @@ namespace NLog.Internal.FileAppenders
             InternalLogger.Trace("Closing '{0}'", FileName);
             if (this.mutex != null)
             {
-                this.mutex.Close();
+                try
+                {
+                    this.mutex.Close();
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Warn(ex, "Failed to close mutex: '{0}'", FileName);
+                }
+                finally
+                {
+                    this.mutex = null;
+                }
             }
 
             if (this.fileStream != null)
             {
-                this.fileStream.Close();
+                try
+                {
+                    this.fileStream.Close();
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Warn(ex, "Failed to close file: '{0}'", FileName);
+                }
+                finally
+                {
+                    this.fileStream = null;
+                }
             }
 
-            this.mutex = null;
-            this.fileStream = null;
             FileTouched();
         }
 

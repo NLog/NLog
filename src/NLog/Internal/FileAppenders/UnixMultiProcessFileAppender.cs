@@ -106,7 +106,15 @@ namespace NLog.Internal.FileAppenders
         {
             if (this.file == null)
                 return;
-            this.file.Write(bytes, 0, bytes.Length);
+
+            try
+            {
+                this.file.Write(bytes, 0, bytes.Length);
+            }
+            catch (Exception ex)
+            {
+                throw new System.IO.IOException("FileStream Write Failed: " + FileName, ex);
+            }
         }
 
         /// <summary>
@@ -117,8 +125,18 @@ namespace NLog.Internal.FileAppenders
             if (this.file == null)
                 return;
             InternalLogger.Trace("Closing '{0}'", FileName);
-            this.file.Close();
-            this.file = null;
+            try
+            {
+                this.file.Close();
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "Failed to close file '{0}'", FileName);
+            }
+            finally
+            {
+                this.file = null;
+            }
         }
         
         /// <summary>
