@@ -200,8 +200,8 @@ namespace NLog
         /// <returns>The value of <c>level1.Ordinal &gt; level2.Ordinal</c>.</returns>
         public static bool operator >(LogLevel level1, LogLevel level2)
         {
-            ParameterUtils.AssertNotNull(level1, "level1");
-            ParameterUtils.AssertNotNull(level2, "level2");
+            if (level1 == null) { throw new ArgumentNullException("level1"); }
+            if (level2 == null) { throw new ArgumentNullException("level2"); }
 
             return level1.Ordinal > level2.Ordinal;
         }
@@ -216,8 +216,8 @@ namespace NLog
         /// <returns>The value of <c>level1.Ordinal &gt;= level2.Ordinal</c>.</returns>
         public static bool operator >=(LogLevel level1, LogLevel level2)
         {
-            ParameterUtils.AssertNotNull(level1, "level1");
-            ParameterUtils.AssertNotNull(level2, "level2");
+            if (level1 == null) { throw new ArgumentNullException("level1"); }
+            if (level2 == null) { throw new ArgumentNullException("level2"); }
 
             return level1.Ordinal >= level2.Ordinal;
         }
@@ -232,8 +232,8 @@ namespace NLog
         /// <returns>The value of <c>level1.Ordinal &lt; level2.Ordinal</c>.</returns>
         public static bool operator <(LogLevel level1, LogLevel level2)
         {
-            ParameterUtils.AssertNotNull(level1, "level1");
-            ParameterUtils.AssertNotNull(level2, "level2");
+            if (level1 == null) { throw new ArgumentNullException("level1"); }
+            if (level2 == null) { throw new ArgumentNullException("level2"); }
 
             return level1.Ordinal < level2.Ordinal;
         }
@@ -248,8 +248,8 @@ namespace NLog
         /// <returns>The value of <c>level1.Ordinal &lt;= level2.Ordinal</c>.</returns>
         public static bool operator <=(LogLevel level1, LogLevel level2)
         {
-            ParameterUtils.AssertNotNull(level1, "level1");
-            ParameterUtils.AssertNotNull(level2, "level2");
+            if (level1 == null) { throw new ArgumentNullException("level1"); }
+            if (level2 == null) { throw new ArgumentNullException("level2"); }
 
             return level1.Ordinal <= level2.Ordinal;
         }

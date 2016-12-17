@@ -174,7 +174,6 @@
     <Compile Include="Internal\NetworkSenders\TcpNetworkSender.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSender.cs" />
     <Compile Include="Internal\ObjectGraphScanner.cs" />
-    <Compile Include="Internal\ParameterUtils.cs" />
     <Compile Include="Internal\PathHelpers.cs" />
     <Compile Include="Internal\PlatformDetector.cs" />
     <Compile Include="Internal\PortableFileCharacteristicsHelper.cs" />
