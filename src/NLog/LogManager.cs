@@ -447,16 +447,19 @@ namespace NLog
 
         private static void LogManager_OnStopLogging(object sender, EventArgs args)
         {
-            // Reset logging configuration to null; this causes old configuration (if any) to be 
-            // closed.
-            InternalLogger.Info("Shutting down logging...");
-            if (Configuration != null)
+            try
             {
-                Configuration = null;
-                factory.Dispose();      // Release event listeners
+                InternalLogger.Info("Shutting down logging...");
+                factory.Close(TimeSpan.FromMilliseconds(1500)); // Finalizer thread has about 2 secs, before being terminated
+                CurrentAppDomain = null;    // No longer part of AppDomains
+                InternalLogger.Info("Logger has been shut down.");
             }
-            CurrentAppDomain = null;    // No longer part of AppDomains
-            InternalLogger.Info("Logger has been shut down.");
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+                InternalLogger.Error(ex, "Logger failed to shut down properly.");
+            }
         }
     }
 }
