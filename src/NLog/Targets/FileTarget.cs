@@ -133,7 +133,7 @@ namespace NLog.Targets
         /// <summary>
         /// The archive file name as target
         /// </summary>
-        private FilePathLayout fullarchiveFileName;
+        private FilePathLayout fullArchiveFileName;
 
         private FileArchivePeriod archiveEvery;
         private long archiveAboveSize;
@@ -276,7 +276,7 @@ namespace NLog.Targets
             {
                 cleanupFileName = value;
                 fullFileName = CreateFileNameLayout(FileName);
-                fullarchiveFileName = CreateFileNameLayout(ArchiveFileName);
+                fullArchiveFileName = CreateFileNameLayout(ArchiveFileName);
             }
         }
 
@@ -352,9 +352,11 @@ namespace NLog.Targets
         /// <remarks>
         /// The bigger this number is the longer it will take to write each log record. The smaller the number is
         /// the higher the chance that the clean function will be run when no new files have been opened.
+        /// 
+        /// [Warning] This method will be renamed to correct text casing i.e. MaxLogFilenames in NLog 5.
         /// </remarks>
         /// <docgen category='Performance Tuning Options' order='10' />
-        [DefaultValue(20)] //NLog5: todo rename correct for text case
+        [DefaultValue(20)] // TODO NLog 5: Rename the property to correct for text case i.e. MaxLogFilenames
         public int maxLogFilenames { get; set; }
 
         /// <summary>
@@ -371,8 +373,6 @@ namespace NLog.Targets
         /// <docgen category='Output Options' order='10' />
         [Advanced]
         public Win32FileAttributes FileAttributes { get; set; }
-
-
 #endif
 
         /// <summary>
@@ -592,7 +592,7 @@ namespace NLog.Targets
             set
             {
                 archiveFileKind = value;
-                fullarchiveFileName = CreateFileNameLayout(ArchiveFileName);
+                fullArchiveFileName = CreateFileNameLayout(ArchiveFileName);
             }
         }
 
@@ -610,13 +610,13 @@ namespace NLog.Targets
         {
             get
             {
-                if (fullarchiveFileName == null) return null;
+                if (fullArchiveFileName == null) return null;
 
-                return fullarchiveFileName.GetLayout();
+                return fullArchiveFileName.GetLayout();
             }
             set
             {
-                fullarchiveFileName = CreateFileNameLayout(value);
+                fullArchiveFileName = CreateFileNameLayout(value);
                 if (IsInitialized)
                 {
                     //don't call before initialized because this could lead to stackoverflows.
@@ -951,8 +951,6 @@ namespace NLog.Targets
             }
         }
 
-
-
         /// <summary>
         /// Closes the file(s) opened for writing.
         /// </summary>
@@ -1046,8 +1044,6 @@ namespace NLog.Targets
                 }
             }
         }
-
-
 
         private void ProcessLogEvent(LogEventInfo logEvent, string fileName, byte[] bytesToWrite)
         {
@@ -1796,7 +1792,7 @@ namespace NLog.Targets
         /// <returns>A string with a pattern that will match the archive filenames</returns>
         private string GetArchiveFileNamePattern(string fileName, LogEventInfo eventInfo)
         {
-            if (this.fullarchiveFileName == null)
+            if (this.fullArchiveFileName == null)
             {
                 string ext = EnableArchiveFileCompression ? ".zip" : Path.GetExtension(fileName);
                 return Path.ChangeExtension(fileName, ".{#}" + ext);
@@ -1806,7 +1802,7 @@ namespace NLog.Targets
                 //The archive file name is given. There are two possibilities
                 //(1) User supplied the Filename with pattern
                 //(2) User supplied the normal filename
-                string archiveFileName = this.fullarchiveFileName.Render(eventInfo);
+                string archiveFileName = this.fullArchiveFileName.Render(eventInfo);
                 return archiveFileName;
             }
         }
