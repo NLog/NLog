@@ -902,9 +902,13 @@ namespace NLog.Targets
                 {
                     return UnixMultiProcessFileAppender.TheFactory;
                 }
-                else
+                else if (PlatformDetector.SupportsSharableMutex)
                 {
                     return MutexMultiProcessFileAppender.TheFactory;
+                }
+                else
+                {
+                    return RetryingMultiProcessFileAppender.TheFactory;
                 }
 #else
                 if (!PlatformDetector.SupportsSharableMutex)
