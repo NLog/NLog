@@ -87,18 +87,19 @@ namespace NLog
 
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
-        private static readonly IList<LogLevel> allLevels = new List<LogLevel> { Trace, Debug, Info, Warn, Error, Fatal, Off };
+        private static readonly IList<LogLevel> allLevels = new List<LogLevel> { Trace, Debug, Info, Warn, Error, Fatal, Off }.AsReadOnly();
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
-        private static readonly IList<LogLevel> allLoggingLevels = new List<LogLevel> {Trace, Debug, Info, Warn, Error, Fatal};
+        private static readonly IList<LogLevel> allLoggingLevels = new List<LogLevel> {Trace, Debug, Info, Warn, Error, Fatal}.AsReadOnly();
 
         /// <summary>
-        /// All log levels. (Trace, Debug, Info, Warn, Error, Fatal, Off)
+        /// Gets all the availiable log levels (Trace, Debug, Info, Warn, Error, Fatal, Off).
         /// </summary>
         public static IEnumerable<LogLevel> AllLevels { get { return allLevels; } }
 
         /// <summary>
-        /// All log levels that can be used to log events (excludes Off). (Trace, Debug, Info, Warn, Error, Fatal)
+        ///  Gets all the log levels that can be used to log events (Trace, Debug, Info, Warn, Error, Fatal) 
+        ///  i.e <c>LogLevel.Off</c> is excluded.
         /// </summary>
         public static IEnumerable<LogLevel> AllLoggingLevels { get { return allLoggingLevels; } }
 
