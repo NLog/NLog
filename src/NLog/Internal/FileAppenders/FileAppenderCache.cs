@@ -45,7 +45,7 @@ namespace NLog.Internal.FileAppenders
     /// <summary>
     /// Maintains a collection of file appenders usually associated with file targets.
     /// </summary>
-    internal sealed class FileAppenderCache
+    internal sealed class FileAppenderCache : IDisposable
     {
         private BaseFileAppender[] appenders;
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
@@ -401,6 +401,13 @@ namespace NLog.Internal.FileAppenders
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             externalFileArchivingWatcher.StopWatching();
+#endif
+        }
+
+        public void Dispose()
+        {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+            externalFileArchivingWatcher.Dispose();
 #endif
         }
     }
