@@ -162,7 +162,7 @@ namespace NLog.Internal
 
             // non-instance for static method, or ((TInstance)instance)
             var instanceCast = methodInfo.IsStatic ? null :
-                Expression.Convert(instanceParameter, methodInfo.GetReflectedType());
+                Expression.Convert(instanceParameter, methodInfo.DeclaringType);
 
             // static invoke or ((TInstance)instance).Method
             var methodCall = Expression.Call(instanceCast, methodInfo, parameterExpressions);
@@ -343,19 +343,6 @@ namespace NLog.Internal
 #endif
         }
 
-        public static Type GetReflectedType(this MethodInfo methodInfo)
-        {
-#if !NETSTANDARD
-            return methodInfo.ReflectedType;
-#else
-#if RELEASE
-
-#error TODO methodInfo.ReflectedType?
-#endif
-            return methodInfo.ReturnType;
-
-#endif
-        }
 
 
         public static object InvokeMethod(this MethodInfo methodInfo, string methodName, object[] callParameters)

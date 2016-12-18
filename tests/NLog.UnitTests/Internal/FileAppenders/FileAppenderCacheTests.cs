@@ -185,7 +185,7 @@ namespace NLog.UnitTests.Internal.FileAppenders
         }
 #endif
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO && !NETSTANDARD
         [Fact]
         public void FileAppenderCache_GetFileCharacteristics_Windows()
         {

@@ -159,6 +159,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+#if !NETSTANDARD && !MONO
 
         /// <summary>
         /// If a drive doesn't existing, before repeatatly creating a dir was tried. This test was taking +60 seconds 
@@ -3365,3 +3366,4 @@ namespace NLog.UnitTests.Targets
         }
     }
 }
+#endif
