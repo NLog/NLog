@@ -92,6 +92,7 @@ namespace NLog.Internal.FileAppenders
                 }
                 catch (Exception ex)
                 {
+                    // Swallow exception as the file-stream now is in final state (broken instead of closed)
                     InternalLogger.Warn(ex, "Failed to close file: '{0}'", FileName);
                 }
                 finally
@@ -111,14 +112,7 @@ namespace NLog.Internal.FileAppenders
                 return;
             }
 
-            try
-            {
-                this.file.Flush();
-            }
-            catch (Exception ex)
-            {
-                throw new System.IO.IOException("FileStream Flush Failed: " + FileName, ex);
-            }
+            this.file.Flush();
             FileTouched();
         }
 
@@ -162,15 +156,8 @@ namespace NLog.Internal.FileAppenders
                 return;
             }
 
-            try
-            {
-                this.currentFileLength += bytes.Length;
-                this.file.Write(bytes, 0, bytes.Length);
-            }
-            catch (Exception ex)
-            {
-                throw new System.IO.IOException("FileStream Write Failed: " + FileName, ex);
-            }
+            this.currentFileLength += bytes.Length;
+            this.file.Write(bytes, 0, bytes.Length);
 
             if (CaptureLastWriteTime)
             {

@@ -103,7 +103,7 @@ namespace NLog.Internal.FileAppenders
         /// <param name="bytes">The bytes to be written.</param>
         public override void Write(byte[] bytes)
         {
-            if (this.mutex == null)
+            if (this.mutex == null || this.fileStream == null)
             {
                 return;
             }
@@ -129,10 +129,6 @@ namespace NLog.Internal.FileAppenders
                     FileTouched();
                 }
             }
-            catch (Exception ex)
-            {
-                throw new System.IO.IOException("FileStream Write Failed: " + FileName, ex);
-            }
             finally
             {
                 this.mutex.ReleaseMutex();
@@ -153,6 +149,7 @@ namespace NLog.Internal.FileAppenders
                 }
                 catch (Exception ex)
                 {
+                    // Swallow exception as the mutex now is in final state (abandoned instead of closed)
                     InternalLogger.Warn(ex, "Failed to close mutex: '{0}'", FileName);
                 }
                 finally
@@ -169,6 +166,7 @@ namespace NLog.Internal.FileAppenders
                 }
                 catch (Exception ex)
                 {
+                    // Swallow exception as the file-stream now is in final state (broken instead of closed)
                     InternalLogger.Warn(ex, "Failed to close file: '{0}'", FileName);
                 }
                 finally

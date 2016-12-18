@@ -107,14 +107,7 @@ namespace NLog.Internal.FileAppenders
             if (this.file == null)
                 return;
 
-            try
-            {
-                this.file.Write(bytes, 0, bytes.Length);
-            }
-            catch (Exception ex)
-            {
-                throw new System.IO.IOException("FileStream Write Failed: " + FileName, ex);
-            }
+            this.file.Write(bytes, 0, bytes.Length);
         }
 
         /// <summary>

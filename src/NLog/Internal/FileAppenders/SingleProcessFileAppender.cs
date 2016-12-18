@@ -83,14 +83,7 @@ namespace NLog.Internal.FileAppenders
                 return;
             }
 
-            try
-            {
-                this.file.Write(bytes, 0, bytes.Length);
-            }
-            catch (Exception ex)
-            {
-                throw new System.IO.IOException("FileStream Write Failed: " + FileName, ex);
-            }
+            this.file.Write(bytes, 0, bytes.Length);
             
             if (CaptureLastWriteTime)
             {
@@ -108,14 +101,7 @@ namespace NLog.Internal.FileAppenders
                 return;
             }
 
-            try
-            {
-                this.file.Flush();
-            }
-            catch (Exception ex)
-            {
-                throw new System.IO.IOException("FileStream Flush Failed: " + FileName, ex);
-            }
+            this.file.Flush();
             FileTouched();
         }
 
