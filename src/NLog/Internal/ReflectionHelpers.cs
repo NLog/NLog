@@ -131,7 +131,7 @@ namespace NLog.Internal
 
             // non-instance for static method, or ((TInstance)instance)
             var instanceCast = methodInfo.IsStatic ? null :
-                Expression.Convert(instanceParameter, methodInfo.ReflectedType);
+                Expression.Convert(instanceParameter, methodInfo.DeclaringType);
 
             // static invoke or ((TInstance)instance).Method
             var methodCall = Expression.Call(instanceCast, methodInfo, parameterExpressions);
