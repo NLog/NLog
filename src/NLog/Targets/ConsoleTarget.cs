@@ -86,6 +86,7 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool Error { get; set; }
 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// The encoding for writing messages to the <see cref="Console"/>.
         ///  </summary>
@@ -103,6 +104,7 @@ namespace NLog.Targets
             }
         }
         private Encoding _encoding;
+#endif
 
         /// <summary>
         /// Gets or sets a value indicating whether to auto-check if the console is available
