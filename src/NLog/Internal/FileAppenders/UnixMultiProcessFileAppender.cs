@@ -124,6 +124,7 @@ namespace NLog.Internal.FileAppenders
             }
             catch (Exception ex)
             {
+                // Swallow exception as the file-stream now is in final state (broken instead of closed)
                 InternalLogger.Warn(ex, "Failed to close file '{0}'", FileName);
             }
             finally

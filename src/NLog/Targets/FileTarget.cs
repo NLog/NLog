@@ -2071,13 +2071,13 @@ namespace NLog.Targets
             bool writeHeader = InitializeFile(fileName, logEvent, justData);
             BaseFileAppender appender = this.fileAppenderCache.AllocateAppender(fileName);
 
-            if (writeHeader)
-            {
-                this.WriteHeader(appender);
-            }
-
             try
             {
+                if (writeHeader)
+                {
+                    this.WriteHeader(appender);
+                }
+
                 appender.Write(bytes);
 
                 if (this.AutoFlush)

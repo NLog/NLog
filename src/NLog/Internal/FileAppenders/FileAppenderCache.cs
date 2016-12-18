@@ -41,6 +41,7 @@ namespace NLog.Internal.FileAppenders
     using System;
     using System.IO;
     using System.Threading;
+    using NLog.Common;
 
     /// <summary>
     /// Maintains a collection of file appenders usually associated with file targets.
@@ -319,7 +320,18 @@ namespace NLog.Internal.FileAppenders
             var appender = GetAppender(filePath);
             DateTime? result = null;
             if (appender != null)
-                result = appender.GetFileCreationTimeUtc();
+            {
+                try
+                {
+                    result = appender.GetFileCreationTimeUtc();
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "Failed to get file creation time for file '{0}'.", appender.FileName);
+                    InvalidateAppender(appender.FileName);
+                    throw;
+                }
+            }                
             if (result == null && fallback)
             {
                 var fileInfo = new FileInfo(filePath);
@@ -337,7 +349,18 @@ namespace NLog.Internal.FileAppenders
             var appender = GetAppender(filePath);
             DateTime? result = null;
             if (appender != null)
-                result = appender.GetFileLastWriteTimeUtc();
+            {
+                try
+                {
+                    result = appender.GetFileLastWriteTimeUtc();
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "Failed to get last write time for file '{0}'.", appender.FileName);
+                    InvalidateAppender(appender.FileName);
+                    throw;
+                }
+            }
             if (result == null && fallback)
             {
                 var fileInfo = new FileInfo(filePath);
@@ -355,7 +378,18 @@ namespace NLog.Internal.FileAppenders
             var appender = GetAppender(filePath);
             long? result = null;
             if (appender != null)
-                result = appender.GetFileLength();
+            {
+                try
+                {
+                    result = appender.GetFileLength();
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "Failed to get length for file '{0}'.", appender.FileName);
+                    InvalidateAppender(appender.FileName);
+                    throw;
+                }
+            }
             if (result == null && fallback)
             {
                 var fileInfo = new FileInfo(filePath);
