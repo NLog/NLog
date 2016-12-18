@@ -679,7 +679,7 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool ForceManaged { get; set; }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if SupportsMutex
         /// <summary>
         /// Gets or sets a value indicationg whether file creation calls should be synchronized by a system global mutex.
         /// </summary>

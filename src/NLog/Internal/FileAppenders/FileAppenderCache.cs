@@ -367,7 +367,7 @@ namespace NLog.Internal.FileAppenders
 
             return result;
         }
-        
+
         /// <summary>
         /// Closes the specified appender and removes it from the list. 
         /// </summary>
