@@ -540,7 +540,7 @@ namespace NLog.UnitTests.Targets
 
             private int InBlockingOperation
             {
-                get { return InBlockingOperation; }
+                get { return inBlockingOperation; }
             }
 #else
             //avoid warning
