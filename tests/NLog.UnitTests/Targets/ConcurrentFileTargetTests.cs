@@ -46,7 +46,7 @@ namespace NLog.UnitTests.Targets
     using Xunit.Extensions;
 
     public class ConcurrentFileTargetTests : NLogTestBase
-	{
+    {
         private ILogger logger = LogManager.GetLogger("NLog.UnitTests.Targets.ConcurrentFileTargetTests");
 
         private void ConfigureSharedFile(string mode, string fileName)
@@ -105,7 +105,7 @@ namespace NLog.UnitTests.Targets
             {
                 logger.Debug(format, i);
             }
-            
+
             LogManager.Configuration = null;
         }
 
@@ -134,7 +134,7 @@ namespace NLog.UnitTests.Targets
                     numLogs.ToString(),
                     mode);
             }
-            
+
             // In case we'd like to capture stdout, we would need to drain it continuously.
             // StandardOutput.ReadToEnd() wont work, since the other processes console only has limited buffer.
             for (int i = 0; i < numProcesses; ++i)
@@ -146,7 +146,7 @@ namespace NLog.UnitTests.Targets
             }
 
             int[] maxNumber = new int[numProcesses];
-   
+
             //Console.WriteLine("Verifying output file {0}", logFile);
             using (StreamReader sr = File.OpenText(logFile))
             {
@@ -214,7 +214,7 @@ namespace NLog.UnitTests.Targets
         {
             DoConcurrentTest(5, 50000, mode);
         }
-        }
+
     }
 }
 

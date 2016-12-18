@@ -37,7 +37,6 @@ namespace NLog.Internal.FileAppenders
     using System.IO;
     using System.Security;
     using System.Runtime.InteropServices;
-    using System.Security;
 
     using NLog.Common;
     using NLog.Internal;

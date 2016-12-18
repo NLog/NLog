@@ -324,7 +324,7 @@ namespace NLog.Internal
         /// <returns></returns>
         private static bool TryFlatListConversion(Type type, string valueRaw, out object newValue)
         {
-            if (type.IsGenericType)
+            if (type.IsGenericType())
             {
                 var typeDefinition = type.GetGenericTypeDefinition();
 #if NET3_5

@@ -88,12 +88,14 @@
         "System.Diagnostics.StackTrace": "4.0.1",
         "System.Diagnostics.TraceSource": "4.0.0",
         "System.IO.FileSystem.Watcher": "4.0.0",
+        "System.IO.FileSystem.AccessControl": "4.0.0",
         "System.Net.Requests": "4.0.11",
         "System.Reflection.TypeExtensions": "4.1.0",
         "System.Runtime.Serialization.Primitives": "4.1.1",
         "System.Threading": "4.0.11",
         "System.Threading.Thread": "4.0.0",
         "System.Threading.ThreadPool": "4.0.10",
+        "System.Xml.ReaderWriter": "4.3.0",
         "System.Xml.XmlDocument": "4.0.1",
         "System.Net.NameResolution": "4.0.0",
         "System.Security.AccessControl": "4.0.0",
@@ -116,12 +118,14 @@
         "System.Diagnostics.StackTrace": "4.0.1",
         "System.Diagnostics.TraceSource": "4.0.0",
         "System.IO.FileSystem.Watcher": "4.0.0",
+        "System.IO.FileSystem.AccessControl": "4.0.0",
         "System.Net.Requests": "4.0.11",
         "System.Reflection.TypeExtensions": "4.1.0",
         "System.Runtime.Serialization.Primitives": "4.1.1",
         "System.Threading": "4.0.11",
         "System.Threading.Thread": "4.0.0",
         "System.Threading.ThreadPool": "4.0.10",
+        "System.Xml.ReaderWriter": "4.3.0",
         "System.Xml.XmlDocument": "4.0.1",
         "System.Net.NameResolution": "4.0.0",
         "System.Security.AccessControl": "4.0.0",
@@ -149,7 +153,7 @@
       },
       "buildOptions": {
         "define": [ "SILVERLIGHT", "SILVERLIGHT4", "WCF_SUPPORTED" ]
-      
+
       }
     },
     "Silverlight,Version=v5.0": {
@@ -168,7 +172,7 @@
       },
       "buildOptions": {
         "define": [ "SILVERLIGHT", "SILVERLIGHT5", "WCF_SUPPORTED" ]
-     
+
       }
     },
 

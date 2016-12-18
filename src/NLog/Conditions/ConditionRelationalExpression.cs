@@ -30,7 +30,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
-
+    
 using System.Collections;
 
 namespace NLog.Conditions
@@ -38,7 +38,6 @@ namespace NLog.Conditions
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using System.Collections.Generic;
     using Common;
 
     /// <summary>

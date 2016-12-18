@@ -32,6 +32,8 @@
 // 
 
 
+using NLog.Internal;
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System.Threading;
@@ -114,8 +116,9 @@ namespace NLog.UnitTests.LayoutRenderers
 
                             case "locationInfo":
 #if !NETSTANDARD
-                                Assert.Equal(MethodBase.GetCurrentMethod().DeclaringType.FullName, reader.GetAttribute("class"));
-                                Assert.Equal(MethodBase.GetCurrentMethod().ToString(), reader.GetAttribute("method"));
+                                var currentMethod = MethodBase.GetCurrentMethod();
+                                Assert.Equal(currentMethod.DeclaringType.FullName, reader.GetAttribute("class"));
+                                Assert.Equal(currentMethod.ToString(), reader.GetAttribute("method"));
 #endif
                                 break;
 
@@ -140,6 +143,7 @@ namespace NLog.UnitTests.LayoutRenderers
                                         Assert.Equal(".NET Standard Application", value);
 #else
                                         Assert.Equal(AppDomain.CurrentDomain.FriendlyName + "(" + Process.GetCurrentProcess().Id + ")", value);
+#endif
                                         break;
 
                                     case "log4jmachinename":
@@ -174,7 +178,7 @@ namespace NLog.UnitTests.LayoutRenderers
                                 break;
 
                             case "locationInfo":
-                                Assert.Equal(GetAssembly(this.GetType()).FullName, reader.GetAttribute("assembly"));
+                                Assert.Equal(this.GetType().GetAssembly().FullName, reader.GetAttribute("assembly"));
                                 break;
 
                             case "properties":
@@ -194,18 +198,6 @@ namespace NLog.UnitTests.LayoutRenderers
                 }
             }
         }
-
-        private static Assembly GetAssembly(Type type)
-        {
-#if !NETSTANDARD
-            return type.Assembly;
-#else
-            var typeInfo = type.GetTypeInfo();
-            return typeInfo.Assembly;
-#endif
-        }
-    }
-}
 
         [Fact]
         void BadXmlValueTest()

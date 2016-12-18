@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !NETSTANDARD
-
 namespace NLog
 {
     using NLog.Internal;
@@ -58,10 +56,10 @@ namespace NLog
             if (factory == null)
             {
                 throw new ArgumentNullException("factory");
-                }
+            }
 
             TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
             Initialize(string.Empty, new LoggerConfiguration(targetsByLevel, false), factory);
-            }
         }
     }
+}

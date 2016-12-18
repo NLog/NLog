@@ -88,6 +88,7 @@ namespace NLog.UnitTests.Targets
         [MemberData("SimpleFileTest_TestParameters")]
 #else
         [PropertyData("SimpleFileTest_TestParameters")]
+#endif
         public void SimpleFileTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites)
         {
             var logFile = Path.GetTempFileName();
@@ -158,8 +159,6 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-#if !SILVERLIGHT && !MONO && !NETSTANDARD
-        const int FIVE_SECONDS = 5000;
 
         /// <summary>
         /// If a drive doesn't existing, before repeatatly creating a dir was tried. This test was taking +60 seconds 
@@ -964,6 +963,7 @@ namespace NLog.UnitTests.Targets
         [MemberData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
 #else
         [PropertyData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
+#endif
         public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool includeDateInLogFilePath, bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive, bool forceManaged, bool forceMutexConcurrentWrites)
         {
             const string archiveDateFormat = "yyyyMMdd";
@@ -1101,6 +1101,7 @@ namespace NLog.UnitTests.Targets
         [MemberData("DateArchive_ArchiveOnceOnly_TestParameters")]
 #else
         [PropertyData("DateArchive_ArchiveOnceOnly_TestParameters")]
+#endif
         public void DateArchive_ArchiveOnceOnly(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool dateInLogFilePath, bool includeSequenceInArchive, bool forceManaged, bool forceMutexConcurrentWrites)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -1252,6 +1253,7 @@ namespace NLog.UnitTests.Targets
         [MemberData("DateArchive_AllLoggersTransferToCurrentLogFile_TestParameters")]
 #else
         [PropertyData("DateArchive_AllLoggersTransferToCurrentLogFile_TestParameters")]
+#endif
         public void DateArchive_AllLoggersTransferToCurrentLogFile(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeDateInLogFilePath, bool includeSequenceInArchive, bool enableArchiveCompression, bool forceManaged, bool forceMutexConcurrentWrites)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -2759,7 +2761,7 @@ namespace NLog.UnitTests.Targets
                 var app1DebugNm = "App1_Debug";
                 var app2Nm = "App2";
 
-                #region Create Mock Archive Files
+#region Create Mock Archive Files
                 var now = DateTime.Now;
                 var i = 0;
                 // create mock app1_trace archives (matches app1 config for trace target)
@@ -2800,7 +2802,7 @@ namespace NLog.UnitTests.Targets
                     }
                     i--;
                 }
-                #endregion
+#endregion
 
                 // Create same app1 Debug file as config defines. Will force archiving to happen on startup
                 File.WriteAllLines(logdir + "\\" + app1DebugNm + fileExt, new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
@@ -2898,7 +2900,7 @@ namespace NLog.UnitTests.Targets
                 var app1Nm = "App1";
                 var app2Nm = "App2";
 
-                #region Create Mock Archive Files
+#region Create Mock Archive Files
                 var now = DateTime.Now;
                 var i = 0;
                 // create mock app1 archives (matches app1 config for target)
@@ -2926,7 +2928,7 @@ namespace NLog.UnitTests.Targets
                     }
                     i--;
                 }
-                #endregion
+#endregion
 
                 // Create same app1 file as config defines. Will force archiving to happen on startup
                 File.WriteAllLines(logdir + "\\" + app1Nm + fileExt, new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);

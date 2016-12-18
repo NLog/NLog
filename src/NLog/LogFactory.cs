@@ -441,6 +441,7 @@ namespace NLog
 
         }
 
+
 #if !NETSTANDARD
         /// <summary>
         /// Gets a custom logger with the name of the current class. Use <typeparamref name="T"/> to pass the type of the needed Logger.
@@ -585,7 +586,7 @@ namespace NLog
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public void Flush(AsyncContinuation asyncContinuation)
         {
-            this.Flush(asyncContinuation, defaultFlushTimeout);
+            this.Flush(asyncContinuation, DefaultFlushTimeout);
         }
 
         /// <summary>
@@ -1192,15 +1193,6 @@ namespace NLog
         }
 
         private void DomainUnload(object sender, EventArgs e)
-        {
-            InternalLogger.Debug("Loading config from {0}", configFile);
-            this.config = new XmlLoggingConfiguration(configFile, this);
-        }
-
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
-
-        private void currentAppDomain_DomainUnload(object sender, EventArgs e)
         {
             //stop timer on domain unload, otherwise: 
             //Exception: System.AppDomainUnloadedException

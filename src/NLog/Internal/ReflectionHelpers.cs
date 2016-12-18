@@ -89,7 +89,7 @@ namespace NLog.Internal
                 return loadedTypes.ToArray();
             }
 #endif
-            }
+        }
 
 
         public static TAttr GetCustomAttribute<TAttr>(this Type type)
@@ -122,7 +122,7 @@ namespace NLog.Internal
         {
             return info.GetCustomAttributes(typeof(TAttr), false).FirstOrDefault() as TAttr;
         }
-        
+
 
         /// <summary>
         /// Optimized delegate for calling MethodInfo
@@ -162,7 +162,7 @@ namespace NLog.Internal
 
             // non-instance for static method, or ((TInstance)instance)
             var instanceCast = methodInfo.IsStatic ? null :
-                Expression.Convert(instanceParameter, methodInfo.ReflectedType);
+                Expression.Convert(instanceParameter, methodInfo.GetReflectedType());
 
             // static invoke or ((TInstance)instance).Method
             var methodCall = Expression.Call(instanceCast, methodInfo, parameterExpressions);
@@ -180,17 +180,7 @@ namespace NLog.Internal
                     return null;    // There is no return-type, so we return null-object
                 };
             }
-        public static IEnumerable<TAttr> GetCustomAttributes<TAttr>(Type type, bool inherit)
-                where TAttr : Attribute
-        {
-#if !NETSTANDARD
-            return (TAttr[])Attribute.GetCustomAttributes(type, typeof(TAttr));
-#else
 
-            var typeInfo = type.GetTypeInfo();
-            return typeInfo.GetCustomAttributes<TAttr>(inherit);
-#endif
-        }
             else
             {
                 var castMethodCall = Expression.Convert(methodCall, typeof(object));
@@ -200,9 +190,18 @@ namespace NLog.Internal
                 return lambda.Compile();
             }
         }
-    }
 
-}
+        public static IEnumerable<TAttr> GetCustomAttributes<TAttr>(Type type, bool inherit)
+        where TAttr : Attribute
+        {
+#if !NETSTANDARD
+            return (TAttr[])Attribute.GetCustomAttributes(type, typeof(TAttr));
+#else
+
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.GetCustomAttributes<TAttr>(inherit);
+#endif
+        }
 
         public static bool IsDefined<TAttr>(this Type type, bool inherit)
         {
@@ -343,6 +342,22 @@ namespace NLog.Internal
             return typeInfo.Module;
 #endif
         }
+
+        public static Type GetReflectedType(this MethodInfo methodInfo)
+        {
+#if !NETSTANDARD
+            return methodInfo.ReflectedType;
+#else
+#if RELEASE
+
+#error TODO methodInfo.ReflectedType?
+#endif
+            return methodInfo.ReturnType;
+
+#endif
+        }
+
+
         public static object InvokeMethod(this MethodInfo methodInfo, string methodName, object[] callParameters)
         {
 #if !NETSTANDARD

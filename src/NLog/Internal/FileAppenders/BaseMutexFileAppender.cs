@@ -31,11 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__ANDROID__ && !__IOS__
-// Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) 
-#define SupportsMutex
-#endif
-
 namespace NLog.Internal.FileAppenders
 {
     using System;
@@ -106,6 +101,9 @@ namespace NLog.Internal.FileAppenders
         /// <returns>A <see cref="Mutex"/> object which is sharable by multiple processes.</returns>
         protected Mutex CreateSharableMutex(string mutexNamePrefix)
         {
+            var name = GetMutexName(mutexNamePrefix);
+#if !NETSTANDARD
+
             // Creates a mutex sharable by more than one process
             var mutexSecurity = new MutexSecurity();
             var everyoneSid = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
@@ -114,7 +112,12 @@ namespace NLog.Internal.FileAppenders
             // The constructor will either create new mutex or open
             // an existing one, in a thread-safe manner
             bool createdNew;
-            return new Mutex(false, GetMutexName(mutexNamePrefix), out createdNew, mutexSecurity);
+            return new Mutex(false, name, out createdNew, mutexSecurity);
+#else
+            //Mutex with 4 args has keyword "unsafe"
+
+            return new Mutex(false, name);
+#endif
         }
 
         private string GetMutexName(string mutexNamePrefix)

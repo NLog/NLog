@@ -295,6 +295,8 @@ namespace NLog.UnitTests.Common
             }
         }
 
+#endif
+
         [Fact]
         public void WriteToFileTests()
         {

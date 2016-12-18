@@ -31,16 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !NETSTANDARD
-
 namespace NLog.LayoutRenderers
 {
     using System;
     using System.Text;
     using NLog.Config;
 
-namespace NLog.LayoutRenderers
-{
     /// <summary>
     /// A layout renderer which could have different behavior per instance by using a <see cref="Func{TResult}"/>.
     /// </summary>
@@ -51,7 +47,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="layoutRendererName">Name without ${}.</param>
         /// <param name="renderMethod">Method that renders the layout.</param>
-        public FuncLayoutRenderer( string layoutRendererName, Func<LogEventInfo, LoggingConfiguration, object> renderMethod)
+        public FuncLayoutRenderer(string layoutRendererName, Func<LogEventInfo, LoggingConfiguration, object> renderMethod)
         {
             RenderMethod = renderMethod;
             LayoutRendererName = layoutRendererName;
@@ -79,10 +75,10 @@ namespace NLog.LayoutRenderers
             if (RenderMethod != null)
             {
                 builder.Append(RenderMethod(logEvent, LoggingConfiguration));
-                }
-
             }
 
-        #endregion
         }
+
+        #endregion
+    }
 }

@@ -99,6 +99,7 @@ namespace NLog.UnitTests.Config
                 Thread.CurrentThread.CurrentCulture = currentCulture;
             }
         }
+#endif
 
         private void AssertMessageFormattedWithCulture(LoggingConfiguration configuration, CultureInfo culture, string formatString, params object[] parameters)
         {

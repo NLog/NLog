@@ -902,9 +902,11 @@ namespace NLog.Targets
                     return MutexMultiProcessFileAppender.TheFactory;
                 }
 #else
+#if !NETSTANDARD
                 if (!this.ForceMutexConcurrentWrites && PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
                     return WindowsMultiProcessFileAppender.TheFactory;
                 else
+#endif
                 return MutexMultiProcessFileAppender.TheFactory;
 #endif
             }

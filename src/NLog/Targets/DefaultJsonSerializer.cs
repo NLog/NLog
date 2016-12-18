@@ -170,7 +170,7 @@ namespace NLog.Targets
             }
             else if (NumericTypes.Contains(value.GetType()))
             {
-#if SILVERLIGHT
+#if SILVERLIGHT || NETSTANDARD
                 var culture = new CultureInfo("en-US").NumberFormat;
 #else
                 var culture = new CultureInfo("en-US", false).NumberFormat;

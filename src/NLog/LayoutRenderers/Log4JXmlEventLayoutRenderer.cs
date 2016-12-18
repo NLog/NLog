@@ -88,6 +88,30 @@ namespace NLog.LayoutRenderers
             SetAppInfo(appDomain);
 
             this.Parameters = new List<NLogViewerParameterInfo>();
+
+            try
+            {
+#if SILVERLIGHT
+                this.machineName = "silverlight";
+#elif NETSTANDARD && !NETSTANDARD1_5
+                // Environment.MachineName is NETSTANDARD1.5+
+                this.machineName = "Net Standard";
+#else
+
+                this.machineName = Environment.MachineName;
+#endif
+            }
+            catch (System.Security.SecurityException)
+            {
+                this.machineName = string.Empty;
+            }
+
+            this.xmlWriterSettings = new XmlWriterSettings
+            {
+                Indent = this.IndentXml,
+                ConformanceLevel = ConformanceLevel.Fragment,
+                IndentChars = "  ",
+            };
         }
 
         private void SetAppInfo(IAppDomain appDomain)
@@ -106,29 +130,9 @@ namespace NLog.LayoutRenderers
                 ThreadIDHelper.Instance.CurrentProcessID);
 #endif
 
-            try
-            {
-#if SILVERLIGHT
-                this.machineName = "silverlight";
-#elif NETSTANDARD && !NETSTANDARD1_5
-                // Environment.MachineName is NETSTANDARD1.5+
-                this.machineName = "Net Standard";
-#else
 
-                this.machineName = Environment.MachineName;
-#endif
-        }
-            catch (System.Security.SecurityException)
-            {
-                this.machineName = string.Empty;
-            }
 
-            this.xmlWriterSettings = new XmlWriterSettings
-            {
-                Indent = this.IndentXml,
-                ConformanceLevel = ConformanceLevel.Fragment,
-                IndentChars = "  ",
-            };
+
         }
 
         /// <summary>
@@ -286,13 +290,13 @@ namespace NLog.LayoutRenderers
                             xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
                             if (logEvent.HasProperties)
                             {
-                            foreach (var contextProperty in logEvent.Properties)
-                            {
-                                xtw.WriteStartElement("nlog", "data", dummyNLogNamespace);
-                                xtw.WriteAttributeSafeString("name", Convert.ToString(contextProperty.Key, CultureInfo.InvariantCulture));
-                                xtw.WriteAttributeSafeString("value", Convert.ToString(contextProperty.Value, CultureInfo.InvariantCulture));
-                                xtw.WriteEndElement();
-                            }
+                                foreach (var contextProperty in logEvent.Properties)
+                                {
+                                    xtw.WriteStartElement("nlog", "data", dummyNLogNamespace);
+                                    xtw.WriteAttributeSafeString("name", Convert.ToString(contextProperty.Key, CultureInfo.InvariantCulture));
+                                    xtw.WriteAttributeSafeString("value", Convert.ToString(contextProperty.Value, CultureInfo.InvariantCulture));
+                                    xtw.WriteEndElement();
+                                }
                             }
                             xtw.WriteEndElement();
                         }
@@ -314,13 +318,13 @@ namespace NLog.LayoutRenderers
 
                 if (this.Parameters.Count > 0)
                 {
-                foreach (NLogViewerParameterInfo parameter in this.Parameters)
-                {
-                    xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                    xtw.WriteAttributeSafeString("name", parameter.Name);
-                    xtw.WriteAttributeSafeString("value", parameter.Layout.Render(logEvent));
-                    xtw.WriteEndElement();
-                }
+                    foreach (NLogViewerParameterInfo parameter in this.Parameters)
+                    {
+                        xtw.WriteStartElement("log4j", "data", dummyNamespace);
+                        xtw.WriteAttributeSafeString("name", parameter.Name);
+                        xtw.WriteAttributeSafeString("value", parameter.Layout.Render(logEvent));
+                        xtw.WriteEndElement();
+                    }
                 }
 
                 xtw.WriteStartElement("log4j", "data", dummyNamespace);
