@@ -176,7 +176,6 @@ namespace NLog.Targets
 #else
             this.Encoding = Encoding.Default;
 #endif
-            this.BufferSize = 32768;
             this.AutoFlush = true;
 #if !SILVERLIGHT
             this.FileAttributes = Win32FileAttributes.Normal;
@@ -437,7 +436,8 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
         [DefaultValue(32768)]
-        public int BufferSize { get; set; }
+        public int BufferSize { get { return bufferSize ?? (!IsInitialized || (KeepFileOpen && !NetworkWrites) ? 32768 : 1024); } set { bufferSize = value; } }
+        private int? bufferSize;
 
         /// <summary>
         /// Gets or sets the file encoding.
