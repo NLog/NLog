@@ -181,6 +181,7 @@ namespace NLog.Internal.FileAppenders
             catch (Exception ex)
             {
                 InternalLogger.Warn(ex, "Failed to close file '{0}'", FileName);
+                System.Threading.Thread.Sleep(1);   // Artificial delay to avoid hammering a bad file location
             }
             finally
             {
