@@ -139,6 +139,7 @@
     <Compile Include="ILoggerBase-V1.cs" />
     <Compile Include="ILogger-V1.cs" />
     <Compile Include="Internal\ArrayHelper.cs" />
+    <Compile Include="Internal\AsyncOperationCounter.cs" />
     <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
     <Compile Include="Internal\EncodingHelpers.cs" />

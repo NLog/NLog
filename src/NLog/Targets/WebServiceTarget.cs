@@ -180,7 +180,7 @@ namespace NLog.Targets
         /// <docgen category='Web Service Options' order='10' />
         public string XmlRootNamespace { get; set; }
 
-        private readonly Dictionary<HttpWebRequest, KeyValuePair<DateTime,AsyncContinuation>> _pendingRequests = new Dictionary<HttpWebRequest, KeyValuePair<DateTime,AsyncContinuation>>();
+        private readonly AsyncOperationCounter pendingManualFlushList = new AsyncOperationCounter();
 
         /// <summary>
         /// Calls the target method. Must be implemented in concrete classes.
@@ -227,15 +227,7 @@ namespace NLog.Targets
                 {
                     if (ex != null)
                     {
-                        KeyValuePair<DateTime, AsyncContinuation> flushCallback;
-                        lock (this.SyncRoot)
-                        {
-                            if (_pendingRequests.TryGetValue(request, out flushCallback))
-                                _pendingRequests.Remove(request);
-                        }
-                        continuation(ex);
-                        if (flushCallback.Value != null)
-                            flushCallback.Value(ex);
+                        DoInvokeCompleted(continuation, ex);
                         return;
                     }
 
@@ -250,15 +242,7 @@ namespace NLog.Targets
                                     {
                                     }
 
-                                    KeyValuePair<DateTime, AsyncContinuation> flushCallback;
-                                    lock (this.SyncRoot)
-                                    {
-                                        if (_pendingRequests.TryGetValue(request, out flushCallback))
-                                            _pendingRequests.Remove(request);
-                                    }
-                                    continuation(null);
-                                    if (flushCallback.Value != null)
-                                        flushCallback.Value(null);
+                                    DoInvokeCompleted(continuation, null);
                                 }
                                 catch (Exception ex2)
                                 {
@@ -268,15 +252,7 @@ namespace NLog.Targets
                                         throw;
                                     }
 
-                                    KeyValuePair<DateTime, AsyncContinuation> flushCallback;
-                                    lock (this.SyncRoot)
-                                    {
-                                        if (_pendingRequests.TryGetValue(request, out flushCallback))
-                                            _pendingRequests.Remove(request);
-                                    }
-                                    continuation(ex2);
-                                    if (flushCallback.Value != null)
-                                        flushCallback.Value(ex2);
+                                    DoInvokeCompleted(continuation, ex2);
                                 }
                             },
                             null);
@@ -289,15 +265,7 @@ namespace NLog.Targets
                             throw;
                         }
 
-                        KeyValuePair<DateTime, AsyncContinuation> flushCallback;
-                        lock (this.SyncRoot)
-                        {
-                            if (_pendingRequests.TryGetValue(request, out flushCallback))
-                                _pendingRequests.Remove(request);
-                        }
-                        continuation(ex2);
-                        if (flushCallback.Value != null)
-                            flushCallback.Value(ex2);
+                        DoInvokeCompleted(continuation, ex2);
                     }
                 };
 
@@ -306,11 +274,8 @@ namespace NLog.Targets
                 postPayload.Position = 0;
                 try
                 {
-                    lock (this.SyncRoot)
-                    {
-                        lock (this.SyncRoot)
-                            _pendingRequests.Add(request, new KeyValuePair<DateTime, AsyncContinuation>(DateTime.UtcNow, null));
-                    }
+                    pendingManualFlushList.BeginOperation();
+
                     beginFunc(
                         result =>
                         {
@@ -333,18 +298,8 @@ namespace NLog.Targets
                                     throw;
                                 }
 
-                                KeyValuePair<DateTime, AsyncContinuation> flushCallback;
-                                lock (this.SyncRoot)
-                                {
-                                    if (_pendingRequests.TryGetValue(request, out flushCallback))
-                                        _pendingRequests.Remove(request);
-                                }
-
                                 postPayload.Dispose();
-
-                                continuation(ex);
-                                if (flushCallback.Value != null)
-                                    flushCallback.Value(ex);
+                                DoInvokeCompleted(continuation, ex);
                             }
                         });
                 }
@@ -356,23 +311,20 @@ namespace NLog.Targets
                         throw;
                     }
 
-                    KeyValuePair<DateTime, AsyncContinuation> flushCallback;
-                    lock (this.SyncRoot)
-                    {
-                        if (_pendingRequests.TryGetValue(request, out flushCallback))
-                            _pendingRequests.Remove(request);
-                    }
-                    continuation(ex);
-                    if (flushCallback.Value != null)
-                        flushCallback.Value(ex);
+                    DoInvokeCompleted(continuation, ex);
                 }
             }
             else
             {
-                lock (this.SyncRoot)
-                    _pendingRequests.Add(request, new KeyValuePair<DateTime, AsyncContinuation>(DateTime.UtcNow, null));
+                pendingManualFlushList.BeginOperation();
                 sendContinuation(null);
             }
+        }
+
+        private void DoInvokeCompleted(AsyncContinuation continuation, Exception ex)
+        {
+            pendingManualFlushList.CompleteOperation(ex);
+            continuation(ex);
         }
 
         /// <summary>
@@ -381,64 +333,7 @@ namespace NLog.Targets
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            // We want to be notified when, all pending requests have completed
-            if (_pendingRequests.Count == 0)
-            {
-                asyncContinuation(null);
-            }
-            else
-            {
-                int remainingCount = _pendingRequests.Count;
-                AsyncContinuation continuation =
-                    ex =>
-                    {
-                    // ignore exception
-                    if (System.Threading.Interlocked.Decrement(ref remainingCount) == 0)
-                        {
-                            asyncContinuation(null);
-                        }
-                    };
-
-                DateTime utcNowTimeout = DateTime.UtcNow.AddSeconds(-120);    // Default HttpWebRequest.Timeout = 100 secs
-
-                bool foundOldWebRequest = false;
-
-                foreach (var key in new List<HttpWebRequest>(_pendingRequests.Keys))
-                {
-                    KeyValuePair<DateTime, AsyncContinuation> flushCallback;
-                    if (_pendingRequests.TryGetValue(key, out flushCallback))
-                    {
-                        AsyncContinuation oldFlushCallback = flushCallback.Value;
-                        if (flushCallback.Key < utcNowTimeout)
-                        {
-                            try
-                            {
-                                _pendingRequests.Remove(key);
-                                if (!foundOldWebRequest)
-                                {
-                                    foundOldWebRequest = true;
-                                    InternalLogger.Warn("Failed to get reply from one (or more) requests to Webservice: {0}", this.Name);
-                                }
-                                if (oldFlushCallback != null)
-                                    oldFlushCallback(null);
-                                continuation(null);
-                            }
-                            catch (Exception ex)
-                            {
-                                if (ex.MustBeRethrown())
-                                    throw;
-                            }
-                        }
-                        else
-                        {
-                            if (oldFlushCallback == null)
-                                _pendingRequests[key] = new KeyValuePair<DateTime, AsyncContinuation>(flushCallback.Key, continuation);
-                            else
-                                _pendingRequests[key] = new KeyValuePair<DateTime, AsyncContinuation>(flushCallback.Key, ex => { oldFlushCallback(ex); continuation(ex); });
-                        }
-                    }
-                }
-            }
+            pendingManualFlushList.RegisterCompletionNotification(asyncContinuation).Invoke(null);
         }
 
         /// <summary>
@@ -446,7 +341,7 @@ namespace NLog.Targets
         /// </summary>
         protected override void CloseTarget()
         {
-            _pendingRequests.Clear();   // Maybe consider to wait a short while if pending requests?
+            pendingManualFlushList.Clear();   // Maybe consider to wait a short while if pending requests?
             base.CloseTarget();
         }
 
@@ -554,7 +449,7 @@ namespace NLog.Targets
             protected virtual void InitRequest(HttpWebRequest request)
             {
                 request.Method = "POST";
-                request.ContentType = string.Format("{1}; charset={0}", Target.Encoding.WebName, ContentType);
+                request.ContentType = string.Concat(ContentType, "; charset=", Target.Encoding.WebName);
             }
 
             protected abstract void WriteContent(MemoryStream ms, object[] parameterValues);
