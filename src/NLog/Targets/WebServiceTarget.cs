@@ -180,6 +180,7 @@ namespace NLog.Targets
         /// <docgen category='Web Service Options' order='10' />
         public string XmlRootNamespace { get; set; }
 
+        private readonly Dictionary<HttpWebRequest, KeyValuePair<DateTime,AsyncContinuation>> _pendingRequests = new Dictionary<HttpWebRequest, KeyValuePair<DateTime,AsyncContinuation>>();
 
         /// <summary>
         /// Calls the target method. Must be implemented in concrete classes.
@@ -226,71 +227,227 @@ namespace NLog.Targets
                 {
                     if (ex != null)
                     {
+                        KeyValuePair<DateTime, AsyncContinuation> flushCallback;
+                        lock (this.SyncRoot)
+                        {
+                            if (_pendingRequests.TryGetValue(request, out flushCallback))
+                                _pendingRequests.Remove(request);
+                        }
                         continuation(ex);
+                        if (flushCallback.Value != null)
+                            flushCallback.Value(ex);
                         return;
                     }
 
-                    request.BeginGetResponse(
-                        r =>
+                    try
+                    {
+                        request.BeginGetResponse(
+                            r =>
+                            {
+                                try
+                                {
+                                    using (var response = request.EndGetResponse(r))
+                                    {
+                                    }
+
+                                    KeyValuePair<DateTime, AsyncContinuation> flushCallback;
+                                    lock (this.SyncRoot)
+                                    {
+                                        if (_pendingRequests.TryGetValue(request, out flushCallback))
+                                            _pendingRequests.Remove(request);
+                                    }
+                                    continuation(null);
+                                    if (flushCallback.Value != null)
+                                        flushCallback.Value(null);
+                                }
+                                catch (Exception ex2)
+                                {
+                                    InternalLogger.Error(ex2, "Error when sending to Webservice: {0}", this.Name);
+                                    if (ex2.MustBeRethrown())
+                                    {
+                                        throw;
+                                    }
+
+                                    KeyValuePair<DateTime, AsyncContinuation> flushCallback;
+                                    lock (this.SyncRoot)
+                                    {
+                                        if (_pendingRequests.TryGetValue(request, out flushCallback))
+                                            _pendingRequests.Remove(request);
+                                    }
+                                    continuation(ex2);
+                                    if (flushCallback.Value != null)
+                                        flushCallback.Value(ex2);
+                                }
+                            },
+                            null);
+                    }
+                    catch (Exception ex2)
+                    {
+                        InternalLogger.Error(ex2, "Error when sending to Webservice: {0}", this.Name);
+                        if (ex2.MustBeRethrown())
                         {
-                            try
-                            {
-                                using (var response = request.EndGetResponse(r))
-                                {
-                                }
+                            throw;
+                        }
 
-                                continuation(null);
-                            }
-                            catch (Exception ex2)
-                            {
-                                InternalLogger.Error(ex2, "Error when sending to Webservice.");
-
-                                if (ex2.MustBeRethrown())
-                                {
-                                    throw;
-                                }
-
-                                continuation(ex2);
-                            }
-                        },
-                        null);
+                        KeyValuePair<DateTime, AsyncContinuation> flushCallback;
+                        lock (this.SyncRoot)
+                        {
+                            if (_pendingRequests.TryGetValue(request, out flushCallback))
+                                _pendingRequests.Remove(request);
+                        }
+                        continuation(ex2);
+                        if (flushCallback.Value != null)
+                            flushCallback.Value(ex2);
+                    }
                 };
 
             if (postPayload != null && postPayload.Length > 0)
             {
                 postPayload.Position = 0;
-                beginFunc(
-                    result =>
+                try
+                {
+                    lock (this.SyncRoot)
                     {
-                        try
+                        lock (this.SyncRoot)
+                            _pendingRequests.Add(request, new KeyValuePair<DateTime, AsyncContinuation>(DateTime.UtcNow, null));
+                    }
+                    beginFunc(
+                        result =>
                         {
-                            using (Stream stream = getStreamFunc(result))
+                            try
                             {
-                                WriteStreamAndFixPreamble(postPayload, stream, this.IncludeBOM, this.Encoding);
+                                using (Stream stream = getStreamFunc(result))
+                                {
+                                    WriteStreamAndFixPreamble(postPayload, stream, this.IncludeBOM, this.Encoding);
+
+                                    postPayload.Dispose();
+                                }
+
+                                sendContinuation(null);
+                            }
+                            catch (Exception ex)
+                            {
+                                InternalLogger.Error(ex, "Error when sending to Webservice: {0}", this.Name);
+                                if (ex.MustBeRethrown())
+                                {
+                                    throw;
+                                }
+
+                                KeyValuePair<DateTime, AsyncContinuation> flushCallback;
+                                lock (this.SyncRoot)
+                                {
+                                    if (_pendingRequests.TryGetValue(request, out flushCallback))
+                                        _pendingRequests.Remove(request);
+                                }
 
                                 postPayload.Dispose();
+
+                                continuation(ex);
+                                if (flushCallback.Value != null)
+                                    flushCallback.Value(ex);
                             }
+                        });
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "Error when sending to Webservice: {0}", this.Name);
+                    if (ex.MustBeRethrown())
+                    {
+                        throw;
+                    }
 
-                            sendContinuation(null);
-                        }
-                        catch (Exception ex)
-                        {
-                            postPayload.Dispose();
-                            InternalLogger.Error(ex, "Error when sending to Webservice.");
-
-                            if (ex.MustBeRethrown())
-                            {
-                                throw;
-                            }
-
-                            continuation(ex);
-                        }
-                    });
+                    KeyValuePair<DateTime, AsyncContinuation> flushCallback;
+                    lock (this.SyncRoot)
+                    {
+                        if (_pendingRequests.TryGetValue(request, out flushCallback))
+                            _pendingRequests.Remove(request);
+                    }
+                    continuation(ex);
+                    if (flushCallback.Value != null)
+                        flushCallback.Value(ex);
+                }
             }
             else
             {
+                lock (this.SyncRoot)
+                    _pendingRequests.Add(request, new KeyValuePair<DateTime, AsyncContinuation>(DateTime.UtcNow, null));
                 sendContinuation(null);
             }
+        }
+
+        /// <summary>
+        /// Flush any pending log messages asynchronously (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void FlushAsync(AsyncContinuation asyncContinuation)
+        {
+            // We want to be notified when, all pending requests have completed
+            if (_pendingRequests.Count == 0)
+            {
+                asyncContinuation(null);
+            }
+            else
+            {
+                int remainingCount = _pendingRequests.Count;
+                AsyncContinuation continuation =
+                    ex =>
+                    {
+                    // ignore exception
+                    if (System.Threading.Interlocked.Decrement(ref remainingCount) == 0)
+                        {
+                            asyncContinuation(null);
+                        }
+                    };
+
+                DateTime utcNowTimeout = DateTime.UtcNow.AddSeconds(-120);    // Default HttpWebRequest.Timeout = 100 secs
+
+                bool foundOldWebRequest = false;
+
+                foreach (var key in new List<HttpWebRequest>(_pendingRequests.Keys))
+                {
+                    KeyValuePair<DateTime, AsyncContinuation> flushCallback;
+                    if (_pendingRequests.TryGetValue(key, out flushCallback))
+                    {
+                        AsyncContinuation oldFlushCallback = flushCallback.Value;
+                        if (flushCallback.Key < utcNowTimeout)
+                        {
+                            try
+                            {
+                                _pendingRequests.Remove(key);
+                                if (!foundOldWebRequest)
+                                {
+                                    foundOldWebRequest = true;
+                                    InternalLogger.Warn("Failed to get reply from one (or more) requests to Webservice: {0}", this.Name);
+                                }
+                                if (oldFlushCallback != null)
+                                    oldFlushCallback(null);
+                                continuation(null);
+                            }
+                            catch (Exception ex)
+                            {
+                                if (ex.MustBeRethrown())
+                                    throw;
+                            }
+                        }
+                        else
+                        {
+                            if (oldFlushCallback == null)
+                                _pendingRequests[key] = new KeyValuePair<DateTime, AsyncContinuation>(flushCallback.Key, continuation);
+                            else
+                                _pendingRequests[key] = new KeyValuePair<DateTime, AsyncContinuation>(flushCallback.Key, ex => { oldFlushCallback(ex); continuation(ex); });
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Closes the target.
+        /// </summary>
+        protected override void CloseTarget()
+        {
+            _pendingRequests.Clear();   // Maybe consider to wait a short while if pending requests?
+            base.CloseTarget();
         }
 
         /// <summary>

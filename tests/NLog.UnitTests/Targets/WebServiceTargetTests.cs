@@ -454,6 +454,15 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                     logger.Info(createdMessage);
                 }
 
+                // Make triple-flush to fully exercise the async flushing logic
+                try
+                {
+                    LogManager.Flush(0);
+                }
+                catch (NLog.NLogRuntimeException)
+                { }
+                LogManager.Flush(); // Waits for flush (Scheduled on top of the previous flush)
+                LogManager.Flush(); // Nothing to flush
             });
 
 
