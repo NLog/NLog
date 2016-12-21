@@ -1014,32 +1014,36 @@ namespace NLog.Targets
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
             var buckets = logEvents.BucketSort(c => this.GetFullFileName(c.LogEvent));
-            using (var ms = new MemoryStream())
+            var pendingContinuations = new List<AsyncContinuation>();
+
+            foreach (var bucket in buckets)
             {
-                var pendingContinuations = new List<AsyncContinuation>();
+                string fileName = bucket.Key;
+                LogEventInfo firstLogEvent = null;
 
-                foreach (var bucket in buckets)
+                byte[][] logEventsBytes = new byte[bucket.Value.Count][];
+                int totalBytesSize = 0;
+                for (int i = 0; i < bucket.Value.Count; i++)
                 {
-                    string fileName = bucket.Key;
-
-                    ms.SetLength(0);
-                    ms.Position = 0;
-
-                    LogEventInfo firstLogEvent = null;
-
-                    for (int i = 0; i < bucket.Value.Count; i++)
+                    AsyncLogEventInfo ev = bucket.Value[i];
+                    if (firstLogEvent == null)
                     {
-                        AsyncLogEventInfo ev = bucket.Value[i];
-                        if (firstLogEvent == null)
-                        {
-                            firstLogEvent = ev.LogEvent;
-                        }
-
-                        byte[] bytes = this.GetBytesToWrite(ev.LogEvent);
-                        ms.Write(bytes, 0, bytes.Length);
-                        pendingContinuations.Add(ev.Continuation);
+                        firstLogEvent = ev.LogEvent;
                     }
 
+                    var bytes = this.GetBytesToWrite(ev.LogEvent);
+                    logEventsBytes[i] = bytes;
+                    totalBytesSize += bytes.Length;
+                    pendingContinuations.Add(ev.Continuation);
+                }
+
+                using (var ms = new MemoryStream(totalBytesSize))
+                {
+                    for (int i = 0; i < logEventsBytes.Length; i++)
+                    {
+                        var content = logEventsBytes[i];
+                        ms.Write(content, 0, content.Length);
+                    }
                     this.FlushCurrentFileWrites(fileName, firstLogEvent, ms, pendingContinuations);
                 }
             }
@@ -1096,8 +1100,13 @@ namespace NLog.Targets
         /// <returns>Array of bytes that are ready to be written.</returns>
         protected virtual byte[] GetBytesToWrite(LogEventInfo logEvent)
         {
-            string renderedText = this.GetFormattedMessage(logEvent) + this.NewLineChars;
-            return this.TransformBytes(this.Encoding.GetBytes(renderedText));
+            string text = this.GetFormattedMessage(logEvent);
+            int textBytesCount = this.Encoding.GetByteCount(text);
+            int newLineBytesCount = this.Encoding.GetByteCount(this.NewLineChars);
+            byte[] bytes = new byte[textBytesCount + newLineBytesCount];
+            this.Encoding.GetBytes(text, 0, text.Length, bytes, 0);
+            this.Encoding.GetBytes(this.NewLineChars, 0, this.NewLineChars.Length, bytes, textBytesCount);
+            return this.TransformBytes(bytes);
         }
 
         /// <summary>
