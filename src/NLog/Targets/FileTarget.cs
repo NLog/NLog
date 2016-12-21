@@ -679,7 +679,7 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool ForceManaged { get; set; }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if SupportsMutex
         /// <summary>
         /// Gets or sets a value indicationg whether file creation calls should be synchronized by a system global mutex.
         /// </summary>
@@ -902,9 +902,13 @@ namespace NLog.Targets
                 {
                     return UnixMultiProcessFileAppender.TheFactory;
                 }
-                else
+                else if (PlatformDetector.SupportsSharableMutex)
                 {
                     return MutexMultiProcessFileAppender.TheFactory;
+                }
+                else
+                {
+                    return RetryingMultiProcessFileAppender.TheFactory;
                 }
 #else
                 if (!PlatformDetector.SupportsSharableMutex)

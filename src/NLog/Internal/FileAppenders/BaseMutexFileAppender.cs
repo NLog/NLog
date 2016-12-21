@@ -72,15 +72,13 @@ namespace NLog.Internal.FileAppenders
 #endif
         }
 
-#if !SILVERLIGHT
+#if SupportsMutex
         /// <summary>
         /// Gets the mutually-exclusive lock for archiving files.
         /// </summary>
         /// <value>The mutex for archiving.</value>
         public Mutex ArchiveMutex { get; private set; }
-#endif
 
-#if SupportsMutex
         /// <summary>
         /// Creates a mutually-exclusive lock for archiving files.
         /// </summary>
