@@ -782,6 +782,7 @@ namespace NLog.Targets
                                 }
                             });
                             this.appenderInvalidatorThread.IsBackground = true;
+                            InternalLogger.Trace("Starting InvalidatorThread for fileNamePattern '{0}'", fileNamePattern);
                             this.appenderInvalidatorThread.Start();
                         }
                     }
@@ -801,6 +802,8 @@ namespace NLog.Targets
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             if (this.appenderInvalidatorThread != null)
             {
+                InternalLogger.Trace("Stop InvalidatorThread");
+
                 this.stopAppenderInvalidatorThreadWaitHandle.Set();
                 this.appenderInvalidatorThread = null;
             }
@@ -829,6 +832,11 @@ namespace NLog.Targets
         /// </remarks>
         public void CleanupInitializedFiles(DateTime cleanupThreshold)
         {
+            if (InternalLogger.IsTraceEnabled)
+            {
+                InternalLogger.Trace("Cleanup Initialized Files with cleanupThreshold {0}", cleanupThreshold);
+            }
+
             var filesToFinalize = new List<string>();
 
             // Select the files require to be finalized.
@@ -845,6 +853,8 @@ namespace NLog.Targets
             {
                 this.FinalizeFile(fileName);
             }
+
+            InternalLogger.Trace("CleanupInitializedFiles Done");
         }
 
         /// <summary>
@@ -859,11 +869,15 @@ namespace NLog.Targets
         {
             try
             {
+                InternalLogger.Trace("FlushAsync");
+               
                 fileAppenderCache.FlushAppenders();
                 asyncContinuation(null);
+                InternalLogger.Trace("FlushAsync Done");
             }
             catch (Exception exception)
             {
+                InternalLogger.Warn(exception, "exception in FlushAsync");
                 if (exception.MustBeRethrown())
                 {
                     throw;
@@ -937,12 +951,17 @@ namespace NLog.Targets
 
             RefreshFileArchive();
             this.appenderFactory = GetFileAppenderFactory();
+            if (InternalLogger.IsTraceEnabled)
+            {
+                InternalLogger.Trace("Using appenderFactory: {0}", appenderFactory.GetType());
+            }
 
             this.fileAppenderCache = new FileAppenderCache(this.OpenFileCacheSize, this.appenderFactory, this);
             RefreshArchiveFilePatternToWatch();
 
             if ((this.OpenFileCacheSize > 0 || this.EnableFileDelete) && this.OpenFileCacheTimeout > 0)
             {
+                InternalLogger.Trace("Start autoClosingTimer");
                 this.autoClosingTimer = new Timer(
                     this.AutoClosingTimerCallback,
                     null,
@@ -965,6 +984,7 @@ namespace NLog.Targets
 
             if (this.autoClosingTimer != null)
             {
+                InternalLogger.Trace("Stop autoClosingTimer");
                 this.autoClosingTimer.Change(Timeout.Infinite, Timeout.Infinite);
                 this.autoClosingTimer.Dispose();
                 this.autoClosingTimer = null;
@@ -1135,10 +1155,12 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
+               
                 if (exception.MustBeRethrown())
                 {
                     throw;
                 }
+                InternalLogger.Warn(exception, "exception in FlushCurrentFileWrites");
 
                 lastException = exception;
             }
@@ -1184,14 +1206,17 @@ namespace NLog.Targets
         /// <param name="archiveNumber">Value which will replace the numeric pattern.</param>
         private void RollArchivesForward(string fileName, string pattern, int archiveNumber)
         {
+            InternalLogger.Debug("RollArchivesForward '{0}' with pattern '{1}` and archiveNumber {2}", fileName, pattern, archiveNumber);
             if (ShouldDeleteOldArchives() && archiveNumber >= this.MaxArchiveFiles)
             {
+                InternalLogger.Debug("Stop archiving as archiveNumber >= this.MaxArchiveFiles");
                 DeleteOldArchiveFile(fileName);
                 return;
             }
 
             if (!File.Exists(fileName))
             {
+                InternalLogger.Debug("Cancel RollArchivesForward as  {0} doesn't exist", fileName);
                 return;
             }
 
@@ -1235,29 +1260,32 @@ namespace NLog.Targets
 #endif
                 {
                     string baseName = Path.GetFileName(s);
-                    string number = baseName.Substring(fileTemplate.BeginAt, baseName.Length - trailerLength - fileTemplate.BeginAt);
-                    int num;
-
-                    try
+                    if (baseName != null)
                     {
-                        num = Convert.ToInt32(number, CultureInfo.InvariantCulture);
-                    }
-                    catch (FormatException)
-                    {
-                        continue;
-                    }
+                        string number = baseName.Substring(fileTemplate.BeginAt, baseName.Length - trailerLength - fileTemplate.BeginAt);
+                        int num;
 
-                    nextNumber = Math.Max(nextNumber, num);
-                    minNumber = minNumber != -1 ? Math.Min(minNumber, num) : num;
+                        try
+                        {
+                            num = Convert.ToInt32(number, CultureInfo.InvariantCulture);
+                        }
+                        catch (FormatException)
+                        {
+                            continue;
+                        }
 
-                    number2Name[num] = s;
+                        nextNumber = Math.Max(nextNumber, num);
+                        minNumber = minNumber != -1 ? Math.Min(minNumber, num) : num;
+
+                        number2Name[num] = s;
+                    }
                 }
 
                 nextNumber++;
             }
             catch (DirectoryNotFoundException)
             {
-                Directory.CreateDirectory(dirName);
+                CreateDir(dirName);
                 nextNumber = 0;
             }
 
@@ -1290,8 +1318,10 @@ namespace NLog.Targets
             FinalizeFile(fileName, isArchiving: true);
 
             string archiveFolderPath = Path.GetDirectoryName(archiveFileName);
-            if (!Directory.Exists(archiveFolderPath))
-                Directory.CreateDirectory(archiveFolderPath);
+            if (!Directory.Exists(archiveFolderPath) && archiveFolderPath != null)
+            {
+                CreateDir(archiveFolderPath);
+            }
 
             if (EnableArchiveFileCompression)
             {
@@ -1322,11 +1352,13 @@ namespace NLog.Targets
 #else
                         archiveFileStream.Flush(true);
 #endif
+                        InternalLogger.Debug("Archive append to {0} done.", archiveFileName);
                     }
                 }
                 else
                 {
                     File.Move(fileName, archiveFileName);
+                    InternalLogger.Debug("Archiving to {0} done.", archiveFileName);
                 }
             }
         }
@@ -1337,6 +1369,7 @@ namespace NLog.Targets
             {
                 InternalLogger.Info("Deleting old archive file: '{0}'.", fileName);
                 File.Delete(fileName);
+                InternalLogger.Debug("Deleting old archive file '{0} Done'.", fileName);
                 return true;
             }
             catch (DirectoryNotFoundException exception)
@@ -1361,14 +1394,14 @@ namespace NLog.Targets
         {
             try
             {
+                InternalLogger.Debug("Delete And Wait For File Delete of {0} ", fileName);
                 var originalFileCreationTime = (new FileInfo(fileName)).CreationTime;
                 if (DeleteOldArchiveFile(fileName) && File.Exists(fileName))
                 {
-                    FileInfo currentFileInfo;
                     for (int i = 0; i < 120; ++i)
                     { 
                         Thread.Sleep(100);
-                        currentFileInfo = new FileInfo(fileName);
+                        var currentFileInfo = new FileInfo(fileName);
                         if (!currentFileInfo.Exists || currentFileInfo.CreationTime != originalFileCreationTime)
                             return;
                     }
@@ -1406,12 +1439,14 @@ namespace NLog.Targets
 
             if (string.IsNullOrEmpty(baseNamePattern))
             {
+                InternalLogger.Debug("Stop ArchiveByDateAndSequence as file is NULL");
                 return;
             }
 
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             if (string.IsNullOrEmpty(dirName))
             {
+                InternalLogger.Warn("Stop ArchiveByDateAndSequence as directory '{0}' doesn't exist", dirName);
                 return;
             }
 
@@ -1442,7 +1477,7 @@ namespace NLog.Targets
             }
             else
             {
-                Directory.CreateDirectory(dirName);
+                CreateDir(dirName);
                 nextSequenceNumber = 0;
                 archiveFileNames = new List<string>();
             }
@@ -1638,6 +1673,8 @@ namespace NLog.Targets
                 return;
             }
 
+            InternalLogger.Debug("Delete Old Date Archives with pattern '{0}'", pattern);
+
             string fileNameMask = ReplaceFileNamePattern(pattern, "*");
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             string dateFormat = GetArchiveDateFormatString(this.ArchiveDateFormat);
@@ -1647,7 +1684,8 @@ namespace NLog.Targets
                 DirectoryInfo directoryInfo = new DirectoryInfo(dirName);
                 if (!directoryInfo.Exists)
                 {
-                    Directory.CreateDirectory(dirName);
+                    InternalLogger.Debug("Delete Old Date Archives - directory {0} doesn't exist and will be created", dirName);
+                    CreateDir(dirName);
                     return;
                 }
 
@@ -1669,7 +1707,12 @@ namespace NLog.Targets
                         DateTime fileDate = DateTime.MinValue;
                         if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out fileDate))
                         {
+                            InternalLogger.Trace("Delete Old Date Archives - parse of dateformat {0} succeeded for file {1}", dateFormat, nextFile);
                             filesByDate.Add(nextFile);
+                        }
+                        else
+                        {
+                            InternalLogger.Trace("Delete Old Date Archives - no match for dateformat {0} in file {1}", dateFormat, nextFile);
                         }
                     }
                 }
@@ -1767,9 +1810,11 @@ namespace NLog.Targets
         /// <param name="eventInfo">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
         private void DoAutoArchive(string fileName, LogEventInfo eventInfo)
         {
+            InternalLogger.Debug("Do AutoArchive {0}", fileName);
             var fileInfo = new FileInfo(fileName);
             if (!fileInfo.Exists)
             {
+                InternalLogger.Debug("Skip Do AutoArchive , as file {0} doesn't exists", fileName);
                 // Close possible stale file handles
                 this.fileAppenderCache.InvalidateAppender(fileName);
                 this.initializedFiles.Remove(fileName);
@@ -1796,6 +1841,7 @@ namespace NLog.Targets
             }
             else
             {
+                InternalLogger.Debug("Do archive {0}", this.ArchiveNumbering);
                 switch (this.ArchiveNumbering)
                 {
                     case ArchiveNumberingMode.Rolling:
@@ -1816,6 +1862,7 @@ namespace NLog.Targets
                         break;
 #endif
                 }
+                InternalLogger.Debug("Do archive {0} Done", this.ArchiveNumbering);
             }
         }
 
@@ -1891,14 +1938,20 @@ namespace NLog.Targets
                 try
                 {
                     if (archiveMutex != null)
+                    {
+                        InternalLogger.Trace("archiveMutex for {0}, wait", fileName);
                         archiveMutex.WaitOne();
+                        InternalLogger.Trace("archiveMutex for {0}, wait done", fileName);
+                    }
                 }
                 catch (AbandonedMutexException)
                 {
+                    InternalLogger.Trace("archiveMutex for {0}, wait done as it's abandone", fileName);
                     // ignore the exception, another process was killed without properly releasing the mutex
                     // the mutex has been acquired, so proceed to writing
                     // See: http://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
                 }
+               
 #endif
                 try
                 {
@@ -1909,6 +1962,7 @@ namespace NLog.Targets
                         if (archiveFile != fileName)
                             this.initializedFiles.Remove(fileName);
                         this.initializedFiles.Remove(archiveFile);
+                        InternalLogger.Debug("Stop try archive for '{0}', as new archive filename is empty or null", archiveFile);
                         return;
                     }
 
@@ -2122,6 +2176,7 @@ namespace NLog.Targets
 
             if (writeHeader)
             {
+                InternalLogger.Debug("Write header for file '{0}'", fileName);
                 this.WriteHeader(appender);
             }
 
@@ -2159,6 +2214,11 @@ namespace NLog.Targets
 
                     if (this.initializedFilesCounter >= FileTarget.InitializedFilesCounterMax)
                     {
+                        if (InternalLogger.IsTraceEnabled)
+                        {
+                            InternalLogger.Trace("Cleanup Initialized Files as InitializedFilesCounterMax {0} and counter  {1}", InitializedFilesCounterMax, initializedFilesCounter);
+                        }
+
                         this.initializedFilesCounter = 0;
                         this.CleanupInitializedFiles();
                     }
@@ -2193,9 +2253,14 @@ namespace NLog.Targets
             byte[] footerBytes = this.GetFooterBytes();
             if (footerBytes != null)
             {
+                InternalLogger.Debug("Write footer '{0}' ", fileName);
                 if (File.Exists(fileName))
                 {
                     this.WriteToFile(fileName, null, footerBytes, true);
+                }
+                else
+                {
+                    InternalLogger.Debug("Write footer canceled as '{0}' doesn't exist ", fileName);
                 }
             }
         }
@@ -2209,6 +2274,7 @@ namespace NLog.Targets
         /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
         private void ProcessOnStartup(string fileName, LogEventInfo logEvent)
         {
+            InternalLogger.Debug("ProcessOnStartup {0}", fileName);
             if (this.ArchiveOldFileOnStartup)
             {
                 try
@@ -2265,9 +2331,10 @@ namespace NLog.Targets
             {
                 if (!this.CreateDirs || !firstAttempt)
                 {
+                    InternalLogger.Warn("Failed to create the directory for {0} (replace file content)", fileName);
                     throw;
                 }
-                Directory.CreateDirectory(Path.GetDirectoryName(fileName));
+                CreateDir(Path.GetDirectoryName(fileName));
                 //retry.
                 ReplaceFileContent(fileName, bytes, false);
             }
@@ -2346,11 +2413,12 @@ namespace NLog.Targets
                 if (Directory.Exists(archiveFolderPath))
                 {
 #if SILVERLIGHT && !WINDOWS_PHONE
-                    var files = Directory.EnumerateFiles(archiveFolderPath);
+                    var files = Directory.EnumerateFiles(archiveFolderPath).ToArray();
 #else
                     var files = Directory.GetFiles(archiveFolderPath);
 #endif
-                    foreach (string nextFile in files.OrderBy(f => ExtractArchiveNumberFromFileName(f)))
+                    InternalLogger.Debug("ArchiveFolderPath, queue {0} files", files.Length);
+                    foreach (string nextFile in files.OrderBy(ExtractArchiveNumberFromFileName))
                         archiveFileQueue.Enqueue(nextFile);
                 }
             }
@@ -2365,6 +2433,7 @@ namespace NLog.Targets
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
             public bool Archive(string archiveFileName, string fileName, bool createDirectory)
             {
+                InternalLogger.Debug("Arhive {0} to {1}", fileName, archiveFileName);
                 if (MaxArchiveFileToKeep < 1)
                 {
                     InternalLogger.Warn("Archive is called. Even though the MaxArchiveFiles is set to less than 1");
@@ -2447,14 +2516,37 @@ namespace NLog.Targets
                 archiveFileName = Path.GetFileName(archiveFileName);
                 int lastDotIdx = archiveFileName.LastIndexOf('.');
                 if (lastDotIdx == -1)
+                {
+                    InternalLogger.Trace("No archiveNumber in {0} (no dot)",  archiveFileName);
                     return 0;
+                }
 
                 int previousToLastDotIdx = archiveFileName.LastIndexOf('.', lastDotIdx - 1);
                 string numberPart = previousToLastDotIdx == -1 ? archiveFileName.Substring(lastDotIdx + 1) : archiveFileName.Substring(previousToLastDotIdx + 1, lastDotIdx - previousToLastDotIdx - 1);
 
                 int archiveNumber;
-                return Int32.TryParse(numberPart, out archiveNumber) ? archiveNumber : 0;
+                if (Int32.TryParse(numberPart, out archiveNumber))
+                {
+                    InternalLogger.Trace("Parsed archiveNumber {0} from {1}", archiveNumber, archiveFileName);
+                    return archiveNumber;
+                }
+                else
+                {
+                    InternalLogger.Trace("No archiveNumber in {0}", archiveFileName);
+                    return 0;
+                }
             }
+        }
+
+        /// <summary>
+        /// Create directory and log
+        /// </summary>
+        /// <param name="dirname"></param>
+        private static void CreateDir(string dirname)
+        {
+            InternalLogger.Debug("Create directory '{0}'", dirname);
+            Directory.CreateDirectory(dirname);
+            InternalLogger.Trace("Creating directory '{0}' done", dirname);
         }
 
         private sealed class FileNameTemplate
