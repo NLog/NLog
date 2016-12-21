@@ -36,6 +36,7 @@ namespace NLog.Internal.FileAppenders
     using System;
     using System.IO;
     using System.Security;
+    using NLog.Common;
 
     /// <summary>
     /// Implementation of <see cref="BaseFileAppender"/> which caches 
@@ -83,8 +84,22 @@ namespace NLog.Internal.FileAppenders
         {
             if (this.file != null)
             {
-                this.file.Close();
-                this.file = null;
+                InternalLogger.Trace("Closing '{0}'", FileName);
+
+                try
+                {
+                    this.file.Close();
+                }
+                catch (Exception ex)
+                {
+                    // Swallow exception as the file-stream now is in final state (broken instead of closed)
+                    InternalLogger.Warn(ex, "Failed to close file: '{0}'", FileName);
+                    System.Threading.Thread.Sleep(1);   // Artificial delay to avoid hammering a bad file location
+                }
+                finally
+                {
+                    this.file = null;
+                }
             }
         }
 
@@ -144,6 +159,7 @@ namespace NLog.Internal.FileAppenders
 
             this.currentFileLength += bytes.Length;
             this.file.Write(bytes, 0, bytes.Length);
+
             if (CaptureLastWriteTime)
             {
                 FileTouched();

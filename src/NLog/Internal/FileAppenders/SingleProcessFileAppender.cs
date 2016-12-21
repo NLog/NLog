@@ -84,6 +84,7 @@ namespace NLog.Internal.FileAppenders
             }
 
             this.file.Write(bytes, 0, bytes.Length);
+            
             if (CaptureLastWriteTime)
             {
                 FileTouched();
@@ -115,8 +116,20 @@ namespace NLog.Internal.FileAppenders
             }
 
             InternalLogger.Trace("Closing '{0}'", FileName);
-            this.file.Close();
-            this.file = null;
+            try
+            {
+                this.file.Close();
+            }
+            catch (Exception ex)
+            {
+                // Swallow exception as the file-stream now is in final state (broken instead of closed)
+                InternalLogger.Warn(ex, "Failed to close file '{0}'", FileName);
+                System.Threading.Thread.Sleep(1);   // Artificial delay to avoid hammering a bad file location
+            }
+            finally
+            {
+                this.file = null;
+            }
         }
 
         /// <summary>

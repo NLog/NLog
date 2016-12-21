@@ -173,9 +173,20 @@ namespace NLog.Internal.FileAppenders
         public override void Close()
         {
             InternalLogger.Trace("Closing '{0}'", FileName);
-            if (fileStream != null)
-                fileStream.Dispose();
-            fileStream = null;
+            try
+            {
+                if (fileStream != null)
+                    fileStream.Dispose();
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "Failed to close file '{0}'", FileName);
+                System.Threading.Thread.Sleep(1);   // Artificial delay to avoid hammering a bad file location
+            }
+            finally
+            {
+                fileStream = null;
+            }
             FileTouched();
         }
 

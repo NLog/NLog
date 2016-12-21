@@ -2059,26 +2059,26 @@ namespace NLog.Targets
 
         private void AutoClosingTimerCallback(object state)
         {
-            lock (this.SyncRoot)
+            try
             {
-                if (!this.IsInitialized)
+                lock (this.SyncRoot)
                 {
-                    return;
-                }
+                    if (!this.IsInitialized)
+                    {
+                        return;
+                    }
 
-                try
-                {
                     DateTime expireTime = DateTime.UtcNow.AddSeconds(-this.OpenFileCacheTimeout);
                     this.fileAppenderCache.CloseAppenders(expireTime);
                 }
-                catch (Exception exception)
-                {
-                    InternalLogger.Warn(exception, "Exception in AutoClosingTimerCallback.");
+            }
+            catch (Exception exception)
+            {
+                InternalLogger.Warn(exception, "Exception in AutoClosingTimerCallback.");
 
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
+                if (exception.MustBeRethrownImmediately())
+                {
+                    throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                 }
             }
         }
@@ -2120,16 +2120,25 @@ namespace NLog.Targets
             bool writeHeader = InitializeFile(fileName, logEvent, justData);
             BaseFileAppender appender = this.fileAppenderCache.AllocateAppender(fileName);
 
-            if (writeHeader)
+            try
             {
-                this.WriteHeader(appender);
+                if (writeHeader)
+                {
+                    this.WriteHeader(appender);
+                }
+
+                appender.Write(bytes);
+
+                if (this.AutoFlush)
+                {
+                    appender.Flush();
+                }
             }
-
-            appender.Write(bytes);
-
-            if (this.AutoFlush)
+            catch (Exception ex)
             {
-                appender.Flush();
+                InternalLogger.Error(ex, "Failed write to file '{0}'.", fileName);
+                this.fileAppenderCache.InvalidateAppender(fileName);
+                throw;
             }
         }
 
