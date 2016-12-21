@@ -1022,7 +1022,7 @@ namespace NLog.Targets
                 LogEventInfo firstLogEvent = null;
 
                 byte[][] logEventsBytes = new byte[bucket.Value.Count][];
-                int totalBytesSize = 0;
+                int bucketByteCount = 0;
                 for (int i = 0; i < bucket.Value.Count; i++)
                 {
                     AsyncLogEventInfo ev = bucket.Value[i];
@@ -1033,11 +1033,11 @@ namespace NLog.Targets
 
                     var bytes = this.GetBytesToWrite(ev.LogEvent);
                     logEventsBytes[i] = bytes;
-                    totalBytesSize += bytes.Length;
+                    bucketByteCount += bytes.Length;
                     pendingContinuations.Add(ev.Continuation);
                 }
 
-                using (var ms = new MemoryStream(totalBytesSize))
+                using (var ms = new MemoryStream(bucketByteCount))
                 {
                     for (int i = 0; i < logEventsBytes.Length; i++)
                     {
