@@ -84,7 +84,7 @@ namespace NLog
             {
                 if (ex != null)
                 {
-                    if (LogManager.ThrowExceptions && Thread.CurrentThread.ManagedThreadId == originalThreadId)
+                    if (factory.ThrowExceptions && Thread.CurrentThread.ManagedThreadId == originalThreadId)
                     {
                         throw new NLogRuntimeException("Exception occurred in NLog", ex);
                     }

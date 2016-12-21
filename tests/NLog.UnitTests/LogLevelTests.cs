@@ -34,6 +34,7 @@
 namespace NLog.UnitTests
 {
     using System;
+    using System.Collections.Generic;
     using Xunit;
 
     public class LogLevelTests : NLogTestBase
@@ -315,6 +316,34 @@ namespace NLog.UnitTests
             Assert.False(LogLevel.Warn.Equals(LogLevel.Error));
             Assert.False(LogLevel.Warn.Equals(LogLevel.Fatal));
             Assert.False(LogLevel.Warn.Equals(LogLevel.Off));
+        }
+
+        [Fact]
+        public void LogLevel_GetAllLevels()
+        {
+            Assert.Equal(
+                new List<LogLevel>() { LogLevel.Trace, LogLevel.Debug, LogLevel.Info, LogLevel.Warn, LogLevel.Error, LogLevel.Fatal, LogLevel.Off },
+                LogLevel.AllLevels);
+        }
+
+        [Fact]
+        public void LogLevel_SetAllLevels()
+        {
+            Assert.Throws<NotSupportedException>(() => ((ICollection<LogLevel>) LogLevel.AllLevels).Add(LogLevel.Fatal));
+        }
+
+        [Fact]
+        public void LogLevel_GetAllLoggingLevels()
+        {
+            Assert.Equal(
+                new List<LogLevel>() { LogLevel.Trace, LogLevel.Debug, LogLevel.Info, LogLevel.Warn, LogLevel.Error, LogLevel.Fatal },
+                LogLevel.AllLoggingLevels);
+        }
+
+        [Fact]
+        public void LogLevel_SetAllLoggingLevels()
+        {
+            Assert.Throws<NotSupportedException>(() => ((ICollection<LogLevel>)LogLevel.AllLoggingLevels).Add(LogLevel.Fatal));
         }
     }
 }

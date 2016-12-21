@@ -96,8 +96,7 @@ namespace NLog.LayoutRenderers.Wrappers
 
                     // StringBuilder needed
                     sb = new StringBuilder(text.Length + 4);
-                    for (int j = 0; j < i; ++j)
-                        sb.Append(text[j]);
+                    sb.Append(text, 0, i);
                 }
 
                 switch (text[i])

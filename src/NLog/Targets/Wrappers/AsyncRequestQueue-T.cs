@@ -134,7 +134,7 @@ namespace NLog.Targets.Wrappers
 
             lock (this)
             {
-                if (count == -1 || this.logEventInfoQueue.Count < count)
+                if (this.logEventInfoQueue.Count < count)
                     count = this.logEventInfoQueue.Count;
 
                 if (count == 0)

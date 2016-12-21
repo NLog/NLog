@@ -58,7 +58,7 @@ namespace NLog.Internal.FileAppenders
     /// (global named mutex is used for this)
     /// </remarks>
     [SecuritySafeCritical]
-    internal class MutexMultiProcessFileAppender : BaseFileAppender
+    internal class MutexMultiProcessFileAppender : BaseMutexFileAppender
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
@@ -105,7 +105,7 @@ namespace NLog.Internal.FileAppenders
         /// <param name="count">The number of bytes.</param>
         public override void Write(byte[] bytes, int offset, int count)
         {
-            if (this.mutex == null)
+            if (this.mutex == null || this.fileStream == null)
             {
                 return;
             }
@@ -145,16 +145,38 @@ namespace NLog.Internal.FileAppenders
             InternalLogger.Trace("Closing '{0}'", FileName);
             if (this.mutex != null)
             {
-                this.mutex.Close();
+                try
+                {
+                    this.mutex.Close();
+                }
+                catch (Exception ex)
+                {
+                    // Swallow exception as the mutex now is in final state (abandoned instead of closed)
+                    InternalLogger.Warn(ex, "Failed to close mutex: '{0}'", FileName);
+                }
+                finally
+                {
+                    this.mutex = null;
+                }
             }
 
             if (this.fileStream != null)
             {
-                this.fileStream.Close();
+                try
+                {
+                    this.fileStream.Close();
+                }
+                catch (Exception ex)
+                {
+                    // Swallow exception as the file-stream now is in final state (broken instead of closed)
+                    InternalLogger.Warn(ex, "Failed to close file: '{0}'", FileName);
+                }
+                finally
+                {
+                    this.fileStream = null;
+                }
             }
 
-            this.mutex = null;
-            this.fileStream = null;
             FileTouched();
         }
 
@@ -166,18 +188,32 @@ namespace NLog.Internal.FileAppenders
             // do nothing, the stream is always flushed
         }
 
+        /// <summary>
+        /// Gets the creation time for a file associated with the appender. The time returned is in Coordinated Universal 
+        /// Time [UTC] standard.
+        /// </summary>
+        /// <returns>The file creation time.</returns>
         public override DateTime? GetFileCreationTimeUtc()
         {
             var fileChars = GetFileCharacteristics();
             return fileChars.CreationTimeUtc;
         }
 
+        /// <summary>
+        /// Gets the last time the file associated with the appeander is written. The time returned is in Coordinated 
+        /// Universal Time [UTC] standard.
+        /// </summary>
+        /// <returns>The time the file was last written to.</returns>
         public override DateTime? GetFileLastWriteTimeUtc()
         {
             var fileChars = GetFileCharacteristics();
             return fileChars.LastWriteTimeUtc;
         }
 
+        /// <summary>
+        /// Gets the length in bytes of the file associated with the appeander.
+        /// </summary>
+        /// <returns>A long value representing the length of the file in bytes.</returns>
         public override long? GetFileLength()
         {
             var fileChars = GetFileCharacteristics();
@@ -186,7 +222,7 @@ namespace NLog.Internal.FileAppenders
 
         private FileCharacteristics GetFileCharacteristics()
         {
-            //todo not efficient to read all the whole FileCharacteristics and then using one property
+            // TODO: It is not efficient to read all the whole FileCharacteristics and then using one property.
             return fileCharacteristicsHelper.GetFileCharacteristics(FileName, this.fileStream);
         }
 

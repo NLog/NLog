@@ -31,12 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Security;
 
 namespace NLog.Internal.FileAppenders
 {
+    using System;
     using System.IO;
+    using System.Security;
+
     using NLog.Common;
 
     /// <summary>
@@ -85,6 +86,7 @@ namespace NLog.Internal.FileAppenders
             }
 
             this.file.Write(bytes, offset, count);
+
             if (CaptureLastWriteTime)
             {
                 FileTouched();
@@ -116,23 +118,49 @@ namespace NLog.Internal.FileAppenders
             }
 
             InternalLogger.Trace("Closing '{0}'", FileName);
-            this.file.Close();
-            this.file = null;
+            try
+            {
+                this.file.Close();
+            }
+            catch (Exception ex)
+            {
+                // Swallow exception as the file-stream now is in final state (broken instead of closed)
+                InternalLogger.Warn(ex, "Failed to close file '{0}'", FileName);
+                System.Threading.Thread.Sleep(1);   // Artificial delay to avoid hammering a bad file location
+            }
+            finally
+            {
+                this.file = null;
+            }
         }
 
+        /// <summary>
+        /// Gets the creation time for a file associated with the appender. The time returned is in Coordinated Universal 
+        /// Time [UTC] standard.
+        /// </summary>
+        /// <returns>The file creation time.</returns>
         public override DateTime? GetFileCreationTimeUtc()
         {
             return this.CreationTime;
         }
 
+        /// <summary>
+        /// Gets the last time the file associated with the appeander is written. The time returned is in Coordinated 
+        /// Universal Time [UTC] standard.
+        /// </summary>
+        /// <returns>The time the file was last written to.</returns>
         public override DateTime? GetFileLastWriteTimeUtc()
         {
             return this.LastWriteTime;
         }
 
+        /// <summary>
+        /// Gets the length in bytes of the file associated with the appeander.
+        /// </summary>
+        /// <returns>A long value representing the length of the file in bytes.</returns>
         public override long? GetFileLength()
         {
-            if (file == null) return null;
+            if (file == null) { return null; }
             return file.Length;
         }
 

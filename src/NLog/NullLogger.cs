@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,27 +31,36 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal
+
+namespace NLog
 {
+    using NLog.Internal;
     using System;
-    using System.Text;
 
     /// <summary>
-    /// Parameter validation utilities.
+    /// It works as a normal <see cref="T:NLog.Logger" /> but it discards all messages which an application requests 
+    /// to be logged.
+    /// 
+    /// It effectively implements the "Null Object" pattern for <see cref="T:NLog.Logger" /> objects.  
     /// </summary>
-    internal static class ParameterUtils
+    public sealed class NullLogger : Logger
     {
+        // Hides the default constructor of this class.
+        private NullLogger() { }
+
         /// <summary>
-        /// Asserts that the value is not null and throws <see cref="ArgumentNullException"/> otherwise.
+        /// Initializes a new instance of <see cref="NullLogger"/>.
         /// </summary>
-        /// <param name="value">The value to check.</param>
-        /// <param name="parameterName">Name of the parameter.</param>
-        public static void AssertNotNull(object value, string parameterName)
+        /// <param name="factory">The factory class to be used for the creation of this logger.</param>
+        public NullLogger(LogFactory factory)
         {
-            if (value == null)
+            if (factory == null)
             {
-                throw new ArgumentNullException(parameterName);
+                throw new ArgumentNullException("factory");
             }
+
+            TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
+            Initialize(string.Empty, new LoggerConfiguration(targetsByLevel, false), factory);
         }
     }
 }

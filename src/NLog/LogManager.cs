@@ -62,7 +62,8 @@ namespace NLog
         /// <summary>
         /// Delegate used to set/get the culture in use.
         /// </summary>
-        [Obsolete]
+        /// <remarks>This delegate marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Marked obsolete before v4.3.11")]
         public delegate CultureInfo GetCultureInfo();
 
 #if !SILVERLIGHT && !MONO
@@ -153,8 +154,8 @@ namespace NLog
 #if !SILVERLIGHT && !MONO
                 if (currentAppDomain != null)
                 {
-                    currentAppDomain.DomainUnload -= TurnOffLogging;
-                    currentAppDomain.ProcessExit -= TurnOffLogging;
+                    currentAppDomain.DomainUnload -= LogManager_OnStopLogging;
+                    currentAppDomain.ProcessExit -= LogManager_OnStopLogging;
                 }
 #endif
                 currentAppDomain = value;
@@ -183,7 +184,8 @@ namespace NLog
         /// <summary>
         /// Gets or sets the default culture to use.
         /// </summary>
-        [Obsolete("Use Configuration.DefaultCultureInfo property instead")]
+        /// <remarks>This property was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Configuration.DefaultCultureInfo property instead. Marked obsolete before v4.3.11")]
         public static GetCultureInfo DefaultCultureInfo
         {
             get { return () => factory.DefaultCultureInfo ?? CultureInfo.CurrentCulture; }
@@ -288,7 +290,7 @@ namespace NLog
 
 #if !SILVERLIGHT
         /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
+        /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
         /// </summary>
         public static void Flush()
         {
@@ -396,8 +398,8 @@ namespace NLog
         {
             try
             {
-                CurrentAppDomain.ProcessExit += TurnOffLogging;
-                CurrentAppDomain.DomainUnload += TurnOffLogging;
+                CurrentAppDomain.ProcessExit += LogManager_OnStopLogging;
+                CurrentAppDomain.DomainUnload += LogManager_OnStopLogging;
             }
             catch (Exception exception)
             {
@@ -443,18 +445,21 @@ namespace NLog
             return className;
         }
 
-        private static void TurnOffLogging(object sender, EventArgs args)
+        private static void LogManager_OnStopLogging(object sender, EventArgs args)
         {
-            // Reset logging configuration to null; this causes old configuration (if any) to be 
-            // closed.
-            InternalLogger.Info("Shutting down logging...");
-            if (Configuration != null)
+            try
             {
-                Configuration = null;
-                factory.Dispose();      // Release event listeners
+                InternalLogger.Info("Shutting down logging...");
+                factory.Close(TimeSpan.FromMilliseconds(1500)); // Finalizer thread has about 2 secs, before being terminated
+                CurrentAppDomain = null;    // No longer part of AppDomains
+                InternalLogger.Info("Logger has been shut down.");
             }
-            CurrentAppDomain = null;    // No longer part of AppDomains
-            InternalLogger.Info("Logger has been shut down.");
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+                InternalLogger.Error(ex, "Logger failed to shut down properly.");
+            }
         }
     }
 }

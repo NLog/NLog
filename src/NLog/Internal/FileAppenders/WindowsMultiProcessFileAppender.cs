@@ -39,6 +39,7 @@ namespace NLog.Internal.FileAppenders
     using System.IO;
     using System.Security;
     using System.Threading;
+
     using NLog.Common;
 
     /// <summary>
@@ -174,9 +175,20 @@ namespace NLog.Internal.FileAppenders
         public override void Close()
         {
             InternalLogger.Trace("Closing '{0}'", FileName);
-            if (fileStream != null)
-                fileStream.Dispose();
-            fileStream = null;
+            try
+            {
+                if (fileStream != null)
+                    fileStream.Dispose();
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "Failed to close file '{0}'", FileName);
+                System.Threading.Thread.Sleep(1);   // Artificial delay to avoid hammering a bad file location
+            }
+            finally
+            {
+                fileStream = null;
+            }
             FileTouched();
         }
 
@@ -200,6 +212,10 @@ namespace NLog.Internal.FileAppenders
             return fileChars != null ? fileChars.LastWriteTimeUtc : (DateTime?)null;
         }
 
+        /// <summary>
+        /// Gets the length in bytes of the file associated with the appeander.
+        /// </summary>
+        /// <returns>A long value representing the length of the file in bytes.</returns>
         public override long? GetFileLength()
         {
             var fileChars = GetFileCharacteristics();

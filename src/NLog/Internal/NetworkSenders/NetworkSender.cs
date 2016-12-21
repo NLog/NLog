@@ -59,14 +59,6 @@ namespace NLog.Internal.NetworkSenders
         }
 
         /// <summary>
-        /// Finalizes an instance of the NetworkSender class.
-        /// </summary>
-        ~NetworkSender()
-        {
-            this.Dispose(false);
-        }
-
-        /// <summary>
         /// Gets the address of the network endpoint.
         /// </summary>
         public string Address { get; private set; }

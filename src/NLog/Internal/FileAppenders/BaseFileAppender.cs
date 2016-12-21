@@ -31,29 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__ANDROID__ && !__IOS__
-// Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) 
-#define SupportsMutex
-#endif
-
-using System.Security;
-
-
-
 namespace NLog.Internal.FileAppenders
 {
     using System;
     using System.IO;
     using System.Runtime.InteropServices;
+    using System.Security;
+
     using NLog.Common;
     using NLog.Internal;
-    using System.Threading;
-#if SupportsMutex
-    using System.Security.AccessControl;
-    using System.Security.Principal;
-    using System.Security.Cryptography;
-#endif
-    using System.Text;
 
     /// <summary>
     /// Base class for optimized file appenders.
@@ -75,10 +61,6 @@ namespace NLog.Internal.FileAppenders
             this.OpenTime = DateTime.UtcNow; // to be consistent with timeToKill in FileTarget.AutoClosingTimerCallback
             this.LastWriteTime = DateTime.MinValue;
             this.CaptureLastWriteTime = createParameters.CaptureLastWriteTime;
-#if SupportsMutex
-           
-            this.ArchiveMutex = CreateArchiveMutex();
-#endif
         }
 
         protected bool CaptureLastWriteTime { get; private set; }
@@ -90,21 +72,24 @@ namespace NLog.Internal.FileAppenders
         public string FileName { get; private set; }
 
         /// <summary>
-        /// Gets the file creation time.
+        /// Gets or sets the creation time for a file associated with the appender. The time returned is in Coordinated  
+        /// Universal Time [UTC] standard.
         /// </summary>
-        /// <value>The file creation time. DateTime value must be of UTC kind.</value>
+        /// <returns>The creation time of the file.</returns>
         public DateTime CreationTime { get; internal set; }
 
         /// <summary>
-        /// Gets the open time of the file.
+        /// Gets the last time the file associated with the appeander is opened. The time returned is in Coordinated 
+        /// Universal Time [UTC] standard.
         /// </summary>
-        /// <value>The open time. DateTime value must be of UTC kind.</value>
+        /// <returns>The time the file was last opened.</returns>
         public DateTime OpenTime { get; private set; }
 
         /// <summary>
-        /// Gets the last write time.
+        /// Gets the last time the file associated with the appeander is written. The time returned is in  
+        /// Coordinated Universal Time [UTC] standard.
         /// </summary>
-        /// <value>The time the file was last written to. DateTime value must be of UTC kind.</value>
+        /// <returns>The time the file was last written to.</returns>
         public DateTime LastWriteTime { get; private set; }
 
         /// <summary>
@@ -112,14 +97,6 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         /// <value>The file creation parameters.</value>
         public ICreateFileParameters CreateFileParameters { get; private set; }
-
-#if !SILVERLIGHT
-        /// <summary>
-        /// Gets the mutually-exclusive lock for archiving files.
-        /// </summary>
-        /// <value>The mutex for archiving.</value>
-        public Mutex ArchiveMutex { get; private set; }
-#endif
 
         /// <summary>
         /// Writes the specified bytes.
@@ -142,8 +119,24 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public abstract void Close();
 
+        /// <summary>
+        /// Gets the creation time for a file associated with the appender. The time returned is in Coordinated Universal 
+        /// Time [UTC] standard.
+        /// </summary>
+        /// <returns>The file creation time.</returns>
         public abstract DateTime? GetFileCreationTimeUtc();
+
+        /// <summary>
+        /// Gets the last time the file associated with the appeander is written. The time returned is in Coordinated 
+        /// Universal Time [UTC] standard.
+        /// </summary>
+        /// <returns>The time the file was last written to.</returns>
         public abstract DateTime? GetFileLastWriteTimeUtc();
+
+        /// <summary>
+        /// Gets the length in bytes of the file associated with the appeander.
+        /// </summary>
+        /// <returns>A long value representing the length of the file in bytes.</returns>
         public abstract long? GetFileLength();
 
         /// <summary>
@@ -186,78 +179,6 @@ namespace NLog.Internal.FileAppenders
         {
             this.LastWriteTime = dateTime;
         }
-
-#if SupportsMutex
-        /// <summary>
-        /// Creates a mutually-exclusive lock for archiving files.
-        /// </summary>
-        /// <returns>A <see cref="Mutex"/> object which can be used for controlling the archiving of files.</returns>
-        protected virtual Mutex CreateArchiveMutex()
-        {
-            return new Mutex();
-        }
-
-        /// <summary>
-        /// Creates a mutex for archiving that is sharable by more than one process.
-        /// </summary>
-        /// <returns>A <see cref="Mutex"/> object which can be used for controlling the archiving of files.</returns>
-        protected Mutex CreateSharableArchiveMutex()
-        {
-            return CreateSharableMutex("FileArchiveLock");
-        }
-
-        /// <summary>
-        /// Creates a mutex that is sharable by more than one process.
-        /// </summary>
-        /// <param name="mutexNamePrefix">The prefix to use for the name of the mutex.</param>
-        /// <returns>A <see cref="Mutex"/> object which is sharable by multiple processes.</returns>
-        protected Mutex CreateSharableMutex(string mutexNamePrefix)
-        {
-            // Creates a mutex sharable by more than one process
-            var mutexSecurity = new MutexSecurity();
-            var everyoneSid = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
-            mutexSecurity.AddAccessRule(new MutexAccessRule(everyoneSid, MutexRights.FullControl, AccessControlType.Allow));
-
-            // The constructor will either create new mutex or open
-            // an existing one, in a thread-safe manner
-            bool createdNew;
-            return new Mutex(false, GetMutexName(mutexNamePrefix), out createdNew, mutexSecurity);
-        }
-
-        private string GetMutexName(string mutexNamePrefix)
-        {
-            const string mutexNameFormatString = @"Global\NLog-File{0}-{1}";
-            const int maxMutexNameLength = 260;
-
-            string canonicalName = Path.GetFullPath(FileName).ToLowerInvariant();
-
-            // Mutex names must not contain a backslash, it's the namespace separator,
-            // but all other are OK
-            canonicalName = canonicalName.Replace('\\', '/');
-            string mutexName = string.Format(mutexNameFormatString, mutexNamePrefix, canonicalName);
-
-            // A mutex name must not exceed MAX_PATH (260) characters
-            if (mutexName.Length <= maxMutexNameLength)
-            {
-                return mutexName;
-            }
-
-            // The unusual case of the path being too long; let's hash the canonical name,
-            // so it can be safely shortened and still remain unique
-            string hash;
-            using (MD5 md5 = MD5.Create())
-            {
-                byte[] bytes = md5.ComputeHash(Encoding.UTF8.GetBytes(canonicalName));
-                hash = Convert.ToBase64String(bytes);
-            }
-
-            // The hash makes the name unique, but also add the end of the path,
-            // so the end of the name tells us which file it is (for debugging)
-            mutexName = string.Format(mutexNameFormatString, mutexNamePrefix, hash);
-            int cutOffIndex = canonicalName.Length - (maxMutexNameLength - mutexName.Length);
-            return mutexName + canonicalName.Substring(cutOffIndex);
-        }
-#endif
 
         /// <summary>
         /// Creates the file stream.

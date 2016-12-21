@@ -421,46 +421,6 @@ namespace NLog.Targets
             }
         }
 
-        internal void WriteAsyncLogEvents(IList<AsyncLogEventInfo> logEventInfos, AsyncContinuation continuation)
-        {
-            if (logEventInfos.Count == 0)
-            {
-                continuation(null);
-            }
-            else
-            {
-                IList<AsyncLogEventInfo> wrappedLogEventInfos;
-                if (this.RestrictedBufferReuse)
-                {
-                    AsyncLogEventInfo[] logEventsArray = new AsyncLogEventInfo[logEventInfos.Count];
-                    logEventInfos.CopyTo(logEventsArray, 0);
-                    wrappedLogEventInfos = logEventsArray;
-                }
-                else
-                {
-                    wrappedLogEventInfos = logEventInfos;
-                }
-
-                int remaining = wrappedLogEventInfos.Count;
-                for (int i = 0; i < wrappedLogEventInfos.Count; ++i)
-                {
-                    AsyncContinuation originalContinuation = wrappedLogEventInfos[i].Continuation;
-                    AsyncContinuation wrappedContinuation = ex =>
-                    {
-                        originalContinuation(ex);
-                        if (0 == Interlocked.Decrement(ref remaining))
-                        {
-                            continuation(null);
-                        }
-                    };
-
-                    wrappedLogEventInfos[i] = wrappedLogEventInfos[i].LogEvent.WithContinuation(wrappedContinuation);
-                }
- 
-                this.WriteAsyncLogEvents(wrappedLogEventInfos);
-            }
-        }
-
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
@@ -590,7 +550,7 @@ namespace NLog.Targets
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
-        [Obsolete("Instead use Write(IList<AsyncLogEventInfo> logEvents)")]
+        [Obsolete("Instead use Write(IList<AsyncLogEventInfo> logEvents). Marked obsolete on NLog 4.4.1")]
         protected virtual void Write(AsyncLogEventInfo[] logEvents)
         {
             Write((IList<AsyncLogEventInfo>)logEvents);
