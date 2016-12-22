@@ -90,8 +90,9 @@ namespace NLog.UnitTests.Config
         [InlineData("1:0:0:0", 86400)] //1 day
         public void SetTimeSpanFromXmlTest(string interval, int seconds)
         {
+            
             var config = CreateConfigurationFromString(string.Format(@"
-            <nlog>
+            <nlog throwExceptions='true'>
                 <targets>
                     <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='5'  interval='{0}'>
                         <target name='debug' type='Debug' layout='${{message}}' />

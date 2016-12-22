@@ -384,6 +384,8 @@ namespace NLog.Internal
         private static bool TryTypeConverterConversion(Type type, string value, out object newValue)
         {
 #if !SILVERLIGHT && !NETSTANDARD
+            //Needed netstandard2.0 in .NET Core -  TypeDescriptor.
+            //this is needed for parsing timespan from string
             var converter = TypeDescriptor.GetConverter(type);
             if (converter.CanConvertFrom(typeof(string)))
             {
@@ -399,6 +401,11 @@ namespace NLog.Internal
             else if (type == typeof(Uri))
             {
                 newValue = new Uri(value);
+                return true;
+            }
+            else if (type == typeof(TimeSpan))
+            {
+                newValue = TimeSpan.Parse(value);
                 return true;
             }
 #endif
