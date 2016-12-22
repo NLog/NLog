@@ -40,7 +40,11 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     public class ProcessIdLayoutRendererTests : NLogTestBase
     {
+#if NETSTANDARD 
+        [Fact(Skip = "${processid} not supported in NETSTANDARD yet")]
+#else
         [Fact]
+#endif
         public void RenderProcessIdLayoutRenderer()
         {
             Layout layout = "${processid}";

@@ -39,7 +39,12 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     public class NLogDirRendererTests : NLogTestBase
     {
+
+#if NETSTANDARD 
+        [Fact(Skip = "${nlogdir} not supported in NETSTANDARD yet")]
+#else
         [Fact]
+#endif
         public void RenderNLogDir()
         {
             Layout layout = "${nlogdir}";
@@ -54,7 +59,11 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 
+#if NETSTANDARD 
+        [Fact(Skip = "${nlogdir} not supported in NETSTANDARD yet")]
+#else
         [Fact]
+#endif
         public void RenderNLogDir_with_file_and_dir()
         {
             Layout layout = "${nlogdir:dir=test:file=file1.txt}";
