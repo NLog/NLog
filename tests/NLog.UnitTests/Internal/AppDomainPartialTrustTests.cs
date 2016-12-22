@@ -37,6 +37,7 @@ using System.Security;
 using System.Security.Permissions;
 using System.Text;
 using System.Threading;
+using System.Xml;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
@@ -105,18 +106,24 @@ namespace NLog.UnitTests.Internal
     {
         public void PartialTrustSuccess(int times, string fileWritePath)
         {
-            var fileTarget = new FileTarget
-            {
-                FileName = Path.Combine(fileWritePath, "${level}.txt"),
-                LineEnding = LineEndingMode.LF,
-                Layout = "${message} ${threadid}"
-            };
+            var filePath = Path.Combine(fileWritePath, "${level}.txt");
 
-            SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(fileTarget, 10, AsyncTargetWrapperOverflowAction.Grow)
-            {
-                Name = "AsyncMultiFileWrite_wrapper"
-            }, LogLevel.Debug);
-            LogManager.ThrowExceptions = true;
+
+            var configXml = string.Format(@"
+            <nlog throwExceptions='false'>
+                <targets async='true'> 
+                    <target name='file' type='file' layout='${{message}} ${{threadid}}' filename='{0}' LineEnding='lf' />
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' appendto='file'>
+                    </logger>
+                </rules>
+            </nlog>", filePath);
+
+            LogManager.Configuration = NLogTestBase.CreateConfigurationFromString(configXml);
+
+            //this method gave issues
+            LogFactory.LogConfigurationInitialized();
 
             ILogger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
 
