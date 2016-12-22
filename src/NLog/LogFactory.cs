@@ -40,6 +40,7 @@ namespace NLog
     using System.IO;
     using System.Linq;
     using System.Runtime.CompilerServices;
+    using System.Security;
     using System.Text;
     using System.Threading;
 
@@ -187,7 +188,7 @@ namespace NLog
                             {
                                 throw;
                             }
-                           
+
                         }
                     }
 #endif
@@ -259,7 +260,7 @@ namespace NLog
                             }
 #endif
                             this.config.InitializeAll();
-                            
+
                             LogConfigurationInitialized();
                         }
                         finally
@@ -378,10 +379,18 @@ namespace NLog
             }
         }
 
-        private void LogConfigurationInitialized()
+        internal static void LogConfigurationInitialized()
         {
             InternalLogger.Info("Configuration initialized.");
-            InternalLogger.LogAssemblyVersion(typeof(ILogger).Assembly);
+            try
+            {
+                InternalLogger.LogAssemblyVersion(typeof(ILogger).Assembly);
+            }
+            catch (SecurityException ex) 
+            {
+                InternalLogger.Debug(ex, "Not running in full trust");
+            }
+
         }
 
         /// <summary>
@@ -966,7 +975,7 @@ namespace NLog
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 activeAppDomain.DomainUnload -= this.DomainUnload;
 #endif
-            }          
+            }
         }
 
         /// <summary>
