@@ -93,7 +93,29 @@ namespace NLog.Internal.FileAppenders
 
             try
             {
+                bool fileExists = File.Exists(fileName);
+
                 this.file = new UnixStream(fd, true);
+
+                long filePosition = this.file.Position;
+                if (fileExists || filePosition > 0)
+                {
+                    this.CreationTimeUtc = File.GetCreationTimeUtc(this.FileName);
+                    if (this.CreationTimeUtc < DateTime.UtcNow - TimeSpan.FromSeconds(2) && filePosition == 0)
+                    {
+                        // File wasn't created "almost now". 
+                        Thread.Sleep(50);
+                        // Having waited for a short amount of time usually means the file creation process has continued
+                        // code execution just enough to the above point where it has fixed up the creation time.
+                        this.CreationTimeUtc = File.GetCreationTimeUtc(this.FileName);
+                    }
+                }
+                else
+                {
+                    // We actually created the file and eventually concurrent processes 
+                    this.CreationTimeUtc = DateTime.UtcNow;
+                    File.SetCreationTimeUtc(this.FileName, this.CreationTimeUtc);
+                }
             }
             catch
             {
@@ -141,10 +163,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>The file creation time.</returns>
         public override DateTime? GetFileCreationTimeUtc()
         {
-            FileInfo fileInfo = new FileInfo(FileName);
-            if (!fileInfo.Exists)
-                return null;
-            return fileInfo.CreationTime;
+            return this.CreationTimeUtc;    // File is kept open, so creation time is static
         }
         
         /// <summary>

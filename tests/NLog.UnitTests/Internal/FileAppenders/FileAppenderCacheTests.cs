@@ -202,13 +202,13 @@ namespace NLog.UnitTests.Internal.FileAppenders
         {
             // Invoke GetFileCharacteristics() on an Empty FileAppenderCache.
             FileAppenderCache emptyCache = FileAppenderCache.Empty;
-            Assert.Null(emptyCache.GetFileCreationTimeUtc("file.txt", false));
+            Assert.Null(emptyCache.GetFileCreationTimeSource("file.txt", false));
             Assert.Null(emptyCache.GetFileLastWriteTimeUtc("file.txt", false));
             Assert.Null(emptyCache.GetFileLength("file.txt", false));
           
             FileAppenderCache cache = new FileAppenderCache(3, appenderFactory, fileParameters);
             // Invoke GetFileCharacteristics() on non-empty FileAppenderCache - Before allocating any appenders. 
-            Assert.Null(emptyCache.GetFileCreationTimeUtc("file.txt", false));
+            Assert.Null(emptyCache.GetFileCreationTimeSource("file.txt", false));
             Assert.Null(emptyCache.GetFileLastWriteTimeUtc("file.txt", false));
             Assert.Null(emptyCache.GetFileLength("file.txt", false));
 
@@ -228,10 +228,10 @@ namespace NLog.UnitTests.Internal.FileAppenders
             //
 
             // File information should be returned.
-           
-            var fileCreationTimeUtc = cache.GetFileCreationTimeUtc(tempFile, false);
+
+            var fileCreationTimeUtc = cache.GetFileCreationTimeSource(tempFile, false);
             Assert.NotNull(fileCreationTimeUtc);
-            Assert.True(fileCreationTimeUtc > DateTime.UtcNow.AddMinutes(-2),"creationtime is wrong");
+            Assert.True(fileCreationTimeUtc > Time.TimeSource.Current.FromSystemTime(DateTime.UtcNow.AddMinutes(-2)),"creationtime is wrong");
 
             var fileLastWriteTimeUtc = cache.GetFileLastWriteTimeUtc(tempFile, false);
             Assert.NotNull(fileLastWriteTimeUtc);

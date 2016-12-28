@@ -2039,26 +2039,46 @@ namespace NLog.Targets
                 return null;
             }
 
-            var creationTimeUtc = this.fileAppenderCache.GetFileCreationTimeUtc(fileName, true);
-            if (creationTimeUtc == null)
+            var creationTimeSource = this.fileAppenderCache.GetFileCreationTimeSource(fileName, true);
+            if (creationTimeSource == null)
             {
                 return null;
             }
 
-            // file creation time is in Utc and logEvent's timestamp is originated from TimeSource.Current,
-            // so we should ask the TimeSource to convert file time to TimeSource time:
-
-            DateTime creationTime = TimeSource.Current.FromSystemTime(creationTimeUtc.Value);
-            string formatString = GetArchiveDateFormatString(string.Empty);
-            string fileCreated = creationTime.ToString(formatString, CultureInfo.InvariantCulture);
-            string logEventRecorded = logEvent.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
-
-            var shouldArchive = fileCreated != logEventRecorded;
-            if (shouldArchive)
+            DateTime fileCreateTime = TruncateArchiveTime(creationTimeSource.Value, this.ArchiveEvery);
+            DateTime logEventTime = TruncateArchiveTime(logEvent.TimeStamp, this.ArchiveEvery);
+            if (fileCreateTime != logEventTime)
             {
-                return fileName;
+                string formatString = GetArchiveDateFormatString(string.Empty);
+                string fileCreated = creationTimeSource.Value.ToString(formatString, CultureInfo.InvariantCulture);
+                string logEventRecorded = logEvent.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
+
+                var shouldArchive = fileCreated != logEventRecorded;
+                if (shouldArchive)
+                {
+                    return fileName;
+                }
             }
             return null;
+        }
+
+        private static DateTime TruncateArchiveTime(DateTime input, FileArchivePeriod resolution)
+        {
+            switch (resolution)
+            {
+                case FileArchivePeriod.Year:
+                    return new DateTime(input.Year, 1, 1, 0, 0, 0, 0, input.Kind);
+                case FileArchivePeriod.Month:
+                    return new DateTime(input.Year, input.Month, 1, 0, 0, 0, input.Kind);
+                case FileArchivePeriod.Day:
+                    return input.Date;
+                case FileArchivePeriod.Hour:
+                    return input.AddTicks(-(input.Ticks % TimeSpan.TicksPerHour));
+                case FileArchivePeriod.Minute:
+                    return input.AddTicks(-(input.Ticks % TimeSpan.TicksPerMinute));
+                default:
+                    return input;   // Unknown time-resolution-truncate, leave unchanged
+            }
         }
 
         private void AutoClosingTimerCallback(object state)

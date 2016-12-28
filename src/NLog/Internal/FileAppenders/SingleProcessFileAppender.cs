@@ -139,7 +139,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>The file creation time.</returns>
         public override DateTime? GetFileCreationTimeUtc()
         {
-            return this.CreationTime;
+            return this.CreationTimeUtc;
         }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>The time the file was last written to.</returns>
         public override DateTime? GetFileLastWriteTimeUtc()
         {
-            return this.LastWriteTime;
+            return this.LastWriteTimeUtc;
         }
 
         /// <summary>

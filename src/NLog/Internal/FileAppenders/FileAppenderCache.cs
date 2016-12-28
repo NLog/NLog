@@ -174,20 +174,22 @@ namespace NLog.Internal.FileAppenders
                     break;
                 }
 
-                if (appenders[i].FileName == fileName)
+                if (string.CompareOrdinal(appenders[i].FileName, fileName) == 0)
                 {
                     // found it, move it to the first place on the list
                     // (MRU)
-
-                    // file open has a chance of failure
-                    // if it fails in the constructor, we won't modify any data structures
                     BaseFileAppender app = appenders[i];
-                    for (int j = i; j > 0; --j)
+                    if (i != 0)
                     {
-                        appenders[j] = appenders[j - 1];
-                    }
+                        // file open has a chance of failure
+                        // if it fails in the constructor, we won't modify any data structures
+                        for (int j = i; j > 0; --j)
+                        {
+                            appenders[j] = appenders[j - 1];
+                        }
 
-                    appenders[0] = app;
+                        appenders[0] = app;
+                    }
                     appenderToWrite = app;
                     break;
                 }
@@ -259,7 +261,7 @@ namespace NLog.Internal.FileAppenders
                     break;
                 }
 
-                if (this.appenders[i].OpenTime < expireTime)
+                if (this.appenders[i].OpenTimeUtc < expireTime)
                 {
                     for (int j = i; j < this.appenders.Length; ++j)
                     {
@@ -295,12 +297,13 @@ namespace NLog.Internal.FileAppenders
 
         private BaseFileAppender GetAppender(string fileName)
         {
-            foreach (BaseFileAppender appender in appenders)
+            for (int i = 0; i < this.appenders.Length; ++i)
             {
+                BaseFileAppender appender = this.appenders[i];
                 if (appender == null)
                     break;
 
-                if (appender.FileName == fileName)
+                if (string.CompareOrdinal(appender.FileName, fileName)==0)
                     return appender;
             }
 
@@ -315,7 +318,7 @@ namespace NLog.Internal.FileAppenders
         }
 #endif
 
-        public DateTime? GetFileCreationTimeUtc(string filePath, bool fallback)
+        public DateTime? GetFileCreationTimeSource(string filePath, bool fallback)
         {
             var appender = GetAppender(filePath);
             DateTime? result = null;
@@ -324,6 +327,14 @@ namespace NLog.Internal.FileAppenders
                 try
                 {
                     result = appender.GetFileCreationTimeUtc();
+                    if (result.HasValue)
+                    {
+                        if (result.Value != appender.CreationTimeUtc)
+                        {
+                            appender.CreationTimeUtc = result.Value;
+                        }
+                        return appender.CreationTimeSouce;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -337,7 +348,7 @@ namespace NLog.Internal.FileAppenders
                 var fileInfo = new FileInfo(filePath);
                 if (fileInfo.Exists)
                 {
-                    return fileInfo.GetCreationTimeUtc();
+                    return Time.TimeSource.Current.FromSystemTime(fileInfo.GetCreationTimeUtc());
                 }
             }
 
@@ -415,7 +426,7 @@ namespace NLog.Internal.FileAppenders
                     break;
                 }
 
-                if (appenders[i].FileName == filePath)
+                if (string.CompareOrdinal(appenders[i].FileName, filePath) == 0)
                 {
                     CloseAppender(appenders[i]);
                     for (int j = i; j < appenders.Length - 1; ++j)
