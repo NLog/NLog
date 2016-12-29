@@ -732,11 +732,11 @@ namespace NLog.Targets
         /// </summary>
         private void RefreshArchiveFilePatternToWatch()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             if (this.fileAppenderCache != null)
             {
                 this.fileAppenderCache.CheckCloseAppenders -= AutoClosingTimerCallback;
 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 if (KeepFileOpen || OpenFileCacheTimeout > 0)
                     this.fileAppenderCache.CheckCloseAppenders += AutoClosingTimerCallback;
 
@@ -757,8 +757,11 @@ namespace NLog.Targets
                 {
                     this.fileAppenderCache.ArchiveFilePatternToWatch = null;
                 }
-            }
+#else
+                if (OpenFileCacheTimeout > 0)
+                    this.fileAppenderCache.CheckCloseAppenders += AutoClosingTimerCallback;
 #endif
+            }
         }
 
         /// <summary>
