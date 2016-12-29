@@ -152,17 +152,30 @@ namespace NLog.UnitTests
             public void CompressFile(string fileName, string archiveFileName)
             {
 #if NET3_5 || NET4_0 || NET4_5
-                using (ZipFile zip = new ZipFile())
+                // Creating archive-file will trigger others to close their stale file-handles
+                using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
                 {
-                    zip.AddFile(fileName);
-                    zip.Save(archiveFileName);
+                    // Move the file to a safe place, so others can continue logging
+                    string archiveFileNameTmp = archiveFileName + ".tmp";
+                    File.Move(fileName, archiveFileNameTmp);
+
+                    System.Threading.Thread.Sleep(100);  // Wait a little, while others are closing their stale filehandles
+
+                    using (ZipFile zip = new ZipFile())
+                    using (var originalFileStream = new FileStream(archiveFileNameTmp, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                    {
+                        zip.AddEntry(Path.GetFileName(fileName), originalFileStream);
+                        zip.Save(archiveStream);
+                    }
+
+                    File.Delete(archiveFileNameTmp);    // Automatic file cleanup
                 }
 #endif
             }
         }
 
 #if NET3_5 || NET4_0
-        protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
+        protected void AssertZipFileContents(string originalFileName, string fileName, string contents, Encoding encoding)
         {
             if (!File.Exists(fileName))
                 Assert.True(false, "File '" + fileName + "' doesn't exist.");
@@ -172,6 +185,7 @@ namespace NLog.UnitTests
             using (var zip = new ZipFile(fileName))
             {
                 Assert.Equal(1, zip.Count);
+                Assert.Equal(Path.GetFileName(originalFileName), zip[0].FileName);
                 Assert.Equal(encodedBuf.Length, zip[0].UncompressedSize);
 
                 byte[] buf = new byte[zip[0].UncompressedSize];
@@ -187,7 +201,7 @@ namespace NLog.UnitTests
             }
         }
 #elif NET4_5
-        protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
+        protected void AssertZipFileContents(string originalFileName, string fileName, string contents, Encoding encoding)
         {
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
@@ -198,6 +212,7 @@ namespace NLog.UnitTests
             using (var zip = new ZipArchive(stream, ZipArchiveMode.Read))
             {
                 Assert.Equal(1, zip.Entries.Count);
+                Assert.Equal(Path.GetFileName(originalFileName), zip.Entries[0].Name);
                 Assert.Equal(encodedBuf.Length, zip.Entries[0].Length);
 
                 byte[] buf = new byte[(int)zip.Entries[0].Length];
@@ -213,7 +228,7 @@ namespace NLog.UnitTests
             }
         }
 #else
-        protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
+        protected void AssertZipFileContents(string originalFileName, string fileName, string contents, Encoding encoding)
         {
             Assert.True(false);
         }

@@ -50,15 +50,26 @@ using System.IO.Compression;
         /// </summary>
         public void CompressFile(string fileName, string archiveFileName)
         {
+            // Creating archive-file will trigger others to close their stale file-handles
             using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
-            using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
-            using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite ))
             {
-                var zipArchiveEntry = archive.CreateEntry(Path.GetFileName(fileName));
-                using (var destination = zipArchiveEntry.Open())
+                // Move the file to a safe place, so others can continue logging
+                string archiveFileNameTmp = archiveFileName + ".tmp";
+                File.Move(fileName, archiveFileNameTmp);
+
+                System.Threading.Thread.Sleep(100); // Wait a little, while others are closing their stale filehandles
+
+                using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
+                using (var originalFileStream = new FileStream(archiveFileNameTmp, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
-                    originalFileStream.CopyTo(destination);
+                    var zipArchiveEntry = archive.CreateEntry(Path.GetFileName(fileName));
+                    using (var destination = zipArchiveEntry.Open())
+                    {
+                        originalFileStream.CopyTo(destination);
+                    }
                 }
+
+                File.Delete(archiveFileNameTmp);    // Automatic file cleanup
             }
         }
     }
