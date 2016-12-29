@@ -1078,7 +1078,7 @@ namespace NLog.Config
                     newFileName = Path.Combine(baseDirectory, newFileName);
                 }
 
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
                 newFileName = newFileName.Replace("\\", "/");
                 if (Application.GetResourceStream(new Uri(newFileName, UriKind.Relative)) != null)
 #else
@@ -1130,7 +1130,7 @@ namespace NLog.Config
         private static string GetFileLookupKey(string fileName)
         {
 
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
             // file names are relative to XAP
             return fileName;
 #else
