@@ -935,27 +935,32 @@ namespace NLog
                     }
 #endif
 
-                    if (flushTimeout != TimeSpan.Zero)
+                    var oldConfig = this.config;
+                    if (this.configLoaded && oldConfig != null)
                     {
-                        var oldConfig = this.config;
-                        if (this.configLoaded && oldConfig != null)
+                        try
                         {
-                            try
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
+                            bool attemptClose = true;
+                            if (flushTimeout != TimeSpan.Zero && !PlatformDetector.IsMono)
                             {
+                                // MONO (and friends) have a hard time with spinning up flush threads/timers during shutdown (Maybe better with MONO 4.1)
                                 ManualResetEvent flushCompleted = new ManualResetEvent(false);
                                 oldConfig.FlushAllTargets((ex) => flushCompleted.Set());
-                                if (flushCompleted.WaitOne(flushTimeout))
-                                {
-                                    // Flush completed within timeout, lets try and close down
-                                    oldConfig.Close();
-                                    this.config = null;
-                                    this.OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(null, oldConfig));
-                                }
+                                attemptClose = flushCompleted.WaitOne(flushTimeout);
                             }
-                            catch (Exception ex)
+                            if (attemptClose)
+#endif
                             {
-                                InternalLogger.Error(ex, "Error with close.");
+                                // Flush completed within timeout, lets try and close down
+                                oldConfig.Close();
+                                this.config = null;
+                                this.OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(null, oldConfig));
                             }
+                        }
+                        catch (Exception ex)
+                        {
+                            InternalLogger.Error(ex, "Error with close.");
                         }
                     }
                 }

@@ -66,7 +66,7 @@ namespace NLog
         [Obsolete("Marked obsolete before v4.3.11")]
         public delegate CultureInfo GetCultureInfo();
 
-#if !SILVERLIGHT && !MONO
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Initializes static members of the LogManager class.
         /// </summary>
@@ -151,7 +151,7 @@ namespace NLog
             get { return currentAppDomain ?? (currentAppDomain = AppDomainWrapper.CurrentDomain); }
             set
             {
-#if !SILVERLIGHT && !MONO
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 if (currentAppDomain != null)
                 {
                     currentAppDomain.DomainUnload -= LogManager_OnStopLogging;
@@ -393,7 +393,7 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT && !MONO
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         private static void SetupTerminationEvents()
         {
             try
@@ -445,6 +445,7 @@ namespace NLog
             return className;
         }
 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         private static void LogManager_OnStopLogging(object sender, EventArgs args)
         {
             try
@@ -461,5 +462,6 @@ namespace NLog
                 InternalLogger.Error(ex, "Logger failed to shut down properly.");
             }
         }
+#endif
     }
 }
