@@ -86,7 +86,7 @@ namespace NLog.Internal
         /// <returns>AsyncContinuation operation</returns>
         public AsyncContinuation RegisterCompletionNotification(AsyncContinuation asyncContinuation)
         {
-            if (this._pendingOperationCounter == 0)
+            if (_pendingOperationCounter == 0)
             {
                 return asyncContinuation;
             }
@@ -101,7 +101,7 @@ namespace NLog.Internal
                     int remainingCompletionCounter = System.Threading.Interlocked.Increment(ref _pendingOperationCounter);
                     if (remainingCompletionCounter <= 0)
                     {
-                        System.Threading.Interlocked.Exchange(ref this._pendingOperationCounter, 0);
+                        System.Threading.Interlocked.Exchange(ref _pendingOperationCounter, 0);
                         _pendingCompletionList.Remove(pendingCompletion);
                         return asyncContinuation;
                     }

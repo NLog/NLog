@@ -452,9 +452,10 @@ namespace NLog.UnitTests.Targets.Wrappers
 
         class MyAsyncTarget : Target
         {
+            private readonly NLog.Internal.AsyncOperationCounter pendingWriteCounter = new NLog.Internal.AsyncOperationCounter();
+
             public int FlushCount;
             public int WriteCount;
-            public int PendingWriteCount;
 
             protected override void Write(LogEventInfo logEvent)
             {
@@ -465,7 +466,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 Assert.True(this.FlushCount <= this.WriteCount);
 
-                Interlocked.Increment(ref this.PendingWriteCount);
+                pendingWriteCounter.BeginOperation();
                 ThreadPool.QueueUserWorkItem(
                     s =>
                         {
@@ -485,7 +486,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                             }
                             finally
                             {
-                                Interlocked.Decrement(ref this.PendingWriteCount);
+                                pendingWriteCounter.CompleteOperation(null);
                             }
                         });
             }
@@ -493,12 +494,11 @@ namespace NLog.UnitTests.Targets.Wrappers
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
                 Interlocked.Increment(ref this.FlushCount);
+                var wrappedContinuation = pendingWriteCounter.RegisterCompletionNotification(asyncContinuation);
                 ThreadPool.QueueUserWorkItem(
                     s =>
                     {
-                        while (0 != this.PendingWriteCount)
-                            Thread.Sleep(10);
-                        asyncContinuation(null);
+                        wrappedContinuation(null);
                     });
             }
 
