@@ -35,6 +35,7 @@ namespace NLog.Internal.Fakeables
 {
     using System;
     using System.Collections.Generic;
+    using NLog.Common;
 
     /// <summary>
     /// Adapter for <see cref="AppDomain"/> to <see cref="IAppDomain"/>
@@ -53,8 +54,24 @@ namespace NLog.Internal.Fakeables
         {
 #if !SILVERLIGHT
             currentAppDomain = appDomain;
-            BaseDirectory = appDomain.BaseDirectory;
-            ConfigurationFile = appDomain.SetupInformation.ConfigurationFile;
+            try
+            {
+                BaseDirectory = appDomain.BaseDirectory;
+            }
+            catch (System.Security.SecurityException ex)
+            {
+                InternalLogger.Warn(ex, "AppDomain.BaseDirectory Failed");
+                BaseDirectory = string.Empty;
+            }
+            try
+            {
+                ConfigurationFile = appDomain.SetupInformation.ConfigurationFile;
+            }
+            catch (System.Security.SecurityException ex)
+            {
+                InternalLogger.Warn(ex, "AppDomain.SetupInformation.ConfigurationFile Failed");
+                ConfigurationFile = string.Empty;
+            }
 
             string privateBinPath = appDomain.SetupInformation.PrivateBinPath;
             PrivateBinPath = string.IsNullOrEmpty(privateBinPath)

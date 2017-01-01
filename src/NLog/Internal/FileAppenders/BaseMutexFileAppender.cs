@@ -48,6 +48,7 @@ namespace NLog.Internal.FileAppenders
     using System.Security.AccessControl;
     using System.Security.Principal;
     using System.Security.Cryptography;
+    using NLog.Common;
 #endif
 
     /// <summary>
@@ -68,19 +69,24 @@ namespace NLog.Internal.FileAppenders
             : base(fileName, createParameters)
         {
 #if SupportsMutex
-            ArchiveMutex = CreateArchiveMutex();
+            try
+            {
+                ArchiveMutex = CreateArchiveMutex();
+            }
+            catch (SecurityException ex)
+            {
+                InternalLogger.Warn(ex, "Failed to create archive mutex");
+            }
 #endif
         }
 
-#if !SILVERLIGHT
+#if SupportsMutex
         /// <summary>
         /// Gets the mutually-exclusive lock for archiving files.
         /// </summary>
         /// <value>The mutex for archiving.</value>
         public Mutex ArchiveMutex { get; private set; }
-#endif
 
-#if SupportsMutex
         /// <summary>
         /// Creates a mutually-exclusive lock for archiving files.
         /// </summary>

@@ -135,6 +135,7 @@
     <Compile Include="Filters\WhenNotEqualTests.cs" />
     <Compile Include="Fluent\LogBuilderTests.cs" />
     <Compile Include="GetLoggerTests.cs" />
+    <Compile Include="Internal\AppDomainPartialTrustTests.cs" />
     <Compile Include="Internal\AsyncLogEventInfoTests.cs" />
     <Compile Include="Internal\EnumHelpersTests.cs" />
     <Compile Include="Internal\ExceptionHelperTests.cs" />

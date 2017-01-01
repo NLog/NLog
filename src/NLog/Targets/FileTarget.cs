@@ -679,7 +679,7 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool ForceManaged { get; set; }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if SupportsMutex
         /// <summary>
         /// Gets or sets a value indicationg whether file creation calls should be synchronized by a system global mutex.
         /// </summary>
@@ -902,9 +902,13 @@ namespace NLog.Targets
                 {
                     return UnixMultiProcessFileAppender.TheFactory;
                 }
-                else
+                else if (PlatformDetector.SupportsSharableMutex)
                 {
                     return MutexMultiProcessFileAppender.TheFactory;
+                }
+                else
+                {
+                    return RetryingMultiProcessFileAppender.TheFactory;
                 }
 #else
                 if (!PlatformDetector.SupportsSharableMutex)
@@ -1047,9 +1051,6 @@ namespace NLog.Targets
 
         private void ProcessLogEvent(LogEventInfo logEvent, string fileName, byte[] bytesToWrite)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-            this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
-#endif
             TryArchiveFile(fileName, logEvent, bytesToWrite.Length);
 
             // Clean up old archives if this is the first time a log record is being written to
@@ -1189,7 +1190,7 @@ namespace NLog.Targets
         {
             if (ShouldDeleteOldArchives() && archiveNumber >= this.MaxArchiveFiles)
             {
-                File.Delete(fileName);
+                DeleteOldArchiveFile(fileName);
                 return;
             }
 
@@ -1273,8 +1274,8 @@ namespace NLog.Targets
 
                     if (number2Name.TryGetValue(i, out s))
                     {
-                        InternalLogger.Info("Deleting old archive {0}", s);
-                        File.Delete(s);
+                        if (!DeleteOldArchiveFile(s))
+                            break;
                     }
                 }
             }
@@ -1334,20 +1335,58 @@ namespace NLog.Targets
             }
         }
 
+        private static bool DeleteOldArchiveFile(string fileName)
+        {
+            try
+            {
+                InternalLogger.Info("Deleting old archive file: '{0}'.", fileName);
+                File.Delete(fileName);
+                return true;
+            }
+            catch (DirectoryNotFoundException exception)
+            {
+                //never rethrow this, as this isn't an exceptional case.
+                InternalLogger.Debug(exception, "Failed to delete old log file '{0}' as directory is missing.", fileName);
+                return false;
+            }
+            catch (Exception exception)
+            {
+                InternalLogger.Warn(exception, "Failed to delete old archive file: '{0}'.", fileName);
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                return false;
+            }
+        }
+
         private static void DeleteAndWaitForFileDelete(string fileName)
         {
-            var originalFileCreationTime = (new FileInfo(fileName)).CreationTime;
-            File.Delete(fileName);
-
-            if (File.Exists(fileName))
+            try
             {
-                FileInfo currentFileInfo;
-                do
+                var originalFileCreationTime = (new FileInfo(fileName)).CreationTime;
+                if (DeleteOldArchiveFile(fileName) && File.Exists(fileName))
                 {
-                    Thread.Sleep(100);
-                    currentFileInfo = new FileInfo(fileName);
+                    FileInfo currentFileInfo;
+                    for (int i = 0; i < 120; ++i)
+                    { 
+                        Thread.Sleep(100);
+                        currentFileInfo = new FileInfo(fileName);
+                        if (!currentFileInfo.Exists || currentFileInfo.CreationTime != originalFileCreationTime)
+                            return;
+                    }
+
+                    InternalLogger.Warn("Timeout while deleting old archive file: '{0}'.", fileName);
                 }
-                while ((currentFileInfo.Exists) && (currentFileInfo.CreationTime == originalFileCreationTime));
+            }
+            catch (Exception exception)
+            {
+                InternalLogger.Warn(exception, "Failed to delete old archive file: '{0}'.", fileName);
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
             }
         }
 
@@ -1441,8 +1480,8 @@ namespace NLog.Targets
             int numberToDelete = oldArchiveFileNames.Count - this.MaxArchiveFiles;
             for (int fileIndex = 0; fileIndex < numberToDelete; fileIndex++)
             {
-                InternalLogger.Info("Deleting old archive {0}.", oldArchiveFileNames[fileIndex]);
-                File.Delete(oldArchiveFileNames[fileIndex]);
+                if (!DeleteOldArchiveFile(oldArchiveFileNames[fileIndex]))
+                    break;
             }
         }
 
@@ -1824,14 +1863,33 @@ namespace NLog.Targets
         /// <param name="upcomingWriteSize">The size in bytes of the next chunk of data to be written in the file.</param>
         private void TryArchiveFile(string fileName, LogEventInfo ev, int upcomingWriteSize)
         {
-            var archiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
+            string archiveFile = string.Empty;
+
+            try
+            {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
+#endif
+                archiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
+                if (!string.IsNullOrEmpty(archiveFile))
+                {
+                    // Close possible stale file handles, before doing extra check
+                    if (archiveFile != fileName)
+                        this.fileAppenderCache.InvalidateAppender(fileName);
+                    this.fileAppenderCache.InvalidateAppender(archiveFile);
+                }
+            }
+            catch (Exception exception)
+            {
+                InternalLogger.Warn(exception, "Failed to check archive for file '{0}'.", fileName);
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+            }
+
             if (!string.IsNullOrEmpty(archiveFile))
             {
-                // Close possible stale file handles, before doing extra check
-                if (archiveFile != fileName)
-                    this.fileAppenderCache.InvalidateAppender(fileName);
-                this.fileAppenderCache.InvalidateAppender(archiveFile);
-
 #if SupportsMutex
                 Mutex archiveMutex = this.fileAppenderCache.GetArchiveMutex(fileName);
                 try
@@ -1864,7 +1922,6 @@ namespace NLog.Targets
                 catch (Exception exception)
                 {
                     InternalLogger.Warn(exception, "Failed to archive file '{0}'.", archiveFile);
-
                     if (exception.MustBeRethrown())
                     {
                         throw;
@@ -2006,26 +2063,26 @@ namespace NLog.Targets
 
         private void AutoClosingTimerCallback(object state)
         {
-            lock (this.SyncRoot)
+            try
             {
-                if (!this.IsInitialized)
+                lock (this.SyncRoot)
                 {
-                    return;
-                }
+                    if (!this.IsInitialized)
+                    {
+                        return;
+                    }
 
-                try
-                {
                     DateTime expireTime = DateTime.UtcNow.AddSeconds(-this.OpenFileCacheTimeout);
                     this.fileAppenderCache.CloseAppenders(expireTime);
                 }
-                catch (Exception exception)
-                {
-                    InternalLogger.Warn(exception, "Exception in AutoClosingTimerCallback.");
+            }
+            catch (Exception exception)
+            {
+                InternalLogger.Warn(exception, "Exception in AutoClosingTimerCallback.");
 
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
+                if (exception.MustBeRethrownImmediately())
+                {
+                    throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                 }
             }
         }
@@ -2067,16 +2124,25 @@ namespace NLog.Targets
             bool writeHeader = InitializeFile(fileName, logEvent, justData);
             BaseFileAppender appender = this.fileAppenderCache.AllocateAppender(fileName);
 
-            if (writeHeader)
+            try
             {
-                this.WriteHeader(appender);
+                if (writeHeader)
+                {
+                    this.WriteHeader(appender);
+                }
+
+                appender.Write(bytes);
+
+                if (this.AutoFlush)
+                {
+                    appender.Flush();
+                }
             }
-
-            appender.Write(bytes);
-
-            if (this.AutoFlush)
+            catch (Exception ex)
             {
-                appender.Flush();
+                InternalLogger.Error(ex, "Failed write to file '{0}'.", fileName);
+                this.fileAppenderCache.InvalidateAppender(fileName);
+                throw;
             }
         }
 
@@ -2175,25 +2241,7 @@ namespace NLog.Targets
 
             if (this.DeleteOldFileOnStartup)
             {
-                try
-                {
-                    File.Delete(fileName);
-                }
-                catch (DirectoryNotFoundException exception)
-                {
-                    //never rethrow this, as this isn't an exceptional case.
-                    InternalLogger.Debug(exception, "Unable to delete old log file '{0}' as directory is missing.", fileName);
-                }
-
-                catch (Exception exception)
-                {
-                    InternalLogger.Warn(exception, "Unable to delete old log file '{0}'.", fileName);
-
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-                }
+                DeleteOldArchiveFile(fileName);
             }
         }
 
@@ -2379,28 +2427,13 @@ namespace NLog.Targets
                 {
                     var archiveFileName = archiveFileQueue.Dequeue();
 
-                    try
-                    {
-                        File.Delete(archiveFileName);
-                    }
-                    catch (Exception ex)
-                    {
-                        InternalLogger.Warn(ex, "Cannot delete old archive file : '{0}'.", archiveFileName);
-                    }
+                    DeleteOldArchiveFile(archiveFileName);
                 }
 
                 while (archiveFileQueue.Count >= MaxArchiveFileToKeep)
                 {
                     string oldestArchivedFileName = archiveFileQueue.Dequeue();
-
-                    try
-                    {
-                        File.Delete(oldestArchivedFileName);
-                    }
-                    catch (Exception ex)
-                    {
-                        InternalLogger.Warn(ex, "Cannot delete old archive file : '{0}'.", oldestArchivedFileName);
-                    }
+                    DeleteOldArchiveFile(oldestArchivedFileName);
                 }
             }
 

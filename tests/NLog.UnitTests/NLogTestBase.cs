@@ -33,6 +33,7 @@
 
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security;
 
 namespace NLog.UnitTests
 {
@@ -327,12 +328,24 @@ namespace NLog.UnitTests
 
 #endif
 
-        protected static XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
+        public static XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(configXml);
 
-            return new XmlLoggingConfiguration(doc.DocumentElement, Environment.CurrentDirectory);
+            string currentDirectory = null;
+            try
+            {
+                currentDirectory = Environment.CurrentDirectory;
+            }
+            catch (SecurityException)
+            {
+                //ignore   
+            }
+
+
+
+            return new XmlLoggingConfiguration(doc.DocumentElement, currentDirectory);
         }
 
         protected string RunAndCaptureInternalLog(SyncAction action, LogLevel internalLogLevel)
