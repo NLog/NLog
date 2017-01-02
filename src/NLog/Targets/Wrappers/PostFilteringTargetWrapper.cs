@@ -116,20 +116,32 @@ namespace NLog.Targets.Wrappers
         public IList<FilteringRule> Rules { get; private set; }
 
         /// <summary>
+        /// Writes an array of logging events to the log target. By default it iterates on all
+        /// events and passes them to "Write" method. Inheriting classes can use this method to
+        /// optimize batch writes.
+        /// </summary>
+        /// <param name="logEvents">Logging events to be written out.</param>
+        [Obsolete("Instead use Write(IList<AsyncLogEventInfo> logEvents). Marked obsolete on NLog 4.4.2")]
+        protected override void Write(AsyncLogEventInfo[] logEvents)
+        {
+            Write((IList<AsyncLogEventInfo>)logEvents);
+        }
+
+        /// <summary>
         /// Evaluates all filtering rules to find the first one that matches.
         /// The matching rule determines the filtering condition to be applied
         /// to all items in a buffer. If no condition matches, default filter
         /// is applied to the array of log events.
         /// </summary>
         /// <param name="logEvents">Array of log events to be post-filtered.</param>
-        protected override void Write(AsyncLogEventInfo[] logEvents)
+        protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
             ConditionExpression resultFilter = null;
 
-            InternalLogger.Trace("Running {0} on {1} events", this, logEvents.Length);
+            InternalLogger.Trace("Running {0} on {1} events", this, logEvents.Count);
 
             // evaluate all the rules to get the filtering condition
-            for (int i = 0; i < logEvents.Length; ++i)
+            for (int i = 0; i < logEvents.Count; ++i)
             {
                 foreach (FilteringRule rule in this.Rules)
                 {
@@ -166,7 +178,7 @@ namespace NLog.Targets.Wrappers
                 // apply the condition to the buffer
                 var resultBuffer = new List<AsyncLogEventInfo>();
 
-                for (int i = 0; i < logEvents.Length; ++i)
+                for (int i = 0; i < logEvents.Count; ++i)
                 {
                     object v = resultFilter.Evaluate(logEvents[i].LogEvent);
                     if (boxedTrue.Equals(v))

@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,48 +31,41 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers.Wrappers
-{
-    using System.Text;
-    using NLog.Config;
-    using NLog.Layouts;
+using System;
+using System.Text;
 
+namespace NLog.Internal
+{
     /// <summary>
-    /// Outputs alternative layout when the inner layout produces empty result.
+    /// Allocates new builder and appends to the provided target builder on dispose
     /// </summary>
-    [LayoutRenderer("whenEmpty")]
-    [AmbientProperty("WhenEmpty")]
-    [ThreadAgnostic]
-    public sealed class WhenEmptyLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
+    internal struct AppendBuilderCreator : IDisposable
     {
         /// <summary>
-        /// Gets or sets the layout to be rendered when original layout produced empty result.
+        /// Access the new builder allocated
         /// </summary>
-        /// <docgen category="Transformation Options" order="10"/>
-        [RequiredParameter]
-        public Layout WhenEmpty { get; set; }
+        public readonly StringBuilder Builder;
+        private readonly StringBuilder _appendTarget;
 
-        /// <summary>
-        /// Transforms the output of another layout.
-        /// </summary>
-        /// <param name="target">Output to be transform.</param>
-        protected override void TransformFormattedMesssage(StringBuilder target)
+        public AppendBuilderCreator(StringBuilder appendTarget, int initialSize)
         {
+            _appendTarget = appendTarget;
+            if (_appendTarget.Length > 0)
+            {
+                Builder = new StringBuilder(initialSize);
+            }
+            else
+            {
+                Builder = _appendTarget;
+            }
         }
 
-        /// <summary>
-        /// Renders the inner layout contents.
-        /// </summary>
-        /// <param name="logEvent">The log event.</param>
-        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
-        protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
+        public void Dispose()
         {
-            base.RenderFormattedMessage(logEvent, target);
-            if (target.Length > 0)
-                return;
-
-            // render WhenEmpty when the inner layout was empty
-            this.WhenEmpty.RenderAppendBuilder(logEvent, target);
+            if (!ReferenceEquals(Builder, _appendTarget))
+            {
+                _appendTarget.Append(Builder.ToString());
+            }
         }
     }
 }

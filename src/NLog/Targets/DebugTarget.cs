@@ -100,7 +100,18 @@ namespace NLog.Targets
         protected override void Write(LogEventInfo logEvent)
         {
             this.Counter++;
-            this.LastMessage = this.Layout.Render(logEvent);
+            if (OptimizeBufferReuse)
+            {
+                using (var targetBuilder = this.ReusableLayoutBuilder.Allocate())
+                {
+                    this.Layout.RenderAppendBuilder(logEvent, targetBuilder.Result);
+                    this.LastMessage = targetBuilder.Result.ToString();
+                }
+            }
+            else
+            {
+                this.LastMessage = this.Layout.Render(logEvent);
+            }
         }
     }
 }

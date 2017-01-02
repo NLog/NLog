@@ -36,6 +36,7 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Runtime.InteropServices;
     using System.Security;
@@ -183,11 +184,23 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
+        /// Writes an array of logging events to the log target. By default it iterates on all
+        /// events and passes them to "Write" method. Inheriting classes can use this method to
+        /// optimize batch writes.
+        /// </summary>
+        /// <param name="logEvents">Logging events to be written out.</param>
+        [Obsolete("Instead use Write(IList<AsyncLogEventInfo> logEvents). Marked obsolete on NLog 4.4.2")]
+        protected override void Write(AsyncLogEventInfo[] logEvents)
+        {
+            Write((IList<AsyncLogEventInfo>)logEvents);
+        }
+
+        /// <summary>
         /// Changes the security context, forwards the call to the <see cref="WrapperTargetBase.WrappedTarget"/>.Write()
         /// and switches the context back to original.
         /// </summary>
         /// <param name="logEvents">Log events.</param>
-        protected override void Write(AsyncLogEventInfo[] logEvents)
+        protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
             using (this.DoImpersonate())
             {

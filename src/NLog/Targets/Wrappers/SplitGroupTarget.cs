@@ -103,19 +103,42 @@ namespace NLog.Targets.Wrappers
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
+        [Obsolete("Instead use Write(IList<AsyncLogEventInfo> logEvents). Marked obsolete on NLog 4.4.2")]
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
-            InternalLogger.Trace("Writing {0} events", logEvents.Length);
+            Write((IList<AsyncLogEventInfo>)logEvents);
+        }
 
-            for (int i = 0; i < logEvents.Length; ++i)
+        /// <summary>
+        /// Writes an array of logging events to the log target. By default it iterates on all
+        /// events and passes them to "Write" method. Inheriting classes can use this method to
+        /// optimize batch writes.
+        /// </summary>
+        /// <param name="logEvents">Logging events to be written out.</param>
+        protected override void Write(IList<AsyncLogEventInfo> logEvents)
+        {
+            InternalLogger.Trace("Writing {0} events", logEvents.Count);
+
+            for (int i = 0; i < logEvents.Count; ++i)
             {
-                logEvents[i].Continuation = CountedWrap(logEvents[i].Continuation, this.Targets.Count);
+                AsyncLogEventInfo ev = logEvents[i];
+                logEvents[i] = new AsyncLogEventInfo(ev.LogEvent, CountedWrap(ev.Continuation, this.Targets.Count));
             }
 
-            foreach (var t in this.Targets)
+            for (int i = 0; i < this.Targets.Count; ++i)
             {
-                InternalLogger.Trace("Sending {0} events to {1}", logEvents.Length, t);
-                t.WriteAsyncLogEvents(logEvents);
+                InternalLogger.Trace("Sending {0} events to {1}", logEvents.Count, this.Targets[i]);
+
+                var targetLogEvents = logEvents;
+                if (i < this.Targets.Count - 1)
+                {
+                    // RestrictedBufferReuse = false, will change the input-array (so we make clones here)
+                    AsyncLogEventInfo[] cloneLogEvents = new AsyncLogEventInfo[logEvents.Count];
+                    logEvents.CopyTo(cloneLogEvents, 0);
+                    targetLogEvents = cloneLogEvents;
+                }
+
+                this.Targets[i].WriteAsyncLogEvents(targetLogEvents);
             }
         }
 
@@ -130,28 +153,28 @@ namespace NLog.Targets.Wrappers
 
             AsyncContinuation wrapper =
                 ex =>
+                {
+                    if (ex != null)
                     {
-                        if (ex != null)
+                        lock (exceptions)
                         {
-                            lock (exceptions)
-                            {
-                                exceptions.Add(ex);
-                            }
+                            exceptions.Add(ex);
                         }
+                    }
 
-                        int c = Interlocked.Decrement(ref counter);
+                    int c = Interlocked.Decrement(ref counter);
 
-                        if (c == 0)
-                        {
-                            var combinedException = AsyncHelpers.GetCombinedException(exceptions);
-                            InternalLogger.Trace("Combined exception: {0}", combinedException);
-                            originalContinuation(combinedException);
-                        }
-                        else
-                        {
-                            InternalLogger.Trace("{0} remaining.", c);
-                        }
-                    };
+                    if (c == 0)
+                    {
+                        var combinedException = AsyncHelpers.GetCombinedException(exceptions);
+                        InternalLogger.Trace("Combined exception: {0}", combinedException);
+                        originalContinuation(combinedException);
+                    }
+                    else
+                    {
+                        InternalLogger.Trace("{0} remaining.", c);
+                    }
+                };
 
             return wrapper;
         }
