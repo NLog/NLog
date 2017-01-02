@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,48 +31,58 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers.Wrappers
+using System;
+
+namespace NLog.Internal
 {
-    using System.Text;
-    using NLog.Config;
-    using NLog.Layouts;
-
     /// <summary>
-    /// Outputs alternative layout when the inner layout produces empty result.
+    /// Controls a single allocated MemoryStream for reuse (only one active user)
     /// </summary>
-    [LayoutRenderer("whenEmpty")]
-    [AmbientProperty("WhenEmpty")]
-    [ThreadAgnostic]
-    public sealed class WhenEmptyLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
+    internal class ReusableStreamCreator : IDisposable
     {
-        /// <summary>
-        /// Gets or sets the layout to be rendered when original layout produced empty result.
-        /// </summary>
-        /// <docgen category="Transformation Options" order="10"/>
-        [RequiredParameter]
-        public Layout WhenEmpty { get; set; }
+        private System.IO.MemoryStream _memoryStream = new System.IO.MemoryStream();
+
+        /// <summary>Empty handle when <see cref="Targets.Target.OptimizeBufferReuse"/> is disabled</summary>
+        public readonly LockStream None = default(LockStream);
 
         /// <summary>
-        /// Transforms the output of another layout.
+        /// Creates handle to the reusable MemoryStream for active usage
         /// </summary>
-        /// <param name="target">Output to be transform.</param>
-        protected override void TransformFormattedMesssage(StringBuilder target)
+        /// <returns>Handle to the reusable item, that can release it again</returns>
+        public LockStream Allocate()
         {
+            return new LockStream(this);
         }
 
-        /// <summary>
-        /// Renders the inner layout contents.
-        /// </summary>
-        /// <param name="logEvent">The log event.</param>
-        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
-        protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
+        public struct LockStream : IDisposable
         {
-            base.RenderFormattedMessage(logEvent, target);
-            if (target.Length > 0)
-                return;
+            /// <summary>
+            /// Access the MemoryStream acquired
+            /// </summary>
+            public readonly System.IO.MemoryStream Result;
+            private readonly ReusableStreamCreator _owner;
 
-            // render WhenEmpty when the inner layout was empty
-            this.WhenEmpty.RenderAppendBuilder(logEvent, target);
+            public LockStream(ReusableStreamCreator owner)
+            {
+                Result = owner._memoryStream;
+                owner._memoryStream = null;
+                _owner = owner;
+            }
+
+            public void Dispose()
+            {
+                if (Result != null)
+                {
+                    Result.Position = 0;
+                    Result.SetLength(0);
+                    _owner._memoryStream = Result;
+                }
+            }
+        }
+
+        void IDisposable.Dispose()
+        {
+            _memoryStream.Dispose();
         }
     }
 }

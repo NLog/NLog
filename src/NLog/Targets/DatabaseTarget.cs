@@ -437,7 +437,19 @@ namespace NLog.Targets
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
+        [Obsolete("Instead use Write(IList<AsyncLogEventInfo> logEvents). Marked obsolete on NLog 4.4.2")]
         protected override void Write(AsyncLogEventInfo[] logEvents)
+        {
+            Write((IList<AsyncLogEventInfo>)logEvents);
+        }
+
+        /// <summary>
+        /// Writes an array of logging events to the log target. By default it iterates on all
+        /// events and passes them to "Write" method. Inheriting classes can use this method to
+        /// optimize batch writes.
+        /// </summary>
+        /// <param name="logEvents">Logging events to be written out.</param>
+        protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
             var buckets = logEvents.BucketSort(c => this.BuildConnectionString(c.LogEvent));
 
