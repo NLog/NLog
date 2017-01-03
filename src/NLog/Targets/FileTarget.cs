@@ -178,7 +178,7 @@ namespace NLog.Targets
 #endif
             this.BufferSize = 32768;
             this.AutoFlush = true;
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             this.FileAttributes = Win32FileAttributes.Normal;
 #endif
             this.LineEnding = LineEndingMode.Default;
@@ -366,7 +366,7 @@ namespace NLog.Targets
         [DefaultValue(true)]
         public bool EnableFileDelete { get; set; }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Gets or sets the file attributes (Windows only).
         /// </summary>

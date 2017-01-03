@@ -45,18 +45,16 @@ namespace NLog.Internal
         /// </summary>
         public static FileCharacteristicsHelper CreateHelper(bool forcedManaged)
         {
-#if SILVERLIGHT
-            return new PortableFileCharacteristicsHelper();
-#else
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             if (PlatformDetector.IsDesktopWin32 && !forcedManaged)
             {
                 return new Win32FileCharacteristicsHelper();
             }
             else
+#endif
             {
                 return new PortableFileCharacteristicsHelper();
             }
-#endif
         }
 
         /// <summary>

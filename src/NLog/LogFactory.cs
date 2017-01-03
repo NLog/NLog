@@ -198,7 +198,7 @@ namespace NLog
                         var configFileNames = GetCandidateConfigFilePaths();
                         foreach (string configFile in configFileNames)
                         {
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
                             Uri configFileUri = new Uri(configFile, UriKind.Relative);
                             if (Application.GetResourceStream(configFileUri) != null)
                             {
@@ -1039,7 +1039,7 @@ namespace NLog
 #if SILVERLIGHT || __ANDROID__ || __IOS__
     //try.nlog.config is ios/android/silverlight
             yield return "NLog.config";
-#elif !SILVERLIGHT
+#else
             // NLog.config from application directory
             if (CurrentAppDomain.BaseDirectory != null)
             {
