@@ -210,7 +210,7 @@ namespace NLog.Internal
             if ((!_cleanupInvalidChars || cleanedFixedResult != null) && _filePathKind == FilePathKind.Absolute)
                 return rawFileName; // Skip clean filename string-allocation
 
-            if (string.CompareOrdinal(_cachedPrevRawFileName, rawFileName) == 0 && _cachedPrevCleanFileName != null)
+            if (string.Equals(_cachedPrevRawFileName, rawFileName, StringComparison.Ordinal) && _cachedPrevCleanFileName != null)
                 return _cachedPrevCleanFileName;    // Cache Hit, reuse clean filename string-allocation
 
             var cleanFileName = GetCleanFileName(rawFileName);

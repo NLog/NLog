@@ -76,10 +76,22 @@ namespace NLog.Internal.FileAppenders
         /// Universal Time [UTC] standard.
         /// </summary>
         /// <returns>The creation time of the file.</returns>
-        public DateTime CreationTimeUtc { get { return _creationTimeUtc; } internal set { _creationTimeUtc = value; CreationTimeSouce = Time.TimeSource.Current.FromSystemTime(value); } }
+        public DateTime CreationTimeUtc
+        {
+            get { return _creationTimeUtc; }
+            internal set
+            {
+                _creationTimeUtc = value;
+                CreationTimeSource = Time.TimeSource.Current.FromSystemTime(value); // Performance optimization to skip converting every time
+            }
+        }
         DateTime _creationTimeUtc;
 
-        public DateTime CreationTimeSouce { get; private set; }
+        /// <summary>
+        /// Gets or sets the creation time for a file associated with the appender. Synchronized by <see cref="CreationTimeUtc"/>
+        /// The time format is based on <see cref="NLog.Time.TimeSource" />
+        /// </summary>
+        public DateTime CreationTimeSource { get; private set; }
 
         /// <summary>
         /// Gets the last time the file associated with the appeander is opened. The time returned is in Coordinated 

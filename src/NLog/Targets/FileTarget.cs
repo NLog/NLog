@@ -2062,6 +2062,12 @@ namespace NLog.Targets
             return null;
         }
 
+        /// <summary>
+        /// Truncates the input-time, so comparison of low resolution times (like dates) are not affected by ticks
+        /// </summary>
+        /// <param name="input">High resolution Time</param>
+        /// <param name="resolution">Time Resolution Level</param>
+        /// <returns>Truncated Low Resolution Time</returns>
         private static DateTime TruncateArchiveTime(DateTime input, FileArchivePeriod resolution)
         {
             switch (resolution)

@@ -174,12 +174,12 @@ namespace NLog.Internal.FileAppenders
                     break;
                 }
 
-                if (string.CompareOrdinal(appenders[i].FileName, fileName) == 0)
+                if (string.Equals(appenders[i].FileName, fileName, StringComparison.Ordinal))
                 {
                     // found it, move it to the first place on the list
                     // (MRU)
                     BaseFileAppender app = appenders[i];
-                    if (i != 0)
+                    if (i > 0)
                     {
                         // file open has a chance of failure
                         // if it fails in the constructor, we won't modify any data structures
@@ -303,7 +303,7 @@ namespace NLog.Internal.FileAppenders
                 if (appender == null)
                     break;
 
-                if (string.CompareOrdinal(appender.FileName, fileName)==0)
+                if (string.Equals(appender.FileName, fileName, StringComparison.Ordinal))
                     return appender;
             }
 
@@ -329,11 +329,12 @@ namespace NLog.Internal.FileAppenders
                     result = appender.GetFileCreationTimeUtc();
                     if (result.HasValue)
                     {
+                        // Check if cached value is still valid, and update if not (Will automatically update CreationTimeSource)
                         if (result.Value != appender.CreationTimeUtc)
                         {
                             appender.CreationTimeUtc = result.Value;
                         }
-                        return appender.CreationTimeSouce;
+                        return appender.CreationTimeSource;
                     }
                 }
                 catch (Exception ex)
@@ -426,7 +427,7 @@ namespace NLog.Internal.FileAppenders
                     break;
                 }
 
-                if (string.CompareOrdinal(appenders[i].FileName, filePath) == 0)
+                if (string.Equals(appenders[i].FileName, filePath, StringComparison.Ordinal))
                 {
                     CloseAppender(appenders[i]);
                     for (int j = i; j < appenders.Length - 1; ++j)
