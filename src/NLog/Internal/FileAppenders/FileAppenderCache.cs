@@ -101,44 +101,48 @@ namespace NLog.Internal.FileAppenders
                 return;
             }
 
-            if (!string.IsNullOrEmpty(e.FullPath))
+            if (FileAppenderFolderChanged(e.FullPath))
+            {
+                if ((e.ChangeType & (WatcherChangeTypes.Deleted | WatcherChangeTypes.Renamed)) != 0)
+                    logFileWasArchived = true;  // File Appender file deleted/renamed
+            }
+            else
+            {
+                if ((e.ChangeType & WatcherChangeTypes.Created) == WatcherChangeTypes.Created)
+                    logFileWasArchived = true;  // Something was created in the archive folder
+            }
+
+            if (logFileWasArchived)
+            {
+                if (autoClosingTimer != null)
+                    autoClosingTimer.Change(50, 1000);
+            }
+        }
+
+        private bool FileAppenderFolderChanged(string fullPath)
+        {
+            if (!string.IsNullOrEmpty(fullPath))
             {
                 if (string.IsNullOrEmpty(archiveFilePatternToWatch))
                 {
-                    if ((e.ChangeType & (WatcherChangeTypes.Deleted | WatcherChangeTypes.Renamed)) != 0)
-                    {
-                        logFileWasArchived = true;
-                        if (autoClosingTimer != null)
-                            autoClosingTimer.Change(50, 1000);
-                    }
-                    return; // Not related to archive folder
+                    return true;
                 }
                 else
                 {
                     string archiveFolderPath = Path.GetDirectoryName(archiveFilePatternToWatch);
                     if (!string.IsNullOrEmpty(archiveFolderPath))
                     {
-                        string currentFolderPath = Path.GetDirectoryName(e.FullPath);
-                        if (StringComparer.OrdinalIgnoreCase.Compare(archiveFolderPath, currentFolderPath) != 0)
-                        {
-                            if ((e.ChangeType & (WatcherChangeTypes.Deleted | WatcherChangeTypes.Renamed)) != 0)
-                            {
-                                logFileWasArchived = true;
-                                if (autoClosingTimer != null)
-                                    autoClosingTimer.Change(50, 1000);
-                            }
-                            return; // Not related to archive folder
-                        }
+                        string currentFolderPath = Path.GetDirectoryName(fullPath);
+                        return !string.Equals(archiveFolderPath, currentFolderPath, StringComparison.OrdinalIgnoreCase);
+                    }
+                    else
+                    {
+                        return true;
                     }
                 }
             }
 
-            if ((e.ChangeType & WatcherChangeTypes.Created) == WatcherChangeTypes.Created)
-            {
-                logFileWasArchived = true;  // Something was created in the archive folder
-                if (autoClosingTimer != null)
-                    autoClosingTimer.Change(50, 1000);
-            }
+            return false;
         }
 
         /// <summary>
@@ -264,9 +268,8 @@ namespace NLog.Internal.FileAppenders
 
                 if (appenders[freeSpot] != null)
                 {
-                    var oldAppender = appenders[freeSpot];
+                    CloseAppender(appenders[freeSpot], "Stale", false);
                     appenders[freeSpot] = null;
-                    CloseAppender(oldAppender, "Stale");
                 }
 
                 for (int j = freeSpot; j > 0; --j)
@@ -288,9 +291,9 @@ namespace NLog.Internal.FileAppenders
                         if (!Directory.Exists(directoryPath))
                             Directory.CreateDirectory(directoryPath);
 
-                        externalFileArchivingWatcher.Watch(archiveFilePatternToWatch);
+                        externalFileArchivingWatcher.Watch(archiveFilePatternToWatch);  // Always monitor the archive-folder
                     }
-                    externalFileArchivingWatcher.Watch(appenderToWrite.FileName);
+                    externalFileArchivingWatcher.Watch(appenderToWrite.FileName);   // Monitor the active file-appender
 #endif
                     if (freeSpot == 0)
                         autoClosingTimer.Change(1000, 1000);    // Check every second
@@ -314,9 +317,8 @@ namespace NLog.Internal.FileAppenders
                         break;
                     }
 
-                    var oldAppender = appenders[i];
+                    CloseAppender(appenders[i], reason, true);
                     appenders[i] = null;
-                    CloseAppender(oldAppender, reason);
                 }
             }
         }
@@ -354,9 +356,8 @@ namespace NLog.Internal.FileAppenders
                                     break;
                                 }
 
-                                var oldAppender = appenders[j];
-                                appenders[j] = null;
-                                CloseAppender(oldAppender, "Expired");
+                                CloseAppender(this.appenders[j], "Expired", i == 0);
+                                this.appenders[j] = null;
                             }
 
                             break;
@@ -512,17 +513,17 @@ namespace NLog.Internal.FileAppenders
                         appenders[j] = appenders[j + 1];
                     }
                     appenders[appenders.Length - 1] = null;
-                    CloseAppender(oldAppender, "Invalidate");
+                    CloseAppender(oldAppender, "Invalidate", appenders[0] == null);
                     break;
                 }
             }
         }
 
-        private void CloseAppender(BaseFileAppender appender, string reason)
+        private void CloseAppender(BaseFileAppender appender, string reason, bool lastAppender)
         {
             InternalLogger.Debug("FileAppender Closing {0} - {1}", reason, appender.FileName);
 
-            if (appenders.Length == 0 || appenders[0] == null)
+            if (lastAppender)
             {
                 // No active appenders, deactivate background tasks
                 autoClosingTimer.Change(Timeout.Infinite, Timeout.Infinite);

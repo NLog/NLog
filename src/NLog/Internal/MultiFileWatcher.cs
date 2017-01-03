@@ -176,9 +176,9 @@ namespace NLog.Internal
 
             var exception = e.GetException();
             if (exception != null)
-                InternalLogger.Info(exception, "Error Watching Path {0}", watcherPath);
+                InternalLogger.Warn(exception, "Error Watching Path {0}", watcherPath);
             else
-                InternalLogger.Info("Error Watching Path {0}", watcherPath);
+                InternalLogger.Warn("Error Watching Path {0}", watcherPath);
         }
 
         private void OnFileChanged(object source, FileSystemEventArgs e)
