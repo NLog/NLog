@@ -357,14 +357,14 @@ namespace NLog.Common
         {
             try
             {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if SILVERLIGHT || __IOS__ || __ANDROID__
+                Info(assembly.FullName);
+#else
                 var fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
                 Info("{0}. File version: {1}. Product version: {2}.",
                     assembly.FullName,
                     fileVersionInfo.FileVersion,
                     fileVersionInfo.ProductVersion);
-#else
-                Info(assembly.FullName);
 #endif
             }
             catch (Exception ex)

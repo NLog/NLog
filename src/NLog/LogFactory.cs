@@ -1036,7 +1036,10 @@ namespace NLog
         /// </summary>
         private static IEnumerable<string> GetDefaultCandidateConfigFilePaths()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if SILVERLIGHT || __ANDROID__ || __IOS__
+    //try.nlog.config is ios/android/silverlight
+            yield return "NLog.config";
+#else
             // NLog.config from application directory
             if (CurrentAppDomain.BaseDirectory != null)
             {
@@ -1078,9 +1081,6 @@ namespace NLog
                     yield return nlogAssembly.Location + ".nlog";
                 }
             }
-#else
-    //try.nlog.config is ios/android/silverlight
-            yield return "NLog.config";
 #endif
         }
 
