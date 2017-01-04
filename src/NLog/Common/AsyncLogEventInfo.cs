@@ -53,12 +53,12 @@ namespace NLog.Common
         /// <summary>
         /// Gets the log event.
         /// </summary>
-        public LogEventInfo LogEvent { get; private set; }
+        public readonly LogEventInfo LogEvent;
 
         /// <summary>
         /// Gets the continuation.
         /// </summary>
-        public AsyncContinuation Continuation { get; internal set; }
+        public readonly AsyncContinuation Continuation;
 
         /// <summary>
         /// Implements the operator ==.

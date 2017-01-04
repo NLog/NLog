@@ -109,7 +109,7 @@ namespace NLog.Targets.Wrappers
 
             for (int i = 0; i < logEvents.Length; ++i)
             {
-                logEvents[i].Continuation = CountedWrap(logEvents[i].Continuation, this.Targets.Count);
+                logEvents[i] = new AsyncLogEventInfo(logEvents[i].LogEvent, CountedWrap(logEvents[i].Continuation, this.Targets.Count));
             }
 
             foreach (var t in this.Targets)
