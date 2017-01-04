@@ -79,6 +79,58 @@ namespace NLog.UnitTests.Config
             }
         }
 
+
+        [Fact]
+        public void IncludeWithVariablesTest()
+        {
+#if SILVERLIGHT
+            // file is pre-packaged in the XAP
+            string fileToLoad = "ConfigFiles/main.nlog";
+#else
+            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempPath);
+
+            LogManager.ThrowExceptions = true;
+
+            using (StreamWriter fs = File.CreateText(Path.Combine(tempPath, "included.nlog")))
+            {
+                //note this works because ${var} is also allowed on non-Layouts
+                fs.Write(@"<nlog>
+                    <targets>
+<target name='debug' type='Debug' layout='${layout1}' /></targets>
+            </nlog>");
+            }
+
+            using (StreamWriter fs = File.CreateText(Path.Combine(tempPath, "main.nlog")))
+            {
+                fs.Write(@"<nlog>
+                <include file='included.nlog' />
+                   <variable name='layout1' value='${message}+test' />
+                   <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+            }
+
+            string fileToLoad = Path.Combine(tempPath, "main.nlog");
+#endif
+            try
+            {
+                // load main.nlog from the XAP
+                LogManager.Configuration = new XmlLoggingConfiguration(fileToLoad);
+
+                LogManager.GetLogger("A").Debug("aaa");
+                AssertDebugLastMessage("debug", "aaa+test");
+            }
+            finally
+            {
+#if !SILVERLIGHT
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+#endif
+            }
+        }
+        
         [Fact]
         public void IncludeNotExistingTest()
         {
