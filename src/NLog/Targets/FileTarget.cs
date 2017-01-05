@@ -1865,18 +1865,36 @@ namespace NLog.Targets
         {
             string archiveFile = string.Empty;
 
+#if SupportsMutex
+            Mutex archiveMutex = null;
+#endif
+
             try
             {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-                this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
-#endif
                 archiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
                 if (!string.IsNullOrEmpty(archiveFile))
                 {
+#if SupportsMutex
+                    // Acquire the mutex from the file-appender, before closing the file-apppender (remember not to close the Mutex)
+                    archiveMutex = this.fileAppenderCache.GetArchiveMutex(fileName);
+                    if (archiveMutex == null && fileName != archiveFile)
+                        archiveMutex = this.fileAppenderCache.GetArchiveMutex(archiveFile);
+#endif
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                    this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
+#endif
+
                     // Close possible stale file handles, before doing extra check
                     if (archiveFile != fileName)
                         this.fileAppenderCache.InvalidateAppender(fileName);
                     this.fileAppenderCache.InvalidateAppender(archiveFile);
+                }
+                else
+                {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                    this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
+#endif
                 }
             }
             catch (Exception exception)
@@ -1890,22 +1908,22 @@ namespace NLog.Targets
 
             if (!string.IsNullOrEmpty(archiveFile))
             {
+                try
+                {
 #if SupportsMutex
-                Mutex archiveMutex = this.fileAppenderCache.GetArchiveMutex(fileName);
-                try
-                {
-                    if (archiveMutex != null)
-                        archiveMutex.WaitOne();
-                }
-                catch (AbandonedMutexException)
-                {
-                    // ignore the exception, another process was killed without properly releasing the mutex
-                    // the mutex has been acquired, so proceed to writing
-                    // See: http://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
-                }
+                    try
+                    {
+                        if (archiveMutex != null)
+                            archiveMutex.WaitOne();
+                    }
+                    catch (AbandonedMutexException)
+                    {
+                        // ignore the exception, another process was killed without properly releasing the mutex
+                        // the mutex has been acquired, so proceed to writing
+                        // See: http://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
+                    }
 #endif
-                try
-                {
+
                     // Check again if archive is needed. We could have been raced by another process
                     var validatedArchiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
                     if (string.IsNullOrEmpty(validatedArchiveFile))
