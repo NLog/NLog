@@ -1330,7 +1330,36 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    File.Move(fileName, archiveFileName);
+                    try
+                    {
+                        File.Move(fileName, archiveFileName);
+                    }
+                    catch (System.IO.IOException ex)
+                    {
+                        if (KeepFileOpen && !ConcurrentWrites)
+                            throw;  // No need to retry, when only single process access
+
+                        if (!EnableFileDelete && KeepFileOpen)
+                            throw;  // No need to retry when file delete has been disabled
+
+                        if (!PlatformDetector.SupportsSharableMutex)
+                            throw;  // No need to retry when not having a real archive mutex to protect us
+
+                        // It is possible to move a file while other processes has open file-handles.
+                        // Unless the other process is actively writing, then the file move might fail.
+                        // We are already holding the archive-mutex, so lets retry if things are stable
+                        InternalLogger.Warn(ex, "Archiving failed. Checking for retry move of {0} to {1}.", fileName, archiveFileName);
+                        if (!File.Exists(fileName) || File.Exists(archiveFileName))
+                            throw;
+
+                        Thread.Sleep(50);
+
+                        if (!File.Exists(fileName) || File.Exists(archiveFileName))
+                            throw;
+
+                        InternalLogger.Info("Archiving retrying move of {0} to {1}.", fileName, archiveFileName);
+                        File.Move(fileName, archiveFileName);
+                    }
                 }
             }
         }
@@ -1865,18 +1894,56 @@ namespace NLog.Targets
         {
             string archiveFile = string.Empty;
 
+#if SupportsMutex
+            Mutex archiveMutex = null;
+#endif
+
             try
             {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-                this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
-#endif
                 archiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
+
                 if (!string.IsNullOrEmpty(archiveFile))
                 {
+#if SupportsMutex
+                    // Acquire the mutex from the file-appender, before closing the file-apppender (remember not to close the Mutex)
+                    archiveMutex = this.fileAppenderCache.GetArchiveMutex(archiveFile);
+                    if (archiveMutex == null)
+                    {
+                        if (!KeepFileOpen || ConcurrentWrites)
+                        {
+                            if (fileName == archiveFile && string.IsNullOrEmpty(previousLogFileName))
+                            {
+                                InternalLogger.Info("Archive mutex needed before first write. Creating appender to acquire mutex for: {0}", archiveFile);
+                                if (this.fileAppenderCache.AllocateAppender(fileName) != null)
+                                {
+                                    archiveMutex = this.fileAppenderCache.GetArchiveMutex(fileName);
+                                }
+                            }
+                            if (archiveMutex == null && archiveFile != fileName)
+                            {
+                                archiveMutex = this.fileAppenderCache.GetArchiveMutex(fileName);
+                                if (archiveMutex != null)
+                                    InternalLogger.Info("Archive mutex fallback: {0} -> {1}", archiveFile, fileName);
+                            }
+                        }
+                    }
+#endif
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                    this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
+#endif
                     // Close possible stale file handles, before doing extra check
-                    if (archiveFile != fileName)
+                    if (!string.IsNullOrEmpty(fileName) && fileName != archiveFile)
                         this.fileAppenderCache.InvalidateAppender(fileName);
+                    if (!string.IsNullOrEmpty(previousLogFileName) && previousLogFileName != archiveFile && previousLogFileName != fileName)
+                        this.fileAppenderCache.InvalidateAppender(previousLogFileName);
                     this.fileAppenderCache.InvalidateAppender(archiveFile);
+                }
+                else
+                {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                    this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
+#endif
                 }
             }
             catch (Exception exception)
@@ -1891,11 +1958,12 @@ namespace NLog.Targets
             if (!string.IsNullOrEmpty(archiveFile))
             {
 #if SupportsMutex
-                Mutex archiveMutex = this.fileAppenderCache.GetArchiveMutex(fileName);
                 try
                 {
                     if (archiveMutex != null)
                         archiveMutex.WaitOne();
+                    else if (!KeepFileOpen || ConcurrentWrites)
+                        InternalLogger.Info("Archive mutex not available: {0}", archiveFile);
                 }
                 catch (AbandonedMutexException)
                 {
@@ -1904,10 +1972,13 @@ namespace NLog.Targets
                     // See: http://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
                 }
 #endif
+
+                string validatedArchiveFile = archiveFile;
+
                 try
                 {
                     // Check again if archive is needed. We could have been raced by another process
-                    var validatedArchiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
+                    validatedArchiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
                     if (string.IsNullOrEmpty(validatedArchiveFile))
                     {
                         if (archiveFile != fileName)
@@ -1916,12 +1987,11 @@ namespace NLog.Targets
                         return;
                     }
 
-                    archiveFile = validatedArchiveFile;
-                    this.DoAutoArchive(archiveFile, ev);
+                    this.DoAutoArchive(validatedArchiveFile, ev);
                 }
                 catch (Exception exception)
                 {
-                    InternalLogger.Warn(exception, "Failed to archive file '{0}'.", archiveFile);
+                    InternalLogger.Warn(exception, "Failed to archive file '{0}'.", validatedArchiveFile);
                     if (exception.MustBeRethrown())
                     {
                         throw;
@@ -1930,8 +2000,17 @@ namespace NLog.Targets
                 finally
                 {
 #if SupportsMutex
+                    if (!string.IsNullOrEmpty(validatedArchiveFile) && archiveFile != validatedArchiveFile)
+                    {
+                        // Hard to get the right archive-mutex the second time, as we have closed all file-appenders
+                        if (archiveMutex != null)
+                            InternalLogger.Info("Archive mutex held for wrong file: {0} != {1}", archiveFile, validatedArchiveFile);
+                    }
+
                     if (archiveMutex != null)
+                    {
                         archiveMutex.ReleaseMutex();
+                    }
 #endif
                 }
             }
