@@ -1014,39 +1014,57 @@ namespace NLog.Targets
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
             var buckets = logEvents.BucketSort(c => this.GetFullFileName(c.LogEvent));
-            var pendingContinuations = new List<AsyncContinuation>();
-
-            foreach (var bucket in buckets)
+            using (var ms = new MemoryStream())
             {
-                string fileName = bucket.Key;
-                LogEventInfo firstLogEvent = null;
+                var pendingContinuations = new List<AsyncContinuation>();
 
-                byte[][] logEventsBytes = new byte[bucket.Value.Count][];
-                int bucketByteCount = 0;
-                for (int i = 0; i < bucket.Value.Count; i++)
+                foreach (var bucket in buckets)
                 {
-                    AsyncLogEventInfo ev = bucket.Value[i];
-                    if (firstLogEvent == null)
+                    string fileName = bucket.Key;
+
+                    ms.SetLength(0);
+                    ms.Position = 0;
+
+                    LogEventInfo firstLogEvent = null;
+
+                    for (int i = 0; i < bucket.Value.Count; i++)
                     {
-                        firstLogEvent = ev.LogEvent;
+                        AsyncLogEventInfo ev = bucket.Value[i];
+                        if (firstLogEvent == null)
+                        {
+                            firstLogEvent = ev.LogEvent;
+                        }
+
+                        byte[] bytes = this.GetBytesToWrite(ev.LogEvent);
+
+                        if (ms.Capacity == 0)
+                        {
+                            ms.Capacity = GetMemoryStreamInitialSize(bucket.Value.Count, bytes.Length);
+                        }
+
+                        ms.Write(bytes, 0, bytes.Length);
+                        pendingContinuations.Add(ev.Continuation);
                     }
 
-                    var bytes = this.GetBytesToWrite(ev.LogEvent);
-                    logEventsBytes[i] = bytes;
-                    bucketByteCount += bytes.Length;
-                    pendingContinuations.Add(ev.Continuation);
-                }
-
-                using (var ms = new MemoryStream(bucketByteCount))
-                {
-                    for (int i = 0; i < logEventsBytes.Length; i++)
-                    {
-                        var content = logEventsBytes[i];
-                        ms.Write(content, 0, content.Length);
-                    }
                     this.FlushCurrentFileWrites(fileName, firstLogEvent, ms, pendingContinuations);
                 }
             }
+        }
+
+        /// <summary>
+        /// Returns estimated size for memory stream, based on events count and first event size in bytes.
+        /// </summary>
+        /// <param name="eventsCount">Count of events</param>
+        /// <param name="firstEventSize">Bytes count of first event</param>
+        private int GetMemoryStreamInitialSize(int eventsCount, int firstEventSize)
+        {
+            if (eventsCount > 10)
+                return ((eventsCount + 1) * firstEventSize / 1024 + 1) * 1024;
+
+            if (eventsCount > 1)
+                return (1 + eventsCount) * firstEventSize;
+
+            return firstEventSize;
         }
 
         private void ProcessLogEvent(LogEventInfo logEvent, string fileName, byte[] bytesToWrite)
