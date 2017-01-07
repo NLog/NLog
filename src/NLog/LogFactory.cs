@@ -338,7 +338,7 @@ namespace NLog
                         }
                     }
 
-                    this.OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(value, oldConfig));
+                    this.OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(oldConfig, value));
                 }
             }
         }
@@ -955,7 +955,7 @@ namespace NLog
                                 // Flush completed within timeout, lets try and close down
                                 oldConfig.Close();
                                 this.config = null;
-                                this.OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(null, oldConfig));
+                                this.OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(oldConfig, null));
                             }
                         }
                         catch (Exception ex)

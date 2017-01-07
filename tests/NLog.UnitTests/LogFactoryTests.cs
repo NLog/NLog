@@ -138,13 +138,38 @@ namespace NLog.UnitTests
         [Fact]
         public void ReloadConfigOnTimer_DoesNotThrowConfigException_IfConfigChangedInBetween()
         {
-            var loggingConfiguration = new LoggingConfiguration();
-            LogManager.Configuration = loggingConfiguration;
-            var logFactory = new LogFactory(loggingConfiguration);
-            var differentConfiguration = new LoggingConfiguration();
+            EventHandler<LoggingConfigurationChangedEventArgs> testChanged = null;
 
-            Assert.DoesNotThrow(() => logFactory.ReloadConfigOnTimer(differentConfiguration));
-        }
+            try
+            {
+                LogManager.Configuration = null;
+
+                var loggingConfiguration = new LoggingConfiguration();
+                LogManager.Configuration = loggingConfiguration;
+                var logFactory = new LogFactory(loggingConfiguration);
+                var differentConfiguration = new LoggingConfiguration();
+
+                // Verify that the random configuration change is ignored (Only the final reset is reacted upon)
+                bool called = false;
+                LoggingConfiguration oldConfiguration = null, newConfiguration = null;
+                testChanged = (s, e) => { called = true; oldConfiguration = e.OldConfiguration; newConfiguration = e.NewConfiguration; };
+                LogManager.LogFactory.ConfigurationChanged += testChanged;
+
+                Assert.DoesNotThrow(() => logFactory.ReloadConfigOnTimer(differentConfiguration));
+                Assert.False(called);
+
+                // Final reset clears the ConfigurationChanged-event, but also changes the configuration
+                LogManager.Configuration = null;
+                Assert.True(called);
+                Assert.Equal(loggingConfiguration, oldConfiguration);
+                Assert.Equal(null, newConfiguration);
+            }
+            finally
+            {
+                if (testChanged != null)
+                    LogManager.LogFactory.ConfigurationChanged -= testChanged;
+            }
+       }
 
         private class ReloadNullConfiguration : LoggingConfiguration
         {
@@ -302,7 +327,6 @@ namespace NLog.UnitTests
             Assert.False(factory.IsLoggingEnabled());
             factory.ResumeLogging();
             Assert.True(factory.IsLoggingEnabled());
-
         }
     }
 }
