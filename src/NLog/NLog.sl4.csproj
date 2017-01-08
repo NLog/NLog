@@ -156,6 +156,7 @@
     <Compile Include="Internal\FileAppenders\BaseMutexFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\CountingSingleProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\FileAppenderCache.cs" />
+    <Compile Include="Internal\FileAppenders\FileLockMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\ICreateFileParameters.cs" />
     <Compile Include="Internal\FileAppenders\IFileAppenderFactory.cs" />
     <Compile Include="Internal\FileAppenders\MutexMultiProcessFileAppender.cs" />
