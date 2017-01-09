@@ -60,7 +60,7 @@ namespace NLog.Internal.FileAppenders
     /// processes are trying to write to the same file, because setting the file
     /// pointer to the end of the file and appending can be made one operation.
     /// </remarks>
-    internal class UnixMultiProcessFileAppender : BaseFileAppender
+    internal class UnixMultiProcessFileAppender : BaseMutexFileAppender
     {
         private UnixStream file;
 
@@ -133,7 +133,7 @@ namespace NLog.Internal.FileAppenders
                 this.file = null;
             }
         }
-        
+       
         /// <summary>
         /// Gets the creation time for a file associated with the appender. The time returned is in Coordinated Universal 
         /// Time [UTC] standard.

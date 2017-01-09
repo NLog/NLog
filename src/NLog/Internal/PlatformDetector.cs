@@ -93,8 +93,25 @@ namespace NLog.Internal
 #if !SILVERLIGHT && !__ANDROID__ && !__IOS__
                 if (IsMono && System.Environment.Version.Major < 4)
                     return false;   // MONO ver. 4 is needed for named Mutex to work
-                else
-                    return true;
+
+                // MONO (and .NET Core) on Linux doesn't support named mutex, because of problems with dangling kernel resources after improper application shutdown
+                // - MONO ver. 2.8 have disabled it http://www.mono-project.com/docs/about-mono/releases/2.8.0/ (MONO_ENABLE_SHM disabled by default)
+                // - MONO ver. 4.4 have removed it http://www.mono-project.com/docs/about-mono/releases/4.4.0/ (MONO_ENABLE_SHM removed)
+                if (IsUnix)
+                {
+                    // Recommended alternative is a lock-file. Maybe in a special sub-folder?
+                    try
+                    {
+                        if (Environment.GetEnvironmentVariable("MONO_ENABLE_SHM") != null)
+                            return true;
+                    }
+                    catch
+                    {
+                    }
+                    return false;
+                }
+
+                return true;
 #else
                 return false;
 #endif

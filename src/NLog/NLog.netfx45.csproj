@@ -15,8 +15,7 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -155,6 +154,7 @@
     <Compile Include="Internal\FileAppenders\BaseMutexFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\CountingSingleProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\FileAppenderCache.cs" />
+    <Compile Include="Internal\FileAppenders\FileLockMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\ICreateFileParameters.cs" />
     <Compile Include="Internal\FileAppenders\IFileAppenderFactory.cs" />
     <Compile Include="Internal\FileAppenders\MutexMultiProcessFileAppender.cs" />
@@ -193,6 +193,7 @@
     <Compile Include="Internal\PathHelpers.cs" />
     <Compile Include="Internal\PlatformDetector.cs" />
     <Compile Include="Internal\PortableFileCharacteristicsHelper.cs" />
+    <Compile Include="Internal\PortableNamedMutex.cs" />
     <Compile Include="Internal\PortableThreadIDHelper.cs" />
     <Compile Include="Internal\PropertyHelper.cs" />
     <Compile Include="Internal\ReflectionHelpers.cs" />

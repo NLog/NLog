@@ -31,16 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__ANDROID__ && !__IOS__
-// Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) so the BaseFileAppender class now throws an exception in the constructor.
-#define SupportsMutex
-#endif
-
 namespace NLog.Internal.FileAppenders
 {
     using System;
     using System.IO;
-    using System.Threading;
     using NLog.Common;
 
     /// <summary>
@@ -48,7 +42,7 @@ namespace NLog.Internal.FileAppenders
     /// </summary>
     internal sealed class FileAppenderCache : IDisposable
     {
-        private BaseFileAppender[] appenders;
+        private readonly BaseFileAppender[] appenders;
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         private string archiveFilePatternToWatch = null;
         private readonly MultiFileWatcher externalFileArchivingWatcher = new MultiFileWatcher(NotifyFilters.FileName);
@@ -307,13 +301,11 @@ namespace NLog.Internal.FileAppenders
             return null;
         }
 
-#if SupportsMutex
-        public Mutex GetArchiveMutex(string fileName)
+        public PortableNamedMutex GetArchiveMutex(string fileName)
         {
             var appender = GetAppender(fileName) as BaseMutexFileAppender;
             return appender == null ? null : appender.ArchiveMutex;
         }
-#endif
 
         public DateTime? GetFileCreationTimeUtc(string filePath, bool fallback)
         {
@@ -331,7 +323,7 @@ namespace NLog.Internal.FileAppenders
                     InvalidateAppender(appender.FileName);
                     throw;
                 }
-            }                
+            }
             if (result == null && fallback)
             {
                 var fileInfo = new FileInfo(filePath);

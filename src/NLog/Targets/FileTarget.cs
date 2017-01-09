@@ -627,6 +627,31 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Path to store temporary mutex archive file handles
+        /// </summary>
+        public Layout ArchiveMutexPath { get; set; }
+
+        /// <summary>
+        /// Hello World
+        /// </summary>
+        string ICreateFileParameters.CurrentMutexFilePath
+        {
+            get
+            {
+
+                if (!IsArchivingEnabled())
+                    return null;    // Not needed
+                if (PlatformDetector.SupportsSharableMutex)
+                    return null;    // Not needed
+
+                if (ArchiveMutexPath == null)
+                    return string.Empty;    // Generate NLogLock-subfolder within filepath
+                else
+                    return ArchiveMutexPath.Render(LogEventInfo.CreateNullEvent());
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the maximum number of archive files that should be kept.
         /// </summary>
         /// <docgen category='Archival Options' order='10' />
@@ -672,7 +697,7 @@ namespace NLog.Targets
                 }
             }
         }
-        
+
         /// <summary>
         /// Gets or set a value indicating whether a managed file stream is forced, instead of using the native implementation.
         /// </summary>
@@ -892,13 +917,15 @@ namespace NLog.Targets
             }
             else if (this.ConcurrentWrites)
             {
-#if !SupportsMutex
+#if SILVERLIGHT
                 return RetryingMultiProcessFileAppender.TheFactory;
+#elif !SupportsMutex
+                return FileLockMultiProcessFileAppender.TheFactory;
 #elif MONO
 //
 // mono on Windows uses mutexes, on Unix - special appender
 //
-                if (PlatformDetector.IsUnix)
+                if (!this.ForceMutexConcurrentWrites && PlatformDetector.IsUnix)
                 {
                     return UnixMultiProcessFileAppender.TheFactory;
                 }
@@ -908,15 +935,15 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    return RetryingMultiProcessFileAppender.TheFactory;
+                    return FileLockMultiProcessFileAppender.TheFactory;
                 }
 #else
-                if (!PlatformDetector.SupportsSharableMutex)
-                    return RetryingMultiProcessFileAppender.TheFactory;
-                else if (!this.ForceMutexConcurrentWrites && PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
+                if (!this.ForceMutexConcurrentWrites && PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
                     return WindowsMultiProcessFileAppender.TheFactory;
-                else
+                else if (PlatformDetector.SupportsSharableMutex)
                     return MutexMultiProcessFileAppender.TheFactory;
+                else
+                    return FileLockMultiProcessFileAppender.TheFactory;
 #endif
             }
             else if (IsArchivingEnabled())
@@ -950,8 +977,8 @@ namespace NLog.Targets
                 this.autoClosingTimer = new Timer(
                     this.AutoClosingTimerCallback,
                     null,
-                    this.OpenFileCacheTimeout*1000,
-                    this.OpenFileCacheTimeout*1000);
+                    this.OpenFileCacheTimeout * 1000,
+                    this.OpenFileCacheTimeout * 1000);
             }
         }
 
@@ -1310,12 +1337,12 @@ namespace NLog.Targets
                 {
                     //todo handle double footer
                     InternalLogger.Info("Already exists, append to {0}", archiveFileName);
-                    
+
                     //todo maybe needs a better filelock behaviour
 
                     //copy to archive file.
                     using (FileStream fileStream = File.Open(fileName, FileMode.Open))
-                    using (FileStream archiveFileStream = File.Open(archiveFileName, FileMode.Append ))
+                    using (FileStream archiveFileStream = File.Open(archiveFileName, FileMode.Append))
                     {
                         fileStream.CopyAndSkipBom(archiveFileStream, Encoding);
                         //clear old content
@@ -1370,7 +1397,7 @@ namespace NLog.Targets
                 {
                     FileInfo currentFileInfo;
                     for (int i = 0; i < 120; ++i)
-                    { 
+                    {
                         Thread.Sleep(100);
                         currentFileInfo = new FileInfo(fileName);
                         if (!currentFileInfo.Exists || currentFileInfo.CreationTime != originalFileCreationTime)
@@ -1865,18 +1892,30 @@ namespace NLog.Targets
         {
             string archiveFile = string.Empty;
 
+            PortableNamedMutex archiveMutex = null;
+
             try
             {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-                this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
-#endif
                 archiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
                 if (!string.IsNullOrEmpty(archiveFile))
                 {
+                    // Acquire the mutex from the file-appender, before closing the file-apppender (remember not to close the Mutex)
+                    archiveMutex = this.fileAppenderCache.GetArchiveMutex(fileName);
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                    this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
+#endif
+
                     // Close possible stale file handles, before doing extra check
                     if (archiveFile != fileName)
                         this.fileAppenderCache.InvalidateAppender(fileName);
                     this.fileAppenderCache.InvalidateAppender(archiveFile);
+                }
+                else
+                {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                    this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
+#endif
                 }
             }
             catch (Exception exception)
@@ -1890,22 +1929,11 @@ namespace NLog.Targets
 
             if (!string.IsNullOrEmpty(archiveFile))
             {
-#if SupportsMutex
-                Mutex archiveMutex = this.fileAppenderCache.GetArchiveMutex(fileName);
                 try
                 {
                     if (archiveMutex != null)
                         archiveMutex.WaitOne();
-                }
-                catch (AbandonedMutexException)
-                {
-                    // ignore the exception, another process was killed without properly releasing the mutex
-                    // the mutex has been acquired, so proceed to writing
-                    // See: http://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
-                }
-#endif
-                try
-                {
+
                     // Check again if archive is needed. We could have been raced by another process
                     var validatedArchiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
                     if (string.IsNullOrEmpty(validatedArchiveFile))
@@ -1929,10 +1957,8 @@ namespace NLog.Targets
                 }
                 finally
                 {
-#if SupportsMutex
                     if (archiveMutex != null)
                         archiveMutex.ReleaseMutex();
-#endif
                 }
             }
         }

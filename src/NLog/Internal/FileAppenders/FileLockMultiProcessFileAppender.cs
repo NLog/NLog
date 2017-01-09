@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,68 +31,55 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__ANDROID__ && !__IOS__
-// Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) so the BaseFileAppender class now throws an exception in the constructor.
-#define SupportsMutex
-#endif
-
-#if SupportsMutex
+#if !SILVERLIGHT
 
 namespace NLog.Internal.FileAppenders
 {
     using NLog.Common;
     using System;
     using System.IO;
-    using System.Security;
-    using System.Threading;
 
     /// <summary>
     /// Provides a multiprocess-safe atomic file appends while
     /// keeping the files open.
     /// </summary>
     /// <remarks>
-    /// On Unix you can get all the appends to be atomic, even when multiple 
-    /// processes are trying to write to the same file, because setting the file
-    /// pointer to the end of the file and appending can be made one operation.
-    /// On Win32 we need to maintain some synchronization between processes
-    /// (global named mutex is used for this)
+    /// Useful for non-Linux systems where named Mutex is not available.
+    /// Uses file-locking for controlling the atomic write logic.
     /// </remarks>
-    [SecuritySafeCritical]
-    internal class MutexMultiProcessFileAppender : BaseMutexFileAppender
+    internal class FileLockMultiProcessFileAppender : BaseMutexFileAppender
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
         private FileStream fileStream;
-        private FileCharacteristicsHelper fileCharacteristicsHelper;
-        private PortableNamedMutex mutex;
+        private readonly FileCharacteristicsHelper fileCharacteristicsHelper;
+        private readonly Random random = new Random();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MutexMultiProcessFileAppender" /> class.
+        /// Initializes a new instance of the <see cref="FileLockMultiProcessFileAppender" /> class.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="parameters">The parameters.</param>
-        public MutexMultiProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
+        public FileLockMultiProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
             try
             {
-                this.mutex = new PortableNamedMutex(GetMutexName("FileLock"), string.Empty);
                 this.fileStream = CreateFileStream(true);
+                if (this.fileStream.Length == 0)
+                {
+                    // Need a file-length to lock, lets wait for the first write
+                    this.fileStream.Close();
+                    this.fileStream = null;
+                }
                 this.fileCharacteristicsHelper = FileCharacteristicsHelper.CreateHelper(parameters.ForceManaged);
             }
             catch
             {
-                if (this.mutex != null)
-                {
-                    this.mutex.Close();
-                    this.mutex = null;
-                }
-
                 if (this.fileStream != null)
                 {
                     this.fileStream.Close();
                     this.fileStream = null;
                 }
-
                 throw;
             }
         }
@@ -103,18 +90,71 @@ namespace NLog.Internal.FileAppenders
         /// <param name="bytes">The bytes to be written.</param>
         public override void Write(byte[] bytes)
         {
-            if (this.mutex == null || this.fileStream == null)
+            FileStream mutualExclusive = null;
+            FileStream activeStream = this.fileStream;
+            if (activeStream == null)
             {
-                return;
-            }
+                int currentDelay = this.CreateFileParameters.ConcurrentWriteAttemptDelay;
+                for (int i = 1; i <= this.CreateFileParameters.ConcurrentWriteAttempts; ++i)
+                {
+                    try
+                    {
+                        mutualExclusive = new FileStream(this.FileName, FileMode.Append, FileAccess.Write, FileShare.Read, this.CreateFileParameters.BufferSize);
+                        activeStream = mutualExclusive;
+                        break;  // We have mutual exclusive access
+                    }
+                    catch (IOException ex)
+                    {
+                        if (i == this.CreateFileParameters.ConcurrentWriteAttempts)
+                            throw;
 
-            this.mutex.WaitOne();
+                        InternalLogger.Warn(ex, "Initial attempt failed to open file {0}", this.FileName);
+                    }
+
+                    activeStream = CreateFileStream(true);
+                    if (activeStream != null)
+                    {
+                        if (activeStream.Length > 0)
+                            break;  // We have a file-length that we can lock
+
+                        activeStream.Close();
+                        activeStream = null;
+                    }
+                }
+            }
+            if (activeStream != null && mutualExclusive == null)
+            {
+                int currentDelay = this.CreateFileParameters.ConcurrentWriteAttemptDelay;
+                for (int i = 1; i <= this.CreateFileParameters.ConcurrentWriteAttempts * 10; ++i)
+                {
+                    try
+                    {
+                        activeStream.Lock(0, 1);
+                        break;
+                    }
+                    catch (FileNotFoundException)
+                    {
+                        throw;
+                    }
+                    catch (IOException)
+                    {
+                        if (i == this.CreateFileParameters.ConcurrentWriteAttempts * 10)
+                            throw;
+
+                        int actualDelay = this.random.Next(currentDelay);
+                        if (currentDelay < 16)
+                            currentDelay *= 2;
+                        System.Threading.Thread.Sleep(actualDelay);
+                        continue;
+                    }
+                }
+            }
 
             try
             {
-                this.fileStream.Seek(0, SeekOrigin.End);
-                this.fileStream.Write(bytes, 0, bytes.Length);
-                this.fileStream.Flush();
+                activeStream.Seek(0, SeekOrigin.End);
+                activeStream.Write(bytes, 0, bytes.Length);
+                activeStream.Flush();
                 if (CaptureLastWriteTime)
                 {
                     FileTouched();
@@ -122,7 +162,24 @@ namespace NLog.Internal.FileAppenders
             }
             finally
             {
-                this.mutex.ReleaseMutex();
+                if (mutualExclusive != null)
+                {
+                    bool fileLockAvailable = mutualExclusive.Length > 0;
+                    mutualExclusive.Close();
+                    if (fileLockAvailable)
+                    {
+                        this.fileStream = CreateFileStream(true);
+                        if (this.fileStream.Length == 0)
+                        {
+                            this.fileStream.Close();
+                            this.fileStream = null;
+                        }
+                    }
+                }
+                else if (activeStream != null)
+                {
+                    activeStream.Unlock(0, 1);
+                }
             }
         }
 
@@ -132,23 +189,6 @@ namespace NLog.Internal.FileAppenders
         public override void Close()
         {
             InternalLogger.Trace("Closing '{0}'", FileName);
-            if (this.mutex != null)
-            {
-                try
-                {
-                    this.mutex.Close();
-                }
-                catch (Exception ex)
-                {
-                    // Swallow exception as the mutex now is in final state (abandoned instead of closed)
-                    InternalLogger.Warn(ex, "Failed to close mutex: '{0}'", FileName);
-                }
-                finally
-                {
-                    this.mutex = null;
-                }
-            }
-
             if (this.fileStream != null)
             {
                 try
@@ -185,7 +225,7 @@ namespace NLog.Internal.FileAppenders
         public override DateTime? GetFileCreationTimeUtc()
         {
             var fileChars = GetFileCharacteristics();
-            return fileChars.CreationTimeUtc;
+            return fileChars != null ? fileChars.CreationTimeUtc : (DateTime?)null;
         }
 
         /// <summary>
@@ -196,7 +236,7 @@ namespace NLog.Internal.FileAppenders
         public override DateTime? GetFileLastWriteTimeUtc()
         {
             var fileChars = GetFileCharacteristics();
-            return fileChars.LastWriteTimeUtc;
+            return fileChars != null ? fileChars.LastWriteTimeUtc : (DateTime?)null;
         }
 
         /// <summary>
@@ -206,7 +246,7 @@ namespace NLog.Internal.FileAppenders
         public override long? GetFileLength()
         {
             var fileChars = GetFileCharacteristics();
-            return fileChars.FileLength;
+            return fileChars != null ? fileChars.FileLength : (long?)null;
         }
 
         private FileCharacteristics GetFileCharacteristics()
@@ -230,7 +270,7 @@ namespace NLog.Internal.FileAppenders
             /// </returns>
             BaseFileAppender IFileAppenderFactory.Open(string fileName, ICreateFileParameters parameters)
             {
-                return new MutexMultiProcessFileAppender(fileName, parameters);
+                return new FileLockMultiProcessFileAppender(fileName, parameters);
             }
         }
     }

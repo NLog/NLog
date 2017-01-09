@@ -31,24 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__ANDROID__ && !__IOS__
-// Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) 
-#define SupportsMutex
-#endif
-
 namespace NLog.Internal.FileAppenders
 {
     using System;
     using System.IO;
     using System.Security;
-    using System.Threading;
     using System.Text;
-
-#if SupportsMutex
-    using System.Security.AccessControl;
-    using System.Security.Principal;
+#if !SILVERLIGHT
     using System.Security.Cryptography;
-    using NLog.Common;
 #endif
 
     /// <summary>
@@ -65,68 +55,41 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="createParameters">The create parameters.</param>
-        public BaseMutexFileAppender(string fileName, ICreateFileParameters createParameters) 
+        public BaseMutexFileAppender(string fileName, ICreateFileParameters createParameters)
             : base(fileName, createParameters)
         {
-#if SupportsMutex
-            try
-            {
-                ArchiveMutex = CreateArchiveMutex();
-            }
-            catch (SecurityException ex)
-            {
-                InternalLogger.Warn(ex, "Failed to create archive mutex");
-            }
-#endif
+            ArchiveMutex = CreateArchiveMutex();
         }
 
-#if SupportsMutex
         /// <summary>
         /// Gets the mutually-exclusive lock for archiving files.
         /// </summary>
         /// <value>The mutex for archiving.</value>
-        public Mutex ArchiveMutex { get; private set; }
+        public PortableNamedMutex ArchiveMutex { get; private set; }
 
-        /// <summary>
-        /// Creates a mutually-exclusive lock for archiving files.
-        /// </summary>
-        /// <returns>A <see cref="Mutex"/> object which can be used for controlling the archiving of files.</returns>
-        protected virtual Mutex CreateArchiveMutex()
+        private PortableNamedMutex CreateArchiveMutex()
         {
-            return new Mutex();
+            string filePath = CreateFileParameters.CurrentMutexFilePath;
+            if (filePath == string.Empty)
+                filePath = Path.Combine(Path.GetDirectoryName(FileName), "NLogLock");
+            return new PortableNamedMutex(GetMutexName("FileArchiveLock"), filePath);
         }
 
         /// <summary>
-        /// Creates a mutex for archiving that is sharable by more than one process.
+        /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
-        /// <returns>A <see cref="Mutex"/> object which can be used for controlling the archiving of files.</returns>
-        protected Mutex CreateSharableArchiveMutex()
+        /// <param name="disposing">True to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected override void Dispose(bool disposing)
         {
-            return CreateSharableMutex("FileArchiveLock");
+            base.Dispose(disposing);
+            if (disposing)
+            {
+                if (ArchiveMutex != null)
+                    ArchiveMutex.Dispose();    // Only closed on dispose, Mutex must survieve, when closing FileAppender before archive
+            }
         }
 
-        /// <summary>
-        /// Creates a mutex that is sharable by more than one process.
-        /// </summary>
-        /// <param name="mutexNamePrefix">The prefix to use for the name of the mutex.</param>
-        /// <returns>A <see cref="Mutex"/> object which is sharable by multiple processes.</returns>
-        protected Mutex CreateSharableMutex(string mutexNamePrefix)
-        {
-            if (!PlatformDetector.SupportsSharableMutex)
-                return new Mutex();
-
-            // Creates a mutex sharable by more than one process
-            var mutexSecurity = new MutexSecurity();
-            var everyoneSid = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
-            mutexSecurity.AddAccessRule(new MutexAccessRule(everyoneSid, MutexRights.FullControl, AccessControlType.Allow));
-
-            // The constructor will either create new mutex or open
-            // an existing one, in a thread-safe manner
-            bool createdNew;
-            return new Mutex(false, GetMutexName(mutexNamePrefix), out createdNew, mutexSecurity);
-        }
-
-        private string GetMutexName(string mutexNamePrefix)
+        protected string GetMutexName(string mutexNamePrefix)
         {
             const string mutexNameFormatString = @"Global\NLog-File{0}-{1}";
             const int maxMutexNameLength = 260;
@@ -136,6 +99,7 @@ namespace NLog.Internal.FileAppenders
             // Mutex names must not contain a backslash, it's the namespace separator,
             // but all other are OK
             canonicalName = canonicalName.Replace('\\', '/');
+
             string mutexName = string.Format(mutexNameFormatString, mutexNamePrefix, canonicalName);
 
             // A mutex name must not exceed MAX_PATH (260) characters
@@ -144,14 +108,18 @@ namespace NLog.Internal.FileAppenders
                 return mutexName;
             }
 
+            string hash;
+#if !SILVERLIGHT
             // The unusual case of the path being too long; let's hash the canonical name,
             // so it can be safely shortened and still remain unique
-            string hash;
             using (MD5 md5 = MD5.Create())
             {
                 byte[] bytes = md5.ComputeHash(Encoding.UTF8.GetBytes(canonicalName));
                 hash = Convert.ToBase64String(bytes);
             }
+#else
+            hash = canonicalName.GetHashCode().ToString();
+#endif
 
             // The hash makes the name unique, but also add the end of the path,
             // so the end of the name tells us which file it is (for debugging)
@@ -159,6 +127,5 @@ namespace NLog.Internal.FileAppenders
             int cutOffIndex = canonicalName.Length - (maxMutexNameLength - mutexName.Length);
             return mutexName + canonicalName.Substring(cutOffIndex);
         }
-#endif
     }
 }

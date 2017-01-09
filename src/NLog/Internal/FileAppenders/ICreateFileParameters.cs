@@ -95,5 +95,10 @@ namespace NLog.Internal.FileAppenders
         /// Should we capture the last write time of a file?
         /// </summary>
         bool CaptureLastWriteTime { get; }
+
+        /// <summary>
+        /// Path for storing temporary file-lock-objects when archiving is enabled
+        /// </summary>
+        string CurrentMutexFilePath { get; }
     }
 }
