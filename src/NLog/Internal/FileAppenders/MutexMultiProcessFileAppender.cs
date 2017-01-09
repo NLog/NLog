@@ -64,7 +64,7 @@ namespace NLog.Internal.FileAppenders
 
         private FileStream fileStream;
         private FileCharacteristicsHelper fileCharacteristicsHelper;
-        private Mutex mutex;
+        private PortableNamedMutex mutex;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MutexMultiProcessFileAppender" /> class.
@@ -75,7 +75,7 @@ namespace NLog.Internal.FileAppenders
         {
             try
             {
-                this.mutex = CreateSharableMutex("FileLock");
+                this.mutex = new PortableNamedMutex(GetMutexName("FileLock"), string.Empty);
                 this.fileStream = CreateFileStream(true);
                 this.fileCharacteristicsHelper = FileCharacteristicsHelper.CreateHelper(parameters.ForceManaged);
             }
@@ -108,16 +108,7 @@ namespace NLog.Internal.FileAppenders
                 return;
             }
 
-            try
-            {
-                this.mutex.WaitOne();
-            }
-            catch (AbandonedMutexException)
-            {
-                // ignore the exception, another process was killed without properly releasing the mutex
-                // the mutex has been acquired, so proceed to writing
-                // See: http://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
-            }
+            this.mutex.WaitOne();
 
             try
             {
@@ -222,15 +213,6 @@ namespace NLog.Internal.FileAppenders
         {
             // TODO: It is not efficient to read all the whole FileCharacteristics and then using one property.
             return fileCharacteristicsHelper.GetFileCharacteristics(FileName, this.fileStream);
-        }
-
-        /// <summary>
-        /// Creates a mutually-exclusive lock for archiving files.
-        /// </summary>
-        /// <returns>A <see cref="Mutex"/> object which can be used for controlling the archiving of files.</returns>
-        protected override Mutex CreateArchiveMutex()
-        {
-            return CreateSharableArchiveMutex();
         }
 
         /// <summary>

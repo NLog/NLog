@@ -178,6 +178,7 @@
     <Compile Include="Internal\PathHelpers.cs" />
     <Compile Include="Internal\PlatformDetector.cs" />
     <Compile Include="Internal\PortableFileCharacteristicsHelper.cs" />
+    <Compile Include="Internal\PortableNamedMutex.cs" />
     <Compile Include="Internal\PortableThreadIDHelper.cs" />
     <Compile Include="Internal\PropertyHelper.cs" />
     <Compile Include="Internal\ReflectionHelpers.cs" />
