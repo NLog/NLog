@@ -152,13 +152,13 @@ namespace NLog.UnitTests
                 // Verify that the random configuration change is ignored (Only the final reset is reacted upon)
                 bool called = false;
                 LoggingConfiguration oldConfiguration = null, newConfiguration = null;
-                testChanged = (s, e) => { called = true; oldConfiguration = e.OldConfiguration; newConfiguration = e.NewConfiguration; };
+                testChanged = (s, e) => { called = true; oldConfiguration = e.DeactivatedConfiguration; newConfiguration = e.ActivatedConfiguration; };
                 LogManager.LogFactory.ConfigurationChanged += testChanged;
 
                 Assert.DoesNotThrow(() => logFactory.ReloadConfigOnTimer(differentConfiguration));
                 Assert.False(called);
 
-                // Final reset clears the ConfigurationChanged-event, but also changes the configuration
+                // Final reset clears the configuration, so it is changed to null
                 LogManager.Configuration = null;
                 Assert.True(called);
                 Assert.Equal(loggingConfiguration, oldConfiguration);

@@ -47,20 +47,34 @@ namespace NLog.Config
         /// <param name="newConfiguration">The new configuration.</param>
         public LoggingConfigurationChangedEventArgs(LoggingConfiguration oldConfiguration, LoggingConfiguration newConfiguration)
         {
-            this.OldConfiguration = oldConfiguration;
-            this.NewConfiguration = newConfiguration;
+            this.DeactivatedConfiguration = oldConfiguration;
+            this.ActivatedConfiguration = newConfiguration;
         }
 
         /// <summary>
         /// Gets the old configuration.
         /// </summary>
         /// <value>The old configuration.</value>
-        public LoggingConfiguration OldConfiguration { get; private set; }
+        public LoggingConfiguration DeactivatedConfiguration { get; private set; }
 
         /// <summary>
         /// Gets the new configuration.
         /// </summary>
         /// <value>The new configuration.</value>
-        public LoggingConfiguration NewConfiguration { get; private set; }
+        public LoggingConfiguration ActivatedConfiguration { get; private set; }
+
+        /// <summary>
+        /// Gets the new configuration
+        /// </summary>
+        /// <value>The new configuration.</value>
+        [Obsolete("This option will be removed in NLog 5. Marked obsolete on NLog 4.4.2")]
+        public LoggingConfiguration OldConfiguration { get { return ActivatedConfiguration; } }
+
+        /// <summary>
+        /// Gets the old configuration
+        /// </summary>
+        /// <value>The old configuration.</value>
+        [Obsolete("This option will be removed in NLog 5. Marked obsolete on NLog 4.4.2")]
+        public LoggingConfiguration NewConfiguration { get { return DeactivatedConfiguration; } }
     }
 }
