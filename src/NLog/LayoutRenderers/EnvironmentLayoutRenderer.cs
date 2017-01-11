@@ -59,7 +59,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         public string Default { get; set; }
-	
+
+        private System.Collections.Generic.KeyValuePair<string, SimpleLayout> _cachedValue;
  
         /// <summary>
         /// Renders the specified environment variable and appends it to the specified <see cref="StringBuilder" />.
@@ -71,18 +72,19 @@ namespace NLog.LayoutRenderers
 	        if (this.Variable != null)
 	        {
 	            var environmentVariable = EnvironmentHelper.GetSafeEnvironmentVariable(this.Variable);
-	            if (!string.IsNullOrEmpty(environmentVariable))
-	            {
-	                var layout = new SimpleLayout(environmentVariable);
-	                builder.Append(layout.Render(logEvent));
-	            }
-	            else {
-	                if (this.Default != null) 
-	                {
-	                    var layout = new SimpleLayout(this.Default);
-	                    builder.Append(layout.Render(logEvent));
-	                }
-	            }
+                if (string.IsNullOrEmpty(environmentVariable))
+                    environmentVariable = Default;
+
+                if (!string.IsNullOrEmpty(environmentVariable))
+                {
+                    if (string.CompareOrdinal(_cachedValue.Key, environmentVariable) != 0)
+                    {
+                        _cachedValue = new System.Collections.Generic.KeyValuePair<string, SimpleLayout>(environmentVariable,
+                            new SimpleLayout(environmentVariable));
+                    }
+
+                    builder.Append(_cachedValue.Value.Render(logEvent));
+                }
             }
         }
     }
