@@ -154,9 +154,11 @@ namespace NLog.Internal
                     NotifyFilter = NotifyFilters
                 };
 
-                watcher.Created += FileChanged;
-                watcher.Changed += FileChanged;
-                watcher.Deleted += FileChanged;
+                watcher.Created += OnFileChanged;
+                watcher.Changed += OnFileChanged;
+                watcher.Deleted += OnFileChanged;
+                watcher.Renamed += OnFileChanged;
+                watcher.Error += OnWatcherError;
                 watcher.EnableRaisingEvents = true;
 
                 InternalLogger.Info("Watching path '{0}' filter '{1}' for changes.", watcher.Path, watcher.Filter);
@@ -165,12 +167,35 @@ namespace NLog.Internal
             }
         }
 
-        protected virtual void OnFileChanged(FileSystemEventArgs e)
+        private void OnWatcherError(object source, ErrorEventArgs e)
+        {
+            var watcherPath = string.Empty;
+            var watcher = source as FileSystemWatcher;
+            if (watcher != null)
+                watcherPath = watcher.Path;
+
+            var exception = e.GetException();
+            if (exception != null)
+                InternalLogger.Warn(exception, "Error Watching Path {0}", watcherPath);
+            else
+                InternalLogger.Warn("Error Watching Path {0}", watcherPath);
+        }
+
+        private void OnFileChanged(object source, FileSystemEventArgs e)
         {
             var changed = FileChanged;
             if (changed != null)
             {
-                changed(this, e);
+                try
+                {
+                    changed(source, e);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "Error Handling File Changed");
+                    if (ex.MustBeRethrownImmediately())
+                        throw;
+                }
             }
         }
     }
