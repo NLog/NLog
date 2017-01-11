@@ -384,13 +384,10 @@ namespace NLog
         /// </summary>
         public static void Shutdown()
         {
-            if (Configuration != null && Configuration.AllTargets != null)
-            {
-                foreach (var target in Configuration.AllTargets)
-                {
-                    if (target != null) target.Dispose();
-                }
-            }
+            InternalLogger.Info("Logger closing down...");
+            if (Configuration != null)
+                Configuration.Close();
+            InternalLogger.Info("Logger has been closed down.");
         }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
