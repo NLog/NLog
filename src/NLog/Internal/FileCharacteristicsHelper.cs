@@ -46,7 +46,7 @@ namespace NLog.Internal
         public static FileCharacteristicsHelper CreateHelper(bool forcedManaged)
         {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-            if (PlatformDetector.IsDesktopWin32 && !forcedManaged)
+            if (!forcedManaged && PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
             {
                 return new Win32FileCharacteristicsHelper();
             }
