@@ -1139,10 +1139,7 @@ namespace NLog.Targets
                                 byte[] bytes = this.GetBytesToWrite(ev.LogEvent);
                                 if (ms.Capacity == 0)
                                 {
-                                    if (bucketCount > 10)
-                                        ms.Capacity = ((((bucketCount + 1) * bytes.Length) / 1024 + 1) * 1024);
-                                    else if (bucketCount > 1)
-                                        ms.Capacity = ((1 + bucketCount) * bytes.Length);
+                                    ms.Capacity = GetMemoryStreamInitialSize(bucket.Value.Count, bytes.Length);
                                 }
                                 ms.Write(bytes, 0, bytes.Length);
                             }
@@ -1158,6 +1155,22 @@ namespace NLog.Targets
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Returns estimated size for memory stream, based on events count and first event size in bytes.
+        /// </summary>
+        /// <param name="eventsCount">Count of events</param>
+        /// <param name="firstEventSize">Bytes count of first event</param>
+        private int GetMemoryStreamInitialSize(int eventsCount, int firstEventSize)
+        {
+            if (eventsCount > 10)
+                return ((eventsCount + 1) * firstEventSize / 1024 + 1) * 1024;
+
+            if (eventsCount > 1)
+                return (1 + eventsCount) * firstEventSize;
+
+            return firstEventSize;
         }
 
         private void ProcessLogEvent(LogEventInfo logEvent, string fileName, ArraySegment<byte> bytesToWrite)
@@ -1208,8 +1221,13 @@ namespace NLog.Targets
         /// <returns>Array of bytes that are ready to be written.</returns>
         protected virtual byte[] GetBytesToWrite(LogEventInfo logEvent)
         {
-            string renderedText = this.GetFormattedMessage(logEvent) + this.NewLineChars;
-            return this.TransformBytes(this.Encoding.GetBytes(renderedText));
+            string text = this.GetFormattedMessage(logEvent);
+            int textBytesCount = this.Encoding.GetByteCount(text);
+            int newLineBytesCount = this.Encoding.GetByteCount(this.NewLineChars);
+            byte[] bytes = new byte[textBytesCount + newLineBytesCount];
+            this.Encoding.GetBytes(text, 0, text.Length, bytes, 0);
+            this.Encoding.GetBytes(this.NewLineChars, 0, this.NewLineChars.Length, bytes, textBytesCount);
+            return this.TransformBytes(bytes);
         }
 
         /// <summary>
