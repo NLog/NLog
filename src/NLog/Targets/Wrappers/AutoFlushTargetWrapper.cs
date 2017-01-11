@@ -33,8 +33,9 @@
 
 namespace NLog.Targets.Wrappers
 {
-    using Common;
-    using Conditions;
+    using NLog.Common;
+    using NLog.Conditions;
+    using NLog.Internal;
 
     /// <summary>
     /// Causes a flush on a wrapped target if LogEvent statisfies the <see cref="Condition"/>.
@@ -61,6 +62,8 @@ namespace NLog.Targets.Wrappers
         /// a flush on the wrapped target.
         /// </summary>
         public ConditionExpression Condition { get; set; }
+
+        private readonly AsyncOperationCounter pendingManualFlushList = new AsyncOperationCounter();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AutoFlushTargetWrapper" /> class.
@@ -106,13 +109,40 @@ namespace NLog.Targets.Wrappers
         {
             if (this.Condition == null || this.Condition.Evaluate(logEvent.LogEvent).Equals(true))
             {
-                var eventWithFlush = logEvent.LogEvent.WithContinuation(AsyncHelpers.PrecededBy(logEvent.Continuation, this.WrappedTarget.Flush));
-                this.WrappedTarget.WriteAsyncLogEvent(eventWithFlush);
+                AsyncContinuation currentContinuation = logEvent.Continuation;
+                AsyncContinuation wrappedContinuation = (ex) =>
+                {
+                    if (ex == null)
+                        this.WrappedTarget.Flush((e) => { });
+                    this.pendingManualFlushList.CompleteOperation(ex);
+                    currentContinuation(ex);
+                };
+                this.pendingManualFlushList.BeginOperation();
+                this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(wrappedContinuation));
             }
             else
             {
                 this.WrappedTarget.WriteAsyncLogEvent(logEvent);
             }
+        }
+
+        /// <summary>
+        /// Schedules a flush operation, that triggers when all pending flush operations are completed (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void FlushAsync(AsyncContinuation asyncContinuation)
+        {
+            var wrappedContinuation = this.pendingManualFlushList.RegisterCompletionNotification(asyncContinuation);
+            this.WrappedTarget.Flush(wrappedContinuation);
+        }
+
+        /// <summary>
+        /// Closes the target.
+        /// </summary>
+        protected override void CloseTarget()
+        {
+            this.pendingManualFlushList.Clear();    // Maybe consider to wait a short while if pending requests?
+            base.CloseTarget();
         }
     }
 }
