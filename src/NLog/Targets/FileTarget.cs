@@ -1297,7 +1297,11 @@ namespace NLog.Targets
             if (!Directory.Exists(archiveFolderPath))
                 Directory.CreateDirectory(archiveFolderPath);
 
-            if (EnableArchiveFileCompression)
+            if (string.Equals(fileName, archiveFileName, StringComparison.OrdinalIgnoreCase))
+            {
+                InternalLogger.Info("Archiving {0} skipped as ArchiveFileName equals FileName", fileName);
+            }
+            else if (EnableArchiveFileCompression)
             {
                 InternalLogger.Info("Archiving {0} to compressed {1}", fileName, archiveFileName);
                 FileCompressor.CompressFile(fileName, archiveFileName);
