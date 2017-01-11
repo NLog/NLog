@@ -100,13 +100,6 @@ namespace NLog.Targets
         /// </summary>
         private FileAppenderCache fileAppenderCache;
 
-        private Timer autoClosingTimer;
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-        private Thread appenderInvalidatorThread = null;
-        private EventWaitHandle stopAppenderInvalidatorThreadWaitHandle = new ManualResetEvent(false);
-#endif
-
         /// <summary>
         /// The number of initialised files at any one time.
         /// </summary>
@@ -752,9 +745,14 @@ namespace NLog.Targets
         /// </summary>
         private void RefreshArchiveFilePatternToWatch()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             if (this.fileAppenderCache != null)
             {
+                this.fileAppenderCache.CheckCloseAppenders -= AutoClosingTimerCallback;
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                if (KeepFileOpen || OpenFileCacheTimeout > 0)
+                    this.fileAppenderCache.CheckCloseAppenders += AutoClosingTimerCallback;
+
                 bool mustWatchArchiving = IsArchivingEnabled() && ConcurrentWrites && KeepFileOpen;
                 if (mustWatchArchiving)
                 {
@@ -769,58 +767,17 @@ namespace NLog.Targets
                             ReplaceFileNamePattern(fileNamePattern, "*"));
                         //fileNamePattern is absolute
                         this.fileAppenderCache.ArchiveFilePatternToWatch = fileNamePattern;
-
-                        if ((EnableArchiveFileCompression) && (this.appenderInvalidatorThread == null))
-                        {
-                            // EnableArchiveFileCompression creates a new file for the archive, instead of just moving the log file.
-                            // The log file is deleted instead of moved. This process may be holding a lock to that file which will
-                            // avoid the file from being deleted. Therefore we must periodically close appenders for files that 
-                            // were archived so that the file can be deleted.
-
-                            this.appenderInvalidatorThread = new Thread(() =>
-                            {
-                                while (true)
-                                {
-                                    try
-                                    {
-                                        if (this.stopAppenderInvalidatorThreadWaitHandle.WaitOne(200))
-                                            break;
-
-                                        lock (SyncRoot)
-                                        {
-                                            this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
-                                        }
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        InternalLogger.Debug(ex, "Exception in FileTarget appender-invalidator thread.");
-                                    }
-                                }
-                            });
-                            this.appenderInvalidatorThread.IsBackground = true;
-                            this.appenderInvalidatorThread.Start();
-                        }
                     }
                 }
                 else
                 {
                     this.fileAppenderCache.ArchiveFilePatternToWatch = null;
-
-                    this.StopAppenderInvalidatorThread();
                 }
-            }
+#else
+                if (OpenFileCacheTimeout > 0)
+                    this.fileAppenderCache.CheckCloseAppenders += AutoClosingTimerCallback;
 #endif
-        }
-
-        private void StopAppenderInvalidatorThread()
-        {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-            if (this.appenderInvalidatorThread != null)
-            {
-                this.stopAppenderInvalidatorThreadWaitHandle.Set();
-                this.appenderInvalidatorThread = null;
             }
-#endif
         }
 
         /// <summary>
@@ -964,15 +921,6 @@ namespace NLog.Targets
 
             this.fileAppenderCache = new FileAppenderCache(this.OpenFileCacheSize, this.appenderFactory, this);
             RefreshArchiveFilePatternToWatch();
-
-            if ((this.OpenFileCacheSize > 0 || this.EnableFileDelete) && this.OpenFileCacheTimeout > 0)
-            {
-                this.autoClosingTimer = new Timer(
-                    this.AutoClosingTimerCallback,
-                    null,
-                    this.OpenFileCacheTimeout*1000,
-                    this.OpenFileCacheTimeout*1000);
-            }
         }
 
         /// <summary>
@@ -987,16 +935,8 @@ namespace NLog.Targets
                 this.FinalizeFile(fileName);
             }
 
-            if (this.autoClosingTimer != null)
-            {
-                this.autoClosingTimer.Change(Timeout.Infinite, Timeout.Infinite);
-                this.autoClosingTimer.Dispose();
-                this.autoClosingTimer = null;
-            }
-
-            this.StopAppenderInvalidatorThread();
-
-            this.fileAppenderCache.CloseAppenders();
+            this.fileAppenderCache.CloseAppenders("Dispose");
+            this.fileAppenderCache.Dispose();
         }
 
         /// <summary>
@@ -2267,7 +2207,7 @@ namespace NLog.Targets
             return null;
         }
 
-        private void AutoClosingTimerCallback(object state)
+        private void AutoClosingTimerCallback(object sender, EventArgs state)
         {
             try
             {
@@ -2278,7 +2218,7 @@ namespace NLog.Targets
                         return;
                     }
 
-                    DateTime expireTime = DateTime.UtcNow.AddSeconds(-this.OpenFileCacheTimeout);
+                    DateTime expireTime = this.OpenFileCacheTimeout > 0 ? DateTime.UtcNow.AddSeconds(-this.OpenFileCacheTimeout) : DateTime.MinValue;
                     this.fileAppenderCache.CloseAppenders(expireTime);
                 }
             }
