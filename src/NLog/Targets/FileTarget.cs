@@ -100,13 +100,6 @@ namespace NLog.Targets
         /// </summary>
         private FileAppenderCache fileAppenderCache;
 
-        private Timer autoClosingTimer;
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-        private Thread appenderInvalidatorThread = null;
-        private EventWaitHandle stopAppenderInvalidatorThreadWaitHandle = new ManualResetEvent(false);
-#endif
-
         /// <summary>
         /// The number of initialised files at any one time.
         /// </summary>
@@ -178,7 +171,7 @@ namespace NLog.Targets
 #endif
             this.BufferSize = 32768;
             this.AutoFlush = true;
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             this.FileAttributes = Win32FileAttributes.Normal;
 #endif
             this.LineEnding = LineEndingMode.Default;
@@ -366,7 +359,7 @@ namespace NLog.Targets
         [DefaultValue(true)]
         public bool EnableFileDelete { get; set; }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Gets or sets the file attributes (Windows only).
         /// </summary>
@@ -739,9 +732,14 @@ namespace NLog.Targets
         /// </summary>
         private void RefreshArchiveFilePatternToWatch()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             if (this.fileAppenderCache != null)
             {
+                this.fileAppenderCache.CheckCloseAppenders -= AutoClosingTimerCallback;
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                if (KeepFileOpen || OpenFileCacheTimeout > 0)
+                    this.fileAppenderCache.CheckCloseAppenders += AutoClosingTimerCallback;
+
                 bool mustWatchArchiving = IsArchivingEnabled() && ConcurrentWrites && KeepFileOpen;
                 if (mustWatchArchiving)
                 {
@@ -753,58 +751,17 @@ namespace NLog.Targets
                             ReplaceFileNamePattern(fileNamePattern, "*"));
                         //fileNamePattern is absolute
                         this.fileAppenderCache.ArchiveFilePatternToWatch = fileNamePattern;
-
-                        if ((EnableArchiveFileCompression) && (this.appenderInvalidatorThread == null))
-                        {
-                            // EnableArchiveFileCompression creates a new file for the archive, instead of just moving the log file.
-                            // The log file is deleted instead of moved. This process may be holding a lock to that file which will
-                            // avoid the file from being deleted. Therefore we must periodically close appenders for files that 
-                            // were archived so that the file can be deleted.
-
-                            this.appenderInvalidatorThread = new Thread(() =>
-                            {
-                                while (true)
-                                {
-                                    try
-                                    {
-                                        if (this.stopAppenderInvalidatorThreadWaitHandle.WaitOne(200))
-                                            break;
-
-                                        lock (SyncRoot)
-                                        {
-                                            this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
-                                        }
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        InternalLogger.Debug(ex, "Exception in FileTarget appender-invalidator thread.");
-                                    }
-                                }
-                            });
-                            this.appenderInvalidatorThread.IsBackground = true;
-                            this.appenderInvalidatorThread.Start();
-                        }
                     }
                 }
                 else
                 {
                     this.fileAppenderCache.ArchiveFilePatternToWatch = null;
-
-                    this.StopAppenderInvalidatorThread();
                 }
-            }
+#else
+                if (OpenFileCacheTimeout > 0)
+                    this.fileAppenderCache.CheckCloseAppenders += AutoClosingTimerCallback;
 #endif
-        }
-
-        private void StopAppenderInvalidatorThread()
-        {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-            if (this.appenderInvalidatorThread != null)
-            {
-                this.stopAppenderInvalidatorThreadWaitHandle.Set();
-                this.appenderInvalidatorThread = null;
             }
-#endif
         }
 
         /// <summary>
@@ -944,15 +901,6 @@ namespace NLog.Targets
 
             this.fileAppenderCache = new FileAppenderCache(this.OpenFileCacheSize, this.appenderFactory, this);
             RefreshArchiveFilePatternToWatch();
-
-            if ((this.OpenFileCacheSize > 0 || this.EnableFileDelete) && this.OpenFileCacheTimeout > 0)
-            {
-                this.autoClosingTimer = new Timer(
-                    this.AutoClosingTimerCallback,
-                    null,
-                    this.OpenFileCacheTimeout*1000,
-                    this.OpenFileCacheTimeout*1000);
-            }
         }
 
         /// <summary>
@@ -967,16 +915,8 @@ namespace NLog.Targets
                 this.FinalizeFile(fileName);
             }
 
-            if (this.autoClosingTimer != null)
-            {
-                this.autoClosingTimer.Change(Timeout.Infinite, Timeout.Infinite);
-                this.autoClosingTimer.Dispose();
-                this.autoClosingTimer = null;
-            }
-
-            this.StopAppenderInvalidatorThread();
-
-            this.fileAppenderCache.CloseAppenders();
+            this.fileAppenderCache.CloseAppenders("Dispose");
+            this.fileAppenderCache.Dispose();
         }
 
         /// <summary>
@@ -1040,6 +980,12 @@ namespace NLog.Targets
                         }
 
                         byte[] bytes = this.GetBytesToWrite(ev.LogEvent);
+
+                        if (ms.Capacity == 0)
+                        {
+                            ms.Capacity = GetMemoryStreamInitialSize(bucket.Value.Count, bytes.Length);
+                        }
+
                         ms.Write(bytes, 0, bytes.Length);
                         pendingContinuations.Add(ev.Continuation);
                     }
@@ -1047,6 +993,22 @@ namespace NLog.Targets
                     this.FlushCurrentFileWrites(fileName, firstLogEvent, ms, pendingContinuations);
                 }
             }
+        }
+
+        /// <summary>
+        /// Returns estimated size for memory stream, based on events count and first event size in bytes.
+        /// </summary>
+        /// <param name="eventsCount">Count of events</param>
+        /// <param name="firstEventSize">Bytes count of first event</param>
+        private int GetMemoryStreamInitialSize(int eventsCount, int firstEventSize)
+        {
+            if (eventsCount > 10)
+                return ((eventsCount + 1) * firstEventSize / 1024 + 1) * 1024;
+
+            if (eventsCount > 1)
+                return (1 + eventsCount) * firstEventSize;
+
+            return firstEventSize;
         }
 
         private void ProcessLogEvent(LogEventInfo logEvent, string fileName, byte[] bytesToWrite)
@@ -1097,8 +1059,13 @@ namespace NLog.Targets
         /// <returns>Array of bytes that are ready to be written.</returns>
         protected virtual byte[] GetBytesToWrite(LogEventInfo logEvent)
         {
-            string renderedText = this.GetFormattedMessage(logEvent) + this.NewLineChars;
-            return this.TransformBytes(this.Encoding.GetBytes(renderedText));
+            string text = this.GetFormattedMessage(logEvent);
+            int textBytesCount = this.Encoding.GetByteCount(text);
+            int newLineBytesCount = this.Encoding.GetByteCount(this.NewLineChars);
+            byte[] bytes = new byte[textBytesCount + newLineBytesCount];
+            this.Encoding.GetBytes(text, 0, text.Length, bytes, 0);
+            this.Encoding.GetBytes(this.NewLineChars, 0, this.NewLineChars.Length, bytes, textBytesCount);
+            return this.TransformBytes(bytes);
         }
 
         /// <summary>
@@ -1297,7 +1264,11 @@ namespace NLog.Targets
             if (!Directory.Exists(archiveFolderPath))
                 Directory.CreateDirectory(archiveFolderPath);
 
-            if (EnableArchiveFileCompression)
+            if (string.Equals(fileName, archiveFileName, StringComparison.OrdinalIgnoreCase))
+            {
+                InternalLogger.Info("Archiving {0} skipped as ArchiveFileName equals FileName", fileName);
+            }
+            else if (EnableArchiveFileCompression)
             {
                 InternalLogger.Info("Archiving {0} to compressed {1}", fileName, archiveFileName);
                 FileCompressor.CompressFile(fileName, archiveFileName);
@@ -1865,18 +1836,36 @@ namespace NLog.Targets
         {
             string archiveFile = string.Empty;
 
+#if SupportsMutex
+            Mutex archiveMutex = null;
+#endif
+
             try
             {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-                this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
-#endif
                 archiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
                 if (!string.IsNullOrEmpty(archiveFile))
                 {
+#if SupportsMutex
+                    // Acquire the mutex from the file-appender, before closing the file-apppender (remember not to close the Mutex)
+                    archiveMutex = this.fileAppenderCache.GetArchiveMutex(fileName);
+                    if (archiveMutex == null && fileName != archiveFile)
+                        archiveMutex = this.fileAppenderCache.GetArchiveMutex(archiveFile);
+#endif
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                    this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
+#endif
+
                     // Close possible stale file handles, before doing extra check
                     if (archiveFile != fileName)
                         this.fileAppenderCache.InvalidateAppender(fileName);
                     this.fileAppenderCache.InvalidateAppender(archiveFile);
+                }
+                else
+                {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                    this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
+#endif
                 }
             }
             catch (Exception exception)
@@ -1890,22 +1879,22 @@ namespace NLog.Targets
 
             if (!string.IsNullOrEmpty(archiveFile))
             {
+                try
+                {
 #if SupportsMutex
-                Mutex archiveMutex = this.fileAppenderCache.GetArchiveMutex(fileName);
-                try
-                {
-                    if (archiveMutex != null)
-                        archiveMutex.WaitOne();
-                }
-                catch (AbandonedMutexException)
-                {
-                    // ignore the exception, another process was killed without properly releasing the mutex
-                    // the mutex has been acquired, so proceed to writing
-                    // See: http://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
-                }
+                    try
+                    {
+                        if (archiveMutex != null)
+                            archiveMutex.WaitOne();
+                    }
+                    catch (AbandonedMutexException)
+                    {
+                        // ignore the exception, another process was killed without properly releasing the mutex
+                        // the mutex has been acquired, so proceed to writing
+                        // See: http://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
+                    }
 #endif
-                try
-                {
+
                     // Check again if archive is needed. We could have been raced by another process
                     var validatedArchiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
                     if (string.IsNullOrEmpty(validatedArchiveFile))
@@ -2087,7 +2076,7 @@ namespace NLog.Targets
             }
         }
 
-        private void AutoClosingTimerCallback(object state)
+        private void AutoClosingTimerCallback(object sender, EventArgs state)
         {
             try
             {
@@ -2098,7 +2087,7 @@ namespace NLog.Targets
                         return;
                     }
 
-                    DateTime expireTime = DateTime.UtcNow.AddSeconds(-this.OpenFileCacheTimeout);
+                    DateTime expireTime = this.OpenFileCacheTimeout > 0 ? DateTime.UtcNow.AddSeconds(-this.OpenFileCacheTimeout) : DateTime.MinValue;
                     this.fileAppenderCache.CloseAppenders(expireTime);
                 }
             }

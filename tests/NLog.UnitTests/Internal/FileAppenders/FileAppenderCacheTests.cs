@@ -138,24 +138,24 @@ namespace NLog.UnitTests.Internal.FileAppenders
         {
             // Invoke CloseAppenders() on an Empty FileAppenderCache.
             FileAppenderCache emptyCache = FileAppenderCache.Empty;
-            emptyCache.CloseAppenders();
+            emptyCache.CloseAppenders(string.Empty);
 
             
             IFileAppenderFactory appenderFactory = SingleProcessFileAppender.TheFactory;
             ICreateFileParameters fileTarget = new FileTarget();
             FileAppenderCache cache = new FileAppenderCache(3, appenderFactory, fileTarget);
             // Invoke CloseAppenders() on non-empty FileAppenderCache - Before allocating any appenders. 
-            cache.CloseAppenders();            
+            cache.CloseAppenders(string.Empty);            
 
             // Invoke CloseAppenders() on non-empty FileAppenderCache - After allocating N appenders. 
             cache.AllocateAppender("file1.txt");
             cache.AllocateAppender("file2.txt");
-            cache.CloseAppenders();
+            cache.CloseAppenders(string.Empty);
 
             // Invoke CloseAppenders() on non-empty FileAppenderCache - After allocating N appenders. 
             cache.AllocateAppender("file1.txt");
             cache.AllocateAppender("file2.txt");
-            cache.CloseAppenders();
+            cache.CloseAppenders(string.Empty);
 
             FileAppenderCache cache2 = new FileAppenderCache(3, appenderFactory, fileTarget);
             // Invoke CloseAppenders() on non-empty FileAppenderCache - Before allocating any appenders. 

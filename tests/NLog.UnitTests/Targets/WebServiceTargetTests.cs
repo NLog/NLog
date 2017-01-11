@@ -335,6 +335,36 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             CheckQueueMessage(message2, LogMeController.RecievedLogsGetParam1);
         }
 
+        /// <summary>
+        /// Test the Webservice with REST api -  <see cref="WebServiceProtocol.HttpGet"/>  (only checking for no exception)
+        /// </summary>
+        [Fact]
+        public void WebserviceTest_restapi_httpget_flush()
+        {
+            var logger = SetUpHttpGetWebservice("api/logme");
+
+            LogMeController.ResetState(0);
+
+            var message1 = "message with a post";
+            StartOwinTest(() =>
+            {
+                for (int i = 0; i < 100; ++i)
+                    logger.Info(message1);
+
+                // Make triple-flush to fully exercise the async flushing logic
+                try
+                {
+                    LogManager.Flush(0);
+                }
+                catch (NLog.NLogRuntimeException)
+                { }
+                LogManager.Flush(); // Waits for flush (Scheduled on top of the previous flush)
+                LogManager.Flush(); // Nothing to flush
+            });
+
+            Assert.Equal(100, LogMeController.RecievedLogsGetParam1.Count);
+        }
+
         [Fact]
         public void WebServiceTest_restapi_httpget_querystring()
         {
@@ -453,15 +483,11 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 {
                     logger.Info(createdMessage);
                 }
-
             });
-
-
 
             Assert.Equal(LogMeController.CountdownEvent.CurrentCount, 0);
             Assert.Equal(createdMessages.Count, LogMeController.RecievedLogsPostParam1.Count);
             //Assert.Equal(createdMessages, ValuesController.RecievedLogsPostParam1);
-
         }
 
 
@@ -594,7 +620,10 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             {
                 RecievedLogsPostParam1 = new ConcurrentBag<string>();
                 RecievedLogsGetParam1 = new ConcurrentBag<string>();
-                CountdownEvent = new CountdownEvent(expectedMessages);
+                if (expectedMessages > 0)
+                    CountdownEvent = new CountdownEvent(expectedMessages);
+                else
+                    CountdownEvent = null;
             }
 
             /// <summary>
@@ -697,7 +726,6 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 //wait for all recieved message, or timeout. There is no exception on timeout, so we have to check carefully in the unit test.
                 if (LogMeController.CountdownEvent != null)
                 {
-
                     LogMeController.CountdownEvent.Wait(webserviceCheckTimeoutMs);
                     //we need some extra time for completion
                     Thread.Sleep(1000);
@@ -713,7 +741,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             {
                 testsFunc();
 
-                testContext.CountdownEvent.Wait(webserviceCheckTimeoutMs);
+                if (LogMeController.CountdownEvent != null)
+                    testContext.CountdownEvent.Wait(webserviceCheckTimeoutMs);
                 Thread.Sleep(1000);
             }
         }

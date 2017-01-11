@@ -50,7 +50,7 @@ namespace NLog.Internal
         /// </summary>
         private readonly static char[] DirectorySeparatorChars = new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar };
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT || WINDOWS_PHONE
 
         /// <summary>
         /// Cached invalid filenames char array to avoid memory allocation everytime Path.GetInvalidFileNameChars() is called.
@@ -131,8 +131,8 @@ namespace NLog.Internal
                     _filePathKind = FilePathKind.Unknown;
                 }
             }
-#if !SILVERLIGHT
 
+#if !SILVERLIGHT
             if (_filePathKind == FilePathKind.Relative)
             {
                 _baseDir = AppDomainWrapper.CurrentDomain.BaseDirectory;
@@ -285,7 +285,7 @@ namespace NLog.Internal
 
         private static string CleanupInvalidFilePath(string filePath)
         {
-#if !SILVERLIGHT
+#if !SILVERLIGHT || WINDOWS_PHONE
             if (StringHelpers.IsNullOrWhiteSpace(filePath))
             {
                 return filePath;
