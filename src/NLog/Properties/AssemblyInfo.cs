@@ -76,7 +76,7 @@ using System.Security;
 #endif
 #if !SILVERLIGHT4
 [assembly: AllowPartiallyTrustedCallers]
-#if !NET3_5 && !MONO_2_0 && !SILVERLIGHT5 && !__IOS__ && !WINDOWS_PHONE
+#if !NET3_5 && !MONO_2_0 && !SILVERLIGHT5 && !__IOS__ && !__ANDROID__ && !WINDOWS_PHONE
 [assembly: SecurityRules(SecurityRuleSet.Level1)]
 #endif
 #endif

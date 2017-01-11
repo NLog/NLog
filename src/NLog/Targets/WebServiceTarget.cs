@@ -180,6 +180,7 @@ namespace NLog.Targets
         /// <docgen category='Web Service Options' order='10' />
         public string XmlRootNamespace { get; set; }
 
+        private readonly AsyncOperationCounter pendingManualFlushList = new AsyncOperationCounter();
 
         /// <summary>
         /// Calls the target method. Must be implemented in concrete classes.
@@ -226,71 +227,122 @@ namespace NLog.Targets
                 {
                     if (ex != null)
                     {
-                        continuation(ex);
+                        DoInvokeCompleted(continuation, ex);
                         return;
                     }
 
-                    request.BeginGetResponse(
-                        r =>
+                    try
+                    {
+                        request.BeginGetResponse(
+                            r =>
+                            {
+                                try
+                                {
+                                    using (var response = request.EndGetResponse(r))
+                                    {
+                                    }
+
+                                    DoInvokeCompleted(continuation, null);
+                                }
+                                catch (Exception ex2)
+                                {
+                                    InternalLogger.Error(ex2, "Error when sending to Webservice: {0}", this.Name);
+                                    if (ex2.MustBeRethrown())
+                                    {
+                                        throw;
+                                    }
+
+                                    DoInvokeCompleted(continuation, ex2);
+                                }
+                            },
+                            null);
+                    }
+                    catch (Exception ex2)
+                    {
+                        InternalLogger.Error(ex2, "Error when sending to Webservice: {0}", this.Name);
+                        if (ex2.MustBeRethrown())
                         {
-                            try
-                            {
-                                using (var response = request.EndGetResponse(r))
-                                {
-                                }
+                            throw;
+                        }
 
-                                continuation(null);
-                            }
-                            catch (Exception ex2)
-                            {
-                                InternalLogger.Error(ex2, "Error when sending to Webservice.");
-
-                                if (ex2.MustBeRethrown())
-                                {
-                                    throw;
-                                }
-
-                                continuation(ex2);
-                            }
-                        },
-                        null);
+                        DoInvokeCompleted(continuation, ex2);
+                    }
                 };
 
             if (postPayload != null && postPayload.Length > 0)
             {
                 postPayload.Position = 0;
-                beginFunc(
-                    result =>
-                    {
-                        try
+                try
+                {
+                    pendingManualFlushList.BeginOperation();
+
+                    beginFunc(
+                        result =>
                         {
-                            using (Stream stream = getStreamFunc(result))
+                            try
                             {
-                                WriteStreamAndFixPreamble(postPayload, stream, this.IncludeBOM, this.Encoding);
+                                using (Stream stream = getStreamFunc(result))
+                                {
+                                    WriteStreamAndFixPreamble(postPayload, stream, this.IncludeBOM, this.Encoding);
+
+                                    postPayload.Dispose();
+                                }
+
+                                sendContinuation(null);
+                            }
+                            catch (Exception ex)
+                            {
+                                InternalLogger.Error(ex, "Error when sending to Webservice: {0}", this.Name);
+                                if (ex.MustBeRethrown())
+                                {
+                                    throw;
+                                }
 
                                 postPayload.Dispose();
+                                DoInvokeCompleted(continuation, ex);
                             }
+                        });
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "Error when sending to Webservice: {0}", this.Name);
+                    if (ex.MustBeRethrown())
+                    {
+                        throw;
+                    }
 
-                            sendContinuation(null);
-                        }
-                        catch (Exception ex)
-                        {
-                            postPayload.Dispose();
-                            InternalLogger.Error(ex, "Error when sending to Webservice.");
-
-                            if (ex.MustBeRethrown())
-                            {
-                                throw;
-                            }
-
-                            continuation(ex);
-                        }
-                    });
+                    DoInvokeCompleted(continuation, ex);
+                }
             }
             else
             {
+                pendingManualFlushList.BeginOperation();
                 sendContinuation(null);
             }
+        }
+
+        private void DoInvokeCompleted(AsyncContinuation continuation, Exception ex)
+        {
+            pendingManualFlushList.CompleteOperation(ex);
+            continuation(ex);
+        }
+
+        /// <summary>
+        /// Flush any pending log messages asynchronously (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void FlushAsync(AsyncContinuation asyncContinuation)
+        {
+            pendingManualFlushList.RegisterCompletionNotification(asyncContinuation).Invoke(null);
+        }
+
+        /// <summary>
+        /// Closes the target.
+        /// </summary>
+        protected override void CloseTarget()
+        {
+            pendingManualFlushList.Clear();   // Maybe consider to wait a short while if pending requests?
+            base.CloseTarget();
         }
 
         /// <summary>
@@ -397,7 +449,7 @@ namespace NLog.Targets
             protected virtual void InitRequest(HttpWebRequest request)
             {
                 request.Method = "POST";
-                request.ContentType = string.Format("{1}; charset={0}", Target.Encoding.WebName, ContentType);
+                request.ContentType = string.Concat(ContentType, "; charset=", Target.Encoding.WebName);
             }
 
             protected abstract void WriteContent(MemoryStream ms, object[] parameterValues);

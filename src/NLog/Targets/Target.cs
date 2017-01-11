@@ -35,7 +35,7 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
-    using System.Threading;
+
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -428,7 +428,11 @@ namespace NLog.Targets
         {
             if (disposing)
             {
-                this.CloseTarget();
+                if (this.isInitialized && this.initializeException == null)
+                {
+                    this.isInitialized = false;
+                    this.CloseTarget();
+                }
             }
         }
 

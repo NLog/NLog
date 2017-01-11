@@ -31,6 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !__ANDROID__ && !__IOS__
+// Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) so the BaseFileAppender class now throws an exception in the constructor.
+#define SupportsMutex
+#endif
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
 
 namespace NLog.Internal.FileAppenders
@@ -47,7 +52,7 @@ namespace NLog.Internal.FileAppenders
     /// keeping the files open.
     /// </summary>
     [SecuritySafeCritical]
-    internal class WindowsMultiProcessFileAppender : BaseFileAppender
+    internal class WindowsMultiProcessFileAppender : BaseMutexFileAppender
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
@@ -149,6 +154,17 @@ namespace NLog.Internal.FileAppenders
                 throw;
             }
         }
+
+#if SupportsMutex
+        /// <summary>
+        /// Creates a mutually-exclusive lock for archiving files.
+        /// </summary>
+        /// <returns>A <see cref="Mutex"/> object which can be used for controlling the archiving of files.</returns>
+        protected override Mutex CreateArchiveMutex()
+        {
+            return CreateSharableArchiveMutex();
+        }
+#endif
 
         /// <summary>
         /// Writes the specified bytes.

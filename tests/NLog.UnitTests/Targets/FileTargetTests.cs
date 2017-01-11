@@ -895,7 +895,7 @@ namespace NLog.UnitTests.Targets
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(tempPath, "{#}.txt"),
-                    ArchiveEvery = FileArchivePeriod.Minute,
+                    ArchiveEvery = FileArchivePeriod.Year,
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = ArchiveNumberingMode.Date,
                     ArchiveDateFormat = "yyyyMMddHHmmssfff", //make sure the milliseconds are set in the filename
@@ -2018,9 +2018,10 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [InlineData("/")]
-        [InlineData("\\")]
-        public void FileTarget_WithArchiveFileNameEndingInNumberPlaceholder_ShouldArchiveFile(string slash)
+        [InlineData("archive/test.log.{####}", "archive/test.log.0000")]
+        [InlineData("archive\\test.log.{####}", "archive\\test.log.0000")]
+        [InlineData("file.txt", "file.txt")]
+        public void FileTargetArchiveFileNameTest(string archiveFileName, string expectedArchiveFileName)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempPath, "file.txt");
@@ -2029,20 +2030,21 @@ namespace NLog.UnitTests.Targets
                 var fileTarget = WrapFileTarget(new FileTarget
                 {
                     FileName = logFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive" + slash + "test.log.{####}"),
-                    ArchiveAboveSize = 1000
+                    ArchiveFileName = Path.Combine(tempPath, archiveFileName),
+                    ArchiveAboveSize = 1000,
+                    MaxArchiveFiles = 1000,
                 });
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
 
-                for (var i = 0; i < 100; ++i)
+                for (var i = 0; i < 25; ++i)
                 {
                     logger.Debug("a");
                 }
 
                 LogManager.Configuration = null;
                 Assert.True(File.Exists(logFile));
-                Assert.True(File.Exists(Path.Combine(tempPath, "archive" + slash + "test.log.0000")));
+                Assert.True(File.Exists(Path.Combine(tempPath, expectedArchiveFileName)));
             }
             finally
             {

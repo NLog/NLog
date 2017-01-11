@@ -110,6 +110,39 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(2, myTarget.FlushCount);
         }
 
+        [Fact]
+        public void AutoFlushTargetWrapperAsyncTest2()
+        {
+            var myTarget = new MyAsyncTarget();
+            var wrapper = new AutoFlushTargetWrapper(myTarget);
+            myTarget.Initialize(null);
+            wrapper.Initialize(null);
+            var logEvent = new LogEventInfo();
+            Exception lastException = null;
+
+            for (int i = 0; i < 100; ++i)
+            {
+                wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(ex => lastException = ex));
+            }
+
+            var continuationHit = new ManualResetEvent(false);
+            AsyncContinuation continuation =
+                ex =>
+                {
+                    continuationHit.Set();
+                };
+
+            wrapper.Flush(ex => { });
+            Assert.Null(lastException);
+            wrapper.Flush(continuation);
+            Assert.Null(lastException);
+            continuationHit.WaitOne();
+            Assert.Null(lastException);
+            wrapper.Flush(ex => { });   // Executed right away
+            Assert.Null(lastException);
+            Assert.Equal(100, myTarget.WriteCount);
+            Assert.Equal(103, myTarget.FlushCount);
+        }
 
         [Fact]
         public void AutoFlushTargetWrapperAsyncWithExceptionTest1()
