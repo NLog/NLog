@@ -116,6 +116,57 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        [Theory]
+        [PropertyData("SimpleFileTest_TestParameters")]
+        public void SimpleFileDeleteTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites)
+        {
+            var logFile = Path.GetTempFileName();
+            var logFile2 = Path.Combine(Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString()), Path.GetFileName(logFile));
+
+            try
+            {
+                var fileTarget = WrapFileTarget(new FileTarget
+                {
+                    FileName = SimpleLayout.Escape(logFile),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${level} ${message}",
+                    OpenFileCacheTimeout = 0,
+                    EnableFileDelete = true,
+                    ConcurrentWrites = concurrentWrites,
+                    KeepFileOpen = keepFileOpen,
+                    NetworkWrites = networkWrites,
+                    ForceManaged = forceManaged,
+                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites
+                });
+
+                SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+
+                logger.Debug("aaa");
+
+                LogManager.Flush();
+
+                Directory.CreateDirectory(Path.GetDirectoryName(logFile2));
+                File.Move(logFile, logFile2);
+                if (keepFileOpen)
+                    Thread.Sleep(150);  // Allow AutoClose-Timer-Thread to react (Runs every 50 msec)
+                logger.Info("bbb");
+
+                LogManager.Configuration = null;
+
+                AssertFileContents(logFile, "Info bbb\n", Encoding.UTF8);
+            }
+            finally
+            {
+                if (File.Exists(logFile2))
+                {
+                    File.Delete(logFile2);
+                    Directory.Delete(Path.GetDirectoryName(logFile2));
+                }
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
+            }
+        }
+
         /// <summary>
         /// There was a bug when creating the file in the root.
         /// 
@@ -870,9 +921,9 @@ namespace NLog.UnitTests.Targets
             const int maxArchiveFiles = 3;
             LogManager.ThrowExceptions = true;
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            var logFile = Path.Combine(tempPath, "${date:format=yyyyMMddHHmmssfff}.txt");
             try
             {
+                var logFile = Path.Combine(tempPath, "${date:format=yyyyMMddHHmmssfff}.txt");
                 var fileTarget = WrapFileTarget(new FileTarget
                 {
                     FileName = logFile,
@@ -921,8 +972,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                if (File.Exists(logFile))
-                    File.Delete(logFile);
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -2048,10 +2097,10 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                if (File.Exists(invalidLogFileName))
-                    File.Delete(invalidLogFileName);
                 if (File.Exists(expectedCorrectedTempFile))
                     File.Delete(expectedCorrectedTempFile);
+                if (File.Exists(invalidLogFileName))
+                    File.Delete(invalidLogFileName);
             }
         }
 
@@ -2083,6 +2132,8 @@ namespace NLog.UnitTests.Targets
                 {
                     logger.Debug("a");
                 }
+
+                LogManager.Configuration = null;    // Flush
 
                 Assert.True(File.Exists(logFile));
 
@@ -2319,6 +2370,8 @@ namespace NLog.UnitTests.Targets
                     logger.Debug("bbb");
                 }
 
+                LogManager.Configuration = null;
+
                 AssertFileContents(logFile,
                     StringRepeat(times, "bbb\n"),
                     Encoding.UTF8);
@@ -2382,6 +2435,7 @@ namespace NLog.UnitTests.Targets
                     Assert.True(!helper.Exists(numberToBeRemoved), string.Format("archive file {0} has not been removed! We are created file {1}", numberToBeRemoved, i));
                 }
 
+                LogManager.Configuration = null;
             }
             finally
             {
@@ -3245,8 +3299,8 @@ namespace NLog.UnitTests.Targets
                 // write, this should append.
                 logger.Info("log to force archiving");
 
+                LogManager.Configuration = null;    // Flush
 
-                LogManager.Flush();
                 AssertFileContents(archiveFileName, "message already in archive" + Environment.NewLine + "some content" + Environment.NewLine, encoding, hasBom);
             }
             finally
@@ -3309,7 +3363,7 @@ namespace NLog.UnitTests.Targets
                 var logger = LogManager.GetLogger("DontCrashWhenDateAndSequenceDoesntMatchFiles");
                 logger.Info("Log message");
 
-                LogManager.Flush();
+                LogManager.Configuration = null;
             }
             finally
             {
