@@ -66,7 +66,8 @@ namespace NLog.UnitTests.Targets
                     from forceMutexConcurrentWrites in booleanValues
                     where UniqueBaseAppender(concurrentWrites, keepFileOpen, networkWrites, forceMutexConcurrentWrites)
                     from forceManaged in booleanValues
-                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, forceManaged, forceMutexConcurrentWrites };
+                    from optimizeBufferReuse in booleanValues
+                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, forceManaged, forceMutexConcurrentWrites, optimizeBufferReuse };
             }
         }
 
@@ -74,8 +75,8 @@ namespace NLog.UnitTests.Targets
         {
             if (!concurrentWrites && !networkWrites && !forceMutexConcurrentWrites)
                 return true;    // Allow keepFileOpen = true / false, Allow forceManaged = true / false
-            if (concurrentWrites && !networkWrites)
-                return true;    // Allow keepFileOpen = true / false, forceManaged = true / false, forceMutexConcurrentWrites = true / false
+            if (concurrentWrites && !networkWrites && keepFileOpen)
+                return true;    // Allow forceManaged = true / false, forceMutexConcurrentWrites = true / false
             if (networkWrites && keepFileOpen && !concurrentWrites && !forceMutexConcurrentWrites)
                 return true;    // Allow forceManaged = true / false
             return false;
@@ -83,7 +84,7 @@ namespace NLog.UnitTests.Targets
 
         [Theory]
         [PropertyData("SimpleFileTest_TestParameters")]
-        public void SimpleFileTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites)
+        public void SimpleFileTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
         {
             var logFile = Path.GetTempFileName();
             try
@@ -98,7 +99,8 @@ namespace NLog.UnitTests.Targets
                     KeepFileOpen = keepFileOpen,
                     NetworkWrites = networkWrites,
                     ForceManaged = forceManaged,
-                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites
+                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
+                    OptimizeBufferReuse = optimizeBufferReuse,
                 });
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
@@ -106,7 +108,9 @@ namespace NLog.UnitTests.Targets
                 logger.Debug("aaa");
                 logger.Info("bbb");
                 logger.Warn("ccc");
-                LogManager.Configuration = null;
+
+                LogManager.Configuration = null;    // Flush
+
                 AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
             }
             finally
@@ -118,7 +122,7 @@ namespace NLog.UnitTests.Targets
 
         [Theory]
         [PropertyData("SimpleFileTest_TestParameters")]
-        public void SimpleFileDeleteTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites)
+        public void SimpleFileDeleteTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
         {
             var logFile = Path.GetTempFileName();
             var logFile2 = Path.Combine(Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString()), Path.GetFileName(logFile));
@@ -136,7 +140,8 @@ namespace NLog.UnitTests.Targets
                     KeepFileOpen = keepFileOpen,
                     NetworkWrites = networkWrites,
                     ForceManaged = forceManaged,
-                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites
+                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
+                    OptimizeBufferReuse = optimizeBufferReuse,
                 });
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
@@ -175,7 +180,6 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void SimpleFileTestInRoot()
         {
-
             if (NLog.Internal.PlatformDetector.IsWin32)
             {
                 var logFile = "c:\\nlog-test.log";
@@ -193,7 +197,9 @@ namespace NLog.UnitTests.Targets
                     logger.Debug("aaa");
                     logger.Info("bbb");
                     logger.Warn("ccc");
-                    LogManager.Configuration = null;
+
+                    LogManager.Configuration = null;    // Flush
+
                     AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
                 }
                 finally
@@ -212,8 +218,11 @@ namespace NLog.UnitTests.Targets
         /// </summary>
         [Theory(Timeout = FIVE_SECONDS)]
         [PropertyData("SimpleFileTest_TestParameters")]
-        public void NonExistingDriveShouldNotDelayMuch(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites)
+        public void NonExistingDriveShouldNotDelayMuch(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
         {
+            if (!optimizeBufferReuse)
+                return; // No need to test with buffer optimization enabled
+
             var nonExistingDrive = GetFirstNonExistingDriveWindows();
 
             var logFile = nonExistingDrive + "://dont-extist/no-timeout.log";
@@ -228,7 +237,7 @@ namespace NLog.UnitTests.Targets
                     KeepFileOpen = keepFileOpen,
                     NetworkWrites = networkWrites,
                     ForceManaged = forceManaged,
-                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites
+                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
                 });
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
@@ -236,6 +245,8 @@ namespace NLog.UnitTests.Targets
                 {
                     logger.Debug("aaa");
                 }
+
+                LogManager.Configuration = null;    // Flush
             }
             finally
             {
@@ -292,7 +303,8 @@ namespace NLog.UnitTests.Targets
                     SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
 
                     logger.Debug("aaa");
-                    LogManager.Configuration = null;
+
+                    LogManager.Configuration = null;    // Flush
                 }
                 AssertFileContents(logFile, "name;level;message\nNLog.UnitTests.Targets.FileTargetTests;Debug;aaa\nNLog.UnitTests.Targets.FileTargetTests;Debug;aaa\n", Encoding.UTF8);
             }
@@ -363,7 +375,8 @@ namespace NLog.UnitTests.Targets
                 logger.Info("bbb");
                 logger.Warn("ccc");
 
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
+
                 AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
             }
             finally
@@ -467,7 +480,7 @@ namespace NLog.UnitTests.Targets
                 logger.Info("bbb");
                 logger.Warn("ccc");
 
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
                 AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
 
 
@@ -495,7 +508,8 @@ namespace NLog.UnitTests.Targets
                 logger.Info("eee");
                 logger.Warn("fff");
 
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
+
                 AssertFileContents(logFile, "Debug ddd\nInfo eee\nWarn fff\n", Encoding.UTF8);
                 Assert.True(File.Exists(archiveTempName));
 
@@ -558,12 +572,16 @@ namespace NLog.UnitTests.Targets
                 string footerPart = useFooter ? footer + LineEndingMode.LF.NewLineCharacters : string.Empty;
 
                 logger.Debug("aaa");
+                LogManager.Flush();
                 AssertFileContents(logFile, headerPart + "Debug aaa\n" + footerPart, Encoding.UTF8);
-                logger.Info("bbb");
-                AssertFileContents(logFile, headerPart + "Info bbb\n" + footerPart, Encoding.UTF8);
-                logger.Warn("ccc");
-                AssertFileContents(logFile, headerPart + "Warn ccc\n" + footerPart, Encoding.UTF8);
 
+                logger.Info("bbb");
+                LogManager.Flush();
+                AssertFileContents(logFile, headerPart + "Info bbb\n" + footerPart, Encoding.UTF8);
+
+                logger.Warn("ccc");
+                LogManager.Flush();
+                AssertFileContents(logFile, headerPart + "Warn ccc\n" + footerPart, Encoding.UTF8);
             }
             finally
             {
@@ -633,7 +651,8 @@ namespace NLog.UnitTests.Targets
                 logger.Debug("aaa");
                 logger.Info("bbb");
                 logger.Warn("ccc");
-                LogManager.Configuration = null;
+
+                LogManager.Configuration = null;    // Flush
                 AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
             }
             finally
@@ -675,7 +694,7 @@ namespace NLog.UnitTests.Targets
                 Generate100BytesLog('d');
                 Generate100BytesLog('e');
 
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
 
                 var times = 25;
                 AssertFileContents(logFile,
@@ -738,7 +757,7 @@ namespace NLog.UnitTests.Targets
                 Generate100BytesLog('d');
                 Generate100BytesLog('e');
 
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
 
                 AssertFileContents(logFile,
                     StringRepeat(25, "eee\n"),
@@ -823,8 +842,7 @@ namespace NLog.UnitTests.Targets
                     logger.Debug("eee");
                 }
 
-                LogManager.Configuration = null;
-
+                LogManager.Configuration = null;    // Flush
 
                 //we expect only eee and all other in the archive
                 AssertFileContents(logFile,
@@ -837,7 +855,6 @@ namespace NLog.UnitTests.Targets
                     Path.Combine(archiveFolder, string.Format("{0}.txt", archiveFileName)),
                    StringRepeat(times, "aaa\n") + StringRepeat(times, "bbb\n") + StringRepeat(times, "ccc\n") + StringRepeat(times, "ddd\n"),
                     Encoding.UTF8);
-
             }
             finally
             {
@@ -881,8 +898,9 @@ namespace NLog.UnitTests.Targets
                     if (i % 5 == 0)
                         Thread.Sleep(50);
                 }
+
                 //Setting the Configuration to [null] will result in a 'Dump' of the current log entries
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
 
                 var files = Directory.GetFiles(archiveFolder).OrderBy(s => s);
                 //the amount of archived files may not exceed the set 'MaxArchiveFiles'
@@ -893,7 +911,8 @@ namespace NLog.UnitTests.Targets
                 //writing just one line of 11 bytes will trigger the cleanup of old archived files
                 //as stated by the MaxArchiveFiles property, but will only delete the oldest file
                 logger.Debug("1234567890");
-                LogManager.Configuration = null;
+
+                LogManager.Configuration = null;    // Flush
 
                 var files2 = Directory.GetFiles(archiveFolder).OrderBy(s => s);
                 Assert.Equal(maxArchiveFiles, files2.Count());
@@ -944,7 +963,7 @@ namespace NLog.UnitTests.Targets
                     Thread.Sleep(50);
                 }
                 //Setting the Configuration to [null] will result in a 'Dump' of the current log entries
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
 
                 var files = Directory.GetFiles(tempPath).OrderBy(s => s);
                 //we expect 3 archive files, plus one current file
@@ -956,7 +975,7 @@ namespace NLog.UnitTests.Targets
                 //as stated by the MaxArchiveFiles property, but will only delete the oldest file
                 Thread.Sleep(50);
                 logger.Debug("123456789");
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
 
                 var files2 = Directory.GetFiles(tempPath).OrderBy(s => s);
                 Assert.Equal(maxArchiveFiles + 1, files2.Count());
@@ -1059,6 +1078,7 @@ namespace NLog.UnitTests.Targets
 
                     var eventInfo = new LogEventInfo(LogLevel.Debug, logger.Name, "123456789");
                     logger.Log(eventInfo);
+                    LogManager.Flush();
 
                     var dayIsChanged = eventInfo.TimeStamp.Date != previousWriteTime.Date;
                     // ensure new archive is created only when the day part of time is changed
@@ -1074,19 +1094,19 @@ namespace NLog.UnitTests.Targets
                         timeSource.AddToSystemTime(TimeSpan.FromDays(1));
                 }
                 //Setting the Configuration to [null] will result in a 'Dump' of the current log entries
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
 
                 var files = Directory.GetFiles(archiveFolder);
                 //the amount of archived files may not exceed the set 'MaxArchiveFiles'
                 Assert.Equal(maxArchiveFiles, files.Length);
-
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
                 //writing one line on a new day will trigger the cleanup of old archived files
                 //as stated by the MaxArchiveFiles property, but will only delete the oldest file
                 timeSource.AddToLocalTime(TimeSpan.FromDays(1));
                 logger.Debug("1234567890");
-                LogManager.Configuration = null;
+
+                LogManager.Configuration = null;    // Flush
 
                 var files2 = Directory.GetFiles(archiveFolder);
                 Assert.Equal(maxArchiveFiles, files2.Length);
@@ -1153,12 +1173,14 @@ namespace NLog.UnitTests.Targets
                     KeepFileOpen = keepFileOpen,
                     NetworkWrites = networkWrites,
                     ForceManaged = forceManaged,
-                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites
+                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
                 });
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
 
                 logger.Debug("123456789");
+                LogManager.Flush();
+
                 string currentLogFile = Directory.GetFiles(tempPath)[0];
                 File.SetCreationTime(currentLogFile, File.GetCreationTime(currentLogFile).AddDays(-1));
                 File.SetLastWriteTime(currentLogFile, File.GetLastWriteTime(currentLogFile).AddDays(-1));
@@ -1167,8 +1189,9 @@ namespace NLog.UnitTests.Targets
                 // This must not archive.
                 logger.Debug("123456789");
 
-                LogManager.Configuration = null;
-                File.Equals(1, Directory.GetFiles(archiveFolder).Length);
+                LogManager.Configuration = null;    // Flush
+
+                Assert.Equal(1, Directory.GetFiles(archiveFolder).Length);
                 AssertFileContents(currentLogFile, StringRepeat(2, "123456789\n"), Encoding.UTF8);
             }
             finally
@@ -1240,7 +1263,8 @@ namespace NLog.UnitTests.Targets
 
                 timeSource.AddToLocalTime(TimeSpan.FromDays(2));
                 logger.Debug("1234567890");
-                LogManager.Configuration = null;
+
+                LogManager.Configuration = null;    // Flush
 
                 string archivePath = Path.Combine(tempPath, "archive");
                 var archiveFiles = Directory.GetFiles(archivePath);
@@ -1279,6 +1303,11 @@ namespace NLog.UnitTests.Targets
         [PropertyData("DateArchive_AllLoggersTransferToCurrentLogFile_TestParameters")]
         public void DateArchive_AllLoggersTransferToCurrentLogFile(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeDateInLogFilePath, bool includeSequenceInArchive, bool enableArchiveCompression, bool forceManaged, bool forceMutexConcurrentWrites)
         {
+#if !NET4_5
+            if (enableArchiveCompression)
+                return; // No need to test with compression
+#endif
+
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var logfile = Path.Combine(tempPath, includeDateInLogFilePath ? "file_${shortdate}.txt" : "file.txt");
             try
@@ -1302,7 +1331,7 @@ namespace NLog.UnitTests.Targets
                     KeepFileOpen = keepFileOpen,
                     NetworkWrites = networkWrites,
                     ForceManaged = forceManaged,
-                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites
+                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
                 });
                 var logger1Rule = new LoggingRule("logger1", LogLevel.Debug, fileTarget1);
                 config.LoggingRules.Add(logger1Rule);
@@ -1323,7 +1352,7 @@ namespace NLog.UnitTests.Targets
                     KeepFileOpen = keepFileOpen,
                     NetworkWrites = networkWrites,
                     ForceManaged = forceManaged,
-                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites
+                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
                 });
                 var logger2Rule = new LoggingRule("logger2", LogLevel.Debug, fileTarget2);
                 config.LoggingRules.Add(logger2Rule);
@@ -1335,6 +1364,8 @@ namespace NLog.UnitTests.Targets
 
                 logger1.Debug("123456789");
                 logger2.Debug("123456789");
+                LogManager.Flush();
+
                 string currentLogFile = Directory.GetFiles(tempPath)[0];
                 File.SetCreationTime(currentLogFile, File.GetCreationTime(currentLogFile).AddDays(-1));
                 File.SetLastWriteTime(currentLogFile, File.GetLastWriteTime(currentLogFile).AddDays(-1));
@@ -1342,7 +1373,8 @@ namespace NLog.UnitTests.Targets
                 Thread.Sleep(10);
                 logger2.Debug("123456789");
 
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
+
                 var files = Directory.GetFiles(archiveFolder);
                 Assert.Equal(1, files.Length);
                 AssertFileContents(currentLogFile, StringRepeat(2, "123456789\n"), Encoding.UTF8);
@@ -1388,7 +1420,7 @@ namespace NLog.UnitTests.Targets
                 }
 
                 //Setting the Configuration to [null] will result in a 'Dump' of the current log entries
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
 
                 var fileCount = Directory.EnumerateFiles(archiveFolder).Count();
 
@@ -1463,7 +1495,7 @@ namespace NLog.UnitTests.Targets
                 //writing just one line of 11 bytes will trigger the cleanup of old archived files
                 //as stated by the MaxArchiveFiles property, but will only delete the oldest files
                 logger.Debug("1234567890");
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
 
                 var files2 = Directory.GetFiles(archiveFolder).OrderBy(s => s);
                 Assert.Equal(innerFileTarget.MaxArchiveFiles, files2.Count());
@@ -1516,7 +1548,7 @@ namespace NLog.UnitTests.Targets
                     logger.Debug("123456789");
                 }
 
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
 
                 AssertFileContentsStartsWith(logFile, header, Encoding.UTF8);
 
@@ -1639,7 +1671,7 @@ namespace NLog.UnitTests.Targets
                 Generate100BytesLog('d');
                 Generate100BytesLog('e');
 
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
 
                 var assertFileContents =
 #if NET4_5
@@ -1713,7 +1745,7 @@ namespace NLog.UnitTests.Targets
                 Generate100BytesLog('d');
                 Generate100BytesLog('e');
 
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
 
                 var times = 25;
                 AssertFileContents(logFile,
@@ -1781,7 +1813,7 @@ namespace NLog.UnitTests.Targets
                     logger.Fatal("eee");
                 }
 
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
 
                 Assert.False(File.Exists(Path.Combine(tempPath, "Trace.txt")));
 
@@ -1833,7 +1865,7 @@ namespace NLog.UnitTests.Targets
                     logger.Fatal("eee");
                 }
 
-                LogManager.Configuration = null;
+                LogManager.Configuration = null; // Flush
 
                 Assert.False(File.Exists(Path.Combine(tempPath, "Trace.txt")));
 
@@ -1880,7 +1912,8 @@ namespace NLog.UnitTests.Targets
 
                 SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(fileTarget, 10, AsyncTargetWrapperOverflowAction.Grow)
                 {
-                    Name = "AsyncMultiFileWrite_wrapper"
+                    Name = "AsyncMultiFileWrite_wrapper",
+                    TimeToSleepBetweenBatches = 1,
                 }, LogLevel.Debug);
                 LogManager.ThrowExceptions = true;
 
@@ -1894,8 +1927,8 @@ namespace NLog.UnitTests.Targets
                     logger.Error("ddd");
                     logger.Fatal("eee");
                 }
-                LogManager.Flush();
-                LogManager.Configuration = null;
+
+                LogManager.Configuration = null;    // Flush
 
                 Assert.False(File.Exists(Path.Combine(tempPath, "Trace.txt")));
 
@@ -2092,7 +2125,9 @@ namespace NLog.UnitTests.Targets
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Fatal);
 
                 logger.Fatal("aaa");
-                LogManager.Configuration = null;
+
+                LogManager.Configuration = null;    // Flush
+
                 AssertFileContents(expectedCorrectedTempFile, "Fatal aaa\n", Encoding.UTF8);
             }
             finally
@@ -2147,7 +2182,6 @@ namespace NLog.UnitTests.Targets
                     tempDirectory.Delete(true);
                 }
             }
-
         }
 
         [Fact]
@@ -2176,12 +2210,13 @@ namespace NLog.UnitTests.Targets
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
 
-
                 string existingFile = archiveFileLayout.Replace("{#}", "notadate");
                 Directory.CreateDirectory(Path.GetDirectoryName(logFile));
                 File.Create(existingFile).Close();
 
                 logger.Debug("test");
+
+                LogManager.Configuration = null;    // Flush
 
                 AssertFileContents(logFile, "test" + LineEndingMode.Default.NewLineCharacters, Encoding.UTF8);
                 Assert.True(File.Exists(existingFile));
@@ -2227,6 +2262,8 @@ namespace NLog.UnitTests.Targets
                     logger.Debug("bbb");
                 }
 
+                LogManager.Flush();
+
                 AssertFileContents(logFile,
                     StringRepeat(times, "bbb\n"),
                     Encoding.UTF8);
@@ -2240,7 +2277,7 @@ namespace NLog.UnitTests.Targets
                     logger.Debug("ccc");
                 }
 
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
 
                 AssertFileContents(logFile,
                     StringRepeat(times, "ccc\n"),
@@ -2294,6 +2331,8 @@ namespace NLog.UnitTests.Targets
                     logger.Debug("ccc");
                 }
 
+                LogManager.Flush();
+
                 AssertFileContents(logFile,
                     StringRepeat(times, "ccc\n"),
                     Encoding.UTF8);
@@ -2311,7 +2350,7 @@ namespace NLog.UnitTests.Targets
                     logger.Debug("ddd");
                 }
 
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
 
                 AssertFileContents(logFile,
                     StringRepeat(times, "ddd\n"),
@@ -2370,7 +2409,7 @@ namespace NLog.UnitTests.Targets
                     logger.Debug("bbb");
                 }
 
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
 
                 AssertFileContents(logFile,
                     StringRepeat(times, "bbb\n"),
@@ -2555,6 +2594,8 @@ namespace NLog.UnitTests.Targets
             SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
             for (int currentSequenceNumber = 0; currentSequenceNumber < count; currentSequenceNumber++)
                 logger.Debug("Test {0}", currentSequenceNumber);
+
+            LogManager.Flush();
         }
 
         [Fact]
@@ -3216,6 +3257,7 @@ namespace NLog.UnitTests.Targets
             };
 
             fileTarget.WriteAsyncLogEvents(events);
+            LogManager.Flush();
 
             Assert.Equal(4, exceptions.Count);
             Assert.Null(exceptions[0]);
