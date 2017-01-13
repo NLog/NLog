@@ -220,8 +220,8 @@ namespace NLog.UnitTests.Targets
         [PropertyData("SimpleFileTest_TestParameters")]
         public void NonExistingDriveShouldNotDelayMuch(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
         {
-            if (!optimizeBufferReuse)
-                return; // No need to test with buffer optimization enabled
+            if (optimizeBufferReuse)
+                return; // No need to test with buffer optimization enabled, as it is enabled by default
 
             var nonExistingDrive = GetFirstNonExistingDriveWindows();
 
@@ -1190,7 +1190,7 @@ namespace NLog.UnitTests.Targets
                 timeSource.AddToLocalTime(TimeSpan.FromDays(1));
 
                 // This should archive the log before logging.
-                logger.Debug("123456789");  
+                logger.Debug("123456789");
 
                 timeSource.AddToSystemTime(TimeSpan.FromDays(1));   // Archive only once
 
@@ -1211,7 +1211,7 @@ namespace NLog.UnitTests.Targets
                 TimeSource.Current = defaultTimeSource; // restore default time source
 
                 if (Directory.Exists(tempPath))
-                Directory.Delete(tempPath, true);
+                    Directory.Delete(tempPath, true);
             }
         }
 
@@ -2862,7 +2862,7 @@ namespace NLog.UnitTests.Targets
                 var app1DebugNm = "App1_Debug";
                 var app2Nm = "App2";
 
-#region Create Mock Archive Files
+                #region Create Mock Archive Files
                 var now = DateTime.Now;
                 var i = 0;
                 // create mock app1_trace archives (matches app1 config for trace target)
@@ -2903,7 +2903,7 @@ namespace NLog.UnitTests.Targets
                     }
                     i--;
                 }
-#endregion
+                #endregion
 
                 // Create same app1 Debug file as config defines. Will force archiving to happen on startup
                 File.WriteAllLines(logdir + "\\" + app1DebugNm + fileExt, new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
@@ -3001,7 +3001,7 @@ namespace NLog.UnitTests.Targets
                 var app1Nm = "App1";
                 var app2Nm = "App2";
 
-#region Create Mock Archive Files
+                #region Create Mock Archive Files
                 var now = DateTime.Now;
                 var i = 0;
                 // create mock app1 archives (matches app1 config for target)
@@ -3029,7 +3029,7 @@ namespace NLog.UnitTests.Targets
                     }
                     i--;
                 }
-#endregion
+                #endregion
 
                 // Create same app1 file as config defines. Will force archiving to happen on startup
                 File.WriteAllLines(logdir + "\\" + app1Nm + fileExt, new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
