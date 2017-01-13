@@ -138,14 +138,11 @@ namespace NLog
             get { return currentAppDomain ?? (currentAppDomain = AppDomainWrapper.CurrentDomain); }
             set
             {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 UnregisterEvents(currentAppDomain);
                 //make sure we aren't double registering.
                 UnregisterEvents(value);
                 RegisterEvents(value);
-#endif
                 currentAppDomain = value;
-
             }
         }
 
@@ -742,7 +739,7 @@ namespace NLog
         /// <param name="e">Event arguments</param>
         protected virtual void OnConfigurationReloaded(LoggingConfigurationReloadedEventArgs e)
         {
-            ConfigurationReloaded?.Invoke(this, e);
+            if (ConfigurationReloaded != null) ConfigurationReloaded.Invoke(this, e);
         }
 #endif
 
@@ -1053,42 +1050,46 @@ namespace NLog
         /// </summary>
         private static IEnumerable<string> GetDefaultCandidateConfigFilePaths()
         {
-#if SILVERLIGHT || __ANDROID__ || __IOS__
-    //try.nlog.config is ios/android/silverlight
-            yield return "NLog.config";
-#else
             // NLog.config from application directory
-            if (CurrentAppDomain.BaseDirectory != null)
+            if (CurrentAppDomain != null && CurrentAppDomain.BaseDirectory != null)
             {
                 yield return Path.Combine(CurrentAppDomain.BaseDirectory, "NLog.config");
             }
+            else
+            {
+                yield return "NLog.config";
+            }
 
             // Current config file with .config renamed to .nlog
-            string cf = CurrentAppDomain.ConfigurationFile;
-            if (cf != null)
+            if (CurrentAppDomain != null)
             {
-                yield return Path.ChangeExtension(cf, ".nlog");
-
-                // .nlog file based on the non-vshost version of the current config file
-                const string vshostSubStr = ".vshost.";
-                if (cf.Contains(vshostSubStr))
+                string cf = CurrentAppDomain.ConfigurationFile;
+                if (cf != null)
                 {
-                    yield return Path.ChangeExtension(cf.Replace(vshostSubStr, "."), ".nlog");
-                }
+                    yield return Path.ChangeExtension(cf, ".nlog");
 
-                IEnumerable<string> privateBinPaths = CurrentAppDomain.PrivateBinPath;
-                if (privateBinPaths != null)
-                {
-                    foreach (var path in privateBinPaths)
+                    // .nlog file based on the non-vshost version of the current config file
+                    const string vshostSubStr = ".vshost.";
+                    if (cf.Contains(vshostSubStr))
                     {
-                        if (path != null)
+                        yield return Path.ChangeExtension(cf.Replace(vshostSubStr, "."), ".nlog");
+                    }
+
+                    IEnumerable<string> privateBinPaths = CurrentAppDomain.PrivateBinPath;
+                    if (privateBinPaths != null)
+                    {
+                        foreach (var path in privateBinPaths)
                         {
-                            yield return Path.Combine(path, "NLog.config");
+                            if (path != null)
+                            {
+                                yield return Path.Combine(path, "NLog.config");
+                            }
                         }
                     }
                 }
             }
 
+#if !SILVERLIGHT
             // Get path to NLog.dll.nlog only if the assembly is not in the GAC
             var nlogAssembly = typeof(LogFactory).Assembly;
             if (!nlogAssembly.GlobalAssemblyCache)
@@ -1413,6 +1414,7 @@ namespace NLog
         private static void UnregisterEvents(IAppDomain appDomain)
         {
             if (appDomain == null) return;
+
             appDomain.DomainUnload -= OnStopLogging;
             appDomain.ProcessExit -= OnStopLogging;
         }
