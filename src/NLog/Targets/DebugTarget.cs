@@ -67,6 +67,7 @@ namespace NLog.Targets
         {
             this.LastMessage = string.Empty;
             this.Counter = 0;
+            this.OptimizeBufferReuse = true;
         }
 
         /// <summary>

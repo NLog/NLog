@@ -64,6 +64,7 @@ namespace NLog.Targets
         /// </remarks>
         public DebuggerTarget() : base()
         {
+            this.OptimizeBufferReuse = true;
         }
 
         /// <summary>
@@ -84,9 +85,9 @@ namespace NLog.Targets
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
-            if (Header != null)
+            if (this.Header != null)
             {
-                Debugger.Log(LogLevel.Off.Ordinal, string.Empty, Header.Render(LogEventInfo.CreateNullEvent()) + "\n");
+                Debugger.Log(LogLevel.Off.Ordinal, string.Empty, base.RenderLogEvent(this.Header, LogEventInfo.CreateNullEvent()) + "\n");
             }
         }
 
@@ -95,9 +96,9 @@ namespace NLog.Targets
         /// </summary>
         protected override void CloseTarget()
         {
-            if (Footer != null)
+            if (this.Footer != null)
             {
-                Debugger.Log(LogLevel.Off.Ordinal, string.Empty, Footer.Render(LogEventInfo.CreateNullEvent()) + "\n");
+                Debugger.Log(LogLevel.Off.Ordinal, string.Empty, base.RenderLogEvent(this.Footer, LogEventInfo.CreateNullEvent()) + "\n");
             }
 
             base.CloseTarget();
@@ -111,7 +112,22 @@ namespace NLog.Targets
         {
             if (Debugger.IsLogging())
             {
-                Debugger.Log(logEvent.Level.Ordinal, logEvent.LoggerName, this.Layout.Render(logEvent) + "\n");
+                string logMessage = string.Empty;
+                if (this.OptimizeBufferReuse)
+                {
+                    using (var localTarget = base.ReusableLayoutBuilder.Allocate())
+                    {
+                        this.Layout.RenderAppendBuilder(logEvent, localTarget.Result);
+                        localTarget.Result.Append('\n');
+                        logMessage = localTarget.Result.ToString();
+                    }
+                }
+                else
+                {
+                    logMessage = base.RenderLogEvent(this.Layout, logEvent) + "\n";
+                }
+
+                Debugger.Log(logEvent.Level.Ordinal, logEvent.LoggerName, logMessage);
             }
         }
     }
