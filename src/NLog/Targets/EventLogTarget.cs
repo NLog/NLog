@@ -87,6 +87,7 @@ namespace NLog.Targets
             this.Log = "Application";
             this.MachineName = ".";
             this.MaxMessageLength = 16384;
+            this.OptimizeBufferReuse = GetType() == typeof(EventLogTarget);
         }
 
         /// <summary>
@@ -242,7 +243,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            string message = this.Layout.Render(logEvent);
+            string message = base.RenderLogEvent(this.Layout, logEvent);
 
             EventLogEntryType entryType = GetEntryType(logEvent);
 
@@ -250,14 +251,14 @@ namespace NLog.Targets
 
             if (this.EventId != null)
             {
-                eventId = Convert.ToInt32(this.EventId.Render(logEvent), CultureInfo.InvariantCulture);
+                eventId = Convert.ToInt32(base.RenderLogEvent(this.EventId, logEvent), CultureInfo.InvariantCulture);
             }
 
             short category = 0;
 
             if (this.Category != null)
             {
-                category = Convert.ToInt16(this.Category.Render(logEvent), CultureInfo.InvariantCulture);
+                category = Convert.ToInt16(base.RenderLogEvent(this.Category, logEvent), CultureInfo.InvariantCulture);
             }
 
             EventLog eventLog = GetEventLog(logEvent);
@@ -301,7 +302,7 @@ namespace NLog.Targets
             {
                 //try parse, if fail,  determine auto
 
-                var value = this.EntryType.Render(logEvent);
+                var value = base.RenderLogEvent(this.EntryType, logEvent);
 
                 EventLogEntryType eventLogEntryType;
                 if (EnumHelpers.TryParse(value, true, out eventLogEntryType))
@@ -349,7 +350,7 @@ namespace NLog.Targets
         /// <returns></returns>
         private EventLog GetEventLog(LogEventInfo logEvent)
         {
-            var renderedSource = this.Source != null ? this.Source.Render(logEvent) : null;
+            var renderedSource = this.Source != null ? base.RenderLogEvent(this.Source, logEvent) : null;
             var isCacheUpToDate = eventLogInstance != null && renderedSource == eventLogInstance.Source &&
                                    eventLogInstance.Log == this.Log && eventLogInstance.MachineName == this.MachineName;
 
