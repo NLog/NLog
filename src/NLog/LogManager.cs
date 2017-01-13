@@ -73,7 +73,7 @@ namespace NLog
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
         static LogManager()
         {
-            SetupTerminationEvents();
+            RegisterEvents(CurrentAppDomain);
         }
 #endif
 
@@ -154,13 +154,22 @@ namespace NLog
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 if (currentAppDomain != null)
                 {
-                    currentAppDomain.DomainUnload -= LogManager_OnStopLogging;
-                    currentAppDomain.ProcessExit -= LogManager_OnStopLogging;
+                    UnregisterEvents(currentAppDomain);
+                }
+
+                if (value != null)
+                {
+                    //make sure we aren't double registering.
+                    UnregisterEvents(value);
+                    RegisterEvents(value);
                 }
 #endif
                 currentAppDomain = value;
+                
             }
         }
+
+
 
         /// <summary>
         /// Gets or sets the current logging configuration.
@@ -391,12 +400,12 @@ namespace NLog
         }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-        private static void SetupTerminationEvents()
+        private static void RegisterEvents(IAppDomain appDomain)
         {
             try
             {
-                CurrentAppDomain.ProcessExit += LogManager_OnStopLogging;
-                CurrentAppDomain.DomainUnload += LogManager_OnStopLogging;
+                appDomain.ProcessExit += LogManager_OnStopLogging;
+                appDomain.DomainUnload += LogManager_OnStopLogging;
             }
             catch (Exception exception)
             {
@@ -407,6 +416,12 @@ namespace NLog
                     throw;
                 }
             }
+        }
+
+        private static void UnregisterEvents(IAppDomain appDomain)
+        {
+            appDomain.DomainUnload -= LogManager_OnStopLogging;
+            appDomain.ProcessExit -= LogManager_OnStopLogging;
         }
 #endif
 
