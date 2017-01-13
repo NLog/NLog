@@ -91,6 +91,7 @@ namespace NLog.Targets
             this.UseDefaultRowHighlightingRules = true;
             this.pauseLogging = false;
             this.DetectConsoleAvailable = false;
+            this.OptimizeBufferReuse = true;
         }
 
         /// <summary>
@@ -221,10 +222,10 @@ namespace NLog.Targets
                 Console.OutputEncoding = this.encoding;
 #endif
             base.InitializeTarget();
-            if (Header != null)
+            if (this.Header != null)
             {
                 LogEventInfo lei = LogEventInfo.CreateNullEvent();
-                this.WriteToOutput(lei, Header.Render(lei));
+                this.WriteToOutput(lei, base.RenderLogEvent(this.Header, lei));
             }
         }
 
@@ -233,10 +234,10 @@ namespace NLog.Targets
         /// </summary>
         protected override void CloseTarget()
         {
-            if (Footer != null)
+            if (this.Footer != null)
             {
                 LogEventInfo lei = LogEventInfo.CreateNullEvent();
-                this.WriteToOutput(lei, Footer.Render(lei));
+                this.WriteToOutput(lei, base.RenderLogEvent(this.Footer, lei));
             }
 
             base.CloseTarget();
@@ -254,7 +255,7 @@ namespace NLog.Targets
                 //check early for performance
                 return;
             }
-            this.WriteToOutput(logEvent, this.Layout.Render(logEvent));
+            this.WriteToOutput(logEvent, base.RenderLogEvent(this.Layout, logEvent));
         }
 
         private void WriteToOutput(LogEventInfo logEvent, string message)
