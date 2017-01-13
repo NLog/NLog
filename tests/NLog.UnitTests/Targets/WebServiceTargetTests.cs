@@ -497,8 +497,6 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_json()
         {
-
-
             var configuration = CreateConfigurationFromString(string.Format(@"
                 <nlog throwExceptions='true'>
                     <targets>
@@ -544,8 +542,6 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_xml()
         {
-
-
             var configuration = CreateConfigurationFromString(string.Format(@"
                 <nlog throwExceptions='true'>
                     <targets>
@@ -741,9 +737,11 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             {
                 testsFunc();
 
-                if (LogMeController.CountdownEvent != null)
+                if (testContext.CountdownEvent != null)
+                {
                     testContext.CountdownEvent.Wait(webserviceCheckTimeoutMs);
-                Thread.Sleep(1000);
+                    Thread.Sleep(1000);
+                }
             }
         }
 
