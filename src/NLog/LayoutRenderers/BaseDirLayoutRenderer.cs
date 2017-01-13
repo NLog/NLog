@@ -54,7 +54,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
         /// </summary>
-        public BaseDirLayoutRenderer() : this(AppDomainWrapper.CurrentDomain)
+        public BaseDirLayoutRenderer() : this(LogFactory.CurrentAppDomain)
         {
         }
 

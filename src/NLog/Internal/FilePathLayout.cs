@@ -135,7 +135,7 @@ namespace NLog.Internal
 #if !SILVERLIGHT
             if (_filePathKind == FilePathKind.Relative)
             {
-                _baseDir = AppDomainWrapper.CurrentDomain.BaseDirectory;
+                _baseDir = LogFactory.CurrentAppDomain.BaseDirectory;
             }
 #endif
 
