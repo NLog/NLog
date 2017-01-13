@@ -53,7 +53,6 @@ namespace NLog
     public sealed class LogManager
     {
         private static readonly LogFactory factory = new LogFactory();
-        private static IAppDomain currentAppDomain;
         private static ICollection<Assembly> _hiddenAssemblies;
 
         private static readonly object lockObject = new object();
@@ -65,17 +64,6 @@ namespace NLog
         /// <remarks>This delegate marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
         [Obsolete("Marked obsolete before v4.3.11")]
         public delegate CultureInfo GetCultureInfo();
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-        /// <summary>
-        /// Initializes static members of the LogManager class.
-        /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
-        static LogManager()
-        {
-            RegisterEvents(CurrentAppDomain);
-        }
-#endif
 
         /// <summary>
         /// Prevents a default instance of the LogManager class from being created.
@@ -145,30 +133,6 @@ namespace NLog
             get { return factory.KeepVariablesOnReload; }
             set { factory.KeepVariablesOnReload = value; }
         }
-
-        internal static IAppDomain CurrentAppDomain
-        {
-            get { return currentAppDomain ?? (currentAppDomain = AppDomainWrapper.CurrentDomain); }
-            set
-            {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-                if (currentAppDomain != null)
-                {
-                    UnregisterEvents(currentAppDomain);
-                }
-
-                if (value != null)
-                {
-                    //make sure we aren't double registering.
-                    UnregisterEvents(value);
-                    RegisterEvents(value);
-                }
-#endif
-                currentAppDomain = value;
-                
-            }
-        }
-
 
 
         /// <summary>
@@ -400,29 +364,7 @@ namespace NLog
         }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-        private static void RegisterEvents(IAppDomain appDomain)
-        {
-            try
-            {
-                appDomain.ProcessExit += LogManager_OnStopLogging;
-                appDomain.DomainUnload += LogManager_OnStopLogging;
-            }
-            catch (Exception exception)
-            {
-                InternalLogger.Warn(exception, "Error setting up termination events.");
 
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
-            }
-        }
-
-        private static void UnregisterEvents(IAppDomain appDomain)
-        {
-            appDomain.DomainUnload -= LogManager_OnStopLogging;
-            appDomain.ProcessExit -= LogManager_OnStopLogging;
-        }
 #endif
 
         /// <summary>
@@ -458,22 +400,6 @@ namespace NLog
         }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-        private static void LogManager_OnStopLogging(object sender, EventArgs args)
-        {
-            try
-            {
-                InternalLogger.Info("Shutting down logging...");
-                factory.Close(TimeSpan.FromMilliseconds(1500)); // Finalizer thread has about 2 secs, before being terminated
-                CurrentAppDomain = null;    // No longer part of AppDomains
-                InternalLogger.Info("Logger has been shut down.");
-            }
-            catch (Exception ex)
-            {
-                if (ex.MustBeRethrownImmediately())
-                    throw;
-                InternalLogger.Error(ex, "Logger failed to shut down properly.");
-            }
-        }
 #endif
     }
 }
