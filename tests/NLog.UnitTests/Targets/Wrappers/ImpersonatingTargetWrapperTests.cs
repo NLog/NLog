@@ -284,7 +284,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 this.Events.Add(logEvent);
             }
 
-            protected override void Write(AsyncLogEventInfo[] logEvents)
+            protected override void Write(IList<AsyncLogEventInfo> logEvents)
             {
                 this.AssertExpectedUser();
                 base.Write(logEvents);
