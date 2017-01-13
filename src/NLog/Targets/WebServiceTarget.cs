@@ -99,6 +99,7 @@ namespace NLog.Targets
             const bool writeBOM = false;
             this.Encoding = new UTF8Encoding(writeBOM);
             this.IncludeBOM = writeBOM;
+            this.OptimizeBufferReuse = true;
         }
 
         /// <summary>
@@ -357,19 +358,21 @@ namespace NLog.Targets
                 return this.Url;
             }
 
-            UrlHelper.EscapeEncodingFlag encodingFlags = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, false, EscapeDataRfc3986);
-            
             //if the protocol is HttpGet, we need to add the parameters to the query string of the url
-            var queryParameters = new StringBuilder();
-            string separator = string.Empty;
-            for (int i = 0; i < this.Parameters.Count; i++)
+            string queryParameters = string.Empty;
+            if (this.OptimizeBufferReuse)
             {
-                queryParameters.Append(separator);
-                queryParameters.Append(this.Parameters[i].Name);
-                queryParameters.Append("=");
-                string parameterValue = Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture);
-                UrlHelper.EscapeDataEncode(parameterValue, queryParameters, encodingFlags);
-                separator = "&";
+                using (var targetBuilder = this.ReusableLayoutBuilder.Allocate())
+                {
+                    BuildWebServiceQueryParameters(parameterValues, targetBuilder.Result);
+                    queryParameters = targetBuilder.Result.ToString();
+                }
+            }
+            else
+            {
+                StringBuilder sb = new StringBuilder();
+                BuildWebServiceQueryParameters(parameterValues, sb);
+                queryParameters = sb.ToString();
             }
 
             var builder = new UriBuilder(this.Url);
@@ -377,14 +380,30 @@ namespace NLog.Targets
             //the recommendations at https://msdn.microsoft.com/en-us/library/system.uribuilder.query.aspx
             if (builder.Query != null && builder.Query.Length > 1)
             {
-                builder.Query = string.Concat(builder.Query.Substring(1), "&", queryParameters.ToString());
+                builder.Query = string.Concat(builder.Query.Substring(1), "&", queryParameters);
             }
             else
             {
-                builder.Query = queryParameters.ToString();
+                builder.Query = queryParameters;
             }
 
             return builder.Uri;
+        }
+
+        private void BuildWebServiceQueryParameters(object[] parameterValues, StringBuilder sb)
+        {
+            UrlHelper.EscapeEncodingFlag encodingFlags = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, false, EscapeDataRfc3986);
+
+            string separator = string.Empty;
+            for (int i = 0; i < this.Parameters.Count; i++)
+            {
+                sb.Append(separator);
+                sb.Append(this.Parameters[i].Name);
+                sb.Append("=");
+                string parameterValue = Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture);
+                UrlHelper.EscapeDataEncode(parameterValue, sb, encodingFlags);
+                separator = "&";
+            }
         }
 
         private void PrepareGetRequest(HttpWebRequest request)
