@@ -69,6 +69,7 @@ namespace NLog.Targets
         /// </remarks>
         public TraceTarget() : base()
         {
+            this.OptimizeBufferReuse = true;
         }
 
         /// <summary>
@@ -92,29 +93,30 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
+            string logMessage = base.RenderLogEvent(this.Layout, logEvent);
             if (logEvent.Level <= LogLevel.Debug)
             {
-                Trace.WriteLine(this.Layout.Render(logEvent));
+                Trace.WriteLine(logMessage);
             }
             else if (logEvent.Level == LogLevel.Info)
             {
-                Trace.TraceInformation(this.Layout.Render(logEvent));
+                Trace.TraceInformation(logMessage);
             }
             else if (logEvent.Level == LogLevel.Warn)
             {
-                Trace.TraceWarning(this.Layout.Render(logEvent));
+                Trace.TraceWarning(logMessage);
             }
             else if (logEvent.Level == LogLevel.Error)
             {
-                Trace.TraceError(this.Layout.Render(logEvent));
+                Trace.TraceError(logMessage);
             }
             else if (logEvent.Level >= LogLevel.Fatal)
             {
-                Trace.Fail(this.Layout.Render(logEvent));
+                Trace.Fail(logMessage);
             }
             else
             {
-                Trace.WriteLine(this.Layout.Render(logEvent));                
+                Trace.WriteLine(logMessage);                
             }
         }
     }
