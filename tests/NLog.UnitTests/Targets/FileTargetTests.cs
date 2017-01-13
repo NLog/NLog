@@ -220,8 +220,8 @@ namespace NLog.UnitTests.Targets
         [PropertyData("SimpleFileTest_TestParameters")]
         public void NonExistingDriveShouldNotDelayMuch(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
         {
-            if (!optimizeBufferReuse)
-                return; // No need to test with buffer optimization enabled
+            if (optimizeBufferReuse)
+                return; // No need to test with buffer optimization enabled, as it is enabled by default
 
             var nonExistingDrive = GetFirstNonExistingDriveWindows();
 
@@ -1136,7 +1136,6 @@ namespace NLog.UnitTests.Targets
                     from concurrentWrites in booleanValues
                     from keepFileOpen in booleanValues
                     from networkWrites in booleanValues
-                    where AllowsExternalFileModification(concurrentWrites, keepFileOpen, networkWrites)
                     from forceMutexConcurrentWrites in booleanValues
                     where UniqueBaseAppender(concurrentWrites, keepFileOpen, networkWrites, forceMutexConcurrentWrites)
                     from includeDateInLogFilePath in booleanValues
@@ -1146,19 +1145,26 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        private static bool AllowsExternalFileModification(bool concurrentWrites, bool keepFileOpen, bool networkWrites)
-        {
-            return (concurrentWrites) || (!keepFileOpen) || (networkWrites);
-        }
-
         [Theory]
         [PropertyData("DateArchive_ArchiveOnceOnly_TestParameters")]
         public void DateArchive_ArchiveOnceOnly(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool dateInLogFilePath, bool includeSequenceInArchive, bool forceManaged, bool forceMutexConcurrentWrites)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempPath, dateInLogFilePath ? "file_${shortdate}.txt" : "file.txt");
+
+            var defaultTimeSource = TimeSource.Current;
+
             try
             {
+                var timeSource = new TimeSourceTests.ShiftedTimeSource(DateTimeKind.Local);
+                if (timeSource.Time.Minute == 59)
+                {
+                    // Avoid double-archive due to overflow of the hour.
+                    timeSource.AddToLocalTime(TimeSpan.FromMinutes(1));
+                    timeSource.AddToSystemTime(TimeSpan.FromMinutes(1));
+                }
+                TimeSource.Current = timeSource;
+
                 string archiveFolder = Path.Combine(tempPath, "archive");
                 var fileTarget = WrapFileTarget(new FileTarget
                 {
@@ -1181,21 +1187,29 @@ namespace NLog.UnitTests.Targets
                 logger.Debug("123456789");
                 LogManager.Flush();
 
-                string currentLogFile = Directory.GetFiles(tempPath)[0];
-                File.SetCreationTime(currentLogFile, File.GetCreationTime(currentLogFile).AddDays(-1));
-                File.SetLastWriteTime(currentLogFile, File.GetLastWriteTime(currentLogFile).AddDays(-1));
+                timeSource.AddToLocalTime(TimeSpan.FromDays(1));
+
                 // This should archive the log before logging.
                 logger.Debug("123456789");
+
+                timeSource.AddToSystemTime(TimeSpan.FromDays(1));   // Archive only once
+
                 // This must not archive.
                 logger.Debug("123456789");
 
                 LogManager.Configuration = null;    // Flush
 
                 Assert.Equal(1, Directory.GetFiles(archiveFolder).Length);
+                var prevLogFile = Directory.GetFiles(archiveFolder)[0];
+                AssertFileContents(prevLogFile, StringRepeat(1, "123456789\n"), Encoding.UTF8);
+
+                var currentLogFile = Directory.GetFiles(tempPath)[0];
                 AssertFileContents(currentLogFile, StringRepeat(2, "123456789\n"), Encoding.UTF8);
             }
             finally
             {
+                TimeSource.Current = defaultTimeSource; // restore default time source
+
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -1288,7 +1302,6 @@ namespace NLog.UnitTests.Targets
                     from concurrentWrites in booleanValues
                     from keepFileOpen in booleanValues
                     from networkWrites in booleanValues
-                    where AllowsExternalFileModification(concurrentWrites, keepFileOpen, networkWrites)
                     from forceMutexConcurrentWrites in booleanValues
                     where UniqueBaseAppender(concurrentWrites, keepFileOpen, networkWrites, forceMutexConcurrentWrites)
                     from includeDateInLogFilePath in booleanValues
@@ -1308,10 +1321,24 @@ namespace NLog.UnitTests.Targets
                 return; // No need to test with compression
 #endif
 
+            if (keepFileOpen && !networkWrites && !concurrentWrites)
+                return; // This combination do not support two local FileTargets to the same file
+
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var logfile = Path.Combine(tempPath, includeDateInLogFilePath ? "file_${shortdate}.txt" : "file.txt");
+            var defaultTimeSource = TimeSource.Current;
+
             try
             {
+                var timeSource = new TimeSourceTests.ShiftedTimeSource(DateTimeKind.Local);
+                if (timeSource.Time.Minute == 59)
+                {
+                    // Avoid double-archive due to overflow of the hour.
+                    timeSource.AddToLocalTime(TimeSpan.FromMinutes(1));
+                    timeSource.AddToSystemTime(TimeSpan.FromMinutes(1));
+                }
+                TimeSource.Current = timeSource;
+
                 var config = new LoggingConfiguration();
 
                 string archiveFolder = Path.Combine(tempPath, "archive");
@@ -1366,10 +1393,13 @@ namespace NLog.UnitTests.Targets
                 logger2.Debug("123456789");
                 LogManager.Flush();
 
-                string currentLogFile = Directory.GetFiles(tempPath)[0];
-                File.SetCreationTime(currentLogFile, File.GetCreationTime(currentLogFile).AddDays(-1));
-                File.SetLastWriteTime(currentLogFile, File.GetLastWriteTime(currentLogFile).AddDays(-1));
+                timeSource.AddToLocalTime(TimeSpan.FromDays(1));
+
+                // This should archive the log before logging.
                 logger1.Debug("123456789");
+
+                timeSource.AddToSystemTime(TimeSpan.FromDays(1));   // Archive only once
+
                 Thread.Sleep(10);
                 logger2.Debug("123456789");
 
@@ -1377,10 +1407,17 @@ namespace NLog.UnitTests.Targets
 
                 var files = Directory.GetFiles(archiveFolder);
                 Assert.Equal(1, files.Length);
+                if (!enableArchiveCompression)
+                {
+                    string prevLogFile = Directory.GetFiles(archiveFolder)[0];
+                    AssertFileContents(prevLogFile, StringRepeat(2, "123456789\n"), Encoding.UTF8);
+                }
+                string currentLogFile = Directory.GetFiles(tempPath)[0];
                 AssertFileContents(currentLogFile, StringRepeat(2, "123456789\n"), Encoding.UTF8);
             }
             finally
             {
+                TimeSource.Current = defaultTimeSource; // restore default time source
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }

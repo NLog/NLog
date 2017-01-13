@@ -195,8 +195,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>The file creation time.</returns>
         public override DateTime? GetFileCreationTimeUtc()
         {
-            var fileChars = GetFileCharacteristics();
-            return fileChars.CreationTimeUtc;
+            return CreationTimeUtc; // File is kept open, so creation time is static
         }
 
         /// <summary>
