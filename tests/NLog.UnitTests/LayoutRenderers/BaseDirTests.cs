@@ -34,6 +34,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NLog.Internal.Fakeables;
+using NLog.Layouts;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
@@ -62,6 +63,19 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             AssertLayoutRendererOutput("${basedir:file=aaa.txt}", Path.Combine(baseDir, "aaa.txt"));
         }
+
+#if !SILVERLIGHT
+        [Fact]
+        public void BaseDirCurrentProcessTest()
+        {
+            Layout l = "${basedir:processdir=true}";
+            var dir = l.Render(LogEventInfo.CreateNullEvent());
+
+            Assert.NotNull(dir);
+            Assert.True(Directory.Exists(dir), string.Format("dir '{0}' doesn't exists", dir));
+            Assert.Equal(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), dir);
+        }
+#endif
 
         [Fact]
         public void BaseDirDirFileCombineTest()

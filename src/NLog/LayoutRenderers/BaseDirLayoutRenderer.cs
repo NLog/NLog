@@ -49,6 +49,20 @@ namespace NLog.LayoutRenderers
     {
         private string baseDir;
 
+#if !SILVERLIGHT
+
+        /// <summary>
+        /// cached
+        /// </summary>
+        private string processDir;
+
+        /// <summary>
+        /// Use base dir of current process.
+        /// </summary>
+        public bool ProcessDir { get; set; }
+
+#endif
+
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
         /// </summary>
@@ -83,9 +97,18 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (baseDir != null)
+
+            var dir = baseDir;
+#if !SILVERLIGHT
+            if (ProcessDir)
             {
-                var path = PathHelpers.CombinePaths(baseDir, this.Dir, this.File);
+                dir = processDir ?? (processDir = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName));
+            }
+#endif
+
+            if (dir != null)
+            {
+                var path = PathHelpers.CombinePaths(dir, this.Dir, this.File);
                 builder.Append(path);
             }
         }
