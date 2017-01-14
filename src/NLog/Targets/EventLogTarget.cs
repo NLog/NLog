@@ -246,19 +246,9 @@ namespace NLog.Targets
 
             EventLogEntryType entryType = GetEntryType(logEvent);
 
-            int eventId = 0;
+            int eventId = this.EventId.RenderInt(logEvent, 0, "EventLogTarget.EventId");
 
-            if (this.EventId != null)
-            {
-                eventId = Convert.ToInt32(this.EventId.Render(logEvent), CultureInfo.InvariantCulture);
-            }
-
-            short category = 0;
-
-            if (this.Category != null)
-            {
-                category = Convert.ToInt16(this.Category.Render(logEvent), CultureInfo.InvariantCulture);
-            }
+            short category = this.EventId.RenderShort(logEvent, 0, "EventLogTarget.Category");
 
             EventLog eventLog = GetEventLog(logEvent);
 
