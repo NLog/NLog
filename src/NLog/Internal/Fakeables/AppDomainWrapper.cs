@@ -88,7 +88,6 @@ namespace NLog.Internal.Fakeables
         /// </summary>
         public static AppDomainWrapper CurrentDomain { get { return new AppDomainWrapper(AppDomain.CurrentDomain); } }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets the base directory that the assembly resolver uses to probe for assemblies.
         /// </summary>
@@ -113,9 +112,7 @@ namespace NLog.Internal.Fakeables
         /// Gets an integer that uniquely identifies the application domain within the process. 
         /// </summary>
         public int Id { get; private set; }
-#endif
 
-#if !SILVERLIGHT
         /// <summary>
         /// Process exit event.
         /// </summary>
@@ -123,15 +120,19 @@ namespace NLog.Internal.Fakeables
         {
             add
             {
-                if (this.processExitEvent == null)
+#if !SILVERLIGHT
+                if (this.processExitEvent == null && this.currentAppDomain != null)
                     this.currentAppDomain.ProcessExit += OnProcessExit;
+#endif
                 this.processExitEvent += value;
             }
             remove
             {
                 this.processExitEvent -= value;
-                if (this.processExitEvent == null)
+#if !SILVERLIGHT
+                if (this.processExitEvent == null && this.currentAppDomain != null)
                     this.currentAppDomain.ProcessExit -= OnProcessExit;
+#endif
             }
         }
         private event EventHandler<EventArgs> processExitEvent;
@@ -143,15 +144,20 @@ namespace NLog.Internal.Fakeables
         {
             add
             {
-                if (this.domainUnloadEvent == null)
+#if !SILVERLIGHT
+                if (this.domainUnloadEvent == null && this.currentAppDomain != null)
                     this.currentAppDomain.DomainUnload += OnDomainUnload;
+#endif
                 this.domainUnloadEvent += value;
+
             }
             remove
             {
                 this.domainUnloadEvent -= value;
-                if (this.domainUnloadEvent == null)
+#if !SILVERLIGHT
+                if (this.domainUnloadEvent == null && this.currentAppDomain != null)
                     this.currentAppDomain.DomainUnload -= OnDomainUnload;
+#endif
             }
         }
         private event EventHandler<EventArgs> domainUnloadEvent;
@@ -159,14 +165,13 @@ namespace NLog.Internal.Fakeables
         private void OnDomainUnload(object sender, EventArgs e)
         {
             var handler = domainUnloadEvent;
-            if (handler != null) handler(sender, e);
+            if (handler != null) handler.Invoke(sender, e);
         }
 
         private void OnProcessExit(object sender, EventArgs eventArgs)
         {
             var handler = processExitEvent;
-            if (handler != null) handler(sender, eventArgs);
+            if (handler != null) handler.Invoke(sender, eventArgs);
         }
-#endif
     }
 }

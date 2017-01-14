@@ -63,12 +63,10 @@ namespace NLog.Internal
 
         private FilePathKind _filePathKind;
 
-#if !SILVERLIGHT
         /// <summary>
         /// not null when <see cref="_filePathKind"/> == <c>false</c>
         /// </summary>
         private string _baseDir;
-#endif
 
         /// <summary>
         /// non null is fixed,
@@ -132,12 +130,10 @@ namespace NLog.Internal
                 }
             }
 
-#if !SILVERLIGHT
             if (_filePathKind == FilePathKind.Relative)
             {
-                _baseDir = AppDomainWrapper.CurrentDomain.BaseDirectory;
+                _baseDir = LogFactory.CurrentAppDomain.BaseDirectory;
             }
-#endif
 
         }
 
@@ -213,14 +209,12 @@ namespace NLog.Internal
                 return cleanFileName;
             }
 
-#if !SILVERLIGHT
-            if (_filePathKind == FilePathKind.Relative)
+            if (_filePathKind == FilePathKind.Relative && _baseDir != null)
             {
                 //use basedir, faster than Path.GetFullPath
                 cleanFileName = Path.Combine(_baseDir, cleanFileName);
                 return cleanFileName;
             }
-#endif
             //unknown, use slow method
             cleanFileName = Path.GetFullPath(cleanFileName);
             return cleanFileName;

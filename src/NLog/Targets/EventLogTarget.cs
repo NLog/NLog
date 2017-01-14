@@ -74,7 +74,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
         public EventLogTarget()
-            : this(AppDomainWrapper.CurrentDomain)
+            : this(LogFactory.CurrentAppDomain)
         {
         }
 
@@ -93,7 +93,8 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
         /// <param name="name">Name of the target.</param>
-        public EventLogTarget(string name) : this(AppDomainWrapper.CurrentDomain)
+        public EventLogTarget(string name) 
+            : this(LogFactory.CurrentAppDomain)
         {
             this.Name = name;
         }
