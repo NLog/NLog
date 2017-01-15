@@ -455,7 +455,7 @@ namespace NLog.Config
         private void CheckParsingErrors(NLogXmlElement rootContentElement)
         {
             var parsingErrors = rootContentElement.GetParsingErrors().ToArray();
-            if(parsingErrors.Any())
+            if (parsingErrors.Any())
             {
                 if (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
                 {
@@ -507,6 +507,11 @@ namespace NLog.Config
             InternalLogger.Debug("Unused target checking is completed. Total Rule Count: {0}, Total Target Count: {1}, Unused Target Count: {2}", this.LoggingRules.Count, configuredNamedTargets.Count, unusedCount);
         }
 
+        /// <summary>
+        /// Add a file with configuration. Check if not already included.
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="autoReloadDefault"></param>
         private void ConfigureFromFile(string fileName, bool autoReloadDefault)
         {
             if (!this.fileMustAutoReloadLookup.ContainsKey(GetFileLookupKey(fileName)))
@@ -1073,24 +1078,35 @@ namespace NLog.Config
             {
                 newFileName = this.ExpandSimpleVariables(newFileName);
                 newFileName = SimpleLayout.Evaluate(newFileName);
+                var fullNewFileName = newFileName;
                 if (baseDirectory != null)
                 {
-                    newFileName = Path.Combine(baseDirectory, newFileName);
+                    fullNewFileName = Path.Combine(baseDirectory, newFileName);
                 }
 
 #if SILVERLIGHT && !WINDOWS_PHONE
                 newFileName = newFileName.Replace("\\", "/");
-                if (Application.GetResourceStream(new Uri(newFileName, UriKind.Relative)) != null)
+                if (Application.GetResourceStream(new Uri(fullNewFileName, UriKind.Relative)) != null)
 #else
-                if (File.Exists(newFileName))
+                if (File.Exists(fullNewFileName))
 #endif
                 {
-                    InternalLogger.Debug("Including file '{0}'", newFileName);
-                    this.ConfigureFromFile(newFileName, autoReloadDefault);
+                    InternalLogger.Debug("Including file '{0}'", fullNewFileName);
+                    this.ConfigureFromFile(fullNewFileName, autoReloadDefault);
                 }
                 else
                 {
-                    throw new FileNotFoundException("Included file not found: " + newFileName);
+                    //is mask?
+
+                    if (newFileName.Contains("*"))
+                    {
+                        ConfigureFromFilesByMask(baseDirectory, newFileName, autoReloadDefault);
+                    }
+                    else
+                    {
+                        throw new FileNotFoundException("Included file not found: " + fullNewFileName);
+                    }
+
                 }
             }
             catch (Exception exception)
@@ -1108,6 +1124,48 @@ namespace NLog.Config
                 }
 
                 throw new NLogConfigurationException("Error when including: " + newFileName, exception);
+            }
+        }
+
+        /// <summary>
+        /// Include (multiple) files by filemask, e.g. *.nlog
+        /// </summary>
+        /// <param name="baseDirectory">base directory in case if <paramref name="fileMask"/> is relative</param>
+        /// <param name="fileMask">relative or absolute fileMask</param>
+        /// <param name="autoReloadDefault"></param>
+        private void ConfigureFromFilesByMask(string baseDirectory, string fileMask, bool autoReloadDefault)
+        {
+            var directory = baseDirectory;
+
+            //if absolute, split to filemask and directory.
+            if (Path.IsPathRooted(fileMask))
+            {
+                directory = Path.GetDirectoryName(fileMask);
+                if (directory == null)
+                {
+                    InternalLogger.Warn("directory is empty for include of '{0}'", fileMask);
+                    return;
+                }
+
+                var filename = Path.GetFileName(fileMask);
+                
+                if (filename == null)
+                {
+                    InternalLogger.Warn("filename is empty for include of '{0}'", fileMask);
+                    return;
+                }
+                fileMask = filename;
+            }
+
+#if SILVERLIGHT && !WINDOWS_PHONE
+            var files = Directory.EnumerateFiles(directory, fileMask);
+#else
+            var files = Directory.GetFiles(directory, fileMask);
+#endif
+            foreach (var file in files)
+            {
+                //note we exclude ourself in ConfigureFromFile
+                this.ConfigureFromFile(file, autoReloadDefault);
             }
         }
 
@@ -1157,7 +1215,7 @@ namespace NLog.Config
             var value = this.ExpandSimpleVariables(element.Value);
             try
             {
-               
+
                 PropertyHelper.SetPropertyFromString(o, element.LocalName, value, this.ConfigurationItemFactory);
             }
             catch (NLogConfigurationException)
