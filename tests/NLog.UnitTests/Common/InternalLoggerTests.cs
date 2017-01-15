@@ -127,6 +127,26 @@ namespace NLog.UnitTests.Common
 
                 TestWriter(expected, writer2);
             }
+            {
+                //
+                // Reconfigure the LogWriter.
+
+                StringWriter writer2 = new StringWriter()
+                {
+                    NewLine = "\n"
+                };
+                InternalLogger.LogWriter = writer2;
+
+                // Invoke Log(LogLevel, string) for every log level.
+                InternalLogger.Log(LogLevel.Warn, () => "WWW");
+                InternalLogger.Log(LogLevel.Error, () => "EEE");
+                InternalLogger.Log(LogLevel.Fatal, () => "FFF");
+                InternalLogger.Log(LogLevel.Trace, () => "TTT");
+                InternalLogger.Log(LogLevel.Debug, () => "DDD");
+                InternalLogger.Log(LogLevel.Info, () => "III");
+
+                TestWriter(expected, writer2);
+            }
         }
 
 
@@ -237,6 +257,27 @@ namespace NLog.UnitTests.Common
                 InternalLogger.Log(LogLevel.Info, "III");
 
                 TestWriter(expected, consoleOutWriter2);
+            }
+
+            //lambdas
+            {
+                StringWriter consoleOutWriter1 = new StringWriter()
+                {
+                    NewLine = "\n"
+                };
+
+                // Redirect the console output to a StringWriter.
+                Console.SetOut(consoleOutWriter1);
+
+                // Named (based on LogLevel) public methods.
+                InternalLogger.Warn(()=>"WWW");
+                InternalLogger.Error(() => "EEE");
+                InternalLogger.Fatal(() => "FFF");
+                InternalLogger.Trace(() => "TTT");
+                InternalLogger.Debug(() => "DDD");
+                InternalLogger.Info(() => "III");
+
+                TestWriter(expected, consoleOutWriter1);
             }
         }
 
@@ -416,26 +457,51 @@ namespace NLog.UnitTests.Common
                     "Debug DDD" + prefix + ex5 + Environment.NewLine +
                     "Info III" + Environment.NewLine;
 
-                StringWriter consoleOutWriter = new StringWriter()
+
                 {
-                    NewLine = Environment.NewLine
-                };
+                    StringWriter consoleOutWriter = new StringWriter()
+                    {
+                        NewLine = Environment.NewLine
+                    };
 
-                // Redirect the console output to a StringWriter.
-                Console.SetOut(consoleOutWriter);
+                    // Redirect the console output to a StringWriter.
+                    Console.SetOut(consoleOutWriter);
 
-                // Named (based on LogLevel) public methods.
+                    // Named (based on LogLevel) public methods.
 
-                InternalLogger.Warn(ex1, "WWW");
-                InternalLogger.Error(ex2, "EEE");
-                InternalLogger.Fatal(ex3, "FFF");
-                InternalLogger.Trace(ex4, "TTT");
-                InternalLogger.Debug(ex5, "DDD");
-                InternalLogger.Info(ex6, "III");
+                    InternalLogger.Warn(ex1, "WWW");
+                    InternalLogger.Error(ex2, "EEE");
+                    InternalLogger.Fatal(ex3, "FFF");
+                    InternalLogger.Trace(ex4, "TTT");
+                    InternalLogger.Debug(ex5, "DDD");
+                    InternalLogger.Info(ex6, "III");
 
-                consoleOutWriter.Flush();
-                var strings = consoleOutWriter.ToString();
-                Assert.Equal(expected, strings);
+                    consoleOutWriter.Flush();
+                    var strings = consoleOutWriter.ToString();
+                    Assert.Equal(expected, strings);
+                }
+                {
+                    StringWriter consoleOutWriter = new StringWriter()
+                    {
+                        NewLine = Environment.NewLine
+                    };
+
+                    // Redirect the console output to a StringWriter.
+                    Console.SetOut(consoleOutWriter);
+
+                    // Named (based on LogLevel) public methods.
+
+                    InternalLogger.Warn(ex1, () =>"WWW");
+                    InternalLogger.Error(ex2, () => "EEE");
+                    InternalLogger.Fatal(ex3, () => "FFF");
+                    InternalLogger.Trace(ex4, () => "TTT");
+                    InternalLogger.Debug(ex5, () => "DDD");
+                    InternalLogger.Info(ex6, () => "III");
+
+                    consoleOutWriter.Flush();
+                    var strings = consoleOutWriter.ToString();
+                    Assert.Equal(expected, strings);
+                }
             }
 
         }
