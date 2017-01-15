@@ -87,6 +87,7 @@ namespace NLog.Targets
             this.Log = "Application";
             this.MachineName = ".";
             this.MaxMessageLength = 16384;
+            this.MaxKilobytes = 512;
         }
 
         /// <summary>
@@ -161,7 +162,12 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the maximum Event log size in kilobytes.
         /// </summary>
-        public Layout MaxKilobytes { get; set; }
+        [DefaultValue(512)]
+        public int MaxKilobytes
+        {
+            get { return this.MaxKilobytes; }
+            set { this.MaxKilobytes = value; }
+        }
 
         /// <summary>
         /// Gets or sets the action to take if the message is larger than the <see cref="MaxMessageLength"/> option.
@@ -348,7 +354,7 @@ namespace NLog.Targets
             var renderedSource = this.Source != null ? this.Source.Render(logEvent) : null;
             var isCacheUpToDate = eventLogInstance != null && renderedSource == eventLogInstance.Source &&
                                    eventLogInstance.Log == this.Log && eventLogInstance.MachineName == this.MachineName;
-            eventLogInstance.MaximumKilobytes = Convert.ToInt64(this.MaxKilobytes.Render(logEvent));
+            eventLogInstance.MaximumKilobytes = this.MaxKilobytes;
 
             if (!isCacheUpToDate)
             {
