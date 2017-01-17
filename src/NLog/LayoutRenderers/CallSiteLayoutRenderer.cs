@@ -58,6 +58,7 @@ namespace NLog.LayoutRenderers
             this.ClassName = true;
             this.MethodName = true;
             this.CleanNamesOfAnonymousDelegates = false;
+            this.IncludeNamespace = true;
 #if !SILVERLIGHT
             this.FileName = false;
             this.IncludeSourcePath = true;
@@ -70,6 +71,13 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
         public bool ClassName { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to render the include the namespace with <see cref="ClassName"/>.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(true)]
+        public bool IncludeNamespace { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to render the method name.
@@ -138,9 +146,10 @@ namespace NLog.LayoutRenderers
                 MethodBase method = frame.GetMethod();
                 if (this.ClassName)
                 {
-                    if (method.DeclaringType != null)
+                    var type = method.DeclaringType;
+                    if (type != null)
                     {
-                        string className = method.DeclaringType.FullName;
+                        string className = IncludeNamespace ? type.FullName : type.Name;
 
                         if (this.CleanNamesOfAnonymousDelegates)
                         {

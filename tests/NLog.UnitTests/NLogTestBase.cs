@@ -33,6 +33,7 @@
 
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security;
 
 namespace NLog.UnitTests
 {
@@ -62,7 +63,6 @@ namespace NLog.UnitTests
             {
                 //flush all events if needed.
                 LogManager.Configuration.Close();
-
             }
 
             if (LogManager.LogFactory != null)
@@ -74,7 +74,10 @@ namespace NLog.UnitTests
             InternalLogger.Reset();
             LogManager.ThrowExceptions = false;
             LogManager.ThrowConfigExceptions = null;
-
+#if !SILVERLIGHT
+            System.Diagnostics.Trace.Listeners.Clear();
+            System.Diagnostics.Debug.Listeners.Clear();
+#endif
         }
 
         protected void AssertDebugCounter(string targetName, int val)
@@ -123,16 +126,14 @@ namespace NLog.UnitTests
                 Assert.True(false, "File '" + fileName + "' doesn't exist.");
 
             byte[] encodedBuf = encoding.GetBytes(contents);
-            Assert.True(encodedBuf.Length <= fi.Length);
-            byte[] buf = new byte[encodedBuf.Length];
-            using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
-            {
-                fs.Read(buf, 0, buf.Length);
-            }
 
-            for (int i = 0; i < buf.Length; ++i)
+            byte[] buf = File.ReadAllBytes(fileName);
+            Assert.True(encodedBuf.Length <= buf.Length, string.Format("File:{0} encodedBytes:{1} does not match file.content:{2}, file.length = {3}", fileName, encodedBuf.Length, buf.Length, fi.Length));
+
+            for (int i = 0; i < encodedBuf.Length; ++i)
             {
-                Assert.Equal(encodedBuf[i], buf[i]);
+                if (encodedBuf[i] != buf[i])
+                    Assert.True(encodedBuf[i] == buf[i], string.Format("File:{0} content mismatch {1} <> {2} at index {3}", fileName, (int)encodedBuf[i], (int)buf[i], i));
             }
         }
 
@@ -243,16 +244,14 @@ namespace NLog.UnitTests
 
                 }
             }
-            Assert.Equal(encodedBuf.Length, fi.Length);
-            byte[] buf = new byte[(int)fi.Length];
-            using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
-            {
-                fs.Read(buf, 0, buf.Length);
-            }
+
+            byte[] buf = File.ReadAllBytes(fileName);
+            Assert.True(encodedBuf.Length == buf.Length, string.Format("File:{0} encodedBytes:{1} does not match file.content:{2}, file.length = {3}", fileName, encodedBuf.Length, buf.Length, fi.Length));
 
             for (int i = 0; i < buf.Length; ++i)
             {
-                Assert.Equal(encodedBuf[i], buf[i]);
+                if (encodedBuf[i] != buf[i])
+                    Assert.True(encodedBuf[i] == buf[i], string.Format("File:{0} content mismatch {1} <> {2} at index {3}", fileName, (int)encodedBuf[i], (int)buf[i], i));
             }
         }
 
@@ -321,29 +320,86 @@ namespace NLog.UnitTests
         /// </summary>
         protected int GetPrevLineNumber()
         {
-        //fixed value set with #line 100000
+            //fixed value set with #line 100000
             return 100001;
         }
 
 #endif
 
-        protected static XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
+        public static XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(configXml);
 
-            return new XmlLoggingConfiguration(doc.DocumentElement, Environment.CurrentDirectory);
+            string currentDirectory = null;
+            try
+            {
+                currentDirectory = Environment.CurrentDirectory;
+            }
+            catch (SecurityException)
+            {
+                //ignore   
+            }
+
+
+
+            return new XmlLoggingConfiguration(doc.DocumentElement, currentDirectory);
         }
 
         protected string RunAndCaptureInternalLog(SyncAction action, LogLevel internalLogLevel)
         {
-            var stringWriter = new StringWriter();
+            var stringWriter = new Logger();
             InternalLogger.LogWriter = stringWriter;
             InternalLogger.LogLevel = LogLevel.Trace;
             InternalLogger.IncludeTimestamp = false;
             action();
 
             return stringWriter.ToString();
+        }
+
+        /// <summary>
+        /// This class has to be used when outputting from the InternalLogger.LogWriter.
+        /// Just creating a string writer will cause issues, since string writer is not thread safe.
+        /// This can cause issues when calling the ToString() on the text writer, since the underlying stringbuilder
+        /// of the textwriter, has char arrays that gets fucked up by the multiple threads.
+        /// this is a simple wrapper that just locks access to the writer so only one thread can access
+        /// it at a time.
+        /// </summary>
+        private class Logger : TextWriter
+        {
+            private readonly StringWriter writer = new StringWriter();
+
+            public override Encoding Encoding
+            {
+                get
+                {
+                    return this.writer.Encoding;
+                }
+            }
+
+            public override void Write(string value)
+            {
+                lock (this.writer)
+                {
+                    this.writer.Write(value);
+                }
+            }
+
+            public override void WriteLine(string value)
+            {
+                lock (this.writer)
+                {
+                    this.writer.WriteLine(value);
+                }
+            }
+
+            public override string ToString()
+            {
+                lock (this.writer)
+                {
+                    return this.writer.ToString();
+                }
+            }
         }
 
         /// <summary>

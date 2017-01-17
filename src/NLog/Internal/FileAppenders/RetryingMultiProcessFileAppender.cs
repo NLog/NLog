@@ -36,12 +36,11 @@
 #define SupportsMutex
 #endif
 
-using System.Security;
-
 namespace NLog.Internal.FileAppenders
 {
     using System;
     using System.IO;
+    using System.Security;
     using System.Threading;
 
     /// <summary>
@@ -49,7 +48,7 @@ namespace NLog.Internal.FileAppenders
     /// to get exclusive write access and retries if it's not available.
     /// </summary>
     [SecuritySafeCritical]
-    internal class RetryingMultiProcessFileAppender : BaseFileAppender
+    internal class RetryingMultiProcessFileAppender : BaseMutexFileAppender
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
@@ -65,12 +64,14 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Writes the specified bytes.
         /// </summary>
-        /// <param name="bytes">The bytes.</param>
-        public override void Write(byte[] bytes)
+        /// <param name="bytes">The bytes array.</param>
+        /// <param name="offset">The bytes array offset.</param>
+        /// <param name="count">The number of bytes.</param>
+        public override void Write(byte[] bytes, int offset, int count)
         {
             using (FileStream fileStream = CreateFileStream(false))
             {
-                fileStream.Write(bytes, 0, bytes.Length);
+                fileStream.Write(bytes, offset, count);
             }
 
             if (CaptureLastWriteTime)
@@ -95,7 +96,11 @@ namespace NLog.Internal.FileAppenders
             // nothing to do
         }
 
-
+        /// <summary>
+        /// Gets the creation time for a file associated with the appender. The time returned is in Coordinated Universal 
+        /// Time [UTC] standard.
+        /// </summary>
+        /// <returns>The file creation time.</returns>
         public override DateTime? GetFileCreationTimeUtc()
         {
             FileInfo fileInfo = new FileInfo(FileName);
@@ -106,6 +111,11 @@ namespace NLog.Internal.FileAppenders
             return null;
         }
 
+        /// <summary>
+        /// Gets the last time the file associated with the appeander is written. The time returned is in Coordinated 
+        /// Universal Time [UTC] standard.
+        /// </summary>
+        /// <returns>The time the file was last written to.</returns>
         public override DateTime? GetFileLastWriteTimeUtc()
         {
             FileInfo fileInfo = new FileInfo(FileName);
@@ -116,6 +126,10 @@ namespace NLog.Internal.FileAppenders
             return null;
         }
 
+        /// <summary>
+        /// Gets the length in bytes of the file associated with the appeander.
+        /// </summary>
+        /// <returns>A long value representing the length of the file in bytes.</returns>
         public override long? GetFileLength()
         {
             FileInfo fileInfo = new FileInfo(FileName);

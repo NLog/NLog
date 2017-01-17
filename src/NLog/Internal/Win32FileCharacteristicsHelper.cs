@@ -31,11 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
 namespace NLog.Internal
 {
     using System;
+    using System.IO;
 
     /// <summary>
     /// Win32-optimized implementation of <see cref="FileCharacteristicsHelper"/>.
@@ -46,14 +47,16 @@ namespace NLog.Internal
         /// Gets the information about a file.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
-        /// <param name="fileHandle">The file handle.</param>
+        /// <param name="fileStream">The file stream.</param>
         /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public override FileCharacteristics GetFileCharacteristics(string fileName, IntPtr fileHandle)
+        public override FileCharacteristics GetFileCharacteristics(string fileName, FileStream fileStream)
         {
-            Win32FileNativeMethods.BY_HANDLE_FILE_INFORMATION fileInfo;
-            if (Win32FileNativeMethods.GetFileInformationByHandle(fileHandle, out fileInfo))
-                return new FileCharacteristics(DateTime.FromFileTimeUtc(fileInfo.ftCreationTime), DateTime.FromFileTimeUtc(fileInfo.ftLastWriteTime), fileInfo.nFileSizeLow + (((long)fileInfo.nFileSizeHigh) << 32));
-
+            if (fileStream != null)
+            {
+                Win32FileNativeMethods.BY_HANDLE_FILE_INFORMATION fileInfo;
+                if (Win32FileNativeMethods.GetFileInformationByHandle(fileStream.SafeFileHandle.DangerousGetHandle(), out fileInfo))
+                    return new FileCharacteristics(DateTime.FromFileTimeUtc(fileInfo.ftCreationTime), DateTime.FromFileTimeUtc(fileInfo.ftLastWriteTime), fileInfo.nFileSizeLow + (((long)fileInfo.nFileSizeHigh) << 32));
+            }
             return null;
         }
     }

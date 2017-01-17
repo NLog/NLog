@@ -40,26 +40,29 @@ namespace NLog.UnitTests.Targets
     using NLog.Config;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
-    using NLog.Common;
     using Xunit;
+    using Xunit.Extensions;
 
     public class ConcurrentFileTargetTests : NLogTestBase
-	{
+    {
         private ILogger logger = LogManager.GetLogger("NLog.UnitTests.Targets.ConcurrentFileTargetTests");
 
-        private void ConfigureSharedFile(string mode)
+        private void ConfigureSharedFile(string mode, string fileName)
         {
+            var modes = mode.Split('|');
+
             FileTarget ft = new FileTarget();
-            ft.FileName = "${basedir}/file.txt";
-            ft.Layout = "${threadname} ${message}";
+            ft.FileName = "${basedir}/" + fileName;
+            ft.Layout = "${message}";
             ft.KeepFileOpen = true;
             ft.OpenFileCacheTimeout = 10;
             ft.OpenFileCacheSize = 1;
             ft.LineEnding = LineEndingMode.LF;
+            ft.ForceMutexConcurrentWrites = modes.Length == 2 && modes[1] == "mutex" ? true : false;
 
-            var name = "ConfigureSharedFile_" + mode + "-wrapper";
+            var name = "ConfigureSharedFile_" + mode.Replace('|', '_') + "-wrapper";
 
-            switch (mode)
+            switch (modes[0])
             {
                 case "async":
                     SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(ft, 100, AsyncTargetWrapperOverflowAction.Grow) { Name = name }, LogLevel.Debug);
@@ -79,28 +82,40 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        public void Process(string threadName, string numLogsString, string mode)
+        public void Process(string processIndex, string numProcessesString, string numLogsString, string mode)
         {
-            if (threadName != null)
-            {
-                Thread.CurrentThread.Name = threadName;
-            }
+            Thread.CurrentThread.Name = processIndex;
 
-            ConfigureSharedFile(mode);
-            InternalLogger.LogLevel = LogLevel.Trace;
-            InternalLogger.LogToConsole = true;
+            int numProcesses = Convert.ToInt32(numProcessesString);
             int numLogs = Convert.ToInt32(numLogsString);
+            string fileName = MakeFileName(numProcesses, numLogs, mode);
+
+            ConfigureSharedFile(mode, fileName);
+
+            // Having the internal logger enabled would just slow things down, reducing the 
+            // likelyhood for uncovering racing conditions.
+            //InternalLogger.LogLevel = LogLevel.Trace;
+            //InternalLogger.LogToConsole = true;
+
+            string format = processIndex + " {0}";
+
             for (int i = 0; i < numLogs; ++i)
             {
-                logger.Debug("{0}", i);
+                logger.Debug(format, i);
             }
-            
+
             LogManager.Configuration = null;
+        }
+
+        private string MakeFileName(int numProcesses, int numLogs, string mode)
+        {
+            // Having separate filenames for the various tests makes debugging easier.
+            return string.Format("test_{0}_{1}_{2}.txt", numProcesses, numLogs, mode.Replace('|', '_'));
         }
 
         private void DoConcurrentTest(int numProcesses, int numLogs, string mode)
         {
-            string logFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "file.txt");
+            string logFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, MakeFileName(numProcesses, numLogs, mode));
 
             if (File.Exists(logFile))
                 File.Delete(logFile);
@@ -109,20 +124,27 @@ namespace NLog.UnitTests.Targets
 
             for (int i = 0; i < numProcesses; ++i)
             {
-                processes[i] = ProcessRunner.SpawnMethod(this.GetType(), "Process", i.ToString(), numLogs.ToString(), mode);
+                processes[i] = ProcessRunner.SpawnMethod(
+                    this.GetType(),
+                    "Process",
+                    i.ToString(),
+                    numProcesses.ToString(),
+                    numLogs.ToString(),
+                    mode);
             }
-            
+
+            // In case we'd like to capture stdout, we would need to drain it continuously.
+            // StandardOutput.ReadToEnd() wont work, since the other processes console only has limited buffer.
             for (int i = 0; i < numProcesses; ++i)
             {
                 processes[i].WaitForExit();
-                string output = processes[i].StandardOutput.ReadToEnd();
                 Assert.Equal(0, processes[i].ExitCode);
                 processes[i].Dispose();
                 processes[i] = null;
             }
 
             int[] maxNumber = new int[numProcesses];
-   
+
             Console.WriteLine("Verifying output file {0}", logFile);
             using (StreamReader sr = File.OpenText(logFile))
             {
@@ -136,7 +158,8 @@ namespace NLog.UnitTests.Targets
                     {
                         int thread = Convert.ToInt32(tokens[0]);
                         int number = Convert.ToInt32(tokens[1]);
-
+                        Assert.True(thread >= 0);
+                        Assert.True(thread < numProcesses);
                         Assert.Equal(maxNumber[thread], number);
                         maxNumber[thread]++;
                     }
@@ -148,35 +171,46 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        private void DoConcurrentTest(string mode)
+        [Theory]
+        [InlineData(2, 1000, "none")]
+        [InlineData(5, 1000, "none")]
+        [InlineData(10, 1000, "none")]
+        [InlineData(2, 1000, "none|mutex")]
+        [InlineData(5, 1000, "none|mutex")]
+        [InlineData(10, 1000, "none|mutex")]
+        public void SimpleConcurrentTest(int numProcesses, int numLogs, string mode)
         {
-            DoConcurrentTest(2, 10000, mode);
-            DoConcurrentTest(5, 4000, mode);
-            DoConcurrentTest(10, 2000, mode);
+            DoConcurrentTest(numProcesses, numLogs, mode);
         }
 
-        [Fact]
-        public void SimpleConcurrentTest()
+        [Theory]
+        [InlineData("async")]
+        [InlineData("async|mutex")]
+        public void AsyncConcurrentTest(string mode)
         {
-            DoConcurrentTest("none");
+            // Before 2 processes are running into concurrent writes, 
+            // the first process typically already has written couple thousend events.
+            // Thus to have a meaningful test, at least 10K events are required.
+            // Due to the buffering it makes no big difference in runtime, whether we
+            // have 2 process writing 10K events each or couple more processes with even more events.
+            // Runtime is mostly defined by Runner.exe compilation and JITing the first.
+            DoConcurrentTest(5, 1000, mode);
         }
 
-        [Fact]
-        public void AsyncConcurrentTest()
+        [Theory]
+        [InlineData("buffered")]
+        [InlineData("buffered|mutex")]
+        public void BufferedConcurrentTest(string mode)
         {
-            DoConcurrentTest(2, 100, "async");
+            DoConcurrentTest(5, 1000, mode);
         }
 
-        [Fact]
-        public void BufferedConcurrentTest()
+        [Theory]
+        [InlineData("buffered_timed_flush")]
+        [InlineData("buffered_timed_flush|mutex")]
+        public void BufferedTimedFlushConcurrentTest(string mode)
         {
-            DoConcurrentTest(2, 100, "buffered");
-        }
-
-        [Fact]
-        public void BufferedTimedFlushConcurrentTest()
-        {
-            DoConcurrentTest(2, 100, "buffered_timed_flush");
+            DoConcurrentTest(5, 1000, mode);
         }
     }
 }

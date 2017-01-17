@@ -33,12 +33,13 @@
 
 namespace NLog.Targets.Wrappers
 {
-    using System;
     using NLog.Common;
+    using NLog.Conditions;
     using NLog.Internal;
 
     /// <summary>
-    /// Causes a flush after each write on a wrapped target.
+    /// Causes a flush on a wrapped target if LogEvent statisfies the <see cref="Condition"/>.
+    /// If condition isn't set, flushes on each write.
     /// </summary>
     /// <seealso href="https://github.com/nlog/nlog/wiki/AutoFlushWrapper-target">Documentation on NLog Wiki</seealso>
     /// <example>
@@ -56,6 +57,14 @@ namespace NLog.Targets.Wrappers
     [Target("AutoFlushWrapper", IsWrapper = true)]
     public class AutoFlushTargetWrapper : WrapperTargetBase
     {
+        /// <summary>
+        /// Gets or sets the condition expression. Log events who meet this condition will cause
+        /// a flush on the wrapped target.
+        /// </summary>
+        public ConditionExpression Condition { get; set; }
+
+        private readonly AsyncOperationCounter pendingManualFlushList = new AsyncOperationCounter();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AutoFlushTargetWrapper" /> class.
         /// </summary>
@@ -92,12 +101,48 @@ namespace NLog.Targets.Wrappers
 
         /// <summary>
         /// Forwards the call to the <see cref="WrapperTargetBase.WrappedTarget"/>.Write()
-        /// and calls <see cref="Target.Flush(AsyncContinuation)"/> on it.
+        /// and calls <see cref="Target.Flush(AsyncContinuation)"/> on it if LogEvent satisfies
+        /// the flush condition or condition is null.
         /// </summary>
         /// <param name="logEvent">Logging event to be written out.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(AsyncHelpers.PrecededBy(logEvent.Continuation, this.WrappedTarget.Flush)));
+            if (this.Condition == null || this.Condition.Evaluate(logEvent.LogEvent).Equals(true))
+            {
+                AsyncContinuation currentContinuation = logEvent.Continuation;
+                AsyncContinuation wrappedContinuation = (ex) =>
+                {
+                    if (ex == null)
+                        this.WrappedTarget.Flush((e) => { });
+                    this.pendingManualFlushList.CompleteOperation(ex);
+                    currentContinuation(ex);
+                };
+                this.pendingManualFlushList.BeginOperation();
+                this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(wrappedContinuation));
+            }
+            else
+            {
+                this.WrappedTarget.WriteAsyncLogEvent(logEvent);
+            }
+        }
+
+        /// <summary>
+        /// Schedules a flush operation, that triggers when all pending flush operations are completed (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void FlushAsync(AsyncContinuation asyncContinuation)
+        {
+            var wrappedContinuation = this.pendingManualFlushList.RegisterCompletionNotification(asyncContinuation);
+            this.WrappedTarget.Flush(wrappedContinuation);
+        }
+
+        /// <summary>
+        /// Closes the target.
+        /// </summary>
+        protected override void CloseTarget()
+        {
+            this.pendingManualFlushList.Clear();    // Maybe consider to wait a short while if pending requests?
+            base.CloseTarget();
         }
     }
 }

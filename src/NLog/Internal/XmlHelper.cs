@@ -34,6 +34,7 @@
 namespace NLog.Internal
 {
     using System;
+    using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
 
@@ -58,9 +59,44 @@ namespace NLog.Internal
         /// </summary>
         private static string RemoveInvalidXmlChars(string text)
         {
-            return String.IsNullOrEmpty(text) ? "" : InvalidXmlChars.Replace(text, "");
+            if (string.IsNullOrEmpty(text))
+                return string.Empty;
+
+#if NET3_5
+            return InvalidXmlChars.Replace(text, "");
+#else
+            for (int i = 0; i < text.Length; ++i)
+            {
+                char ch = text[i];
+                if (!XmlConvert.IsXmlChar(ch))
+                {
+                    return CreateValidXmlString(text);   // rare expensive case
+                }
+            }
+            return text;
+#endif
         }
 
+#if !NET3_5
+        /// <summary>
+        /// Cleans string of any invalid XML chars found
+        /// </summary>
+        /// <param name="text">unclean string</param>
+        /// <returns>string with only valid XML chars</returns>
+        private static string CreateValidXmlString(string text)
+        {
+            var sb = new StringBuilder(text.Length);
+            for (int i = 0; i < text.Length; ++i)
+            {
+                char ch = text[i];
+                if (XmlConvert.IsXmlChar(ch))
+                {
+                    sb.Append(ch);
+                }
+            }
+            return sb.ToString();
+        }
+#endif
 
         /// <summary>
         /// Safe version of WriteAttributeString

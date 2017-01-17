@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Linq;
-
 namespace NLog.Targets
 {
     using System;
@@ -45,7 +43,7 @@ namespace NLog.Targets
     using System.Xml;
     using NLog.Common;
     using NLog.Internal;
-    using Config;
+    using NLog.Config;
     /// <summary>
     /// Calls the specified web service on each log message.
     /// </summary>
@@ -73,9 +71,8 @@ namespace NLog.Targets
     [Target("WebService")]
     public sealed class WebServiceTarget : MethodCallTargetBase
     {
-        private const string SoapEnvelopeNamespace = "http://schemas.xmlsoap.org/soap/envelope/";
-        private const string Soap12EnvelopeNamespace = "http://www.w3.org/2003/05/soap-envelope";
-
+        private const string SoapEnvelopeNamespaceUri = "http://schemas.xmlsoap.org/soap/envelope/";
+        private const string Soap12EnvelopeNamespaceUri = "http://www.w3.org/2003/05/soap-envelope";
 
         /// <summary>
         /// dictionary that maps a concrete <see cref="HttpPostFormatterBase"/> implementation
@@ -136,7 +133,8 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
         [DefaultValue("Soap11")]
-        public WebServiceProtocol Protocol { get; set; }
+        public WebServiceProtocol Protocol { get { return _activeProtocol.Key; } set { _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>(value, null); } }
+        private KeyValuePair<WebServiceProtocol, HttpPostFormatterBase> _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>();
 
         /// <summary>
         /// Should we include the BOM (Byte-order-mark) for UTF? Influences the <see cref="Encoding"/> property.
@@ -182,6 +180,7 @@ namespace NLog.Targets
         /// <docgen category='Web Service Options' order='10' />
         public string XmlRootNamespace { get; set; }
 
+        private readonly AsyncOperationCounter pendingManualFlushList = new AsyncOperationCounter();
 
         /// <summary>
         /// Calls the target method. Must be implemented in concrete classes.
@@ -218,7 +217,9 @@ namespace NLog.Targets
             }
             else
             {
-                postPayload = _postFormatterFactories[Protocol](this).PrepareRequest(request, parameters);
+                if (_activeProtocol.Value == null)
+                    _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>(this.Protocol, _postFormatterFactories[this.Protocol](this));
+                postPayload = _activeProtocol.Value.PrepareRequest(request, parameters);
             }
 
             AsyncContinuation sendContinuation =
@@ -226,71 +227,122 @@ namespace NLog.Targets
                 {
                     if (ex != null)
                     {
-                        continuation(ex);
+                        DoInvokeCompleted(continuation, ex);
                         return;
                     }
 
-                    request.BeginGetResponse(
-                        r =>
+                    try
+                    {
+                        request.BeginGetResponse(
+                            r =>
+                            {
+                                try
+                                {
+                                    using (var response = request.EndGetResponse(r))
+                                    {
+                                    }
+
+                                    DoInvokeCompleted(continuation, null);
+                                }
+                                catch (Exception ex2)
+                                {
+                                    InternalLogger.Error(ex2, "Error when sending to Webservice: {0}", this.Name);
+                                    if (ex2.MustBeRethrown())
+                                    {
+                                        throw;
+                                    }
+
+                                    DoInvokeCompleted(continuation, ex2);
+                                }
+                            },
+                            null);
+                    }
+                    catch (Exception ex2)
+                    {
+                        InternalLogger.Error(ex2, "Error when sending to Webservice: {0}", this.Name);
+                        if (ex2.MustBeRethrown())
                         {
-                            try
-                            {
-                                using (var response = request.EndGetResponse(r))
-                                {
-                                }
+                            throw;
+                        }
 
-                                continuation(null);
-                            }
-                            catch (Exception ex2)
-                            {
-                                InternalLogger.Error(ex2, "Error when sending to Webservice.");
-
-                                if (ex2.MustBeRethrown())
-                                {
-                                    throw;
-                                }
-
-                                continuation(ex2);
-                            }
-                        },
-                        null);
+                        DoInvokeCompleted(continuation, ex2);
+                    }
                 };
 
             if (postPayload != null && postPayload.Length > 0)
             {
                 postPayload.Position = 0;
-                beginFunc(
-                    result =>
-                    {
-                        try
+                try
+                {
+                    pendingManualFlushList.BeginOperation();
+
+                    beginFunc(
+                        result =>
                         {
-                            using (Stream stream = getStreamFunc(result))
+                            try
                             {
-                                WriteStreamAndFixPreamble(postPayload, stream, this.IncludeBOM, this.Encoding);
+                                using (Stream stream = getStreamFunc(result))
+                                {
+                                    WriteStreamAndFixPreamble(postPayload, stream, this.IncludeBOM, this.Encoding);
+
+                                    postPayload.Dispose();
+                                }
+
+                                sendContinuation(null);
+                            }
+                            catch (Exception ex)
+                            {
+                                InternalLogger.Error(ex, "Error when sending to Webservice: {0}", this.Name);
+                                if (ex.MustBeRethrown())
+                                {
+                                    throw;
+                                }
 
                                 postPayload.Dispose();
+                                DoInvokeCompleted(continuation, ex);
                             }
+                        });
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "Error when sending to Webservice: {0}", this.Name);
+                    if (ex.MustBeRethrown())
+                    {
+                        throw;
+                    }
 
-                            sendContinuation(null);
-                        }
-                        catch (Exception ex)
-                        {
-                            postPayload.Dispose();
-                            InternalLogger.Error(ex, "Error when sending to Webservice.");
-
-                            if (ex.MustBeRethrown())
-                            {
-                                throw;
-                            }
-
-                            continuation(ex);
-                        }
-                    });
+                    DoInvokeCompleted(continuation, ex);
+                }
             }
             else
             {
+                pendingManualFlushList.BeginOperation();
                 sendContinuation(null);
             }
+        }
+
+        private void DoInvokeCompleted(AsyncContinuation continuation, Exception ex)
+        {
+            pendingManualFlushList.CompleteOperation(ex);
+            continuation(ex);
+        }
+
+        /// <summary>
+        /// Flush any pending log messages asynchronously (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void FlushAsync(AsyncContinuation asyncContinuation)
+        {
+            pendingManualFlushList.RegisterCompletionNotification(asyncContinuation).Invoke(null);
+        }
+
+        /// <summary>
+        /// Closes the target.
+        /// </summary>
+        protected override void CloseTarget()
+        {
+            pendingManualFlushList.Clear();   // Maybe consider to wait a short while if pending requests?
+            base.CloseTarget();
         }
 
         /// <summary>
@@ -325,7 +377,7 @@ namespace NLog.Targets
             //the recommendations at https://msdn.microsoft.com/en-us/library/system.uribuilder.query.aspx
             if (builder.Query != null && builder.Query.Length > 1)
             {
-                builder.Query = builder.Query.Substring(1) + "&" + queryParameters.ToString();
+                builder.Query = string.Concat(builder.Query.Substring(1), "&", queryParameters.ToString());
             }
             else
             {
@@ -397,7 +449,7 @@ namespace NLog.Targets
             protected virtual void InitRequest(HttpWebRequest request)
             {
                 request.Method = "POST";
-                request.ContentType = string.Format("{1}; charset={0}", Target.Encoding.WebName, ContentType);
+                request.ContentType = string.Concat(ContentType, "; charset=", Target.Encoding.WebName);
             }
 
             protected abstract void WriteContent(MemoryStream ms, object[] parameterValues);
@@ -405,7 +457,7 @@ namespace NLog.Targets
 
         private class HttpPostFormEncodedFormatter : HttpPostTextFormatterBase
         {
-            UrlHelper.EscapeEncodingFlag encodingFlags;
+            readonly UrlHelper.EscapeEncodingFlag encodingFlags;
 
             public HttpPostFormEncodedFormatter(WebServiceTarget target) : base(target)
             {
@@ -464,9 +516,7 @@ namespace NLog.Targets
 
             protected override string GetFormattedParameter(MethodCallParameter parameter, object value)
             {
-                return string.Format("\"{0}\":{1}",
-                    parameter.Name,
-                    GetJsonValueString(value));
+                return string.Concat("\"", parameter.Name, "\":", GetJsonValueString(value));
             }
 
             private string GetJsonValueString(object value)
@@ -483,7 +533,7 @@ namespace NLog.Targets
 
             protected override string SoapEnvelopeNamespace
             {
-                get { return WebServiceTarget.SoapEnvelopeNamespace; }
+                get { return WebServiceTarget.SoapEnvelopeNamespaceUri; }
             }
 
             protected override string SoapName
@@ -517,7 +567,7 @@ namespace NLog.Targets
 
             protected override string SoapEnvelopeNamespace
             {
-                get { return WebServiceTarget.Soap12EnvelopeNamespace; }
+                get { return WebServiceTarget.Soap12EnvelopeNamespaceUri; }
             }
 
             protected override string SoapName
@@ -528,8 +578,11 @@ namespace NLog.Targets
 
         private abstract class HttpPostSoapFormatterBase : HttpPostXmlFormatterBase
         {
+            private readonly XmlWriterSettings _xmlWriterSettings;
+
             protected HttpPostSoapFormatterBase(WebServiceTarget target) : base(target)
             {
+                _xmlWriterSettings = new XmlWriterSettings { Encoding = target.Encoding };
             }
 
             protected abstract string SoapEnvelopeNamespace { get; }
@@ -537,7 +590,7 @@ namespace NLog.Targets
 
             protected override void WriteContent(MemoryStream ms, object[] parameterValues)
             {
-                XmlWriter xtw = XmlWriter.Create(ms, new XmlWriterSettings { Encoding = Target.Encoding });
+                XmlWriter xtw = XmlWriter.Create(ms, _xmlWriterSettings);
 
                 xtw.WriteStartElement(SoapName, "Envelope", SoapEnvelopeNamespace);
                 xtw.WriteStartElement("Body", SoapEnvelopeNamespace);
@@ -583,6 +636,7 @@ namespace NLog.Targets
 
         private class HttpPostXmlDocumentFormatter : HttpPostXmlFormatterBase
         {
+            private readonly XmlWriterSettings _xmlWriterSettings;
 
             protected override string ContentType
             {
@@ -593,11 +647,13 @@ namespace NLog.Targets
             {
                 if (string.IsNullOrEmpty(target.XmlRoot))
                     throw new InvalidOperationException("WebServiceProtocol.Xml requires WebServiceTarget.XmlRoot to be set.");
+
+                _xmlWriterSettings = new XmlWriterSettings { Encoding = target.Encoding, OmitXmlDeclaration = true, Indent = false };
             }
 
             protected override void WriteContent(MemoryStream ms, object[] parameterValues)
             {
-                XmlWriter xtw = XmlWriter.Create(ms, new XmlWriterSettings { Encoding = Target.Encoding, OmitXmlDeclaration = true, Indent = false });
+                XmlWriter xtw = XmlWriter.Create(ms, _xmlWriterSettings);
 
                 xtw.WriteStartElement(Target.XmlRoot, Target.XmlRootNamespace);
 
@@ -621,11 +677,9 @@ namespace NLog.Targets
 
             protected void WriteAllParametersToCurrenElement(XmlWriter currentXmlWriter, object[] parameterValues)
             {
-                int i = 0;
-                foreach (MethodCallParameter par in Target.Parameters)
+                for (int i = 0; i < Target.Parameters.Count; i++)
                 {
-                    currentXmlWriter.WriteElementString(par.Name, Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture));
-                    i++;
+                    currentXmlWriter.WriteElementString(Target.Parameters[i].Name, Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture));
                 }
             }
         }

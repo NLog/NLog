@@ -185,7 +185,7 @@ namespace NLog.Targets
         /// This option was removed in NLog 4.0 because the logging code always runs outside of transaction. 
         /// This ensures that the log gets written to the database if you rollback the main transaction because of an error and want to log the error.
         /// </remarks>
-        [Obsolete("Obsolete - value will be ignored - logging code always runs outside of transaction. Will be removed in NLog 6.")]
+        [Obsolete("Value will be ignored as logging code always executes outside of a transaction. Marked obsolete on NLog 4.0 and it will be removed in NLog 6.")]
         public bool? UseTransactions { get; set; }
 
         /// <summary>
@@ -323,7 +323,7 @@ namespace NLog.Targets
             if (UseTransactions.HasValue)
 #pragma warning restore 618
             {
-                InternalLogger.Warn("UseTransactions is obsolete and will not be used - will be removed in NLog 6");
+                InternalLogger.Warn("UseTransactions property is obsolete and will not be used - will be removed in NLog 6");
             }
 
             bool foundProvider = false;
@@ -432,12 +432,25 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// NOTE! Will soon be marked obsolete. Instead override Write(IList{AsyncLogEventInfo} logEvents)
+        /// 
         /// Writes an array of logging events to the log target. By default it iterates on all
         /// events and passes them to "Write" method. Inheriting classes can use this method to
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
         protected override void Write(AsyncLogEventInfo[] logEvents)
+        {
+            Write((IList<AsyncLogEventInfo>)logEvents);
+        }
+
+        /// <summary>
+        /// Writes an array of logging events to the log target. By default it iterates on all
+        /// events and passes them to "Write" method. Inheriting classes can use this method to
+        /// optimize batch writes.
+        /// </summary>
+        /// <param name="logEvents">Logging events to be written out.</param>
+        protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
             var buckets = logEvents.BucketSort(c => this.BuildConnectionString(c.LogEvent));
 

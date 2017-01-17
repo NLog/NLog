@@ -15,7 +15,8 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -140,7 +141,9 @@
     <Compile Include="ILoggerBase.cs" />
     <Compile Include="ILoggerBase-V1.cs" />
     <Compile Include="ILogger-V1.cs" />
+    <Compile Include="Internal\AppendBuilderCreator.cs" />
     <Compile Include="Internal\ArrayHelper.cs" />
+    <Compile Include="Internal\AsyncOperationCounter.cs" />
     <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
     <Compile Include="Internal\EncodingHelpers.cs" />
@@ -151,14 +154,17 @@
     <Compile Include="Internal\Fakeables\AppDomainWrapper.cs" />
     <Compile Include="Internal\Fakeables\IAppDomain.cs" />
     <Compile Include="Internal\FileAppenders\BaseFileAppender.cs" />
+    <Compile Include="Internal\FileAppenders\BaseMutexFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\CountingSingleProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\FileAppenderCache.cs" />
     <Compile Include="Internal\FileAppenders\ICreateFileParameters.cs" />
     <Compile Include="Internal\FileAppenders\IFileAppenderFactory.cs" />
     <Compile Include="Internal\FileAppenders\MutexMultiProcessFileAppender.cs" />
+    <Compile Include="Internal\FileAppenders\NullAppender.cs" />
     <Compile Include="Internal\FileAppenders\RetryingMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\SingleProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
+    <Compile Include="Internal\FileAppenders\WindowsMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileCharacteristics.cs" />
     <Compile Include="Internal\FileCharacteristicsHelper.cs" />
     <Compile Include="Internal\FileInfoExt.cs" />
@@ -169,6 +175,11 @@
     <Compile Include="Internal\ISmtpClient.cs" />
     <Compile Include="Internal\ISupportsInitialize.cs" />
     <Compile Include="Internal\IUsesStackTrace.cs" />
+    <Compile Include="Internal\LayoutHelpers-generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LayoutHelpers.tt</DependentUpon>
+    </Compile>
     <Compile Include="Internal\LocalizableAttribute.cs" />
     <Compile Include="Internal\LoggerConfiguration.cs" />
     <Compile Include="Internal\MultiFileWatcher.cs" />
@@ -187,13 +198,16 @@
     <Compile Include="Internal\NetworkSenders\TcpNetworkSender.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSender.cs" />
     <Compile Include="Internal\ObjectGraphScanner.cs" />
-    <Compile Include="Internal\ParameterUtils.cs" />
     <Compile Include="Internal\PathHelpers.cs" />
     <Compile Include="Internal\PlatformDetector.cs" />
     <Compile Include="Internal\PortableFileCharacteristicsHelper.cs" />
     <Compile Include="Internal\PortableThreadIDHelper.cs" />
     <Compile Include="Internal\PropertyHelper.cs" />
     <Compile Include="Internal\ReflectionHelpers.cs" />
+    <Compile Include="Internal\ReusableAsyncLogEventList.cs" />
+    <Compile Include="Internal\ReusableBufferCreator.cs" />
+    <Compile Include="Internal\ReusableBuilderCreator.cs" />
+    <Compile Include="Internal\ReusableStreamCreator.cs" />
     <Compile Include="Internal\RuntimeOS.cs" />
     <Compile Include="Internal\SimpleStringReader.cs" />
     <Compile Include="Internal\SingleCallContinuation.cs" />
@@ -290,6 +304,7 @@
     <Compile Include="LayoutRenderers\Wrappers\WhenLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WrapLineLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WrapperLayoutRendererBase.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\WrapperLayoutRendererBuilderBase.cs" />
     <Compile Include="LayoutRenderers\Wrappers\XmlEncodeLayoutRendererWrapper.cs" />
     <Compile Include="Layouts\CompoundLayout.cs" />
     <Compile Include="Layouts\CsvColumn.cs" />
@@ -348,6 +363,7 @@
     <Compile Include="NLogConfigurationException.cs" />
     <Compile Include="NLogRuntimeException.cs" />
     <Compile Include="NLogTraceListener.cs" />
+    <Compile Include="NullLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Targets\ArchiveNumberingMode.cs" />
@@ -442,6 +458,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Internal\LayoutHelpers.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LayoutHelpers-generated.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(StyleCopTargetsFile)" Condition="Exists('$(StyleCopTargetsFile)')" />

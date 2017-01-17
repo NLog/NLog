@@ -53,7 +53,6 @@ namespace NLog
     public sealed class LogManager
     {
         private static readonly LogFactory factory = new LogFactory();
-        private static IAppDomain currentAppDomain;
         private static ICollection<Assembly> _hiddenAssemblies;
 
         private static readonly object lockObject = new object();
@@ -62,19 +61,9 @@ namespace NLog
         /// <summary>
         /// Delegate used to set/get the culture in use.
         /// </summary>
-        [Obsolete]
+        /// <remarks>This delegate marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Marked obsolete before v4.3.11")]
         public delegate CultureInfo GetCultureInfo();
-
-#if !SILVERLIGHT && !MONO
-        /// <summary>
-        /// Initializes static members of the LogManager class.
-        /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
-        static LogManager()
-        {
-            SetupTerminationEvents();
-        }
-#endif
 
         /// <summary>
         /// Prevents a default instance of the LogManager class from being created.
@@ -145,21 +134,6 @@ namespace NLog
             set { factory.KeepVariablesOnReload = value; }
         }
 
-        internal static IAppDomain CurrentAppDomain
-        {
-            get { return currentAppDomain ?? (currentAppDomain = AppDomainWrapper.CurrentDomain); }
-            set
-            {
-#if !SILVERLIGHT && !MONO
-                if (currentAppDomain != null)
-                {
-                    currentAppDomain.DomainUnload -= TurnOffLogging;
-                    currentAppDomain.ProcessExit -= TurnOffLogging;
-                }
-#endif
-                currentAppDomain = value;
-            }
-        }
 
         /// <summary>
         /// Gets or sets the current logging configuration.
@@ -183,7 +157,8 @@ namespace NLog
         /// <summary>
         /// Gets or sets the default culture to use.
         /// </summary>
-        [Obsolete("Use Configuration.DefaultCultureInfo property instead")]
+        /// <remarks>This property was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Configuration.DefaultCultureInfo property instead. Marked obsolete before v4.3.11")]
         public static GetCultureInfo DefaultCultureInfo
         {
             get { return () => factory.DefaultCultureInfo ?? CultureInfo.CurrentCulture; }
@@ -288,7 +263,7 @@ namespace NLog
 
 #if !SILVERLIGHT
         /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
+        /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
         /// </summary>
         public static void Flush()
         {
@@ -382,33 +357,14 @@ namespace NLog
         /// </summary>
         public static void Shutdown()
         {
-            if (Configuration != null && Configuration.AllTargets != null)
-            {
-                foreach (var target in Configuration.AllTargets)
-                {
-                    if (target != null) target.Dispose();
-                }
-            }
+            InternalLogger.Info("Logger closing down...");
+            if (Configuration != null)
+                Configuration.Close();
+            InternalLogger.Info("Logger has been closed down.");
         }
 
-#if !SILVERLIGHT && !MONO
-        private static void SetupTerminationEvents()
-        {
-            try
-            {
-                CurrentAppDomain.ProcessExit += TurnOffLogging;
-                CurrentAppDomain.DomainUnload += TurnOffLogging;
-            }
-            catch (Exception exception)
-            {
-                InternalLogger.Warn(exception, "Error setting up termination events.");
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
-            }
-        }
 #endif
 
         /// <summary>
@@ -443,18 +399,7 @@ namespace NLog
             return className;
         }
 
-        private static void TurnOffLogging(object sender, EventArgs args)
-        {
-            // Reset logging configuration to null; this causes old configuration (if any) to be 
-            // closed.
-            InternalLogger.Info("Shutting down logging...");
-            if (Configuration != null)
-            {
-                Configuration = null;
-                factory.Dispose();      // Release event listeners
-            }
-            CurrentAppDomain = null;    // No longer part of AppDomains
-            InternalLogger.Info("Logger has been shut down.");
-        }
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#endif
     }
 }

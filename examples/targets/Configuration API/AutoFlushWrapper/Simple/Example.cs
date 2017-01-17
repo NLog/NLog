@@ -14,7 +14,7 @@ class Example
 
         AutoFlushTargetWrapper target = new AutoFlushTargetWrapper();
         target.WrappedTarget = wrappedTarget;
-
+        target.Condition = "level >= LogLevel.Debug";
         NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
 
         Logger logger = LogManager.GetLogger("Example");

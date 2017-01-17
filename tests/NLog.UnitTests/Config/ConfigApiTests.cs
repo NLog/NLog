@@ -65,6 +65,27 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void AddTarget_WithName_NullNameParam()
+        {
+            var config = new LoggingConfiguration();
+            Exception ex = Assert.Throws<ArgumentException>(() => config.AddTarget(name: null, target: new FileTarget { Name = "name1" }));
+        }
+
+        [Fact]
+        public void AddTarget_WithName_NullTargetParam()
+        {
+            var config = new LoggingConfiguration();
+            Exception ex = Assert.Throws<ArgumentNullException>(() => config.AddTarget(name: "Name1", target: null));
+        }
+
+        [Fact]
+        public void AddTarget_TargetOnly_NullParam()
+        {
+            var config = new LoggingConfiguration();
+            Exception ex = Assert.Throws<ArgumentNullException>(() => config.AddTarget(target: null));
+        }
+
+        [Fact]
         public void AddTarget_testname_param()
         {
             var config = new LoggingConfiguration();

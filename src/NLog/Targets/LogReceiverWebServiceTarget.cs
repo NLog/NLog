@@ -60,7 +60,7 @@ namespace NLog.Targets
     [Target("LogReceiverService")]
     public class LogReceiverWebServiceTarget : Target
     {
-        private LogEventInfoBuffer buffer = new LogEventInfoBuffer(10000, false, 10000);
+        private readonly LogEventInfoBuffer buffer = new LogEventInfoBuffer(10000, false, 10000);
         private bool inCall;
 
         /// <summary>
@@ -148,7 +148,20 @@ namespace NLog.Targets
         /// <param name="logEvent">Logging event to be written out.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            this.Write(new[] { logEvent });
+            this.Write((IList<AsyncLogEventInfo>)new[] { logEvent });
+        }
+
+        /// <summary>
+        /// NOTE! Will soon be marked obsolete. Instead override Write(IList{AsyncLogEventInfo} logEvents)
+        /// 
+        /// Writes an array of logging events to the log target. By default it iterates on all
+        /// events and passes them to "Write" method. Inheriting classes can use this method to
+        /// optimize batch writes.
+        /// </summary>
+        /// <param name="logEvents">Logging events to be written out.</param>
+        protected override void Write(AsyncLogEventInfo[] logEvents)
+        {
+            Write((IList<AsyncLogEventInfo>)logEvents);
         }
 
         /// <summary>
@@ -157,22 +170,26 @@ namespace NLog.Targets
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
-        protected override void Write(AsyncLogEventInfo[] logEvents)
+        protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
             // if web service call is being processed, buffer new events and return
             // lock is being held here
             if (this.inCall)
             {
-                foreach (var ev in logEvents)
+                for (int i = 0; i < logEvents.Count; ++i)
                 {
-                    this.buffer.Append(ev);
+                    this.buffer.Append(logEvents[i]);
                 }
 
                 return;
             }
 
-            var networkLogEvents = this.TranslateLogEvents(logEvents);
-            this.Send(networkLogEvents, logEvents);
+            // RestrictedBufferReuse = false, will reuse the input-array on method-exit (so we make clone here)
+            AsyncLogEventInfo[] logEventsArray = new AsyncLogEventInfo[logEvents.Count];
+            logEvents.CopyTo(logEventsArray, 0);
+
+            var networkLogEvents = this.TranslateLogEvents(logEventsArray);
+            this.Send(networkLogEvents, logEventsArray);
         }
 
         /// <summary>
@@ -211,9 +228,9 @@ namespace NLog.Targets
             return stringIndex;
         }
 
-        private NLogEvents TranslateLogEvents(AsyncLogEventInfo[] logEvents)
+        private NLogEvents TranslateLogEvents(IList<AsyncLogEventInfo> logEvents)
         {
-            if (logEvents.Length == 0 && !LogManager.ThrowExceptions)
+            if (logEvents.Count == 0 && !LogManager.ThrowExceptions)
             {
                 InternalLogger.Error("LogEvents array is empty, sending empty event...");
                 return new NLogEvents();
@@ -242,7 +259,7 @@ namespace NLog.Targets
 
             if (this.IncludeEventProperties)
             {
-                for (int i = 0; i < logEvents.Length; ++i)
+                for (int i = 0; i < logEvents.Count; ++i)
                 {
                     var ev = logEvents[i].LogEvent;
 
@@ -264,10 +281,11 @@ namespace NLog.Targets
                 }
             }
 
-            networkLogEvents.Events = new NLogEvent[logEvents.Length];
-            for (int i = 0; i < logEvents.Length; ++i)
+            networkLogEvents.Events = new NLogEvent[logEvents.Count];
+            for (int i = 0; i < logEvents.Count; ++i)
             {
-                networkLogEvents.Events[i] = this.TranslateEvent(logEvents[i].LogEvent, networkLogEvents, stringTable);
+                AsyncLogEventInfo ev = logEvents[i];
+                networkLogEvents.Events[i] = this.TranslateEvent(ev.LogEvent, networkLogEvents, stringTable);
             }
 
             return networkLogEvents;
@@ -285,19 +303,19 @@ namespace NLog.Targets
             var client = CreateLogReceiver();
 
             client.ProcessLogMessagesCompleted += (sender, e) =>
+            {
+                // report error to the callers
+                foreach (var ev in asyncContinuations)
                 {
-                    // report error to the callers
-                    foreach (var ev in asyncContinuations)
-                    {
-                        ev.Continuation(e.Error);
-                    }
+                    ev.Continuation(e.Error);
+                }
 
-                    // send any buffered events
-                    this.SendBufferedEvents();
-                };
+                // send any buffered events
+                this.SendBufferedEvents();
+            };
 
             this.inCall = true;
-#if SILVERLIGHT 
+#if SILVERLIGHT
             if (!Deployment.Current.Dispatcher.CheckAccess())
             {
                 Deployment.Current.Dispatcher.BeginInvoke(() => client.ProcessLogMessagesAsync(events));
@@ -352,8 +370,8 @@ namespace NLog.Targets
         /// Inheritors can override this method and provide their own 
         /// service configuration - binding and endpoint address
         /// </summary>
-        /// <returns></returns>
-        [Obsolete("Ths may be removed in a future release.  Use CreateLogReceiver.")]
+        /// <remarks>This method marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use CreateLogReceiver instead. Marked obsolete before v4.3.11 and it may be removed in a future release.")]
         protected virtual WcfLogReceiverClient CreateWcfLogReceiverClient()
         {
             WcfLogReceiverClient client;
@@ -462,7 +480,7 @@ namespace NLog.Targets
                 string value;
                 object propertyValue;
 
-                if (eventInfo.Properties.TryGetValue(context.LayoutNames[i], out propertyValue))
+                if (eventInfo.HasProperties && eventInfo.Properties.TryGetValue(context.LayoutNames[i], out propertyValue))
                 {
                     value = Convert.ToString(propertyValue, CultureInfo.InvariantCulture);
                 }
