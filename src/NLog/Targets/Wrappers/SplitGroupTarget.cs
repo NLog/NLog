@@ -98,13 +98,14 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// NOTE! Will soon be marked obsolete. Instead override Write(IList{AsyncLogEventInfo} logEvents)
+        /// NOTE! Obsolete, instead override Write(IList{AsyncLogEventInfo} logEvents)
         ///
         /// Writes an array of logging events to the log target. By default it iterates on all
         /// events and passes them to "Write" method. Inheriting classes can use this method to
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
+        [Obsolete("Instead override Write(IList<AsyncLogEventInfo> logEvents. Marked obsolete on NLog 4.5")]
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
             Write((IList<AsyncLogEventInfo>)logEvents);
@@ -133,7 +134,7 @@ namespace NLog.Targets.Wrappers
                 var targetLogEvents = logEvents;
                 if (i < this.Targets.Count - 1)
                 {
-                    // RestrictedBufferReuse = false, will change the input-array (so we make clones here)
+                    // OptimizeBufferReuse = true, will change the input-array (so we make clones here)
                     AsyncLogEventInfo[] cloneLogEvents = new AsyncLogEventInfo[logEvents.Count];
                     logEvents.CopyTo(cloneLogEvents, 0);
                     targetLogEvents = cloneLogEvents;
