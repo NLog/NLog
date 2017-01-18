@@ -89,6 +89,7 @@ namespace NLog.Targets.Wrappers
         public RoundRobinGroupTarget(params Target[] targets)
             : base(targets)
         {
+            this.OptimizeBufferReuse = GetType() == typeof(RoundRobinGroupTarget);
         }
 
         /// <summary>

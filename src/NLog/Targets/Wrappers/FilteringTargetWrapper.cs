@@ -65,6 +65,7 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="FilteringTargetWrapper" /> class.
         /// </summary>
         public FilteringTargetWrapper()
+            : this(null, null)
         {
         }
 
@@ -89,6 +90,7 @@ namespace NLog.Targets.Wrappers
         {
             this.WrappedTarget = wrappedTarget;
             this.Condition = condition;
+            this.OptimizeBufferReuse = GetType() == typeof(FilteringTargetWrapper);
         }
 
         /// <summary>
