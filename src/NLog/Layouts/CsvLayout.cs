@@ -162,16 +162,7 @@ namespace NLog.Layouts
         /// <returns>A string representation of the log event.</returns>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            string cachedValue;
-
-            if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
-            {
-                return cachedValue;
-            }
-
-            var sb = new StringBuilder();
-            RenderAllColumns(logEvent, sb);
-            return logEvent.AddCachedLayoutValue(this, sb.ToString());
+            return RenderAllocateBuilder(logEvent);
         }
 
         private void RenderAllColumns(LogEventInfo logEvent, StringBuilder sb)
@@ -332,15 +323,7 @@ namespace NLog.Layouts
             /// <returns>The rendered layout.</returns>
             protected override string GetFormattedMessage(LogEventInfo logEvent)
             {
-                string cached;
-                if (logEvent.TryGetCachedLayoutValue(this, out cached))
-                {
-                    return cached;
-                }
-
-                var sb = new StringBuilder();
-                this.parent.RenderHeader(sb);
-                return logEvent.AddCachedLayoutValue(this, sb.ToString());
+                return RenderAllocateBuilder(logEvent);
             }
 
             /// <summary>
