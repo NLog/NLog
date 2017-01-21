@@ -270,7 +270,7 @@ namespace NLog.UnitTests.Common
                 Console.SetOut(consoleOutWriter1);
 
                 // Named (based on LogLevel) public methods.
-                InternalLogger.Warn(()=>"WWW");
+                InternalLogger.Warn(() => "WWW");
                 InternalLogger.Error(() => "EEE");
                 InternalLogger.Fatal(() => "FFF");
                 InternalLogger.Trace(() => "TTT");
@@ -491,7 +491,7 @@ namespace NLog.UnitTests.Common
 
                     // Named (based on LogLevel) public methods.
 
-                    InternalLogger.Warn(ex1, () =>"WWW");
+                    InternalLogger.Warn(ex1, () => "WWW");
                     InternalLogger.Error(ex2, () => "EEE");
                     InternalLogger.Fatal(ex3, () => "FFF");
                     InternalLogger.Trace(ex4, () => "TTT");
@@ -502,8 +502,151 @@ namespace NLog.UnitTests.Common
                     var strings = consoleOutWriter.ToString();
                     Assert.Equal(expected, strings);
                 }
+                {
+                    StringWriter consoleOutWriter = new StringWriter()
+                    {
+                        NewLine = Environment.NewLine
+                    };
+
+                    // Redirect the console output to a StringWriter.
+                    Console.SetOut(consoleOutWriter);
+
+                    // Named (based on LogLevel) public methods.
+
+                    InternalLogger.Log(ex1, LogLevel.Warn, "WWW");
+                    InternalLogger.Log(ex2, LogLevel.Error, "EEE");
+                    InternalLogger.Log(ex3, LogLevel.Fatal, "FFF");
+                    InternalLogger.Log(ex4, LogLevel.Trace, "TTT");
+                    InternalLogger.Log(ex5, LogLevel.Debug, "DDD");
+                    InternalLogger.Log(ex6, LogLevel.Info, "III");
+
+                    consoleOutWriter.Flush();
+                    var strings = consoleOutWriter.ToString();
+                    Assert.Equal(expected, strings);
+                }
+                {
+                    StringWriter consoleOutWriter = new StringWriter()
+                    {
+                        NewLine = Environment.NewLine
+                    };
+
+                    // Redirect the console output to a StringWriter.
+                    Console.SetOut(consoleOutWriter);
+
+                    // Named (based on LogLevel) public methods.
+
+                    InternalLogger.Log(ex1, LogLevel.Warn, () => "WWW");
+                    InternalLogger.Log(ex2, LogLevel.Error, () => "EEE");
+                    InternalLogger.Log(ex3, LogLevel.Fatal, () => "FFF");
+                    InternalLogger.Log(ex4, LogLevel.Trace, () => "TTT");
+                    InternalLogger.Log(ex5, LogLevel.Debug, () => "DDD");
+                    InternalLogger.Log(ex6, LogLevel.Info, () => "III");
+
+                    consoleOutWriter.Flush();
+                    var strings = consoleOutWriter.ToString();
+                    Assert.Equal(expected, strings);
+                }
             }
 
+        }
+
+        [Theory]
+        [InlineData("trace", 6)]
+        [InlineData("debug", 5)]
+        [InlineData("info", 4)]
+        [InlineData("warn", 3)]
+        [InlineData("error", 2)]
+        [InlineData("fatal", 1)]
+        [InlineData("off", 0)]
+        public void TestMinLevelSwitch_log(string rawLogLevel, int count)
+        {
+            Action log = () =>
+            {
+                InternalLogger.Log(LogLevel.Fatal, "L1");
+                InternalLogger.Log(LogLevel.Error, "L2");
+                InternalLogger.Log(LogLevel.Warn, "L3");
+                InternalLogger.Log(LogLevel.Info, "L4");
+                InternalLogger.Log(LogLevel.Debug, "L5");
+                InternalLogger.Log(LogLevel.Trace, "L6");
+            };
+
+            TestMinLevelSwitch_inner(rawLogLevel, count, log);
+        }
+
+        [Theory]
+        [InlineData("trace", 6)]
+        [InlineData("debug", 5)]
+        [InlineData("info", 4)]
+        [InlineData("warn", 3)]
+        [InlineData("error", 2)]
+        [InlineData("fatal", 1)]
+        [InlineData("off", 0)]
+        public void TestMinLevelSwitch(string rawLogLevel, int count)
+        {
+            Action log = () =>
+            {
+                InternalLogger.Fatal("L1");
+                InternalLogger.Error("L2");
+                InternalLogger.Warn("L3");
+                InternalLogger.Info("L4");
+                InternalLogger.Debug("L5");
+                InternalLogger.Trace("L6");
+            };
+
+            TestMinLevelSwitch_inner(rawLogLevel, count, log);
+        }
+
+        [Theory]
+        [InlineData("trace", 6)]
+        [InlineData("debug", 5)]
+        [InlineData("info", 4)]
+        [InlineData("warn", 3)]
+        [InlineData("error", 2)]
+        [InlineData("fatal", 1)]
+        [InlineData("off", 0)]
+        public void TestMinLevelSwitch_lambda(string rawLogLevel, int count)
+        {
+            Action log = () =>
+            {
+                InternalLogger.Fatal(()=>"L1");
+                InternalLogger.Error(() => "L2");
+                InternalLogger.Warn(() => "L3");
+                InternalLogger.Info(() => "L4");
+                InternalLogger.Debug(() => "L5");
+                InternalLogger.Trace(() => "L6");
+            };
+
+            TestMinLevelSwitch_inner(rawLogLevel, count, log);
+        }
+
+        private static void TestMinLevelSwitch_inner(string rawLogLevel, int count, Action log)
+        {
+            //set minimal
+            InternalLogger.LogLevel = LogLevel.FromString(rawLogLevel);
+            InternalLogger.IncludeTimestamp = false;
+
+            StringWriter consoleOutWriter = new StringWriter()
+            {
+                NewLine = ";"
+            };
+
+            InternalLogger.LogWriter = consoleOutWriter;
+
+            // Redirect the console output to a StringWriter.
+            Console.SetOut(consoleOutWriter);
+
+            var expected = "";
+            var logLevel = LogLevel.Fatal.Ordinal;
+            for (int i = 0; i < count; i++, logLevel--)
+            {
+                expected += LogLevel.FromOrdinal(logLevel) + " L" + (i + 1) + ";";
+            }
+
+            log();
+
+            consoleOutWriter.Flush();
+            var strings = consoleOutWriter.ToString();
+            Assert.Equal(expected, strings);
         }
 
         [Theory]
