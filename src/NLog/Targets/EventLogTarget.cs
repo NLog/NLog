@@ -161,12 +161,19 @@ namespace NLog.Targets
 
         /// <summary>
         /// Gets or sets the maximum Event log size in kilobytes.
+        /// Default value is set to 512 as specified by Eventlog API
         /// </summary>
+        /// <remarks><value>MaxKilobytes</value> cannot be less than 64 or greater than 4194240 or not a multiple of 64</remarks>
         [DefaultValue(512)]
-        public int MaxKilobytes
+        public long MaxKilobytes
         {
             get { return this.MaxKilobytes; }
-            set { this.MaxKilobytes = value; }
+            set
+            {   //Event log API restriction
+                if (value < 64 || value > 4194240 || (value % 64 != 0))
+                    throw new ArgumentException("MaxKilobytes cannot be less than 64, or greater than 4194240, or not an even multiple of 64.");
+                this.MaxKilobytes = value;
+            }
         }
 
         /// <summary>
