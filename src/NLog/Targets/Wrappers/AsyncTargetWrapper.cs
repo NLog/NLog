@@ -210,11 +210,14 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected override void CloseTarget()
         {
-            lock (this.lockObject)
+            this.StopLazyWriterThread();
+            if (this.lazyWriterTimer == null)
             {
-                this.StopLazyWriterThread();
-                WriteEventsInQueue(int.MaxValue, "Closing Target");
+                // Timer has stopped
+                lock (this.lockObject)
+                    WriteEventsInQueue(int.MaxValue, "Closing Target");
             }
+            this.lazyWriterTimer = null;    // Reset timer anyways
             base.CloseTarget();
         }
 
@@ -283,14 +286,18 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected virtual void StopLazyWriterThread()
         {
-            lock (this.timerLockObject)
+            var currentTimer = this.lazyWriterTimer;
+            if (currentTimer != null)
             {
-                var currentTimer = this.lazyWriterTimer;
-                if (currentTimer != null)
+                this.lazyWriterTimer = null;
+                currentTimer.Change(Timeout.Infinite, Timeout.Infinite);
+                ManualResetEvent waitHandle = new ManualResetEvent(false);
+                if (currentTimer.Dispose(waitHandle))
                 {
-                    this.lazyWriterTimer = null;
-                    currentTimer.Change(Timeout.Infinite, Timeout.Infinite);
-                    currentTimer.Dispose();
+                    if (!waitHandle.WaitOne(1000))
+                        this.lazyWriterTimer = currentTimer;    // Signal timer has not stopped
+                    else
+                        waitHandle.Close();
                 }
             }
         }
