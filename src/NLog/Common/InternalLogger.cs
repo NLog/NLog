@@ -246,40 +246,55 @@ namespace NLog.Common
                 }
                 var msg = builder.ToString();
 
-                // log to file
-                var logFile = LogFile;
-                if (!string.IsNullOrEmpty(logFile))
+                try
                 {
-                    using (var textWriter = File.AppendText(logFile))
+                    // log to file
+                    var logFile = LogFile;
+                    if (!string.IsNullOrEmpty(logFile))
                     {
-                        textWriter.WriteLine(msg);
+                        lock (LockObject)
+                        {
+                            using (var textWriter = File.AppendText(logFile))
+                            {
+                                textWriter.WriteLine(msg);
+                            }
+                        }
                     }
                 }
-
-                // log to LogWriter
-                var writer = LogWriter;
-                if (writer != null)
+                finally
                 {
-                    lock (LockObject)
+                    // log to LogWriter
+                    var writer = LogWriter;
+                    if (writer != null)
                     {
-                        writer.WriteLine(msg);
+                        lock (LockObject)
+                        {
+                            writer.WriteLine(msg);
+                        }
                     }
-                }
 
-                // log to console
-                if (LogToConsole)
-                {
-                    Console.WriteLine(msg);
-                }
+                    // log to console
+                    if (LogToConsole)
+                    {
+                        lock (LockObject)
+                        {
+                            Console.WriteLine(msg);
+                        }
+                    }
 
-                // log to console error
-                if (LogToConsoleError)
-                {
-                    Console.Error.WriteLine(msg);
-                }
+                    // log to console error
+                    if (LogToConsoleError)
+                    {
+                        lock (LockObject)
+                        {
+                            Console.Error.WriteLine(msg);
+                        }
+                    }
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-                WriteToTrace(msg);
+                    WriteToTrace(msg);
 #endif
+                }
             }
             catch (Exception exception)
             {
