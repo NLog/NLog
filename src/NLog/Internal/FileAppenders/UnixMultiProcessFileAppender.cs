@@ -66,9 +66,9 @@ namespace NLog.Internal.FileAppenders
 
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
-        public class Factory : IFileAppenderFactory
+        private class Factory : IFileAppenderFactory
         {
-            public BaseFileAppender Open(string fileName, ICreateFileParameters parameters)
+            BaseFileAppender IFileAppenderFactory.Open(string fileName, ICreateFileParameters parameters)
             {
                 return new UnixMultiProcessFileAppender(fileName, parameters);
             }
@@ -93,7 +93,29 @@ namespace NLog.Internal.FileAppenders
 
             try
             {
+                bool fileExists = File.Exists(fileName);
+
                 this.file = new UnixStream(fd, true);
+
+                long filePosition = this.file.Position;
+                if (fileExists || filePosition > 0)
+                {
+                    this.CreationTimeUtc = File.GetCreationTimeUtc(this.FileName);
+                    if (this.CreationTimeUtc < DateTime.UtcNow - TimeSpan.FromSeconds(2) && filePosition == 0)
+                    {
+                        // File wasn't created "almost now". 
+                        Thread.Sleep(50);
+                        // Having waited for a short amount of time usually means the file creation process has continued
+                        // code execution just enough to the above point where it has fixed up the creation time.
+                        this.CreationTimeUtc = File.GetCreationTimeUtc(this.FileName);
+                    }
+                }
+                else
+                {
+                    // We actually created the file and eventually concurrent processes 
+                    this.CreationTimeUtc = DateTime.UtcNow;
+                    File.SetCreationTimeUtc(this.FileName, this.CreationTimeUtc);
+                }
             }
             catch
             {
@@ -102,12 +124,17 @@ namespace NLog.Internal.FileAppenders
             }
         }
 
-        public override void Write(byte[] bytes)
+        /// <summary>
+        /// Writes the specified bytes.
+        /// </summary>
+        /// <param name="bytes">The bytes array.</param>
+        /// <param name="offset">The bytes array offset.</param>
+        /// <param name="count">The number of bytes.</param>
+        public override void Write(byte[] bytes, int offset, int count)
         {
             if (this.file == null)
                 return;
-
-            this.file.Write(bytes, 0, bytes.Length);
+            this.file.Write(bytes, offset, count);
         }
 
         /// <summary>
@@ -141,10 +168,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>The file creation time.</returns>
         public override DateTime? GetFileCreationTimeUtc()
         {
-            FileInfo fileInfo = new FileInfo(FileName);
-            if (!fileInfo.Exists)
-                return null;
-            return fileInfo.CreationTime;
+            return this.CreationTimeUtc;    // File is kept open, so creation time is static
         }
         
         /// <summary>

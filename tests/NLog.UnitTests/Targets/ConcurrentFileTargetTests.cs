@@ -246,12 +246,12 @@ namespace NLog.UnitTests.Targets
         [InlineData(2, 500, "none|mutex|archive")]
         [InlineData(2, 500, "none|retry|archive")]
 #endif
-        [InlineData(2, 10000, "none")]
-        [InlineData(5, 4000, "none")]
-        [InlineData(10, 2000, "none")]
-        [InlineData(2, 10000, "none|mutex")]
-        [InlineData(5, 4000, "none|mutex")]
-        [InlineData(10, 2000, "none|mutex")]
+        [InlineData(2, 1000, "none")]
+        [InlineData(5, 1000, "none")]
+        [InlineData(10, 1000, "none")]
+        [InlineData(2, 1000, "none|mutex")]
+        [InlineData(5, 1000, "none|mutex")]
+        [InlineData(10, 1000, "none|mutex")]
         public void SimpleConcurrentTest(int numProcesses, int numLogs, string mode)
         {
             DoConcurrentTest(numProcesses, numLogs, mode);
@@ -268,7 +268,7 @@ namespace NLog.UnitTests.Targets
             // Due to the buffering it makes no big difference in runtime, whether we
             // have 2 process writing 10K events each or couple more processes with even more events.
             // Runtime is mostly defined by Runner.exe compilation and JITing the first.
-            DoConcurrentTest(5, 50000, mode);
+            DoConcurrentTest(5, 1000, mode);
         }
 
         [Theory]
@@ -276,7 +276,7 @@ namespace NLog.UnitTests.Targets
         [InlineData("buffered|mutex")]
         public void BufferedConcurrentTest(string mode)
         {
-            DoConcurrentTest(5, 50000, mode);
+            DoConcurrentTest(5, 1000, mode);
         }
 
         [Theory]
@@ -284,7 +284,7 @@ namespace NLog.UnitTests.Targets
         [InlineData("buffered_timed_flush|mutex")]
         public void BufferedTimedFlushConcurrentTest(string mode)
         {
-            DoConcurrentTest(5, 50000, mode);
+            DoConcurrentTest(5, 1000, mode);
         }
     }
 }

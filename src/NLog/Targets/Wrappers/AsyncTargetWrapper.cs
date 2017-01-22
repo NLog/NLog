@@ -80,6 +80,7 @@ namespace NLog.Targets.Wrappers
         private readonly object lockObject = new object();
         private readonly object timerLockObject = new object();
         private Timer lazyWriterTimer;
+        private readonly ReusableAsyncLogEventList reusableAsyncLogEventList = new ReusableAsyncLogEventList(200);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AsyncTargetWrapper" /> class.
@@ -119,7 +120,8 @@ namespace NLog.Targets.Wrappers
         {
             this.RequestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
             this.TimeToSleepBetweenBatches = 50;
-            this.BatchSize = 100;
+            this.BatchSize = 200;
+            this.FullBatchSizeWriteLimit = 5;
             this.WrappedTarget = wrappedTarget;
             this.QueueLimit = queueLimit;
             this.OverflowAction = overflowAction;
@@ -130,7 +132,7 @@ namespace NLog.Targets.Wrappers
         /// by the lazy writer thread.
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(100)]
+        [DefaultValue(200)]
         public int BatchSize { get; set; }
 
         /// <summary>
@@ -164,6 +166,14 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
+        /// Gets or sets the limit of full <see cref="BatchSize"/>s to write before yielding into <see cref="TimeToSleepBetweenBatches"/> 
+        /// Performance is better when writing many small batches, than writing a single large batch
+        /// </summary>
+        /// <docgen category='Buffering Options' order='100' />
+        [DefaultValue(5)]
+        public int FullBatchSizeWriteLimit { get; set; }
+
+        /// <summary>
         /// Gets the queue of lazy writer thread requests.
         /// </summary>
         internal AsyncRequestQueue RequestQueue { get; private set; }
@@ -186,8 +196,11 @@ namespace NLog.Targets.Wrappers
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
+            if (!OptimizeBufferReuse && WrappedTarget != null && WrappedTarget.OptimizeBufferReuse)
+                OptimizeBufferReuse = GetType() == typeof(AsyncTargetWrapper); // TODO NLog 5 - Manual Opt-Out
+
             this.RequestQueue.Clear();
-            InternalLogger.Trace("AsyncWrapper '{0}': start timer", Name);
+            InternalLogger.Trace("AsyncWrapper '{0}': start timer", this.Name);
             this.lazyWriterTimer = new Timer(this.ProcessPendingEvents, null, Timeout.Infinite, Timeout.Infinite);
             this.StartLazyWriterTimer();
         }
@@ -200,7 +213,7 @@ namespace NLog.Targets.Wrappers
             lock (this.lockObject)
             {
                 this.StopLazyWriterThread();
-                WriteEventsInQueue(-1, "Closing Target");
+                WriteEventsInQueue(int.MaxValue, "Closing Target");
             }
             base.CloseTarget();
         }
@@ -388,7 +401,7 @@ namespace NLog.Targets.Wrappers
                 var asyncContinuation = state as AsyncContinuation;
                 lock (this.lockObject)
                 {
-                    WriteEventsInQueue(-1, "Flush Async");
+                    WriteEventsInQueue(int.MaxValue, "Flush Async");
                     if (asyncContinuation != null)
                         base.FlushAsync(asyncContinuation);
                 }
@@ -414,14 +427,39 @@ namespace NLog.Targets.Wrappers
 
             lock (this.lockObject)
             {
-                AsyncLogEventInfo[] logEvents = this.RequestQueue.DequeueBatch(batchSize);
-                if (logEvents.Length > 0)
+                int count = 0;
+                for (int i = 0; i < this.FullBatchSizeWriteLimit; ++i)
                 {
-                    if (reason != null)
-                        InternalLogger.Trace("AsyncWrapper '{0}': writing {1} events ({2})", this.Name, logEvents.Length, reason);
-                    this.WrappedTarget.WriteAsyncLogEvents(logEvents);
+                    if (!this.OptimizeBufferReuse || batchSize == int.MaxValue)
+                    {
+                        var logEvents = this.RequestQueue.DequeueBatch(batchSize);
+                        if (logEvents.Length > 0)
+                        {
+                            if (reason != null)
+                                InternalLogger.Trace("AsyncWrapper '{0}': writing {1} events ({2})", this.Name, logEvents.Length, reason);
+                            this.WrappedTarget.WriteAsyncLogEvents(logEvents);
+                        }
+                        count = logEvents.Length;
+                    }
+                    else
+                    {
+                        using (var targetList = this.reusableAsyncLogEventList.Allocate())
+                        {
+                            var logEvents = targetList.Result;
+                            this.RequestQueue.DequeueBatch(batchSize, logEvents);
+                            if (logEvents.Count > 0)
+                            {
+                                if (reason != null)
+                                    InternalLogger.Trace("AsyncWrapper '{0}': writing {1} events ({2})", this.Name, logEvents.Count, reason);
+                                this.WrappedTarget.WriteAsyncLogEvents(logEvents);
+                            }
+                            count = logEvents.Count;
+                        }
+                    }
+                    if (count < batchSize)
+                        break;
                 }
-                return logEvents.Length;
+                return count;
             }
         }
     }

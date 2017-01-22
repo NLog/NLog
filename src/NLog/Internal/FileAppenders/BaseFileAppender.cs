@@ -58,8 +58,8 @@ namespace NLog.Internal.FileAppenders
         {
             this.CreateFileParameters = createParameters;
             this.FileName = fileName;
-            this.OpenTime = DateTime.UtcNow; // to be consistent with timeToKill in FileTarget.AutoClosingTimerCallback
-            this.LastWriteTime = DateTime.MinValue;
+            this.OpenTimeUtc = DateTime.UtcNow; // to be consistent with timeToKill in FileTarget.AutoClosingTimerCallback
+            this.LastWriteTimeUtc = DateTime.MinValue;
             this.CaptureLastWriteTime = createParameters.CaptureLastWriteTime;
         }
 
@@ -76,21 +76,36 @@ namespace NLog.Internal.FileAppenders
         /// Universal Time [UTC] standard.
         /// </summary>
         /// <returns>The creation time of the file.</returns>
-        public DateTime CreationTime { get; internal set; }
+        public DateTime CreationTimeUtc
+        {
+            get { return _creationTimeUtc; }
+            internal set
+            {
+                _creationTimeUtc = value;
+                CreationTimeSource = Time.TimeSource.Current.FromSystemTime(value); // Performance optimization to skip converting every time
+            }
+        }
+        DateTime _creationTimeUtc;
+
+        /// <summary>
+        /// Gets or sets the creation time for a file associated with the appender. Synchronized by <see cref="CreationTimeUtc"/>
+        /// The time format is based on <see cref="NLog.Time.TimeSource" />
+        /// </summary>
+        public DateTime CreationTimeSource { get; private set; }
 
         /// <summary>
         /// Gets the last time the file associated with the appeander is opened. The time returned is in Coordinated 
         /// Universal Time [UTC] standard.
         /// </summary>
         /// <returns>The time the file was last opened.</returns>
-        public DateTime OpenTime { get; private set; }
+        public DateTime OpenTimeUtc { get; private set; }
 
         /// <summary>
         /// Gets the last time the file associated with the appeander is written. The time returned is in  
         /// Coordinated Universal Time [UTC] standard.
         /// </summary>
         /// <returns>The time the file was last written to.</returns>
-        public DateTime LastWriteTime { get; private set; }
+        public DateTime LastWriteTimeUtc { get; private set; }
 
         /// <summary>
         /// Gets the file creation parameters.
@@ -102,7 +117,12 @@ namespace NLog.Internal.FileAppenders
         /// Writes the specified bytes.
         /// </summary>
         /// <param name="bytes">The bytes.</param>
-        public abstract void Write(byte[] bytes);
+        public void Write(byte[] bytes)
+        {
+            Write(bytes, 0, bytes.Length);
+        }
+
+        public abstract void Write(byte[] bytes, int offset, int count);
 
         /// <summary>
         /// Flushes this instance.
@@ -172,7 +192,7 @@ namespace NLog.Internal.FileAppenders
         /// <param name="dateTime">Date and time when the last write occurred in UTC.</param>
         protected void FileTouched(DateTime dateTime)
         {
-            this.LastWriteTime = dateTime;
+            this.LastWriteTimeUtc = dateTime;
         }
 
         /// <summary>
@@ -290,7 +310,7 @@ namespace NLog.Internal.FileAppenders
 #if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__
             try
             {
-                if (!this.CreateFileParameters.ForceManaged && PlatformDetector.IsDesktopWin32)
+                if (!this.CreateFileParameters.ForceManaged && PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
                 {
                     return this.WindowsCreateFile(this.FileName, allowFileSharedWriting);
                 }
@@ -320,9 +340,9 @@ namespace NLog.Internal.FileAppenders
             if (File.Exists(this.FileName))
             {
 #if !SILVERLIGHT
-                this.CreationTime = File.GetCreationTimeUtc(this.FileName);
+                this.CreationTimeUtc = File.GetCreationTimeUtc(this.FileName);
 #else
-                this.CreationTime = File.GetCreationTime(this.FileName);
+                this.CreationTimeUtc = File.GetCreationTime(this.FileName);
 #endif
             }
             else
@@ -330,11 +350,11 @@ namespace NLog.Internal.FileAppenders
                 File.Create(this.FileName).Dispose();
 
 #if !SILVERLIGHT
-                this.CreationTime = DateTime.UtcNow;
+                this.CreationTimeUtc = DateTime.UtcNow;
                 // Set the file's creation time to avoid being thwarted by Windows' Tunneling capabilities (https://support.microsoft.com/en-us/kb/172190).
-                File.SetCreationTimeUtc(this.FileName, this.CreationTime);
+                File.SetCreationTimeUtc(this.FileName, this.CreationTimeUtc);
 #else
-                this.CreationTime = File.GetCreationTime(this.FileName);
+                this.CreationTimeUtc = File.GetCreationTime(this.FileName);
 #endif
             }
         }

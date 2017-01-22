@@ -53,7 +53,6 @@ namespace NLog
     public sealed class LogManager
     {
         private static readonly LogFactory factory = new LogFactory();
-        private static IAppDomain currentAppDomain;
         private static ICollection<Assembly> _hiddenAssemblies;
 
         private static readonly object lockObject = new object();
@@ -65,17 +64,6 @@ namespace NLog
         /// <remarks>This delegate marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
         [Obsolete("Marked obsolete before v4.3.11")]
         public delegate CultureInfo GetCultureInfo();
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-        /// <summary>
-        /// Initializes static members of the LogManager class.
-        /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
-        static LogManager()
-        {
-            SetupTerminationEvents();
-        }
-#endif
 
         /// <summary>
         /// Prevents a default instance of the LogManager class from being created.
@@ -146,21 +134,6 @@ namespace NLog
             set { factory.KeepVariablesOnReload = value; }
         }
 
-        internal static IAppDomain CurrentAppDomain
-        {
-            get { return currentAppDomain ?? (currentAppDomain = AppDomainWrapper.CurrentDomain); }
-            set
-            {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-                if (currentAppDomain != null)
-                {
-                    currentAppDomain.DomainUnload -= LogManager_OnStopLogging;
-                    currentAppDomain.ProcessExit -= LogManager_OnStopLogging;
-                }
-#endif
-                currentAppDomain = value;
-            }
-        }
 
         /// <summary>
         /// Gets or sets the current logging configuration.
@@ -384,33 +357,14 @@ namespace NLog
         /// </summary>
         public static void Shutdown()
         {
-            if (Configuration != null && Configuration.AllTargets != null)
-            {
-                foreach (var target in Configuration.AllTargets)
-                {
-                    if (target != null) target.Dispose();
-                }
-            }
+            InternalLogger.Info("Logger closing down...");
+            if (Configuration != null)
+                Configuration.Close();
+            InternalLogger.Info("Logger has been closed down.");
         }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-        private static void SetupTerminationEvents()
-        {
-            try
-            {
-                CurrentAppDomain.ProcessExit += LogManager_OnStopLogging;
-                CurrentAppDomain.DomainUnload += LogManager_OnStopLogging;
-            }
-            catch (Exception exception)
-            {
-                InternalLogger.Warn(exception, "Error setting up termination events.");
 
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
-            }
-        }
 #endif
 
         /// <summary>
@@ -446,22 +400,6 @@ namespace NLog
         }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-        private static void LogManager_OnStopLogging(object sender, EventArgs args)
-        {
-            try
-            {
-                InternalLogger.Info("Shutting down logging...");
-                factory.Close(TimeSpan.FromMilliseconds(1500)); // Finalizer thread has about 2 secs, before being terminated
-                CurrentAppDomain = null;    // No longer part of AppDomains
-                InternalLogger.Info("Logger has been shut down.");
-            }
-            catch (Exception ex)
-            {
-                if (ex.MustBeRethrownImmediately())
-                    throw;
-                InternalLogger.Error(ex, "Logger failed to shut down properly.");
-            }
-        }
 #endif
     }
 }

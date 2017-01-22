@@ -117,15 +117,15 @@ namespace NLog.Internal.FileAppenders
                 long filePosition = fileStream.Position;
                 if (fileExists || filePosition > 0)
                 {
-                    this.CreationTime = File.GetCreationTimeUtc(this.FileName);
-                    if (this.CreationTime < DateTime.UtcNow - TimeSpan.FromSeconds(2) && filePosition == 0)
+                    this.CreationTimeUtc = File.GetCreationTimeUtc(this.FileName);
+                    if (this.CreationTimeUtc < DateTime.UtcNow - TimeSpan.FromSeconds(2) && filePosition == 0)
                     {
                         // File wasn't created "almost now". 
                         // This could mean creation time has tunneled through from another file (see comment below).
                         Thread.Sleep(50);
                         // Having waited for a short amount of time usually means the file creation process has continued
                         // code execution just enough to the above point where it has fixed up the creation time.
-                        this.CreationTime = File.GetCreationTimeUtc(this.FileName);
+                        this.CreationTimeUtc = File.GetCreationTimeUtc(this.FileName);
                     }
                 }
                 else
@@ -137,8 +137,8 @@ namespace NLog.Internal.FileAppenders
                     // Unfortunately we can't use the native SetFileTime() to prevent opening the file 2nd time.
                     // This would require another desiredAccess flag which would disable the atomic append feature.
                     // See also UpdateCreationTime()
-                    this.CreationTime = DateTime.UtcNow;
-                    File.SetCreationTimeUtc(this.FileName, this.CreationTime);
+                    this.CreationTimeUtc = DateTime.UtcNow;
+                    File.SetCreationTimeUtc(this.FileName, this.CreationTimeUtc);
                 }
             }
             catch
@@ -153,12 +153,14 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Writes the specified bytes.
         /// </summary>
-        /// <param name="bytes">The bytes to be written.</param>
-        public override void Write(byte[] bytes)
+        /// <param name="bytes">The bytes array.</param>
+        /// <param name="offset">The bytes array offset.</param>
+        /// <param name="count">The number of bytes.</param>
+        public override void Write(byte[] bytes, int offset, int count)
         {
             if (fileStream != null)
             {
-                fileStream.Write(bytes, 0, bytes.Length);
+                fileStream.Write(bytes, offset, count);
 
                 if (CaptureLastWriteTime)
                 {
@@ -200,8 +202,7 @@ namespace NLog.Internal.FileAppenders
 
         public override DateTime? GetFileCreationTimeUtc()
         {
-            var fileChars = GetFileCharacteristics();
-            return fileChars != null ? fileChars.CreationTimeUtc : (DateTime?)null;
+            return CreationTimeUtc; // File is kept open, so creation time is static
         }
 
         public override DateTime? GetFileLastWriteTimeUtc()

@@ -298,7 +298,6 @@ namespace NLog.Layouts
             }
 
             string cachedValue;
-
             if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
             {
                 return cachedValue;
@@ -311,7 +310,17 @@ namespace NLog.Layouts
             }
 
             var builder = new StringBuilder(initialSize);
+            RenderAllRenderers(logEvent, builder);
+            if (builder.Length > this.maxRenderedLength)
+            {
+                this.maxRenderedLength = builder.Length;
+            }
 
+            return logEvent.AddCachedLayoutValue(this, builder.ToString());
+        }
+
+        private void RenderAllRenderers(LogEventInfo logEvent, StringBuilder target)
+        {
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
             for (int i = 0; i < this.Renderers.Count; i++)
@@ -319,7 +328,7 @@ namespace NLog.Layouts
                 LayoutRenderer renderer = this.Renderers[i];
                 try
                 {
-                    renderer.Render(builder, logEvent);
+                    renderer.RenderAppendBuilder(logEvent, target);
                 }
                 catch (Exception exception)
                 {
@@ -337,17 +346,23 @@ namespace NLog.Layouts
                     }
                 }
             }
-
-            if (builder.Length > this.maxRenderedLength)
-            {
-                this.maxRenderedLength = builder.Length;
-            }
-
-            string value = builder.ToString();
-            logEvent.AddCachedLayoutValue(this, value);
-            return value;
         }
 
+        /// <summary>
+        /// Renders the layout for the specified logging event by invoking layout renderers
+        /// that make up the event.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
+        protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
+        {
+            if (IsFixedText)
+            {
+                target.Append(this.fixedText);
+                return;
+            }
 
+            RenderAllRenderers(logEvent, target);
+        }
     }
 }

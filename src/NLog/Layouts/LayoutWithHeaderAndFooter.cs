@@ -70,5 +70,15 @@ namespace NLog.Layouts
         {
             return this.Layout.Render(logEvent);
         }
+
+        /// <summary>
+        /// Renders the layout for the specified logging event by invoking layout renderers.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        /// <param name="target">Initially empty <see cref="System.Text.StringBuilder"/> for the result</param>
+        protected override void RenderFormattedMessage(LogEventInfo logEvent, System.Text.StringBuilder target)
+        {
+            this.Layout.RenderAppendBuilder(logEvent, target);
+        }
     }
 }

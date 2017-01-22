@@ -97,6 +97,17 @@ namespace NLog
         public event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded;
 #endif
 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+        /// <summary>
+        /// Initializes static members of the LogManager class.
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
+        static LogFactory()
+        {
+            RegisterEvents(CurrentAppDomain);
+        }
+#endif
+
         /// <summary>
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
         /// </summary>
@@ -125,7 +136,14 @@ namespace NLog
         public static IAppDomain CurrentAppDomain
         {
             get { return currentAppDomain ?? (currentAppDomain = AppDomainWrapper.CurrentDomain); }
-            set { currentAppDomain = value; }
+            set
+            {
+                UnregisterEvents(currentAppDomain);
+                //make sure we aren't double registering.
+                UnregisterEvents(value);
+                RegisterEvents(value);
+                currentAppDomain = value;
+            }
         }
 
         /// <summary>
@@ -323,7 +341,7 @@ namespace NLog
                             catch (Exception exception)
                             {
                                 //ToArray needed for .Net 3.5
-                                InternalLogger.Warn(exception, "Cannot start file watching: {0}", string.Join(",", this.config.FileNamesToWatch.ToArray()));
+                                InternalLogger.Warn(exception, "Cannot start file watching: {0}", String.Join(",", this.config.FileNamesToWatch.ToArray()));
 
                                 if (exception.MustBeRethrown())
                                 {
@@ -386,7 +404,7 @@ namespace NLog
             {
                 InternalLogger.LogAssemblyVersion(typeof(ILogger).Assembly);
             }
-            catch (SecurityException ex) 
+            catch (SecurityException ex)
             {
                 InternalLogger.Debug(ex, "Not running in full trust");
             }
@@ -721,11 +739,7 @@ namespace NLog
         /// <param name="e">Event arguments</param>
         protected virtual void OnConfigurationReloaded(LoggingConfigurationReloadedEventArgs e)
         {
-            var reloaded = ConfigurationReloaded;
-            if (reloaded != null)
-            {
-                reloaded(this, e);
-            }
+            if (ConfigurationReloaded != null) ConfigurationReloaded.Invoke(this, e);
         }
 #endif
 
@@ -897,7 +911,7 @@ namespace NLog
         /// </summary>
         private bool IsDisposing;
 
-        internal void Close(TimeSpan flushTimeout)
+        private  void Close(TimeSpan flushTimeout)
         {
             if (this.IsDisposing)
             {
@@ -1036,47 +1050,51 @@ namespace NLog
         /// </summary>
         private static IEnumerable<string> GetDefaultCandidateConfigFilePaths()
         {
-#if SILVERLIGHT || __ANDROID__ || __IOS__
-    //try.nlog.config is ios/android/silverlight
-            yield return "NLog.config";
-#else
             // NLog.config from application directory
-            if (CurrentAppDomain.BaseDirectory != null)
+            if (CurrentAppDomain != null && CurrentAppDomain.BaseDirectory != null)
             {
                 yield return Path.Combine(CurrentAppDomain.BaseDirectory, "NLog.config");
             }
+            else
+            {
+                yield return "NLog.config";
+            }
 
             // Current config file with .config renamed to .nlog
-            string cf = CurrentAppDomain.ConfigurationFile;
-            if (cf != null)
+            if (CurrentAppDomain != null)
             {
-                yield return Path.ChangeExtension(cf, ".nlog");
-
-                // .nlog file based on the non-vshost version of the current config file
-                const string vshostSubStr = ".vshost.";
-                if (cf.Contains(vshostSubStr))
+                string cf = CurrentAppDomain.ConfigurationFile;
+                if (cf != null)
                 {
-                    yield return Path.ChangeExtension(cf.Replace(vshostSubStr, "."), ".nlog");
-                }
+                    yield return Path.ChangeExtension(cf, ".nlog");
 
-                IEnumerable<string> privateBinPaths = CurrentAppDomain.PrivateBinPath;
-                if (privateBinPaths != null)
-                {
-                    foreach (var path in privateBinPaths)
+                    // .nlog file based on the non-vshost version of the current config file
+                    const string vshostSubStr = ".vshost.";
+                    if (cf.Contains(vshostSubStr))
                     {
-                        if (path != null)
+                        yield return Path.ChangeExtension(cf.Replace(vshostSubStr, "."), ".nlog");
+                    }
+
+                    IEnumerable<string> privateBinPaths = CurrentAppDomain.PrivateBinPath;
+                    if (privateBinPaths != null)
+                    {
+                        foreach (var path in privateBinPaths)
                         {
-                            yield return Path.Combine(path, "NLog.config");
+                            if (path != null)
+                            {
+                                yield return Path.Combine(path, "NLog.config");
+                            }
                         }
                     }
                 }
             }
 
+#if !SILVERLIGHT
             // Get path to NLog.dll.nlog only if the assembly is not in the GAC
             var nlogAssembly = typeof(LogFactory).Assembly;
             if (!nlogAssembly.GlobalAssemblyCache)
             {
-                if (!string.IsNullOrEmpty(nlogAssembly.Location))
+                if (!String.IsNullOrEmpty(nlogAssembly.Location))
                 {
                     yield return nlogAssembly.Location + ".nlog";
                 }
@@ -1106,7 +1124,7 @@ namespace NLog
                         //creating instance of static class isn't possible, and also not wanted (it cannot inherited from Logger)
                         if (cacheKey.ConcreteType.IsStaticClass())
                         {
-                            var errorMessage = string.Format("GetLogger / GetCurrentClassLogger is '{0}' as loggerType can be a static class and should inherit from Logger",
+                            var errorMessage = String.Format("GetLogger / GetCurrentClassLogger is '{0}' as loggerType can be a static class and should inherit from Logger",
                                 fullName);
                             InternalLogger.Error(errorMessage);
                             if (ThrowExceptions)
@@ -1124,7 +1142,7 @@ namespace NLog
                             {
                                 //well, it's not a Logger, and we should return a Logger.
 
-                                var errorMessage = string.Format("GetLogger / GetCurrentClassLogger got '{0}' as loggerType which doesn't inherit from Logger", fullName);
+                                var errorMessage = String.Format("GetLogger / GetCurrentClassLogger got '{0}' as loggerType which doesn't inherit from Logger", fullName);
                                 InternalLogger.Error(errorMessage);
                                 if (ThrowExceptions)
                                 {
@@ -1370,6 +1388,56 @@ namespace NLog
             void IDisposable.Dispose()
             {
                 this.factory.ResumeLogging();
+            }
+        }
+
+        private static void RegisterEvents(IAppDomain appDomain)
+        {
+            if (appDomain == null) return;
+
+            try
+            {
+                appDomain.ProcessExit += OnStopLogging;
+                appDomain.DomainUnload += OnStopLogging;
+            }
+            catch (Exception exception)
+            {
+                InternalLogger.Warn(exception, "Error setting up termination events.");
+
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+            }
+        }
+
+        private static void UnregisterEvents(IAppDomain appDomain)
+        {
+            if (appDomain == null) return;
+
+            appDomain.DomainUnload -= OnStopLogging;
+            appDomain.ProcessExit -= OnStopLogging;
+        }
+
+        private static void OnStopLogging(object sender, EventArgs args)
+        {
+            try
+            {
+                var logFactory = sender as LogFactory;
+                InternalLogger.Info("Shutting down logging...");
+                if (logFactory != null)
+                {
+                    // Finalizer thread has about 2 secs, before being terminated
+                    logFactory.Close(TimeSpan.FromMilliseconds(1500));
+                }
+                currentAppDomain = null;    // No longer part of AppDomains
+                InternalLogger.Info("Logger has been shut down.");
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+                InternalLogger.Error(ex, "Logger failed to shut down properly.");
             }
         }
     }
