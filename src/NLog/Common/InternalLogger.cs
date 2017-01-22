@@ -246,40 +246,58 @@ namespace NLog.Common
                 }
                 var msg = builder.ToString();
 
-                // log to file
-                var logFile = LogFile;
-                if (!string.IsNullOrEmpty(logFile))
+                try
                 {
-                    using (var textWriter = File.AppendText(logFile))
+                    // log to file
+                    var logFile = LogFile;
+                    if (!string.IsNullOrEmpty(logFile))
                     {
-                        textWriter.WriteLine(msg);
+                        if (!WriteToFileAtomic(msg, logFile))
+                        {
+                            lock (LockObject)
+                            {
+                                using (var textWriter = File.AppendText(logFile))
+                                {
+                                    textWriter.WriteLine(msg);
+                                }
+                            }
+                        }
                     }
                 }
-
-                // log to LogWriter
-                var writer = LogWriter;
-                if (writer != null)
+                finally
                 {
-                    lock (LockObject)
+                    // log to LogWriter
+                    var writer = LogWriter;
+                    if (writer != null)
                     {
-                        writer.WriteLine(msg);
+                        lock (LockObject)
+                        {
+                            writer.WriteLine(msg);
+                        }
                     }
-                }
 
-                // log to console
-                if (LogToConsole)
-                {
-                    Console.WriteLine(msg);
-                }
+                    // log to console
+                    if (LogToConsole)
+                    {
+                        lock (LockObject)
+                        {
+                            Console.WriteLine(msg);
+                        }
+                    }
 
-                // log to console error
-                if (LogToConsoleError)
-                {
-                    Console.Error.WriteLine(msg);
-                }
+                    // log to console error
+                    if (LogToConsoleError)
+                    {
+                        lock (LockObject)
+                        {
+                            Console.Error.WriteLine(msg);
+                        }
+                    }
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-                WriteToTrace(msg);
+                    WriteToTrace(msg);
 #endif
+                }
             }
             catch (Exception exception)
             {
@@ -292,6 +310,63 @@ namespace NLog.Common
                 }
 
             }
+        }
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
+        private static int _writeToFileAtomicSuccesCount;
+#endif
+
+        static bool WriteToFileAtomic(string msg, string logFile)
+        {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
+            try
+            {
+                if (_writeToFileAtomicSuccesCount == 0)
+                {
+                    if (PlatformDetector.IsMono || !PlatformDetector.IsDesktopWin32)
+                    {
+                        _writeToFileAtomicSuccesCount = int.MinValue;
+                    }
+                    else
+                    {
+                        _writeToFileAtomicSuccesCount = 5;
+                    }
+                }
+                if (_writeToFileAtomicSuccesCount > 0)
+                {
+                    using (FileStream atomicAppend = new FileStream(logFile, FileMode.Append, System.Security.AccessControl.FileSystemRights.AppendData | System.Security.AccessControl.FileSystemRights.Synchronize, FileShare.ReadWrite | FileShare.Delete, 1, FileOptions.None))
+                    {
+                        byte[] byteArray = new byte[Encoding.Default.GetByteCount(msg) + Encoding.Default.GetByteCount(Environment.NewLine)];
+                        int byteCount = Encoding.Default.GetBytes(msg, 0, msg.Length, byteArray, 0);
+                        byteCount += Encoding.Default.GetBytes(Environment.NewLine, 0, Environment.NewLine.Length, byteArray, byteCount);
+                        atomicAppend.Write(byteArray, 0, byteCount);
+                    }
+
+                    _writeToFileAtomicSuccesCount = 100;
+                    return true;
+                }
+            }
+            catch (System.IO.IOException)
+            {
+                lock (LockObject)
+                {
+                    if (--_writeToFileAtomicSuccesCount == 0)
+                    {
+                        _writeToFileAtomicSuccesCount = -1;
+                    }
+                }
+                return false;
+            }
+            catch
+            {
+                lock (LockObject)
+                {
+                    _writeToFileAtomicSuccesCount = -1;
+                }
+                throw;
+            }
+#endif
+            return false;
         }
 
         /// <summary>
