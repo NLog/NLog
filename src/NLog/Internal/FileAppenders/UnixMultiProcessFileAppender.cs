@@ -76,6 +76,17 @@ namespace NLog.Internal.FileAppenders
 
         public UnixMultiProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
+            UnixFileInfo fileInfo = null;
+            bool fileExists = false;
+            try
+            {
+                fileInfo = new UnixFileInfo(fileName);
+                fileExists = fileInfo.Exists;
+            }
+            catch
+            {
+            }
+
             int fd = Syscall.open(fileName, OpenFlags.O_CREAT | OpenFlags.O_WRONLY | OpenFlags.O_APPEND, (FilePermissions)(6 | (6 << 3) | (6 << 6)));
             if (fd == -1)
             {
@@ -93,21 +104,16 @@ namespace NLog.Internal.FileAppenders
 
             try
             {
-                bool fileExists = File.Exists(fileName);
-
                 this.file = new UnixStream(fd, true);
 
                 long filePosition = this.file.Position;
                 if (fileExists || filePosition > 0)
                 {
-                    this.CreationTimeUtc = File.GetCreationTimeUtc(this.FileName);
-                    if (this.CreationTimeUtc < DateTime.UtcNow - TimeSpan.FromSeconds(2) && filePosition == 0)
+                    this.CreationTimeUtc = File.GetCreationTimeUtc(fileName);
+                    if (this.CreationTimeUtc.Year < 1980)
                     {
-                        // File wasn't created "almost now". 
-                        Thread.Sleep(50);
-                        // Having waited for a short amount of time usually means the file creation process has continued
-                        // code execution just enough to the above point where it has fixed up the creation time.
-                        this.CreationTimeUtc = File.GetCreationTimeUtc(this.FileName);
+                        // Non-Windows-FileSystems doesn't always provide correct CreationTime/BirthTime. We fallback to ctime (last inode change)
+                        this.CreationTimeUtc = fileInfo != null ? fileInfo.LastStatusChangeTimeUtc : DateTime.UtcNow;
                     }
                 }
                 else

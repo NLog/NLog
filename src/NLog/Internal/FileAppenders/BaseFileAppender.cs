@@ -337,24 +337,27 @@ namespace NLog.Internal.FileAppenders
 
         private void UpdateCreationTime()
         {
-            if (File.Exists(this.FileName))
+            FileInfo fileInfo = new FileInfo(this.FileName);
+            if (fileInfo.Exists)
             {
-#if !SILVERLIGHT
-                this.CreationTimeUtc = File.GetCreationTimeUtc(this.FileName);
-#else
-                this.CreationTimeUtc = File.GetCreationTime(this.FileName);
-#endif
+                this.CreationTimeUtc = fileInfo.GetCreationTimeUtc();
+                if (this.CreationTimeUtc.Year < 1980)
+                {
+                    // Non-Windows-FileSystems doesn't always provide correct CreationTime/BirthTime
+                    if (!PlatformDetector.IsDesktopWin32)
+                    {
+                        this.CreationTimeUtc = fileInfo.GetLastWriteTimeUtc();
+                    }
+                }
             }
             else
             {
                 File.Create(this.FileName).Dispose();
+                this.CreationTimeUtc = DateTime.UtcNow;
 
 #if !SILVERLIGHT
-                this.CreationTimeUtc = DateTime.UtcNow;
                 // Set the file's creation time to avoid being thwarted by Windows' Tunneling capabilities (https://support.microsoft.com/en-us/kb/172190).
                 File.SetCreationTimeUtc(this.FileName, this.CreationTimeUtc);
-#else
-                this.CreationTimeUtc = File.GetCreationTime(this.FileName);
 #endif
             }
         }

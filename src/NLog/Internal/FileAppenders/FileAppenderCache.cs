@@ -419,6 +419,19 @@ namespace NLog.Internal.FileAppenders
                     result = appender.GetFileCreationTimeUtc();
                     if (result.HasValue)
                     {
+                        if (result.Value.Year < 1980)
+                        {
+                            // Non-Windows-FileSystems doesn't always provide correct CreationTime/BirthTime
+                            if (!PlatformDetector.IsDesktopWin32)
+                            {
+                                result = appender.CreationTimeUtc;
+                                if (result.Value.Year < 1980)
+                                {
+                                    result = appender.GetFileLastWriteTimeUtc();
+                                }
+                            }
+                        }
+
                         // Check if cached value is still valid, and update if not (Will automatically update CreationTimeSource)
                         if (result.Value != appender.CreationTimeUtc)
                         {
@@ -439,7 +452,16 @@ namespace NLog.Internal.FileAppenders
                 var fileInfo = new FileInfo(filePath);
                 if (fileInfo.Exists)
                 {
-                    return Time.TimeSource.Current.FromSystemTime(fileInfo.GetCreationTimeUtc());
+                    result = fileInfo.GetCreationTimeUtc();
+                    if (result.Value.Year < 1980)
+                    {
+                        // Non-Windows-FileSystems doesn't always provide correct CreationTime/BirthTime
+                        if (!PlatformDetector.IsDesktopWin32)
+                        {
+                            result = fileInfo.GetLastWriteTimeUtc();
+                        }
+                    }
+                    return Time.TimeSource.Current.FromSystemTime(result.Value);
                 }
             }
 
