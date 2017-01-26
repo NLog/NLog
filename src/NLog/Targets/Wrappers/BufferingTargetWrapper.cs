@@ -155,17 +155,25 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected override void CloseTarget()
         {
-            lock (this.lockObject)
+            var currentTimer = this.flushTimer;
+            if (currentTimer != null)
             {
-                var currentTimer = this.flushTimer;
-                if (currentTimer != null)
+                this.flushTimer = null;
+                currentTimer.Change(Timeout.Infinite, Timeout.Infinite);
+                ManualResetEvent waitHandle = new ManualResetEvent(false);
+                if (currentTimer.Dispose(waitHandle))
                 {
-                    this.flushTimer = null;
-                    currentTimer.Change(Timeout.Infinite, Timeout.Infinite);
-                    currentTimer.Dispose();
+                    if (waitHandle.WaitOne(1000))
+                    {
+                        waitHandle.Close();
+                        lock (this.lockObject)
+                        {
+                            WriteEventsInBuffer("Closing Target");
+                        }
+                    }
                 }
-                WriteEventsInBuffer("Closing Target");
             }
+
             base.CloseTarget();
         }
 
