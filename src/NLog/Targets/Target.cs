@@ -683,8 +683,7 @@ namespace NLog.Targets
 
                 using (var localTarget = ReusableLayoutBuilder.Allocate())
                 {
-                    layout.RenderAppendBuilder(logEvent, localTarget.Result);
-                    return localTarget.Result.ToString();
+                    return layout.RenderAllocateBuilder(logEvent, localTarget.Result, false);
                 }
             }
             else

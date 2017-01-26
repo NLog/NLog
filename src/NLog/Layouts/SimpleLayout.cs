@@ -56,9 +56,6 @@ namespace NLog.Layouts
     [AppDomainFixedOutput]
     public class SimpleLayout : Layout, IUsesStackTrace
     {
-        private const int MaxInitialRenderBufferLength = 16384;
-        private int maxRenderedLength;
-
         private string fixedText;
         private string layoutText;
         private ConfigurationItemFactory configurationItemFactory;
@@ -297,26 +294,7 @@ namespace NLog.Layouts
                 return this.fixedText;
             }
 
-            string cachedValue;
-            if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
-            {
-                return cachedValue;
-            }
-
-            int initialSize = this.maxRenderedLength;
-            if (initialSize > MaxInitialRenderBufferLength)
-            {
-                initialSize = MaxInitialRenderBufferLength;
-            }
-
-            var builder = new StringBuilder(initialSize);
-            RenderAllRenderers(logEvent, builder);
-            if (builder.Length > this.maxRenderedLength)
-            {
-                this.maxRenderedLength = builder.Length;
-            }
-
-            return logEvent.AddCachedLayoutValue(this, builder.ToString());
+            return RenderAllocateBuilder(logEvent);
         }
 
         private void RenderAllRenderers(LogEventInfo logEvent, StringBuilder target)

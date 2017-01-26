@@ -76,9 +76,7 @@ namespace NLog.Layouts
         /// <returns>A string representation of the log event.</returns>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            var sb = new StringBuilder();
-            RenderFormattedMessage(logEvent, sb);
-            return sb.ToString();
+            return RenderAllocateBuilder(logEvent);
         }
 
         /// <summary>

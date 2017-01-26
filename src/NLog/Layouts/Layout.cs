@@ -32,7 +32,6 @@
 // 
 
 using System;
-using System.Collections.Generic;
 
 namespace NLog.Layouts
 {
@@ -144,7 +143,6 @@ namespace NLog.Layouts
                 this.InitializeLayout();
             }
 
-
             return this.GetFormattedMessage(logEvent);
         }
 
@@ -202,13 +200,54 @@ namespace NLog.Layouts
         }
 
         /// <summary>
+        /// Valid default implementation of <see cref="GetFormattedMessage" />, when having implemented the optimized <see cref="RenderFormattedMessage"/>
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        /// <param name="reusableBuilder">StringBuilder to help minimize allocations [optional].</param>
+        /// <param name="cacheLayoutResult">Should rendering result be cached on LogEventInfo</param>
+        /// <returns>The rendered layout.</returns>
+        internal string RenderAllocateBuilder(LogEventInfo logEvent, StringBuilder reusableBuilder = null, bool cacheLayoutResult = true)
+        {
+            if (!this.threadAgnostic)
+            {
+                string cachedValue;
+                if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
+                {
+                    return cachedValue;
+                }
+            }
+
+            int initialLength = this.maxRenderedLength;
+            if (initialLength > MaxInitialRenderBufferLength)
+            {
+                initialLength = MaxInitialRenderBufferLength;
+            }
+
+            var sb = reusableBuilder ?? new StringBuilder(initialLength);
+            RenderFormattedMessage(logEvent, sb);
+            if (sb.Length > this.maxRenderedLength)
+            {
+                this.maxRenderedLength = sb.Length;
+            }
+
+            if (cacheLayoutResult && !this.threadAgnostic)
+            {
+                return logEvent.AddCachedLayoutValue(this, sb.ToString());
+            }
+            else
+            {
+                return sb.ToString();
+            }
+        }
+
+        /// <summary>
         /// Renders the layout for the specified logging event by invoking layout renderers.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
         protected virtual void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            target.Append(GetFormattedMessage(logEvent));
+            target.Append(GetFormattedMessage(logEvent) ?? string.Empty);
         }
 
         /// <summary>

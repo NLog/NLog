@@ -64,14 +64,7 @@ namespace NLog.Layouts
         /// <returns>The rendered layout.</returns>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            string cachedValue;
-
-            if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
-            {
-                return cachedValue;
-            }
-
-            return logEvent.AddCachedLayoutValue(this, this.Renderer.Render(logEvent));
+            return RenderAllocateBuilder(logEvent);
         }
 
         /// <summary>
