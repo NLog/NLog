@@ -357,10 +357,7 @@ namespace NLog
         /// </summary>
         public static void Shutdown()
         {
-            InternalLogger.Info("Logger closing down...");
-            if (Configuration != null)
-                Configuration.Close();
-            InternalLogger.Info("Logger has been closed down.");
+            factory.Shutdown();
         }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
