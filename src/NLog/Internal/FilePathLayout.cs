@@ -164,6 +164,13 @@ namespace NLog.Internal
 
             if (reusableBuilder != null)
             {
+                if (!_layout.IsThreadAgnostic)
+                {
+                    string cachedResult;
+                    if (logEvent.TryGetCachedLayoutValue(_layout, out cachedResult))
+                        return cachedResult;
+                }
+
                 _layout.RenderAppendBuilder(logEvent, reusableBuilder);
 
                 if (_cachedPrevRawFileName != null && _cachedPrevRawFileName.Length == reusableBuilder.Length)
