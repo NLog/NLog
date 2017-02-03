@@ -1010,6 +1010,18 @@ namespace NLog
             }
         }
 
+        internal void Shutdown()
+        {
+            InternalLogger.Info("Logger closing down...");
+            if (!IsDisposing && configLoaded)
+            {
+                var loadedConfig = Configuration;
+                if (loadedConfig != null)
+                    loadedConfig.Close();
+            }
+            InternalLogger.Info("Logger has been closed down.");
+        }
+
         /// <summary>
         /// Get file paths (including filename) for the possible NLog config files. 
         /// </summary>
