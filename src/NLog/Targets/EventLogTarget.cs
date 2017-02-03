@@ -171,7 +171,7 @@ namespace NLog.Targets
             set
             {   //Event log API restriction
                 if (value < 64 || value > 4194240 || (value % 64 != 0))
-                    throw new ArgumentException("MaxKilobytes cannot be less than 64, or greater than 4194240, or not an even multiple of 64.");
+                    throw new ArgumentException("MaxKilobytes must be a multitude of 64, and between 64 and 4194240");
                 this.MaxKilobytes = value;
             }
         }
