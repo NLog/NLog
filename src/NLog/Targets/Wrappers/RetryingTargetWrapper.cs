@@ -133,54 +133,65 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Writes the specified log event to the wrapped target, retrying and pausing in case of an error.
+        /// Writes the specified log event to the wrapped target in a thread-safe manner.
+        /// Uses <see cref="RetrySyncObject"/> instead of <see cref="Target.SyncRoot" />
+        /// to allow closing target while doing sleep and retry.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
         {
             lock (this.RetrySyncObject)
             {
-                AsyncContinuation continuation = null;
-                int counter = 0;
+                Write(logEvent);
+            }
+        }
 
-                continuation = ex =>
+        /// <summary>
+        /// Writes the specified log event to the wrapped target, retrying and pausing in case of an error.
+        /// </summary>
+        /// <param name="logEvent">The log event.</param>
+        protected override void Write(AsyncLogEventInfo logEvent)
+        {
+            AsyncContinuation continuation = null;
+            int counter = 0;
+
+            continuation = ex =>
+            {
+                if (ex == null)
                 {
-                    if (ex == null)
-                    {
-                        logEvent.Continuation(null);
-                        return;
-                    }
+                    logEvent.Continuation(null);
+                    return;
+                }
 
-                    int retryNumber = Interlocked.Increment(ref counter);
-                    InternalLogger.Warn("Error while writing to '{0}': {1}. Try {2}/{3}", this.WrappedTarget, ex, retryNumber, this.RetryCount);
+                int retryNumber = Interlocked.Increment(ref counter);
+                InternalLogger.Warn("Error while writing to '{0}': {1}. Try {2}/{3}", this.WrappedTarget, ex, retryNumber, this.RetryCount);
 
-                    // exceeded retry count
-                    if (retryNumber >= this.RetryCount)
+                // exceeded retry count
+                if (retryNumber >= this.RetryCount)
+                {
+                    InternalLogger.Warn("Too many retries. Aborting.");
+                    logEvent.Continuation(ex);
+                    return;
+                }
+
+                // sleep and try again (Check every 100 ms if target have been closed)
+                for (int i = 0; i < this.RetryDelayMilliseconds;)
+                {
+                    int retryDelay = Math.Min(100, this.RetryDelayMilliseconds - i);
+                    Thread.Sleep(retryDelay);
+                    i += retryDelay;
+                    if (!IsInitialized)
                     {
-                        InternalLogger.Warn("Too many retries. Aborting.");
+                        InternalLogger.Warn("Target closed. Aborting.");
                         logEvent.Continuation(ex);
                         return;
                     }
-
-                    // sleep and try again (Check every 100 ms if target have been closed)
-                    for (int i = 0; i < this.RetryDelayMilliseconds;)
-                    {
-                        int retryDelay = Math.Min(100, this.RetryDelayMilliseconds - i);
-                        Thread.Sleep(retryDelay);
-                        i += retryDelay;
-                        if (!IsInitialized)
-                        {
-                            InternalLogger.Warn("Target closed. Aborting.");
-                            logEvent.Continuation(ex);
-                            return;
-                        }
-                    }
-
-                    this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
-                };
+                }
 
                 this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
-            }
+            };
+
+            this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
         }
     }
 }
