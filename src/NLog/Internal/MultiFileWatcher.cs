@@ -110,7 +110,7 @@ namespace NLog.Internal
 
         private void StopWatching(FileSystemWatcher watcher)
         {
-            InternalLogger.Info("Stopping file watching for path '{0}' filter '{1}'", watcher.Path, watcher.Filter);
+            InternalLogger.Debug("Stopping file watching for path '{0}' filter '{1}'", watcher.Path, watcher.Filter);
             watcher.EnableRaisingEvents = false;
             watcher.Dispose();
         }
@@ -161,7 +161,7 @@ namespace NLog.Internal
                 watcher.Error += OnWatcherError;
                 watcher.EnableRaisingEvents = true;
 
-                InternalLogger.Info("Watching path '{0}' filter '{1}' for changes.", watcher.Path, watcher.Filter);
+                InternalLogger.Debug("Watching path '{0}' filter '{1}' for changes.", watcher.Path, watcher.Filter);
                 
                 this.watcherMap.Add(fileName, watcher);
             }
