@@ -100,6 +100,8 @@ namespace NLog.Targets
         /// </summary>
         private FileAppenderCache fileAppenderCache;
 
+        private Timer autoClosingTimer;
+
         /// <summary>
         /// The number of initialised files at any one time.
         /// </summary>
@@ -750,7 +752,7 @@ namespace NLog.Targets
                 this.fileAppenderCache.CheckCloseAppenders -= AutoClosingTimerCallback;
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-                if (KeepFileOpen || OpenFileCacheTimeout > 0)
+                if (KeepFileOpen)
                     this.fileAppenderCache.CheckCloseAppenders += AutoClosingTimerCallback;
 
                 bool mustWatchArchiving = IsArchivingEnabled() && ConcurrentWrites && KeepFileOpen;
@@ -773,9 +775,6 @@ namespace NLog.Targets
                 {
                     this.fileAppenderCache.ArchiveFilePatternToWatch = null;
                 }
-#else
-                if (OpenFileCacheTimeout > 0)
-                    this.fileAppenderCache.CheckCloseAppenders += AutoClosingTimerCallback;
 #endif
             }
         }
@@ -921,6 +920,15 @@ namespace NLog.Targets
 
             this.fileAppenderCache = new FileAppenderCache(this.OpenFileCacheSize, this.appenderFactory, this);
             RefreshArchiveFilePatternToWatch();
+
+            if ((this.OpenFileCacheSize > 0 || this.EnableFileDelete) && this.OpenFileCacheTimeout > 0)
+            {
+                this.autoClosingTimer = new Timer(
+                    (state) => this.AutoClosingTimerCallback(this, EventArgs.Empty),
+                    null,
+                    this.OpenFileCacheTimeout * 1000,
+                    this.OpenFileCacheTimeout * 1000);
+            }
         }
 
         /// <summary>
@@ -933,6 +941,13 @@ namespace NLog.Targets
             foreach (string fileName in new List<string>(this.initializedFiles.Keys))
             {
                 this.FinalizeFile(fileName);
+            }
+
+            if (this.autoClosingTimer != null)
+            {
+                this.autoClosingTimer.Change(Timeout.Infinite, Timeout.Infinite);
+                this.autoClosingTimer.Dispose();
+                this.autoClosingTimer = null;
             }
 
             this.fileAppenderCache.CloseAppenders("Dispose");

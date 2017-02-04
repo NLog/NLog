@@ -115,7 +115,7 @@ namespace NLog.Internal.FileAppenders
             if (logFileWasArchived)
             {
                 if (autoClosingTimer != null)
-                    autoClosingTimer.Change(50, 1000);
+                    autoClosingTimer.Change(50, Timeout.Infinite);
             }
         }
 
@@ -297,8 +297,6 @@ namespace NLog.Internal.FileAppenders
                     }
                     externalFileArchivingWatcher.Watch(appenderToWrite.FileName);   // Monitor the active file-appender
 #endif
-                    if (freeSpot == 0)
-                        autoClosingTimer.Change(1000, 1000);    // Check every second
                 }
             }
 
