@@ -76,6 +76,17 @@ namespace NLog.Internal.FileAppenders
 
         public UnixMultiProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
+            UnixFileInfo fileInfo = null;
+            bool fileExists = false;
+            try
+            {
+                fileInfo = new UnixFileInfo(fileName);
+                fileExists = fileInfo.Exists;
+            }
+            catch
+            {
+            }
+
             int fd = Syscall.open(fileName, OpenFlags.O_CREAT | OpenFlags.O_WRONLY | OpenFlags.O_APPEND, (FilePermissions)(6 | (6 << 3) | (6 << 6)));
             if (fd == -1)
             {
@@ -93,21 +104,18 @@ namespace NLog.Internal.FileAppenders
 
             try
             {
-                bool fileExists = File.Exists(fileName);
-
                 this.file = new UnixStream(fd, true);
 
                 long filePosition = this.file.Position;
                 if (fileExists || filePosition > 0)
                 {
-                    this.CreationTimeUtc = File.GetCreationTimeUtc(this.FileName);
-                    if (this.CreationTimeUtc < DateTime.UtcNow - TimeSpan.FromSeconds(2) && filePosition == 0)
+                    if (fileInfo != null)
                     {
-                        // File wasn't created "almost now". 
-                        Thread.Sleep(50);
-                        // Having waited for a short amount of time usually means the file creation process has continued
-                        // code execution just enough to the above point where it has fixed up the creation time.
-                        this.CreationTimeUtc = File.GetCreationTimeUtc(this.FileName);
+                        this.CreationTimeUtc = FileCharacteristicsHelper.ValidateFileCreationTime(fileInfo, (f) => File.GetCreationTimeUtc(f.FullName), (f) => { f.Refresh(); return f.LastStatusChangeTimeUtc; }, (f) => DateTime.UtcNow).Value;
+                    }
+                    else
+                    {
+                        this.CreationTimeUtc = FileCharacteristicsHelper.ValidateFileCreationTime(fileName, (f) => File.GetCreationTimeUtc(f), (f) => DateTime.UtcNow).Value;
                     }
                 }
                 else

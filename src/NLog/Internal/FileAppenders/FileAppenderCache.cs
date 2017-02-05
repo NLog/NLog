@@ -414,11 +414,12 @@ namespace NLog.Internal.FileAppenders
             {
                 try
                 {
-                    result = appender.GetFileCreationTimeUtc();
+                    result = FileCharacteristicsHelper.ValidateFileCreationTime(appender, (f) => f.GetFileCreationTimeUtc(), (f) => f.CreationTimeUtc, (f) => f.GetFileLastWriteTimeUtc());
                     if (result.HasValue)
                     {
                         // Check if cached value is still valid, and update if not (Will automatically update CreationTimeSource)
-                        if (result.Value != appender.CreationTimeUtc)
+                        DateTime cachedTimeUtc = appender.CreationTimeUtc;
+                        if (result.Value != cachedTimeUtc)
                         {
                             appender.CreationTimeUtc = result.Value;
                         }
@@ -437,7 +438,8 @@ namespace NLog.Internal.FileAppenders
                 var fileInfo = new FileInfo(filePath);
                 if (fileInfo.Exists)
                 {
-                    return Time.TimeSource.Current.FromSystemTime(fileInfo.GetCreationTimeUtc());
+                    result = FileCharacteristicsHelper.ValidateFileCreationTime(fileInfo, (f) => f.GetCreationTimeUtc(), (f) => f.GetLastWriteTimeUtc()).Value;
+                    return Time.TimeSource.Current.FromSystemTime(result.Value);
                 }
             }
 
