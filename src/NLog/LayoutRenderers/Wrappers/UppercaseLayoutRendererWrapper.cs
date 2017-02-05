@@ -49,7 +49,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("uppercase")]
     [AmbientProperty("Uppercase")]
     [ThreadAgnostic]
-    public sealed class UppercaseLayoutRendererWrapper : WrapperLayoutRendererBase
+    public sealed class UppercaseLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UppercaseLayoutRendererWrapper" /> class.
@@ -77,11 +77,29 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Post-processes the rendered message. 
         /// </summary>
-        /// <param name="text">The text to be post-processed.</param>
-        /// <returns>Padded and trimmed string.</returns>
-        protected override string Transform(string text)
+        /// <param name="target">Output to be post-processed.</param>
+        protected override void TransformFormattedMesssage(System.Text.StringBuilder target)
         {
-            return this.Uppercase ? text.ToUpper(this.Culture) : text;
+            if (this.Uppercase)
+            {
+                CultureInfo culture = this.Culture;
+
+#if NETSTANDARD
+                var text = target.ToString();
+                text = text.ToUpper(culture);
+#endif
+
+                for (int i = 0; i < target.Length; ++i)
+                {
+#if NETSTANDARD
+                    //no char.ToUpper with culture
+                    target[i] = text[i];
+                    
+#else
+                    target[i] = char.ToUpper(target[i], culture);
+#endif
+                }
+            }
         }
     }
 }

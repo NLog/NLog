@@ -57,8 +57,6 @@ namespace NLog
 
         private static int globalSequenceId;
 
-        private readonly object layoutCacheLock = new object();
-
         private string formattedMessage;
         private string message;
         private object[] parameters;
@@ -274,7 +272,7 @@ namespace NLog
             {
                 if (this.properties == null)
                 {
-                    this.InitEventContext();
+                    this.properties = new Dictionary<object, object>();
                 }
 
                 return this.properties;
@@ -293,7 +291,7 @@ namespace NLog
             {
                 if (this.eventContextAdapter == null)
                 {
-                    this.InitEventContext();
+                    this.eventContextAdapter = new DictionaryAdapter<object, object>(Properties);
                 }
 
                 return this.eventContextAdapter;
@@ -424,13 +422,12 @@ namespace NLog
 
         internal string AddCachedLayoutValue(Layout layout, string value)
         {
-            lock (this.layoutCacheLock)
+            if (this.layoutCache == null)
             {
-                if (this.layoutCache == null)
-                {
-                    this.layoutCache = new Dictionary<Layout, string>();
-                }
-
+                Interlocked.CompareExchange(ref this.layoutCache, new Dictionary<Layout, string>(), null);
+            }
+            lock (this.layoutCache)
+            {
                 this.layoutCache[layout] = value;
             }
 
@@ -439,9 +436,16 @@ namespace NLog
 
         internal bool TryGetCachedLayoutValue(Layout layout, out string value)
         {
-            lock (this.layoutCacheLock)
+            if (this.layoutCache == null)
             {
-                if (this.layoutCache == null || this.layoutCache.Count == 0)
+                // We don't need lock to see if dictionary has been created
+                value = null;
+                return false;
+            }
+
+            lock (this.layoutCache)
+            {
+                if (this.layoutCache.Count == 0)
                 {
                     value = null;
                     return false;
@@ -528,12 +532,6 @@ namespace NLog
         private void ResetFormattedMessage()
         {
             this.formattedMessage = null;
-        }
-
-        private void InitEventContext()
-        {
-            this.properties = new Dictionary<object, object>();
-            this.eventContextAdapter = new DictionaryAdapter<object, object>(this.properties);
         }
     }
 }

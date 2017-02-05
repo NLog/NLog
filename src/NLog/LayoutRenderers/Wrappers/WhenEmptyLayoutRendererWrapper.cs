@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System.Text;
     using NLog.Config;
     using NLog.Layouts;
 
@@ -42,7 +43,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("whenEmpty")]
     [AmbientProperty("WhenEmpty")]
     [ThreadAgnostic]
-    public sealed class WhenEmptyLayoutRendererWrapper : WrapperLayoutRendererBase
+    public sealed class WhenEmptyLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
         /// <summary>
         /// Gets or sets the layout to be rendered when original layout produced empty result.
@@ -54,30 +55,24 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Transforms the output of another layout.
         /// </summary>
-        /// <param name="text">Output to be transform.</param>
-        /// <returns>Transformed text.</returns>
-        protected override string Transform(string text)
+        /// <param name="target">Output to be transform.</param>
+        protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            return text;
         }
 
         /// <summary>
         /// Renders the inner layout contents.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        /// <returns>
-        /// Contents of inner layout.
-        /// </returns>
-        protected override string RenderInner(LogEventInfo logEvent)
+        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
+        protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            string inner = base.RenderInner(logEvent);
-            if (!string.IsNullOrEmpty(inner))
-            {
-                return inner;
-            }
+            base.RenderFormattedMessage(logEvent, target);
+            if (target.Length > 0)
+                return;
 
             // render WhenEmpty when the inner layout was empty
-            return this.WhenEmpty.Render(logEvent);
+            this.WhenEmpty.RenderAppendBuilder(logEvent, target);
         }
     }
 }

@@ -33,6 +33,11 @@
 
 #if !NETSTANDARD || NETSTANDARD_1plus
 
+using System.Collections.Generic;
+using System.Linq;
+using NLog.Internal.Fakeables;
+using NLog.Layouts;
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
@@ -40,7 +45,7 @@ namespace NLog.UnitTests.LayoutRenderers
     using Xunit;
 
 #if XUNIT2
-    [Trait("Category","basedir")]
+    [Trait("Category", "basedir")]
 #endif
     public class BaseDirTests : NLogTestBase
     {
@@ -52,7 +57,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
 
         [Fact]
-        
+
         public void BaseDirTest()
         {
             AssertLayoutRendererOutput("${basedir}", baseDir);
@@ -70,10 +75,117 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertLayoutRendererOutput("${basedir:file=aaa.txt}", Path.Combine(baseDir, "aaa.txt"));
         }
 
+#if !SILVERLIGHT
+        [Fact]
+        public void BaseDirCurrentProcessTest()
+        {
+            Layout l = "${basedir:processdir=true}";
+            var dir = l.Render(LogEventInfo.CreateNullEvent());
+
+            Assert.NotNull(dir);
+            Assert.True(Directory.Exists(dir), string.Format("dir '{0}' doesn't exists", dir));
+            Assert.Equal(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), dir);
+        }
+#endif
+
         [Fact]
         public void BaseDirDirFileCombineTest()
         {
             AssertLayoutRendererOutput("${basedir:dir=aaa:file=bbb.txt}", Path.Combine(baseDir, "aaa", "bbb.txt"));
+        }
+
+        [Fact]
+        public void InjectBaseDirAndCheckConfigPathsTest()
+        {
+            string fakeBaseDir = @"y:\root\";
+            var old = LogFactory.CurrentAppDomain;
+            try
+            {
+                var currentAppDomain = new MyAppDomain();
+                currentAppDomain.BaseDirectory = fakeBaseDir;
+                LogFactory.CurrentAppDomain = currentAppDomain;
+
+                //test 1 
+                AssertLayoutRendererOutput("${basedir}", fakeBaseDir);
+
+                //test 2
+                var paths = LogManager.LogFactory.GetCandidateConfigFilePaths().ToList();
+                var count = paths.Count(p => p.StartsWith(fakeBaseDir));
+
+                Assert.True(count > 0, string.Format("At least one path should start with '{0}'", fakeBaseDir));
+
+            }
+            finally
+            {
+                //restore
+                LogFactory.CurrentAppDomain = old;
+            }
+
+        }
+
+        class MyAppDomain : IAppDomain
+        {
+            private IAppDomain _appDomain;
+
+            /// <summary>
+            /// Injectable
+            /// </summary>
+            public string BaseDirectory { get; set; }
+
+            /// <summary>
+            /// Gets or sets the name of the configuration file for an application domain.
+            /// </summary>
+            public string ConfigurationFile
+            {
+                get { return _appDomain.ConfigurationFile; }
+            }
+
+            /// <summary>
+            /// Gets or sets the list of directories under the application base directory that are probed for private assemblies.
+            /// </summary>
+            public IEnumerable<string> PrivateBinPath
+            {
+                get { return _appDomain.PrivateBinPath; }
+            }
+
+            /// <summary>
+            /// Gets or set the friendly name.
+            /// </summary>
+            public string FriendlyName
+            {
+                get { return _appDomain.FriendlyName; }
+            }
+
+            /// <summary>
+            /// Gets an integer that uniquely identifies the application domain within the process. 
+            /// </summary>
+            public int Id
+            {
+                get { return _appDomain.Id; }
+            }
+
+            public event EventHandler<EventArgs> ProcessExit
+            {
+                add { _appDomain.ProcessExit += value; }
+                remove { _appDomain.ProcessExit -= value; }
+            }
+
+            public event EventHandler<EventArgs> DomainUnload
+            {
+                add { _appDomain.DomainUnload += value; }
+                remove { _appDomain.DomainUnload -= value; }
+            }
+
+            /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
+            public MyAppDomain()
+            {
+#if NETSTANDARD
+                _appDomain = new FakeAppDomain();
+#else
+                _appDomain = AppDomainWrapper.CurrentDomain;
+#endif
+
+            }
         }
     }
 }

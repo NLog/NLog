@@ -31,14 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !NETSTANDARD
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
 
 namespace NLog.Internal
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.IO;
-    using System.Runtime.InteropServices;
     using System.Security;
     using System.Text;
 

@@ -34,7 +34,6 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System.ComponentModel;
-    using System.Globalization;
     using NLog.Config;
 
     /// <summary>
@@ -43,7 +42,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("trim-whitespace")]
     [AmbientProperty("TrimWhiteSpace")]
     [ThreadAgnostic]
-    public sealed class TrimWhiteSpaceLayoutRendererWrapper : WrapperLayoutRendererBase
+    public sealed class TrimWhiteSpaceLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TrimWhiteSpaceLayoutRendererWrapper" /> class.
@@ -62,13 +61,42 @@ namespace NLog.LayoutRenderers.Wrappers
         public bool TrimWhiteSpace { get; set; }
 
         /// <summary>
-        /// Post-processes the rendered message. 
+        /// Removes white-spaces from both sides of the provided target
         /// </summary>
-        /// <param name="text">The text to be post-processed.</param>
-        /// <returns>Trimmed string.</returns>
-        protected override string Transform(string text)
+        /// <param name="target">Output to be transform.</param>
+        protected override void TransformFormattedMesssage(System.Text.StringBuilder target)
         {
-            return this.TrimWhiteSpace ? text.Trim() : text;
+            if (target == null || target.Length == 0)
+                return;
+
+            if (this.TrimWhiteSpace)
+            {
+                TrimRight(target);  // Fast
+                if (target.Length > 0)
+                    TrimLeft(target);   // Slower
+            }
+        }
+
+        private void TrimRight(System.Text.StringBuilder sb)
+        {
+            int i = sb.Length - 1;
+            for (; i >= 0; i--)
+                if (!char.IsWhiteSpace(sb[i]))
+                    break;
+
+            if (i < sb.Length - 1)
+                sb.Length = i + 1;
+        }
+
+        private void TrimLeft(System.Text.StringBuilder sb)
+        {
+            int i = 0;
+            for (; i < sb.Length; i++)
+                if (!char.IsWhiteSpace(sb[i]))
+                    break;
+
+            if (i > 0)
+                sb.Remove(0, i);
         }
     }
 }

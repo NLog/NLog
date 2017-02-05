@@ -33,6 +33,7 @@
 
 namespace NLog.Internal
 {
+    using System;
     using System.IO;
 
     /// <summary>
@@ -45,18 +46,16 @@ namespace NLog.Internal
         /// </summary>
         public static FileCharacteristicsHelper CreateHelper(bool forcedManaged)
         {
-#if SILVERLIGHT
-            return new PortableFileCharacteristicsHelper();
-#else
-            if (PlatformDetector.IsDesktopWin32 && !forcedManaged)
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+            if (!forcedManaged && PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
             {
                 return new Win32FileCharacteristicsHelper();
             }
             else
+#endif
             {
                 return new PortableFileCharacteristicsHelper();
             }
-#endif
         }
 
         /// <summary>
@@ -66,5 +65,23 @@ namespace NLog.Internal
         /// <param name="fileStream">The file stream.</param>
         /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
         public abstract FileCharacteristics GetFileCharacteristics(string fileName, FileStream fileStream);
+
+        public static DateTime? ValidateFileCreationTime<T>(T fileInfo, Func<T, DateTime?> primary, Func<T, DateTime?> fallback, Func<T, DateTime?> finalFallback = null)
+        {
+            DateTime? fileCreationTime = primary(fileInfo);
+            if (fileCreationTime.HasValue && fileCreationTime.Value.Year < 1980)
+            {
+                // Non-Windows-FileSystems doesn't always provide correct CreationTime/BirthTime
+                if (!PlatformDetector.IsDesktopWin32)
+                {
+                    fileCreationTime = fallback(fileInfo);
+                    if (finalFallback != null && (!fileCreationTime.HasValue || fileCreationTime.Value.Year < 1980))
+                    {
+                        fileCreationTime = finalFallback(fileInfo);
+                    }
+                }
+            }
+            return fileCreationTime;
+        }
     }
 }

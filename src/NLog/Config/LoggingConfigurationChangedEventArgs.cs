@@ -45,7 +45,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="oldConfiguration">The old configuration.</param>
         /// <param name="newConfiguration">The new configuration.</param>
-        internal LoggingConfigurationChangedEventArgs(LoggingConfiguration oldConfiguration, LoggingConfiguration newConfiguration)
+        public LoggingConfigurationChangedEventArgs(LoggingConfiguration oldConfiguration, LoggingConfiguration newConfiguration)
         {
             this.OldConfiguration = oldConfiguration;
             this.NewConfiguration = newConfiguration;

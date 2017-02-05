@@ -96,8 +96,7 @@ namespace NLog.LayoutRenderers
             }
 
             var builder = new StringBuilder(initialLength);
-
-            this.Render(builder, logEvent);
+            this.RenderAppendBuilder(logEvent, builder);
             if (builder.Length > this.maxRenderedLength)
             {
                 this.maxRenderedLength = builder.Length;
@@ -152,7 +151,12 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        internal void Render(StringBuilder builder, LogEventInfo logEvent)
+        /// <summary>
+        /// Renders the the value of layout renderer in the context of the specified log event.
+        /// </summary>
+        /// <param name="logEvent">The log event.</param>
+        /// <param name="builder">The layout render output is appended to builder</param>
+        internal void RenderAppendBuilder(LogEventInfo logEvent, StringBuilder builder)
         {
             if (!this.isInitialized)
             {
@@ -172,7 +176,6 @@ namespace NLog.LayoutRenderers
                 {
                     throw;
                 }
-              
             }
         }
 

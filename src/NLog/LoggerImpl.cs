@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using JetBrains.Annotations;
-
 namespace NLog
 {
     using System;
@@ -46,7 +44,6 @@ namespace NLog
     using NLog.Config;
     using NLog.Filters;
     using NLog.Internal;
-    using NLog.Targets;
 
     /// <summary>
     /// Implementation of logging engine.
@@ -86,15 +83,15 @@ namespace NLog
 
             int originalThreadId = Thread.CurrentThread.ManagedThreadId;
             AsyncContinuation exceptionHandler = ex =>
+            {
+                if (ex != null)
                 {
-                    if (ex != null)
+                    if (factory.ThrowExceptions && Thread.CurrentThread.ManagedThreadId == originalThreadId)
                     {
-                        if (factory.ThrowExceptions && Thread.CurrentThread.ManagedThreadId == originalThreadId)
-                        {
-                            throw new NLogRuntimeException("Exception occurred in NLog", ex);
-                        }
+                        throw new NLogRuntimeException("Exception occurred in NLog", ex);
                     }
-                };
+                }
+            };
 
             for (var t = targets; t != null; t = t.NextInChain)
             {
@@ -162,7 +159,7 @@ namespace NLog
                     {
                         var next = allStackFrames[last.StackFrameIndex + 1];
                         var declaringType = next.StackFrame.GetMethod().DeclaringType;
-                        if (declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder) || 
+                        if (declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder) ||
                             declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder<>))
                         {
                             //async, search futher
@@ -233,9 +230,7 @@ namespace NLog
 
         private static bool WriteToTargetWithFilterChain(TargetWithFilterChain targetListHead, LogEventInfo logEvent, AsyncContinuation onException)
         {
-            Target target = targetListHead.Target;
             FilterResult result = GetFilterResult(targetListHead.FilterChain, logEvent);
-
             if ((result == FilterResult.Ignore) || (result == FilterResult.IgnoreFinal))
             {
                 if (InternalLogger.IsDebugEnabled)
@@ -251,7 +246,7 @@ namespace NLog
                 return true;
             }
 
-            target.WriteAsyncLogEvent(logEvent.WithContinuation(onException));
+            targetListHead.Target.WriteAsyncLogEvent(logEvent.WithContinuation(onException));
             if (result == FilterResult.LogFinal)
             {
                 return false;

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !__IOS__
+#if !SILVERLIGHT && !__IOS__
 
 using Xunit;
 using NLog.Layouts;

@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -126,6 +126,53 @@ namespace NLog.UnitTests.Targets
             string expectedResult = string.Format("-- header --{0}Logger1 message1{0}Logger1 message2{0}Logger1 message3{0}Logger2 message4{0}Logger2 message5{0}Logger1 message6{0}-- footer --{0}", Environment.NewLine);
             Assert.Equal(expectedResult, consoleErrorWriter.ToString());
         }
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO && !NETSTANDARD1_3
+
+        [Fact]
+        public void ConsoleEncodingTest()
+        {
+            var consoleOutputEncoding = Console.OutputEncoding;
+
+            var target = new ConsoleTarget()
+            {
+                Header = "-- header --",
+                Layout = "${logger} ${message}",
+                Footer = "-- footer --",
+                Encoding = System.Text.Encoding.UTF8
+            };
+
+            Assert.Equal(System.Text.Encoding.UTF8, target.Encoding);
+
+            var consoleOutWriter = new StringWriter();
+            TextWriter oldConsoleOutWriter = Console.Out;
+            Console.SetOut(consoleOutWriter);
+
+            try
+            {
+                var exceptions = new List<Exception>();
+                target.Initialize(null);
+                // Not really testing whether Console.OutputEncoding works, but just that it is configured without breaking ConsoleTarget
+                Assert.Equal(System.Text.Encoding.UTF8, Console.OutputEncoding);
+                Assert.Equal(System.Text.Encoding.UTF8, target.Encoding);
+                target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "Logger1", "message1").WithContinuation(exceptions.Add));
+                target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "Logger1", "message2").WithContinuation(exceptions.Add));
+                Assert.Equal(2, exceptions.Count);
+                target.Encoding = consoleOutputEncoding;
+                Assert.Equal(consoleOutputEncoding, Console.OutputEncoding);
+                target.Close();
+            }
+            finally
+            {
+                Console.OutputEncoding = consoleOutputEncoding;
+                Console.SetOut(oldConsoleOutWriter);
+            }
+
+            string expectedResult = string.Format("-- header --{0}Logger1 message1{0}Logger1 message2{0}-- footer --{0}", Environment.NewLine);
+            Assert.Equal(expectedResult, consoleOutWriter.ToString());
+        }
+
+#endif
 
 #if !NET3_5 && !MONO
 

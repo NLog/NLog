@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD_1plus
+using NLog.Internal.Fakeables;
 
 namespace NLog.LayoutRenderers
 {
@@ -54,13 +54,19 @@ namespace NLog.LayoutRenderers
     {
         private string baseDir;
 
-#if !NETSTANDARD_1plus
+#if !SILVERLIGHT && !NETSTANDARD_1plus
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
+        /// cached
         /// </summary>
-        public BaseDirLayoutRenderer() : this(AppDomainWrapper.CurrentDomain)
-        {
-        }
+        private string processDir;
+
+        /// <summary>
+        /// Use base dir of current process.
+        /// </summary>
+        public bool ProcessDir { get; set; }
+
+#endif
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
@@ -68,6 +74,17 @@ namespace NLog.LayoutRenderers
         public BaseDirLayoutRenderer(IAppDomain appDomain)
         {
             this.baseDir = appDomain.BaseDirectory;
+        }
+
+
+
+#if !NETSTANDARD
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
+        /// </summary>
+        public BaseDirLayoutRenderer() : this(LogFactory.CurrentAppDomain)
+        {
         }
 #else
 
@@ -82,7 +99,6 @@ namespace NLog.LayoutRenderers
 
             this.baseDir = appEnv.ApplicationBasePath;
         }
-        
        
 #endif
         /// <summary>
@@ -104,10 +120,21 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var path = PathHelpers.CombinePaths(baseDir, this.Dir, this.File);
+
+            var dir = baseDir;
+#if !SILVERLIGHT && !NETSTANDARD_1plus
+            if (ProcessDir)
+            {
+                dir = processDir ?? (processDir = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName));
+            }
+#endif
+
+            if (dir != null)
+            {
+                var path = PathHelpers.CombinePaths(dir, this.Dir, this.File);
             builder.Append(path);
         }
     }
 }
+}
 
-#endif

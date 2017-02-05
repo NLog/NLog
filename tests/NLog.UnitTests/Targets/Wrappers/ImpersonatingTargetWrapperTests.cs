@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !NETSTANDARD && !MONO && !NETSTANDARD_1plus
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO && !NETSTANDARD && !NETSTANDARD_1plus
 
 namespace NLog.UnitTests.Targets.Wrappers
 {
@@ -284,7 +284,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 this.Events.Add(logEvent);
             }
 
-            protected override void Write(AsyncLogEventInfo[] logEvents)
+            protected override void Write(IList<AsyncLogEventInfo> logEvents)
             {
                 this.AssertExpectedUser();
                 base.Write(logEvents);

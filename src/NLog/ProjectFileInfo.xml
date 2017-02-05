@@ -68,6 +68,25 @@
     <Generator>TextTemplatingFileGenerator</Generator>
     <LastGenOutput>InternalLogger-generated.cs</LastGenOutput>
   </Customize>
+  
+    
+  <FileSet Name="LayoutHelpers.tt-result">
+    <Include File="Internal\LayoutHelpers-generated.cs" />
+  </FileSet>
+  <Customize FileSet="LayoutHelpers.tt-result" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <AutoGen>True</AutoGen>
+    <DesignTime>True</DesignTime>
+    <DependentUpon>LayoutHelpers.tt</DependentUpon>
+  </Customize>
+  
+  <FileSet Name="LayoutHelpers.tt">
+    <Include File="Internal\LayoutHelpers.tt" />
+  </FileSet>
+  <Customize FileSet="LayoutHelpers.tt" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Generator>TextTemplatingFileGenerator</Generator>
+    <LastGenOutput>LayoutHelpers-generated.cs</LastGenOutput>
+  </Customize>
+
 
   <Project File="NLog.sl4.csproj">
     <ItemGroup Name="Compile">
@@ -86,6 +105,7 @@
     <ItemGroup Name="None" KeepOldFiles="true">
       <FileSet Include="Logger.tt" />
       <FileSet Include="InternalLogger.tt" />
+      <FileSet Include="LayoutHelpers.tt" />
     </ItemGroup>
   </Project>
 
@@ -96,6 +116,7 @@
     <ItemGroup Name="None" KeepOldFiles="true">
       <FileSet Include="Logger.tt" />
       <FileSet Include="InternalLogger.tt" />
+      <FileSet Include="LayoutHelpers.tt" />
     </ItemGroup>
     <ItemGroup Name="EmbeddedResource">
       <FileSet Include="AllResources" />
@@ -109,6 +130,7 @@
     <ItemGroup Name="None" KeepOldFiles="true">
       <FileSet Include="Logger.tt" />
       <FileSet Include="InternalLogger.tt" />
+      <FileSet Include="LayoutHelpers.tt" />
     </ItemGroup>
     <ItemGroup Name="EmbeddedResource">
       <FileSet Include="AllResources" />
@@ -122,6 +144,7 @@
     <ItemGroup Name="None" KeepOldFiles="true">
       <FileSet Include="Logger.tt" />
       <FileSet Include="InternalLogger.tt" />
+      <FileSet Include="LayoutHelpers.tt" />
     </ItemGroup>
     <ItemGroup Name="EmbeddedResource">
       <FileSet Include="AllResources" />
@@ -135,6 +158,7 @@
     <ItemGroup Name="None" KeepOldFiles="true">
       <FileSet Include="Logger.tt" />
       <FileSet Include="InternalLogger.tt" />
+      <FileSet Include="LayoutHelpers.tt" />
     </ItemGroup>
     <ItemGroup Name="EmbeddedResource">
       <FileSet Include="AllResources" />
@@ -148,6 +172,7 @@
     <ItemGroup Name="None" KeepOldFiles="true">
       <FileSet Include="Logger.tt" />
       <FileSet Include="InternalLogger.tt" />
+      <FileSet Include="LayoutHelpers.tt" />
     </ItemGroup>
     <ItemGroup Name="EmbeddedResource">
       <FileSet Include="AllResources" />
@@ -161,6 +186,7 @@
     <ItemGroup Name="None" KeepOldFiles="true">
       <FileSet Include="Logger.tt" />
       <FileSet Include="InternalLogger.tt" />
+      <FileSet Include="LayoutHelpers.tt" />
     </ItemGroup>
     <ItemGroup Name="EmbeddedResource">
       <FileSet Include="AllResources" />
@@ -174,6 +200,7 @@
     <ItemGroup Name="None" KeepOldFiles="true">
       <FileSet Include="Logger.tt" />
       <FileSet Include="InternalLogger.tt" />
+      <FileSet Include="LayoutHelpers.tt" />
     </ItemGroup>
   </Project>
 
@@ -184,6 +211,7 @@
     <ItemGroup Name="None" KeepOldFiles="true">
       <FileSet Include="Logger.tt" />
       <FileSet Include="InternalLogger.tt" />
+      <FileSet Include="LayoutHelpers.tt" />
     </ItemGroup>
   </Project>
 
@@ -194,6 +222,7 @@
     <ItemGroup Name="None" KeepOldFiles="true">
       <FileSet Include="Logger.tt" />
       <FileSet Include="InternalLogger.tt" />
+      <FileSet Include="LayoutHelpers.tt" />
     </ItemGroup>
     <ItemGroup Name="EmbeddedResource">
       <FileSet Include="AllResources" />
@@ -219,6 +248,7 @@
     <ItemGroup Name="None" KeepOldFiles="true">
       <FileSet Include="Logger.tt" />
       <FileSet Include="InternalLogger.tt" />
+      <FileSet Include="LayoutHelpers.tt" />
     </ItemGroup>
     <ItemGroup Name="EmbeddedResource">
       <FileSet Include="AllResources" />

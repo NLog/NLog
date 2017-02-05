@@ -80,6 +80,16 @@ namespace NLog.Common
             Write(null, LogLevel.<#=level#>, message, null);
         }
 
+		/// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the <#=level#> level. 
+		/// <paramref name="messageFunc"/> will be only called when logging is enabled for level  <#=level#>.
+        /// </summary>
+        /// <param name="messageFunc">Function that returns the log message.</param>
+        public static void <#=level#>([Localizable(false)] Func<string> messageFunc)
+        {
+			if (Is<#=level#>Enabled)
+				Write(null, LogLevel.<#=level#>, messageFunc(), null);
+        }
 	
         /// <summary>
         /// Logs the specified message with an <see cref="Exception"/> at the <#=level#> level.
@@ -146,6 +156,18 @@ namespace NLog.Common
         public static void <#=level#>(Exception ex, [Localizable(false)] string message)
         {
             Write(ex, LogLevel.<#=level#>, message, null);
+        }	        
+		
+		/// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the <#=level#> level.
+		/// <paramref name="messageFunc"/> will be only called when logging is enabled for level  <#=level#>.
+        /// </summary>
+		/// <param name="ex">Exception to be logged.</param>
+        /// <param name="messageFunc">Function that returns the log message.</param>
+        public static void <#=level#>(Exception ex, [Localizable(false)] Func<string> messageFunc)
+        {
+			if (Is<#=level#>Enabled)
+				Write(ex, LogLevel.<#=level#>, messageFunc(), null);
         }	
 <#
 	}

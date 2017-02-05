@@ -264,7 +264,9 @@ namespace NLog.Config
             factory.RegisterExtendedItems();
 #if !SILVERLIGHT && !NETSTANDARD
 
-            var assemblyLocation = Path.GetDirectoryName(new Uri(nlogAssembly.GetCodeBase()).LocalPath);
+            try
+            {
+                var assemblyLocation = Path.GetDirectoryName(new Uri(nlogAssembly.GetCodeBase()).LocalPath);
             if (assemblyLocation == null)
             {
                 InternalLogger.Warn("No auto loading because Nlog.dll location is unknown");
@@ -275,9 +277,6 @@ namespace NLog.Config
                 InternalLogger.Warn("No auto loading because '{0}' doesn't exists", assemblyLocation);
                 return factory;
             }
-
-            try
-            {
 
             var extensionDlls = Directory.GetFiles(assemblyLocation, "NLog*.dll")
                 .Select(Path.GetFileName)
@@ -314,6 +313,14 @@ namespace NLog.Config
                 }
 
             }
+            }
+            catch (System.Security.SecurityException ex)
+            {
+                InternalLogger.Warn(ex, "Seems that we do not have permission");
+                if (ex.MustBeRethrown())
+                {
+                    throw;
+                }
             }
             catch (UnauthorizedAccessException ex)
             {

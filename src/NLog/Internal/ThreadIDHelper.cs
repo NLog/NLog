@@ -47,11 +47,13 @@ namespace NLog.Internal
         /// </summary>
         static ThreadIDHelper()
         {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             if (PlatformDetector.IsWin32)
             {
                 Instance = new Win32ThreadIDHelper();
             }
             else
+#endif
             {
                 Instance = new PortableThreadIDHelper();
             }

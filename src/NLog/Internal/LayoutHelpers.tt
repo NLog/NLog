@@ -1,0 +1,99 @@
+﻿<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<# 
+    //Render all Render and parse methods
+    //T4 templates are built in Visual Studio. See https://msdn.microsoft.com/en-us/library/bb126445.aspx
+#>// 
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// 
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+// * Redistributions of source code must retain the above copyright notice, 
+//   this list of conditions and the following disclaimer. 
+// 
+// * Redistributions in binary form must reproduce the above copyright notice,
+//   this list of conditions and the following disclaimer in the documentation
+//   and/or other materials provided with the distribution. 
+// 
+// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   contributors may be used to endorse or promote products derived from this
+//   software without specific prior written permission. 
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// THE POSSIBILITY OF SUCH DAMAGE.
+// 
+ 
+
+using System;
+using System.Globalization;
+using NLog.Common;
+using NLog.Layouts;
+
+namespace NLog.Internal
+{
+    internal static class LayoutHelpers
+    {
+<#
+    var types = new HashSet<string> { "short", "int", "bool" };
+    var numericTypes = new HashSet<string> { "short", "int"};
+
+    foreach(var type in types)
+    { 
+
+       var typeCapitalize  = char.ToUpper(type[0]) + type.Substring(1);
+#>
+        
+        /// <summary>
+        /// Render the event info as parse as <c><#=type#></c>
+        /// </summary>
+        /// <param name="layout">current layout</param>
+        /// <param name="logEvent"></param>
+        /// <param name="defaultValue">default value when the render </param>
+        /// <param name="layoutName">layout name for log message to internal log when logging fails</param>
+        /// <returns></returns>
+        public static <#=type#> Render<#=typeCapitalize#>(this Layout layout, LogEventInfo logEvent, <#=type#> defaultValue, string layoutName)
+        {
+            if (layout == null)
+            {
+                InternalLogger.Debug(layoutName + " is null so default value of " + defaultValue);
+                return defaultValue;
+            }
+            if (logEvent == null)
+            {
+                InternalLogger.Debug(layoutName + ": logEvent is null so default value of " + defaultValue);
+                return defaultValue;
+            }
+
+            var rendered = layout.Render(logEvent);
+            <#=type#> result;
+<# if (numericTypes.Contains(type)) {  #>  
+            // NumberStyles.Integer is default of Convert.ToInt16
+            // CultureInfo.InvariantCulture is backwardscomp.
+            if (!<#=type#>.TryParse(rendered, NumberStyles.Integer, CultureInfo.InvariantCulture, out result)) 
+<# } else {  #>  
+            if (!<#=type#>.TryParse(rendered, out result)) 
+<# } 
+#>            {
+                InternalLogger.Warn(layoutName + ": parse of value '" + rendered + "' failed, return " + defaultValue);
+                return defaultValue;
+            }
+            return result;
+        }
+<#  } #>
+    }
+}

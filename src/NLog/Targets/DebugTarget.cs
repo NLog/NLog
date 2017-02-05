@@ -100,7 +100,7 @@ namespace NLog.Targets
         protected override void Write(LogEventInfo logEvent)
         {
             this.Counter++;
-            this.LastMessage = this.Layout.Render(logEvent);
+            this.LastMessage = this.RenderLogEvent(this.Layout, logEvent);
         }
     }
 }
