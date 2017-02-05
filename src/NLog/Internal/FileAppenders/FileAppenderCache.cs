@@ -266,37 +266,46 @@ namespace NLog.Internal.FileAppenders
 
             if (appenderToWrite == null)
             {
-                BaseFileAppender newAppender = Factory.Open(fileName, CreateFileParameters);
-
-                if (appenders[freeSpot] != null)
+                try
                 {
-                    CloseAppender(appenders[freeSpot], "Stale", false);
-                    appenders[freeSpot] = null;
-                }
+                    InternalLogger.Debug("Creating file appender: {0}", fileName);
+                    BaseFileAppender newAppender = Factory.Open(fileName, CreateFileParameters);
 
-                for (int j = freeSpot; j > 0; --j)
-                {
-                    appenders[j] = appenders[j - 1];
-                }
-
-                appenders[0] = newAppender;
-                appenderToWrite = newAppender;
-
-                if (CheckCloseAppenders != null)
-                {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-                    if (freeSpot == 0)
-                        logFileWasArchived = false;
-                    if (!string.IsNullOrEmpty(archiveFilePatternToWatch))
+                    if (appenders[freeSpot] != null)
                     {
-                        string directoryPath = Path.GetDirectoryName(archiveFilePatternToWatch);
-                        if (!Directory.Exists(directoryPath))
-                            Directory.CreateDirectory(directoryPath);
-
-                        externalFileArchivingWatcher.Watch(archiveFilePatternToWatch);  // Always monitor the archive-folder
+                        CloseAppender(appenders[freeSpot], "Stale", false);
+                        appenders[freeSpot] = null;
                     }
-                    externalFileArchivingWatcher.Watch(appenderToWrite.FileName);   // Monitor the active file-appender
+
+                    for (int j = freeSpot; j > 0; --j)
+                    {
+                        appenders[j] = appenders[j - 1];
+                    }
+
+                    appenders[0] = newAppender;
+                    appenderToWrite = newAppender;
+
+                    if (CheckCloseAppenders != null)
+                    {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                        if (freeSpot == 0)
+                            logFileWasArchived = false;
+                        if (!string.IsNullOrEmpty(archiveFilePatternToWatch))
+                        {
+                            string directoryPath = Path.GetDirectoryName(archiveFilePatternToWatch);
+                            if (!Directory.Exists(directoryPath))
+                                Directory.CreateDirectory(directoryPath);
+
+                            externalFileArchivingWatcher.Watch(archiveFilePatternToWatch);  // Always monitor the archive-folder
+                        }
+                        externalFileArchivingWatcher.Watch(appenderToWrite.FileName);   // Monitor the active file-appender
 #endif
+                    }
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Warn(ex, "Failed to create file appender: {0}", fileName);
+                    throw;
                 }
             }
 

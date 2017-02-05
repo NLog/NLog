@@ -153,7 +153,11 @@ namespace NLog.UnitTests.Targets
                 Directory.CreateDirectory(Path.GetDirectoryName(logFile2));
                 File.Move(logFile, logFile2);
                 if (keepFileOpen)
+#if MONO
+                    Thread.Sleep(500);  // Allow AutoClose-Timer-Thread to react (Runs every 50 msec)
+#else
                     Thread.Sleep(150);  // Allow AutoClose-Timer-Thread to react (Runs every 50 msec)
+#endif
                 logger.Info("bbb");
 
                 LogManager.Configuration = null;
@@ -210,7 +214,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-#if  !MONO
+#if !MONO
         const int FIVE_SECONDS = 5000;
 
         /// <summary>
@@ -2862,7 +2866,7 @@ namespace NLog.UnitTests.Targets
                 var app1DebugNm = "App1_Debug";
                 var app2Nm = "App2";
 
-                #region Create Mock Archive Files
+#region Create Mock Archive Files
                 var now = DateTime.Now;
                 var i = 0;
                 // create mock app1_trace archives (matches app1 config for trace target)
@@ -2903,7 +2907,7 @@ namespace NLog.UnitTests.Targets
                     }
                     i--;
                 }
-                #endregion
+#endregion
 
                 // Create same app1 Debug file as config defines. Will force archiving to happen on startup
                 File.WriteAllLines(logdir + "\\" + app1DebugNm + fileExt, new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
@@ -3001,7 +3005,7 @@ namespace NLog.UnitTests.Targets
                 var app1Nm = "App1";
                 var app2Nm = "App2";
 
-                #region Create Mock Archive Files
+#region Create Mock Archive Files
                 var now = DateTime.Now;
                 var i = 0;
                 // create mock app1 archives (matches app1 config for target)
@@ -3029,7 +3033,7 @@ namespace NLog.UnitTests.Targets
                     }
                     i--;
                 }
-                #endregion
+#endregion
 
                 // Create same app1 file as config defines. Will force archiving to happen on startup
                 File.WriteAllLines(logdir + "\\" + app1Nm + fileExt, new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
