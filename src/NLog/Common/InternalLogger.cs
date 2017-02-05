@@ -280,9 +280,12 @@ namespace NLog.Common
                 var logFile = LogFile;
                 if (!string.IsNullOrEmpty(logFile))
                 {
-                    using (var textWriter = File.AppendText(logFile))
+                    lock (LockObject)
                     {
-                        textWriter.WriteLine(msg);
+                        using (var textWriter = File.AppendText(logFile))
+                        {
+                            textWriter.WriteLine(msg);
+                        }
                     }
                 }
 
@@ -299,14 +302,21 @@ namespace NLog.Common
                 // log to console
                 if (LogToConsole)
                 {
-                    Console.WriteLine(msg);
+                    lock (LockObject)
+                    {
+                        Console.WriteLine(msg);
+                    }
                 }
 
                 // log to console error
                 if (LogToConsoleError)
                 {
-                    Console.Error.WriteLine(msg);
+                    lock (LockObject)
+                    {
+                        Console.Error.WriteLine(msg);
+                    }
                 }
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 WriteToTrace(msg);
 #endif
@@ -320,7 +330,6 @@ namespace NLog.Common
                 {
                     throw;
                 }
-
             }
         }
 
