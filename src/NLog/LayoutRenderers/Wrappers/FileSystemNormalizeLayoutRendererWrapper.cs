@@ -43,7 +43,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("filesystem-normalize")]
     [AmbientProperty("FSNormalize")]
     [ThreadAgnostic]
-    public sealed class FileSystemNormalizeLayoutRendererWrapper : WrapperLayoutRendererBase
+    public sealed class FileSystemNormalizeLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FileSystemNormalizeLayoutRendererWrapper" /> class.
@@ -62,15 +62,13 @@ namespace NLog.LayoutRenderers.Wrappers
         public bool FSNormalize { get; set; }
 
         /// <summary>
-        /// Post-processes the rendered message. 
+        /// Replaces all non-safe characters with underscore to make valid filepath
         /// </summary>
-        /// <param name="text">The text to be post-processed.</param>
-        /// <returns>Padded and trimmed string.</returns>
-        protected override string Transform(string text)
+        /// <param name="builder">Output to be transformed.</param>
+        protected override void TransformFormattedMesssage(StringBuilder builder)
         {
             if (this.FSNormalize)
             {
-                var builder = new StringBuilder(text);
                 for (int i = 0; i < builder.Length; i++)
                 {
                     char c = builder[i];
@@ -79,11 +77,7 @@ namespace NLog.LayoutRenderers.Wrappers
                         builder[i] = '_';
                     }
                 }
-
-                return builder.ToString();
             }
-
-            return text;
         }
 
         private static bool IsSafeCharacter(char c)

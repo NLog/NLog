@@ -36,6 +36,7 @@ using System.Diagnostics;
 namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading;
     using NLog.Common;
     using NLog.Targets;
@@ -212,7 +213,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 WrappedTarget = myTarget,
                 BufferSize = 10,
-                FlushTimeout = 1000,
+                FlushTimeout = 500,
             };
 
             InitializeTargets(myTarget, targetWrapper);
@@ -244,8 +245,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(0, hitCount);
             Assert.Equal(0, myTarget.WriteCount);
 
-            // sleep 2 seconds, this will trigger the timer and flush all events
-            Thread.Sleep(1500);
+            // sleep 1 second, this will trigger the timer and flush all events
+            Thread.Sleep(1000);
             Assert.Equal(9, hitCount);
             Assert.Equal(1, myTarget.BufferedWriteCount);
             Assert.Equal(9, myTarget.BufferedTotalEvents);
@@ -269,7 +270,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(19, myTarget.WriteCount);
 
             // sleep 2 seconds and the last remaining one will be flushed
-            Thread.Sleep(1500);
+            Thread.Sleep(1000);
             Assert.Equal(20, hitCount);
             Assert.Equal(3, myTarget.BufferedWriteCount);
             Assert.Equal(20, myTarget.BufferedTotalEvents);
@@ -522,14 +523,14 @@ namespace NLog.UnitTests.Targets.Wrappers
                 throw new NotSupportedException();
             }
 
-            protected override void Write(AsyncLogEventInfo[] logEvents)
+            protected override void Write(IList<AsyncLogEventInfo> logEvents)
             {
                 this.BufferedWriteCount++;
-                this.BufferedTotalEvents += logEvents.Length;
+                this.BufferedTotalEvents += logEvents.Count;
 
-                foreach (var logEvent in logEvents)
+                for (int i = 0; i < logEvents.Count; ++i)
                 {
-                    var @event = logEvent;
+                    var @event = logEvents[i];
                     RunAsync2(
                         s =>
                         {
@@ -565,10 +566,10 @@ namespace NLog.UnitTests.Targets.Wrappers
             public bool ThrowException { get; set; }
             public int FailCounter { get; set; }
 
-            protected override void Write(AsyncLogEventInfo[] logEvents)
+            protected override void Write(IList<AsyncLogEventInfo> logEvents)
             {
                 this.BufferedWriteCount++;
-                this.BufferedTotalEvents += logEvents.Length;
+                this.BufferedTotalEvents += logEvents.Count;
                 base.Write(logEvents);
             }
 

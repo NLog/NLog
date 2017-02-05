@@ -52,7 +52,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(AsyncTargetWrapperOverflowAction.Grow, targetWrapper.OverflowAction);
             Assert.Equal(300, targetWrapper.QueueLimit);
             Assert.Equal(50, targetWrapper.TimeToSleepBetweenBatches);
-            Assert.Equal(100, targetWrapper.BatchSize);
+            Assert.Equal(200, targetWrapper.BatchSize);
         }
 
         [Fact]
@@ -67,7 +67,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(AsyncTargetWrapperOverflowAction.Discard, targetWrapper.OverflowAction);
             Assert.Equal(10000, targetWrapper.QueueLimit);
             Assert.Equal(50, targetWrapper.TimeToSleepBetweenBatches);
-            Assert.Equal(100, targetWrapper.BatchSize);
+            Assert.Equal(200, targetWrapper.BatchSize);
         }
 
 #if !NETSTANDARD
@@ -95,7 +95,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 int flushCounter = 0;
                 AsyncContinuation flushHandler = (ex) => { ++flushCounter; };
 
-                List<KeyValuePair<LogEventInfo, AsyncContinuation>> itemPrepareList = new List<KeyValuePair<LogEventInfo, AsyncContinuation>>(2500);
+                List<KeyValuePair<LogEventInfo, AsyncContinuation>> itemPrepareList = new List<KeyValuePair<LogEventInfo, AsyncContinuation>>(500);
                 List<int> itemWrittenList = new List<int>(itemPrepareList.Capacity);
                 for (int i = 0; i< itemPrepareList.Capacity; ++i)
                 {
@@ -127,7 +127,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 }
 
 #if MONO || NET3_5
-                Assert.True(elapsedMilliseconds < 2500);    // Skip timing test when running within OpenCover.Console.exe
+                Assert.True(elapsedMilliseconds < 750);    // Skip timing test when running within OpenCover.Console.exe
 #endif
 
                 targetWrapper.Flush(flushHandler);
@@ -417,7 +417,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         {
             var asyncTarget = new AsyncTargetWrapper
             {
-                TimeToSleepBetweenBatches = 2000,
+                TimeToSleepBetweenBatches = 1000,
                 WrappedTarget = new DebugTarget(),
                 Name = "FlushingMultipleTimesSimultaneous_Wrapper"
             };
@@ -455,6 +455,8 @@ namespace NLog.UnitTests.Targets.Wrappers
 
         class MyAsyncTarget : Target
         {
+            private readonly NLog.Internal.AsyncOperationCounter pendingWriteCounter = new NLog.Internal.AsyncOperationCounter();
+
             public int FlushCount;
             public int WriteCount;
 
@@ -466,10 +468,14 @@ namespace NLog.UnitTests.Targets.Wrappers
             protected override void Write(AsyncLogEventInfo logEvent)
             {
                 Assert.True(this.FlushCount <= this.WriteCount);
-                Interlocked.Increment(ref this.WriteCount);
+
+                pendingWriteCounter.BeginOperation();
                 RunAsync2(
                     s =>
                         {
+                            try
+                            {
+                                Interlocked.Increment(ref this.WriteCount);
                             if (this.ThrowExceptions)
                             {
                                 logEvent.Continuation(new InvalidOperationException("Some problem!"));
@@ -480,6 +486,11 @@ namespace NLog.UnitTests.Targets.Wrappers
                                 logEvent.Continuation(null);
                                 logEvent.Continuation(null);
                             }
+                            }
+                            finally
+                            {
+                                pendingWriteCounter.CompleteOperation(null);
+                            }
                         });
             }
 
@@ -489,7 +500,10 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 Interlocked.Increment(ref this.FlushCount);
                 RunAsync2(
-                    s => asyncContinuation(null));
+                    s =>
+                    {
+                        wrappedContinuation(null);
+                    });
             }
 
             public bool ThrowExceptions { get; set; }

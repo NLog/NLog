@@ -95,10 +95,12 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Writes the specified bytes.
         /// </summary>
-        /// <param name="bytes">The bytes to be written.</param>
-        public override void Write(byte[] bytes)
+        /// <param name="bytes">The bytes array.</param>
+        /// <param name="offset">The bytes array offset.</param>
+        /// <param name="count">The number of bytes.</param>
+        public override void Write(byte[] bytes, int offset, int count)
         {
-            if (this.mutex == null)
+            if (this.mutex == null || this.fileStream == null)
             {
                 return;
             }
@@ -117,7 +119,7 @@ namespace NLog.Internal.FileAppenders
             try
             {
                 this.fileStream.Seek(0, SeekOrigin.End);
-                this.fileStream.Write(bytes, 0, bytes.Length);
+                this.fileStream.Write(bytes, offset, count);
                 this.fileStream.Flush();
                 if (CaptureLastWriteTime)
                 {
@@ -138,16 +140,38 @@ namespace NLog.Internal.FileAppenders
             InternalLogger.Trace("Closing '{0}'", FileName);
             if (this.mutex != null)
             {
-                this.mutex.Close();
+                try
+                {
+                    this.mutex.Close();
+                }
+                catch (Exception ex)
+                {
+                    // Swallow exception as the mutex now is in final state (abandoned instead of closed)
+                    InternalLogger.Warn(ex, "Failed to close mutex: '{0}'", FileName);
+                }
+                finally
+                {
+                    this.mutex = null;
+                }
             }
 
             if (this.fileStream != null)
             {
-                this.fileStream.Close();
+                try
+                {
+                    this.fileStream.Close();
+                }
+                catch (Exception ex)
+                {
+                    // Swallow exception as the file-stream now is in final state (broken instead of closed)
+                    InternalLogger.Warn(ex, "Failed to close file: '{0}'", FileName);
+                }
+                finally
+                {
+                    this.fileStream = null;
+                }
             }
 
-            this.mutex = null;
-            this.fileStream = null;
             FileTouched();
         }
 
@@ -166,8 +190,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>The file creation time.</returns>
         public override DateTime? GetFileCreationTimeUtc()
         {
-            var fileChars = GetFileCharacteristics();
-            return fileChars.CreationTimeUtc;
+            return CreationTimeUtc; // File is kept open, so creation time is static
         }
 
         /// <summary>

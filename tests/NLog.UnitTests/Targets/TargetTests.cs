@@ -471,7 +471,7 @@ namespace NLog.UnitTests.Targets
             {
                 try
                 {
-                    target.BlockingOperation(1000);
+                    target.BlockingOperation(500);
                 }
                 catch (Exception ex)
                 {
@@ -607,7 +607,7 @@ namespace NLog.UnitTests.Targets
                 base.Write(logEvent);
             }
 
-            protected override void Write(AsyncLogEventInfo[] logEvents)
+            protected override void Write(IList<AsyncLogEventInfo> logEvents)
             {
                 Assert.Equal(0, InBlockingOperation);
                 this.WriteCount3++;

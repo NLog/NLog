@@ -35,6 +35,7 @@ using NLog.Layouts;
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System.Text;
     using NLog.Conditions;
     using NLog.Config;
 
@@ -44,7 +45,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("when")]
     [AmbientProperty("When")]
     [ThreadAgnostic]
-    public sealed class WhenLayoutRendererWrapper : WrapperLayoutRendererBase
+    public sealed class WhenLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
         /// <summary>
         /// Gets or sets the condition that must be met for the <see cref="WrapperLayoutRendererBase.Inner"/> layout to be printed.
@@ -63,31 +64,26 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Transforms the output of another layout.
         /// </summary>
-        /// <param name="text">Output to be transform.</param>
-        /// <returns>Transformed text.</returns>
-        protected override string Transform(string text)
+        /// <param name="target">Output to be transform.</param>
+        protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            return text;
         }
 
         /// <summary>
         /// Renders the inner layout contents.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        /// <returns>
-        /// Contents of inner layout.
-        /// </returns>
-        protected override string RenderInner(LogEventInfo logEvent)
+        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
+        protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
             if (this.When == null || true.Equals(this.When.Evaluate(logEvent)))
             {
-                return base.RenderInner(logEvent);
-            }else if (Else != null)
-            {
-                return Else.Render(logEvent);
+                base.RenderFormattedMessage(logEvent, target);
             }
-
-            return string.Empty;
+            else if (Else != null)
+            {
+                Else.RenderAppendBuilder(logEvent, target);
+            }
         }
     }
 }

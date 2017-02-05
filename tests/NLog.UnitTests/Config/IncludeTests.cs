@@ -48,22 +48,45 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void IncludeTest()
         {
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            Directory.CreateDirectory(tempPath);
+            LogManager.ThrowExceptions = true;
+            var includeAttrValue = @"included.nlog";
+            IncludeTest_inner(includeAttrValue, GetTempDir());
+        }
 
-            CreateConfigFile(tempPath, "included.nlog", @"<nlog>
+        [Fact]
+        public void IncludeWildcardTest_relative()
+        {
+            var includeAttrValue = @"*.nlog";
+            IncludeTest_inner(includeAttrValue, GetTempDir());
+        }
+
+        [Fact]
+        public void IncludeWildcardTest_absolute()
+        {
+            var includeAttrValue = @"*.nlog";
+            var tempPath = GetTempDir();
+            includeAttrValue = Path.Combine(tempPath, includeAttrValue);
+            IncludeTest_inner(includeAttrValue, tempPath);
+        }
+
+        private void IncludeTest_inner(string includeAttrValue, string tempDir)
+        {
+            Directory.CreateDirectory(tempDir);
+
+            CreateConfigFile(tempDir, "included.nlog", @"<nlog>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
             </nlog>");
 
-            CreateConfigFile(tempPath, "main.nlog", @"<nlog>
-                <include file='included.nlog' />
+
+            CreateConfigFile(tempDir, "main.nlog", $@"<nlog>
+                <include file='{includeAttrValue}' />
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
 
 
-            string fileToLoad = Path.Combine(tempPath, "main.nlog");
+            string fileToLoad = Path.Combine(tempDir, "main.nlog");
             try
             {
                 // load main.nlog from the XAP
@@ -75,17 +98,19 @@ namespace NLog.UnitTests.Config
             finally
             {
 #if !NETSTANDARD
-                if (Directory.Exists(tempPath))
-                    Directory.Delete(tempPath, true);
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
 #endif
             }
         }
+
+
 
         [Fact]
         public void IncludeNotExistingTest()
         {
             LogManager.ThrowConfigExceptions = true;
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string tempPath = GetTempDir();
             Directory.CreateDirectory(tempPath);
 
             using (StreamWriter fs = File.CreateText(Path.Combine(tempPath, "main.nlog")))
@@ -113,7 +138,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void IncludeNotExistingIgnoredTest()
         {
-            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempPath = GetTempDir();
             Directory.CreateDirectory(tempPath);
 
             var config = @"<nlog>
@@ -155,5 +180,9 @@ namespace NLog.UnitTests.Config
                 fs.Write(config);
     }
         }
+        private static string GetTempDir()
+        {
+            return Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+    }
     }
 }

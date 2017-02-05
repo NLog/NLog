@@ -59,7 +59,7 @@ namespace NLog.LayoutRenderers
         /// Create a new renderer
         /// </summary>
         public AppDomainLayoutRenderer()
-            : this(AppDomainWrapper.CurrentDomain)
+            : this(LogFactory.CurrentAppDomain)
         {
         }
 

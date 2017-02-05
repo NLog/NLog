@@ -69,17 +69,30 @@ namespace NLog.Layouts
                 layout.Initialize(this.LoggingConfiguration);
         }
 
-            /// <summary>
+        /// <summary>
         /// Formats the log event relying on inner layouts.
         /// </summary>
         /// <param name="logEvent">The log event to be formatted.</param>
         /// <returns>A string representation of the log event.</returns>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            var sb = new StringBuilder();
-            foreach (var layout in Layouts)
-                sb.Append(layout.Render(logEvent));
-            return sb.ToString();
+            return RenderAllocateBuilder(logEvent);
+        }
+
+        /// <summary>
+        /// Formats the log event relying on inner layouts.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
+        protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
+        {
+            //Memory profiling pointed out that using a foreach-loop was allocating
+            //an Enumerator. Switching to a for-loop avoids the memory allocation.
+            for (int i = 0; i < this.Layouts.Count; i++)
+            {
+                Layout layout = this.Layouts[i];
+                layout.RenderAppendBuilder(logEvent, target);
+            }
         }
 
         /// <summary>

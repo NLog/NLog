@@ -74,7 +74,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
         public EventLogTarget()
-            : this(AppDomainWrapper.CurrentDomain)
+            : this(LogFactory.CurrentAppDomain)
         {
         }
 
@@ -93,7 +93,8 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
         /// <param name="name">Name of the target.</param>
-        public EventLogTarget(string name) : this(AppDomainWrapper.CurrentDomain)
+        public EventLogTarget(string name) 
+            : this(LogFactory.CurrentAppDomain)
         {
             this.Name = name;
         }
@@ -246,19 +247,9 @@ namespace NLog.Targets
 
             EventLogEntryType entryType = GetEntryType(logEvent);
 
-            int eventId = 0;
+            int eventId = this.EventId.RenderInt(logEvent, 0, "EventLogTarget.EventId");
 
-            if (this.EventId != null)
-            {
-                eventId = Convert.ToInt32(this.EventId.Render(logEvent), CultureInfo.InvariantCulture);
-            }
-
-            short category = 0;
-
-            if (this.Category != null)
-            {
-                category = Convert.ToInt16(this.Category.Render(logEvent), CultureInfo.InvariantCulture);
-            }
+            short category = this.EventId.RenderShort(logEvent, 0, "EventLogTarget.Category");
 
             EventLog eventLog = GetEventLog(logEvent);
 

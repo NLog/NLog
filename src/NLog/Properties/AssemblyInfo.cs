@@ -81,7 +81,7 @@ using System.Security;
 
 #if !SILVERLIGHT4 && !NETSTANDARD
 [assembly: AllowPartiallyTrustedCallers]
-#if !NET3_5 && !MONO_2_0 && !SILVERLIGHT5 && !__IOS__ && !WINDOWS_PHONE && !NETSTANDARD
+#if !NET3_5 && !MONO_2_0 && !SILVERLIGHT5 && !__IOS__ && !__ANDROID__ && !WINDOWS_PHONE && !NETSTANDARD
 [assembly: SecurityRules(SecurityRuleSet.Level1)]
 #endif
 #endif

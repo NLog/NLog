@@ -67,13 +67,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
-        public Log4JXmlEventLayoutRenderer()
-
-#if NETSTANDARD
-            : this(null)
-#else
-            : this(AppDomainWrapper.CurrentDomain)
-#endif
+        public Log4JXmlEventLayoutRenderer() : this(LogFactory.CurrentAppDomain)
         {
         }
 

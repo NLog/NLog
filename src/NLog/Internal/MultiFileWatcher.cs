@@ -46,7 +46,7 @@ namespace NLog.Internal
     /// </summary>
     internal class MultiFileWatcher : IDisposable
     {
-        private Dictionary<string, FileSystemWatcher> watcherMap = new Dictionary<string, FileSystemWatcher>();
+        private readonly Dictionary<string, FileSystemWatcher> watcherMap = new Dictionary<string, FileSystemWatcher>();
 
         /// <summary>
         /// The types of changes to watch for.
@@ -56,7 +56,7 @@ namespace NLog.Internal
         /// <summary>
         /// Occurs when a change is detected in one of the monitored files.
         /// </summary>
-        public event FileSystemEventHandler OnChange;
+        public event FileSystemEventHandler FileChanged;
 
         public MultiFileWatcher() : 
             this(NotifyFilters.LastWrite | NotifyFilters.CreationTime | NotifyFilters.Size | NotifyFilters.Security | NotifyFilters.Attributes) { }
@@ -71,7 +71,7 @@ namespace NLog.Internal
         /// </summary>
         public void Dispose()
         {
-            this.OnChange = null;   // Release event listeners
+            this.FileChanged = null;   // Release event listeners
             this.StopWatching();
             GC.SuppressFinalize(this);
         }
@@ -83,9 +83,10 @@ namespace NLog.Internal
         {
             lock (this)
             {
-                foreach (FileSystemWatcher watcher in this.watcherMap.Values)
+                foreach (FileSystemWatcher watcher in watcherMap.Values)
+                {
                     StopWatching(watcher);
-
+                }
                 this.watcherMap.Clear();
             }
         }
@@ -109,7 +110,7 @@ namespace NLog.Internal
 
         private void StopWatching(FileSystemWatcher watcher)
         {
-            InternalLogger.Info("Stopping file watching for path '{0}' filter '{1}'", watcher.Path, watcher.Filter);
+            InternalLogger.Debug("Stopping file watching for path '{0}' filter '{1}'", watcher.Path, watcher.Filter);
             watcher.EnableRaisingEvents = false;
             watcher.Dispose();
         }
@@ -153,21 +154,48 @@ namespace NLog.Internal
                     NotifyFilter = NotifyFilters
                 };
 
-                watcher.Created += this.OnWatcherChanged;
-                watcher.Changed += this.OnWatcherChanged;
-                watcher.Deleted += this.OnWatcherChanged;
+                watcher.Created += OnFileChanged;
+                watcher.Changed += OnFileChanged;
+                watcher.Deleted += OnFileChanged;
+                watcher.Renamed += OnFileChanged;
+                watcher.Error += OnWatcherError;
                 watcher.EnableRaisingEvents = true;
-                InternalLogger.Info("Watching path '{0}' filter '{1}' for changes.", watcher.Path, watcher.Filter);
+
+                InternalLogger.Debug("Watching path '{0}' filter '{1}' for changes.", watcher.Path, watcher.Filter);
                 
                 this.watcherMap.Add(fileName, watcher);
             }
         }
 
-        private void OnWatcherChanged(object source, FileSystemEventArgs e)
+        private void OnWatcherError(object source, ErrorEventArgs e)
         {
-            if (this.OnChange != null)
+            var watcherPath = string.Empty;
+            var watcher = source as FileSystemWatcher;
+            if (watcher != null)
+                watcherPath = watcher.Path;
+
+            var exception = e.GetException();
+            if (exception != null)
+                InternalLogger.Warn(exception, "Error Watching Path {0}", watcherPath);
+            else
+                InternalLogger.Warn("Error Watching Path {0}", watcherPath);
+        }
+
+        private void OnFileChanged(object source, FileSystemEventArgs e)
+        {
+            var changed = FileChanged;
+            if (changed != null)
             {
-                this.OnChange(source, e);
+                try
+                {
+                    changed(source, e);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "Error Handling File Changed");
+                    if (ex.MustBeRethrownImmediately())
+                        throw;
+                }
             }
         }
     }

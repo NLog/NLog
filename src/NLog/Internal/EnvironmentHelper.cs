@@ -46,7 +46,7 @@ namespace NLog.Internal
 		{
             get
             {
-#if !SILVERLIGHT
+#if !SILVERLIGHT || WINDOWS_PHONE
                 string newline = Environment.NewLine;
 #else
                 string newline = "\r\n";
