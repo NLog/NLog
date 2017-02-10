@@ -1,11 +1,11 @@
-version: 4.4.{build}
+version: 4.5.{build}
 clone_folder: c:\projects\nlog
 build_script:                                                                                                                
-  - msbuild  src/NLog.proj /verbosity:minimal /t:rebuild /t:xsd /t:NuGetPackage /p:BuildVersion=4.4.2  /p:AssemblyFileVersion=4.4.%APPVEYOR_BUILD_NUMBER% /p:BuildLastMajorVersion=4.0.0 /p:configuration=release /p:BuildLabelOverride=NONE 
+  - msbuild  src/NLog.proj /verbosity:minimal /t:rebuild /t:xsd /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true  /t:NuGetPackage /p:BuildVersion=4.5-alpha03  /p:AssemblyFileVersion=4.5.%APPVEYOR_BUILD_NUMBER% /p:BuildLastMajorVersion=4.0.0 /p:configuration=release /p:BuildLabelOverride=NONE 
   - msbuild  src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true 
  
 test_script:
-  - tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
+#  - tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
   - xunit.console.clr4 "build\bin\Debug\.NET Framework 3.5\NLog.UnitTests.dll" /appveyor /noshadow
   - xunit.console.clr4 "build\bin\Debug\.NET Framework 4.0\NLog.UnitTests.dll" /appveyor /noshadow
   - nuget.exe install OpenCover -ExcludeVersion

@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>NLog</id>
@@ -15,6 +15,9 @@ For your main project also need to install "NLog Configuration" package.</descri
     <iconUrl>http://nlog-project.org/N.png</iconUrl>
     <projectUrl>http://nlog-project.org/</projectUrl>
     <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
-    <tags>logging log tracing logfiles NLog database eventlog email wcf</tags>
-  </metadata>
+        <tags>logging log tracing logfiles NLog database eventlog email wcf</tags>
+        <dependencies>
+            <dependency id="NLog.StructuredEvents" version="0.3.1" />
+        </dependencies>
+    </metadata>
 </package>

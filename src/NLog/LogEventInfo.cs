@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.StructuredEvents;
+
 namespace NLog
 {
     using System;
@@ -66,6 +68,11 @@ namespace NLog
         private IDictionary eventContextAdapter;
 
         /// <summary>
+        /// Parse message as template;
+        /// </summary>
+        private Template messageTemplate;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
         /// </summary>
         public LogEventInfo()
@@ -93,7 +100,7 @@ namespace NLog
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">Log message including parameter placeholders.</param>
         /// <param name="parameters">Parameter array.</param>
-        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters) 
+        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters)
             : this(level, loggerName, formatProvider, message, parameters, null)
         {
         }
@@ -107,16 +114,16 @@ namespace NLog
         /// <param name="message">Log message including parameter placeholders.</param>
         /// <param name="parameters">Parameter array.</param>
         /// <param name="exception">Exception information.</param>
-        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters, Exception exception): this()
+        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters, Exception exception) : this()
         {
-            
+
             this.Level = level;
             this.LoggerName = loggerName;
             this.Message = message;
             this.Parameters = parameters;
             this.FormatProvider = formatProvider;
             this.Exception = exception;
-         
+
             if (NeedToPreformatMessage(parameters))
             {
                 this.CalcFormattedMessage();
@@ -206,8 +213,11 @@ namespace NLog
             get { return message; }
             set
             {
-                message = value; 
+                message = value;
+
+                ResetMessageTemplate();
                 ResetFormattedMessage();
+                ResetMessageTemplate();
             }
         }
 
@@ -247,7 +257,7 @@ namespace NLog
         /// </summary>
         public string FormattedMessage
         {
-            get 
+            get
             {
                 if (this.formattedMessage == null)
                 {
@@ -275,6 +285,12 @@ namespace NLog
                     this.properties = new Dictionary<object, object>();
                 }
 
+                if (this.messageTemplate == null)
+                {
+                    //template could have properties.
+                    this.ParseTemplate();
+                }
+
                 return this.properties;
             }
         }
@@ -294,8 +310,30 @@ namespace NLog
                     this.eventContextAdapter = new DictionaryAdapter<object, object>(Properties);
                 }
 
+                if (this.messageTemplate == null)
+                {
+                    //template could have properties.
+                    this.ParseTemplate();
+                }
+
                 return this.eventContextAdapter;
             }
+        }
+
+        /// <summary>
+        /// Parse message as template.
+        /// 
+        /// Will be null if <see cref="Message"/> is null.
+        /// </summary>
+        [CLSCompliant(false)]
+        public Template GetMessageTemplate()
+        {
+            if (this.messageTemplate == null)
+            {
+                this.ParseTemplate();
+            }
+
+            return messageTemplate;
         }
 
         /// <summary>
@@ -387,7 +425,7 @@ namespace NLog
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
         public static LogEventInfo Create(LogLevel logLevel, string loggerName, Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters)
         {
-            return new LogEventInfo(logLevel, loggerName,formatProvider, message, parameters, exception);
+            return new LogEventInfo(logLevel, loggerName, formatProvider, message, parameters, exception);
         }
 
         /// <summary>
@@ -504,6 +542,37 @@ namespace NLog
             return value.GetType().IsPrimitive || (value is string);
         }
 
+        /// <summary>
+        /// Parse <see cref="Message"/> as template and fill <see cref="Properties"/>
+        /// </summary>
+        private void ParseTemplate()
+        {
+            if (Message == null)
+            {
+                return;
+            }
+            this.messageTemplate = TemplateParser.Parse(Message);
+
+            //expand holes to properties. Don't override.
+            if (!messageTemplate.IsPositional && this.Parameters != null && this.Parameters.Length > 0)
+            {
+                for (int i = 0; i < messageTemplate.Holes.Length && i < this.Parameters.Length; i++)
+                {
+                    var hole = messageTemplate.Holes[i];
+
+                    //don't overwrite user properties
+                    if (!this.Properties.ContainsKey(hole.Name))
+                    {
+                        var parameter = this.Parameters[i];
+                        this.Properties[hole.Name] = parameter;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Format the message from <see cref="message"/> and <see cref="Properties"/>
+        /// </summary>
         private void CalcFormattedMessage()
         {
             if (this.Parameters == null || this.Parameters.Length == 0)
@@ -514,7 +583,12 @@ namespace NLog
             {
                 try
                 {
-                    this.formattedMessage = string.Format(this.FormatProvider ?? CultureInfo.CurrentCulture, this.Message, this.Parameters);
+                    if (messageTemplate == null)
+                    {
+                        ParseTemplate();
+                    }
+
+                    this.formattedMessage = messageTemplate.Render(this.FormatProvider ?? CultureInfo.CurrentCulture, this.parameters);
                 }
                 catch (Exception exception)
                 {
@@ -529,9 +603,20 @@ namespace NLog
             }
         }
 
+        /// <summary>
+        /// Reset the result of <see cref="CalcFormattedMessage"/>
+        /// </summary>
         private void ResetFormattedMessage()
         {
             this.formattedMessage = null;
+        }
+
+        /// <summary>
+        /// Reset the result of the <see cref="ParseTemplate"/>
+        /// </summary>
+        private void ResetMessageTemplate()
+        {
+            this.messageTemplate = null;
         }
     }
 }
