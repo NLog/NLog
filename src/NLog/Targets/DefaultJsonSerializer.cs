@@ -38,6 +38,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Text;
 using NLog.Internal;
+using NLog.StructuredEvents.Serialization;
 
 namespace NLog.Targets
 {
@@ -45,7 +46,7 @@ namespace NLog.Targets
     /// Default class for serialization of values to JSON format.
     /// </summary>
 #pragma warning disable 618
-    public class DefaultJsonSerializer : IJsonConverter, NLog.Targets.IJsonSerializer
+    public class DefaultJsonSerializer : IJsonConverter, NLog.Targets.IJsonSerializer, ISerializer
 #pragma warning restore 618
     {
         private readonly MruCache<Type, KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>> _propsCache = new MruCache<Type, KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>>(10000);
@@ -732,5 +733,18 @@ namespace NLog.Targets
         }
 
 
+        #region Implementation of ISerializer
+
+        /// <summary>Serialize an object</summary>
+        /// <param name="sb">Add serialized value to this builder</param>
+        /// <param name="value">Value to be serialized</param>
+        /// <param name="formatProvider">format</param>
+        public void SerializeObject(StringBuilder sb, object value, IFormatProvider formatProvider)
+        {
+            //todo inject options somewhere else
+            SerializeObject(value, sb, new JsonSerializeOptions {FormatProvider = formatProvider,QuoteKeys = false});
+        }
+
+        #endregion
     }
 }
