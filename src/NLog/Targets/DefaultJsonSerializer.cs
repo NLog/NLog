@@ -42,7 +42,7 @@ namespace NLog.Targets
     /// <summary>
     /// Default class for serialization of values to JSON format.
     /// </summary>
-    public class DefaultJsonSerializer : IJsonSerializer
+    public class DefaultJsonSerializer : IJsonSerializer, NLog.StructuredEvents.Serialization.ISerializer
     {
         private const int MaxRecursionDepth = 10;
 
@@ -220,5 +220,22 @@ namespace NLog.Targets
                 return c.ToString();
             }
         }
+
+        #region Implementation of ISerializer
+
+        /// <summary>
+        /// Serialize object
+        /// </summary>
+        /// <param name="sb"></param>
+        /// <param name="value"></param>
+        /// <param name="formatProvider"></param>
+        public void SerializeObject(StringBuilder sb, object value, IFormatProvider formatProvider)
+        {
+            //todo formatProvider
+            var result = SerializeObject(value);
+            sb.Append(result);
+        }
+
+        #endregion
     }
 }
