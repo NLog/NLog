@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.StructuredEvents;
+
 namespace NLog
 {
     using System;
@@ -514,7 +516,24 @@ namespace NLog
             {
                 try
                 {
-                    this.formattedMessage = string.Format(this.FormatProvider ?? CultureInfo.CurrentCulture, this.Message, this.Parameters);
+                    var template = TemplateParser.Parse(Message);
+                    this.formattedMessage = template.Render(this.FormatProvider ?? CultureInfo.CurrentCulture, this.parameters);
+
+                    //expand holes to properties. Don't override.
+                    if (!template.IsPositional)
+                    {
+                        for (int i = 0; i < template.Holes.Length && i < this.Parameters.Length; i++)
+                        {
+                            var hole = template.Holes[i];
+
+                            if (this.Properties.ContainsKey(hole.Name))
+                            {
+                                var parameter = this.Parameters[i];
+                                this.Properties[hole.Name] = parameter;
+                            }
+                        }
+                    }
+
                 }
                 catch (Exception exception)
                 {
