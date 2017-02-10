@@ -86,8 +86,8 @@ namespace NLog.UnitTests
 
                 logger.Trace(CultureInfo.InvariantCulture, "message{0}", (object)2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2");
-                
-                logger.Trace("message{0}{1}", 1,2);
+
+                logger.Trace("message{0}{1}", 1, 2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message12");
 
                 logger.Trace("message{0}{1}{2}", 1, 2, 3);
@@ -108,7 +108,7 @@ namespace NLog.UnitTests
                 logger.Trace("message{0}", (object)2.3);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
 
-                logger.Trace(NLCulture,  "message{0}", (object)2.3);
+                logger.Trace(NLCulture, "message{0}", (object)2.3);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2,3");
 
                 logger.Trace("message{0}", (ulong)1);
@@ -1516,7 +1516,7 @@ namespace NLog.UnitTests
 
                 logger.ConditionalDebug(argException, NLCulture, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "we\'ve got error 500, 501, 502, 503,5 ...arg1 is obvious wrong\r\nParameter name: arg1");
-                
+
                 logger.ConditionalDebug(argException, "we've got error {0}, {1}, {2}, {3} ...", 500, 501, 502, 503.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "we\'ve got error 500, 501, 502, 503.5 ...arg1 is obvious wrong\r\nParameter name: arg1");
 
@@ -1749,6 +1749,201 @@ namespace NLog.UnitTests
             var logger = LogManager.GetLogger("A");
 
             Assert.Throws<InvalidOperationException>(() => logger.Log(new LogEventInfo()));
+        }
+
+
+        [Fact]
+        public void StructuredEventsTest1()
+        {
+            // test all possible overloads of the Error() method
+
+            for (int enabled = 0; enabled < 2; ++enabled)
+            {
+                if (enabled == 0)
+                {
+                    LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
+                    <rules>
+                        <logger name='*' levels='' writeTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+                else
+                {
+                    LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Error' writeTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+
+                ILogger logger = LogManager.GetLogger("A");
+                LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
+
+
+                logger.Error("message {a} {b}", 1, 2);
+                if (enabled == 1)
+                {
+                    AssertDebugLastMessage("debug", "message 1 2");
+
+                }
+
+                logger.Error("message{a}{b}{c}", 1, 2, 3);
+                if (enabled == 1)
+                {
+                    AssertDebugLastMessage("debug", "message123");
+                }
+
+
+                logger.Error("message {a} {b} {c}",  "1", "2", "3");
+                if (enabled == 1)
+                {
+                    //todo single quotes
+                    AssertDebugLastMessage("debug", "message \"1\" \"2\" \"3\"");
+                }
+
+             
+                logger.Error("message{a}{b}{c}", 1, 2, 3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message123");
+                
+                
+                //todo other tests
+
+                //                logger.Error(NLCulture, "message{0}{1}{2}", 1.4, 2.5, 3.6);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message1,42,53,6");
+
+                //                logger.Error("message{0}", (float)2.3);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                //                logger.Error("message{0}", (double)2.3);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                //                logger.Error("message{0}", (decimal)2.3);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                //                logger.Error("message{0}", (object)2.3);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message2.3");
+
+                //                logger.Error(NLCulture, "message{0}", (object)2.3);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message2,3");
+
+                //                logger.Error("message{0}", (ulong)1);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                //                logger.Error(CultureInfo.InvariantCulture, "message{0}", (ulong)2);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                //                logger.Error("message{0}", (long)1);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                //                logger.Error(CultureInfo.InvariantCulture, "message{0}", (long)2);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                //                logger.Error("message{0}", (uint)1);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                //                logger.Error(CultureInfo.InvariantCulture, "message{0}", (uint)2);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                //                logger.Error("message{0}", 1);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                //                logger.Error(CultureInfo.InvariantCulture, "message{0}", 2);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                //                logger.Error("message{0}", (ushort)1);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                //                logger.Error(CultureInfo.InvariantCulture, "message{0}", (ushort)2);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                //                logger.Error("message{0}", (sbyte)1);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                //                logger.Error(CultureInfo.InvariantCulture, "message{0}", (sbyte)2);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                //                logger.Error("message{0}", this);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "messageobject-to-string");
+
+                //                logger.Error(CultureInfo.InvariantCulture, "message{0}", this);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "messageobject-to-string");
+
+                //                logger.Error("message{0}", (short)1);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                //                logger.Error(CultureInfo.InvariantCulture, "message{0}", (short)2);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                //                logger.Error("message{0}", (byte)1);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                //                logger.Error(CultureInfo.InvariantCulture, "message{0}", (byte)2);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                //                logger.Error("message{0}", 'c');
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "messagec");
+
+                //                logger.Error(CultureInfo.InvariantCulture, "message{0}", 'd');
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "messaged");
+
+                //                logger.Error("message{0}", "ddd");
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd");
+
+                //                logger.Error(CultureInfo.InvariantCulture, "message{0}", "eee");
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee");
+
+                //                logger.Error("message{0}{1}", "ddd", 1);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd1");
+
+                //                logger.Error(CultureInfo.InvariantCulture, "message{0}{1}", "eee", 2);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2");
+
+                //                logger.Error("message{0}{1}{2}", "ddd", 1, "eee");
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd1eee");
+
+                //                logger.Error(CultureInfo.InvariantCulture, "message{0}{1}{2}", "eee", 2, "fff");
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2fff");
+
+                //                logger.Error("message{0}{1}{2}{3}", "eee", 2, "fff", "ggg");
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2fffggg");
+
+                //                logger.Error("message{0}", true);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "messageTrue");
+
+                //                logger.Error(CultureInfo.InvariantCulture, "message{0}", false);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "messageFalse");
+
+                //                logger.Error(CultureInfo.InvariantCulture, "message{0}", (float)2.5);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+
+                //                logger.Error(CultureInfo.InvariantCulture, "message{0}", 2.5);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+
+                //                logger.Error(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+
+                //#pragma warning disable 0618
+                //                // Obsolete method requires testing until removed.
+                //                logger.ErrorException("message", new Exception("test"));
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+                //#pragma warning restore 0618
+
+                //                logger.Error(new Exception("test"), "message");
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+
+                //                logger.Error(new Exception("test"), "message {0}", "from parameter");
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
+
+                //                logger.Error(delegate { return "message from lambda"; });
+                //                if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
+
+                if (enabled == 0)
+                    AssertDebugCounter("debug", 0);
+            }
         }
 
         public abstract class BaseWrapper
