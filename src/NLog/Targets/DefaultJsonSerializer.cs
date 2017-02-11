@@ -101,7 +101,12 @@ namespace NLog.Targets
         /// <returns>Serialized value.</returns>
         public string SerializeObject(object value)
         {
-            return SerializeObject(value, new HashSet<object>(), 0);
+            return SerializeObject(value, new HashSet<object>(), 0, null);
+        }
+
+        private string SerializeObject(object value, IFormatProvider format)
+        {
+            return SerializeObject(value, new HashSet<object>(), 0, format);
         }
 
 
@@ -112,18 +117,20 @@ namespace NLog.Targets
         /// <param name="value">The object to serialize to JSON.</param>
         /// <param name="objectsInPath">The objects in path.</param>
         /// <param name="depth">The current depth (level) of recursion.</param>
+        /// <param name="format">format</param>
         /// <returns>
         /// Serialized value.
         /// </returns>
-        private string SerializeObject(object value, HashSet<object> objectsInPath, int depth)
+        private string SerializeObject(object value, HashSet<object> objectsInPath, int depth, IFormatProvider format)
         {
             if (objectsInPath.Contains(value))
             {
-                return null;        // detected reference loop, skip serialization
+                return null; // detected reference loop, skip serialization
             }
 
             IEnumerable enumerable = null;
             IDictionary dict = null;
+            IFormattable formattable = null;
             string str = null;
             if (value == null)
             {
@@ -135,14 +142,14 @@ namespace NLog.Targets
             }
             else if ((dict = value as IDictionary) != null)
             {
-                if (depth == MaxRecursionDepth) return null;        // reached maximum recursion level, no further serialization
+                if (depth == MaxRecursionDepth) return null; // reached maximum recursion level, no further serialization
 
                 var list = new List<string>();
                 var set = new HashSet<object>(objectsInPath) { value };
                 foreach (DictionaryEntry de in dict)
                 {
-                    var keyJson = SerializeObject(de.Key, set, depth + 1);
-                    var valueJson = SerializeObject(de.Value, set, depth + 1);
+                    var keyJson = SerializeObject(de.Key, set, depth + 1, format);
+                    var valueJson = SerializeObject(de.Value, set, depth + 1, format);
                     if (!string.IsNullOrEmpty(keyJson) && valueJson != null)
                     {
                         //only serialize, if key and value are serialized without error (e.g. due to reference loop)
@@ -154,14 +161,14 @@ namespace NLog.Targets
             }
             else if ((enumerable = value as IEnumerable) != null)
             {
-                if (depth == MaxRecursionDepth) return null;        // reached maximum recursion level, no further serialization
+                if (depth == MaxRecursionDepth) return null; // reached maximum recursion level, no further serialization
 
                 var list = new List<string>();
                 var set = new HashSet<object>(objectsInPath);
                 set.Add(value);
                 foreach (var val in enumerable)
                 {
-                    var valueJson = SerializeObject(val, set, depth + 1);
+                    var valueJson = SerializeObject(val, set, depth + 1, format);
                     if (valueJson != null)
                     {
                         list.Add(valueJson);
@@ -170,27 +177,45 @@ namespace NLog.Targets
 
                 return string.Format("[{0}]", string.Join(",", list.ToArray()));
             }
-            else if (NumericTypes.Contains(value.GetType()))
+            else
             {
+                var type = value.GetType();
+                if (NumericTypes.Contains(type))
+                {
 #if SILVERLIGHT
                 var culture = new CultureInfo("en-US").NumberFormat;
 #else
-                var culture = new CultureInfo("en-US", false).NumberFormat;
+                    var culture = new CultureInfo("en-US", false).NumberFormat;
 #endif
-                culture.NumberGroupSeparator = string.Empty;
-                culture.NumberDecimalSeparator = ".";
-                culture.NumberGroupSizes = new int[] { 0 };
-                return string.Format(culture, "{0}", value);
-            }
-            else
-            {
-                try
-                {
-                    return new ObjectSerializer(this).SerializeObjectProperties(value, objectsInPath, depth);
+                    culture.NumberGroupSeparator = string.Empty;
+                    culture.NumberDecimalSeparator = ".";
+                    culture.NumberGroupSizes = new int[] { 0 };
+                    return string.Format(culture, "{0}", value);
                 }
-                catch
+                if (type == typeof(bool))
                 {
-                    return null;
+                    return value.ToString();
+                }
+                if (type == typeof(char))
+                {
+                    return "'" + value.ToString() + "'";
+                }
+                else if ((formattable = value as IFormattable) != null)
+                {
+                    if (depth == MaxRecursionDepth) return null; // reached maximum recursion level, no further serialization
+
+                    return formattable.ToString("{0}", format);
+                }
+                else
+                {
+                    try
+                    {
+                        return new ObjectSerializer(this).SerializeObjectProperties(value, objectsInPath, depth, format);
+                    }
+                    catch
+                    {
+                        return null;
+                    }
                 }
             }
         }
@@ -234,9 +259,11 @@ namespace NLog.Targets
         public void SerializeObject(StringBuilder sb, object value, IFormatProvider formatProvider)
         {
             //todo formatProvider
-            var result = SerializeObject(value);
+            var result = SerializeObject(value, formatProvider);
             sb.Append(result);
         }
+
+      
 
         #endregion
 
@@ -253,14 +280,14 @@ namespace NLog.Targets
                 this.defaultJsonSerializer = defaultJsonSerializer;
             }
 
-            internal string SerializeObjectProperties(object value, HashSet<object> objectsInPath, int depth)
+            internal string SerializeObjectProperties(object value, HashSet<object> objectsInPath, int depth, IFormatProvider format)
             {
                 var stringBuilder = new StringBuilder();
-                SerializeObjectProperties(stringBuilder, value, CultureInfo.InvariantCulture, objectsInPath, depth);
+                SerializeObjectProperties(stringBuilder, value, format, objectsInPath, depth);
                 return stringBuilder.ToString();
             }
 
-            public void SerializeObjectProperties(StringBuilder sb, object value, IFormatProvider formatProvider, HashSet<object> objectsInPath, int depth)
+            public void SerializeObjectProperties(StringBuilder sb, object value, IFormatProvider format, HashSet<object> objectsInPath, int depth)
             {
                 var props = GetProps(value);
 
@@ -285,7 +312,7 @@ namespace NLog.Targets
 
                     //todo nasty references to each other
                     //todo objectsInPath
-                    var serializedProperty = defaultJsonSerializer.SerializeObject(propValue, objectsInPath, depth++);
+                    var serializedProperty = defaultJsonSerializer.SerializeObject(propValue, objectsInPath, depth++, format);
 
                     sb.Append(serializedProperty);
                 }
