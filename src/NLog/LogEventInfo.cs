@@ -526,7 +526,7 @@ namespace NLog
                         {
                             var hole = template.Holes[i];
 
-                            if (this.Properties.ContainsKey(hole.Name))
+                            if (!this.Properties.ContainsKey(hole.Name))
                             {
                                 var parameter = this.Parameters[i];
                                 this.Properties[hole.Name] = parameter;
