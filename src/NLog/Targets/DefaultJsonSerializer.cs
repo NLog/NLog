@@ -297,24 +297,30 @@ namespace NLog.Targets
 
                 foreach (var prop in props)
                 {
-                    if (!isFirst)
-                    {
-                        sb.Append(", ");
-                    }
-                    isFirst = false;
-                    //todo escape name? (e.g. spaces)
-                    sb.Append(prop.Name);
-                    sb.Append(":");
-                    //todo escape value? (e.g quotes)
+                    
+                    
                     var propValue = prop.GetValue(value, null);
                     //todo nest objects, be warn of infinite loops.
                     // ValueRenderer.AppendValue(sb, propValue, false, null, formatProvider);
 
-                    //todo nasty references to each other
-                    //todo objectsInPath
-                    var serializedProperty = defaultJsonSerializer.SerializeObject(propValue, objectsInPath, depth++, format);
+                    if (propValue != null)
+                    {
+                        if (!isFirst)
+                        {
+                            sb.Append(", ");
+                        }
+                        isFirst = false;
+                        //todo escape name? (e.g. spaces)
 
-                    sb.Append(serializedProperty);
+                        //todo escape value? (e.g quotes)
+                        sb.Append(prop.Name);
+                        sb.Append(":");
+                        //todo nasty references to each other
+                        //todo objectsInPath
+                        var serializedProperty = defaultJsonSerializer.SerializeObject(propValue, objectsInPath, depth++, format);
+
+                        sb.Append(serializedProperty);
+                    }
                 }
                 sb.Append('}');
 

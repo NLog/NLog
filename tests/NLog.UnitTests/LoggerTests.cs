@@ -1790,7 +1790,7 @@ namespace NLog.UnitTests
                 LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
 
                 logger.Error("hello from {@Person}", Jane);
-                if (enabled == 1) AssertDebugLastMessage("debug", "hello from {Name:\"Jane\", Childs:[{Name:\"James\", Childs:null},{Name:\"Mike\", Childs:null}]}");
+                if (enabled == 1) AssertDebugLastMessage("debug", "hello from {Name:\"Jane\", Childs:[{Name:\"James\"},{Name:\"Mike\"}]}");
 
                 logger.Error("message {a} {b}", 1, 2);
                 if (enabled == 1)
