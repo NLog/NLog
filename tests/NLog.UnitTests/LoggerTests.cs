@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
+
 namespace NLog.UnitTests
 {
     using System.Reflection;
@@ -1756,6 +1758,10 @@ namespace NLog.UnitTests
         public void StructuredEventsTest1()
         {
             // test all possible overloads of the Error() method
+            var James = new Person("James");
+            var Mike = new Person("Mike");
+            var Jane = new Person("Jane") { Childs = new List<Person> { James, Mike } };
+      
 
             for (int enabled = 0; enabled < 2; ++enabled)
             {
@@ -1783,6 +1789,8 @@ namespace NLog.UnitTests
                 ILogger logger = LogManager.GetLogger("A");
                 LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
 
+                logger.Error("hello from {@Person}", Jane);
+                if (enabled == 1) AssertDebugLastMessage("debug", "hello from {Name:\"Jane\", Childs:[{Name:\"James\", Childs:null},{Name:\"Mike\", Childs:null}]}");
 
                 logger.Error("message {a} {b}", 1, 2);
                 if (enabled == 1)
@@ -1808,8 +1816,8 @@ namespace NLog.UnitTests
              
                 logger.Error("message{a}{b}{c}", 1, 2, 3);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message123");
-                
-                
+
+
                 //todo other tests
 
                 //                logger.Error(NLCulture, "message{0}{1}{2}", 1.4, 2.5, 3.6);
@@ -1932,11 +1940,14 @@ namespace NLog.UnitTests
                 //                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
                 //#pragma warning restore 0618
 
-                //                logger.Error(new Exception("test"), "message");
-                //                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
+                logger.Error(new Exception("test"), "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagetest");
 
-                //                logger.Error(new Exception("test"), "message {0}", "from parameter");
-                //                if (enabled == 1) AssertDebugLastMessage("debug", "message from parametertest");
+                logger.Error(new Exception("test"), "message {Exception}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message \"from parameter\"test");
+
+
+         
 
                 //                logger.Error(delegate { return "message from lambda"; });
                 //                if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -1944,6 +1955,26 @@ namespace NLog.UnitTests
                 if (enabled == 0)
                     AssertDebugCounter("debug", 0);
             }
+        }
+
+     
+
+
+        private class Person
+        {
+            public Person()
+            {
+            }
+
+            public Person(string name)
+            {
+                Name = name;
+            }
+
+            public string Name { get; set; }
+
+            public List<Person> Childs { get; set; }
+
         }
 
         public abstract class BaseWrapper
