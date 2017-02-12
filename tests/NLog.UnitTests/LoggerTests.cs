@@ -1792,6 +1792,9 @@ namespace NLog.UnitTests
                 logger.Error("hello from {@Person}", Jane);
                 if (enabled == 1) AssertDebugLastMessage("debug", "hello from {Name:\"Jane\", Childs:[{Name:\"James\"},{Name:\"Mike\"}]}");
 
+                logger.Error("Test structured logging in {NLogVersion} for .NET {NETVersion}", "4.5-alpha01", new [] { 3.5, 4, 4.5});
+                if (enabled == 1) AssertDebugLastMessage("debug", "Test structured logging in \"4.5-alpha01\" for .NET 3.5, 4, 4.5");
+
                 logger.Error("message {a} {b}", 1, 2);
                 if (enabled == 1)
                 {
