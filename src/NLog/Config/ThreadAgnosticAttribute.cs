@@ -42,7 +42,7 @@ namespace NLog.Config
     /// <remarks>
     /// This is important because some layout renders should use the main thread. E.g. for using <c>HttpContext.Current</c> etc.
     /// 
-    /// If set to <c>true</c> then a layout will be render in the main thread, so for example in the AsyncTargetWrapper and BufferTargetWrapper with the <see cref="NLog.Targets.Target.PrecalculateVolatileLayouts"/> , using <see cref="NLog.Layouts.Layout.Precalculate"/>
+    /// If this attribute isn't set on a layout, then it will be rendered on the main thread, See the AsyncTargetWrapper and BufferTargetWrapper with the <see cref="NLog.Targets.Target.PrecalculateVolatileLayouts"/> , using <see cref="NLog.Layouts.Layout.Precalculate"/>
     /// 
     /// Apply this attribute when:
     /// - The result can we rendered in another thread. Delaying this could be more efficient. And/Or,
