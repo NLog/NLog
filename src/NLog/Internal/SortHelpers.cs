@@ -147,11 +147,11 @@ namespace NLog.Internal
 
         /// <summary>
         /// Single-Bucket optimized readonly dictionary. Uses normal internally Dictionary if multiple buckets are needed.
-        /// 
+        ///
         /// Avoids allocating a new dictionary, when all items are using the same bucket
         /// </summary>
         /// <typeparam name="TKey">The type of the key.</typeparam>
-        /// <typeparam name="TValue">The type of the value.</typeparam> 
+        /// <typeparam name="TValue">The type of the value.</typeparam>
         public struct ReadOnlySingleBucketDictionary<TKey, TValue> : IDictionary<TKey, TValue>
         {
             readonly KeyValuePair<TKey, TValue>? _singleBucket;
@@ -218,7 +218,7 @@ namespace NLog.Internal
             public bool IsReadOnly { get { return true; } }
 
             /// <summary>
-            /// Allows direct lookup of existing keys. If trying to access non-existing key exeption is thrown.
+            /// Allows direct lookup of existing keys. If trying to access non-existing key exception is thrown.
             /// Consider to use <see cref="TryGetValue(TKey, out TValue)"/> instead for better safety.
             /// </summary>
             /// <param name="key">Key value for lookup</param>
