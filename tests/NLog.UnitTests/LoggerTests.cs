@@ -1761,7 +1761,7 @@ namespace NLog.UnitTests
             var James = new Person("James");
             var Mike = new Person("Mike");
             var Jane = new Person("Jane") { Childs = new List<Person> { James, Mike } };
-      
+
 
             for (int enabled = 0; enabled < 2; ++enabled)
             {
@@ -1792,7 +1792,7 @@ namespace NLog.UnitTests
                 logger.Error("hello from {@Person}", Jane);
                 if (enabled == 1) AssertDebugLastMessage("debug", "hello from {Name:\"Jane\", Childs:[{Name:\"James\"},{Name:\"Mike\"}]}");
 
-                logger.Error("Test structured logging in {NLogVersion} for .NET {NETVersion}", "4.5-alpha01", new [] { 3.5, 4, 4.5});
+                logger.Error("Test structured logging in {NLogVersion} for .NET {NETVersion}", "4.5-alpha01", new[] { 3.5, 4, 4.5 });
                 if (enabled == 1) AssertDebugLastMessage("debug", "Test structured logging in \"4.5-alpha01\" for .NET 3.5, 4, 4.5");
 
                 logger.Error("message {a} {b}", 1, 2);
@@ -1809,14 +1809,14 @@ namespace NLog.UnitTests
                 }
 
 
-                logger.Error("message {a} {b} {c}",  "1", "2", "3");
+                logger.Error("message {a} {b} {c}", "1", "2", "3");
                 if (enabled == 1)
                 {
                     //todo single quotes
                     AssertDebugLastMessage("debug", "message \"1\" \"2\" \"3\"");
                 }
 
-             
+
                 logger.Error("message{a}{b}{c}", 1, 2, 3);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message123");
 
@@ -1950,7 +1950,7 @@ namespace NLog.UnitTests
                 if (enabled == 1) AssertDebugLastMessage("debug", "message \"from parameter\"test");
 
 
-         
+
 
                 //                logger.Error(delegate { return "message from lambda"; });
                 //                if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -1960,7 +1960,7 @@ namespace NLog.UnitTests
             }
         }
 
-     
+
 
 
         private class Person
@@ -2036,6 +2036,41 @@ namespace NLog.UnitTests
         {
             return "object-to-string";
         }
+
+
+        [Fact]
+        public void LogEventTemplateShouldHaveProperties()
+        {
+            var logEventInfo = new LogEventInfo(LogLevel.Debug, "logger1", null, "{A}", new object[] {"b"});
+            Assert.Contains("A", logEventInfo.Properties.Keys);
+            Assert.Equal("b", logEventInfo.Properties["A"]);
+            Assert.Equal(1, logEventInfo.Properties.Count);
+        }
+        
+
+        [Fact]
+        public void LogEventTemplateShouldHaveProperties_even_when_changed()
+        {
+            var logEventInfo = new LogEventInfo(LogLevel.Debug, "logger1", null, "{A}", new object[] { "b" });
+            //force parse
+            var props = logEventInfo.Properties;
+            logEventInfo.Message = "{A}";
+            Assert.Contains("A", logEventInfo.Properties.Keys);
+            Assert.Equal("b", logEventInfo.Properties["A"]);
+            Assert.Equal(1, logEventInfo.Properties.Count);
+        }
+
+        [Fact]
+        public void LogEventTemplateShouldHaveTemplate()
+        {
+            var logEventInfo = new LogEventInfo(LogLevel.Debug, "logger1", "{A}");
+
+            var template = logEventInfo.GetmessageTemplate();
+            Assert.NotNull(template);
+            Assert.Equal(1, template.Holes.Length);
+            Assert.Equal(false, template.IsPositional);
+        }
+
 
     }
 }
