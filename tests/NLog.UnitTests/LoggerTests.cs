@@ -2065,7 +2065,7 @@ namespace NLog.UnitTests
         {
             var logEventInfo = new LogEventInfo(LogLevel.Debug, "logger1", "{A}");
 
-            var template = logEventInfo.GetmessageTemplate();
+            var template = logEventInfo.GetMessageTemplate();
             Assert.NotNull(template);
             Assert.Equal(1, template.Holes.Length);
             Assert.Equal(false, template.IsPositional);
