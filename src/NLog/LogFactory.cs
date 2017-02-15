@@ -104,6 +104,8 @@ namespace NLog
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
         static LogFactory()
         {
+
+            StructuredEvents.Serialization.SerializationManager.DefaultSerializer = DefaultJsonSerializer.Instance;
             RegisterEvents(CurrentAppDomain);
         }
 #endif

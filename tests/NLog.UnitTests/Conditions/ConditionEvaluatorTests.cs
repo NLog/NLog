@@ -133,6 +133,7 @@ namespace NLog.UnitTests.Conditions
             AssertEvaluationResult("MyCompany.Product.Class", "logger");
         }
 
+   
         [Fact]
         public void RelationalOperatorTest()
         {

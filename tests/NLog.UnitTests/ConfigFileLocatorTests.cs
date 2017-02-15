@@ -37,6 +37,7 @@ using System.Threading;
 using NLog.LayoutRenderers;
 using System.Xml;
 using NLog.Config;
+using NLog.StructuredEvents;
 using NLog.UnitTests.LayoutRenderers;
 
 
@@ -335,6 +336,7 @@ class C1
             options.OutputAssembly = Path.Combine(_tempDirectory, "ConfigFileLocator.exe");
             options.GenerateExecutable = true;
             options.ReferencedAssemblies.Add(typeof(ILogger).Assembly.Location);
+            options.ReferencedAssemblies.Add(typeof(TemplateParser).Assembly.Location);
             options.IncludeDebugInformation = true;
             if (!File.Exists(options.OutputAssembly))
             {
@@ -342,6 +344,7 @@ class C1
                 Assert.False(results.Errors.HasWarnings);
                 Assert.False(results.Errors.HasErrors);
                 File.Copy(typeof(ILogger).Assembly.Location, Path.Combine(_tempDirectory, "NLog.dll"));
+                File.Copy(typeof(TemplateParser).Assembly.Location, Path.Combine(_tempDirectory, "NLog.StructuredEvents.dll"));
             }
 
             return RunAndRedirectOutput(options.OutputAssembly);
