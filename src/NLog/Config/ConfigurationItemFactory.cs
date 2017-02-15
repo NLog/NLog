@@ -266,53 +266,60 @@ namespace NLog.Config
 
             try
             {
-                var assemblyLocation = Path.GetDirectoryName(new Uri(nlogAssembly.GetCodeBase()).LocalPath);
-            if (assemblyLocation == null)
-            {
-                InternalLogger.Warn("No auto loading because Nlog.dll location is unknown");
-                return factory;
-            }
-            if (!Directory.Exists(assemblyLocation))
-            {
-                InternalLogger.Warn("No auto loading because '{0}' doesn't exists", assemblyLocation);
-                return factory;
-            }
-
-            var extensionDlls = Directory.GetFiles(assemblyLocation, "NLog*.dll")
-                .Select(Path.GetFileName)
-                .Where(x => !x.Equals("NLog.dll", StringComparison.OrdinalIgnoreCase))
-                .Where(x => !x.Equals("NLog.UnitTests.dll", StringComparison.OrdinalIgnoreCase))
-                .Where(x => !x.Equals("NLog.Extended.dll", StringComparison.OrdinalIgnoreCase))
-                .Select(x => Path.Combine(assemblyLocation, x));
-
-            InternalLogger.Debug("Start auto loading, location: {0}", assemblyLocation);
-            foreach (var extensionDll in extensionDlls)
-            {
-                InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
-                var success = false;
-                try
+                Uri assemblyCodeBase;
+                if (!Uri.TryCreate(nlogAssembly.GetCodeBase(), UriKind.RelativeOrAbsolute, out assemblyCodeBase))
                 {
-                    var extensionAssembly = AssemblyHelpers.LoadFromPath(extensionDll);
-                    InternalLogger.LogAssemblyVersion(extensionAssembly);
-                    factory.RegisterItemsFromAssembly(extensionAssembly);
-                    success = true;
+                    InternalLogger.Warn("No auto loading because assembly code base is unknown");
+                    return factory;
                 }
-                catch (Exception ex)
+
+                var assemblyLocation = Path.GetDirectoryName(assemblyCodeBase.LocalPath);
+                if (assemblyLocation == null)
                 {
-                    if (ex.MustBeRethrownImmediately())
+                    InternalLogger.Warn("No auto loading because Nlog.dll location is unknown");
+                    return factory;
+                }
+                if (!Directory.Exists(assemblyLocation))
+                {
+                    InternalLogger.Warn("No auto loading because '{0}' doesn't exists", assemblyLocation);
+                    return factory;
+                }
+
+                var extensionDlls = Directory.GetFiles(assemblyLocation, "NLog*.dll")
+                    .Select(Path.GetFileName)
+                    .Where(x => !x.Equals("NLog.dll", StringComparison.OrdinalIgnoreCase))
+                    .Where(x => !x.Equals("NLog.UnitTests.dll", StringComparison.OrdinalIgnoreCase))
+                    .Where(x => !x.Equals("NLog.Extended.dll", StringComparison.OrdinalIgnoreCase))
+                    .Select(x => Path.Combine(assemblyLocation, x));
+
+                InternalLogger.Debug("Start auto loading, location: {0}", assemblyLocation);
+                foreach (var extensionDll in extensionDlls)
+                {
+                    InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
+                    var success = false;
+                    try
                     {
-                        throw;
+                        var extensionAssembly = AssemblyHelpers.LoadFromPath(extensionDll);
+                        InternalLogger.LogAssemblyVersion(extensionAssembly);
+                        factory.RegisterItemsFromAssembly(extensionAssembly);
+                        success = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex.MustBeRethrownImmediately())
+                        {
+                            throw;
+                        }
+
+                        InternalLogger.Warn(ex, "Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
+                        //TODO NLog 5, check MustBeRethrown()
+                    }
+                    if (success)
+                    {
+                        InternalLogger.Info("Auto loading assembly file: {0} succeeded!", extensionDll);
                     }
 
-                    InternalLogger.Warn(ex, "Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
-                    //TODO NLog 5, check MustBeRethrown()
                 }
-                if (success)
-                {
-                    InternalLogger.Info("Auto loading assembly file: {0} succeeded!", extensionDll);
-                }
-
-            }
             }
             catch (System.Security.SecurityException ex)
             {
