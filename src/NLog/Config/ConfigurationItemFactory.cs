@@ -266,7 +266,14 @@ namespace NLog.Config
 
             try
             {
-                var assemblyLocation = Path.GetDirectoryName(new Uri(nlogAssembly.CodeBase).LocalPath);
+                Uri assemblyCodeBase;
+                if (!Uri.TryCreate(nlogAssembly.CodeBase, UriKind.RelativeOrAbsolute, out assemblyCodeBase))
+                {
+                    InternalLogger.Warn("No auto loading because assembly code base is unknown");
+                    return factory;
+                }
+
+                var assemblyLocation = Path.GetDirectoryName(assemblyCodeBase.LocalPath);
                 if (assemblyLocation == null)
                 {
                     InternalLogger.Warn("No auto loading because Nlog.dll location is unknown");
