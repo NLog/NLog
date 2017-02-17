@@ -2,6 +2,12 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
 
 This file is new since 4.3.4. If requested, we will try to add the older releases in this file.
 
+### 4.4.3
+
+#### Fixes
+
+- [#1966](https://github.com/nlog/nlog/pull/1966) System.UriFormatException on load (Mono) (@JustArchi)
+- [#1960](https://github.com/nlog/nlog/pull/1960) EventLogTarget: Properly parse and set EventLog category (@marinsky)
 
 ### 4.4.2
  
