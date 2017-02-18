@@ -126,7 +126,11 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+#if NETSTANDARD
+        [Theory(Skip = "no AutoClose-Timer-Thread in NETSTANDARD yet")]
+#else
         [Theory]
+#endif
         [MemberData("SimpleFileTest_TestParameters")]
         public void SimpleFileDeleteTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
         {
@@ -3200,7 +3204,11 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+#if NETSTANDARD
+        [Fact(Skip = "${basedir} is not working and so also relative paths not")]
+#else
         [Fact]
+#endif
         public void RelativeSequentialArchiveTest_MaxArchiveFiles_0()
         {
             var tempPath = Guid.NewGuid().ToString();
