@@ -75,7 +75,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertLayoutRendererOutput("${basedir:file=aaa.txt}", Path.Combine(baseDir, "aaa.txt"));
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && NETSTANDARD
         [Fact]
         public void BaseDirCurrentProcessTest()
         {

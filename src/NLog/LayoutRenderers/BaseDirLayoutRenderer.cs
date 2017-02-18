@@ -76,31 +76,13 @@ namespace NLog.LayoutRenderers
             this.baseDir = appDomain.BaseDirectory;
         }
 
-
-
-#if !NETSTANDARD
-
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
         /// </summary>
         public BaseDirLayoutRenderer() : this(LogFactory.CurrentAppDomain)
         {
         }
-#else
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer"/> class
-        /// </summary>
-        public BaseDirLayoutRenderer()
-        {
-            var appEnv = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default?.Application;
-            if (appEnv == null)
-                throw new InvalidOperationException("Unable to access the default IApplicationEnvironment instance");
-
-            this.baseDir = appEnv.ApplicationBasePath;
-        }
-       
-#endif
         /// <summary>
         /// Gets or sets the name of the file to be Path.Combine()'d with with the base directory.
         /// </summary>
