@@ -5,8 +5,8 @@
 ===
 [![Join the chat at https://gitter.im/NLog/NLog](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLog/NLog?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Twitter Follow](https://img.shields.io/twitter/follow/NLogOfficial.svg?style=social?maxAge=2592000)](https://twitter.com/NLogOfficial)
-[![Last News](https://img.shields.io/badge/News-30_okt_2016-orange.svg)](http://nlog-project.org/archives/)
-[![codecov.io](https://codecov.io/github/NLog/NLog/coverage.svg?branch=master)](https://codecov.io/github/NLog/NLog?branch=master) 
+[![Last News](https://img.shields.io/badge/News-14_dec_2016-orange.svg)](http://nlog-project.org/archives/)
+[![codecov.io](https://codecov.io/github/NLog/NLog/coverage.svg?branch=master)](https://codecov.io/github/NLog/NLog?branch=master)
 [![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-3D9FE0.svg)](http://semver.org/)
 [![Rager Releases](http://rager.io/badge.svg?url=https%3A%2F%2Fgithub.com%2FNLog%2FNLog)](http://rager.io/projects/search?badge=1&query=github.com/nlog/nlog)
 [![StackOverflow](https://img.shields.io/stackexchange/stackoverflow/t/nlog.svg?maxAge=2592000)](https://stackoverflow.com/questions/tagged/nlog)
@@ -14,20 +14,20 @@
 <!--
 [![NuGet downloads](https://img.shields.io/nuget/dt/NLog.svg)](https://www.nuget.org/packages/NLog)
 
-[![Pre-release version](https://img.shields.io/nuget/vpre/NLog.svg)](https://www.nuget.org/packages/NLog)--> 
+[![Pre-release version](https://img.shields.io/nuget/vpre/NLog.svg)](https://www.nuget.org/packages/NLog)-->
 
 
 
 <!--[NLog is Looking for Developers!](http://nlog-project.org/2015/08/05/NLog-is-looking-for-developers.html)-->
 
 
-NLog is a free logging platform for .NET with rich log routing and management 
-capabilities. It makes it easy to produce and manage high-quality logs for 
-your application regardless of its size or complexity. 
+NLog is a free logging platform for .NET with rich log routing and management
+capabilities. It makes it easy to produce and manage high-quality logs for
+your application regardless of its size or complexity.
 
-It can process diagnostic messages emitted from any .NET language, augment 
-them with contextual information, format them according to your preference 
-and send them to one or more targets such as file or database. 
+It can process diagnostic messages emitted from any .NET language, augment
+them with contextual information, format them according to your preference
+and send them to one or more targets such as file or database.
 
 For more information, see the website [nlog-project.org](http://nlog-project.org)
 or just get started with the tutorials on [the NLog wiki](https://github.com/NLog/NLog/wiki).
@@ -41,7 +41,7 @@ NLog consists of multiple packages. Most of the functionality is inside the NLog
 Package  | Build status | NuGet |
 -------- | :------------ | :------------ | :------------------
 NLog (.Net / Silverlight 4+5 / Xamarin iOS / Xamarin Android / Windows Phone 8)                                    | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/master.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/master)                   | [![NuGet package](https://badge.fury.io/nu/NLog.svg)](https://www.nuget.org/packages/NLog)                            |
-NLog (.NET Core)   - coreCLR branch                                             | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/coreclr.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/coreclr)                   | [![NuGet package](https://img.shields.io/badge/nuget-v5.0--beta-blue.svg)](https://www.nuget.org/packages/NLog)       | 
+NLog (.NET Core)   - coreCLR branch                                             | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/coreclr.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/coreclr)                   | [![NuGet package](https://img.shields.io/badge/nuget-v5.0--beta-blue.svg)](https://www.nuget.org/packages/NLog)       |
 [NLog (Microsoft Logging Platform)](https://github.com/NLog/NLog.Framework.Logging)  | [![Build status](https://img.shields.io/appveyor/ci/nlog/nlog-framework-logging/master.svg)](https://ci.appveyor.com/project/nlog/nlog-framework-logging/branch/master) | [![NuGet Pre Release](https://badge.fury.io/nu/NLog.Extensions.Logging.svg)](https://www.nuget.org/packages/NLog.Extensions.Logging) |
 NLog (Mono)                                                         | [![Build Status](https://travis-ci.org/NLog/NLog.svg?branch=master)](https://travis-ci.org/NLog/NLog)                                                         |                                                                                                                                  |
 NLog.Config                                                         | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/master.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/master)                   | [![NuGet package](https://badge.fury.io/nu/NLog.Config.svg)](https://www.nuget.org/packages/NLog.Config)                   |
@@ -64,7 +64,7 @@ NLog.Schema                                                         | [![AppVeyo
 Questions, bug reports or feature requests?
 ---
 Do you have feature requests, questions or would you like to report a bug? Please post them on the [issue list](https://github.com/NLog/NLog/issues) and follow [these guidelines](CONTRIBUTING.md).
-You could also post questions on [StackOverflow](https://stackoverflow.com/) - in general your will get faster response there. 
+You could also post questions on [StackOverflow](https://stackoverflow.com/) - in general your will get faster response there.
 Please also post or vote features requests on [UserEcho](https://nlog.userecho.com).
 
 
@@ -85,7 +85,7 @@ If you like to start with a small task, then
 A good way to get started (flow)
 
 
-1. Fork the NLog repos. 
+1. Fork the NLog repos.
 1. Create a new branch in you current repos from the 'master' branch.
 1. 'Check out' the code with Git or [GitHub Desktop](https://desktop.github.com/)
 1. Check [contributing.md](https://github.com/NLog/NLog/blob/master/CONTRIBUTING.md#sync-projects)
@@ -94,16 +94,17 @@ A good way to get started (flow)
 
 License
 ---
-NLog is open source software, licensed under the terms of BSD license. 
+NLog is open source software, licensed under the terms of BSD license.
 See [LICENSE.txt](LICENSE.txt) for details.
 
 
 How to build
 ---
-Use Visual studio 2012/2013/2015 and open solution file in the 'src' folder, like 'NLog.netfx45.sln'
+Use Visual Studio 2012/2013/2015 and open solution file in the 'src' folder, like 'NLog.netfx45.sln'
+C# 6.0 support (Visul Studio 2015) is required to build UnitTest project, like 'NLog.UnitTests.netfx45'.
 
 For building in the cloud we use:
-- AppVeyor for Windows builds, including Silverlight and Xamarin. 
+- AppVeyor for Windows builds, including Silverlight and Xamarin.
 - Travis for Mono builds.
 - CodeCov for code coverage
 
@@ -113,8 +114,8 @@ Steps to set up [AppVeyor](https://ci.appveyor.com)/[Travis](https://travis-ci.o
 
 **AppVeyor**:
 
-1. Login with your Github account to https://ci.appveyor.com 
-2. Choose "projects" 
+1. Login with your Github account to https://ci.appveyor.com
+2. Choose "projects"
 3. Select your fork and press "+" button
 4. Done. All config is in appveyor.yml already
 
@@ -130,5 +131,3 @@ Steps to set up [AppVeyor](https://ci.appveyor.com)/[Travis](https://travis-ci.o
 2. Press "+  Add new repository to Codecov" button
 3. Select your fork
 4. Wait for a build on AppVeyor. All the config is already in appveyor.yml. The first report can take some minutes after the first build.
-
-

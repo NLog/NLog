@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,26 +31,58 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+using System.Collections.Generic;
+using NLog.Common;
+
 namespace NLog.Internal
 {
-    using System;
-    using System.Text;
-
     /// <summary>
-    /// Parameter validation utilities.
+    /// Controls a single allocated AsyncLogEventInfo-List for reuse (only one active user)
     /// </summary>
-    internal static class ParameterUtils
+    internal class ReusableAsyncLogEventList
     {
-        /// <summary>
-        /// Asserts that the value is not null and throws <see cref="ArgumentNullException"/> otherwise.
-        /// </summary>
-        /// <param name="value">The value to check.</param>
-        /// <param name="parameterName">Name of the parameter.</param>
-        public static void AssertNotNull(object value, string parameterName)
+        private IList<AsyncLogEventInfo> _list;
+
+        /// <summary>Empty handle when <see cref="Targets.Target.OptimizeBufferReuse"/> is disabled</summary>
+        public readonly LockList None = default(LockList);
+
+        public ReusableAsyncLogEventList(int capacity)
         {
-            if (value == null)
+            _list = new List<AsyncLogEventInfo>(capacity);
+        }
+
+        /// <summary>
+        /// Creates handle to the reusable AsyncLogEventInfo-List for active usage
+        /// </summary>
+        /// <returns>Handle to the reusable item, that can release it again</returns>
+        public LockList Allocate()
+        {
+            return new LockList(this);
+        }
+
+        public struct LockList : IDisposable
+        {
+            /// <summary>
+            /// Access the AsyncLogEventInfo[]-buffer acquired
+            /// </summary>
+            public readonly IList<AsyncLogEventInfo> Result;
+            private readonly ReusableAsyncLogEventList _owner;
+
+            public LockList(ReusableAsyncLogEventList owner)
             {
-                throw new ArgumentNullException(parameterName);
+                Result = owner._list;
+                owner._list = null;
+                _owner = owner;
+            }
+
+            public void Dispose()
+            {
+                if (Result != null)
+                {
+                    Result.Clear();
+                    _owner._list = Result;
+                }
             }
         }
     }

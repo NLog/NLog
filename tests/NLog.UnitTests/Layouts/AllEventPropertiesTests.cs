@@ -45,51 +45,47 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void AllParametersAreSetToDefault()
         {
-            var sb = new StringBuilder();
             var renderer = new AllEventPropertiesLayoutRenderer();
             var ev = BuildLogEventWithProperties();
             
-            renderer.Render(sb, ev);
+            var result = renderer.Render(ev);
 
-            Assert.Equal("a=1, hello=world, 17=100", sb.ToString());
+            Assert.Equal("a=1, hello=world, 17=100", result);
         }
 
         [Fact]
         public void CustomSeparator()
         {
-            var sb = new StringBuilder();
             var renderer = new AllEventPropertiesLayoutRenderer();
             renderer.Separator = " | ";
             var ev = BuildLogEventWithProperties();
 
-            renderer.Render(sb, ev);
+            var result = renderer.Render(ev);
 
-            Assert.Equal("a=1 | hello=world | 17=100", sb.ToString());
+            Assert.Equal("a=1 | hello=world | 17=100", result);
         }
 
         [Fact]
         public void CustomFormat()
         {
-            var sb = new StringBuilder();
             var renderer = new AllEventPropertiesLayoutRenderer();
             renderer.Format = "[key] is [value]";
             var ev = BuildLogEventWithProperties();
 
-            renderer.Render(sb, ev);
+            var result = renderer.Render(ev);
 
-            Assert.Equal("a is 1, hello is world, 17 is 100", sb.ToString());
+            Assert.Equal("a is 1, hello is world, 17 is 100", result);
         }
 
         [Fact]
         public void NoProperties()
         {
-            var sb = new StringBuilder();
             var renderer = new AllEventPropertiesLayoutRenderer();
             var ev = new LogEventInfo();
 
-            renderer.Render(sb, ev);
+            var result = renderer.Render(ev);
 
-            Assert.Equal("", sb.ToString());
+            Assert.Equal("", result);
         }
 
         [Fact]

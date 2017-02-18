@@ -391,8 +391,8 @@ namespace NLog.UnitTests.Targets
             var logger = LogManager.GetLogger("WriteEventLogEntry");
 
             var sourceName = "NLog.UnitTests" + Guid.NewGuid().ToString("N");
-            var logEvent = CreateLogEventWithDynamicSource(expectedMessage, LogLevel.Trace, "DynamicSource", sourceName);           
-            
+            var logEvent = CreateLogEventWithDynamicSource(expectedMessage, LogLevel.Trace, "DynamicSource", sourceName);
+
             logger.Log(logEvent);
 
             var eventLog = new EventLog(target.Log);
@@ -412,6 +412,59 @@ namespace NLog.UnitTests.Targets
             entries = entries.Where(a => a.ProviderName == sourceName).ToList();
             Assert.Equal(1, entries.Count);
             AssertWrittenMessage(entries, expectedMessage);
+        }
+
+        [Fact]
+        public void LogEntryWithStaticEventIdAndCategoryInTargetLayout()
+        {
+            var rnd = new Random();
+            int eventId = rnd.Next(1, short.MaxValue);
+            int category = rnd.Next(1, short.MaxValue);
+            var target = CreateEventLogTarget(null, "NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
+            target.EventId = new SimpleLayout(eventId.ToString());
+            target.Category = new SimpleLayout(category.ToString());
+            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
+            var logger = LogManager.GetLogger("WriteEventLogEntry");
+            logger.Log(LogLevel.Error, "Simple Test Message");
+            var eventLog = new EventLog(target.Log);
+            var entries = GetEventRecords(eventLog.Log).ToList();
+            var expectedProviderName = target.GetFixedSource();
+            var filtered = entries.Where(entry =>
+                                         entry.ProviderName == expectedProviderName &&
+                                         HasEntryType(entry, EventLogEntryType.Error)
+                                        );
+            Assert.Equal(1, filtered.Count());
+            var record = filtered.First();
+            Assert.Equal(eventId, record.Id);
+            Assert.Equal(category, record.Task);
+        }
+
+        [Fact]
+        public void LogEntryWithDynamicEventIdAndCategory()
+        {
+            var rnd = new Random();
+            int eventId = rnd.Next(1, short.MaxValue);
+            int category = rnd.Next(1, short.MaxValue);
+            var target = CreateEventLogTarget(null, "NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
+            target.EventId = new SimpleLayout("${event-properties:EventId}");
+            target.Category = new SimpleLayout("${event-properties:Category}");
+            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
+            var logger = LogManager.GetLogger("WriteEventLogEntry");
+            LogEventInfo theEvent = new LogEventInfo(LogLevel.Error, "TestLoggerName", "Simple Message");
+            theEvent.Properties["EventId"] = eventId;
+            theEvent.Properties["Category"] = category;
+            logger.Log(theEvent);
+            var eventLog = new EventLog(target.Log);
+            var entries = GetEventRecords(eventLog.Log).ToList();
+            var expectedProviderName = target.GetFixedSource();
+            var filtered = entries.Where(entry =>
+                                         entry.ProviderName == expectedProviderName &&
+                                         HasEntryType(entry, EventLogEntryType.Error)
+                                        );
+            Assert.Equal(1, filtered.Count());
+            var record = filtered.First();
+            Assert.Equal(eventId, record.Id);
+            Assert.Equal(category, record.Task);
         }
 
         private static IEnumerable<EventRecord> Write(LogLevel logLevel, EventLogEntryType expectedEventLogEntryType, string logMessage, Layout entryType = null, EventLogTargetOverflowAction overflowAction = EventLogTargetOverflowAction.Truncate, int maxMessageLength = 16384)

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD_1plus
+using NLog.Internal.Fakeables;
 
 namespace NLog.LayoutRenderers
 {
@@ -54,13 +54,19 @@ namespace NLog.LayoutRenderers
     {
         private string baseDir;
 
-#if !NETSTANDARD_1plus
+#if !SILVERLIGHT && !NETSTANDARD_1plus
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
+        /// cached
         /// </summary>
-        public BaseDirLayoutRenderer() : this(AppDomainWrapper.CurrentDomain)
-        {
-        }
+        private string processDir;
+
+        /// <summary>
+        /// Use base dir of current process.
+        /// </summary>
+        public bool ProcessDir { get; set; }
+
+#endif
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
@@ -69,22 +75,14 @@ namespace NLog.LayoutRenderers
         {
             this.baseDir = appDomain.BaseDirectory;
         }
-#else
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer"/> class
+        /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
         /// </summary>
-        public BaseDirLayoutRenderer()
+        public BaseDirLayoutRenderer() : this(LogFactory.CurrentAppDomain)
         {
-            var appEnv = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default?.Application;
-            if (appEnv == null)
-                throw new InvalidOperationException("Unable to access the default IApplicationEnvironment instance");
-
-            this.baseDir = appEnv.ApplicationBasePath;
         }
-        
-       
-#endif
+
         /// <summary>
         /// Gets or sets the name of the file to be Path.Combine()'d with with the base directory.
         /// </summary>
@@ -104,10 +102,21 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var path = PathHelpers.CombinePaths(baseDir, this.Dir, this.File);
+
+            var dir = baseDir;
+#if !SILVERLIGHT && !NETSTANDARD_1plus
+            if (ProcessDir)
+            {
+                dir = processDir ?? (processDir = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName));
+            }
+#endif
+
+            if (dir != null)
+            {
+                var path = PathHelpers.CombinePaths(dir, this.Dir, this.File);
             builder.Append(path);
         }
     }
 }
+}
 
-#endif

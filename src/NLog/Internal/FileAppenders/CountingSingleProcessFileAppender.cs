@@ -36,6 +36,7 @@ namespace NLog.Internal.FileAppenders
     using System;
     using System.IO;
     using System.Security;
+    using NLog.Common;
 
     /// <summary>
     /// Implementation of <see cref="BaseFileAppender"/> which caches 
@@ -83,8 +84,22 @@ namespace NLog.Internal.FileAppenders
         {
             if (this.file != null)
             {
-                this.file.Close();
-                this.file = null;
+                InternalLogger.Trace("Closing '{0}'", FileName);
+
+                try
+                {
+                    this.file.Close();
+                }
+                catch (Exception ex)
+                {
+                    // Swallow exception as the file-stream now is in final state (broken instead of closed)
+                    InternalLogger.Warn(ex, "Failed to close file: '{0}'", FileName);
+                    System.Threading.Thread.Sleep(1);   // Artificial delay to avoid hammering a bad file location
+                }
+                finally
+                {
+                    this.file = null;
+                }
             }
         }
 
@@ -109,7 +124,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>The file creation time.</returns>
         public override DateTime? GetFileCreationTimeUtc()
         {
-            return this.CreationTime;
+            return this.CreationTimeUtc;
         }
 
         /// <summary>
@@ -119,7 +134,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>The time the file was last written to.</returns>
         public override DateTime? GetFileLastWriteTimeUtc()
         {
-            return this.LastWriteTime;
+            return this.LastWriteTimeUtc;
         }
 
         /// <summary>
@@ -134,16 +149,19 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Writes the specified bytes to a file.
         /// </summary>
-        /// <param name="bytes">The bytes to be written.</param>
-        public override void Write(byte[] bytes)
+        /// <param name="bytes">The bytes array.</param>
+        /// <param name="offset">The bytes array offset.</param>
+        /// <param name="count">The number of bytes.</param>
+        public override void Write(byte[] bytes, int offset, int count)
         {
             if (this.file == null)
             {
                 return;
             }
 
-            this.currentFileLength += bytes.Length;
-            this.file.Write(bytes, 0, bytes.Length);
+            this.currentFileLength += count;
+            this.file.Write(bytes, offset, count);
+
             if (CaptureLastWriteTime)
             {
                 FileTouched();

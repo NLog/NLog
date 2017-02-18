@@ -56,9 +56,6 @@ namespace NLog.Layouts
     [AppDomainFixedOutput]
     public class SimpleLayout : Layout, IUsesStackTrace
     {
-        private const int MaxInitialRenderBufferLength = 16384;
-        private int maxRenderedLength;
-
         private string fixedText;
         private string layoutText;
         private ConfigurationItemFactory configurationItemFactory;
@@ -297,21 +294,11 @@ namespace NLog.Layouts
                 return this.fixedText;
             }
 
-            string cachedValue;
+            return RenderAllocateBuilder(logEvent);
+        }
 
-            if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
-            {
-                return cachedValue;
-            }
-
-            int initialSize = this.maxRenderedLength;
-            if (initialSize > MaxInitialRenderBufferLength)
-            {
-                initialSize = MaxInitialRenderBufferLength;
-            }
-
-            var builder = new StringBuilder(initialSize);
-
+        private void RenderAllRenderers(LogEventInfo logEvent, StringBuilder target)
+        {
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
             for (int i = 0; i < this.Renderers.Count; i++)
@@ -319,7 +306,7 @@ namespace NLog.Layouts
                 LayoutRenderer renderer = this.Renderers[i];
                 try
                 {
-                    renderer.Render(builder, logEvent);
+                    renderer.RenderAppendBuilder(logEvent, target);
                 }
                 catch (Exception exception)
                 {
@@ -337,17 +324,23 @@ namespace NLog.Layouts
                     }
                 }
             }
-
-            if (builder.Length > this.maxRenderedLength)
-            {
-                this.maxRenderedLength = builder.Length;
-            }
-
-            string value = builder.ToString();
-            logEvent.AddCachedLayoutValue(this, value);
-            return value;
         }
 
+        /// <summary>
+        /// Renders the layout for the specified logging event by invoking layout renderers
+        /// that make up the event.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
+        protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
+        {
+            if (IsFixedText)
+            {
+                target.Append(this.fixedText);
+                return;
+            }
 
+            RenderAllRenderers(logEvent, target);
+        }
     }
 }

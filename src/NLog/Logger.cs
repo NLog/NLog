@@ -35,8 +35,11 @@ namespace NLog
 {
     using System;
     using System.ComponentModel;
-    using NLog.Internal;
+
     using JetBrains.Annotations;
+
+    using NLog.Internal;
+
 #if ASYNC_SUPPORTED
     using System.Threading.Tasks;
 #endif
@@ -580,7 +583,6 @@ namespace NLog
             LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, message, ex)), this.Factory);
         }
 
-
         internal void WriteToTargets(LogLevel level, [Localizable(false)] string message, object[] args)
         {
             this.WriteToTargets(level, this.Factory.DefaultCultureInfo, message, args);
@@ -608,17 +610,25 @@ namespace NLog
             this.isErrorEnabled = newConfiguration.IsEnabled(LogLevel.Error);
             this.isFatalEnabled = newConfiguration.IsEnabled(LogLevel.Fatal);
 
-            var loggerReconfiguredDelegate = this.LoggerReconfigured;
-
-            if (loggerReconfiguredDelegate != null)
-            {
-                loggerReconfiguredDelegate(this, new EventArgs());
-            }
+            OnLoggerReconfigured(EventArgs.Empty);
         }
 
         private TargetWithFilterChain GetTargetsForLevel(LogLevel level)
         {
             return this.configuration.GetTargetsForLevel(level);
+        }
+
+        /// <summary>
+        /// Raises the event when the logger is reconfigured. 
+        /// </summary>
+        /// <param name="e">Event arguments</param>
+        protected virtual void OnLoggerReconfigured(EventArgs e)
+        {
+            var reconfigured = LoggerReconfigured;
+            if (reconfigured != null)
+            {
+                reconfigured(this, e);
+            }
         }
     }
 }

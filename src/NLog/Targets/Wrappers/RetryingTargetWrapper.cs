@@ -34,6 +34,7 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Threading;
     using NLog.Common;
@@ -109,6 +110,43 @@ namespace NLog.Targets.Wrappers
         public int RetryDelayMilliseconds { get; set; }
 
         /// <summary>
+        /// Special SyncObject to allow closing down Target while busy retrying
+        /// </summary>
+        private readonly object RetrySyncObject = new object();
+
+        /// <summary>
+        /// Writes the specified log event to the wrapped target, retrying and pausing in case of an error.
+        /// </summary>
+        /// <param name="logEvents">The log event.</param>
+        protected override void WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents)
+        {
+            lock (this.RetrySyncObject)
+            {
+                for (int i = 0; i < logEvents.Count; ++i)
+                {
+                    if (!this.IsInitialized)
+                        logEvents[i].Continuation(null);
+                    else
+                        this.WriteAsyncThreadSafe(logEvents[i]);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Writes the specified log event to the wrapped target in a thread-safe manner.
+        /// Uses <see cref="RetrySyncObject"/> instead of <see cref="Target.SyncRoot" />
+        /// to allow closing target while doing sleep and retry.
+        /// </summary>
+        /// <param name="logEvent">The log event.</param>
+        protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
+        {
+            lock (this.RetrySyncObject)
+            {
+                Write(logEvent);
+            }
+        }
+
+        /// <summary>
         /// Writes the specified log event to the wrapped target, retrying and pausing in case of an error.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
@@ -136,10 +174,20 @@ namespace NLog.Targets.Wrappers
                         return;
                     }
 
-                    // sleep and try again
-#if !NETSTANDARD
-                    Thread.Sleep(this.RetryDelayMilliseconds);
-#endif
+                    // sleep and try again (Check every 100 ms if target have been closed)
+                    for (int i = 0; i < this.RetryDelayMilliseconds;)
+                    {
+                        int retryDelay = Math.Min(100, this.RetryDelayMilliseconds - i);
+                        Thread.Sleep(retryDelay);
+                        i += retryDelay;
+                        if (!IsInitialized)
+                        {
+                            InternalLogger.Warn("Target closed. Aborting.");
+                            logEvent.Continuation(ex);
+                            return;
+                        }
+                    }
+
                     this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
                 };
 

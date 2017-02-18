@@ -54,20 +54,28 @@ namespace NLog.UnitTests.Targets
             var modes = mode.Split('|');
 
             FileTarget ft = new FileTarget();
-            ft.FileName = "${basedir}/" + fileName;
+            ft.FileName = fileName;
             ft.Layout = "${message}";
             ft.KeepFileOpen = true;
             ft.OpenFileCacheTimeout = 10;
             ft.OpenFileCacheSize = 1;
             ft.LineEnding = LineEndingMode.LF;
-            ft.ForceMutexConcurrentWrites = modes.Length == 2 && modes[1] == "mutex" ? true : false;
+            ft.KeepFileOpen = Array.IndexOf(modes, "retry") >= 0 ? false : true;
+            ft.ForceMutexConcurrentWrites = Array.IndexOf(modes, "mutex") >= 0 ? true : false;
+            ft.ArchiveAboveSize = Array.IndexOf(modes, "archive") >= 0 ? 50 : -1;
+            if (ft.ArchiveAboveSize > 0)
+            {
+                string archivePath = Path.Combine(Path.GetDirectoryName(fileName), "Archive");
+                ft.ArchiveFileName = Path.Combine(archivePath, "{####}_" + Path.GetFileName(fileName));
+                ft.MaxArchiveFiles = 10000;
+            }
 
             var name = "ConfigureSharedFile_" + mode.Replace('|', '_') + "-wrapper";
 
             switch (modes[0])
             {
                 case "async":
-                    SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(ft, 100, AsyncTargetWrapperOverflowAction.Grow) { Name = name }, LogLevel.Debug);
+                    SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(ft, 100, AsyncTargetWrapperOverflowAction.Grow) { Name = name, TimeToSleepBetweenBatches = 10 }, LogLevel.Debug);
                     break;
 
                 case "buffered":
@@ -84,29 +92,50 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        public void Process(string processIndex, string numProcessesString, string numLogsString, string mode)
+        public void Process(string processIndex, string fileName, string numLogsString, string mode)
         {
             Thread.CurrentThread.Name = processIndex;
 
-            int numProcesses = Convert.ToInt32(numProcessesString);
             int numLogs = Convert.ToInt32(numLogsString);
-            string fileName = MakeFileName(numProcesses, numLogs, mode);
+            int idxProcess = Convert.ToInt32(processIndex);
 
             ConfigureSharedFile(mode, fileName);
 
             // Having the internal logger enabled would just slow things down, reducing the 
             // likelyhood for uncovering racing conditions.
-            //InternalLogger.LogLevel = LogLevel.Trace;
-            //InternalLogger.LogToConsole = true;
+            //var logWriter = new StringWriter { NewLine = Environment.NewLine };
+            //NLog.Common.InternalLogger.LogLevel = LogLevel.Trace;
+            //NLog.Common.InternalLogger.LogFile = Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex));
+            //NLog.Common.InternalLogger.LogWriter = logWriter;
+            //NLog.Common.InternalLogger.LogToConsole = true;
 
             string format = processIndex + " {0}";
+
+            try
+            {
+                Thread.Sleep(Math.Max((10 - idxProcess), 1) * 5);  // Delay to wait for the other processes
 
             for (int i = 0; i < numLogs; ++i)
             {
                 logger.Debug(format, i);
             }
 
-            LogManager.Configuration = null;
+                LogManager.Configuration = null;     // Flush + Close
+        }
+            catch (Exception ex)
+            {
+                //using (var textWriter = File.AppendText(Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex))))
+                //{
+                //    textWriter.WriteLine(ex.ToString());
+                //    textWriter.WriteLine(logWriter.GetStringBuilder().ToString());
+                //}
+                throw;
+            }
+
+            //using (var textWriter = File.AppendText(Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex))))
+            //{
+            //    textWriter.WriteLine(logWriter.GetStringBuilder().ToString());
+            //}
         }
 
         private string MakeFileName(int numProcesses, int numLogs, string mode)
@@ -117,8 +146,15 @@ namespace NLog.UnitTests.Targets
 
         private void DoConcurrentTest(int numProcesses, int numLogs, string mode)
         {
-            string logFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, MakeFileName(numProcesses, numLogs, mode));
+            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string archivePath = Path.Combine(tempPath, "Archive");
 
+            try
+            {
+                Directory.CreateDirectory(tempPath);
+                Directory.CreateDirectory(archivePath);
+
+                string logFile = Path.Combine(tempPath, MakeFileName(numProcesses, numLogs, mode));
             if (File.Exists(logFile))
                 File.Delete(logFile);
 
@@ -130,7 +166,7 @@ namespace NLog.UnitTests.Targets
                     this.GetType(),
                     "Process",
                     i.ToString(),
-                    numProcesses.ToString(),
+                        logFile,
                     numLogs.ToString(),
                     mode);
             }
@@ -145,11 +181,17 @@ namespace NLog.UnitTests.Targets
                 processes[i] = null;
             }
 
-            int[] maxNumber = new int[numProcesses];
+                var files = new System.Collections.Generic.List<string>(Directory.GetFiles(archivePath));
+                files.Add(logFile);
 
+                bool verifyFileSize = files.Count > 1;
+
+            int[] maxNumber = new int[numProcesses];
             //Console.WriteLine("Verifying output file {0}", logFile);
-            using (StreamReader sr = File.OpenText(logFile))
+                foreach (var file in files)
             {
+                    using (StreamReader sr = File.OpenText(file))
+                    {
                 string line;
 
                 while ((line = sr.ReadLine()) != null)
@@ -167,19 +209,47 @@ namespace NLog.UnitTests.Targets
                     }
                     catch (Exception ex)
                     {
-                        throw new InvalidOperationException("Error when parsing line '" + line + "'", ex);
+                                throw new InvalidOperationException(string.Format("Error when parsing line '{0}' in file {1}", line, file), ex);
                     }
+                }
+
+                        if (verifyFileSize)
+                        {
+                            if (sr.BaseStream.Length > 70)
+                                throw new InvalidOperationException(string.Format("Error when reading file {0}, size {1} is too large", file, sr.BaseStream.Length));
+                            else if (sr.BaseStream.Length < 35 && files[files.Count - 1] != file)
+                                throw new InvalidOperationException(string.Format("Error when reading file {0}, size {1} is too small", file, sr.BaseStream.Length));
+            }
+        }
+                }
+            }
+            finally
+            {
+                try
+                {
+                    if (Directory.Exists(archivePath))
+                        Directory.Delete(archivePath, true);
+                    if (Directory.Exists(tempPath))
+                        Directory.Delete(tempPath, true);
+                }
+                catch
+                {
                 }
             }
         }
 
         [Theory]
-        [InlineData(2, 10000, "none")]
-        [InlineData(5, 4000, "none")]
-        [InlineData(10, 2000, "none")]
-        [InlineData(2, 10000, "none|mutex")]
-        [InlineData(5, 4000, "none|mutex")]
-        [InlineData(10, 2000, "none|mutex")]
+#if !MONO
+        // MONO Doesn't work well with global mutex, and it is needed for succesful concurrent archive operations
+        [InlineData(2, 500, "none|archive")]
+        [InlineData(2, 500, "none|mutex|archive")]
+#endif
+        [InlineData(2, 1000, "none")]
+        [InlineData(5, 1000, "none")]
+        [InlineData(10, 1000, "none")]
+        [InlineData(2, 1000, "none|mutex")]
+        [InlineData(5, 1000, "none|mutex")]
+        [InlineData(10, 1000, "none|mutex")]
         public void SimpleConcurrentTest(int numProcesses, int numLogs, string mode)
         {
             DoConcurrentTest(numProcesses, numLogs, mode);
@@ -196,7 +266,7 @@ namespace NLog.UnitTests.Targets
             // Due to the buffering it makes no big difference in runtime, whether we
             // have 2 process writing 10K events each or couple more processes with even more events.
             // Runtime is mostly defined by Runner.exe compilation and JITing the first.
-            DoConcurrentTest(5, 50000, mode);
+            DoConcurrentTest(5, 1000, mode);
         }
 
         [Theory]
@@ -204,7 +274,7 @@ namespace NLog.UnitTests.Targets
         [InlineData("buffered|mutex")]
         public void BufferedConcurrentTest(string mode)
         {
-            DoConcurrentTest(5, 50000, mode);
+            DoConcurrentTest(5, 1000, mode);
         }
 
         [Theory]
@@ -212,7 +282,7 @@ namespace NLog.UnitTests.Targets
         [InlineData("buffered_timed_flush|mutex")]
         public void BufferedTimedFlushConcurrentTest(string mode)
         {
-            DoConcurrentTest(5, 50000, mode);
+            DoConcurrentTest(5, 1000, mode);
         }
 
     }

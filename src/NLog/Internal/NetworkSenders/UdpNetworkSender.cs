@@ -101,22 +101,32 @@ namespace NLog.Internal.NetworkSenders
         {
             lock (this)
             {
-                try
+                this.CloseSocket(continuation);
+            }
+        }
+
+        private void CloseSocket(AsyncContinuation continuation)
+        {
+            try
+            {
+                var sock = this.socket;
+                this.socket = null;
+
+                if (sock != null)
                 {
-                    if (this.socket != null)
-                    {
-                        this.socket.Close();
-                    }
-                }
-                catch (Exception exception)
-                {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
+                    sock.Close();
                 }
 
-                this.socket = null;
+                continuation(null);
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                continuation(exception);
             }
         }
 

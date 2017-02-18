@@ -478,6 +478,28 @@ namespace NLog.UnitTests
 #endif
 #if NET4_5 && !NETSTANDARD_1plus
 
+        [Fact]
+        public void ThreadSafe_Shutdown()
+        {
+            LogManager.Configuration = new LoggingConfiguration();
+            LogManager.ThrowExceptions = true;
+            LogManager.Configuration.AddTarget("memory", new NLog.Targets.Wrappers.BufferingTargetWrapper(new MemoryQueueTarget(500), 5, 1));
+            LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, LogManager.Configuration.FindTargetByName("memory")));
+            LogManager.Configuration.AddTarget("memory2", new NLog.Targets.Wrappers.BufferingTargetWrapper(new MemoryQueueTarget(500), 5, 1));
+            LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, LogManager.Configuration.FindTargetByName("memory2")));
+            var stopFlag = false;
+            var exceptionThrown = false;
+            Task.Run(() => { try { var logger = LogManager.GetLogger("Hello"); while (!stopFlag) { logger.Debug("Hello World"); System.Threading.Thread.Sleep(1); } } catch { exceptionThrown = true; } });
+            Task.Run(() => { try { var logger = LogManager.GetLogger("Hello"); while (!stopFlag) { logger.Debug("Hello World"); System.Threading.Thread.Sleep(1); } } catch { exceptionThrown = true; } });
+            System.Threading.Thread.Sleep(20);
+            LogManager.Shutdown();  // Shutdown active LoggingConfiguration
+            System.Threading.Thread.Sleep(20);
+            stopFlag = true;
+            System.Threading.Thread.Sleep(20);
+            Assert.Equal(false, exceptionThrown);
+        }
+
+
         /// <summary>
         /// target for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
         /// </summary>
@@ -537,14 +559,28 @@ namespace NLog.UnitTests
 
             public MemoryQueueTarget(int size)
             {
-                this.Logs = new Queue<string>();
                 this.maxSize = size;
+            }
+
+            protected override void InitializeTarget()
+            {
+                base.InitializeTarget();
+                this.Logs = new Queue<string>(maxSize);
+            }
+
+            protected override void CloseTarget()
+            {
+                base.CloseTarget();
+                this.Logs = null;
             }
 
             public Queue<string> Logs { get; private set; }
 
             protected override void Write(LogEventInfo logEvent)
             {
+                if (this.Logs == null)
+                    throw new ObjectDisposedException("MemoryQueueTarget");
+
                 string msg = this.Layout.Render(logEvent);
                 if (msg.Length > 100)
                     msg = msg.Substring(0, 100) + "...";
