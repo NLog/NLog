@@ -249,7 +249,7 @@ namespace NLog.Targets
 
             int eventId = this.EventId.RenderInt(logEvent, 0, "EventLogTarget.EventId");
 
-            short category = this.EventId.RenderShort(logEvent, 0, "EventLogTarget.Category");
+            short category = this.Category.RenderShort(logEvent, 0, "EventLogTarget.Category");
 
             EventLog eventLog = GetEventLog(logEvent);
 

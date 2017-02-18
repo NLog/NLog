@@ -2,6 +2,81 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
 
 This file is new since 4.3.4. If requested, we will try to add the older releases in this file.
 
+### 4.4.3
+
+#### Fixes
+
+- [#1966](https://github.com/nlog/nlog/pull/1966) System.UriFormatException on load (Mono) (@JustArchi)
+- [#1960](https://github.com/nlog/nlog/pull/1960) EventLogTarget: Properly parse and set EventLog category (@marinsky)
+
+### 4.4.2
+ 
+#### Features:
+
+- [#1799](https://github.com/nlog/nlog/pull/1799) FileTarget: performance improvement: 10-70% faster, less garbage collecting (3-4 times less) by reusing buffers  (@snakefoot, @AndreGleichner)
+- [#1919](https://github.com/nlog/nlog/pull/1919) Func overloads for InternalLogger (@304NotModified)
+- [#1915](https://github.com/nlog/nlog/pull/1915) allow wildcard (*) in <include> (@304NotModified)
+- [#1914](https://github.com/nlog/nlog/pull/1914) basedir: added option processDir=true (@304NotModified)
+- [#1906](https://github.com/nlog/nlog/pull/1906) Allow Injecting basedir (@304NotModified)
+
+#### Improvements
+
+
+- [#1927](https://github.com/nlog/nlog/pull/1927) InternalLogger - Better support for multiple threads when using file (@snakefoot)
+- [#1871](https://github.com/nlog/nlog/pull/1871) Filetarget - Allocations optimization (#1871) (@nazim9214)
+- [#1931](https://github.com/nlog/nlog/pull/1931) FileTarget - Validate File CreationTimeUtc when non-Windows (@snakefoot)
+- [#1942](https://github.com/nlog/nlog/pull/1942) FileTarget - KeepFileOpen should watch for file deletion, but not every second (@snakefoot)
+- [#1876](https://github.com/nlog/nlog/pull/1876) FileTarget - Faster archive check by caching the static file-create-time (60-70% improvement) (#1876) (@snakefoot)
+- [#1878](https://github.com/nlog/nlog/pull/1878) FileTarget - KeepFileOpen should watch for file deletion (#1878) (@snakefoot)
+- [#1932](https://github.com/nlog/nlog/pull/1932) FileTarget - Faster rendering of filepath, when not ThreadAgnostic (@snakefoot)
+- [#1937](https://github.com/nlog/nlog/pull/1937) LogManager.Shutdown - Verify that active config exists (@snakefoot)
+- [#1926](https://github.com/nlog/nlog/pull/1926) RetryingWrapper - Allow closing target, even when busy retrying (@snakefoot)
+- [#1925](https://github.com/nlog/nlog/pull/1925) JsonLayout - Support Precalculate for async processing (@snakefoot)
+- [#1816](https://github.com/nlog/nlog/pull/1816) EventLogTarget - don't crash with invalid Category / EventId (@304NotModified)
+- [#1815](https://github.com/nlog/nlog/pull/1815) Better parsing for Layouts with int/bool type. (@304NotModified, @rymk)
+- [#1868](https://github.com/nlog/nlog/pull/1868) WebServiceTarget - FlushAsync - Avoid premature flush (#1868) (@snakefoot)
+- [#1899](https://github.com/nlog/nlog/pull/1899) LogManager.Shutdown - Use the official method for closing down (@snakefoot)
+
+
+#### Fixes
+                                                                          
+- [#1886](https://github.com/nlog/nlog/pull/1886) FileTarget - Archive should not fail when ArchiveFileName matches FileName (@snakefoot)
+- [#1893](https://github.com/nlog/nlog/pull/1893) FileTarget - MONO doesn't like using the native Win32 API (@snakefoot)
+- [#1883](https://github.com/nlog/nlog/pull/1883) LogFactory.Dispose - Should always close down created targets (@snakefoot)
+
+### V4.4.1
+
+Summary:
+
+- Fixes for medium trust (@snakefoot, @304notmodified)
+- Performance multiple improvements for flush events (@snakefoot)
+- FileTarget: Improvements for archiving  (@snakefoot)  
+- FileTarget - Reopen filehandle when file write fails  (@snakefoot)  
+- ConsoleTarget: fix crash when console isn't available (@snakefoot)
+- NetworkTarget - UdpNetworkSender should exercise the provided Close-callback  (@snakefoot)
+
+Detail:
+
+- [#1874](https://github.com/nlog/nlog/pull/1874) Fixes for medium trust (@snakefoot, @304notmodified)
+- [#1873](https://github.com/nlog/nlog/pull/1873) PartialTrustDomain - Handle SecurityException to allow startup and logging (#1873) (@snakefoot)
+- [#1859](https://github.com/nlog/nlog/pull/1859) FileTarget - MONO should also check SupportsSharableMutex (#1859) (@snakefoot)
+- [#1853](https://github.com/nlog/nlog/pull/1853) AsyncTargetWrapper - Flush should start immediately without waiting (#1853) (@snakefoot)
+- [#1858](https://github.com/nlog/nlog/pull/1858) FileTarget - Reopen filehandle when file write fails (#1858) (@snakefoot)
+- [#1867](https://github.com/nlog/nlog/pull/1867) FileTarget - Failing to delete old archive files, should not stop logging (@snakefoot)
+- [#1865](https://github.com/nlog/nlog/pull/1865) Compile MethodInfo into LateBoundMethod-delegate (ReflectedType is deprecated) (@snakefoot)
+- [#1850](https://github.com/nlog/nlog/pull/1850) ConsoleTarget - Apply Encoding on InitializeTarget, if Console available (#1850) (@snakefoot)
+- [#1862](https://github.com/nlog/nlog/pull/1862) SHFB config cleanup & simplify (@304NotModified)
+- [#1863](https://github.com/nlog/nlog/pull/1863) Minor cosmetic changes on FileTarget class (@ie-zero)
+- [#1861](https://github.com/nlog/nlog/pull/1861) Helper class ParameterUtils removed (@ie-zero)
+- [#1847](https://github.com/nlog/nlog/pull/1847) LogFactory.Dispose() fixed race condition with reloadtimer (#1847) (@snakefoot)
+- [#1849](https://github.com/nlog/nlog/pull/1849) NetworkTarget - UdpNetworkSender should exercise the provided Close-callback (@snakefoot)
+- [#1857](https://github.com/nlog/nlog/pull/1857) Fix immutability of LogLevel properties (@ie-zero)
+- [#1860](https://github.com/nlog/nlog/pull/1860) FileAppenderCache implements IDisposable (@ie-zero)
+- [#1848](https://github.com/nlog/nlog/pull/1848) Standarise implementation of events (@ie-zero)
+- [#1844](https://github.com/nlog/nlog/pull/1844) FileTarget - Mono2 runtime detection to skip using named archive-mutex (@snakefoot)
+
+
+
 
 ### V4.4  (2016/12/14)
 
