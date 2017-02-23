@@ -36,10 +36,10 @@ namespace NLog.Config
     using System;
 
     /// <summary>
-    /// Marks the layout or layout renderer as producing correct results regardless of the thread
-    /// it's running on.
+    /// Marks the layout or layout renderer as thread independent - it producing correct results 
+    /// regardless of the thread it's running on. 
     ///
-    /// By default (so without this attribute) everything is rendered on the main thread
+    /// Without this attribute everything is rendered on the main thread.
     /// </summary>
     /// <remarks>
     /// If this attribute is set on a layout, it could be rendered on the another thread. 
