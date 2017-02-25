@@ -480,22 +480,19 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Writes logging event to the log target.
+        /// Writes logging event to the log target. Must be overridden in inheriting
         /// classes.
         /// </summary>
-        /// <param name="logEvent">
-        /// Logging event to be written out.
-        /// </param>
+        /// <param name="logEvent">Logging event to be written out.</param>
         protected virtual void Write(LogEventInfo logEvent)
         {
-            // do nothing
+            // Override to perform the actual write-operation
         }
 
         /// <summary>
-        /// Writes log event to the log target. Must be overridden in inheriting
-        /// classes.
+        /// Writes async log event to the log target.
         /// </summary>
-        /// <param name="logEvent">Log event to be written out.</param>
+        /// <param name="logEvent">Async Log event to be written out.</param>
         protected virtual void Write(AsyncLogEventInfo logEvent)
         {
             try
