@@ -368,6 +368,7 @@
     <Compile Include="Targets\EventLogTarget.cs" />
     <Compile Include="Targets\EventLogTargetOverflowAction.cs" />
     <Compile Include="Targets\FileArchivePeriod.cs" />
+    <Compile Include="Targets\FileArchiveStyleFactory.cs" />
     <Compile Include="Targets\FilePathKind.cs" />
     <Compile Include="Targets\FileTarget.cs" />
     <Compile Include="Targets\IFileCompressor.cs" />

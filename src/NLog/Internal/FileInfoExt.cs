@@ -43,7 +43,7 @@ namespace NLog.Internal
 #if !SILVERLIGHT
             return fileInfo.LastWriteTimeUtc;
 #else
-            return fileInfo.LastWriteTime;
+            return fileInfo.LastWriteTime.ToUniversalTime();
 #endif
         }
         public static DateTime GetCreationTimeUtc(this FileInfo fileInfo)
@@ -51,11 +51,8 @@ namespace NLog.Internal
 #if !SILVERLIGHT
             return fileInfo.CreationTimeUtc;
 #else
-            return fileInfo.CreationTime;
+            return fileInfo.CreationTime.ToUniversalTime();
 #endif
         }
-
-       
-
     }
 }

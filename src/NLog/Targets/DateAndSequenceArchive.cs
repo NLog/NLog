@@ -41,7 +41,6 @@ namespace NLog.Targets
     internal class DateAndSequenceArchive
     {
         private readonly string _dateFormat;
-        private readonly string _formattedDate;
 
         /// <summary>
         /// The full name of the archive file.
@@ -65,7 +64,7 @@ namespace NLog.Targets
         /// <returns><c>True</c> if the formatted dates are equal, otherwise <c>False</c>.</returns>
         public bool HasSameFormattedDate(DateTime date)
         {
-            return date.ToString(_dateFormat) == _formattedDate;
+            return string.Equals(date.ToString(_dateFormat), Date.ToString(_dateFormat), StringComparison.Ordinal);
         }
 
         /// <summary>
@@ -80,7 +79,6 @@ namespace NLog.Targets
             _dateFormat = dateFormat;
             Sequence = sequence;
             FileName = fileName;
-            _formattedDate = date.ToString(dateFormat);
         }
     }
 }

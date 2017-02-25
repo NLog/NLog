@@ -15,8 +15,7 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -384,6 +383,7 @@
     <Compile Include="Targets\EventLogTarget.cs" />
     <Compile Include="Targets\EventLogTargetOverflowAction.cs" />
     <Compile Include="Targets\FileArchivePeriod.cs" />
+    <Compile Include="Targets\FileArchiveStyleFactory.cs" />
     <Compile Include="Targets\FilePathKind.cs" />
     <Compile Include="Targets\FileTarget.cs" />
     <Compile Include="Targets\IFileCompressor.cs" />
