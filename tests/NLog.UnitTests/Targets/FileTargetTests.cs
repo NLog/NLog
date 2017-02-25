@@ -2526,6 +2526,73 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        /// <summary>
+        /// Allow multiple archives within the same directory
+        /// </summary>
+        [Fact]
+        public void FileTarget_ArchiveNumbering_remove_correct_wildcard()
+        {
+            const int maxArchiveFiles = 5;
+
+            var tempPath = ArchiveFileNameHelper.GenerateTempPath();
+            var logFile1 = Path.Combine(tempPath, "FirstFile{0}.txt");
+            var logFile2 = Path.Combine(tempPath, "SecondFile{0}.txt");
+            try
+            {
+                var fileTarget1 = new FileTarget
+                {
+                    FileName = string.Format(logFile1, ""),
+                    ArchiveAboveSize = 100,
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${message}",
+                    MaxArchiveFiles = maxArchiveFiles,
+                };
+
+                var fileTarget2 = new FileTarget
+                {
+                    FileName = string.Format(logFile2, ""),
+                    ArchiveAboveSize = 100,
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${message}",
+                    MaxArchiveFiles = maxArchiveFiles,
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(fileTarget1, LogLevel.Debug);
+                LoggingRule rule = new LoggingRule("*", LogLevel.Debug, fileTarget2);
+                LogManager.Configuration.LoggingRules.Add(rule);
+                LogManager.ReconfigExistingLoggers();
+
+                Generate100BytesLog('a');
+
+                for (int i = 1; i < maxArchiveFiles; i++)
+                {
+                    Generate100BytesLog('a');
+                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile1, "." + i.ToString()))), string.Format("FirstFile {0} is missing", i));
+                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile2, "." + i.ToString()))), string.Format("SecondFile {0} is missing", i));
+                }
+
+                for (int i = maxArchiveFiles; i < 21; i++)
+                {
+                    Generate100BytesLog('b');
+                    var numberToBeRemoved = i - maxArchiveFiles; // number 11, we need to remove 1 etc
+                    Assert.True(!File.Exists(Path.Combine(tempPath, string.Format(logFile1, "." + numberToBeRemoved.ToString()))), string.Format("archive FirstFile {0} has not been removed! We are created file {1}", numberToBeRemoved, i));
+                    Assert.True(!File.Exists(Path.Combine(tempPath, string.Format(logFile2, "." + numberToBeRemoved.ToString()))), string.Format("archive SecondFile {0} has not been removed! We are created file {1}", numberToBeRemoved, i));
+                }
+
+                LogManager.Configuration = null;
+            }
+            finally
+            {
+                if (File.Exists(logFile1))
+                    File.Delete(logFile1);
+                if (File.Exists(logFile1))
+                    File.Delete(logFile1);
+
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
         private void Generate100BytesLog(char c)
         {
             for (var i = 0; i < 25; ++i)
@@ -2819,8 +2886,7 @@ namespace NLog.UnitTests.Targets
         ///- Create test for 2 applications sharing same archive directory and 1
         ///  application containing multiple targets to the same archive directory.
         ///  *\* Expected outcome of this should be verified**
-
-        [Theory(Skip = "Should be fixed in NLog 4.5")]
+        [Theory]
         [InlineData(true)]
         [InlineData(false)]
         public void HandleArchiveFilesMultipleContextMultipleTargetTest(bool changeCreationAndWriteTime)
@@ -2830,7 +2896,7 @@ namespace NLog.UnitTests.Targets
             HandleArchiveFilesMultipleContextMultipleTargetsTest(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm", changeCreationAndWriteTime);
         }
 
-        [Theory(Skip = "Should be fixed in NLog 4.5")]
+        [Theory]
         [InlineData(true)]
         [InlineData(false)]
         public void HandleArchiveFilesMultipleContextSingleTargetTest_ascii(bool changeCreationAndWriteTime)
@@ -2907,7 +2973,7 @@ namespace NLog.UnitTests.Targets
                     }
                     i--;
                 }
-#endregion
+                #endregion
 
                 // Create same app1 Debug file as config defines. Will force archiving to happen on startup
                 File.WriteAllLines(logdir + "\\" + app1DebugNm + fileExt, new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
@@ -2915,16 +2981,16 @@ namespace NLog.UnitTests.Targets
                 var app1Config = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
                                     <targets>
                                       <target name='traceFile' type='File' 
-                                        fileName='" + logdir + "\\" + app1TraceNm + fileExt + @"'
-                                        archiveFileName='" + archivePath + @"\${date:format=" + dateFormat + "}-" + app1TraceNm + fileExt + @"' 
+                                        fileName='" + Path.Combine(logdir, app1TraceNm + fileExt) + @"'
+                                        archiveFileName='" + Path.Combine(archivePath, @"${date:format=" + dateFormat + "}-" + app1TraceNm + fileExt) + @"' 
                                         archiveEvery='minute' 
                                         archiveOldFileOnStartup='true'
                                         maxArchiveFiles='" + maxArchiveFilesConfig + @"'
                                         layout='${longdate} [${level}] [${callsite}] ${message}' 
                                         concurrentWrites='true' keepFileOpen='false' />
                                     <target name='debugFile' type='File' 
-                                        fileName='" + logdir + "\\" + app1DebugNm + fileExt + @"'
-                                        archiveFileName='" + archivePath + @"\${date:format=" + dateFormat + "}-" + app1DebugNm + fileExt + @"' 
+                                        fileName='" + Path.Combine(logdir, app1DebugNm + fileExt) + @"'
+                                        archiveFileName='" + Path.Combine(archivePath, @"${date:format=" + dateFormat + "}-" + app1DebugNm + fileExt) + @"' 
                                         archiveEvery='minute' 
                                         archiveOldFileOnStartup='true'
                                         maxArchiveFiles='" + maxArchiveFilesConfig + @"'
@@ -2940,8 +3006,8 @@ namespace NLog.UnitTests.Targets
                 var app2Config = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
                                     <targets>
                                       <target name='logfile' type='File' 
-                                        fileName='" + logdir + "\\" + app2Nm + fileExt + @"'
-                                        archiveFileName='" + archivePath + @"\${date:format=" + dateFormat + "}-" + app2Nm + fileExt + @"' 
+                                        fileName='" + Path.Combine(logdir, app2Nm + fileExt) + @"'
+                                        archiveFileName='" + Path.Combine(archivePath, @"${date:format=" + dateFormat + "}-" + app2Nm + fileExt) + @"' 
                                         archiveEvery='minute' 
                                         archiveOldFileOnStartup='true'
                                         maxArchiveFiles='" + maxArchiveFilesConfig + @"'
@@ -2957,26 +3023,27 @@ namespace NLog.UnitTests.Targets
 
                 var logger = LogManager.GetCurrentClassLogger();
                 // Trigger archive to happen on startup
-                logger.Debug("Test 1 - Write to the log file that already exists; trigger archive to happen because archiveOldFileOnStartup='true'");
+                logger.Trace("Test 1 - Write to the log file that already exists; trigger archive to happen because archiveOldFileOnStartup='true'");
 
                 // TODO: perhaps extra App1 Debug and Trace files should both be deleted?  (then app1TraceTargetFileCnt would be expected to = expectedArchiveFiles too)
                 // I think it depends on how NLog works with logging to both of those files in the call to logger.Debug() above
 
                 // verify file counts. EXPECTED OUTCOME:
-                // app1 debug target: removed all extra
-                // app1 trace target: has all extra files
+                // app1 trace target: removed all extra
+                // app1 debug target: has all extra files
                 // app2: has all extra files
                 var app1TraceTargetFileCnt = archiveDir.GetFiles("*" + app1TraceNm + "*").Length;
                 var app1DebugTargetFileCnt = archiveDir.GetFiles("*" + app1DebugNm + "*").Length;
                 var app2FileTargetCnt = archiveDir.GetFiles("*" + app2Nm + "*").Length;
 
-                Assert.Equal(numberFilesCreatedPerTargetArchive, app1TraceTargetFileCnt);
+                Assert.Equal(numberFilesCreatedPerTargetArchive, app1DebugTargetFileCnt);
                 Assert.Equal(numberFilesCreatedPerTargetArchive, app2FileTargetCnt);
-                Assert.Equal(expectedArchiveFiles, app1DebugTargetFileCnt);
+                Assert.Equal(expectedArchiveFiles, app1TraceTargetFileCnt);
             }
             finally
             {
                 //cleanup
+                LogManager.Configuration = null;
                 archiveDir.Delete(true);
             }
         }
@@ -3036,13 +3103,13 @@ namespace NLog.UnitTests.Targets
 #endregion
 
                 // Create same app1 file as config defines. Will force archiving to happen on startup
-                File.WriteAllLines(logdir + "\\" + app1Nm + fileExt, new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
+                File.WriteAllLines(Path.Combine(logdir, app1Nm + fileExt), new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
 
                 var app1Config = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
                                     <targets>
                                       <target name='logfile' type='File' 
-                                        fileName='" + logdir + "\\" + app1Nm + fileExt + @"'
-                                        archiveFileName='" + archivePath + @"\${date:format=" + dateFormat + "}-" + app1Nm + fileExt + @"' 
+                                        fileName='" + Path.Combine(logdir, app1Nm + fileExt) + @"'
+                                        archiveFileName='" + Path.Combine(archivePath, @"${date:format=" + dateFormat + "}-" + app1Nm + fileExt) + @"' 
                                         archiveEvery='minute' 
                                         archiveOldFileOnStartup='true'
                                         maxArchiveFiles='" + maxArchiveFilesConfig + @"'
@@ -3057,8 +3124,8 @@ namespace NLog.UnitTests.Targets
                 var app2Config = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
                                     <targets>
                                       <target name='logfile' type='File' 
-                                        fileName='" + logdir + "\\" + app2Nm + fileExt + @"'
-                                        archiveFileName='" + archivePath + @"\${date:format=" + dateFormat + "}-" + app2Nm + fileExt + @"' 
+                                        fileName='" + Path.Combine(logdir, app2Nm + fileExt) + @"'
+                                        archiveFileName='" + Path.Combine(archivePath, @"${date:format=" + dateFormat + "}-" + app2Nm + fileExt) + @"' 
                                         archiveEvery='minute' 
                                         archiveOldFileOnStartup='true'
                                         maxArchiveFiles='" + maxArchiveFilesConfig + @"'
@@ -3088,6 +3155,7 @@ namespace NLog.UnitTests.Targets
             finally
             {
                 //cleanup
+                LogManager.Configuration = null;
                 archiveDir.Delete(true);
             }
         }
