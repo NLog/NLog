@@ -49,6 +49,8 @@ namespace NLog.Targets
     {
         private readonly object lockObject = new object();
         private List<Layout> allLayouts;
+        
+        /// <summary> Are all layouts in this target thread-agnostic, if so we don't precalculate the layouts </summary>
         private bool allLayoutsAreThreadAgnostic;
         private bool scannedForLayouts;
         private Exception initializeException;
@@ -186,6 +188,7 @@ namespace NLog.Targets
         /// <summary>
         /// Calls the <see cref="Layout.Precalculate"/> on each volatile layout
         /// used by this target.
+        /// This method won't prerender if all layouts in this target are thread-agnostic.
         /// </summary>
         /// <param name="logEvent">
         /// The log event.
