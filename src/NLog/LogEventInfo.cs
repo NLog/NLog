@@ -271,7 +271,11 @@ namespace NLog
         /// <summary>
         /// Checks if any per-event context properties (Without allocation)
         /// </summary>
-        public bool HasProperties { get { return this.properties != null && this.properties.Count > 0; } }
+        public bool HasProperties { get
+        {
+            var props = this.Properties;
+            return props != null && props.Count > 0;
+        } }
 
         /// <summary>
         /// Gets the dictionary of per-event context properties.

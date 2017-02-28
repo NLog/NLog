@@ -1960,7 +1960,58 @@ namespace NLog.UnitTests
             }
         }
 
+        /// <summary>
+        /// Only properties
+        /// </summary>
+        [Fact]
+        public void TestStructuredProperties_json()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target name='debug' type='Debug'  >
+                                <layout type='JsonLayout' includeAllProperties='true' />
+                        </target>
+                    </targets>
+                    <rules>
+                        <logger name='*' levels='Error' writeTo='debug' />
+                    </rules>
+                </nlog>");
 
+            ILogger logger = LogManager.GetLogger("A");
+
+            logger.Error("Login request from {Username} for {Application}", "John", "BestApplicationEver");
+
+            AssertDebugLastMessage("debug", "{ \"Username\": \"John\", \"Application\": \"BestApplicationEver\" }");
+        }
+
+        /// <summary>
+        /// Properties and message
+        /// </summary>
+        [Fact]
+        public void TestStructuredProperties_json_compound()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target name='debug' type='Debug'  >
+                              <layout type='CompoundLayout'>
+                                <layout type='SimpleLayout' text='${message}' />
+                                <layout type='JsonLayout' includeAllProperties='true' />
+                              </layout>
+                        </target>
+                    </targets>
+                    <rules>
+                        <logger name='*' levels='Error' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            logger.Error("Login request from {Username} for {Application}", "John", "BestApplicationEver");
+
+            AssertDebugLastMessage("debug", "Login request from \"John\" for \"BestApplicationEver\"{ \"Username\": \"John\", \"Application\": \"BestApplicationEver\" }");
+        }
 
 
         private class Person
@@ -2041,12 +2092,12 @@ namespace NLog.UnitTests
         [Fact]
         public void LogEventTemplateShouldHaveProperties()
         {
-            var logEventInfo = new LogEventInfo(LogLevel.Debug, "logger1", null, "{A}", new object[] {"b"});
+            var logEventInfo = new LogEventInfo(LogLevel.Debug, "logger1", null, "{A}", new object[] { "b" });
             Assert.Contains("A", logEventInfo.Properties.Keys);
             Assert.Equal("b", logEventInfo.Properties["A"]);
             Assert.Equal(1, logEventInfo.Properties.Count);
         }
-        
+
 
         [Fact]
         public void LogEventTemplateShouldHaveProperties_even_when_changed()

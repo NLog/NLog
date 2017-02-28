@@ -1,7 +1,7 @@
 version: 4.5.{build}
 clone_folder: c:\projects\nlog
 build_script:                                                                                                                
-  - msbuild  src/NLog.proj /verbosity:minimal /t:rebuild /t:xsd /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true  /t:NuGetPackage /p:BuildVersion=4.5-alpha03  /p:AssemblyFileVersion=4.5.%APPVEYOR_BUILD_NUMBER% /p:BuildLastMajorVersion=4.0.0 /p:configuration=release /p:BuildLabelOverride=NONE 
+  - msbuild  src/NLog.proj /verbosity:minimal /t:rebuild /t:xsd /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true  /t:NuGetPackage /p:BuildVersion=4.5-alpha04  /p:AssemblyFileVersion=4.5.%APPVEYOR_BUILD_NUMBER% /p:BuildLastMajorVersion=4.0.0 /p:configuration=release /p:BuildLabelOverride=NONE 
   - msbuild  src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true 
  
 test_script:
