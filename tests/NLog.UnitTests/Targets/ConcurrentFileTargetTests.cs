@@ -31,6 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !__ANDROID__ && !__IOS__ 
+// Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) so the BaseFileAppender class now throws an exception in the constructor.
+#define SupportsMutex
+#endif
+
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -59,7 +64,10 @@ namespace NLog.UnitTests.Targets
             ft.OpenFileCacheSize = 1;
             ft.LineEnding = LineEndingMode.LF;
             ft.KeepFileOpen = Array.IndexOf(modes, "retry") >= 0 ? false : true;
+
+#if SupportsMutex
             ft.ForceMutexConcurrentWrites = Array.IndexOf(modes, "mutex") >= 0 ? true : false;
+#endif
             ft.ArchiveAboveSize = Array.IndexOf(modes, "archive") >= 0 ? 50 : -1;
             if (ft.ArchiveAboveSize > 0)
             {

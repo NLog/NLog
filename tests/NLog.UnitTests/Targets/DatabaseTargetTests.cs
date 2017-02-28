@@ -31,6 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+using NLog.Internal;
+
+
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -1390,7 +1394,7 @@ Dispose()
             public static string GetConnectionString()
             {
                 var connectionString = ConfigurationManager.AppSettings["SqlServerTestConnectionString"];
-                if (String.IsNullOrWhiteSpace(connectionString))
+                if (StringHelpers.IsNullOrWhiteSpace(connectionString))
                 {
                     connectionString = IsAppVeyor() ? AppVeyorConnectionStringNLogTest : LocalConnectionStringNLogTest;
                 }

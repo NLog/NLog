@@ -1,16 +1,22 @@
 language: csharp
-solution: src/NLog.mono.sln
-dist: trusty
+dist: "trusty"
+matrix:
+  include:
+    - mono: 2.10.8
+      env: MONO_V=MONO2
+      solution: src/NLog.mono2.sln
+    - mono: latest
+      env: MONO_V=MONO4
+      solution: src/NLog.mono4.sln
+
+before_script: 
+- chmod ugo+x build-mono.sh
+- chmod ugo+x $TRAVIS_BUILD_DIR/src/.nuget/NuGet.exe
+
+script: ./build-mono.sh
+
 addons:
   sonarqube: true
   branches:
     - sonarqube
     - master
-install:
-  - nuget restore src/NLog.mono.sln
-  - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
-script:
-  - xbuild /p:Configuration=Release src/NLog.mono.sln
-  - sonar-scanner
-  - mono ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe "./build/bin/Release/Mono 2.x/NLog.UnitTests.dll"
-  

@@ -31,48 +31,24 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+using Path3 = System.IO.Path;
+using System.Linq;
 using System.Text;
-using NLog.Internal;
-using Xunit;
-using Xunit.Extensions;
+
 
 namespace NLog.UnitTests.Internal
 {
-    public class StringBuilderExtTests : NLogTestBase
+    public static class PathHelpers
     {
-        [Theory]
-        [InlineData(0)]
-        [InlineData(1)]
-        [InlineData(2)]
-        [InlineData(3)]
-        [InlineData(4)]
-        [InlineData(5)]
-        [InlineData(6)]
-        [InlineData(7)]
-        [InlineData(8)]
-        [InlineData(9)]
-        [InlineData(10)]
-        [InlineData(12)]
-        [InlineData(123)]
-        [InlineData(1234)]
-        [InlineData(12345)]
-        [InlineData(123456)]
-        [InlineData(1234567)]
-        [InlineData(12345678)]
-        [InlineData(123456789)]
-        [InlineData(1234567890)]
-        [InlineData(int.MaxValue)]
-        [InlineData(int.MinValue)]
-        void TestAppendInvariant(int input)
+        public static string Combine(string path1, string path2, string path3)
         {
-            StringBuilder sb = new StringBuilder();
-            StringBuilderExt.AppendInvariant(sb, input);
-            Assert.Equal(input.ToString(System.Globalization.CultureInfo.InvariantCulture), sb.ToString());
-
-            input = 0 - input;
-            sb = new StringBuilder(); 
-            StringBuilderExt.AppendInvariant(sb, input);
-            Assert.Equal(input.ToString(System.Globalization.CultureInfo.InvariantCulture), sb.ToString());
+            return Path3.Combine(path1, Path3.Combine(path2, path3));
         }
+        public static string Combine(string path1, string path2, string path3, string path4)
+        {
+            return Path3.Combine(path1, Combine(path2, path3, path4));
+        }
+
     }
 }

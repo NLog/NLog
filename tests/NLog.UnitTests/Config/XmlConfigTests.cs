@@ -75,22 +75,28 @@ namespace NLog.UnitTests.Config
         }
 
 
-
+        /// <summary>
+        /// parse timestring
+        /// 
+        /// note, in some platforms 1:0:0:00 (1 day) is supported, while it should be 1.0:0:00
+        /// </summary>
+        /// <param name="interval"></param>
+        /// <param name="seconds"></param>
         [Theory]
-        [InlineData("0:0:0:1", 1)]
-        [InlineData("0:0:1", 1)]
+        [InlineData("0.0:0:01", 1)]
+        [InlineData("0:0:01", 1)]
         [InlineData("0:1", 60)] //1 minute
         [InlineData("0:1:0", 60)]
-        [InlineData("00:00:00:1", 1)]
-        [InlineData("000:0000:000:001", 1)]
-        [InlineData("0:0:1:1", 61)]
+        [InlineData("00.00:00:1", 1)]
+        [InlineData("000.0000:000:001", 1)]
+        [InlineData("0.0:1:1", 61)]
         [InlineData("1:0:0", 3600)] // 1 hour
         [InlineData("2:3:4", 7384)] 
-        [InlineData("1:0:0:0", 86400)] //1 day
+        [InlineData("1.0:0:0", 86400)] //1 day
         public void SetTimeSpanFromXmlTest(string interval, int seconds)
         {
             var config = CreateConfigurationFromString(string.Format(@"
-            <nlog>
+            <nlog throwExceptions='true'>
                 <targets>
                     <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='5'  interval='{0}'>
                         <target name='debug' type='Debug' layout='${{message}}' />

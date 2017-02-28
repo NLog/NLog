@@ -220,6 +220,12 @@ namespace NLog.Internal
                 newValue = ConditionParser.ParseExpression(value, configurationItemFactory);
                 return true;
             }
+            if (propertyType == typeof(TimeSpan))
+            {
+                value = value.Trim();
+                newValue = TimeSpan.Parse(value);
+                return true;
+            }
 
             newValue = null;
             return false;
@@ -286,6 +292,13 @@ namespace NLog.Internal
             {
                 value = value.Trim();
                 newValue = Type.GetType(value, true);
+                return true;
+            }
+
+            if (type == typeof(TimeSpan))
+            {
+                value = value.Trim();
+                newValue = TimeSpan.Parse(value);
                 return true;
             }
 

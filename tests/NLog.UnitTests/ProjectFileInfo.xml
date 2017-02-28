@@ -52,7 +52,7 @@
      </ItemGroup>
    </Project>
 
-   <Project File="NLog.UnitTests.mono.csproj">
+   <Project File="NLog.UnitTests.mono2.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
      </ItemGroup>
@@ -60,4 +60,13 @@
         <FileSet Include="AllContentFiles" />
      </ItemGroup>
    </Project>
+
+  <Project File="NLog.UnitTests.mono4.csproj">
+    <ItemGroup Name="Compile">
+      <FileSet Include="AllFilesToCompile" />
+    </ItemGroup>
+    <ItemGroup Name="Content">
+      <FileSet Include="AllContentFiles" />
+    </ItemGroup>
+  </Project>
 </ProjectFiles>

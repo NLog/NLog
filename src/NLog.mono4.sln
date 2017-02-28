@@ -1,17 +1,17 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.mono", "NLog\NLog.mono.csproj", "{E7AB20BF-6920-442A-B876-CC05BC5CEC79}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.mono", "NLog\NLog.mono4.csproj", "{E7AB20BF-6920-442A-B876-CC05BC5CEC79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Extended.mono", "NLog.Extended\NLog.Extended.mono.csproj", "{F801A1F9-1024-4446-BF9E-A923137340B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Extended.mono", "NLog.Extended\NLog.Extended.mono4.csproj", "{F801A1F9-1024-4446-BF9E-A923137340B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleExtensions.mono", "..\tests\SampleExtensions\SampleExtensions.mono.csproj", "{5CCB56C3-4A6E-4C11-960B-2877099F52CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleExtensions.mono", "..\tests\SampleExtensions\SampleExtensions.mono4.csproj", "{5CCB56C3-4A6E-4C11-960B-2877099F52CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.mono", "..\tests\NLog.UnitTests\NLog.UnitTests.mono.csproj", "{FE0A3713-E9A8-41F0-89FA-C1126F8FB6A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.mono", "..\tests\NLog.UnitTests\NLog.UnitTests.mono4.csproj", "{FE0A3713-E9A8-41F0-89FA-C1126F8FB6A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLogAutoLoadExtension.mono", "NLogAutoLoadExtension\NLogAutoLoadExtension.mono.csproj", "{2D85AAFA-76B0-4271-8AA8-42BBD796FD39}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLogAutoLoadExtension.mono", "NLogAutoLoadExtension\NLogAutoLoadExtension.mono4.csproj", "{2D85AAFA-76B0-4271-8AA8-42BBD796FD39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

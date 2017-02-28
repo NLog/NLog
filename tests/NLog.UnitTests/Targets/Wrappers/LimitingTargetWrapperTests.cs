@@ -146,7 +146,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             string internalLog = RunAndCaptureInternalLog(() =>
             {
                 wrapper.WriteAsyncLogEvent(
-                    new LogEventInfo(LogLevel.Debug, "test", $"Hello {5}").WithContinuation(ex => lastException = ex));
+                    new LogEventInfo(LogLevel.Debug, "test", string.Format("Hello {0}", 5)).WithContinuation(ex => lastException = ex));
             }, LogLevel.Trace);
 
             Assert.Equal(5, wrappedTarget.WriteCount);
@@ -376,7 +376,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             for (int i = startIndex; i < startIndex + count; i++)
             {
                 wrapper.WriteAsyncLogEvent(
-                    new LogEventInfo(LogLevel.Debug, "test", $"Hello {i}").WithContinuation(ex => lastException = ex));
+                    new LogEventInfo(LogLevel.Debug, "test", string.Format("Hello {0}", i)).WithContinuation(ex => lastException = ex));
             }
             return lastException;
         }

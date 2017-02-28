@@ -11,7 +11,7 @@
     <RootNamespace>SampleExtensions</RootNamespace>
     <AssemblyName>SampleExtensions</AssemblyName>
     <SignAssembly>true</SignAssembly>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -55,7 +55,7 @@
     <None Include="NLogTests.snk" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NLog\NLog.mono.csproj">
+    <ProjectReference Include="..\..\src\NLog\NLog.mono2.csproj">
       <Project>{e7ab20bf-6920-442a-b876-cc05bc5cec79}</Project>
       <Name>NLog.mono</Name>
     </ProjectReference>

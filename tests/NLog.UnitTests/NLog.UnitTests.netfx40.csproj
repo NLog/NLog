@@ -117,6 +117,7 @@
     <Compile Include="GetLoggerTests.cs" />
     <Compile Include="Internal\AppDomainPartialTrustTests.cs" />
     <Compile Include="Internal\AsyncLogEventInfoTests.cs" />
+    <Compile Include="Internal\DirectoryHelpers.cs" />
     <Compile Include="Internal\EnumHelpersTests.cs" />
     <Compile Include="Internal\ExceptionHelperTests.cs" />
     <Compile Include="Internal\FileAppenders\FileAppenderCacheTests.cs" />
@@ -124,11 +125,13 @@
     <Compile Include="Internal\LayoutHelpersTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
+    <Compile Include="Internal\PathHelpers.cs" />
     <Compile Include="Internal\PlatformDetectorTests.cs" />
     <Compile Include="Internal\SortHelpersTests.cs" />
     <Compile Include="Internal\StringBuilderExtTests.cs" />
     <Compile Include="Internal\StringHelpersTests.cs" />
     <Compile Include="Internal\StringSplitterTests.cs" />
+    <Compile Include="Internal\Tuple.cs" />
     <Compile Include="Internal\UrlHelperTests.cs" />
     <Compile Include="LayoutRenderers\AppDomainLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\AppSettingTests.cs" />

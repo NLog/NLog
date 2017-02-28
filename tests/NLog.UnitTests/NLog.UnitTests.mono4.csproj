@@ -19,7 +19,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <BaseAddress>285212672</BaseAddress>
-    <DefineConstants>DEBUG;TRACE;MONO;MONO_2_0;WCF_SUPPORTED;NUNIT</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;MONO;MONO_2_0;MONO_4_0;WCF_SUPPORTED;NUNIT</DefineConstants>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <Optimize>false</Optimize>
@@ -30,11 +30,11 @@
     <ErrorReport>prompt</ErrorReport>
     <OutputPath>bin\Debug</OutputPath>
     <NoStdLib>true</NoStdLib>
-    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <BaseAddress>285212672</BaseAddress>
-    <DefineConstants>TRACE;MONO;MONO_2_0;WCF_SUPPORTED;NUNIT</DefineConstants>
+    <DefineConstants>TRACE;MONO;MONO_2_0;MONO_4_0;WCF_SUPPORTED;NUNIT</DefineConstants>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <Optimize>true</Optimize>
@@ -43,14 +43,14 @@
     <ErrorReport>prompt</ErrorReport>
     <OutputPath>bin\Release</OutputPath>
     <NoStdLib>true</NoStdLib>
-    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
-    <DefineConstants>MONO;MONO_2_0;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
-    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 2.x</OutputPath>
-    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
+    <DefineConstants>MONO;MONO_2_0;MONO_4_0;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
+    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 4.x</OutputPath>
+    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
@@ -108,6 +108,7 @@
     <Compile Include="GetLoggerTests.cs" />
     <Compile Include="Internal\AppDomainPartialTrustTests.cs" />
     <Compile Include="Internal\AsyncLogEventInfoTests.cs" />
+    <Compile Include="Internal\DirectoryHelpers.cs" />
     <Compile Include="Internal\EnumHelpersTests.cs" />
     <Compile Include="Internal\ExceptionHelperTests.cs" />
     <Compile Include="Internal\FileAppenders\FileAppenderCacheTests.cs" />
@@ -115,11 +116,13 @@
     <Compile Include="Internal\LayoutHelpersTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
+    <Compile Include="Internal\PathHelpers.cs" />
     <Compile Include="Internal\PlatformDetectorTests.cs" />
     <Compile Include="Internal\SortHelpersTests.cs" />
     <Compile Include="Internal\StringBuilderExtTests.cs" />
     <Compile Include="Internal\StringHelpersTests.cs" />
     <Compile Include="Internal\StringSplitterTests.cs" />
+    <Compile Include="Internal\Tuple.cs" />
     <Compile Include="Internal\UrlHelperTests.cs" />
     <Compile Include="LayoutRenderers\AppDomainLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\AppSettingTests.cs" />
@@ -244,17 +247,20 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NLog\NLog.mono.csproj">
+    <ProjectReference Include="..\..\src\NLog\NLog.mono4.csproj">
       <Project>{E7AB20BF-6920-442A-B876-CC05BC5CEC79}</Project>
       <Name>NLog.mono</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\NLog.Extended\NLog.Extended.mono.csproj">
+    <ProjectReference Include="..\..\src\NLog.Extended\NLog.Extended.mono4.csproj">
       <Project>{F801A1F9-1024-4446-BF9E-A923137340B8}</Project>
       <Name>NLog.Extended.mono</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SampleExtensions\SampleExtensions.mono.csproj">
+    <ProjectReference Include="..\SampleExtensions\SampleExtensions.mono4.csproj">
       <Project>{5CCB56C3-4A6E-4C11-960B-2877099F52CE}</Project>
       <Name>SampleExtensions.mono</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
 </Project>
